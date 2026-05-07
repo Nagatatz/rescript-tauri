@@ -1,0 +1,34 @@
+# macOS
+.DS_Store
+
+# Node / pnpm
+node_modules/
+.pnpm-store/
+
+# Local environment & secrets (templates are committed; resolved files are ignored)
+.env
+.env.local
+.mcp.json
+
+# Personal Claude notes (per CLAUDE.md "個人ノート")
+CLAUDE.local.md
+
+# Claude Code runtime artifacts
+.claude/worktrees/
+
+# ReScript build artifacts
+lib/
+
+# Sphinx build outputs
+sphinx-docs/_build/
+
+# Editors
+.vscode/
+.idea/
+
+# Coverage / test outputs
+coverage/
+
+# Logs / temp
+*.log
+.tmp/
