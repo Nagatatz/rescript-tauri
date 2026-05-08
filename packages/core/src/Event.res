@@ -45,14 +45,19 @@ external _emitTo: (targetJs, string, 'payload) => promise<unit> = "emitTo"
 let make = (~name, ~decode): t<'payload> => {name, decode}
 
 /** Internal: decode a raw event payload and forward it to the user
-    handler as a typed `event<'payload>`. Decode failures are dropped
-    silently in this step; Step 3 of steering 027 will surface them. */
-let _wrap = (event: t<'payload>, handler: event<'payload> => unit, raw: rawEvent): unit =>
+    handler as `Ok(event<'payload>)` or `Error(decoderMessage)`. */
+let _wrap = (
+  event: t<'payload>,
+  handler: result<event<'payload>, string> => unit,
+  raw: rawEvent,
+): unit =>
   Core._applyDecoder(event.decode, raw.payload, decoded =>
-    switch decoded {
-    | Ok(p) => handler({event: raw.event, id: raw.id, payload: p})
-    | Error(_) => ()
-    }
+    handler(
+      switch decoded {
+      | Ok(p) => Ok({event: raw.event, id: raw.id, payload: p})
+      | Error(msg) => Error(msg)
+      },
+    )
   )
 
 let listen = (event: t<'payload>, handler) =>

@@ -129,11 +129,10 @@ module Channel: {
       Rust side calls `channel.send(...)` and each call surfaces here
       via the callback registered with `onMessage`.
 
-      Decoder failures (Rust sends a value that `decode` cannot
-      interpret) are silently dropped on purpose: a malformed message
-      is an infrastructure issue, and surfacing it through the user
-      callback would force every call site to handle a parallel
-      error channel.
+      The callback receives `Ok(message)` on a successful decode and
+      `Error(decoderMessage)` when the JSON cannot be interpreted.
+      Callers handle the two branches explicitly — to mimic the
+      previous silent-drop behavior, ignore the `Error` case.
 
       See: https://v2.tauri.app/develop/calling-rust/#channels
   */
@@ -145,8 +144,21 @@ module Channel: {
   let make: (~decode: decoder<'message>) => t<'message>
 
   /** Registers (or replaces) the message handler. Tauri delivers each
-      Rust-side `channel.send(...)` here. */
-  let onMessage: (t<'message>, 'message => unit) => unit
+      Rust-side `channel.send(...)` here as `Ok(message)`; decoder
+      failures arrive as `Error(decoderMessage)`.
+
+      ## Example
+
+      ```rescript
+      chan->Core.Channel.onMessage(result =>
+        switch result {
+        | Ok(msg) => Console.log(msg)
+        | Error(_) => () // ignore decode failures
+        }
+      )
+      ```
+  */
+  let onMessage: (t<'message>, result<'message, string> => unit) => unit
 
   /** Returns the integer id of the underlying JS Channel, useful when
       correlating with Rust-side logs. */

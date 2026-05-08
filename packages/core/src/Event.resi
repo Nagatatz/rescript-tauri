@@ -26,9 +26,13 @@ type unlisten = unit => unit
 */
 let make: (~name: string, ~decode: Core.decoder<'payload>) => t<'payload>
 
-/** Subscribes to every emission of the event. The returned `unlisten`
-    must be called to stop receiving events. Decode failures are
-    silently dropped (the user callback is not invoked).
+/** Subscribes to every emission of the event. The callback receives:
+    - `Ok(event)` when the JSON payload decodes successfully
+    - `Error(msg)` with the decoder error message on failure
+
+    Callers handle both cases explicitly — to mimic the previous
+    silent-drop behavior, ignore the `Error` branch. The returned
+    `unlisten` must be called to stop receiving events.
 
     See: https://v2.tauri.app/reference/javascript/api/namespaceevent/#listen
 
@@ -36,16 +40,29 @@ let make: (~name: string, ~decode: Core.decoder<'payload>) => t<'payload>
 
     ```rescript
     let fileChanged = Event.make(~name="file-changed", ~decode=...)
-    let unlisten = await fileChanged->Event.listen(evt => Console.log(evt.payload))
+    let unlisten = await fileChanged->Event.listen(result =>
+      switch result {
+      | Ok(evt) => Console.log(evt.payload)
+      | Error(_) => () // ignore decode failures
+      }
+    )
     ```
 */
-let listen: (t<'payload>, event<'payload> => unit) => promise<unlisten>
+let listen: (
+  t<'payload>,
+  result<event<'payload>, string> => unit,
+) => promise<unlisten>
 
 /** Subscribes for exactly one emission, then auto-unsubscribes.
+    Decode failures still consume the single emission and arrive as
+    `Error(msg)`; the listener auto-unsubscribes either way.
 
     See: https://v2.tauri.app/reference/javascript/api/namespaceevent/#once
 */
-let once: (t<'payload>, event<'payload> => unit) => promise<unlisten>
+let once: (
+  t<'payload>,
+  result<event<'payload>, string> => unit,
+) => promise<unlisten>
 
 /** Emits the event globally to every listener.
 

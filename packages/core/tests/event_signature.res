@@ -3,11 +3,15 @@
 let _check_make: (~name: string, ~decode: JSON.t => result<'payload, string>) => Event.t<'payload> =
   Event.make
 
-let _check_listen: (Event.t<'payload>, Event.event<'payload> => unit) => promise<Event.unlisten> =
-  Event.listen
+let _check_listen: (
+  Event.t<'payload>,
+  result<Event.event<'payload>, string> => unit,
+) => promise<Event.unlisten> = Event.listen
 
-let _check_once: (Event.t<'payload>, Event.event<'payload> => unit) => promise<Event.unlisten> =
-  Event.once
+let _check_once: (
+  Event.t<'payload>,
+  result<Event.event<'payload>, string> => unit,
+) => promise<Event.unlisten> = Event.once
 
 let _check_emit: (Event.t<'payload>, 'payload) => promise<unit> = Event.emit
 

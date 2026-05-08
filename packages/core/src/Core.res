@@ -96,16 +96,8 @@ module Channel = {
     decode,
   }
 
-  let onMessage = (chan, callback) => {
-    chan.instance->_setOnmessage(raw =>
-      _applyDecoder(chan.decode, raw, decoded =>
-        switch decoded {
-        | Ok(msg) => callback(msg)
-        | Error(_) => ()
-        }
-      )
-    )
-  }
+  let onMessage = (chan, callback) =>
+    chan.instance->_setOnmessage(raw => _applyDecoder(chan.decode, raw, callback))
 
   let id = chan => chan.instance->_getId
 }
