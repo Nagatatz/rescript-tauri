@@ -13,6 +13,20 @@ type invokeError =
   | DecodeError(string)
   | RustError(JSON.t)
 
+/** Internal: convert a caught JS exception to a JSON value used as the
+    payload of `RustError`. JS `Error` objects are encoded as
+    `{name, message}`; non-`Error` exceptions fall back to their
+    `Exn.toString` form. */
+let _exnToJson = (exn: exn): JSON.t =>
+  switch exn->JsExn.fromException {
+  | Some(jsExn) =>
+    Dict.fromArray([
+      ("name", JSON.Encode.string(jsExn->JsExn.name->Option.getOr("Error"))),
+      ("message", JSON.Encode.string(jsExn->JsExn.message->Option.getOr(""))),
+    ])->JSON.Encode.object
+  | None => JSON.Encode.string("(non-Error exception)")
+  }
+
 module Command = {
   type t<'args, 'result> = {
     name: string,
@@ -31,7 +45,7 @@ module Command = {
       | Error(msg) => Error(DecodeError(msg))
       }
     } catch {
-    | exn => Error(RustError(exn->Obj.magic))
+    | exn => Error(RustError(_exnToJson(exn)))
     }
   }
 
