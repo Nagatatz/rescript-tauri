@@ -1,57 +1,51 @@
 # Contributing Guide
 
-Thank you for your interest in contributing!
+This page is a docs-site-specific extension of the canonical [`CONTRIBUTING.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/CONTRIBUTING.md) at the repository root. **Read the root `CONTRIBUTING.md` first** for project-wide context (status, branch naming, commit style, PR process, Definition of Done).
 
-## Getting Started
+```{important}
+The repository is currently in **Phase 1 — design phase** and external pull requests are not yet accepted. Issues are welcome (design feedback, RFC discussion). The workflow described below is the post-Phase-1 contributor workflow; familiarizing yourself with it now is encouraged.
+```
 
-1. Fork the repository on GitHub
-2. Clone your fork:
-   ```bash
-   git clone https://github.com/<your-username>/{{PROJECT_NAME_SLUG}}.git
-   ```
-3. Set up your [development environment](setup.md)
-4. Create a feature branch:
-   ```bash
-   git checkout -b feature/my-feature
-   ```
+## Where to start
 
-## Development Workflow
+1. Read the project [README](https://github.com/Nagatatz/rescript-tauri/blob/main/README.md) for the high-level pitch.
+2. Read the root [`CONTRIBUTING.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/CONTRIBUTING.md) for the project-wide workflow.
+3. For docs-site work specifically, follow [Development Setup](setup.md) and [Building](building.md) on this site.
 
-### Branch Naming
+## Docs-site-specific contributions
 
-| Prefix | Use |
-|--------|-----|
-| `feature/` | New features |
-| `fix/` | Bug fixes |
-| `refactor/` | Code refactoring |
-| `docs/` | Documentation |
-| `test/` | Test additions |
-| `chore/` | Configuration, dependencies |
+The most common contributions to `sphinx-docs/` are:
 
-### Commit Messages
+| Type | What to change | Verification |
+|---|---|---|
+| Translation update | `sphinx-docs/locale/ja/LC_MESSAGES/<file>.po` | `make build-ja` |
+| Fix a typo or broken link in English | `sphinx-docs/**/*.md` | `make html`, `make linkcheck` |
+| Add a new English page | New `.md` + entry in the parent `index.md` `toctree` | `make update-po` to regenerate `.po`, then translate |
+| Improve a code sample | The relevant `.md` | `make html` to verify rendering |
 
-Use emoji prefixes for commit messages:
+After any source `.md` change, run `make update-po` so the Japanese `.po` files reflect the new strings, then update the corresponding `msgstr` entries.
 
-| Emoji | Use |
-|-------|-----|
-| ✨ | New feature |
-| 🐛 | Bug fix |
-| ♻️ | Refactoring |
-| 📝 | Documentation |
-| 🔧 | Configuration change |
-| ✅ | Test addition/fix |
+## Branch naming and commit style
 
-**Format:** `<emoji> <verb> <concise description>`
+Same as the project root. See [`CONTRIBUTING.md` §3.1 / §3.2](https://github.com/Nagatatz/rescript-tauri/blob/main/CONTRIBUTING.md). Docs changes typically use the `docs/` branch prefix and the 📝 commit emoji.
 
-## Submitting Changes
+## Before opening a PR
 
-1. Ensure all tests pass
-2. Ensure code style checks pass
-3. Build the project
-4. Push your branch and create a Pull Request
+```bash
+cd sphinx-docs
+make lint          # ruff check + format
+make build-all     # EN + JA + Pagefind assembly
+make linkcheck     # broken-link detection (external 404s acceptable)
+```
 
-### PR Guidelines
+Attach screenshots in the PR if visual layout changes.
 
-- Keep PRs focused on a single feature or fix
-- Write a clear description of what changed and why
-- Reference related issues if applicable
+## Translation guidelines
+
+The project's translation tone is:
+
+- **です・ます調** (polite informal Japanese).
+- Technical terms stay in **English** (Layer 1 (Raw), polymorphic variant, peerDependencies, IPC, Channel, Event, Window, etc.).
+- **Code blocks are not translated.** If a `msgid` contains code, copy it verbatim into the `msgstr`.
+- **URLs and link targets are not translated.** Translate the link text only.
+- Existing translation choices for shared terms should match the rescript-tauri internal [`docs/glossary.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/docs/glossary.md).

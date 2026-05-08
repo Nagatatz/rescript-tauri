@@ -26,8 +26,8 @@
 
 - [x] **commit 3**: `sphinx-docs/index.md` および `user/{index,installation,quickstart,configuration,changelog}.md` の 6 ファイルを書き換え → コミット `📝 Rewrite sphinx-docs/index.md and user/* with rescript-tauri content`
 - [x] 検証: `cd sphinx-docs && make install && make html` で `_build/html/index.html` および `_build/html/user/*.html` が生成（commit 4 後にまとめて実行）
-- [ ] **commit 4**: `sphinx-docs/dev/{index,setup,building,architecture,project-structure,contributing}.md` の 6 ファイルを書き換え → コミット `📝 Rewrite sphinx-docs/dev/* with rescript-tauri content`
-- [ ] 検証: `make html` で `_build/html/dev/*.html` が生成
+- [x] **commit 4**: `sphinx-docs/dev/{index,setup,building,architecture,project-structure,contributing}.md` の 6 ファイルを書き換え → コミット `📝 Rewrite sphinx-docs/dev/* with rescript-tauri content`
+- [x] 検証: `cd sphinx-docs && make install && make html` を実行し `_build/html/{user,dev}/*.html` が生成（commit 4 後にまとめて実行）
 
 ### 2.3 日本語 .po 生成
 
