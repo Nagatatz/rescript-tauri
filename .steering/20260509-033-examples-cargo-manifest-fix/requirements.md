@@ -2,7 +2,7 @@
 
 | 項目 | 内容 |
 |---|---|
-| 作業 ID | 20260509-032-examples-cargo-manifest-fix |
+| 作業 ID | 20260509-033-examples-cargo-manifest-fix |
 | 作成日 | 2026-05-09 |
 | 起票理由 | `examples-build` ジョブが 3 OS とも `cargo check` で manifest パース失敗 (`can't find library 'hello_world_lib'`)。SHA pin / pnpm 修正 (steering 028 / 030) を経て CI が起動するようになった結果、example 側の事前バグが顕在化 |
 

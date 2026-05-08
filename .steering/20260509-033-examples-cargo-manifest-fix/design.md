@@ -2,7 +2,7 @@
 
 | 項目 | 内容 |
 |---|---|
-| 作業 ID | 20260509-032-examples-cargo-manifest-fix |
+| 作業 ID | 20260509-033-examples-cargo-manifest-fix |
 | 関連 | [requirements.md](./requirements.md) |
 
 ## 1. 変更内容
