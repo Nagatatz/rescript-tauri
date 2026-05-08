@@ -113,13 +113,13 @@ Please use **GitHub Issues** with the templates under `.github/ISSUE_TEMPLATE/`.
 - Operating system
 - Minimal reproduction (a snippet or, ideally, a forkable example based on `examples/`)
 
-For **security issues**, do not open a public Issue. A `SECURITY.md` with a private disclosure channel will be added at the Phase 1 release. Until then, please contact the maintainer through the email listed in the GitHub profile.
+For **security issues**, do not open a public Issue. See [`SECURITY.md`](./SECURITY.md) for the private disclosure channel (GitHub Security Advisories as the primary path, with an email fallback) and the project's response timeline and disclosure policy.
 
 ---
 
 ## 6. Code of Conduct
 
-A `CODE_OF_CONDUCT.md` will be added at the Phase 1 release. Until then, contributors and reviewers are expected to act with respect, assume good faith, and keep technical discussion focused on the design and code at hand.
+Contributors and reviewers follow the [`CODE_OF_CONDUCT.md`](./CODE_OF_CONDUCT.md) (Contributor Covenant 2.1). Reports of behavior that violates the Code of Conduct go to the maintainer contact listed in that document.
 
 ---
 
