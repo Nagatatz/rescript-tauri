@@ -24,7 +24,7 @@ type unlisten = unit => unit
 
     See: https://v2.tauri.app/reference/javascript/api/namespaceevent/
 */
-let make: (~name: string, ~decode: JSON.t => result<'payload, string>) => t<'payload>
+let make: (~name: string, ~decode: Core.decoder<'payload>) => t<'payload>
 
 /** Subscribes to every emission of the event. The returned `unlisten`
     must be called to stop receiving events. Decode failures are

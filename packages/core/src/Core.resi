@@ -44,6 +44,18 @@ module Raw: {
   let convertFileSrc: (string, ~protocol: string=?) => string
 }
 
+/** Maps a raw IPC JSON payload to a typed value. Used by `Command`,
+    `Channel`, and `Event` for decoder definitions; re-exported so the
+    Phase 2 `Schema` package can target it from its schema-derived
+    decoders. */
+type decoder<'value> = JSON.t => result<'value, string>
+
+/** Internal: decode a raw JSON payload and forward the `result` to a
+    user callback. Shared by `Channel.onMessage` and `Event._wrap` so
+    decode-then-dispatch lives in one place. Public to allow
+    intra-package access; not part of the stable user-facing API. */
+let _applyDecoder: (decoder<'a>, JSON.t, result<'a, string> => unit) => unit
+
 /** Errors surfaced by the typed `Command` layer. */
 type invokeError =
   /** The Rust call succeeded but `decodeResult` could not interpret
@@ -84,7 +96,7 @@ module Command: {
   let make: (
     ~name: string,
     ~encodeArgs: 'args => JSON.t,
-    ~decodeResult: JSON.t => result<'result, string>,
+    ~decodeResult: decoder<'result>,
   ) => t<'args, 'result>
 
   /** Runs the command. Returns:
@@ -130,7 +142,7 @@ module Channel: {
   /** Creates a new Channel handle with its decoder. The underlying
       JS Channel is constructed eagerly so the Rust side can be told
       the channel id immediately. */
-  let make: (~decode: JSON.t => result<'message, string>) => t<'message>
+  let make: (~decode: decoder<'message>) => t<'message>
 
   /** Registers (or replaces) the message handler. Tauri delivers each
       Rust-side `channel.send(...)` here. */

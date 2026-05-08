@@ -20,7 +20,7 @@ type rawEvent = {
 
 type t<'payload> = {
   name: string,
-  decode: JSON.t => result<'payload, string>,
+  decode: Core.decoder<'payload>,
 }
 
 type unlisten = unit => unit
@@ -44,11 +44,16 @@ external _emitTo: (targetJs, string, 'payload) => promise<unit> = "emitTo"
 
 let make = (~name, ~decode): t<'payload> => {name, decode}
 
+/** Internal: decode a raw event payload and forward it to the user
+    handler as a typed `event<'payload>`. Decode failures are dropped
+    silently in this step; Step 3 of steering 027 will surface them. */
 let _wrap = (event: t<'payload>, handler: event<'payload> => unit, raw: rawEvent): unit =>
-  switch event.decode(raw.payload) {
-  | Ok(p) => handler({event: raw.event, id: raw.id, payload: p})
-  | Error(_) => ()
-  }
+  Core._applyDecoder(event.decode, raw.payload, decoded =>
+    switch decoded {
+    | Ok(p) => handler({event: raw.event, id: raw.id, payload: p})
+    | Error(_) => ()
+    }
+  )
 
 let listen = (event: t<'payload>, handler) =>
   _listen(event.name, raw => _wrap(event, handler, raw))
