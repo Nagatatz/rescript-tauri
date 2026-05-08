@@ -4,7 +4,7 @@ Production-ready ReScript bindings for Tauri 2.x's official JS SDK (`@tauri-apps
 
 > **Status:** Phase 1 — design complete, implementation not yet started. This repository currently contains the PRD, functional design, architecture, repository structure, and glossary; no source code is published yet. See [`docs/product-requirements.md`](./docs/product-requirements.md) and [`docs/functional-design.md`](./docs/functional-design.md) for details.
 >
-> **Visibility:** the repository is **private** while the design is being finalized. It will be switched to **public** at the Phase 1 release, once all of the following are in place: the first `@rescript-tauri/core` version is published to npm; every example workspace under `examples/` builds on the 3 OS matrix; the CI workflows specified in [`docs/functional-design.md`](./docs/functional-design.md) §6 are wired up (see [`.github/workflows/README.md`](./.github/workflows/README.md) for current status); and `CONTRIBUTING.md` is added. `LICENSE` (MIT) is already in place.
+> **Visibility:** the repository is **private** while the design is being finalized. It will be switched to **public** at the Phase 1 release, once all of the following are in place: the first `@rescript-tauri/core` version is published to npm; every example workspace under `examples/` builds on the 3 OS matrix; and the CI workflows specified in [`docs/functional-design.md`](./docs/functional-design.md) §6 are wired up (see [`.github/workflows/README.md`](./.github/workflows/README.md) for current status). [`LICENSE`](./LICENSE) (MIT) and [`CONTRIBUTING.md`](./CONTRIBUTING.md) are already in place.
 
 ---
 
@@ -120,7 +120,7 @@ pnpm --recursive test
 pnpm --filter @rescript-tauri/core build
 ```
 
-Detailed contributor guidance will be added to [`docs/development-guidelines.md`](./docs/development-guidelines.md) during Phase 1.
+For contributor-facing details (development flow, local setup, the new-module recipe, coding patterns, PR review angles), see [`docs/development-guidelines.md`](./docs/development-guidelines.md) (Japanese, internal-facing).
 
 ---
 
@@ -200,7 +200,7 @@ When introducing a new convention or workflow, choose its location in this prior
 
 ## 🤝 Contributing
 
-External pull requests are not yet accepted while the project is in its design phase. Feedback on the design or RFCs is welcome through GitHub Issues. A `CONTRIBUTING.md` will be added at the Phase 1 release.
+External pull requests are not yet accepted while the project is in its design phase. Feedback on the design or RFCs is welcome through GitHub Issues. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for how to engage today (issues only) and the future PR workflow that will apply once Phase 1 ships.
 
 ---
 
