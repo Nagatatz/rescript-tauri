@@ -17,7 +17,7 @@
 
 ## Phase 2: 実装（main 直接、worktree なし）
 
-- [ ] **commit 2**: `docs/development-guidelines.md` を新規作成（design.md §2.2 の章立てに従う、日本語、既存 `docs/*` ヘッダーパターン準拠）→ コミット `✨ Add docs/development-guidelines.md (Japanese, internal-facing)`
+- [x] **commit 2**: `docs/development-guidelines.md` を新規作成（design.md §2.2 の章立てに従う、日本語、既存 `docs/*` ヘッダーパターン準拠）→ コミット `✨ Add docs/development-guidelines.md (Japanese, internal-facing)`
 - [ ] **commit 3**: `CONTRIBUTING.md` を新規作成（design.md §2.1 の章立てに従う、英語、Phase 1 前の立ち位置を明示）→ コミット `✨ Add CONTRIBUTING.md (English, future-PR-aware)`
 - [ ] **commit 4**: `README.md` を軽微修正（design.md §2.3 の 3 箇所: §Development setup 末尾、§Contributing、§Visibility チェックリスト）→ コミット `📝 Resolve broken link and update visibility checklist in README`
 
