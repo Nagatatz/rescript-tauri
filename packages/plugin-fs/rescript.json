@@ -19,13 +19,8 @@
       "subdirs": true
     }
   ],
-  "dev-dependencies": [
-    "@rescript/core"
-  ],
-  "dependencies": [
-    "@rescript/core",
-    "@rescript-tauri/core"
-  ],
+  "dev-dependencies": ["@rescript/core"],
+  "dependencies": ["@rescript/core", "@rescript-tauri/core"],
   "jsx": {
     "version": 4
   }

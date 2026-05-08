@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from "vitest"
+import { afterEach, beforeEach, describe, expect, it } from "vitest"
 
 // Tauri's Channel class auto-assigns an id by calling
 // __TAURI_INTERNALS__.transformCallback(innerCallback) and stores the
@@ -42,9 +42,7 @@ describe("Core.Channel", () => {
 
   it("make + id returns the channel's auto-assigned numeric id (>= 100)", async () => {
     const { Channel } = await import("../../src/Core.res.mjs")
-    const ch = Channel.make((raw) =>
-      typeof raw === "string" ? Ok(raw) : Err("expected string"),
-    )
+    const ch = Channel.make((raw) => (typeof raw === "string" ? Ok(raw) : Err("expected string")))
     const id = Channel.id(ch)
     expect(typeof id).toBe("number")
     expect(id).toBeGreaterThanOrEqual(100)
@@ -53,9 +51,7 @@ describe("Core.Channel", () => {
   it("onMessage forwards decoded messages as Ok(msg)", async () => {
     const { Channel } = await import("../../src/Core.res.mjs")
     const ch = Channel.make((raw) =>
-      typeof raw === "string"
-        ? Ok(raw.toUpperCase())
-        : Err("expected string"),
+      typeof raw === "string" ? Ok(raw.toUpperCase()) : Err("expected string"),
     )
 
     const received = []
@@ -72,9 +68,7 @@ describe("Core.Channel", () => {
 
   it("onMessage surfaces decode failures as Error(msg)", async () => {
     const { Channel } = await import("../../src/Core.res.mjs")
-    const ch = Channel.make((raw) =>
-      typeof raw === "string" ? Ok(raw) : Err("not a string"),
-    )
+    const ch = Channel.make((raw) => (typeof raw === "string" ? Ok(raw) : Err("not a string")))
 
     const received = []
     Channel.onMessage(ch, (result) => received.push(result))

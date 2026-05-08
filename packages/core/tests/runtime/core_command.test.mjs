@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest"
+import { afterEach, beforeEach, describe, expect, it } from "vitest"
 
 // ReScript's `result` and variant runtime representation:
 //   Ok(v)    →  { TAG: "Ok", _0: v }
@@ -58,7 +58,11 @@ describe("Core.Command", () => {
       throw new Error("rust fail")
     })
 
-    const greet = Command.make("greet", () => ({}), () => Ok(""))
+    const greet = Command.make(
+      "greet",
+      () => ({}),
+      () => Ok(""),
+    )
 
     const result = await Command.invoke(greet, {})
     expect(result.TAG).toBe("Error")
@@ -70,7 +74,11 @@ describe("Core.Command", () => {
       throw new Error("boom")
     })
 
-    const greet = Command.make("greet", () => ({}), () => Ok(""))
+    const greet = Command.make(
+      "greet",
+      () => ({}),
+      () => Ok(""),
+    )
 
     await expect(Command.invokeExn(greet, {})).rejects.toThrow("boom")
   })
@@ -84,8 +92,6 @@ describe("Core.Command", () => {
       (raw) => (typeof raw === "string" ? Ok(raw) : Err("expected string")),
     )
 
-    await expect(Command.invokeExn(greet, {})).rejects.toThrow(
-      /Core\.Command decode error/,
-    )
+    await expect(Command.invokeExn(greet, {})).rejects.toThrow(/Core\.Command decode error/)
   })
 })

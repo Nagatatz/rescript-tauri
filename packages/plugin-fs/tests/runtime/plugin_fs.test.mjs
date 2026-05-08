@@ -1,10 +1,9 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest"
-
 // plugin-fs is a thin wrapper over Core.invoke. Each function dispatches
 // to "plugin:fs|<name>" with the arguments. Mocks.mockIPC intercepts
 // every invoke at the Tauri internals layer, so we can assert the
 // command name + payload that each binding emits.
 import * as Mocks from "@rescript-tauri/core/src/Mocks.res.mjs"
+import { afterEach, beforeEach, describe, expect, it } from "vitest"
 import * as PluginFs from "../../src/PluginFs.res.mjs"
 
 describe("PluginFs", () => {

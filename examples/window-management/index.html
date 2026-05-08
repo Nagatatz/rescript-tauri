@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>rescript-tauri window management</title>
@@ -13,19 +13,19 @@
   <body>
     <h1>Window management demo</h1>
     <div class="row">
-      <button id="title">Set random title</button>
-      <button id="maximize">Maximize</button>
-      <button id="unmaximize">Unmaximize</button>
-      <button id="minimize">Minimize</button>
-      <button id="center">Center</button>
+      <button type="button" id="title">Set random title</button>
+      <button type="button" id="maximize">Maximize</button>
+      <button type="button" id="unmaximize">Unmaximize</button>
+      <button type="button" id="minimize">Minimize</button>
+      <button type="button" id="center">Center</button>
     </div>
     <div class="row">
-      <button id="size-small">800 × 600</button>
-      <button id="size-large">1200 × 900</button>
+      <button type="button" id="size-small">800 × 600</button>
+      <button type="button" id="size-large">1200 × 900</button>
     </div>
     <div class="row">
-      <button id="open-second">Open second window</button>
-      <button id="close-second">Close second window</button>
+      <button type="button" id="open-second">Open second window</button>
+      <button type="button" id="close-second">Close second window</button>
     </div>
     <p>Status: <span id="status" class="out">ready</span></p>
     <script type="module" src="/src/main.mjs"></script>

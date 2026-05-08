@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>rescript-tauri ipc-typed</title>
@@ -18,13 +18,13 @@
 
     <h2>greet (string &rarr; string)</h2>
     <label>Name <input id="name" value="ReScript" /></label>
-    <button id="run-greet">invoke greet</button>
+    <button type="button" id="run-greet">invoke greet</button>
     <p>Result: <span id="greet-out" class="out">-</span></p>
 
     <h2>add ({a, b} &rarr; int)</h2>
     <label>a <input id="a" type="number" value="3" /></label>
     <label>b <input id="b" type="number" value="4" /></label>
-    <button id="run-add">invoke add</button>
+    <button type="button" id="run-add">invoke add</button>
     <p>Result: <span id="add-out" class="out">-</span></p>
 
     <script type="module" src="/src/main.mjs"></script>

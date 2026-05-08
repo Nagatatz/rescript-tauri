@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from "vitest"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
 // Tauri's event API uses two layers underneath:
 //   - listen() / once(): register a callback through transformCallback
@@ -21,8 +21,7 @@ const installInternals = () => {
       return id
     },
     invoke: vi.fn(async () => undefined),
-    _deliver: (eventName, id, payload) =>
-      callbacks.get(id)?.({ event: eventName, id, payload }),
+    _deliver: (eventName, id, payload) => callbacks.get(id)?.({ event: eventName, id, payload }),
     _captured: callbacks,
   }
   // `Event.once` auto-unsubscribes after the first delivery by calling

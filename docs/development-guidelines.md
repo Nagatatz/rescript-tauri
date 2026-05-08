@@ -97,7 +97,15 @@ pnpm --recursive test
 
 # core パッケージのみのインクリメンタルビルド
 pnpm --filter @rescript-tauri/core build
+
+# 手書き JS / JSON の format + lint（Biome）
+pnpm run check          # 検証のみ（CI ゲート）
+pnpm run check:fix      # 自動修正（ローカル）
+pnpm run format         # format のみ書き換え
+pnpm run lint           # lint のみ
 ```
+
+`.res` / `.resi` は ReScript コンパイラ標準のフォーマッタが管理する（`rescript build` 経由）。手書きの `.mjs` および JSON は [Biome](https://biomejs.dev/) で format + lint する。ReScript 生成物（`*.res.mjs` / `lib/`）は `biome.json` の `files.includes` で除外しているため、Biome はビルド成果物には影響を与えない。
 
 `examples/` の個別ビルドは各 `examples/<name>/README.md` を参照（Phase 1 で整備）。
 
