@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>rescript-tauri window management</title>
+    <style>
+      body { font-family: system-ui, sans-serif; padding: 16px; }
+      button { margin: 4px; padding: 6px 10px; }
+      .row { margin-bottom: 8px; }
+      .out { font-family: monospace; padding: 8px; background: #f4f4f4; min-height: 1em; }
+    </style>
+  </head>
+  <body>
+    <h1>Window management demo</h1>
+    <div class="row">
+      <button id="title">Set random title</button>
+      <button id="maximize">Maximize</button>
+      <button id="unmaximize">Unmaximize</button>
+      <button id="minimize">Minimize</button>
+      <button id="center">Center</button>
+    </div>
+    <div class="row">
+      <button id="size-small">800 × 600</button>
+      <button id="size-large">1200 × 900</button>
+    </div>
+    <div class="row">
+      <button id="open-second">Open second window</button>
+      <button id="close-second">Close second window</button>
+    </div>
+    <p>Status: <span id="status" class="out">ready</span></p>
+    <script type="module" src="/src/main.mjs"></script>
+  </body>
+</html>

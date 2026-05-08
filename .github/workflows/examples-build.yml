@@ -46,3 +46,18 @@ jobs:
       - name: Cargo check on hello-world Rust side
         working-directory: examples/hello-world/src-tauri
         run: cargo check --release
+      - name: Build window-management frontend
+        run: pnpm --filter window-management build
+      - name: Cargo check on window-management Rust side
+        working-directory: examples/window-management/src-tauri
+        run: cargo check --release
+      - name: Build ipc-typed frontend
+        run: pnpm --filter ipc-typed build
+      - name: Cargo check on ipc-typed Rust side
+        working-directory: examples/ipc-typed/src-tauri
+        run: cargo check --release
+      - name: Build streaming-ipc frontend
+        run: pnpm --filter streaming-ipc build
+      - name: Cargo check on streaming-ipc Rust side
+        working-directory: examples/streaming-ipc/src-tauri
+        run: cargo check --release
