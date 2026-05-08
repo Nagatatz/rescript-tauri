@@ -20,13 +20,13 @@
 
 ### 2.1 ルートワークスペース
 
-- [ ] **commit 2**: `package.json` + `pnpm-workspace.yaml` + `.gitignore` 追記 + `pnpm install` で生成された `pnpm-lock.yaml` をまとめて → コミット `✨ Add pnpm workspace root for monorepo`
-- [ ] 検証: `pnpm install` がエラーなく完了
+- [x] **commit 2**: `package.json` + `pnpm-workspace.yaml` + `pnpm install` で生成された `pnpm-lock.yaml` をまとめて → コミット `✨ Add pnpm workspace root for monorepo`（.gitignore 追記は既設の `*.log` `.pnpm-store/` 等で全カバー、追加不要）
+- [x] 検証: `pnpm install` 完了（@types/node 22.19.18 install）
 
 ### 2.2 packages/core スケルトン
 
-- [ ] **commit 3**: `packages/core/{package.json, rescript.json, README.md, vitest.config.mjs}` + `src/` `tests/` `tests/runtime/` の空ディレクトリ（`.gitkeep` 配置）+ 必要なら `pnpm-lock.yaml` 更新 → コミット `✨ Add packages/core scaffolding`
-- [ ] 検証: `pnpm install` 後 `pnpm --filter @rescript-tauri/core exec rescript --version` で 12.2.0 が返る
+- [x] **commit 3**: `packages/core/{package.json, rescript.json, README.md, vitest.config.mjs}` + 空 `src/` `tests/runtime/` ディレクトリ + `pnpm-lock.yaml` 更新 → コミット `✨ Add packages/core scaffolding`（空ディレクトリは git が追跡しないが、後続 commit 4/5/6 で `.res` `.res.mjs` ファイルが入るため `.gitkeep` は不要）
+- [x] 検証: `pnpm install` 完了（vitest / happy-dom / rescript 等 60+ パッケージ）、`pnpm --filter @rescript-tauri/core exec rescript --version` → `rescript 12.2.0`
 
 ### 2.3 Core.Raw.invoke 実装
 
