@@ -1,0 +1,211 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Nagatatz and rescript-tauri contributors
+# This file is distributed under the same license as the rescript-tauri
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-tauri \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-08 12:58+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../dev/architecture.md:1
+msgid "Architecture"
+msgstr ""
+
+#: ../../dev/architecture.md:3
+msgid ""
+"This page is a high-level summary aimed at first-time readers of the docs"
+" site. The canonical, in-depth treatment lives in the internal "
+"[`docs/architecture.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/architecture.md) (Japanese)."
+msgstr ""
+
+#: ../../dev/architecture.md:5
+msgid "Overview"
+msgstr ""
+
+#: ../../dev/architecture.md:7
+msgid ""
+"`rescript-tauri` is a pnpm-workspace monorepo of ReScript binding "
+"packages around Tauri 2.x's official JS SDK (`@tauri-apps/api`). The core"
+" package, `@rescript-tauri/core`, exposes the entire upstream public API "
+"surface (IPC, Event, Window, Webview, Menu, Tray, etc.) with idiomatic "
+"ReScript types."
+msgstr ""
+
+#: ../../dev/architecture.md:24
+msgid "Key components"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Package"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Role"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Phase"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "`@rescript-tauri/core`"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Core bindings for the entire `@tauri-apps/api` public surface"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Phase 1"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "`@rescript-tauri/plugin-fs`"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Bindings for `@tauri-apps/plugin-fs`"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Phase 2+"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "`@rescript-tauri/plugin-dialog`"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Bindings for `@tauri-apps/plugin-dialog`"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "`@rescript-tauri/schema`"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid ""
+"`Command.fromSchemas` helper (`rescript-schema` / `rescript-struct` "
+"integration)"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Phase 2"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "`examples/*`"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Buildable usage examples (CI gate on 3 OS)"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Phase 1 onward"
+msgstr ""
+
+#: ../../dev/architecture.md:34
+msgid "Design principles"
+msgstr ""
+
+#: ../../dev/architecture.md:36
+msgid ""
+"The full discussion is in `docs/architecture.md` §3. The headline "
+"principles, mirroring the README highlights:"
+msgstr ""
+
+#: ../../dev/architecture.md:38
+msgid ""
+"**Idiomatic ReScript.** `variant` / `option` / `result` / polymorphic "
+"variants replace the `unknown` and string-literal-union escape hatches "
+"that TypeScript users reach for."
+msgstr ""
+
+#: ../../dev/architecture.md:39
+msgid ""
+"**Faithful to Tauri.** Near-1:1 mapping with the JS API surface so that "
+"the official Tauri docs remain directly applicable. Each `.resi` doc "
+"comment links to the corresponding Tauri page."
+msgstr ""
+
+#: ../../dev/architecture.md:40
+msgid ""
+"**Three-layer IPC.** Layer 1 (Raw) / Layer 2 (typed Command) / Layer 3 "
+"(Schema) lets users pick the safety/ergonomics trade-off that fits."
+msgstr ""
+
+#: ../../dev/architecture.md:41
+msgid ""
+"**Maintainable monorepo.** Mirrors the structure of `@tauri-"
+"apps/plugin-*`. Each package versions independently. Designed to remain "
+"sustainable for a 1–3 person maintainer team."
+msgstr ""
+
+#: ../../dev/architecture.md:43
+msgid "Where to dig deeper"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Topic"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Source"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Module-by-module API specifications"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid ""
+"[`docs/functional-design.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/functional-design.md) (Japanese)"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Cross-cutting design (error / lifetime / JSON / variants / inheritance)"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid ""
+"[`docs/architecture.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/architecture.md) §3, §5 (Japanese)"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Original RFC"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid ""
+"[`docs/ideas/RFC-0001-core-api-design.md`](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) "
+"(English)"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid "Repository layout (canonical)"
+msgstr ""
+
+#: ../../dev/architecture.md
+msgid ""
+"[`docs/repository-structure.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/repository-structure.md) (Japanese)"
+msgstr ""
+

@@ -1,0 +1,138 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Nagatatz and rescript-tauri contributors
+# This file is distributed under the same license as the rescript-tauri
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-tauri \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-08 12:58+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../user/installation.md:1
+msgid "Installation"
+msgstr ""
+
+#: ../../user/installation.md:4
+msgid ""
+"Not yet published on npm. The commands below describe what installation "
+"will look like once Phase 1 ships. See "
+"[RFC-0001](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) and [`docs"
+"/product-requirements.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/product-requirements.md) for the design intent."
+msgstr ""
+
+#: ../../user/installation.md:7
+msgid "Requirements"
+msgstr ""
+
+#: ../../user/installation.md:3
+msgid "Component"
+msgstr ""
+
+#: ../../user/installation.md:3
+msgid "Supported range"
+msgstr ""
+
+#: ../../user/installation.md:3
+msgid "Tauri"
+msgstr ""
+
+#: ../../user/installation.md:3
+msgid "2.x (matches the `@tauri-apps/api` peerDep range)"
+msgstr ""
+
+#: ../../user/installation.md:3
+msgid "ReScript"
+msgstr ""
+
+#: ../../user/installation.md:3
+msgid ">= 12.0.0 (uncurried-by-default)"
+msgstr ""
+
+#: ../../user/installation.md:3
+msgid "`@rescript/core`"
+msgstr ""
+
+#: ../../user/installation.md:3
+msgid ">= 1.6.0"
+msgstr ""
+
+#: ../../user/installation.md:3
+msgid "Node.js"
+msgstr ""
+
+#: ../../user/installation.md:3
+msgid "Active LTS"
+msgstr ""
+
+#: ../../user/installation.md:3
+msgid "pnpm"
+msgstr ""
+
+#: ../../user/installation.md:3
+msgid ">= 9"
+msgstr ""
+
+#: ../../user/installation.md:3
+msgid "OS"
+msgstr ""
+
+#: ../../user/installation.md:3
+msgid "Linux / macOS / Windows (Tauri 2.x desktop targets)"
+msgstr ""
+
+#: ../../user/installation.md:18
+msgid "Install (planned, post Phase 1 release)"
+msgstr ""
+
+#: ../../user/installation.md:24
+msgid ""
+"`@rescript-tauri/core` declares `@tauri-apps/api` as a `peerDependency`, "
+"so the two are versioned independently and you control the upstream Tauri"
+" version."
+msgstr ""
+
+#: ../../user/installation.md:26
+msgid "Then add `@rescript-tauri/core` to `dependencies` in your `rescript.json`:"
+msgstr ""
+
+#: ../../user/installation.md:36
+msgid "Verify"
+msgstr ""
+
+#: ../../user/installation.md:38
+msgid "After Phase 1 ships, a minimal verification looks like:"
+msgstr ""
+
+#: ../../user/installation.md:44
+#, python-brace-format
+msgid ""
+"Combined with a Rust-side `#[tauri::command] fn ping() {}`, this round-"
+"trip confirms the bridge works."
+msgstr ""
+
+#: ../../user/installation.md:46
+msgid "Troubleshooting"
+msgstr ""
+
+#: ../../user/installation.md:48
+msgid ""
+"Detailed troubleshooting will be added as Phase 1 implementation reveals "
+"common pitfalls. For early feedback, please open an issue at "
+"[github.com/Nagatatz/rescript-tauri/issues](https://github.com/Nagatatz"
+"/rescript-tauri/issues)."
+msgstr ""
+

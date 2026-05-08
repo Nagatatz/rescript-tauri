@@ -1,0 +1,74 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Nagatatz and rescript-tauri contributors
+# This file is distributed under the same license as the rescript-tauri
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-tauri \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-08 12:58+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../dev/index.md:1
+msgid "Developer Guide"
+msgstr ""
+
+#: ../../dev/index.md:3
+msgid ""
+"For contributors to the rescript-tauri repository and to this "
+"documentation site."
+msgstr ""
+
+#: ../../dev/index.md:5
+msgid "Getting Started"
+msgstr ""
+
+#: ../../dev/index.md:7
+msgid ""
+"[Development Setup](setup.md) — Set up the docs site locally (uv, sphinx-"
+"intl, Pagefind)"
+msgstr ""
+
+#: ../../dev/index.md:8
+msgid ""
+"[Building](building.md) — `make` targets for English / Japanese / "
+"assembled site"
+msgstr ""
+
+#: ../../dev/index.md:10
+msgid "Understanding the Codebase"
+msgstr ""
+
+#: ../../dev/index.md:12
+msgid ""
+"[Architecture](architecture.md) — High-level summary of the rescript-"
+"tauri monorepo (deep dive lives in the internal `docs/architecture.md`)"
+msgstr ""
+
+#: ../../dev/index.md:13
+msgid ""
+"[Project Structure](project-structure.md) — Top-level layout, with "
+"pointer to the canonical `docs/repository-structure.md`"
+msgstr ""
+
+#: ../../dev/index.md:15
+msgid "Contributing"
+msgstr ""
+
+#: ../../dev/index.md:17
+msgid ""
+"[Contributing Guide](contributing.md) — How to contribute, including "
+"translation and content fixes specific to this docs site"
+msgstr ""
+

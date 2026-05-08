@@ -1,0 +1,132 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Nagatatz and rescript-tauri contributors
+# This file is distributed under the same license as the rescript-tauri
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-tauri \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-08 12:58+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../dev/project-structure.md:1
+msgid "Project Structure"
+msgstr ""
+
+#: ../../dev/project-structure.md:3
+msgid ""
+"A quick orientation. The canonical, kept-up-to-date layout reference is "
+"[`docs/repository-structure.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/repository-structure.md) (Japanese)."
+msgstr ""
+
+#: ../../dev/project-structure.md:5
+msgid "Top-level layout"
+msgstr ""
+
+#: ../../dev/project-structure.md:23
+msgid "Where each thing lives"
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "If you want to ..."
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "Look in ..."
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "Read what the project promises to do"
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "`README.md`, `docs/product-requirements.md`"
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "Read per-module API specs"
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "`docs/functional-design.md`"
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "Read cross-cutting design (error / lifetime / JSON / variants)"
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "`docs/architecture.md`"
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "Read what conventions Claude Code enforces"
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "`CLAUDE.md`, `.claude/rules/`"
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "Read how to contribute (external)"
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "`CONTRIBUTING.md`"
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "Read how to develop locally (internal)"
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "`docs/development-guidelines.md`"
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "Read how a steering document is shaped"
+msgstr ""
+
+#: ../../dev/project-structure.md
+#, python-brace-format
+msgid "`.steering/<existing>/{requirements,design,tasklist}.md`"
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "Modify the docs you are reading right now"
+msgstr ""
+
+#: ../../dev/project-structure.md
+msgid "`sphinx-docs/`"
+msgstr ""
+
+#: ../../dev/project-structure.md:36
+msgid "Subsystem map"
+msgstr ""
+
+#: ../../dev/project-structure.md:38
+msgid ""
+"`packages/core/` is the only Phase 1 source package. Its layout (planned)"
+" is:"
+msgstr ""
+
+#: ../../dev/project-structure.md:64
+msgid ""
+"Every `.res` is shadowed by a `.resi` interface file, which is the "
+"canonical surface (one of the project's hard rules; see [`docs"
+"/repository-structure.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/repository-structure.md) §2.1)."
+msgstr ""
+

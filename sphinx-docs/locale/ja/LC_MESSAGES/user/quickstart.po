@@ -1,0 +1,115 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Nagatatz and rescript-tauri contributors
+# This file is distributed under the same license as the rescript-tauri
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-tauri \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-08 12:58+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../user/quickstart.md:1
+msgid "Quick Start"
+msgstr ""
+
+#: ../../user/quickstart.md:4
+msgid ""
+"Target API. The samples below reflect the design defined in "
+"[RFC-0001](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) and [`docs"
+"/functional-design.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/functional-design.md) §2. Implementation is in "
+"progress in Phase 1."
+msgstr ""
+
+#: ../../user/quickstart.md:7
+msgid "Prerequisites"
+msgstr ""
+
+#: ../../user/quickstart.md:9
+msgid "Completed [Installation](installation.md)"
+msgstr ""
+
+#: ../../user/quickstart.md:10
+msgid ""
+"A Tauri 2.x project with at least one `#[tauri::command]` defined on the "
+"Rust side"
+msgstr ""
+
+#: ../../user/quickstart.md:12
+msgid "Layer 1 — Raw `invoke`"
+msgstr ""
+
+#: ../../user/quickstart.md:14
+msgid ""
+"The lowest layer mirrors `@tauri-apps/api/core` 1:1. Use it when you want"
+" to start as thin as possible or as an escape hatch from the typed layer."
+msgstr ""
+
+#: ../../user/quickstart.md:21
+msgid "Layer 2 — typed `Command`"
+msgstr ""
+
+#: ../../user/quickstart.md:23
+msgid ""
+"Layer 2 wraps a single command name with an explicit encoder and decoder,"
+" giving you an end-to-end typed `Command.t<'args, 'result>`."
+msgstr ""
+
+#: ../../user/quickstart.md:46
+msgid ""
+"`Core.Command.invokeExn` is provided for callers that prefer exception-"
+"based control flow."
+msgstr ""
+
+#: ../../user/quickstart.md:48
+msgid "Event subscription"
+msgstr ""
+
+#: ../../user/quickstart.md:50
+msgid ""
+"`Event.make` declares a typed event handle once; `Event.listen` "
+"subscribes and returns an `unlisten` function."
+msgstr ""
+
+#: ../../user/quickstart.md:67
+msgid "What's next?"
+msgstr ""
+
+#: ../../user/quickstart.md:69
+msgid ""
+"[Configuration](configuration.md) — `rescript.json`, peerDeps, "
+"compatibility"
+msgstr ""
+
+#: ../../user/quickstart.md:70
+msgid "[Changelog](changelog.md) — Release notes"
+msgstr ""
+
+#: ../../user/quickstart.md:71
+msgid ""
+"[`docs/functional-design.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/functional-design.md) — Per-module API "
+"specifications (Japanese)"
+msgstr ""
+
+#: ../../user/quickstart.md:72
+msgid ""
+"[Layer 3 (Schema integration)](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) — "
+"`Command.fromSchemas` helper, planned for `@rescript-tauri/schema` (Phase"
+" 2)"
+msgstr ""
+

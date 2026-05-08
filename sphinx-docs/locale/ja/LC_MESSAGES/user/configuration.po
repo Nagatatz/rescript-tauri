@@ -1,0 +1,224 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Nagatatz and rescript-tauri contributors
+# This file is distributed under the same license as the rescript-tauri
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-tauri \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-08 12:58+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../user/configuration.md:1
+msgid "Configuration"
+msgstr ""
+
+#: ../../user/configuration.md:3
+msgid "`rescript.json`"
+msgstr ""
+
+#: ../../user/configuration.md:5
+msgid ""
+"Add `@rescript-tauri/core` to the `dependencies` key. ReScript 12 renamed"
+" the legacy `bs-dependencies` to `dependencies`; the `bs-`-prefixed key "
+"is still accepted but deprecated."
+msgstr ""
+
+#: ../../user/configuration.md:16
+msgid ""
+"If you enable `\"namespace\": true` in your own package, `@rescript-"
+"tauri/core` modules remain accessible under the `Tauri` namespace top-"
+"level re-export (see [`docs/functional-"
+"design.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/docs"
+"/functional-design.md) §2.13)."
+msgstr ""
+
+#: ../../user/configuration.md:18
+msgid "`peerDependencies`"
+msgstr ""
+
+#: ../../user/configuration.md:20
+msgid ""
+"`@rescript-tauri/core` declares the following `peerDependencies` so you "
+"can pin the upstream versions:"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "Peer"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "Range"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "`@tauri-apps/api`"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "`^2.0.0`"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "`rescript`"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "`>=12.0.0`"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "`@rescript/core`"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "`>=1.6.0`"
+msgstr ""
+
+#: ../../user/configuration.md:28
+msgid ""
+"`@rescript/core` 1.6.0+ has a `peerDependencies.rescript` of `>=11.1.0`, "
+"which fully covers ReScript 12.x."
+msgstr ""
+
+#: ../../user/configuration.md:30
+msgid "Compatibility matrix"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "Component"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "Supported range"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "Tauri"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "2.x (matches the `@tauri-apps/api` peerDep range)"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "ReScript"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid ">= 12.0.0 (uncurried-by-default)"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid ">= 1.6.0"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "Node.js"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "Active LTS"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "OS"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "Linux / macOS / Windows (Tauri 2.x desktop targets)"
+msgstr ""
+
+#: ../../user/configuration.md:40
+msgid ""
+"ReScript 11 is **not supported**. The decision and rationale are recorded"
+" in [PRD §10 row 7](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/product-requirements.md) and the corresponding "
+"[steering document](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/.steering/20260508-002-rescript-v12-only)."
+msgstr ""
+
+#: ../../user/configuration.md:42
+msgid "Top-level `Tauri` re-export"
+msgstr ""
+
+#: ../../user/configuration.md:44
+msgid ""
+"`Tauri.res` re-exports a curated subset of modules so you can `open "
+"Tauri` and reach the most common entry points without long paths."
+msgstr ""
+
+#: ../../user/configuration.md:51
+msgid ""
+"The exact re-export set is finalized in `docs/functional-design.md` §2.13"
+" and listed in PRD §10 row 1 (\"Tauri.res の re-export 範囲\", confirmed "
+"pre-Phase-1-release)."
+msgstr ""
+
+#: ../../user/configuration.md:53
+msgid "Plugin packages (Phase 2+)"
+msgstr ""
+
+#: ../../user/configuration.md:55
+msgid ""
+"Each upstream `@tauri-apps/plugin-*` will get a corresponding `@rescript-"
+"tauri/plugin-*` binding package starting in Phase 2. Plugin packages "
+"declare the upstream `@tauri-apps/plugin-*` as their own "
+"`peerDependency`."
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "Package"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "Upstream"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "Phase"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "`@rescript-tauri/plugin-fs`"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "`@tauri-apps/plugin-fs`"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "Phase 2+"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "`@rescript-tauri/plugin-dialog`"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "`@tauri-apps/plugin-dialog`"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "`@rescript-tauri/schema`"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "`rescript-schema` / `rescript-struct`"
+msgstr ""
+
+#: ../../user/configuration.md
+msgid "Phase 2"
+msgstr ""
+

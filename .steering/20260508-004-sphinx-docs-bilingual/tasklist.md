@@ -31,8 +31,8 @@
 
 ### 2.3 日本語 .po 生成
 
-- [ ] **commit 5**: `cd sphinx-docs && make update-po` で 12 `.po` を生成 → コミット `🌐 Generate Japanese .po files via make update-po`
-- [ ] 検証: `ls sphinx-docs/locale/ja/LC_MESSAGES/` に 12 `.po` が存在（msgstr は空のまま）
+- [x] **commit 5**: `cd sphinx-docs && make update-po` で 12 `.po` を生成 → コミット `🌐 Generate Japanese .po files via make update-po`
+- [x] 検証: `find sphinx-docs/locale/ja/LC_MESSAGES -name '*.po'` で 12 ファイル存在を確認（合計 1812 行、msgstr は空）
 
 ### 2.4 日本語翻訳
 

@@ -1,0 +1,331 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Nagatatz and rescript-tauri contributors
+# This file is distributed under the same license as the rescript-tauri
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-tauri \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-08 12:58+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../dev/building.md:1
+msgid "Building"
+msgstr ""
+
+#: ../../dev/building.md:3
+msgid ""
+"All builds are driven through the `Makefile`. Run targets from the "
+"`sphinx-docs/` directory."
+msgstr ""
+
+#: ../../dev/building.md:5
+msgid "Build commands"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Command"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Description"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make install`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Install Python dependencies via `uv sync`."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make html`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Build the English site → `_build/html/`."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make build-ja`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Build the Japanese site (uses `-D language=ja`) → `_build/html_ja/`."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make build-all`"
+msgstr ""
+
+#: ../../dev/building.md
+#, python-brace-format
+msgid "Build EN + JA, assemble into `_build/site/{en,ja}/`, and run Pagefind."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make gettext`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Extract translatable strings into `_build/gettext/*.pot`."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make update-po`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid ""
+"Run `gettext`, then `sphinx-intl update -p _build/gettext -l ja`. Updates"
+" `.po` files in `locale/ja/LC_MESSAGES/`."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make serve`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid ""
+"Build EN + JA + assemble + Pagefind, then serve `_build/site/` at "
+"`http://localhost:8000`."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make liveserve`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Run `sphinx-autobuild` for the English site only (auto-rebuild on save)."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make linkcheck`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Validate all links → `_build/linkcheck/`."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make pagefind`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Build the Pagefind search index for an existing `_build/site/`."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make lint`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Run `ruff check` and `ruff format --check`."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make test`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Run `pytest`."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make check`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`lint` + `test`."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make clean`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Remove `_build/`."
+msgstr ""
+
+#: ../../dev/building.md:24
+msgid "Output"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Path"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Contents"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`_build/html/`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid ""
+"English HTML (the default `make html` output, also used as the Pages-"
+"default `/en/`)."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`_build/html_ja/`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Japanese HTML."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`_build/site/`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid ""
+"Assembled bilingual site with `/en/`, `/ja/`, root `index.html` "
+"(redirects to `/en/`), and Pagefind index."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`_build/gettext/`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`.pot` files extracted by `make gettext`."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`_build/linkcheck/`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make linkcheck` results."
+msgstr ""
+
+#: ../../dev/building.md:34
+msgid "i18n round-trip"
+msgstr ""
+
+#: ../../dev/building.md:36
+msgid "Whenever an English `.md` source changes, the round-trip is:"
+msgstr ""
+
+#: ../../dev/building.md:45
+msgid ""
+"Empty `msgstr` entries in `.po` cause Sphinx to fall back to the English "
+"source string for that paragraph in the Japanese build, which is "
+"acceptable as a temporary state but should be filled in before release."
+msgstr ""
+
+#: ../../dev/building.md:47
+msgid "CI Pipeline"
+msgstr ""
+
+#: ../../dev/building.md:49
+msgid ""
+"The active workflow is "
+"[`.github/workflows/docs.yml`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/.github/workflows/docs.yml). It triggers on push and PR "
+"for changes under `sphinx-docs/**` and on manual dispatch."
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Stage"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Tool"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Purpose"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Install"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`uv sync`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Install Python deps"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Lint"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`ruff check`, `ruff format --check`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Style"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Test"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`pytest`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Test suite under `sphinx-docs/tests/`"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Build"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "`make build-all` (planned)"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "EN + JA + Pagefind"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Deploy"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "GitHub Pages"
+msgstr ""
+
+#: ../../dev/building.md
+msgid "Only on `main` branch"
+msgstr ""
+
+#: ../../dev/building.md:59
+msgid ""
+"The status of every workflow file (active / opt-in template / planned for"
+" Phase 1) is documented in "
+"[`.github/workflows/README.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/.github/workflows/README.md)."
+msgstr ""
+
+#: ../../dev/building.md:62
+msgid ""
+"GitHub Pages deployment is currently inactive because the repository is "
+"private (see the README \"Visibility\" block). Pages will be enabled at "
+"the Phase 1 release together with the visibility switch."
+msgstr ""
+

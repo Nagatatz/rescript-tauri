@@ -1,0 +1,180 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Nagatatz and rescript-tauri contributors
+# This file is distributed under the same license as the rescript-tauri
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-tauri \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-08 12:58+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../dev/setup.md:1
+msgid "Development Setup"
+msgstr ""
+
+#: ../../dev/setup.md:3
+msgid ""
+"Set up the `sphinx-docs/` site locally so you can preview English and "
+"Japanese builds before opening a PR."
+msgstr ""
+
+#: ../../dev/setup.md:5
+msgid "Prerequisites"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Requirement"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Version"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Note"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "[uv](https://docs.astral.sh/uv/)"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "0.5+"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Python パッケージ管理・仮想環境"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Python"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "3.12+"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "uv が自動でセットアップ"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Node.js"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "24+"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Pagefind 検索インデックス生成に使用"
+msgstr ""
+
+#: ../../dev/setup.md:13
+msgid ""
+"The rest of the rescript-tauri toolchain (pnpm, ReScript 12, etc.) is "
+"**not** required to work on `sphinx-docs/` alone."
+msgstr ""
+
+#: ../../dev/setup.md:15
+msgid "Install uv"
+msgstr ""
+
+#: ../../dev/setup.md:28
+msgid "Clone the repository"
+msgstr ""
+
+#: ../../dev/setup.md:35
+msgid "Install dependencies"
+msgstr ""
+
+#: ../../dev/setup.md:41
+msgid "Verify the setup"
+msgstr ""
+
+#: ../../dev/setup.md:48
+msgid ""
+"`make liveserve` starts `sphinx-autobuild` for auto-reload during "
+"English-only iterations."
+msgstr ""
+
+#: ../../dev/setup.md:50
+msgid "Where files live"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Path"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Role"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "`conf.py`"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Sphinx configuration (theme, extensions, i18n, OpenGraph, Pagefind)"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "`pyproject.toml`"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Python dependency manifest for uv"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "`Makefile`"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "All build targets (see [Building](building.md))"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "`index.md`, `user/`, `dev/`"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "English source documents"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "`locale/ja/LC_MESSAGES/`"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Japanese `.po` files (one per source `.md`)"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "`_static/`, `_templates/`"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Theme overrides and assets"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "`_build/`"
+msgstr ""
+
+#: ../../dev/setup.md
+msgid "Build output (gitignored)"
+msgstr ""
+
