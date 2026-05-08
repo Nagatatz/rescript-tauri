@@ -26,7 +26,7 @@ design.md §3 に従い `@rescript/core` の v12 互換最低バージョンを�
 design.md §2 に従いファイルを更新:
 
 - [x] **commit 1**: `docs/product-requirements.md` を v12-only に更新（§2.3 の 6 行 + §10 残課題追記）→ コミット `📝 Drop ReScript 11 from PRD: align dependency policy and roadmap to v12+`
-- [ ] **commit 2**: `docs/functional-design.md` + `docs/architecture.md` を v12-only に更新（§2.4 の 3 行 + §2.5 の 4 行）→ コミット `📝 Sync functional-design and architecture to ReScript v12-only`
+- [x] **commit 2**: `docs/functional-design.md` + `docs/architecture.md` を v12-only に更新（§2.4 の 3 行 + §2.5 の 4 行）→ コミット `📝 Sync functional-design and architecture to ReScript v12-only`
 - [ ] **commit 3**: `CLAUDE.md` + `docs/glossary.md` + `docs/repository-structure.md` を v12-only に更新（§2.1 / §2.6 / §2.7）→ コミット `📝 Update CLAUDE.md, glossary, repo-structure for ReScript v12-only`
 - [ ] **commit 4**: `README.md` + `.github/workflows/README.md` を v12-only に更新（§2.2 / §2.8）→ コミット `📝 Update README and CI workflow notes for ReScript v12-only`
 

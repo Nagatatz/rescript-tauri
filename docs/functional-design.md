@@ -73,7 +73,7 @@ rescript-tauri/                       # monorepo root
 
 ### 1.3 依存方針
 
-- `peerDependencies`: `@tauri-apps/api ^2.0.0`, `rescript >=11.0.0`, `@rescript/core >=1.0.0`。
+- `peerDependencies`: `@tauri-apps/api ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`（1.6.0+ peerDep `rescript >=11.1.0` が ReScript 12.x もカバー）。
 - `dependencies`: なし（ピアのみ）。
 - `devDependencies`: `vitest`, `happy-dom`, `@types/node`（テスト用）。
 
@@ -620,7 +620,7 @@ let setTitle: (t, string) => promise<unit>
 
 ### 5.4 互換性チェック
 
-- ReScript v11 / v12 prerelease の matrix CI。
+- ReScript 12.x 安定版 + 次期マイナー / 次期メジャー prerelease の matrix CI。
 - `@tauri-apps/api` の latest minor を nightly で取り込み、ビルドが通ることを確認するジョブ。
 
 ---
@@ -636,7 +636,7 @@ let setTitle: (t, string) => promise<unit>
 | `examples-build` | PR | `examples/*` を 3 OS でビルド |
 | `doc-link-lint` | PR | 全 `.resi` 公開シンボルの doc comment に `v2.tauri.app` リンクが含まれているかを grep で検証（PRD §7 KPI） |
 | `compat-tauri-latest` | nightly | `@tauri-apps/api` を latest にして build |
-| `compat-rescript-prerelease` | nightly | ReScript v12 prerelease で build |
+| `compat-rescript-prerelease` | nightly | ReScript 12.x 次期マイナー / 次期メジャー prerelease で build。v12 系 API drift を先行検知 |
 | `release` | tag push | npm publish（各パッケージ独立 semver）|
 
 ---
