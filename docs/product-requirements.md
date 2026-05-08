@@ -80,13 +80,13 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 
 - **属性**: ReScript と Rust 両方のエコシステムに関わる OSS メンテナ。コントリビューター 1〜3 名規模を想定。
 - **現在の課題**:
-  - 過去のバインディング群がメンテナ不在で陳腐化していった原因（Tauri の API drift・ReScript v11/v12 の uncurried 化）に再び陥りたくない。
+  - 過去のバインディング群がメンテナ不在で陳腐化していった原因（Tauri の API drift・ReScript v12 への uncurried-by-default 移行）に再び陥りたくない。
 - **期待する解決策**:
   - `.resi` を必須にし、CI で「コンパイル可能な使用例」を継続的に検証する保守可能なリポジトリ構造。
   - 「メンテナ 1 名でも回る」明確な PR 受け入れ規約と CONTRIBUTING.md。
 - **典型ワークフロー**:
   1. Tauri が minor バージョン上げた → `peerDependencies` 範囲確認 → 差分追従 PR を出す。
-  2. ReScript v12 prerelease で CI を走らせ、互換性ブレを早期検知。
+  2. ReScript 12.x 次期マイナー / 次期メジャー prerelease で CI を走らせ、互換性ブレを早期検知。
 
 ---
 
@@ -240,7 +240,7 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 **So that** Tauri 2.x のどの minor まで安全かを判断できる
 
 **受け入れ条件:**
-- `peerDependencies`: `@tauri-apps/api ^2.0.0`, `rescript >=11.0.0`, `@rescript/core >=1.0.0`。
+- `peerDependencies`: `@tauri-apps/api ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`。
 - README に互換マトリクス表を掲載。
 - semver は Tauri と独立。
 
@@ -289,8 +289,8 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 ### 5.1 互換性
 
 - **Tauri**: `@tauri-apps/api ^2.0.0` を初期サポート。1.x は対象外。
-- **ReScript**: `>=11.0.0`（namespace, JSX v4 想定）。v12 prerelease を CI で並走確認。
-- **`@rescript/core`**: `>=1.0.0`（`JSON.t`, `Dict.t`, `Nullable.t` を前提）。Belt のみのユーザー向けシムは当面提供しない（§10 で確定予定）。
+- **ReScript**: `>=12.0.0`（uncurried-by-default, namespace, JSX v4 想定）。次期マイナー / 次期メジャー prerelease を CI で並走確認。
+- **`@rescript/core`**: `>=1.6.0`（`JSON.t`, `Dict.t`, `Nullable.t` を前提。1.6.0+ の peerDep `rescript >=11.1.0` が ReScript 12.x もカバーする最低版）。Belt のみのユーザー向けシムは当面提供しない（§10 で確定予定）。
 - **OS**: Linux / macOS / Windows いずれでも examples がビルドできる。
 
 ### 5.2 パフォーマンス
@@ -386,7 +386,7 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 | **Phase 0**: RFC 確定 | RFC-0001 の Decision checklist 完了 | npm scope 予約 / repo URL / license / API 主要署名確定 |
 | **Phase 1**: コアバインディング | `Core` / `Event` / `Window` / `Webview` / `WebviewWindow` / `Path` / `App` / `Dpi` / `Menu` / `Tray` / `Image` / `Mocks` / `examples/hello-world` | 全モジュール `.resi` 完備、互換マトリクス公開、CI 全プラットフォーム緑 |
 | **Phase 2**: スキーマ統合 / プラグイン展開 | `@rescript-tauri/schema`, `plugin-fs`, `plugin-dialog`, etc. | 各プラグインが独立 publish、対応 `@tauri-apps/plugin-*` 互換マトリクス公開 |
-| **Phase 3**: ReScript v12 対応 / 長期運用 | uncurried-by-default 対応、コントリビュータ拡充 | v12 安定版で CI 緑、CONTRIBUTING.md / governance 文書整備 |
+| **Phase 3**: 長期運用 / 次期 ReScript メジャー対応（v13 想定） | コントリビュータ拡充、次期メジャー prerelease 追従 | 次期メジャー prerelease で CI 緑、CONTRIBUTING.md / governance 文書整備 |
 
 ---
 
@@ -396,7 +396,7 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 |---|---|---|
 | Tauri 2.x の API drift | minor バージョン頻発 | upstream changelog 監視ジョブ（CI weekly）、`peerDependencies` 範囲を狭く |
 | メンテナ単独点（bus factor 1） | 長期 issue 滞留 | 早期に co-maintainer 募集、CONTRIBUTING.md 整備、PR レビュー基準明文化 |
-| ReScript v12 破壊的変更 | uncurried 変換失敗 | v11 / v12 並走 CI、prerelease 配布で先行検知 |
+| ReScript 12.x 後続マイナー / 次期メジャーの破壊的変更 | API 互換崩れ | nightly prerelease 検証で先行検知（`compat-rescript-prerelease.yml`） |
 | 競合バインディング／コードジェネレータが現れる（`tauri-bindgen` 等の再活性化を含む） | 他リポジトリでの実装活動・upstream 復活 | ReScript Forum / Tauri Discord で coordination。本プロダクトはハンドメイド runtime バインディングに専念し、コードジェネレータとは連携しない（採用しない方針） |
 | decoder ライブラリ依存問題（コア肥大化） | issue で「`X` を同梱して」の声 | コア非依存ポリシーを README で明文化、`@rescript-tauri/schema` で受ける |
 
@@ -412,6 +412,7 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 | 4 | `Event.Predefined` の網羅範囲 | RFC 列挙の 7 種を Must、それ以外は段階追加 | Phase 1 リリース後継続 |
 | 5 | `Mocks` の独立パッケージ化 | 当面 `@rescript-tauri/core` に同梱 | Phase 2 で再評価 |
 | 6 | Belt-only ユーザー向け shim 提供可否 | 当面提供しない（`@rescript/core` を peerDep 必須にする） | Phase 1 リリース直前 |
+| 7 | ReScript v11 サポート | **除外（v12+ のみ）**（経緯: `.steering/20260508-002-rescript-v12-only/`） | **確定済み（2026-05-08）** |
 
 ---
 
