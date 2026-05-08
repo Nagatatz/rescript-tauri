@@ -103,18 +103,35 @@ packages/core/
 
 ### 2.2 `packages/plugin-*/`
 
-Phase 2+ で追加。各プラグインは独立 publish。
+Phase 2 着手済み。各プラグインは独立 publish。
 
 ```
-packages/plugin-fs/
+packages/plugin-fs/                      # 着手済み (steering 032, 2026-05-09)
 ├── src/
-│   └── PluginFs.res / .resi
+│   └── PluginFs.res / .resi             # 14 single-shot IO 関数 + 関連型
 ├── tests/
+│   ├── plugin_fs_signature.res          # 型レベル網羅
+│   └── runtime/plugin_fs.test.mjs       # vitest + Mocks 経由
 ├── rescript.json
-└── package.json                         # @rescript-tauri/plugin-fs
+├── package.json                         # @rescript-tauri/plugin-fs
+├── vitest.config.mjs
+└── README.md
 ```
 
-各プラグインは対応する上流 `@tauri-apps/plugin-*` を `peerDependencies` に宣言。
+各プラグインは対応する上流 `@tauri-apps/plugin-*` を `peerDependencies` に宣言する:
+
+```json
+"peerDependencies": {
+  "@rescript-tauri/core": "^0.1.0",
+  "@tauri-apps/plugin-fs": "^2.5.0",
+  "rescript": ">=12.0.0",
+  "@rescript/core": ">=1.6.0"
+}
+```
+
+`plugin-fs` の `BaseDirectory` は `@rescript-tauri/core` の `Path.BaseDirectory.t` を peerDep 経由で再利用する（独自 enum を持たない）。
+
+`FileHandle` クラス・`watch` 系・`readTextFileLines` 等の複雑 API は plugin-fs 後続 sub-steering に分離（steering 032 §Non-goals）。
 
 ### 2.3 `packages/schema/`
 

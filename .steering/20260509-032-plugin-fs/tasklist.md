@@ -1,0 +1,22 @@
+# Tasklist: @rescript-tauri/plugin-fs パッケージ実装
+
+- [x] `.steering/20260509-032-plugin-fs/` ディレクトリ作成
+- [x] requirements.md / design.md / tasklist.md 作成
+- [x] worktree `worktree-phase2-plugin-fs` 作成（main を base にリベース済）
+- [x] `packages/plugin-fs/package.json`（peerDeps + devDeps）
+- [x] `packages/plugin-fs/rescript.json`（namespace + dependencies）
+- [x] `packages/plugin-fs/vitest.config.mjs`（happy-dom）
+- [x] `packages/plugin-fs/src/PluginFs.resi`（14 関数 + 関連型 + BaseDirectory 再エクスポート）
+- [x] `packages/plugin-fs/src/PluginFs.res`（薄い @module バインディング）
+- [x] `packages/plugin-fs/tests/plugin_fs_signature.res`（15/15 公開シンボル）
+- [x] `packages/plugin-fs/tests/runtime/plugin_fs.test.mjs`（6 ケース）
+- [x] `packages/plugin-fs/README.md`（互換マトリクス + Quick example + scope 明記）
+- [x] `pnpm install` で workspace に plugin-fs が追加される
+- [x] `pnpm --filter @rescript-tauri/plugin-fs build` 緑
+- [x] `pnpm --filter @rescript-tauri/plugin-fs test` 緑（6/6）
+- [x] core / schema の既存テストが引き続き緑（regression なし）
+- [x] `docs/repository-structure.md` 更新（packages/plugin-fs/ 着手済み記載）
+- [x] コミット (`✨ Add @rescript-tauri/plugin-fs (single-shot IO scope)`)
+- [x] tasklist.md の全タスク `[x]` 化と最終コミット
+- [x] main へマージ
+- [x] worktree とブランチを削除

@@ -124,6 +124,33 @@ importers:
         specifier: ^3.0.0
         version: 3.2.4(@types/node@22.19.18)(happy-dom@15.11.7)
 
+  packages/plugin-fs:
+    devDependencies:
+      '@rescript-tauri/core':
+        specifier: workspace:*
+        version: link:../core
+      '@rescript/core':
+        specifier: ^1.6.0
+        version: 1.6.1(rescript@12.2.0)
+      '@rescript/runtime':
+        specifier: ^12.2.0
+        version: 12.2.0
+      '@tauri-apps/plugin-fs':
+        specifier: ^2.5.1
+        version: 2.5.1
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.19.18
+      happy-dom:
+        specifier: ^15.0.0
+        version: 15.11.7
+      rescript:
+        specifier: ^12.2.0
+        version: 12.2.0
+      vitest:
+        specifier: ^3.0.0
+        version: 3.2.4(@types/node@22.19.18)(happy-dom@15.11.7)
+
   packages/schema:
     devDependencies:
       '@rescript-tauri/core':
@@ -548,6 +575,9 @@ packages:
     resolution: {integrity: sha512-rpEbaJ/HzNb6fwsquwoAbq29/Vt4gADhS423A8fdkwL4edJ0wZmoB8ar7O6JPDL834MUKOCm/rrJ7c9oAaEaYQ==}
     engines: {node: '>= 10'}
     hasBin: true
+
+  '@tauri-apps/plugin-fs@2.5.1':
+    resolution: {integrity: sha512-9Lz+Jopp6QyeEWhlpkMx4R/+P9HgR+AVAI4vOZhlT8Xaymtz8iVI/Ov984/XTqgJz/5gz5NretqPB/XEMS3NhQ==}
 
   '@types/chai@5.2.3':
     resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
@@ -1065,6 +1095,10 @@ snapshots:
       '@tauri-apps/cli-win32-arm64-msvc': 2.11.1
       '@tauri-apps/cli-win32-ia32-msvc': 2.11.1
       '@tauri-apps/cli-win32-x64-msvc': 2.11.1
+
+  '@tauri-apps/plugin-fs@2.5.1':
+    dependencies:
+      '@tauri-apps/api': 2.11.0
 
   '@types/chai@5.2.3':
     dependencies:
