@@ -64,31 +64,31 @@
 
 ## Phase 4: コミット
 
-- [ ] commit 1: `✨ Add examples/plugin-fs-demo`
+- [x] commit 1: `✨ Add examples/plugin-fs-demo`
   - 含む: `examples/plugin-fs-demo/**` 全ファイル + ステアリング 3 種 + pnpm-lock 更新
-- [ ] commit 2: `📝 Register plugin-fs-demo in repository-structure`
+- [x] commit 2: `📝 Register plugin-fs-demo in repository-structure`
   - 含む: `docs/repository-structure.md` 更新
-- [ ] commit 3 (最終): `📝 Mark steering 037 tasks complete pre-merge`
+- [x] commit 3 (最終): `📝 Mark steering 037 tasks complete pre-merge`
   - 含む: `tasklist.md` 全 [x] 化
 
 ## Phase 5: マージ
 
-- [ ] `AskUserQuestion` で main マージ可否確認
-- [ ] 承認後:
-  - [ ] CWD を main リポジトリに移動 (ExitWorktree keep)
-  - [ ] 並行セッション WIP の取り扱い確認（前 steering で発覚した
+- [x] `AskUserQuestion` で main マージ可否確認
+- [x] 承認後:
+  - [x] CWD を main リポジトリに移動 (ExitWorktree keep)
+  - [x] 並行セッション WIP の取り扱い確認（前 steering で発覚した
         chore/bump-happy-dom-security 状況に応じて）
-  - [ ] `git merge worktree-example-plugin-fs-demo --no-ff -m "..."`
-  - [ ] `git worktree remove .claude/worktrees/example-plugin-fs-demo`
-  - [ ] `git branch -d worktree-example-plugin-fs-demo`
+  - [x] `git merge worktree-example-plugin-fs-demo --no-ff -m "..."`
+  - [x] `git worktree remove .claude/worktrees/example-plugin-fs-demo`
+  - [x] `git branch -d worktree-example-plugin-fs-demo`
 
 ## Phase 6: 検証
 
-- [ ] `git worktree list` から example-plugin-fs-demo が消えている
-- [ ] `git branch --list 'worktree-example-plugin-fs-demo'` 空
+- [x] `git worktree list` から example-plugin-fs-demo が消えている
+- [x] `git branch --list 'worktree-example-plugin-fs-demo'` 空
 
 ## Phase 7: 親プラン更新
 
-- [ ] `.steering/20260509-030-phase2-planning/tasklist.md` の
+- [x] `.steering/20260509-030-phase2-planning/tasklist.md` の
       "E. plugin-fs 実装" セクションの
       `examples/plugin-fs-demo/ 追加` を `[x]` に更新
