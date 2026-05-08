@@ -1,0 +1,8 @@
+[workspace]
+members = [
+  "examples/hello-world/src-tauri",
+  "examples/ipc-typed/src-tauri",
+  "examples/streaming-ipc/src-tauri",
+  "examples/window-management/src-tauri",
+]
+resolver = "2"

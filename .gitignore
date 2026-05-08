@@ -38,3 +38,8 @@ coverage/
 # Logs / temp
 *.log
 .tmp/
+
+# Rust build artifacts
+target/
+**/target/
+Cargo.lock
