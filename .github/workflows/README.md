@@ -7,6 +7,11 @@ This directory tracks the CI/CD workflows for rescript-tauri. Files fall into th
 | File | Trigger | Purpose |
 |---|---|---|
 | `docs.yml` | push / PR on `sphinx-docs/**`, manual dispatch | Lints `sphinx-docs/`, runs its tests, and (on `main`) deploys the rendered site to GitHub Pages. |
+| `build-core.yml` | push / PR on `packages/core/**`, `pnpm-lock.yaml`, `package.json` | Cleans and rebuilds `@rescript-tauri/core` and emits a wall-clock notice (PRD §5.2 budget = 30s). |
+| `tests-core-types.yml` | push / PR on `packages/core/**`, `pnpm-lock.yaml` | Compiles the type-level tests (`tests/*_signature.res`) and enforces 100% public-symbol coverage with a grep-based gate. |
+| `tests-core-runtime.yml` | push / PR on `packages/core/**`, `pnpm-lock.yaml` | Runs `pnpm --filter @rescript-tauri/core test` (rescript build + vitest). |
+| `doc-link-lint.yml` | push / PR on any `packages/core/**/*.resi` | Verifies that every `.resi` file mentions a `v2.tauri.app/` URL. |
+| `examples-build.yml` | push / PR on `examples/**`, `packages/core/**`, `pnpm-lock.yaml` | 3 OS matrix (Ubuntu / macOS / Windows). Builds the `hello-world` ReScript frontend and runs `cargo check --release` on the Tauri Rust side. |
 
 ## Opt-in templates
 
@@ -19,15 +24,10 @@ These workflows rely on Claude Code Actions and require an `ANTHROPIC_API_KEY` r
 
 ## Planned for Phase 1
 
-The workflows below are specified in [`docs/functional-design.md`](../../docs/functional-design.md) §6. They do not exist yet and will be added once `packages/core/` source code lands.
+The workflows below are specified in [`docs/functional-design.md`](../../docs/functional-design.md) §6. They are nightly / tag-triggered and land closer to the Phase 1 release.
 
 | File | Purpose |
 |---|---|
-| `build-core.yml` | Builds `@rescript-tauri/core` on PR / push with a wall-clock budget. |
-| `tests-core-types.yml` | Type-level tests (compile-success based). Enforces 100% public-symbol coverage via a grep-based gate. |
-| `tests-core-runtime.yml` | Vitest runtime tests, including the `Mocks` integration scenario. |
-| `examples-build.yml` | Builds every `examples/*` on a 3 OS matrix (Linux / macOS / Windows). |
-| `doc-link-lint.yml` | Validates Tauri documentation URLs embedded in `.resi` doc comments. |
 | `compat-tauri-latest.yml` | Nightly compatibility run against the latest Tauri release. |
 | `compat-rescript-prerelease.yml` | Nightly compatibility run against the next ReScript 12.x minor / next-major prerelease line. |
 | `release.yml` | Tag-driven release pipeline (npm publish + GitHub Release). |
