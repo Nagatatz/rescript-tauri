@@ -4,4 +4,7 @@ module Raw = {
   @module("@tauri-apps/api/core")
   external invoke: (string, ~args: 'args=?, ~options: invokeOptions=?) => promise<'result> =
     "invoke"
+
+  @module("@tauri-apps/api/core")
+  external convertFileSrc: (string, ~protocol: string=?) => string = "convertFileSrc"
 }
