@@ -2,10 +2,10 @@ type t
 
 type unlisten = unit => unit
 
-type dragDropEvent<'pos> =
-  | Enter({paths: array<string>, position: 'pos})
-  | Over({position: 'pos})
-  | Drop({paths: array<string>, position: 'pos})
+type dragDropEvent =
+  | Enter({paths: array<string>, position: Dpi.PhysicalPosition.t})
+  | Over({position: Dpi.PhysicalPosition.t})
+  | Drop({paths: array<string>, position: Dpi.PhysicalPosition.t})
   | Leave
 
 type options = {
@@ -25,10 +25,10 @@ external getCurrentWebview: unit => t = "getCurrentWebview"
 external getAllWebviews: unit => promise<array<t>> = "getAllWebviews"
 
 @get external label: t => string = "label"
-@send external setSize: (t, 'size) => promise<unit> = "setSize"
-@send external setPosition: (t, 'position) => promise<unit> = "setPosition"
-@send external position: t => promise<'position> = "position"
-@send external size: t => promise<'size> = "size"
+@send external setSize: (t, Dpi.Size.t) => promise<unit> = "setSize"
+@send external setPosition: (t, Dpi.Position.t) => promise<unit> = "setPosition"
+@send external position: t => promise<Dpi.PhysicalPosition.t> = "position"
+@send external size: t => promise<Dpi.PhysicalSize.t> = "size"
 @send external setFocus: t => promise<unit> = "setFocus"
 @send external setAutoResize: (t, bool) => promise<unit> = "setAutoResize"
 @send external hide: t => promise<unit> = "hide"
@@ -40,8 +40,9 @@ external setBackgroundColor: (t, Nullable.t<Window.color>) => promise<unit> = "s
 @send external close: t => promise<unit> = "close"
 
 // onDragDropEvent: upstream delivers an event whose payload has shape
-// { type: 'enter' | 'over' | 'drop' | 'leave', ... }. Map it into the
-// ReScript variant before calling the user's handler.
+// { type: 'enter' | 'over' | 'drop' | 'leave', ... }. The JS-side
+// `position` is a `Dpi.PhysicalPosition` class instance; we cast it
+// through `Obj.magic` since the type is opaque on the ReScript side.
 @send
 external _onDragDropEvent: (t, {..} => unit) => promise<unlisten> = "onDragDropEvent"
 
@@ -49,12 +50,11 @@ let onDragDropEvent = (webview, handler) =>
   _onDragDropEvent(webview, raw => {
     let payload = (Obj.magic(raw): {..})["payload"]
     let kind: string = payload["type"]
+    let position: Dpi.PhysicalPosition.t = Obj.magic(payload["position"])
     switch kind {
-    | "enter" =>
-      handler(Enter({paths: payload["paths"], position: payload["position"]}))
-    | "over" => handler(Over({position: payload["position"]}))
-    | "drop" =>
-      handler(Drop({paths: payload["paths"], position: payload["position"]}))
+    | "enter" => handler(Enter({paths: payload["paths"], position}))
+    | "over" => handler(Over({position: position}))
+    | "drop" => handler(Drop({paths: payload["paths"], position}))
     | "leave" => handler(Leave)
     | _ => ()
     }

@@ -20,16 +20,14 @@ type t
 type unlisten = unit => unit
 
 /** Drag-and-drop lifecycle event delivered to `onDragDropEvent`.
-    `'pos` is the physical position; until `Dpi`'s value types are
-    threaded through this binding, callers should treat it as
-    `Dpi.PhysicalPosition.t`'s wire shape (`{x, y}`).
+    Positions are reported in physical pixels.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewebview/#dragdropevent
 */
-type dragDropEvent<'pos> =
-  | Enter({paths: array<string>, position: 'pos})
-  | Over({position: 'pos})
-  | Drop({paths: array<string>, position: 'pos})
+type dragDropEvent =
+  | Enter({paths: array<string>, position: Dpi.PhysicalPosition.t})
+  | Over({position: Dpi.PhysicalPosition.t})
+  | Drop({paths: array<string>, position: Dpi.PhysicalPosition.t})
   | Leave
 
 /** Construction options (excluding window-layer-only keys).
@@ -64,31 +62,31 @@ let getAllWebviews: unit => promise<array<t>>
 */
 let label: t => string
 
-/** Sets the webview size. Polymorphic until the `Dpi` module's value
-    types are wired through this binding.
+/** Sets the webview size. Wrap a `LogicalSize` or `PhysicalSize` with
+    `Dpi.Size.fromLogical` / `Dpi.Size.fromPhysical`.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewebview/#setsize
 */
-let setSize: (t, 'size) => promise<unit>
+let setSize: (t, Dpi.Size.t) => promise<unit>
 
-/** Sets the webview position relative to its host window. Polymorphic
-    until Dpi integration.
+/** Sets the webview position relative to its host window. Wrap with
+    `Dpi.Position.fromLogical` / `Dpi.Position.fromPhysical`.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewebview/#setposition
 */
-let setPosition: (t, 'position) => promise<unit>
+let setPosition: (t, Dpi.Position.t) => promise<unit>
 
 /** Returns the position of the webview in physical pixels.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewebview/#position
 */
-let position: t => promise<'position>
+let position: t => promise<Dpi.PhysicalPosition.t>
 
 /** Returns the size of the webview in physical pixels.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewebview/#size
 */
-let size: t => promise<'size>
+let size: t => promise<Dpi.PhysicalSize.t>
 
 /** Brings the webview to focus.
 
@@ -144,4 +142,4 @@ let close: t => promise<unit>
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewebview/#ondragdropevent
 */
-let onDragDropEvent: (t, dragDropEvent<'pos> => unit) => promise<unlisten>
+let onDragDropEvent: (t, dragDropEvent => unit) => promise<unlisten>
