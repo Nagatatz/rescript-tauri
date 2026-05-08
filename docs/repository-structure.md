@@ -118,7 +118,24 @@ packages/plugin-fs/
 
 ### 2.3 `packages/schema/`
 
-Phase 2 で追加。`rescript-schema` / `rescript-struct` 向けの `Command.fromSchemas` ヘルパを提供。`@rescript-tauri/core` の `Command.make` を内部で呼ぶ。
+Phase 2 着手済み (steering 031, 2026-05-09)。`rescript-schema` 向けの Layer 3 IPC ヘルパを提供する独立パッケージ:
+
+```
+packages/schema/
+├── src/
+│   └── Schema.res / .resi              # toDecoder / fromSchemas / channelFromSchema / eventFromSchema
+├── tests/
+│   ├── schema_signature.res            # 型レベル網羅
+│   └── runtime/schema.test.mjs         # vitest + Mocks 経由
+├── rescript.json
+├── package.json                        # @rescript-tauri/schema
+├── vitest.config.mjs
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `rescript-schema ^9.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+`rescript-struct` は upstream で deprecated 済み (2026-05-09 確認) のため対象外（RFC-0002 §2.1）。
 
 ---
 
