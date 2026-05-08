@@ -3,6 +3,8 @@
 Production-ready ReScript bindings for Tauri 2.x's official JS SDK (`@tauri-apps/api`). A monorepo centered on `@rescript-tauri/core`, exposing the entire Tauri public API surface—IPC, Event, Window, Webview, Menu, Tray—from ReScript.
 
 > **Status:** Phase 1 — design complete, implementation not yet started. This repository currently contains the PRD, functional design, architecture, repository structure, and glossary; no source code is published yet. See [`docs/product-requirements.md`](./docs/product-requirements.md) and [`docs/functional-design.md`](./docs/functional-design.md) for details.
+>
+> **Visibility:** the repository is **private** while the design is being finalized. It will be switched to **public** at the Phase 1 release, once all of the following are in place: the first `@rescript-tauri/core` version is published to npm; every example workspace under `examples/` builds on the 3 OS matrix; the CI workflows specified in [`docs/functional-design.md`](./docs/functional-design.md) §6 are wired up (see [`.github/workflows/README.md`](./.github/workflows/README.md) for current status); and `CONTRIBUTING.md` is added. `LICENSE` (MIT) is already in place.
 
 ---
 
