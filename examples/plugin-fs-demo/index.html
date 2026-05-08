@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>plugin-fs demo</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1.5rem; }
+      h1 { font-size: 1.4rem; }
+      h2 { font-size: 1.05rem; margin-top: 1.2rem; }
+      .row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; }
+      button { padding: .4rem .8rem; cursor: pointer; }
+      pre { background: #111; color: #eee; padding: .8rem; min-height: 6rem;
+            border-radius: 4px; white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <h1>@rescript-tauri/plugin-fs demo</h1>
+    <p>All operations target <code>$APPLOCALDATA/plugin-fs-demo/</code>.</p>
+
+    <h2>Step 1 — Setup</h2>
+    <div class="row">
+      <button id="btn-setup">setup (mkdir + writeTextFile + writeFile)</button>
+    </div>
+
+    <h2>Step 2 — Read back</h2>
+    <div class="row">
+      <button id="btn-read">read (exists + readTextFile + readFile + stat + size)</button>
+    </div>
+
+    <h2>Step 3 — Inspect directory</h2>
+    <div class="row">
+      <button id="btn-list">list (readDir + lstat)</button>
+    </div>
+
+    <h2>Step 4 — Modify</h2>
+    <div class="row">
+      <button id="btn-modify">modify (copyFile + rename + truncate)</button>
+    </div>
+
+    <h2>Step 5 — Cleanup</h2>
+    <div class="row">
+      <button id="btn-cleanup">cleanup (remove recursive)</button>
+    </div>
+
+    <h2>Result</h2>
+    <pre id="result">(no action yet)</pre>
+
+    <script type="module" src="/src/main.mjs"></script>
+  </body>
+</html>
