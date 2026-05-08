@@ -156,7 +156,7 @@ rescript-tauri/
 | [`docs/ideas/RFC-0001-core-api-design.md`](./docs/ideas/RFC-0001-core-api-design.md) | Core API design RFC (historical input to the PRD; not edited) | English |
 | [`CLAUDE.md`](./CLAUDE.md) | Mandatory instructions for Claude Code | Japanese |
 
-External-facing user and contributor documentation will be developed in `sphinx-docs/` with English as the base language and Japanese translations provided through Sphinx i18n (`.po` files under `sphinx-docs/locale/ja/`). Publication channel and timing (e.g., GitHub Pages) are TBD.
+External-facing user and contributor documentation lives in [`sphinx-docs/`](./sphinx-docs/) with English as the base language and Japanese translations provided through Sphinx i18n (`.po` files under `sphinx-docs/locale/ja/`). The site is built by [`.github/workflows/docs.yml`](./.github/workflows/docs.yml) and deployed to **GitHub Pages** at <https://nagatatz.github.io/rescript-tauri/> (English under `/en/`, Japanese under `/ja/`). The deployment workflow itself is active, but Pages goes live when the repository visibility is switched to public at the Phase 1 release (see the **Visibility** block above).
 
 ---
 
