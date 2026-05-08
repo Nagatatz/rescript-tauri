@@ -129,12 +129,31 @@ EOF
 #### (b) Publish
 
 ```bash
-npm publish
+npm publish --tag reserved
 # → 2FA を有効化していれば OTP を要求される
 # → 成功すると "+ @rescript-tauri/core@0.0.0-reserved" が表示される
 ```
 
-`access: "public"` は scoped package を公開で publish するために必須（デフォルトは private で、Free Plan では publish できない）。
+**`--tag reserved` は必須**。`0.0.0-reserved` は SemVer 上の **prerelease バージョン**（hyphen 以降が pre-release identifier として解釈される）で、npm は明示 dist-tag なしの prerelease publish を以下のエラーで拒否する:
+
+```
+npm error You must specify a tag using --tag when publishing a prerelease version.
+```
+
+`--tag reserved` を指定すると dist-tag `reserved` に割り当てられ、デフォルトの `latest` タグには何も入らない。これにより後で Phase 1 の正式リリース時に `npm publish`（タグなし、デフォルト `latest`）を実行したとき、`npm install @rescript-tauri/core` が **正式版** を取得する正しい挙動になる（`reserved` タグの dummy ではなく）。
+
+`access: "public"` は scoped package を公開で publish するために必須（デフォルトは private で、Free Plan では publish できない）— `package.json` の `publishConfig.access` で設定済み。
+
+##### Phase 1 リリース時の挙動
+
+正式版 `0.1.0` を publish するときは `--tag` 不要:
+
+```bash
+# Phase 1 リリース時
+npm publish        # → @rescript-tauri/core@0.1.0 が dist-tag latest に
+```
+
+dummy `0.0.0-reserved` は `reserved` タグに残り続けるが、`npm install` のデフォルト挙動には影響しない。気になる場合は `npm dist-tag rm @rescript-tauri/core reserved` で reserved タグを除去できる（dummy version 自体は npm の unpublish 制約上残る）。
 
 #### (c) 後始末
 
@@ -182,6 +201,7 @@ Phase 2+ で計画されている `@rescript-tauri/plugin-fs` / `plugin-dialog` 
 |---|---|---|
 | `0.0.0-reserved` を publish した後、後で削除したくなる | npm の `unpublish` は 72 時間以内のみ可。それ以降は npm support に依頼が必要 | 予約バージョンは未来の正式リリースで上書き (`0.1.0` 以降) されるので unpublish 不要。`0.0.0-reserved` はそのまま残る |
 | 2FA を有効化していないと publish に失敗 | publish 不可 | Step 1 で 2FA 設定を確認 |
+| `0.0.0-reserved` を `--tag` なしで `npm publish` すると `prerelease version requires --tag` エラー | publish 失敗 | Step 4 (b) で **必ず `npm publish --tag reserved`** を使用。詳細は Step 4 (b) を参照 |
 | Org 名のタイポ (`rescript_tauri` など) | scope が変わってしまう | Step 2 で正確に `rescript-tauri` (ハイフン) を入力 |
 | 既に他者が `@rescript-tauri` Org を取得していた | scope 予約不可 | §2 で 2026-05-08 時点の空きを確認済み。実行は早めに |
 | 個人アカウントで Org を作成 → 後で組織アカウントに移したい | 移管は可能だが手続き必要 | Phase 1 リリース後の運用安定後に検討 |
