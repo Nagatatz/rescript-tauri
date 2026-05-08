@@ -50,7 +50,7 @@ describe("Core.Channel", () => {
     expect(id).toBeGreaterThanOrEqual(100)
   })
 
-  it("onMessage forwards decoded messages to the callback", async () => {
+  it("onMessage forwards decoded messages as Ok(msg)", async () => {
     const { Channel } = await import("../../src/Core.res.mjs")
     const ch = Channel.make((raw) =>
       typeof raw === "string"
@@ -59,28 +59,32 @@ describe("Core.Channel", () => {
     )
 
     const received = []
-    Channel.onMessage(ch, (msg) => received.push(msg))
+    Channel.onMessage(ch, (result) => received.push(result))
 
     const id = Channel.id(ch)
     globalThis.window.__TAURI_INTERNALS__._deliver(id, "hello", 0)
     globalThis.window.__TAURI_INTERNALS__._deliver(id, "world", 1)
 
-    expect(received).toEqual(["HELLO", "WORLD"])
+    expect(received).toHaveLength(2)
+    expect(received[0]).toEqual(Ok("HELLO"))
+    expect(received[1]).toEqual(Ok("WORLD"))
   })
 
-  it("decode failures are silently dropped", async () => {
+  it("onMessage surfaces decode failures as Error(msg)", async () => {
     const { Channel } = await import("../../src/Core.res.mjs")
     const ch = Channel.make((raw) =>
       typeof raw === "string" ? Ok(raw) : Err("not a string"),
     )
 
     const received = []
-    Channel.onMessage(ch, (msg) => received.push(msg))
+    Channel.onMessage(ch, (result) => received.push(result))
 
     const id = Channel.id(ch)
     globalThis.window.__TAURI_INTERNALS__._deliver(id, 42, 0)
     globalThis.window.__TAURI_INTERNALS__._deliver(id, "ok", 1)
 
-    expect(received).toEqual(["ok"])
+    expect(received).toHaveLength(2)
+    expect(received[0]).toEqual(Err("not a string"))
+    expect(received[1]).toEqual(Ok("ok"))
   })
 })

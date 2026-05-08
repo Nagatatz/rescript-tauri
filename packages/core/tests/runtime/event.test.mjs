@@ -25,57 +25,86 @@ const installInternals = () => {
       callbacks.get(id)?.({ event: eventName, id, payload }),
     _captured: callbacks,
   }
+  // `Event.once` auto-unsubscribes after the first delivery by calling
+  // window.__TAURI_EVENT_PLUGIN_INTERNALS__.unregisterListener. Stub it
+  // so the auto-unsubscribe path doesn't blow up the test runner.
+  globalThis.window.__TAURI_EVENT_PLUGIN_INTERNALS__ = {
+    unregisterListener: vi.fn(),
+  }
 }
 const clear = () => {
-  if (globalThis.window) delete globalThis.window.__TAURI_INTERNALS__
+  if (globalThis.window) {
+    delete globalThis.window.__TAURI_INTERNALS__
+    delete globalThis.window.__TAURI_EVENT_PLUGIN_INTERNALS__
+  }
 }
 
 const Ok = (v) => ({ TAG: "Ok", _0: v })
 const Err = (m) => ({ TAG: "Error", _0: m })
 
+const lastCapturedId = () => {
+  const ids = Array.from(globalThis.window.__TAURI_INTERNALS__._captured.keys())
+  expect(ids.length).toBeGreaterThan(0)
+  return ids[ids.length - 1]
+}
+
 describe("Event", () => {
   beforeEach(installInternals)
   afterEach(clear)
 
-  it("listen captures a callback via transformCallback and forwards decoded events", async () => {
+  it("listen forwards a successfully decoded event as Ok", async () => {
     const Event = await import("../../src/Event.res.mjs")
     const ch = Event.make("file-changed", (raw) =>
       typeof raw === "string" ? Ok(raw) : Err("expected string"),
     )
 
     const received = []
-    const unlisten = await Event.listen(ch, (evt) => received.push(evt))
+    const unlisten = await Event.listen(ch, (result) => received.push(result))
 
-    const captured = globalThis.window.__TAURI_INTERNALS__._captured
-    // The most recently captured callback id is what listen used.
-    const ids = Array.from(captured.keys())
-    expect(ids.length).toBeGreaterThan(0)
-    const id = ids[ids.length - 1]
-
+    const id = lastCapturedId()
     globalThis.window.__TAURI_INTERNALS__._deliver("file-changed", id, "/tmp/x")
     expect(received).toHaveLength(1)
-    expect(received[0].event).toBe("file-changed")
-    expect(received[0].payload).toBe("/tmp/x")
+    expect(received[0].TAG).toBe("Ok")
+    expect(received[0]._0.event).toBe("file-changed")
+    expect(received[0]._0.payload).toBe("/tmp/x")
     expect(typeof unlisten).toBe("function")
   })
 
-  it("listen drops messages whose decode fails", async () => {
+  it("listen surfaces decode failures as Error(msg)", async () => {
     const Event = await import("../../src/Event.res.mjs")
     const ch = Event.make("topic", (raw) =>
       typeof raw === "string" ? Ok(raw) : Err("not a string"),
     )
 
     const received = []
-    await Event.listen(ch, (evt) => received.push(evt))
+    await Event.listen(ch, (result) => received.push(result))
 
-    const captured = globalThis.window.__TAURI_INTERNALS__._captured
-    const ids = Array.from(captured.keys())
-    const id = ids[ids.length - 1]
-
+    const id = lastCapturedId()
     globalThis.window.__TAURI_INTERNALS__._deliver("topic", id, 42)
     globalThis.window.__TAURI_INTERNALS__._deliver("topic", id, "ok")
 
-    expect(received.map((e) => e.payload)).toEqual(["ok"])
+    expect(received).toHaveLength(2)
+    expect(received[0].TAG).toBe("Error")
+    expect(received[0]._0).toBe("not a string")
+    expect(received[1].TAG).toBe("Ok")
+    expect(received[1]._0.payload).toBe("ok")
+  })
+
+  it("once delivers Error(msg) when the single emission fails to decode", async () => {
+    const Event = await import("../../src/Event.res.mjs")
+    const ch = Event.make("ping", (raw) =>
+      typeof raw === "string" ? Ok(raw) : Err("expected string"),
+    )
+
+    const received = []
+    await Event.once(ch, (result) => received.push(result))
+
+    const id = lastCapturedId()
+    globalThis.window.__TAURI_INTERNALS__._deliver("ping", id, 99)
+
+    expect(received).toHaveLength(1)
+    expect(received[0].TAG).toBe("Error")
+    expect(received[0]._0).toBe("expected string")
   })
 
   it("emit calls __TAURI_INTERNALS__.invoke at least once", async () => {
