@@ -3,10 +3,6 @@
   "package-specs": [{ "module": "esmodule", "in-source": true }],
   "suffix": ".res.mjs",
   "sources": [{ "dir": "src", "subdirs": true }],
-  "dependencies": [
-    "@rescript/core",
-    "@rescript-tauri/core",
-    "@rescript-tauri/plugin-dialog"
-  ],
+  "dependencies": ["@rescript/core", "@rescript-tauri/core", "@rescript-tauri/plugin-dialog"],
   "jsx": { "version": 4 }
 }
