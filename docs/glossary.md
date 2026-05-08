@@ -65,7 +65,7 @@
 | **`promise<'a>`** | ReScript の標準 Promise 型。`async/await` で扱う。 |
 | **`result<'a, 'e>`** | ReScript の Result 型（`Ok('a) \| Error('e)`）。本プロダクトの Layer 2 IPC で失敗を表現する。 |
 | **`*Exn` 命名規約** | `result` を unwrap し失敗時に raise する関数の suffix。`@rescript/core` 慣習に準拠（`Belt.Array.getExn` など）。 |
-| **uncurried** | ReScript v12 で default となる関数呼び出し慣習。本プロダクトは v11 をターゲットとしつつ v12 prerelease を nightly で検証。 |
+| **uncurried** | ReScript v12 以降で default となる関数呼び出し慣習。本プロダクトは v12+ をターゲットとし uncurried-by-default を前提とする。 |
 | **namespace (`namespace: true`)** | `rescript.json` のオプション。有効化するとパッケージ名がモジュール接頭辞になる（例: `RescriptTauriCore.Core`）。 |
 
 ---

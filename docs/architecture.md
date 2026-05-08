@@ -140,7 +140,7 @@ packages/
 
 | パッケージ | semver 起点 | peerDep |
 |---|---|---|
-| `@rescript-tauri/core` | Tauri 2.x ↔ ReScript 11+ で 1.x | `@tauri-apps/api ^2.0.0` |
+| `@rescript-tauri/core` | Tauri 2.x ↔ ReScript 12+ で 1.x | `@tauri-apps/api ^2.0.0` |
 | `@rescript-tauri/plugin-fs` | 上流 `@tauri-apps/plugin-fs` の minor に追従 | `@rescript-tauri/core ^1.0.0`, `@tauri-apps/plugin-fs ^2.0.0` |
 | `@rescript-tauri/schema` | 独立 | `@rescript-tauri/core ^1.0.0`, `rescript-schema >=...` |
 
@@ -245,7 +245,7 @@ PR トリガ:
 
 Nightly:
   ├─ compat-tauri-latest        (上流追従)
-  └─ compat-rescript-prerelease (v12 先行検知)
+  └─ compat-rescript-prerelease (12.x 次期マイナー / 次期メジャー先行検知)
 
 Tag push:
   └─ release            (npm publish)
@@ -289,7 +289,7 @@ Tag push:
 | リスク | 兆候 | 対応 |
 |---|---|---|
 | Tauri 2.x の API drift | minor バージョン頻発 | upstream changelog 監視（CI weekly） / `peerDependencies` 範囲を狭く |
-| ReScript v12 破壊的変更 | uncurried-by-default 化 | nightly v12 prerelease 検証 / Phase 3 で正式対応 |
+| ReScript 12.x 後続マイナー / 次期メジャーの破壊的変更 | API 互換崩れ | nightly prerelease 検証で先行検知（`compat-rescript-prerelease.yml`） |
 | メンテナ単独点 (bus factor 1) | 長期 issue 滞留 | CONTRIBUTING.md / governance 文書 / co-maintainer 募集 |
 | 競合バインディング・コードジェネレータ | 他リポジトリでの実装活動 | ReScript Forum / Tauri Discord で coordination。本プロダクトは hand-written runtime に専念し、コードジェネレータは採用しない（PRD §9） |
 
@@ -301,7 +301,7 @@ Tag push:
 |---|---|---|
 | Schema 統合 | `@rescript-tauri/schema` | core 不変 |
 | 各 Tauri plugin バインディング | `@rescript-tauri/plugin-fs`, `plugin-dialog`, ... | 各々独立 |
-| ReScript v12 uncurried 完全対応 | `core` を minor or major bump | 全モジュール |
+| 次期 ReScript メジャー対応（v13 想定） | `core` を major bump | 全モジュール |
 | Belt-only ユーザー向け shim | （現状予定なし、PRD §10 残課題 #6） | 別パッケージ想定 |
 
 これら拡張は **core の API 表面を変えずに追加できる** ことを設計時の制約としている。

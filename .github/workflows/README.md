@@ -29,7 +29,7 @@ The workflows below are specified in [`docs/functional-design.md`](../../docs/fu
 | `examples-build.yml` | Builds every `examples/*` on a 3 OS matrix (Linux / macOS / Windows). |
 | `doc-link-lint.yml` | Validates Tauri documentation URLs embedded in `.resi` doc comments. |
 | `compat-tauri-latest.yml` | Nightly compatibility run against the latest Tauri release. |
-| `compat-rescript-prerelease.yml` | Nightly compatibility run against the ReScript prerelease line. |
+| `compat-rescript-prerelease.yml` | Nightly compatibility run against the next ReScript 12.x minor / next-major prerelease line. |
 | `release.yml` | Tag-driven release pipeline (npm publish + GitHub Release). |
 
 ## Adding a new workflow

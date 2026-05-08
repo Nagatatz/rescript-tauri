@@ -245,7 +245,7 @@ sphinx-docs/
 │   ├── examples-build.yml               # 3 OS マトリクス
 │   ├── doc-link-lint.yml
 │   ├── compat-tauri-latest.yml          # nightly
-│   ├── compat-rescript-prerelease.yml   # nightly
+│   ├── compat-rescript-prerelease.yml   # nightly (12.x 次期マイナー / 次期メジャー prerelease 検証)
 │   └── release.yml                      # tag push
 ├── ISSUE_TEMPLATE/
 └── PULL_REQUEST_TEMPLATE.md
