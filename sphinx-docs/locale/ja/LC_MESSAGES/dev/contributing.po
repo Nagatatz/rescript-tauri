@@ -1,17 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
+# Japanese translations for rescript-tauri docs.
 # Copyright (C) 2026, Nagatatz and rescript-tauri contributors
 # This file is distributed under the same license as the rescript-tauri
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-08 12:58+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-05-08 13:00+0900\n"
+"Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
 "Language-Team: ja <LL@li.org>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -22,7 +20,7 @@ msgstr ""
 
 #: ../../dev/contributing.md:1
 msgid "Contributing Guide"
-msgstr ""
+msgstr "コントリビューションガイド"
 
 #: ../../dev/contributing.md:3
 msgid ""
@@ -32,6 +30,11 @@ msgid ""
 "`CONTRIBUTING.md` first** for project-wide context (status, branch "
 "naming, commit style, PR process, Definition of Done)."
 msgstr ""
+"本ページはリポジトリルートにある正本 [`CONTRIBUTING.md`]"
+"(https://github.com/Nagatatz/rescript-tauri/blob/main/CONTRIBUTING.md) の"
+"ドキュメントサイト固有の補足です。プロジェクト全体の文脈（ステータス、ブランチ命名、"
+"コミットスタイル、PR プロセス、Definition of Done）は、**まずルートの "
+"`CONTRIBUTING.md` を参照してください**。"
 
 #: ../../dev/contributing.md:6
 msgid ""
@@ -40,96 +43,105 @@ msgid ""
 "RFC discussion). The workflow described below is the post-Phase-1 "
 "contributor workflow; familiarizing yourself with it now is encouraged."
 msgstr ""
+"リポジトリは現在 **Phase 1 — 設計フェーズ** であり、外部 PR はまだ受け付けていません。"
+"Issue は歓迎します（設計フィードバック、RFC 議論）。下記のワークフローは Phase 1 リリース後の"
+"コントリビュータ向けです。今のうちに目を通しておくことを推奨します。"
 
 #: ../../dev/contributing.md:9
 msgid "Where to start"
-msgstr ""
+msgstr "どこから始めるか"
 
 #: ../../dev/contributing.md:11
 msgid ""
 "Read the project [README](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/README.md) for the high-level pitch."
 msgstr ""
+"プロジェクトの [README](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/README.md) を読んで全体像を把握してください。"
 
 #: ../../dev/contributing.md:12
 msgid ""
 "Read the root [`CONTRIBUTING.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/CONTRIBUTING.md) for the project-wide workflow."
 msgstr ""
+"ルートの [`CONTRIBUTING.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/CONTRIBUTING.md) を読んでプロジェクト全体のワークフローを確認してください。"
 
 #: ../../dev/contributing.md:13
 msgid ""
 "For docs-site work specifically, follow [Development Setup](setup.md) and"
 " [Building](building.md) on this site."
 msgstr ""
+"ドキュメントサイト固有の作業は、本サイトの [開発環境セットアップ](setup.md) と "
+"[ビルド](building.md) に従ってください。"
 
 #: ../../dev/contributing.md:15
 msgid "Docs-site-specific contributions"
-msgstr ""
+msgstr "ドキュメントサイト固有のコントリビューション"
 
 #: ../../dev/contributing.md:17
 msgid "The most common contributions to `sphinx-docs/` are:"
-msgstr ""
+msgstr "`sphinx-docs/` への代表的なコントリビューションは次のとおりです:"
 
 #: ../../dev/contributing.md:5
 msgid "Type"
-msgstr ""
+msgstr "種類"
 
 #: ../../dev/contributing.md:5
 msgid "What to change"
-msgstr ""
+msgstr "変更対象"
 
 #: ../../dev/contributing.md:5
 msgid "Verification"
-msgstr ""
+msgstr "検証"
 
 #: ../../dev/contributing.md:5
 msgid "Translation update"
-msgstr ""
+msgstr "翻訳の更新"
 
 #: ../../dev/contributing.md:5
 msgid "`sphinx-docs/locale/ja/LC_MESSAGES/<file>.po`"
-msgstr ""
+msgstr "`sphinx-docs/locale/ja/LC_MESSAGES/<file>.po`"
 
 #: ../../dev/contributing.md:5
 msgid "`make build-ja`"
-msgstr ""
+msgstr "`make build-ja`"
 
 #: ../../dev/contributing.md:5
 msgid "Fix a typo or broken link in English"
-msgstr ""
+msgstr "英語のタイポや broken link を修正"
 
 #: ../../dev/contributing.md:5
 msgid "`sphinx-docs/**/*.md`"
-msgstr ""
+msgstr "`sphinx-docs/**/*.md`"
 
 #: ../../dev/contributing.md:5
 msgid "`make html`, `make linkcheck`"
-msgstr ""
+msgstr "`make html`、`make linkcheck`"
 
 #: ../../dev/contributing.md:5
 msgid "Add a new English page"
-msgstr ""
+msgstr "新しい英語ページを追加"
 
 #: ../../dev/contributing.md:5
 msgid "New `.md` + entry in the parent `index.md` `toctree`"
-msgstr ""
+msgstr "新規 `.md` + 親 `index.md` の `toctree` に追加"
 
 #: ../../dev/contributing.md:5
 msgid "`make update-po` to regenerate `.po`, then translate"
-msgstr ""
+msgstr "`make update-po` で `.po` を再生成し、翻訳"
 
 #: ../../dev/contributing.md:5
 msgid "Improve a code sample"
-msgstr ""
+msgstr "コードサンプルを改善"
 
 #: ../../dev/contributing.md:5
 msgid "The relevant `.md`"
-msgstr ""
+msgstr "該当する `.md`"
 
 #: ../../dev/contributing.md:5
 msgid "`make html` to verify rendering"
-msgstr ""
+msgstr "`make html` でレンダリングを検証"
 
 #: ../../dev/contributing.md:26
 msgid ""
@@ -137,10 +149,12 @@ msgid ""
 " files reflect the new strings, then update the corresponding `msgstr` "
 "entries."
 msgstr ""
+"ソース `.md` を変更したら、`make update-po` を実行して新規文字列を日本語 `.po` ファイルに"
+"反映し、対応する `msgstr` を更新してください。"
 
 #: ../../dev/contributing.md:28
 msgid "Branch naming and commit style"
-msgstr ""
+msgstr "ブランチ命名とコミットスタイル"
 
 #: ../../dev/contributing.md:30
 msgid ""
@@ -149,44 +163,51 @@ msgid ""
 "tauri/blob/main/CONTRIBUTING.md). Docs changes typically use the `docs/` "
 "branch prefix and the 📝 commit emoji."
 msgstr ""
+"プロジェクトルートと同じです。[`CONTRIBUTING.md` §3.1 / §3.2]"
+"(https://github.com/Nagatatz/rescript-tauri/blob/main/CONTRIBUTING.md) "
+"を参照してください。ドキュメント変更では通常、`docs/` ブランチプレフィックスと 📝 コミット絵文字を使います。"
 
 #: ../../dev/contributing.md:32
 msgid "Before opening a PR"
-msgstr ""
+msgstr "PR を開く前に"
 
 #: ../../dev/contributing.md:41
 msgid "Attach screenshots in the PR if visual layout changes."
-msgstr ""
+msgstr "ビジュアルレイアウトが変わる場合は PR にスクリーンショットを添付してください。"
 
 #: ../../dev/contributing.md:43
 msgid "Translation guidelines"
-msgstr ""
+msgstr "翻訳ガイドライン"
 
 #: ../../dev/contributing.md:45
 msgid "The project's translation tone is:"
-msgstr ""
+msgstr "本プロジェクトの翻訳トーンは次のとおりです:"
 
 #: ../../dev/contributing.md:47
 msgid "**です・ます調** (polite informal Japanese)."
-msgstr ""
+msgstr "**です・ます調**（丁寧な日本語）。"
 
 #: ../../dev/contributing.md:48
 msgid ""
 "Technical terms stay in **English** (Layer 1 (Raw), polymorphic variant, "
 "peerDependencies, IPC, Channel, Event, Window, etc.)."
 msgstr ""
+"技術用語は **英語のまま** とします（Layer 1 (Raw)、polymorphic variant、"
+"peerDependencies、IPC、Channel、Event、Window など）。"
 
 #: ../../dev/contributing.md:49
 msgid ""
 "**Code blocks are not translated.** If a `msgid` contains code, copy it "
 "verbatim into the `msgstr`."
 msgstr ""
+"**コードブロックは翻訳しません**。`msgid` がコードを含む場合は、そのまま `msgstr` にコピーします。"
 
 #: ../../dev/contributing.md:50
 msgid ""
 "**URLs and link targets are not translated.** Translate the link text "
 "only."
 msgstr ""
+"**URL とリンク先は翻訳しません**。リンクのテキスト部分のみ翻訳します。"
 
 #: ../../dev/contributing.md:51
 msgid ""
@@ -194,4 +215,6 @@ msgid ""
 "tauri internal [`docs/glossary.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/docs/glossary.md)."
 msgstr ""
-
+"共有用語の既存の訳語は、rescript-tauri 内部の [`docs/glossary.md`]"
+"(https://github.com/Nagatatz/rescript-tauri/blob/main/docs/glossary.md) と"
+"一致させてください。"

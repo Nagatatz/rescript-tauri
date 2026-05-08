@@ -1,17 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
+# Japanese translations for rescript-tauri docs.
 # Copyright (C) 2026, Nagatatz and rescript-tauri contributors
 # This file is distributed under the same license as the rescript-tauri
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-08 12:58+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-05-08 13:00+0900\n"
+"Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
 "Language-Team: ja <LL@li.org>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -22,159 +20,161 @@ msgstr ""
 
 #: ../../dev/setup.md:1
 msgid "Development Setup"
-msgstr ""
+msgstr "開発環境セットアップ"
 
 #: ../../dev/setup.md:3
 msgid ""
 "Set up the `sphinx-docs/` site locally so you can preview English and "
 "Japanese builds before opening a PR."
 msgstr ""
+"PR を開く前に英語ビルド・日本語ビルドをプレビューできるよう、`sphinx-docs/` サイトをローカルにセットアップします。"
 
 #: ../../dev/setup.md:5
 msgid "Prerequisites"
-msgstr ""
+msgstr "前提条件"
 
 #: ../../dev/setup.md
 msgid "Requirement"
-msgstr ""
+msgstr "要件"
 
 #: ../../dev/setup.md
 msgid "Version"
-msgstr ""
+msgstr "バージョン"
 
 #: ../../dev/setup.md
 msgid "Note"
-msgstr ""
+msgstr "備考"
 
 #: ../../dev/setup.md
 msgid "[uv](https://docs.astral.sh/uv/)"
-msgstr ""
+msgstr "[uv](https://docs.astral.sh/uv/)"
 
 #: ../../dev/setup.md
 msgid "0.5+"
-msgstr ""
+msgstr "0.5+"
 
 #: ../../dev/setup.md
 msgid "Python パッケージ管理・仮想環境"
-msgstr ""
+msgstr "Python パッケージ管理・仮想環境"
 
 #: ../../dev/setup.md
 msgid "Python"
-msgstr ""
+msgstr "Python"
 
 #: ../../dev/setup.md
 msgid "3.12+"
-msgstr ""
+msgstr "3.12+"
 
 #: ../../dev/setup.md
 msgid "uv が自動でセットアップ"
-msgstr ""
+msgstr "uv が自動でセットアップ"
 
 #: ../../dev/setup.md
 msgid "Node.js"
-msgstr ""
+msgstr "Node.js"
 
 #: ../../dev/setup.md
 msgid "24+"
-msgstr ""
+msgstr "24+"
 
 #: ../../dev/setup.md
 msgid "Pagefind 検索インデックス生成に使用"
-msgstr ""
+msgstr "Pagefind 検索インデックス生成に使用"
 
 #: ../../dev/setup.md:13
 msgid ""
 "The rest of the rescript-tauri toolchain (pnpm, ReScript 12, etc.) is "
 "**not** required to work on `sphinx-docs/` alone."
 msgstr ""
+"`sphinx-docs/` 単体の作業では、rescript-tauri の他のツールチェーン（pnpm、ReScript 12 など）は **不要** です。"
 
 #: ../../dev/setup.md:15
 msgid "Install uv"
-msgstr ""
+msgstr "uv をインストール"
 
 #: ../../dev/setup.md:28
 msgid "Clone the repository"
-msgstr ""
+msgstr "リポジトリをクローン"
 
 #: ../../dev/setup.md:35
 msgid "Install dependencies"
-msgstr ""
+msgstr "依存関係をインストール"
 
 #: ../../dev/setup.md:41
 msgid "Verify the setup"
-msgstr ""
+msgstr "セットアップを確認"
 
 #: ../../dev/setup.md:48
 msgid ""
 "`make liveserve` starts `sphinx-autobuild` for auto-reload during "
 "English-only iterations."
 msgstr ""
+"英語サイトのみのイテレーション時は、`make liveserve` で `sphinx-autobuild` を起動すると自動リロードが有効になります。"
 
 #: ../../dev/setup.md:50
 msgid "Where files live"
-msgstr ""
+msgstr "ファイル配置"
 
 #: ../../dev/setup.md
 msgid "Path"
-msgstr ""
+msgstr "パス"
 
 #: ../../dev/setup.md
 msgid "Role"
-msgstr ""
+msgstr "役割"
 
 #: ../../dev/setup.md
 msgid "`conf.py`"
-msgstr ""
+msgstr "`conf.py`"
 
 #: ../../dev/setup.md
 msgid "Sphinx configuration (theme, extensions, i18n, OpenGraph, Pagefind)"
-msgstr ""
+msgstr "Sphinx 設定（テーマ、拡張、i18n、OpenGraph、Pagefind）"
 
 #: ../../dev/setup.md
 msgid "`pyproject.toml`"
-msgstr ""
+msgstr "`pyproject.toml`"
 
 #: ../../dev/setup.md
 msgid "Python dependency manifest for uv"
-msgstr ""
+msgstr "uv 用の Python 依存マニフェスト"
 
 #: ../../dev/setup.md
 msgid "`Makefile`"
-msgstr ""
+msgstr "`Makefile`"
 
 #: ../../dev/setup.md
 msgid "All build targets (see [Building](building.md))"
-msgstr ""
+msgstr "全ビルドターゲット（[ビルド](building.md) を参照）"
 
 #: ../../dev/setup.md
 msgid "`index.md`, `user/`, `dev/`"
-msgstr ""
+msgstr "`index.md`、`user/`、`dev/`"
 
 #: ../../dev/setup.md
 msgid "English source documents"
-msgstr ""
+msgstr "英語ソースドキュメント"
 
 #: ../../dev/setup.md
 msgid "`locale/ja/LC_MESSAGES/`"
-msgstr ""
+msgstr "`locale/ja/LC_MESSAGES/`"
 
 #: ../../dev/setup.md
 msgid "Japanese `.po` files (one per source `.md`)"
-msgstr ""
+msgstr "日本語 `.po` ファイル（ソース `.md` 1 つにつき 1 ファイル）"
 
 #: ../../dev/setup.md
 msgid "`_static/`, `_templates/`"
-msgstr ""
+msgstr "`_static/`、`_templates/`"
 
 #: ../../dev/setup.md
 msgid "Theme overrides and assets"
-msgstr ""
+msgstr "テーマオーバーライドとアセット"
 
 #: ../../dev/setup.md
 msgid "`_build/`"
-msgstr ""
+msgstr "`_build/`"
 
 #: ../../dev/setup.md
 msgid "Build output (gitignored)"
-msgstr ""
-
+msgstr "ビルド出力（gitignore 対象）"

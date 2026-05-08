@@ -1,17 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
+# Japanese translations for rescript-tauri docs.
 # Copyright (C) 2026, Nagatatz and rescript-tauri contributors
 # This file is distributed under the same license as the rescript-tauri
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-08 12:58+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-05-08 13:00+0900\n"
+"Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
 "Language-Team: ja <LL@li.org>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -22,7 +20,7 @@ msgstr ""
 
 #: ../../dev/project-structure.md:1
 msgid "Project Structure"
-msgstr ""
+msgstr "プロジェクト構造"
 
 #: ../../dev/project-structure.md:3
 msgid ""
@@ -30,97 +28,101 @@ msgid ""
 "[`docs/repository-structure.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/docs/repository-structure.md) (Japanese)."
 msgstr ""
+"概略です。正本かつ常時更新される構造リファレンスは "
+"[`docs/repository-structure.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/repository-structure.md)（日本語）にあります。"
 
 #: ../../dev/project-structure.md:5
 msgid "Top-level layout"
-msgstr ""
+msgstr "トップレベル構造"
 
 #: ../../dev/project-structure.md:23
 msgid "Where each thing lives"
-msgstr ""
+msgstr "どこに何があるか"
 
 #: ../../dev/project-structure.md
 msgid "If you want to ..."
-msgstr ""
+msgstr "..... したい"
 
 #: ../../dev/project-structure.md
 msgid "Look in ..."
-msgstr ""
+msgstr "..... を見る"
 
 #: ../../dev/project-structure.md
 msgid "Read what the project promises to do"
-msgstr ""
+msgstr "プロジェクトが何を約束するかを読む"
 
 #: ../../dev/project-structure.md
 msgid "`README.md`, `docs/product-requirements.md`"
-msgstr ""
+msgstr "`README.md`、`docs/product-requirements.md`"
 
 #: ../../dev/project-structure.md
 msgid "Read per-module API specs"
-msgstr ""
+msgstr "モジュール別 API 仕様を読む"
 
 #: ../../dev/project-structure.md
 msgid "`docs/functional-design.md`"
-msgstr ""
+msgstr "`docs/functional-design.md`"
 
 #: ../../dev/project-structure.md
 msgid "Read cross-cutting design (error / lifetime / JSON / variants)"
-msgstr ""
+msgstr "横断設計（エラー / lifetime / JSON / variants）を読む"
 
 #: ../../dev/project-structure.md
 msgid "`docs/architecture.md`"
-msgstr ""
+msgstr "`docs/architecture.md`"
 
 #: ../../dev/project-structure.md
 msgid "Read what conventions Claude Code enforces"
-msgstr ""
+msgstr "Claude Code が強制する規約を読む"
 
 #: ../../dev/project-structure.md
 msgid "`CLAUDE.md`, `.claude/rules/`"
-msgstr ""
+msgstr "`CLAUDE.md`、`.claude/rules/`"
 
 #: ../../dev/project-structure.md
 msgid "Read how to contribute (external)"
-msgstr ""
+msgstr "コントリビュート方法（外部向け）を読む"
 
 #: ../../dev/project-structure.md
 msgid "`CONTRIBUTING.md`"
-msgstr ""
+msgstr "`CONTRIBUTING.md`"
 
 #: ../../dev/project-structure.md
 msgid "Read how to develop locally (internal)"
-msgstr ""
+msgstr "ローカル開発手順（内部向け）を読む"
 
 #: ../../dev/project-structure.md
 msgid "`docs/development-guidelines.md`"
-msgstr ""
+msgstr "`docs/development-guidelines.md`"
 
 #: ../../dev/project-structure.md
 msgid "Read how a steering document is shaped"
-msgstr ""
+msgstr "ステアリングドキュメントの形を見る"
 
 #: ../../dev/project-structure.md
 #, python-brace-format
 msgid "`.steering/<existing>/{requirements,design,tasklist}.md`"
-msgstr ""
+msgstr "`.steering/<existing>/{requirements,design,tasklist}.md`"
 
 #: ../../dev/project-structure.md
 msgid "Modify the docs you are reading right now"
-msgstr ""
+msgstr "今読んでいるドキュメントを変更する"
 
 #: ../../dev/project-structure.md
 msgid "`sphinx-docs/`"
-msgstr ""
+msgstr "`sphinx-docs/`"
 
 #: ../../dev/project-structure.md:36
 msgid "Subsystem map"
-msgstr ""
+msgstr "サブシステムマップ"
 
 #: ../../dev/project-structure.md:38
 msgid ""
 "`packages/core/` is the only Phase 1 source package. Its layout (planned)"
 " is:"
 msgstr ""
+"`packages/core/` は Phase 1 における唯一のソースパッケージです。予定されている構造は次のとおりです:"
 
 #: ../../dev/project-structure.md:64
 msgid ""
@@ -129,4 +131,7 @@ msgid ""
 "/repository-structure.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/docs/repository-structure.md) §2.1)."
 msgstr ""
-
+"すべての `.res` には対応する `.resi` インターフェイスファイルが必須で、これが API 表面の正本です"
+"（プロジェクトの絶対ルールの 1 つ。[`docs/repository-structure.md`]"
+"(https://github.com/Nagatatz/rescript-tauri/blob/main/docs/repository-"
+"structure.md) §2.1 参照）。"
