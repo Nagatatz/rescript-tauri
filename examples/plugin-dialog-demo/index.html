@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>plugin-dialog demo</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1.5rem; }
+      h1 { font-size: 1.4rem; }
+      .row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; }
+      button { padding: .4rem .8rem; cursor: pointer; }
+      pre { background: #111; color: #eee; padding: .8rem; min-height: 4rem;
+            border-radius: 4px; white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <h1>@rescript-tauri/plugin-dialog demo</h1>
+
+    <h2>Open</h2>
+    <div class="row">
+      <button id="btn-open-file">openFile</button>
+      <button id="btn-open-files">openFiles</button>
+      <button id="btn-open-dir">openDirectory</button>
+      <button id="btn-open-dirs">openDirectories</button>
+    </div>
+
+    <h2>Save</h2>
+    <div class="row">
+      <button id="btn-save">save</button>
+    </div>
+
+    <h2>Message / Ask / Confirm</h2>
+    <div class="row">
+      <button id="btn-message-info">message (info)</button>
+      <button id="btn-message-error">message (error)</button>
+      <button id="btn-ask">ask</button>
+      <button id="btn-confirm">confirm</button>
+    </div>
+
+    <h2>Result</h2>
+    <pre id="result">(no action yet)</pre>
+
+    <script type="module" src="/src/main.mjs"></script>
+  </body>
+</html>
