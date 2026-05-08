@@ -44,3 +44,35 @@ module Command = {
     }
   }
 }
+
+module Channel = {
+  type internal
+
+  type t<'message> = {
+    instance: internal,
+    decode: JSON.t => result<'message, string>,
+  }
+
+  @module("@tauri-apps/api/core") @new
+  external _make: unit => internal = "Channel"
+
+  @set external _setOnmessage: (internal, JSON.t => unit) => unit = "onmessage"
+
+  @get external _getId: internal => int = "id"
+
+  let make = (~decode) => {
+    instance: _make(),
+    decode,
+  }
+
+  let onMessage = (chan, callback) => {
+    chan.instance->_setOnmessage(raw =>
+      switch chan.decode(raw) {
+      | Ok(msg) => callback(msg)
+      | Error(_) => ()
+      }
+    )
+  }
+
+  let id = chan => chan.instance->_getId
+}

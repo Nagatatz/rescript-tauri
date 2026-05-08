@@ -108,3 +108,35 @@ module Command: {
     ~options: Raw.invokeOptions=?,
   ) => promise<'result>
 }
+
+module Channel: {
+  /** A typed handle to a Tauri Channel — a one-way streaming bridge
+      from Rust to the frontend.
+
+      Pass the channel as an argument to a `Command.invoke` call; the
+      Rust side calls `channel.send(...)` and each call surfaces here
+      via the callback registered with `onMessage`.
+
+      Decoder failures (Rust sends a value that `decode` cannot
+      interpret) are silently dropped on purpose: a malformed message
+      is an infrastructure issue, and surfacing it through the user
+      callback would force every call site to handle a parallel
+      error channel.
+
+      See: https://v2.tauri.app/develop/calling-rust/#channels
+  */
+  type t<'message>
+
+  /** Creates a new Channel handle with its decoder. The underlying
+      JS Channel is constructed eagerly so the Rust side can be told
+      the channel id immediately. */
+  let make: (~decode: JSON.t => result<'message, string>) => t<'message>
+
+  /** Registers (or replaces) the message handler. Tauri delivers each
+      Rust-side `channel.send(...)` here. */
+  let onMessage: (t<'message>, 'message => unit) => unit
+
+  /** Returns the integer id of the underlying JS Channel, useful when
+      correlating with Rust-side logs. */
+  let id: t<'message> => int
+}
