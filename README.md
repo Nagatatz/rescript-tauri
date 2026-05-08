@@ -204,4 +204,4 @@ External pull requests are not yet accepted while the project is in its design p
 
 ## 📜 License
 
-TBD — to be decided at the Phase 1 release (MIT is the current intent).
+[MIT](./LICENSE) © 2026 Nagatatz and rescript-tauri contributors.
