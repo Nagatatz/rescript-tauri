@@ -1,10 +1,10 @@
 /** Bindings for `@tauri-apps/api/tray`.
 
     A `TrayIcon` is the OS-level system tray entry. This module wraps
-    the upstream `TrayIcon` class as an opaque type with `Menu` /
-    `Image` / `Dpi` integration via polymorphic 'icon and 'menu
-    parameters (Phase 1 keeps them open until full type wiring lands
-    in Phase 2).
+    the upstream `TrayIcon` class as an opaque type. `'icon` and `'menu`
+    are kept polymorphic so callers can pass `Image.t`, path strings,
+    `Uint8Array`, etc. for the icon and `Menu.Menu.t` / `Menu.Submenu.t`
+    for the menu.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacetray/
 */
@@ -21,33 +21,38 @@ type mouseButton = [#Left | #Right | #Middle]
 */
 type mouseButtonState = [#Up | #Down]
 
-/** Bounding rectangle delivered with each tray-icon event. `'pos`
-    and `'size` are `Dpi.PhysicalPosition.t` / `Dpi.PhysicalSize.t`'s
-    wire shape until full Dpi integration.
+/** Bounding rectangle delivered with each tray-icon event. Both
+    coordinates are reported in physical pixels.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacetray/#trayiconeventbase
 */
-type rect<'pos, 'size> = {
-  position: 'pos,
-  size: 'size,
+type rect = {
+  position: Dpi.PhysicalPosition.t,
+  size: Dpi.PhysicalSize.t,
 }
 
-/** Tray-icon lifecycle event.
+/** Tray-icon lifecycle event. Positions are reported in physical
+    pixels.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacetray/#trayiconevent
 */
-type trayIconEvent<'pos, 'size> =
+type trayIconEvent =
   | Click({
       id: string,
-      position: 'pos,
-      rect: rect<'pos, 'size>,
+      position: Dpi.PhysicalPosition.t,
+      rect: rect,
       button: mouseButton,
       buttonState: mouseButtonState,
     })
-  | DoubleClick({id: string, position: 'pos, rect: rect<'pos, 'size>, button: mouseButton})
-  | Enter({id: string, position: 'pos, rect: rect<'pos, 'size>})
-  | Move({id: string, position: 'pos, rect: rect<'pos, 'size>})
-  | Leave({id: string, position: 'pos, rect: rect<'pos, 'size>})
+  | DoubleClick({
+      id: string,
+      position: Dpi.PhysicalPosition.t,
+      rect: rect,
+      button: mouseButton,
+    })
+  | Enter({id: string, position: Dpi.PhysicalPosition.t, rect: rect})
+  | Move({id: string, position: Dpi.PhysicalPosition.t, rect: rect})
+  | Leave({id: string, position: Dpi.PhysicalPosition.t, rect: rect})
 
 /** Opaque tray-icon handle.
 
@@ -59,7 +64,7 @@ type t
 
     See: https://v2.tauri.app/reference/javascript/api/namespacetray/#trayiconoptions
 */
-type options<'icon, 'menu, 'pos, 'size> = {
+type options<'icon, 'menu> = {
   id?: string,
   /** `'menu` accepts a `Menu.Menu.t` or `Menu.Submenu.t`. */
   menu?: 'menu,
@@ -72,14 +77,14 @@ type options<'icon, 'menu, 'pos, 'size> = {
   tempDirPath?: string,
   iconAsTemplate?: bool,
   showMenuOnLeftClick?: bool,
-  action?: trayIconEvent<'pos, 'size> => unit,
+  action?: trayIconEvent => unit,
 }
 
 /** Creates a new tray icon.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacetray/#new
 */
-let make: (~options: options<'icon, 'menu, 'pos, 'size>=?) => promise<t>
+let make: (~options: options<'icon, 'menu>=?) => promise<t>
 
 /** Looks up an existing tray icon by id.
 

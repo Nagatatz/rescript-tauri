@@ -1,8 +1,6 @@
 // Type-level signature test for Tray.
 
-let _check_make: (
-  ~options: Tray.options<'icon, 'menu, 'pos, 'size>=?,
-) => promise<Tray.t> = Tray.make
+let _check_make: (~options: Tray.options<'icon, 'menu>=?) => promise<Tray.t> = Tray.make
 let _check_get_by_id: string => promise<Nullable.t<Tray.t>> = Tray.getById
 let _check_remove_by_id: string => promise<unit> = Tray.removeById
 let _check_id: Tray.t => string = Tray.id

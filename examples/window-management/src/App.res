@@ -56,13 +56,17 @@ let main = () => {
   })
 
   onClick("size-small", async () => {
-    let size = RescriptTauriCore.Dpi.LogicalSize.make(~width=800.0, ~height=600.0)
+    let size =
+      RescriptTauriCore.Dpi.LogicalSize.make(~width=800.0, ~height=600.0)
+      ->RescriptTauriCore.Dpi.Size.fromLogical
     await win->Window.setSize(size)
     setStatus("size = 800x600")
   })
 
   onClick("size-large", async () => {
-    let size = RescriptTauriCore.Dpi.LogicalSize.make(~width=1200.0, ~height=900.0)
+    let size =
+      RescriptTauriCore.Dpi.LogicalSize.make(~width=1200.0, ~height=900.0)
+      ->RescriptTauriCore.Dpi.Size.fromLogical
     await win->Window.setSize(size)
     setStatus("size = 1200x900")
   })

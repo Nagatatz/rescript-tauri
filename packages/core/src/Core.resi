@@ -50,11 +50,17 @@ module Raw: {
     decoders. */
 type decoder<'value> = JSON.t => result<'value, string>
 
-/** Internal: decode a raw JSON payload and forward the `result` to a
-    user callback. Shared by `Channel.onMessage` and `Event._wrap` so
-    decode-then-dispatch lives in one place. Public to allow
-    intra-package access; not part of the stable user-facing API. */
-let _applyDecoder: (decoder<'a>, JSON.t, result<'a, string> => unit) => unit
+/** Intra-package helpers. **NOT** part of the stable public API; do not
+    depend on its shape outside `@rescript-tauri/core`. */
+module Internal: {
+  /** Decode a raw JSON payload and forward the result to a user
+      callback. Used by `Channel.onMessage` and `Event._wrap`. */
+  let applyDecoder: (decoder<'a>, JSON.t, result<'a, string> => unit) => unit
+
+  /** Convert a caught JS exception into a JSON value usable as the
+      payload of `invokeError.RustError`. */
+  let exnToJson: exn => JSON.t
+}
 
 /** Errors surfaced by the typed `Command` layer. */
 type invokeError =

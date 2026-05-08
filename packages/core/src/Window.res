@@ -76,9 +76,9 @@ type closeRequestedEvent = {
   isPreventDefault: unit => bool,
 }
 
-type scaleFactorChanged<'size> = {
+type scaleFactorChanged = {
   scaleFactor: float,
-  size: 'size,
+  size: Dpi.PhysicalSize.t,
 }
 
 type color = {r: int, g: int, b: int, a: int}
@@ -121,10 +121,10 @@ type effects = {
   color?: color,
 }
 
-type monitor<'size, 'position> = {
+type monitor = {
   name: Nullable.t<string>,
-  size: 'size,
-  position: 'position,
+  size: Dpi.PhysicalSize.t,
+  position: Dpi.PhysicalPosition.t,
   scaleFactor: float,
 }
 
@@ -174,20 +174,19 @@ external getByLabel: string => promise<Nullable.t<t>> = "getByLabel"
 external getFocusedWindow: unit => promise<Nullable.t<t>> = "getFocusedWindow"
 
 @module("@tauri-apps/api/window")
-external currentMonitor: unit => promise<Nullable.t<monitor<'size, 'position>>> = "currentMonitor"
+external currentMonitor: unit => promise<Nullable.t<monitor>> = "currentMonitor"
 
 @module("@tauri-apps/api/window")
-external primaryMonitor: unit => promise<Nullable.t<monitor<'size, 'position>>> = "primaryMonitor"
+external primaryMonitor: unit => promise<Nullable.t<monitor>> = "primaryMonitor"
 
 @module("@tauri-apps/api/window")
-external monitorFromPoint: (float, float) => promise<Nullable.t<monitor<'size, 'position>>> =
-  "monitorFromPoint"
+external monitorFromPoint: (float, float) => promise<Nullable.t<monitor>> = "monitorFromPoint"
 
 @module("@tauri-apps/api/window")
-external availableMonitors: unit => promise<array<monitor<'size, 'position>>> = "availableMonitors"
+external availableMonitors: unit => promise<array<monitor>> = "availableMonitors"
 
 @module("@tauri-apps/api/window")
-external cursorPosition: unit => promise<'position> = "cursorPosition"
+external cursorPosition: unit => promise<Dpi.PhysicalPosition.t> = "cursorPosition"
 
 @get external label: t => string = "label"
 @send external setTitle: (t, string) => promise<unit> = "setTitle"
@@ -212,13 +211,13 @@ external cursorPosition: unit => promise<'position> = "cursorPosition"
 @send external isEnabled: t => promise<bool> = "isEnabled"
 @send external setFocus: t => promise<unit> = "setFocus"
 @send external isFocused: t => promise<bool> = "isFocused"
-@send external setSize: (t, 'size) => promise<unit> = "setSize"
-@send external setMinSize: (t, Nullable.t<'size>) => promise<unit> = "setMinSize"
-@send external setMaxSize: (t, Nullable.t<'size>) => promise<unit> = "setMaxSize"
+@send external setSize: (t, Dpi.Size.t) => promise<unit> = "setSize"
+@send external setMinSize: (t, Nullable.t<Dpi.Size.t>) => promise<unit> = "setMinSize"
+@send external setMaxSize: (t, Nullable.t<Dpi.Size.t>) => promise<unit> = "setMaxSize"
 @send
 external setSizeConstraints: (t, Nullable.t<windowSizeConstraints>) => promise<unit> =
   "setSizeConstraints"
-@send external setPosition: (t, 'position) => promise<unit> = "setPosition"
+@send external setPosition: (t, Dpi.Position.t) => promise<unit> = "setPosition"
 @send external center: t => promise<unit> = "center"
 @send external setFullscreen: (t, bool) => promise<unit> = "setFullscreen"
 @send external setResizable: (t, bool) => promise<unit> = "setResizable"
@@ -240,7 +239,7 @@ external setSizeConstraints: (t, Nullable.t<windowSizeConstraints>) => promise<u
 @send external setCursorIcon: (t, cursorIcon) => promise<unit> = "setCursorIcon"
 @send external setCursorVisible: (t, bool) => promise<unit> = "setCursorVisible"
 @send external setCursorGrab: (t, bool) => promise<unit> = "setCursorGrab"
-@send external setCursorPosition: (t, 'position) => promise<unit> = "setCursorPosition"
+@send external setCursorPosition: (t, Dpi.Position.t) => promise<unit> = "setCursorPosition"
 @send external startDragging: t => promise<unit> = "startDragging"
 @send external startResizeDragging: (t, resizeDirection) => promise<unit> = "startResizeDragging"
 @send
@@ -256,18 +255,17 @@ external setVisibleOnAllWorkspaces: (t, bool) => promise<unit> = "setVisibleOnAl
 @send external setTheme: (t, Nullable.t<theme>) => promise<unit> = "setTheme"
 @send external theme: t => promise<Nullable.t<theme>> = "theme"
 @send external scaleFactor: t => promise<float> = "scaleFactor"
-@send external innerSize: t => promise<'size> = "innerSize"
-@send external outerSize: t => promise<'size> = "outerSize"
-@send external innerPosition: t => promise<'position> = "innerPosition"
-@send external outerPosition: t => promise<'position> = "outerPosition"
+@send external innerSize: t => promise<Dpi.PhysicalSize.t> = "innerSize"
+@send external outerSize: t => promise<Dpi.PhysicalSize.t> = "outerSize"
+@send external innerPosition: t => promise<Dpi.PhysicalPosition.t> = "innerPosition"
+@send external outerPosition: t => promise<Dpi.PhysicalPosition.t> = "outerPosition"
 
-@send external onResized: (t, 'size => unit) => promise<unlisten> = "onResized"
-@send external onMoved: (t, 'position => unit) => promise<unlisten> = "onMoved"
+@send external onResized: (t, Dpi.PhysicalSize.t => unit) => promise<unlisten> = "onResized"
+@send external onMoved: (t, Dpi.PhysicalPosition.t => unit) => promise<unlisten> = "onMoved"
 @send
 external onCloseRequested: (t, closeRequestedEvent => unit) => promise<unlisten> =
   "onCloseRequested"
 @send external onFocusChanged: (t, bool => unit) => promise<unlisten> = "onFocusChanged"
 @send
-external onScaleChanged: (t, scaleFactorChanged<'size> => unit) => promise<unlisten> =
-  "onScaleChanged"
+external onScaleChanged: (t, scaleFactorChanged => unit) => promise<unlisten> = "onScaleChanged"
 @send external onThemeChanged: (t, theme => unit) => promise<unlisten> = "onThemeChanged"

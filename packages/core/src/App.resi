@@ -8,11 +8,12 @@
     See: https://v2.tauri.app/reference/javascript/api/namespaceapp/
 */
 
-/** App theme. Mirrors `Window.theme`.
+/** App theme. Re-exported from `Window.theme` so values flow between
+    `App.setTheme` and `Window.setTheme` without conversion.
 
     See: https://v2.tauri.app/reference/javascript/api/namespaceapp/#theme
 */
-type theme = [#light | #dark]
+type theme = Window.theme
 
 /** Returns the application name from `tauri.conf.json`.
 
