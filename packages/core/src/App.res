@@ -1,4 +1,4 @@
-type theme = [#light | #dark]
+type theme = Window.theme
 
 @module("@tauri-apps/api/app")
 external getName: unit => promise<string> = "getName"
