@@ -1,186 +1,207 @@
 # rescript-tauri
 
-Production-ready ReScript bindings for Tauri 2.x's official JS SDK (`@tauri-apps/api`). `@rescript-tauri/core` を中心に、IPC・Event・Window・Webview・Menu・Tray など Tauri 公開 API すべてを ReScript からアクセス可能にするモノレポです。
+Production-ready ReScript bindings for Tauri 2.x's official JS SDK (`@tauri-apps/api`). A monorepo centered on `@rescript-tauri/core`, exposing the entire Tauri public API surface—IPC, Event, Window, Webview, Menu, Tray—from ReScript.
 
-> **Status:** Phase 1 — 設計完了 / 実装未着手。本リポジトリは PRD・機能設計・アーキテクチャ・リポジトリ構造・用語集を整備した bootstrap 状態です。コードは未だ含まれていません。`docs/product-requirements.md` と `docs/functional-design.md` を参照してください。
-
----
-
-## ✨ ハイライト
-
-- **Idiomatic ReScript** — `variant` / `option` / `result` / polymorphic variant を活用し、TypeScript で `unknown` や string-literal union に頼っていた箇所を型安全に翻訳する。
-- **Faithful to Tauri** — JS API 表面と 1:1 に近い構造を保ち、Tauri 公式ドキュメントがそのまま読み替え可能。`.resi` の doc comment に Tauri 公式 URL を必ず併記する。
-- **3-layer IPC** — Layer 1 (Raw `invoke`) / Layer 2 (typed `Command`) / Layer 3 (Schema 統合) を提供し、ユーザーが安全性とエルゴノミクスのトレードオフを選べる。
-- **Maintainable monorepo** — `@tauri-apps/plugin-*` の構造をミラーし、コア・プラグイン・例題を独立 semver で進化させる。1〜3 名のメンテナで長期維持できる構造を目指す。
-
-詳細は [`docs/product-requirements.md`](./docs/product-requirements.md) を参照。
+> **Status:** Phase 1 — design complete, implementation not yet started. This repository currently contains the PRD, functional design, architecture, repository structure, and glossary; no source code is published yet. See [`docs/product-requirements.md`](./docs/product-requirements.md) and [`docs/functional-design.md`](./docs/functional-design.md) for details.
 
 ---
 
-## 📦 パッケージ構成
+## ✨ Highlights
 
-| パッケージ | 役割 | フェーズ |
+- **Idiomatic ReScript** — leverages `variant` / `option` / `result` / polymorphic variants to translate constructs that TypeScript expresses with `unknown` or string-literal unions into type-safe ReScript.
+- **Faithful to Tauri** — preserves a near-1:1 mapping with the JS API surface so the official Tauri docs remain directly applicable. Each `.resi` doc comment links to the corresponding Tauri page.
+- **Three-layer IPC** — Layer 1 (Raw `invoke`) / Layer 2 (typed `Command`) / Layer 3 (Schema integration) lets users choose their own point on the safety/ergonomics curve.
+- **Maintainable monorepo** — mirrors the structure of `@tauri-apps/plugin-*`, evolving core, plugins, and examples on independent semver. Designed to remain sustainable for a 1–3 person maintainer team.
+
+For the full rationale and scope, see [`docs/product-requirements.md`](./docs/product-requirements.md).
+
+---
+
+## 📦 Packages
+
+| Package | Role | Phase |
 |---|---|---|
-| `@rescript-tauri/core` | `@tauri-apps/api` 全公開 API のコアバインディング | Phase 1 |
-| `@rescript-tauri/plugin-fs` | `@tauri-apps/plugin-fs` バインディング | Phase 2+ |
-| `@rescript-tauri/plugin-dialog` | `@tauri-apps/plugin-dialog` バインディング | Phase 2+ |
-| `@rescript-tauri/schema` | `rescript-schema` / `rescript-struct` 連携の `Command.fromSchemas` ヘルパ | Phase 2 |
+| `@rescript-tauri/core` | Core bindings covering the entire `@tauri-apps/api` public surface | Phase 1 |
+| `@rescript-tauri/plugin-fs` | Bindings for `@tauri-apps/plugin-fs` | Phase 2+ |
+| `@rescript-tauri/plugin-dialog` | Bindings for `@tauri-apps/plugin-dialog` | Phase 2+ |
+| `@rescript-tauri/schema` | `Command.fromSchemas` helper integrating `rescript-schema` / `rescript-struct` | Phase 2 |
 
-各パッケージは独立 semver で publish され、対応する上流 `@tauri-apps/*` を `peerDependencies` に宣言します。
+Each package is published with independent semver and declares the corresponding upstream `@tauri-apps/*` package as a `peerDependency`.
 
 ---
 
-## 🧩 互換マトリクス
+## 🧩 Compatibility
 
-| 要素 | サポート範囲 |
+| Component | Supported range |
 |---|---|
-| Tauri | 2.x（`@tauri-apps/api` の peerDep 範囲）|
-| ReScript | >= 11.0.0（uncurried 化済み）|
-| Node.js | >= 18 (LTS) |
-| OS | Linux / macOS / Windows（Tauri 2.x desktop 対象）|
+| Tauri | 2.x (matches the `@tauri-apps/api` peerDep range) |
+| ReScript | >= 11.0.0 (uncurried mode) |
+| `@rescript/core` | >= 1.0.0 |
+| Node.js | Active LTS |
+| OS | Linux / macOS / Windows (Tauri 2.x desktop targets) |
 
-CI では nightly で「Tauri 最新」「ReScript prerelease」に対する互換性チェックを実施し、API drift を早期検知する方針です（→ [`docs/functional-design.md`](./docs/functional-design.md) §6）。
+Nightly CI against the latest Tauri release and the ReScript prerelease line is planned to detect API drift early. The job definitions are tracked in [`docs/functional-design.md`](./docs/functional-design.md) §6 and will be implemented during Phase 1.
 
 ---
 
-## 🚀 インストール (Phase 1 リリース後の予定)
+## 🚀 Installation (planned; post Phase 1 release)
+
+Not yet published. Once Phase 1 ships, installation will look like:
 
 ```bash
-# Phase 1 リリース後に有効
-pnpm add @rescript-tauri/core
-# peerDependencies として @tauri-apps/api を別途インストール
-pnpm add @tauri-apps/api
+pnpm add @rescript-tauri/core @tauri-apps/api
 ```
 
-`rescript.json` の `bs-dependencies` に `@rescript-tauri/core` を追加してください。
+Then add `@rescript-tauri/core` to `bs-dependencies` in your `rescript.json`.
 
 ---
 
-## ⚡ クイックスタート (設計上の最終形)
+## ⚡ Quick start (target API; see RFC-0001 and functional-design §2)
 
 ```rescript
-// Layer 1: Raw invoke
-let greeting = await Core.Raw.invoke("greet", ~args={"name": "ReScript"})
+// Layer 1 — Raw invoke (1:1 with @tauri-apps/api)
+let greeting: string =
+  await Tauri.Core.Raw.invoke("greet", ~args={"name": "ReScript"})
 
-// Layer 2: typed Command
-let greet = Core.Command.make1(~name="greet", ~argName="name", ~argType=String, ~returnType=String)
-let greeting = await greet("ReScript")
+// Layer 2 — typed Command with explicit encoder/decoder
+module Commands = {
+  let greet = Core.Command.make(
+    ~name="greet",
+    ~encodeArgs=({name}) =>
+      JSON.Encode.object([("name", JSON.Encode.string(name))]),
+    ~decodeResult=json =>
+      switch json->JSON.Decode.string {
+      | Some(s) => Ok(s)
+      | None => Error("expected string")
+      },
+  )
+}
 
-// Window 操作
-let win = Window.getCurrent()
-await win->Window.setTitle("Hello from ReScript")
+switch await Commands.greet->Core.Command.invoke({name: "ReScript"}) {
+| Ok(message) => Console.log(message)
+| Error(DecodeError(msg)) => Console.error("decode failed: " ++ msg)
+| Error(RustError(json)) => Console.error2("rust error:", json)
+}
 
-// Event 購読
-let unlisten = await Event.listen("file-changed", payload => {
-  Console.log(payload.payload)
-})
+// Event subscription — Event.make first, then Event.listen
+let fileChanged = Event.make(
+  ~name="file-changed",
+  ~decode=json =>
+    switch json->JSON.Decode.string {
+    | Some(s) => Ok(s)
+    | None => Error("expected string")
+    },
+)
+let unlisten = await fileChanged->Event.listen(evt => Console.log(evt.payload))
 ```
 
-実行可能な使用例は `examples/` 配下に Phase 1 で整備されます（`hello-world` / `window-management` / `ipc-typed` / `streaming-ipc`）。
+Runnable examples will live under `examples/` starting in Phase 1 (`hello-world`, `window-management`, `ipc-typed`, `streaming-ipc`).
 
 ---
 
-## 🛠️ 開発セットアップ
+## 🛠️ Development setup
 
 ```bash
-# 依存関係インストール（pnpm 必須）
+# Install dependencies (pnpm required)
 pnpm install
 
-# 全 workspace ビルド
+# Build all workspaces
 pnpm --recursive build
 
-# クリーンビルド
+# Clean rebuild
 pnpm --recursive run clean && pnpm --recursive build
 
-# テスト（型レベル + vitest）
+# Tests (type-level + vitest)
 pnpm --recursive test
 
-# core パッケージのみインクリメンタルビルド
+# Incremental build of the core package only
 pnpm --filter @rescript-tauri/core build
 ```
 
-詳細な開発手順は [`docs/development-guidelines.md`](./docs/development-guidelines.md)（Phase 1 で整備予定）を参照。
+Detailed contributor guidance will be added to [`docs/development-guidelines.md`](./docs/development-guidelines.md) during Phase 1.
 
 ---
 
-## 📁 リポジトリ構造
+## 📁 Repository layout
 
-トップレベル構成の概要のみ示します。**正本は [`docs/repository-structure.md`](./docs/repository-structure.md)** で、新規ディレクトリ追加時は必ず同書を更新してください。
+The top-level layout is summarized below. **The canonical source is [`docs/repository-structure.md`](./docs/repository-structure.md)**, which must be updated whenever a new directory is introduced.
 
 ```
 rescript-tauri/
 ├── packages/         # @rescript-tauri/core, plugin-*, schema
 ├── examples/         # hello-world / window-management / ipc-typed / streaming-ipc
-├── docs/             # 内部ドキュメント (PRD, 機能設計, アーキテクチャ, etc.)
-│   └── ideas/        # ドラフト・RFC 集約
-├── sphinx-docs/      # 外部公開ドキュメント (GitHub Pages)
-├── .steering/        # ステアリングドキュメント (作業ごと)
-├── .claude/          # Claude Code 設定 (rules / skills / agents / commands)
-├── .github/          # GitHub Actions / Templates
-├── CLAUDE.md         # Claude Code への強制指示
-└── README.md         # 本ファイル
+├── docs/             # Internal design docs (PRD, functional design, architecture, ...)
+│   └── ideas/        # Drafts / RFCs (input only; not edited after acceptance)
+├── sphinx-docs/      # External-facing docs (English base + Japanese via Sphinx i18n)
+├── .steering/        # Per-task steering documents (requirements / design / tasklist)
+├── .claude/          # Claude Code configuration (rules / skills / agents / commands)
+├── .github/          # GitHub Actions / templates
+├── CLAUDE.md         # Mandatory project instructions for Claude Code (Japanese)
+└── README.md         # This file
 ```
 
 ---
 
-## 📚 ドキュメント一覧
+## 📚 Documentation index
 
-| ドキュメント | 内容 |
-|---|---|
-| [`docs/product-requirements.md`](./docs/product-requirements.md) | プロダクト要求定義書 (PRD) — ペルソナ・ユーザーストーリー・KPI |
-| [`docs/functional-design.md`](./docs/functional-design.md) | 機能設計書 — モジュール別 API・型の詳細 |
-| [`docs/architecture.md`](./docs/architecture.md) | アーキテクチャ・技術仕様書 — 設計原則・3 層 IPC・横断ポリシー |
-| [`docs/repository-structure.md`](./docs/repository-structure.md) | リポジトリ構造定義書 — ディレクトリ・ファイルの正本 |
-| [`docs/glossary.md`](./docs/glossary.md) | ユビキタス言語定義 |
-| [`docs/ideas/RFC-0001-core-api-design.md`](./docs/ideas/RFC-0001-core-api-design.md) | コア API 設計 RFC（PRD の一次入力、改編しない歴史的入力） |
-| [`CLAUDE.md`](./CLAUDE.md) | Claude Code への強制指示（プロジェクト全体の規約集約点）|
+| Document | Contents | Language |
+|---|---|---|
+| [`docs/product-requirements.md`](./docs/product-requirements.md) | Product Requirements Document (personas, user stories, KPIs) | Japanese |
+| [`docs/functional-design.md`](./docs/functional-design.md) | Functional design (per-module APIs and types) | Japanese |
+| [`docs/architecture.md`](./docs/architecture.md) | Architecture and technical specification (design principles, 3-layer IPC, cross-cutting policies) | Japanese |
+| [`docs/repository-structure.md`](./docs/repository-structure.md) | Repository structure (canonical source) | Japanese |
+| [`docs/glossary.md`](./docs/glossary.md) | Ubiquitous-language glossary | Japanese |
+| [`docs/ideas/RFC-0001-core-api-design.md`](./docs/ideas/RFC-0001-core-api-design.md) | Core API design RFC (historical input to the PRD; not edited) | English |
+| [`CLAUDE.md`](./CLAUDE.md) | Mandatory instructions for Claude Code | Japanese |
 
-外部公開ドキュメント（ユーザーガイド・開発者ガイド）は `sphinx-docs/` に整備されます（Phase 1 リリース時に GitHub Pages で公開予定）。
+External-facing user and contributor documentation will be developed in `sphinx-docs/` with English as the base language and Japanese translations provided through Sphinx i18n (`.po` files under `sphinx-docs/locale/ja/`). Publication channel and timing (e.g., GitHub Pages) are TBD.
 
 ---
 
-## 🤖 規約とスキルの住み分け
+## 🤖 Claude Code conventions: rules / skills / agents / commands
 
-本リポジトリは Claude Code を活用した開発を前提に、`.claude/` 配下に 4 種類の設定を配置しています。それぞれの役割は次の通りです。
+This repository is configured for development with Claude Code. The `.claude/` directory contains four kinds of configuration:
 
-| 種別 | 配置 | 役割 | 起動方法 |
+| Kind | Location | Role | Activation |
 |---|---|---|---|
-| **rules** | `.claude/rules/` | 常時適用される規約。`CLAUDE.md` から `@import` され、すべてのセッションで強制される。 | 常時適用（手動起動不要）|
-| **skills** | `.claude/skills/` | 状況発火型の知識・手順。該当状況になると Claude が自動でロードする。`/skill-name` で明示起動も可。 | 状況自動 / `/<name>` 明示 |
-| **agents** | `.claude/agents/` | 専門サブエージェント定義（code-reviewer / debugger / build-resolver / security-reviewer 等）。Agent ツールで起動。 | Agent ツール |
-| **commands** | `.claude/commands/` | スラッシュコマンド定義（`/setup-project` / `/add-feature` 等）。 | `/<command>` |
+| **rules** | `.claude/rules/` | Always-applied conventions. `@import`-ed from `CLAUDE.md`, enforced in every session. | Always (no manual trigger) |
+| **skills** | `.claude/skills/` | Situational knowledge / workflows loaded automatically when conditions match. Can also be triggered explicitly with `/skill-name`. | Auto / explicit `/<name>` |
+| **agents** | `.claude/agents/` | Specialized sub-agents (code-reviewer / debugger / build-resolver / security-reviewer / ...). Invoked through the Agent tool. | Agent tool |
+| **commands** | `.claude/commands/` | Slash command definitions (`/setup-project`, `/add-feature`, ...). | `/<command>` |
 
-### 追加判断基準
+The rule / skill / agent / command files themselves are intentionally kept in Japanese to match the primary working language for Claude Code in this project.
 
-新しい知識やワークフローを追加するときは、次の優先順位で配置先を決定してください:
+### Where to put new conventions
 
-1. **すべてのセッションで例外なく強制したい規約** → `rules/`（`CLAUDE.md` に `@import` を追加）
-2. **特定の状況・キーワードで自動発火させたい手順** → `skills/`
-3. **独立した役割を持つ専門サブエージェントとして切り出したい** → `agents/`
-4. **明示的なエントリーポイント（`/xxx`）として呼び出したい** → `commands/`
+When introducing a new convention or workflow, choose its location in this priority order:
 
-`rules` と `skills` は混同しやすいですが、「常に適用」が `rules`、「状況になったら適用」が `skills` です。どちらにすべきか判断に迷う場合は `skills/` から始め、適用範囲が広がれば `rules/` に昇格させてください。
+1. **Must be enforced in every session, without exception** → `rules/` (and `@import` it from `CLAUDE.md`).
+2. **Should fire automatically in specific situations / on specific keywords** → `skills/`.
+3. **Has a distinct role best handled by a dedicated sub-agent** → `agents/`.
+4. **Needs an explicit entry point of the form `/xxx`** → `commands/`.
 
-### 主要な常時適用ルール
+`rules` and `skills` are easily confused: "always applied" is `rules`; "applied when the situation arises" is `skills`. When in doubt, start in `skills/` and promote to `rules/` later if the scope grows.
 
-| ルール | 内容 |
+### Key always-applied rules
+
+| Rule | Contents |
 |---|---|
-| [`rules/testing.md`](./.claude/rules/testing.md) | テスト作成必須、自己検証フロー |
-| [`rules/code-comments.md`](./.claude/rules/code-comments.md) | doc comment / インラインコメント規約 |
-| [`rules/git-conventions.md`](./.claude/rules/git-conventions.md) | 絵文字プレフィックス・コミット粒度・ブランチ命名 |
-| [`rules/steering-workflow.md`](./.claude/rules/steering-workflow.md) | ステアリングドキュメント・worktree 運用 |
-| [`rules/documentation.md`](./.claude/rules/documentation.md) | `docs/` / `sphinx-docs/` の役割分担 |
-| [`rules/definition-of-done.md`](./.claude/rules/definition-of-done.md) | 完了定義（Phase 1〜5）の SSoT |
-| [`rules/permission-modes.md`](./.claude/rules/permission-modes.md) | Plan Mode / steering / auto / sandbox の住み分け |
+| [`rules/testing.md`](./.claude/rules/testing.md) | Mandatory tests; self-verification flow |
+| [`rules/code-comments.md`](./.claude/rules/code-comments.md) | Doc and inline comment conventions |
+| [`rules/git-conventions.md`](./.claude/rules/git-conventions.md) | Emoji-prefixed commits, commit granularity, branch naming |
+| [`rules/steering-workflow.md`](./.claude/rules/steering-workflow.md) | Steering documents and worktree workflow |
+| [`rules/documentation.md`](./.claude/rules/documentation.md) | Roles of `docs/` vs `sphinx-docs/` |
+| [`rules/definition-of-done.md`](./.claude/rules/definition-of-done.md) | Single Source of Truth for the Definition of Done (Phases 1–5) |
+| [`rules/permission-modes.md`](./.claude/rules/permission-modes.md) | Plan Mode / steering / auto / sandbox split |
 
 ---
 
-## 🤝 コントリビュート
+## 🤝 Contributing
 
-Phase 1 リリースまでは設計フェーズのため、外部からの PR は受け付けていません。設計や RFC へのフィードバックは GitHub Issues にお寄せください。Phase 1 リリース後に `CONTRIBUTING.md` を整備します。
+External pull requests are not yet accepted while the project is in its design phase. Feedback on the design or RFCs is welcome through GitHub Issues. A `CONTRIBUTING.md` will be added at the Phase 1 release.
 
 ---
 
-## 📜 ライセンス
+## 📜 License
 
-TBD — Phase 1 リリース時に確定（MIT を想定）。
+TBD — to be decided at the Phase 1 release (MIT is the current intent).
