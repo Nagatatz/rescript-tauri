@@ -2,27 +2,32 @@ type mouseButton = [#Left | #Right | #Middle]
 
 type mouseButtonState = [#Up | #Down]
 
-type rect<'pos, 'size> = {
-  position: 'pos,
-  size: 'size,
+type rect = {
+  position: Dpi.PhysicalPosition.t,
+  size: Dpi.PhysicalSize.t,
 }
 
-type trayIconEvent<'pos, 'size> =
+type trayIconEvent =
   | Click({
       id: string,
-      position: 'pos,
-      rect: rect<'pos, 'size>,
+      position: Dpi.PhysicalPosition.t,
+      rect: rect,
       button: mouseButton,
       buttonState: mouseButtonState,
     })
-  | DoubleClick({id: string, position: 'pos, rect: rect<'pos, 'size>, button: mouseButton})
-  | Enter({id: string, position: 'pos, rect: rect<'pos, 'size>})
-  | Move({id: string, position: 'pos, rect: rect<'pos, 'size>})
-  | Leave({id: string, position: 'pos, rect: rect<'pos, 'size>})
+  | DoubleClick({
+      id: string,
+      position: Dpi.PhysicalPosition.t,
+      rect: rect,
+      button: mouseButton,
+    })
+  | Enter({id: string, position: Dpi.PhysicalPosition.t, rect: rect})
+  | Move({id: string, position: Dpi.PhysicalPosition.t, rect: rect})
+  | Leave({id: string, position: Dpi.PhysicalPosition.t, rect: rect})
 
 type t
 
-type options<'icon, 'menu, 'pos, 'size> = {
+type options<'icon, 'menu> = {
   id?: string,
   menu?: 'menu,
   icon?: 'icon,
@@ -31,7 +36,7 @@ type options<'icon, 'menu, 'pos, 'size> = {
   tempDirPath?: string,
   iconAsTemplate?: bool,
   showMenuOnLeftClick?: bool,
-  action?: trayIconEvent<'pos, 'size> => unit,
+  action?: trayIconEvent => unit,
 }
 
 // JS-side options shape: action receives a raw JSON-shaped object
@@ -49,12 +54,15 @@ type _jsOptions<'icon, 'menu, 'raw> = {
   action?: 'raw => unit,
 }
 
-let _eventFromJs = (raw): trayIconEvent<'pos, 'size> => {
+// _eventFromJs: upstream delivers a raw JS object; the `position` and
+// `rect` fields are class instances (PhysicalPosition / PhysicalSize)
+// which we cast into the opaque Dpi types via Obj.magic.
+let _eventFromJs = (raw): trayIconEvent => {
   let r: {..} = Obj.magic(raw)
   let kind: string = r["type"]
   let id: string = r["id"]
-  let position = r["position"]
-  let rect = r["rect"]
+  let position: Dpi.PhysicalPosition.t = Obj.magic(r["position"])
+  let rect: rect = Obj.magic(r["rect"])
   switch kind {
   | "Click" =>
     Click({
@@ -64,8 +72,7 @@ let _eventFromJs = (raw): trayIconEvent<'pos, 'size> => {
       button: r["button"],
       buttonState: r["buttonState"],
     })
-  | "DoubleClick" =>
-    DoubleClick({id, position, rect, button: r["button"]})
+  | "DoubleClick" => DoubleClick({id, position, rect, button: r["button"]})
   | "Enter" => Enter({id, position, rect})
   | "Move" => Move({id, position, rect})
   | "Leave" => Leave({id, position, rect})
@@ -76,7 +83,7 @@ let _eventFromJs = (raw): trayIconEvent<'pos, 'size> => {
 @module("@tauri-apps/api/tray") @scope("TrayIcon")
 external _make: _jsOptions<'icon, 'menu, 'raw> => promise<t> = "new"
 
-let make = (~options: option<options<'icon, 'menu, 'pos, 'size>>=?) =>
+let make = (~options: option<options<'icon, 'menu>>=?) =>
   switch options {
   | None => _make({})
   | Some(opts) =>
