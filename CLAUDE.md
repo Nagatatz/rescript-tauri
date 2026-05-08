@@ -8,7 +8,7 @@
 
 Tauri 2.x 公式 JS SDK (`@tauri-apps/api`) に対する production-ready な ReScript バインディング群。`@rescript-tauri/core` を中心とするモノレポで、IPC・Event・Window・Webview・Menu・Tray など Tauri 公開 API すべてを ReScript からアクセス可能にする。詳細は `docs/product-requirements.md`。
 
-- 言語: ReScript (>=11.0.0) / JavaScript (生成物・テストツール)
+- 言語: ReScript (>=12.0.0, uncurried-by-default) / JavaScript (生成物・テストツール)
 - ビルドシステム: pnpm workspaces + ReScript compiler (`rescript build`)
 - 対象プラットフォーム: Linux / macOS / Windows（Tauri 2.x desktop アプリのフロント側ライブラリ）
 
