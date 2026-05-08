@@ -34,13 +34,13 @@ design.md §2 に従いファイルを更新:
 
 design.md §6 に従い:
 
-- [ ] grep 残存検出: `grep -rn -E ">=11\.0|ReScript 11\+|v11(?!\.[0-9])" CLAUDE.md README.md docs/ .github/workflows/README.md | grep -v 'docs/ideas/RFC-0001'` の出力が空であること
-- [ ] markdown lint 確認（IDE 診断で新規 warning なし）
-- [ ] ドキュメント間リンク健全性確認（少なくとも relative path のファイル存在チェック）
+- [x] grep 残存検出: `>=11.0` / `ReScript 11+` / `rescript >=11` 系のヒットは 2 件のみ（PRD §6 / functional-design §1.3 で `@rescript/core` 1.6.0+ の peerDep が `rescript >=11.1.0` で 12.x をカバーする旨の説明文。本プロダクトのサポート方針 v12+ と整合するため意図的に残存）
+- [x] markdown lint 確認（IDE 診断で新規 warning なし。既存の rescript.json missing 等は Phase 1 で解消予定の既知 warning）
+- [x] ドキュメント間リンク健全性確認: README から参照される 9 ファイル（docs/*.md ×6, CLAUDE.md, LICENSE, .github/workflows/README.md）すべて存在を確認
 
 ## Phase 4: マージ準備
 
-- [ ] **commit 5**: 本 tasklist.md の Phase 0〜3 の項目を `[x]` 化、および本タスク自身（Phase 4 マージタスク）を含めて全 `[x]` 化 → コミット `📝 Mark steering 20260508-002 tasks complete and queue merge`
+- [x] **commit 5**: 本 tasklist.md の Phase 0〜3 の項目を `[x]` 化、および本タスク自身（Phase 4 マージタスク）を含めて全 `[x]` 化 → コミット `📝 Mark steering 20260508-002 tasks complete and queue merge`
 - [ ] `AskUserQuestion` で main へのマージ可否を確認
 
 ## Phase 5: マージ・クリーンアップ
