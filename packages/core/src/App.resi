@@ -64,7 +64,7 @@ let defaultWindowIcon: unit => promise<Nullable.t<Image.t>>
 
     See: https://v2.tauri.app/reference/javascript/api/namespaceapp/#settheme
 */
-let setTheme: (~theme: Nullable.t<theme>=?) => promise<unit>
+let setTheme: (~preferred: Nullable.t<theme>=?) => promise<unit>
 
 /** Toggles the dock icon visibility (macOS-only).
 

@@ -224,12 +224,12 @@ module Submenu: {
   let get: (t, string) => promise<Nullable.t<itemKind>>
 
   /** Pops the submenu up as a context menu on the given window
-      (default: current). The optional `at` is `PhysicalPosition |
-      LogicalPosition` (polymorphic until full Dpi integration).
+      (default: current). `~at` accepts a `Dpi.Position.t` constructed
+      via `Dpi.Position.fromLogical` / `fromPhysical`.
 
       See: https://v2.tauri.app/reference/javascript/api/namespacemenu/#popup-1
   */
-  let popup: (t, ~at: 'pos=?, ~window: Window.t=?) => promise<unit>
+  let popup: (t, ~at: Dpi.Position.t=?, ~window: Window.t=?) => promise<unit>
 
   /** Sets this submenu as the macOS Window menu. */
   let setAsWindowsMenuForNSApp: t => promise<unit>
@@ -267,7 +267,7 @@ module Menu: {
   let get: (t, string) => promise<Nullable.t<Submenu.itemKind>>
 
   /** Pops the menu up as a context menu. See `Submenu.popup`. */
-  let popup: (t, ~at: 'pos=?, ~window: Window.t=?) => promise<unit>
+  let popup: (t, ~at: Dpi.Position.t=?, ~window: Window.t=?) => promise<unit>
 
   /** Sets this menu as the app-wide menu, returning the previous one.
 

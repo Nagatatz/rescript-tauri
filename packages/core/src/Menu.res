@@ -249,7 +249,7 @@ module Submenu = {
   }
 
   @send
-  external popup: (t, ~at: 'pos=?, ~window: Window.t=?) => promise<unit> = "popup"
+  external popup: (t, ~at: Dpi.Position.t=?, ~window: Window.t=?) => promise<unit> = "popup"
 
   @send
   external setAsWindowsMenuForNSApp: t => promise<unit> = "setAsWindowsMenuForNSApp"
@@ -319,7 +319,7 @@ module Menu = {
   }
 
   @send
-  external popup: (t, ~at: 'pos=?, ~window: Window.t=?) => promise<unit> = "popup"
+  external popup: (t, ~at: Dpi.Position.t=?, ~window: Window.t=?) => promise<unit> = "popup"
 
   @send external setAsAppMenu: t => promise<Nullable.t<t>> = "setAsAppMenu"
 
