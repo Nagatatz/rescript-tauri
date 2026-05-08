@@ -37,12 +37,12 @@ Each package is published with independent semver and declares the corresponding
 | Component | Supported range |
 |---|---|
 | Tauri | 2.x (matches the `@tauri-apps/api` peerDep range) |
-| ReScript | >= 11.0.0 (uncurried mode) |
-| `@rescript/core` | >= 1.0.0 |
+| ReScript | >= 12.0.0 (uncurried-by-default) |
+| `@rescript/core` | >= 1.6.0 |
 | Node.js | Active LTS |
 | OS | Linux / macOS / Windows (Tauri 2.x desktop targets) |
 
-Nightly CI against the latest Tauri release and the ReScript prerelease line is planned to detect API drift early. The job definitions are tracked in [`docs/functional-design.md`](./docs/functional-design.md) §6 and will be implemented during Phase 1. The current status of every workflow file (active / opt-in template / planned) is documented in [`.github/workflows/README.md`](./.github/workflows/README.md).
+Nightly CI against the latest Tauri release and the next ReScript 12.x minor / next-major prerelease line is planned to detect API drift early. The job definitions are tracked in [`docs/functional-design.md`](./docs/functional-design.md) §6 and will be implemented during Phase 1. The current status of every workflow file (active / opt-in template / planned) is documented in [`.github/workflows/README.md`](./.github/workflows/README.md).
 
 ---
 
@@ -54,7 +54,7 @@ Not yet published. Once Phase 1 ships, installation will look like:
 pnpm add @rescript-tauri/core @tauri-apps/api
 ```
 
-Then add `@rescript-tauri/core` to your `rescript.json` (`dependencies` on ReScript 12; `bs-dependencies` on ReScript 11 — the legacy key is still accepted in 12 but deprecated).
+Then add `@rescript-tauri/core` to `dependencies` in your `rescript.json`.
 
 ---
 
