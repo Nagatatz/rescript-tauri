@@ -1,0 +1,21 @@
+{
+  "name": "rescript-tauri-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Monorepo root for rescript-tauri (private; not published)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "build": "pnpm --recursive --if-present build",
+    "clean": "pnpm --recursive --if-present run clean",
+    "test": "pnpm --recursive --if-present test"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0"
+  },
+  "packageManager": "pnpm@10.28.1"
+}

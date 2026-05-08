@@ -1,0 +1,31 @@
+{
+  "name": "@rescript-tauri/core",
+  "namespace": true,
+  "package-specs": [
+    {
+      "module": "esmodule",
+      "in-source": true
+    }
+  ],
+  "suffix": ".res.mjs",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    },
+    {
+      "dir": "tests",
+      "type": "dev",
+      "subdirs": true
+    }
+  ],
+  "dev-dependencies": [
+    "@rescript/core"
+  ],
+  "dependencies": [
+    "@rescript/core"
+  ],
+  "jsx": {
+    "version": 4
+  }
+}

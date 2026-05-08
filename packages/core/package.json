@@ -1,0 +1,46 @@
+{
+  "name": "@rescript-tauri/core",
+  "version": "0.0.0",
+  "description": "Production-ready ReScript bindings for @tauri-apps/api (Tauri 2.x)",
+  "license": "MIT",
+  "homepage": "https://github.com/Nagatatz/rescript-tauri",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nagatatz/rescript-tauri.git",
+    "directory": "packages/core"
+  },
+  "type": "module",
+  "main": "./src/Core.res.mjs",
+  "files": [
+    "src/**/*.res",
+    "src/**/*.resi",
+    "src/**/*.res.mjs",
+    "rescript.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rescript build",
+    "clean": "rescript clean",
+    "test": "rescript build && vitest run"
+  },
+  "peerDependencies": {
+    "@rescript/core": ">=1.6.0",
+    "@tauri-apps/api": "^2.0.0",
+    "rescript": ">=12.0.0"
+  },
+  "devDependencies": {
+    "@rescript/core": "^1.6.0",
+    "@rescript/runtime": "^12.2.0",
+    "@tauri-apps/api": "^2.11.0",
+    "@types/node": "^22.0.0",
+    "happy-dom": "^15.0.0",
+    "rescript": "^12.2.0",
+    "vitest": "^3.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
