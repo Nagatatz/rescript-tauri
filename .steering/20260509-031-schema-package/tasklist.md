@@ -1,0 +1,23 @@
+# Tasklist: @rescript-tauri/schema パッケージ実装
+
+- [x] `.steering/20260509-031-schema-package/` ディレクトリ作成
+- [x] requirements.md / design.md / tasklist.md 作成
+- [x] worktree `worktree-phase2-schema-package` 作成（main を base にリベース済）
+- [x] `docs/ideas/RFC-0002-schema-integration.md` 新規作成（Accepted ステータス）
+- [x] `packages/schema/package.json`（peerDependencies + devDependencies + scripts）
+- [x] `packages/schema/rescript.json`（namespace + dependencies）
+- [x] `packages/schema/vitest.config.mjs`（happy-dom 環境）
+- [x] `packages/schema/src/Schema.resi`（4 公開シンボル + Tauri 公式 URL ref）
+- [x] `packages/schema/src/Schema.res`（toDecoder + fromSchemas + channelFromSchema + eventFromSchema）
+- [x] `packages/schema/tests/schema_signature.res`（4/4 公開シンボル）
+- [x] `packages/schema/tests/runtime/schema.test.mjs`（5 ケース）
+- [x] `packages/schema/README.md`（互換マトリクス + Quick example）
+- [x] `pnpm install` で workspace に schema が追加される
+- [x] `pnpm --filter @rescript-tauri/schema build` 緑
+- [x] `pnpm --filter @rescript-tauri/schema test` 緑（5/5）
+- [x] core の build / test が引き続き緑（regression なし）
+- [x] `docs/repository-structure.md` 更新（packages/schema/ 完成形）
+- [x] コミット (`✨ Add @rescript-tauri/schema package + RFC-0002`)
+- [x] tasklist.md の全タスク `[x]` 化と最終コミット
+- [x] main へマージ
+- [x] worktree とブランチを削除

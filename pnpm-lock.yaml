@@ -124,6 +124,33 @@ importers:
         specifier: ^3.0.0
         version: 3.2.4(@types/node@22.19.18)(happy-dom@15.11.7)
 
+  packages/schema:
+    devDependencies:
+      '@rescript-tauri/core':
+        specifier: workspace:*
+        version: link:../core
+      '@rescript/core':
+        specifier: ^1.6.0
+        version: 1.6.1(rescript@12.2.0)
+      '@rescript/runtime':
+        specifier: ^12.2.0
+        version: 12.2.0
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.19.18
+      happy-dom:
+        specifier: ^15.0.0
+        version: 15.11.7
+      rescript:
+        specifier: ^12.2.0
+        version: 12.2.0
+      rescript-schema:
+        specifier: ^9.5.1
+        version: 9.5.1(rescript@12.2.0)
+      vitest:
+        specifier: ^3.0.0
+        version: 3.2.4(@types/node@22.19.18)(happy-dom@15.11.7)
+
 packages:
 
   '@esbuild/aix-ppc64@0.27.7':
@@ -667,6 +694,14 @@ packages:
     resolution: {integrity: sha512-SoSL4+OSEtR99LHFZQiJLkT59C5B1amGO1NzTwj7TT1qCUgUO6hxOvzkOYxD+vMrXBM3XJIKzokoERdqQq/Zmg==}
     engines: {node: ^10 || ^12 || >=14}
 
+  rescript-schema@9.5.1:
+    resolution: {integrity: sha512-g2UEMqZ0IVkW8Os7vDs3JrcSS9pyQNubksY+doa3wgt86Y+c9ruvynikDrZLvZYQyQyF1vLJc05r0r2/jLdeZQ==}
+    peerDependencies:
+      rescript: ^12.0.0-alpha.8
+    peerDependenciesMeta:
+      rescript:
+        optional: true
+
   rescript@12.2.0:
     resolution: {integrity: sha512-1Jf2cmNhyx5Mj2vwZ4XXPcXvNSjGj9D1jPBUcoqIOqRpLPo1ch2Ta/7eWh23xAHWHK5ow7BCDyYFjvZSjyjLzg==}
     engines: {node: '>=20.11.0'}
@@ -1185,6 +1220,10 @@ snapshots:
       nanoid: 3.3.12
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  rescript-schema@9.5.1(rescript@12.2.0):
+    optionalDependencies:
+      rescript: 12.2.0
 
   rescript@12.2.0:
     dependencies:
