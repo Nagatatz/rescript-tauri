@@ -49,10 +49,14 @@ let main = () => {
         }
       )
 
-      Core.Channel.onMessage(channel, value => {
-        last["textContent"] = Int.toString(value)
-        appendLine("recv " ++ Int.toString(value))
-      })
+      Core.Channel.onMessage(channel, result =>
+        switch result {
+        | Ok(value) =>
+          last["textContent"] = Int.toString(value)
+          appendLine("recv " ++ Int.toString(value))
+        | Error(msg) => appendLine("decode error: " ++ msg)
+        }
+      )
 
       let target =
         Int.fromString(document["getElementById"]("target")["value"])->Option.getOr(10)
