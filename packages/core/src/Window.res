@@ -28,7 +28,7 @@ external getAll: unit => array<t> = "getAll"
 @module("@tauri-apps/api/window") @scope("Window")
 external getByLabel: string => promise<Nullable.t<t>> = "getByLabel"
 
-@send external label: t => string = "label"
+@get external label: t => string = "label"
 @send external setTitle: (t, string) => promise<unit> = "setTitle"
 @send external title: t => promise<string> = "title"
 @send external close: t => promise<unit> = "close"
