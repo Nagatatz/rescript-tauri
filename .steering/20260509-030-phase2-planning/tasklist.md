@@ -44,14 +44,14 @@
 
 ## E. `@rescript-tauri/plugin-fs` 実装
 
-- [ ] `packages/plugin-fs/` 雛形
-- [ ] upstream `@tauri-apps/plugin-fs` v2.5.x の API 表面把握
-- [ ] バインディング本体（`PluginFs.res` / `.resi`）
-- [ ] `BaseDirectory` の扱い（core の Path と統合 or 独立）確定
-- [ ] watch 系 API の sub-module 設計
-- [ ] 型レベル signature テスト
-- [ ] runtime テスト（Mocks 経由）
-- [ ] `examples/plugin-fs-demo/` 追加
+- [x] `packages/plugin-fs/` 雛形 (steering 032)
+- [x] upstream `@tauri-apps/plugin-fs` v2.5.x の API 表面把握 (steering 032)
+- [x] バインディング本体（`PluginFs.res` / `.resi`）(steering 032)
+- [x] `BaseDirectory` の扱い（core の Path と統合 or 独立）確定 (steering 032: peerDep 経由で再利用)
+- [ ] watch 系 API の sub-module 設計 (steering 032 §Non-goals: 後続 sub-steering へ分離)
+- [x] 型レベル signature テスト (steering 032)
+- [x] runtime テスト（Mocks 経由）(steering 032)
+- [x] `examples/plugin-fs-demo/` 追加 (steering 037)
 - [ ] CI 拡張
 - [ ] `release.yml` を `plugin-fs-v*` タグに対応
 - [ ] README + 互換マトリクス
