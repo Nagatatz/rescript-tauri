@@ -35,7 +35,7 @@
     "@rescript/runtime": "^12.2.0",
     "@tauri-apps/plugin-dialog": "^2.7.1",
     "@types/node": "^22.0.0",
-    "happy-dom": "^15.0.0",
+    "happy-dom": "^20.9.0",
     "rescript": "^12.2.0",
     "vitest": "^3.0.0"
   },
