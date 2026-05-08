@@ -3,9 +3,9 @@
 
 import os
 
-project = "{{PROJECT_NAME}}"
-copyright = "2026, {{AUTHOR}}"
-author = "{{AUTHOR}}"
+project = "rescript-tauri"
+copyright = "2026, Nagatatz and rescript-tauri contributors"
+author = "Nagatatz and rescript-tauri contributors"
 
 # -- General configuration ---------------------------------------------------
 
@@ -56,13 +56,13 @@ html_theme_options = {
     "sidebar_hide_name": False,
     "navigation_with_keys": True,
     "top_of_page_button": "edit",
-    "source_repository": "{{GITHUB_URL}}",
+    "source_repository": "https://github.com/Nagatatz/rescript-tauri",
     "source_branch": "main",
     "source_directory": "sphinx-docs/",
     "footer_icons": [
         {
             "name": "GitHub",
-            "url": "{{GITHUB_URL}}",
+            "url": "https://github.com/Nagatatz/rescript-tauri",
             "html": '<svg stroke="currentColor" fill="currentColor" stroke-width="0" '
             'viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 '
             "3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37"
@@ -93,10 +93,12 @@ html_additional_pages = {"search": "search.html"}
 
 # -- Open Graph (social sharing previews) -----------------------------------
 
-# TODO: Set html_baseurl to your deployed site URL (e.g., "https://user.github.io/repo/en/")
-html_baseurl = ""
+# GitHub Pages base URL. The deployed site lives under /en/ and /ja/ via build-all
+# (see Makefile), and the SPHINX_SITE_PREFIX env var (html_context below) can prepend
+# a subpath at deploy time if needed.
+html_baseurl = "https://nagatatz.github.io/rescript-tauri/"
 ogp_site_url = html_baseurl
-ogp_site_name = "{{PROJECT_NAME}}"
+ogp_site_name = "rescript-tauri"
 ogp_type = "website"
 
 # -- Sitemap (SEO) -----------------------------------------------------------

@@ -1,7 +1,7 @@
 [project]
-name = "{{PROJECT_NAME_SLUG}}-docs"
+name = "rescript-tauri-docs"
 version = "0.1.0"
-description = "Sphinx documentation for {{PROJECT_NAME_SLUG}}"
+description = "Sphinx documentation for rescript-tauri"
 requires-python = ">=3.12"
 dependencies = [
     "Sphinx>=9.1,<10.0",

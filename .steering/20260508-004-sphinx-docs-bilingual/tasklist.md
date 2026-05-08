@@ -19,8 +19,8 @@
 
 ### 2.1 インフラ整備
 
-- [ ] **commit 2**: `sphinx-docs/conf.py` (5 placeholder + html_baseurl + ogp_site_name) と `sphinx-docs/pyproject.toml` (2 placeholder) を解消 → コミット `🔧 Resolve sphinx-docs placeholders in conf.py and pyproject.toml`
-- [ ] 検証: `grep -rn '{{' sphinx-docs/` の出力が空（生成ファイルを除く）
+- [x] **commit 2**: `sphinx-docs/conf.py` (5 placeholder + html_baseurl + ogp_site_name) と `sphinx-docs/pyproject.toml` (2 placeholder) を解消 → コミット `🔧 Resolve sphinx-docs placeholders in conf.py and pyproject.toml`
+- [x] 検証: `grep -n '{{' conf.py pyproject.toml` 0 件（.md 内の 7 件は commit 3/4 で解消）
 
 ### 2.2 英語コンテンツ整備
 
