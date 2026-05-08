@@ -1,7 +1,12 @@
 # Installation
 
-```{warning}
-Not yet published on npm. The commands below describe what installation will look like once Phase 1 ships. See [RFC-0001](https://github.com/Nagatatz/rescript-tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) and [`docs/product-requirements.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/docs/product-requirements.md) for the design intent.
+```{note}
+The Phase 1 module set is feature-complete in `main`. The first npm
+publish (`v0.1.0`) is scheduled at the Phase 1 release. Until then,
+consume `@rescript-tauri/core` via the source repository or a
+workspace link — the commands below show the future
+`pnpm add @rescript-tauri/core` workflow that will work
+post-publish.
 ```
 
 ## Requirements
