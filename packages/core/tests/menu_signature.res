@@ -50,7 +50,7 @@ let _check_sub_remove: (Menu.Submenu.t, Menu.Submenu.itemKind) => promise<unit> 
 let _check_sub_remove_at: (Menu.Submenu.t, int) => promise<Nullable.t<Menu.Submenu.itemKind>> = Menu.Submenu.removeAt
 let _check_sub_items: Menu.Submenu.t => promise<array<Menu.Submenu.itemKind>> = Menu.Submenu.items
 let _check_sub_get: (Menu.Submenu.t, string) => promise<Nullable.t<Menu.Submenu.itemKind>> = Menu.Submenu.get
-let _check_sub_popup: (Menu.Submenu.t, ~at: 'pos=?, ~window: Window.t=?) => promise<unit> = Menu.Submenu.popup
+let _check_sub_popup: (Menu.Submenu.t, ~at: Dpi.Position.t=?, ~window: Window.t=?) => promise<unit> = Menu.Submenu.popup
 let _check_sub_set_as_windows_menu: Menu.Submenu.t => promise<unit> = Menu.Submenu.setAsWindowsMenuForNSApp
 let _check_sub_set_as_help_menu: Menu.Submenu.t => promise<unit> = Menu.Submenu.setAsHelpMenuForNSApp
 
@@ -65,7 +65,7 @@ let _check_menu_remove: (Menu.Menu.t, Menu.Submenu.itemKind) => promise<unit> = 
 let _check_menu_remove_at: (Menu.Menu.t, int) => promise<Nullable.t<Menu.Submenu.itemKind>> = Menu.Menu.removeAt
 let _check_menu_items: Menu.Menu.t => promise<array<Menu.Submenu.itemKind>> = Menu.Menu.items
 let _check_menu_get: (Menu.Menu.t, string) => promise<Nullable.t<Menu.Submenu.itemKind>> = Menu.Menu.get
-let _check_menu_popup: (Menu.Menu.t, ~at: 'pos=?, ~window: Window.t=?) => promise<unit> = Menu.Menu.popup
+let _check_menu_popup: (Menu.Menu.t, ~at: Dpi.Position.t=?, ~window: Window.t=?) => promise<unit> = Menu.Menu.popup
 let _check_menu_set_as_app: Menu.Menu.t => promise<Nullable.t<Menu.Menu.t>> = Menu.Menu.setAsAppMenu
 let _check_menu_set_as_window: (Menu.Menu.t, ~window: Window.t=?) => promise<Nullable.t<Menu.Menu.t>> = Menu.Menu.setAsWindowMenu
 

@@ -5,16 +5,16 @@
 - [x] 要件定義 (`requirements.md`)
 - [x] 設計 (`design.md`)
 - [x] タスクリスト (`tasklist.md`)
-- [ ] worktree 作成 (`menu-app-polish`)
+- [x] worktree 作成 (`menu-app-polish`)
 
 ## Phase 2: 実装
 
 ### Step A — Menu.popup / Submenu.popup の Dpi 化
 
-- [ ] `packages/core/src/Menu.res` の `Submenu` 内 `popup` の `~at: 'pos` を `~at: Dpi.Position.t` に置換
-- [ ] `packages/core/src/Menu.res` の `Menu` 内 `popup` の `~at: 'pos` を `~at: Dpi.Position.t` に置換
-- [ ] `packages/core/src/Menu.resi` の対応シグネチャ更新（"polymorphic until full Dpi integration" 削除）
-- [ ] `packages/core/tests/menu_signature.res` の該当箇所追従
+- [x] `packages/core/src/Menu.res` の `Submenu` 内 `popup` の `~at: 'pos` を `~at: Dpi.Position.t` に置換
+- [x] `packages/core/src/Menu.res` の `Menu` 内 `popup` の `~at: 'pos` を `~at: Dpi.Position.t` に置換
+- [x] `packages/core/src/Menu.resi` の対応シグネチャ更新（"polymorphic until full Dpi integration" 削除）
+- [x] `packages/core/tests/menu_signature.res` の該当箇所追従
 
 ### Step B — App.setTheme パラメータ名改善
 
