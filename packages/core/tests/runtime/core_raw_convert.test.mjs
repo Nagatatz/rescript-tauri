@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from "vitest"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
 // Upstream `convertFileSrc` calls
 // `window.__TAURI_INTERNALS__.convertFileSrc(filePath, protocol)`,

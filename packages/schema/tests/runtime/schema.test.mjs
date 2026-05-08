@@ -1,12 +1,12 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest"
+import * as Core from "@rescript-tauri/core/src/Core.res.mjs"
 
 // Imports the compiled JS from the workspace-resolved dependency so
 // the tests exercise the same artifacts that `npm publish` would
 // ship.
 import * as Mocks from "@rescript-tauri/core/src/Mocks.res.mjs"
-import * as Core from "@rescript-tauri/core/src/Core.res.mjs"
-import * as Schema from "../../src/Schema.res.mjs"
 import * as S from "rescript-schema/src/S.res.mjs"
+import { afterEach, beforeEach, describe, expect, it } from "vitest"
+import * as Schema from "../../src/Schema.res.mjs"
 
 // ReScript's `result` runtime representation:
 //   Ok(v)    →  { TAG: "Ok", _0: v }

@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest"
 import * as Mocks from "@rescript-tauri/core/src/Mocks.res.mjs"
+import { afterEach, beforeEach, describe, expect, it } from "vitest"
 import * as PluginDialog from "../../src/PluginDialog.res.mjs"
 
 describe("PluginDialog", () => {
