@@ -1,0 +1,36 @@
+name: doc-link-lint
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/core/**/*.resi"
+      - ".github/workflows/doc-link-lint.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "packages/core/**/*.resi"
+
+permissions:
+  contents: read
+
+jobs:
+  doc-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify each .resi mentions a Tauri docs URL
+        shell: bash
+        run: |
+          set -euo pipefail
+          missing=0
+          for f in $(find packages/core/src -name '*.resi'); do
+            if ! grep -qE 'v2\.tauri\.app/' "$f"; then
+              echo "::error file=$f::no v2.tauri.app/ URL found in this .resi"
+              missing=$((missing + 1))
+            fi
+          done
+          if [ "$missing" -gt 0 ]; then
+            exit 1
+          fi
+          echo "::notice::All public .resi files include a Tauri docs URL"

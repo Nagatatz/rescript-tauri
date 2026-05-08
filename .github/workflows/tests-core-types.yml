@@ -1,0 +1,46 @@
+name: tests-core-types
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/core/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/tests-core-types.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "packages/core/**"
+      - "pnpm-lock.yaml"
+
+permissions:
+  contents: read
+
+jobs:
+  type-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Build (compiles tests/*_signature.res = type-level test)
+        run: pnpm --filter @rescript-tauri/core build
+      - name: Public-symbol coverage check
+        shell: bash
+        run: |
+          set -euo pipefail
+          PUBLIC_COUNT=$(grep -rE '^[[:space:]]*let [A-Za-z_]' packages/core/src --include='*.resi' | wc -l | tr -d ' ')
+          CHECK_COUNT=$(grep -rE '^let _check_' packages/core/tests --include='*_signature.res' | wc -l | tr -d ' ')
+          echo "Public lets in .resi : $PUBLIC_COUNT"
+          echo "_check_ refs in tests: $CHECK_COUNT"
+          if [ "$CHECK_COUNT" -lt "$PUBLIC_COUNT" ]; then
+            echo "::error::Type-level coverage incomplete: $CHECK_COUNT/$PUBLIC_COUNT"
+            exit 1
+          fi
+          echo "::notice::Type-level coverage OK ($CHECK_COUNT/$PUBLIC_COUNT)"
