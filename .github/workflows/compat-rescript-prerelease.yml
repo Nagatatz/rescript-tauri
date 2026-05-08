@@ -1,0 +1,65 @@
+name: compat-rescript-prerelease
+
+on:
+  schedule:
+    # Daily at 06:00 UTC. Surfaces ReScript 12.x next-minor / next-major
+    # prerelease drift before users hit it (PRD §9 risk: "ReScript 12.x
+    # 後続マイナー / 次期メジャーの破壊的変更").
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compat:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Both dist-tags are checked. If a tag is undefined upstream
+        # (e.g. between releases) the pre-flight step skips the job
+        # cleanly with exit 0.
+        rescript-tag: [next, beta]
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: pnpm/action-setup@a15d269cd4658e1107c09f1fabf4cbd7bd1f308a # v4.4.0
+        with:
+          version: 10
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 20
+          cache: pnpm
+      - name: Resolve dist-tag for rescript@${{ matrix.rescript-tag }}
+        id: resolve
+        shell: bash
+        run: |
+          set -euo pipefail
+          version=$(npm view rescript@${{ matrix.rescript-tag }} version 2>/dev/null || echo "")
+          if [ -z "$version" ]; then
+            echo "::warning::dist-tag '${{ matrix.rescript-tag }}' not published; skipping"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::resolved rescript@${{ matrix.rescript-tag }} -> $version"
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "version=$version" >> "$GITHUB_OUTPUT"
+          fi
+      - run: pnpm install --frozen-lockfile
+        if: steps.resolve.outputs.skip != 'true'
+      - name: Override rescript with prerelease
+        if: steps.resolve.outputs.skip != 'true'
+        run: |
+          set -euo pipefail
+          pnpm add -w --save-dev rescript@${{ steps.resolve.outputs.version }}
+          for pkg in packages/core examples/hello-world examples/window-management examples/ipc-typed examples/streaming-ipc; do
+            (cd "$pkg" && pnpm add --save-dev rescript@${{ steps.resolve.outputs.version }})
+          done
+      - name: Show installed rescript versions
+        if: steps.resolve.outputs.skip != 'true'
+        run: pnpm ls --recursive rescript
+      - name: Build core against rescript@${{ steps.resolve.outputs.version }}
+        if: steps.resolve.outputs.skip != 'true'
+        run: pnpm --filter @rescript-tauri/core build
+      - name: Test core against rescript@${{ steps.resolve.outputs.version }}
+        if: steps.resolve.outputs.skip != 'true'
+        run: pnpm --filter @rescript-tauri/core test
