@@ -11,7 +11,10 @@ This directory tracks the CI/CD workflows for rescript-tauri. Files fall into th
 | `tests-core-types.yml` | push / PR on `packages/core/**`, `pnpm-lock.yaml` | Compiles the type-level tests (`tests/*_signature.res`) and enforces 100% public-symbol coverage with a grep-based gate. |
 | `tests-core-runtime.yml` | push / PR on `packages/core/**`, `pnpm-lock.yaml` | Runs `pnpm --filter @rescript-tauri/core test` (rescript build + vitest). |
 | `doc-link-lint.yml` | push / PR on any `packages/core/**/*.resi` | Verifies that every `.resi` file mentions a `v2.tauri.app/` URL. |
-| `examples-build.yml` | push / PR on `examples/**`, `packages/core/**`, `pnpm-lock.yaml` | 3 OS matrix (Ubuntu / macOS / Windows). Builds the `hello-world` ReScript frontend and runs `cargo check --release` on the Tauri Rust side. |
+| `examples-build.yml` | push / PR on `examples/**`, `packages/core/**`, `pnpm-lock.yaml` | 3 OS matrix (Ubuntu / macOS / Windows). Builds the `hello-world`, `window-management`, `ipc-typed`, and `streaming-ipc` ReScript frontends and runs `cargo check --release` on each Tauri Rust side. |
+| `compat-tauri-latest.yml` | nightly (06:00 UTC) / manual dispatch | Pulls `@tauri-apps/api@latest` across every workspace and re-builds / tests `@rescript-tauri/core` + `hello-world`. Surfaces upstream API drift before users hit it (PRD §9 risk row 1). |
+| `compat-rescript-prerelease.yml` | nightly (06:00 UTC) / manual dispatch | Pulls `rescript@next` and `rescript@beta` (skips cleanly when a dist-tag is undefined) and re-builds / tests `@rescript-tauri/core`. Catches ReScript 12.x next-minor / next-major drift early (PRD §9 risk row 3). |
+| `release.yml` | tag push (`v*`) / manual dispatch | Builds + tests `@rescript-tauri/core`, then `npm publish --provenance` (only when the `NPM_TOKEN` secret is set; otherwise dry-run) and `gh release create --generate-notes`. |
 
 ## Opt-in templates
 
@@ -21,16 +24,6 @@ These workflows rely on Claude Code Actions and require an `ANTHROPIC_API_KEY` r
 |---|---|---|
 | `auto-pr-description.yml.template` | `mv auto-pr-description.yml.template auto-pr-description.yml` | Generates PR descriptions from the diff via `claude -p`. |
 | `claude-code-review.yml.template` | `mv claude-code-review.yml.template claude-code-review.yml` | Posts automated diff review comments via the Claude Code Action. |
-
-## Planned for Phase 1
-
-The workflows below are specified in [`docs/functional-design.md`](../../docs/functional-design.md) §6. They are nightly / tag-triggered and land closer to the Phase 1 release.
-
-| File | Purpose |
-|---|---|
-| `compat-tauri-latest.yml` | Nightly compatibility run against the latest Tauri release. |
-| `compat-rescript-prerelease.yml` | Nightly compatibility run against the next ReScript 12.x minor / next-major prerelease line. |
-| `release.yml` | Tag-driven release pipeline (npm publish + GitHub Release). |
 
 ## Adding a new workflow
 

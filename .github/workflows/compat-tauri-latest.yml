@@ -1,0 +1,43 @@
+name: compat-tauri-latest
+
+on:
+  schedule:
+    # Daily at 06:00 UTC. Catches @tauri-apps/api minor releases early
+    # so we can ship a compatible @rescript-tauri/core minor in turn.
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: pnpm/action-setup@a15d269cd4658e1107c09f1fabf4cbd7bd1f308a # v4.4.0
+        with:
+          version: 10
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Override @tauri-apps/api with latest
+        run: |
+          set -euo pipefail
+          # Force the latest stable release across every workspace that
+          # peer-depends or dev-depends on @tauri-apps/api. --filter "..."
+          # walks every package once so monorepo-wide overrides apply.
+          pnpm add -w --save-dev @tauri-apps/api@latest
+          for pkg in packages/core examples/hello-world examples/window-management examples/ipc-typed examples/streaming-ipc; do
+            (cd "$pkg" && pnpm add @tauri-apps/api@latest)
+          done
+      - name: Show installed @tauri-apps/api versions
+        run: pnpm ls --recursive @tauri-apps/api
+      - name: Build core against latest @tauri-apps/api
+        run: pnpm --filter @rescript-tauri/core build
+      - name: Test core against latest @tauri-apps/api
+        run: pnpm --filter @rescript-tauri/core test
+      - name: Build hello-world example against latest @tauri-apps/api
+        run: pnpm --filter hello-world build
