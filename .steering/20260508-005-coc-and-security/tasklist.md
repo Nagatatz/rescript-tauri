@@ -18,7 +18,7 @@
 ## Phase 2: 実装（main 直接、worktree なし）
 
 - [x] **commit 2**: `CODE_OF_CONDUCT.md` を新規作成（Contributor Covenant 2.1 採用、要点抜粋 + 公式 URL リンク方式 + enforcement contact: nagata.hbdc@gmail.com + CC BY 4.0 attribution。design.md §2.1 を実装中に方針変更）→ コミット `✨ Add CODE_OF_CONDUCT.md (Contributor Covenant 2.1, link-first style)`
-- [ ] **commit 3**: `SECURITY.md` を新規作成（Supported versions / Reporting / Response timeline / Disclosure policy / Out of scope。GHSA が primary、email fallback）→ コミット `✨ Add SECURITY.md with GHSA-first disclosure channel`
+- [x] **commit 3**: `SECURITY.md` を新規作成（Supported versions / Reporting / Response timeline / Disclosure policy / Out of scope。GHSA が primary、email fallback）→ コミット `✨ Add SECURITY.md with GHSA-first disclosure channel`
 - [ ] **commit 4**: `CONTRIBUTING.md` §5（line 116）と §6（line 122）の TBD 記述を新規 2 ファイルへの参照に置換 → コミット `📝 Resolve CoC and SECURITY TBDs in CONTRIBUTING.md`
 
 ## Phase 3: 検証（コミット前）
