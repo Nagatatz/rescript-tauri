@@ -212,9 +212,9 @@ module Predefined: {
 ```
 
 #### 2.2.3 実装方針
-- 内部表現: `t<'payload>` は `{name: string, decode: JSON.t => result<'payload, string>}` の opaque record。
-- `listen`: 上流 `listen(name, handler)` を呼び、handler 内で raw event を decode → `event<'payload>` に詰め直してユーザー callback に渡す。decode 失敗は console.error で報告（イベントは reject ではなく無視）。
-- `emit*`: `eventTarget` を上流 JS の `EventTarget` shape (`{kind: "Window", label: ...}`) に変換するヘルパを内部に持つ。
+- 内部表現: `t<'payload>` は `{name: string, decode: Core.decoder<'payload>}` の opaque record。`Core.decoder<'value> = JSON.t => result<'value, string>` は Command/Channel/Event 共通の型エイリアス。
+- `listen`: 上流 `listen(name, handler)` を呼び、handler 内で raw event を decode → `event<'payload>` に詰め直してユーザー callback に `Ok(event)` または `Error(msg)` として渡す。decode 失敗はサイレントドロップせず callback に surface する（呼び出し側で Ok/Error を明示的に handle する責務）。
+- `emit*`: `eventTarget` を上流 JS の `EventTarget` shape (`{kind: "Window", label: ...}`) に変換する型安全なヘルパを内部に持つ（`Obj.magic` 不使用）。
 
 #### 2.2.4 受け入れ条件への対応
 
@@ -519,10 +519,12 @@ module WebviewWindow = WebviewWindow
 
 | エラー型 | 発生箇所 | 内容 |
 |---|---|---|
-| `Core.invokeError` | `Core.Command.invoke` | `DecodeError(string)` / `RustError(JSON.t)` |
-| `Event.eventError`（必要なら追加） | `Event.listen` decoder 失敗 | `DecodeError(string)`（現状は console.error で済ます） |
+| `Core.invokeError` | `Core.Command.invoke` | `DecodeError(string)` / `RustError(JSON.t)`（`RustError` の payload は JS exn を `{name, message}` JSON に正規化したもの） |
+| `result<event<'payload>, string>` | `Event.listen` / `Event.once` callback | デコード失敗は `Error(decoderMessage)` として callback に渡す（サイレントドロップしない） |
+| `result<'message, string>` | `Channel.onMessage` callback | 同上 |
 
 - 共通親 union は持たない（call site の型表面を狭く保つため）。
+- すべてのデコード失敗は `result<_, string>` を経由して呼び出し側に surface される（統一ポリシー）。silent-drop が望ましい呼び出し側はパターンマッチで `Error` ブランチを `_` で破棄する。
 - `*Exn` 版は `result` を unwrap し、`Error` を `JsError` (`@rescript/core`) として `raise` する。
 
 ### 3.2 命名規約
