@@ -133,3 +133,13 @@ htmx_boost_preload = "mouseover"
 
 # Suppress toctree warnings for locale files
 suppress_warnings = ["toc.excluded"]
+
+# -- Link check --------------------------------------------------------------
+
+# The repository is private until the Phase 1 release (see README "Visibility").
+# Anonymous GitHub fetches return 404 for blob/tree/issues URLs while the repo
+# is private. Ignore them in `make linkcheck` and remove this entry once the
+# repo is switched to public.
+linkcheck_ignore = [
+    r"^https://github\.com/Nagatatz/rescript-tauri/(blob|tree|issues|graphs)(/.*)?$",
+]
