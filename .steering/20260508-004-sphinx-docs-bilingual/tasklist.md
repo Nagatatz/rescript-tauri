@@ -42,14 +42,14 @@
 
 ## Phase 3: 統合検証
 
-- [ ] **commit 8**: `cd sphinx-docs && make build-all` を実行し、結果を tasklist に記録 → コミット `✅ Verify make build-all produces en + ja sites`
-- [ ] 検証項目:
-  - `_build/site/en/index.html` が存在
-  - `_build/site/ja/index.html` が存在
-  - `_build/site/index.html` が `/en/` リダイレクト
-  - `_build/site/pagefind/` が存在（Pagefind 検索インデックス）
-- [ ] `make linkcheck` を実行し broken link がないこと（外部 URL 一時不達は許容）
-- [ ] `make lint` が pass
+- [x] **commit 8**: `cd sphinx-docs && make clean && make build-all` を実行し、結果を tasklist に記録 → コミット `✅ Verify make build-all produces en + ja sites`
+- [x] 検証項目（すべて OK）:
+  - `_build/site/en/index.html` 存在 ✅
+  - `_build/site/ja/index.html` 存在 ✅
+  - `_build/site/index.html` が `<meta http-equiv="refresh" content="0;url=en/">` で `/en/` にリダイレクト ✅
+  - `_build/site/_pagefind/` および `_build/site/pagefind/` 存在（Pagefind 検索インデックス、1.5.x 互換性モードで両 URL に出力）✅
+- [ ] `make linkcheck` を実行し broken link がないこと（外部 URL 一時不達は許容） — バックグラウンド実行中、commit 9 までに結果確認
+- [ ] `make lint` が pass — バックグラウンド実行中、commit 9 までに結果確認
 
 ## Phase 4: マージ準備（worktree なしのためマージ手順なし、push のみ）
 
