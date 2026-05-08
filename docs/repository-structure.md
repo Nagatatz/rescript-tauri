@@ -184,6 +184,7 @@ examples/window-management/               # Window / WebviewWindow 操作
 examples/ipc-typed/                       # Command.make の典型例
 examples/streaming-ipc/                   # Channel デモ
 examples/plugin-dialog-demo/              # @rescript-tauri/plugin-dialog 全関数デモ (steering 036)
+examples/plugin-fs-demo/                  # @rescript-tauri/plugin-fs 全関数デモ (steering 037)
 ```
 
 各 `examples/*/` には:
