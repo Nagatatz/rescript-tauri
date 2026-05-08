@@ -40,7 +40,7 @@ Each package is published with independent semver and declares the corresponding
 | Node.js | Active LTS |
 | OS | Linux / macOS / Windows (Tauri 2.x desktop targets) |
 
-Nightly CI against the latest Tauri release and the ReScript prerelease line is planned to detect API drift early. The job definitions are tracked in [`docs/functional-design.md`](./docs/functional-design.md) §6 and will be implemented during Phase 1.
+Nightly CI against the latest Tauri release and the ReScript prerelease line is planned to detect API drift early. The job definitions are tracked in [`docs/functional-design.md`](./docs/functional-design.md) §6 and will be implemented during Phase 1. The current status of every workflow file (active / opt-in template / planned) is documented in [`.github/workflows/README.md`](./.github/workflows/README.md).
 
 ---
 
