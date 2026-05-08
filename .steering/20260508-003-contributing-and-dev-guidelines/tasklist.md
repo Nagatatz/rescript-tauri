@@ -25,13 +25,13 @@
 
 design.md §5 に従い:
 
-- [ ] README → `docs/development-guidelines.md` リンクが有効（ファイル存在確認）
-- [ ] README → `CONTRIBUTING.md` リンクが有効
-- [ ] CONTRIBUTING.md / development-guidelines.md → `.claude/rules/*` への参照リンクが解決可能（参照先ファイルすべて実在）
-- [ ] `docs/development-guidelines.md` のヘッダーが既存 `docs/*` パターンと整合（メタテーブル + 序文ブロック）
-- [ ] markdown lint 確認（IDE 診断で新規 warning なし、既存の rescript.json missing 等は Phase 1 で解消予定）
+- [x] README → `docs/development-guidelines.md` リンクが有効（ファイル存在確認）
+- [x] README → `CONTRIBUTING.md` リンクが有効
+- [x] CONTRIBUTING.md / development-guidelines.md → `.claude/rules/*` への参照リンクが解決可能（7 ファイルすべて実在を確認）
+- [x] `docs/development-guidelines.md` のヘッダーが既存 `docs/*` パターンと整合（メタテーブル + 序文ブロック）
+- [x] markdown lint 確認（broken-link grep 0 件、IDE 診断で新規 warning なし）
 
 ## Phase 4: マージ準備（worktree なしのためマージ手順なし、push のみ）
 
-- [ ] **commit 5**: tasklist.md を全 `[x]` 化、本タスク自身の Phase 4 を含めて完了マーク → コミット `📝 Mark steering 20260508-003 tasks complete`
+- [x] **commit 5**: tasklist.md を全 `[x]` 化、本タスク自身の Phase 4 を含めて完了マーク → コミット `📝 Mark steering 20260508-003 tasks complete`
 - [ ] `git push origin main` で 5 コミットを反映
