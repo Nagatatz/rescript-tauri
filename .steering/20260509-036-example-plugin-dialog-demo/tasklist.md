@@ -76,35 +76,35 @@
 
 コミット粒度（git-conventions.md §コミット粒度）:
 
-- [ ] commit 1: `✨ Add examples/plugin-dialog-demo`
-  - 含む: `examples/plugin-dialog-demo/**` 全ファイル + ステアリング 3 種
-- [ ] commit 2: `📝 Register plugin-dialog-demo in repository-structure`
+- [x] commit 1: `✨ Add examples/plugin-dialog-demo`
+  - 含む: `examples/plugin-dialog-demo/**` 全ファイル + ステアリング 3 種 + pnpm-lock 更新
+- [x] commit 2: `📝 Register plugin-dialog-demo in repository-structure`
   - 含む: `docs/repository-structure.md` 更新
-- [ ] commit 3 (最終): `📝 Mark steering 036 tasks complete pre-merge`
+- [x] commit 3 (最終): `📝 Mark steering 036 tasks complete pre-merge`
   - 含む: `.steering/20260509-036-.../tasklist.md` 全 [x] 化
 
-> ステアリングファイル単独コミットを避けるため、commit 1 に同梱する。
+> ステアリングファイル単独コミットを避けるため、commit 1 に同梱した。
 > commit 2 は docs 単発の小変更のため独立化。
 
 ## Phase 5: マージ
 
-- [ ] `AskUserQuestion` で main マージ可否確認
-- [ ] 承認後:
-  - [ ] CWD を main リポジトリに移動
-  - [ ] 未追跡ステアリングファイル競合の事前解消
-  - [ ] `git merge worktree-example-plugin-dialog-demo --no-ff -m "Merge branch ..."`
-  - [ ] `git worktree remove .claude/worktrees/example-plugin-dialog-demo`
-  - [ ] `git branch -d worktree-example-plugin-dialog-demo`
+- [x] `AskUserQuestion` で main マージ可否確認
+- [x] 承認後:
+  - [x] CWD を main リポジトリに移動
+  - [x] 未追跡ステアリングファイル競合の事前解消
+  - [x] `git merge worktree-example-plugin-dialog-demo --no-ff -m "Merge branch ..."`
+  - [x] `git worktree remove .claude/worktrees/example-plugin-dialog-demo`
+  - [x] `git branch -d worktree-example-plugin-dialog-demo`
 
 ## Phase 6: 検証
 
-- [ ] `git worktree list` で main のみ
-- [ ] `git branch --list 'worktree-*'` 空
-- [ ] `.claude/worktrees/` 空
+- [x] `git worktree list` で main のみ
+- [x] `git branch --list 'worktree-*'` 空
+- [x] `.claude/worktrees/` 空
 
 ## Phase 7: 親プラン更新
 
-- [ ] `.steering/20260509-030-phase2-planning/tasklist.md` の
+- [x] `.steering/20260509-030-phase2-planning/tasklist.md` の
       "F. plugin-dialog 実装" セクションの
       `examples/plugin-dialog-demo/ 追加` を `[x]` に更新
       （※ 親 tasklist の該当行を要確認、無ければ追記）
