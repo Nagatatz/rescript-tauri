@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>rescript-tauri streaming-ipc</title>
+    <style>
+      body { font-family: system-ui, sans-serif; padding: 16px; }
+      label { display: block; margin: 8px 0; }
+      input { width: 6em; }
+      .out { font-family: monospace; padding: 8px; background: #f4f4f4; min-height: 1em; }
+      button { padding: 6px 12px; }
+    </style>
+  </head>
+  <body>
+    <h1>Channel streaming demo</h1>
+    <p>Rust counts up to <code>target</code> and pushes each integer
+    through a Tauri Channel. The frontend renders messages as they
+    arrive without polling.</p>
+
+    <label>Target <input id="target" type="number" value="10" /></label>
+    <button id="start">start counting</button>
+
+    <p>Last value: <span id="last" class="out">-</span></p>
+    <p>Stream:</p>
+    <pre id="log" class="out"></pre>
+    <script type="module" src="/src/main.mjs"></script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>rescript-tauri ipc-typed</title>
+    <style>
+      body { font-family: system-ui, sans-serif; padding: 16px; }
+      label { display: block; margin: 8px 0; }
+      input { width: 8em; }
+      .out { font-family: monospace; padding: 8px; background: #f4f4f4; min-height: 1em; }
+      button { padding: 6px 12px; }
+    </style>
+  </head>
+  <body>
+    <h1>typed Command demo</h1>
+    <p>Each Rust command is declared once on the frontend with
+    encode + decode. Errors flow back as <code>result&lt;_, invokeError&gt;</code>.</p>
+
+    <h2>greet (string &rarr; string)</h2>
+    <label>Name <input id="name" value="ReScript" /></label>
+    <button id="run-greet">invoke greet</button>
+    <p>Result: <span id="greet-out" class="out">-</span></p>
+
+    <h2>add ({a, b} &rarr; int)</h2>
+    <label>a <input id="a" type="number" value="3" /></label>
+    <label>b <input id="b" type="number" value="4" /></label>
+    <button id="run-add">invoke add</button>
+    <p>Result: <span id="add-out" class="out">-</span></p>
+
+    <script type="module" src="/src/main.mjs"></script>
+  </body>
+</html>
