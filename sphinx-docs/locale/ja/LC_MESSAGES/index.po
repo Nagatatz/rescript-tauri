@@ -1,17 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
+# Japanese translations for rescript-tauri docs.
 # Copyright (C) 2026, Nagatatz and rescript-tauri contributors
 # This file is distributed under the same license as the rescript-tauri
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-08 12:58+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-05-08 13:00+0900\n"
+"Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
 "Language-Team: ja <LL@li.org>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -22,7 +20,7 @@ msgstr ""
 
 #: ../../index.md:1
 msgid "rescript-tauri"
-msgstr ""
+msgstr "rescript-tauri"
 
 #: ../../index.md:3
 msgid ""
@@ -32,6 +30,10 @@ msgid ""
 " Menu, Tray—from ReScript with a 3-layer IPC design (Raw / typed Command "
 "/ Schema-integrated)."
 msgstr ""
+"Tauri 2.x 公式 JS SDK (`@tauri-apps/api`) に対する production-ready な "
+"ReScript バインディング群です。`@rescript-tauri/core` を中心とするモノレポで、"
+"IPC・Event・Window・Webview・Menu・Tray など Tauri 公開 API すべてを 3 層 IPC "
+"設計（Raw / typed Command / Schema 統合）で ReScript からアクセス可能にします。"
 
 #: ../../index.md:6
 msgid ""
@@ -43,52 +45,59 @@ msgid ""
 "tauri/blob/main/docs/functional-design.md). The npm package will be "
 "published once Phase 1 ships."
 msgstr ""
+"本プロジェクトは **Phase 1 — 設計完了、実装未着手** の段階です。本サイトのサンプルコードは、"
+"[RFC-0001](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) および [`docs"
+"/functional-design.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/functional-design.md) で定義された **target API** を反映しています。"
+"npm パッケージは Phase 1 リリース時に公開される予定です。"
 
 #: ../../index.md:12
 msgid "User Guide"
-msgstr ""
+msgstr "ユーザーガイド"
 
 #: ../../index.md:16
 msgid ""
 "Install rescript-tauri, take the typed `Command` API for a spin, and "
 "configure your `rescript.json`."
 msgstr ""
+"rescript-tauri をインストールし、型付き `Command` API を試して、`rescript.json` を設定します。"
 
 #: ../../index.md:19
 msgid "[Get started →](user/index.md)"
-msgstr ""
+msgstr "[はじめる →](user/index.md)"
 
 #: ../../index.md:22
 msgid "Developer Guide"
-msgstr ""
+msgstr "開発者ガイド"
 
 #: ../../index.md:26
 msgid ""
 "Set up the docs site locally, learn the build / translate / deploy flow, "
 "and contribute."
 msgstr ""
+"ドキュメントサイトをローカルにセットアップし、ビルド / 翻訳 / デプロイのフローを学び、コントリビュートします。"
 
 #: ../../index.md:29
 msgid "[Read more →](dev/index.md)"
-msgstr ""
+msgstr "[詳細を読む →](dev/index.md)"
 
 #: ../../index.md:33
 msgid "Quick Links"
-msgstr ""
+msgstr "クイックリンク"
 
 #: ../../index.md:35
 msgid "[Installation](user/installation.md)"
-msgstr ""
+msgstr "[インストール](user/installation.md)"
 
 #: ../../index.md:36
 msgid "[Quick Start](user/quickstart.md)"
-msgstr ""
+msgstr "[クイックスタート](user/quickstart.md)"
 
 #: ../../index.md:37
 msgid "[Configuration](user/configuration.md)"
-msgstr ""
+msgstr "[設定](user/configuration.md)"
 
 #: ../../index.md:38
 msgid "[Changelog](user/changelog.md)"
-msgstr ""
-
+msgstr "[変更履歴](user/changelog.md)"

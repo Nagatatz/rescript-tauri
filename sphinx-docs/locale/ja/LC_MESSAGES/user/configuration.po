@@ -1,17 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
+# Japanese translations for rescript-tauri docs.
 # Copyright (C) 2026, Nagatatz and rescript-tauri contributors
 # This file is distributed under the same license as the rescript-tauri
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-08 12:58+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-05-08 13:00+0900\n"
+"Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
 "Language-Team: ja <LL@li.org>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -22,11 +20,11 @@ msgstr ""
 
 #: ../../user/configuration.md:1
 msgid "Configuration"
-msgstr ""
+msgstr "設定"
 
 #: ../../user/configuration.md:3
 msgid "`rescript.json`"
-msgstr ""
+msgstr "`rescript.json`"
 
 #: ../../user/configuration.md:5
 msgid ""
@@ -34,6 +32,9 @@ msgid ""
 " the legacy `bs-dependencies` to `dependencies`; the `bs-`-prefixed key "
 "is still accepted but deprecated."
 msgstr ""
+"`dependencies` キーに `@rescript-tauri/core` を追加します。ReScript 12 は"
+"レガシーの `bs-dependencies` を `dependencies` にリネームしました。"
+"`bs-` プレフィックス付きのキーも引き続き受け付けられますが deprecated です。"
 
 #: ../../user/configuration.md:16
 msgid ""
@@ -43,102 +44,110 @@ msgid ""
 "design.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/docs"
 "/functional-design.md) §2.13)."
 msgstr ""
+"自身のパッケージで `\"namespace\": true` を有効化しても、`@rescript-"
+"tauri/core` のモジュールは `Tauri` トップレベル re-export 経由で引き続きアクセス可能です"
+"（[`docs/functional-design.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/functional-design.md) §2.13 参照）。"
 
 #: ../../user/configuration.md:18
 msgid "`peerDependencies`"
-msgstr ""
+msgstr "`peerDependencies`"
 
 #: ../../user/configuration.md:20
 msgid ""
 "`@rescript-tauri/core` declares the following `peerDependencies` so you "
 "can pin the upstream versions:"
 msgstr ""
+"`@rescript-tauri/core` は以下の `peerDependencies` を宣言しており、上流の"
+"バージョンを利用者側で固定できます:"
 
 #: ../../user/configuration.md
 msgid "Peer"
-msgstr ""
+msgstr "Peer"
 
 #: ../../user/configuration.md
 msgid "Range"
-msgstr ""
+msgstr "範囲"
 
 #: ../../user/configuration.md
 msgid "`@tauri-apps/api`"
-msgstr ""
+msgstr "`@tauri-apps/api`"
 
 #: ../../user/configuration.md
 msgid "`^2.0.0`"
-msgstr ""
+msgstr "`^2.0.0`"
 
 #: ../../user/configuration.md
 msgid "`rescript`"
-msgstr ""
+msgstr "`rescript`"
 
 #: ../../user/configuration.md
 msgid "`>=12.0.0`"
-msgstr ""
+msgstr "`>=12.0.0`"
 
 #: ../../user/configuration.md
 msgid "`@rescript/core`"
-msgstr ""
+msgstr "`@rescript/core`"
 
 #: ../../user/configuration.md
 msgid "`>=1.6.0`"
-msgstr ""
+msgstr "`>=1.6.0`"
 
 #: ../../user/configuration.md:28
 msgid ""
 "`@rescript/core` 1.6.0+ has a `peerDependencies.rescript` of `>=11.1.0`, "
 "which fully covers ReScript 12.x."
 msgstr ""
+"`@rescript/core` 1.6.0+ の `peerDependencies.rescript` は `>=11.1.0` で、"
+"ReScript 12.x をカバーします。"
 
 #: ../../user/configuration.md:30
 msgid "Compatibility matrix"
-msgstr ""
+msgstr "互換マトリクス"
 
 #: ../../user/configuration.md
 msgid "Component"
-msgstr ""
+msgstr "コンポーネント"
 
 #: ../../user/configuration.md
 msgid "Supported range"
-msgstr ""
+msgstr "サポート範囲"
 
 #: ../../user/configuration.md
 msgid "Tauri"
-msgstr ""
+msgstr "Tauri"
 
 #: ../../user/configuration.md
 msgid "2.x (matches the `@tauri-apps/api` peerDep range)"
-msgstr ""
+msgstr "2.x（`@tauri-apps/api` の peerDep 範囲に一致）"
 
 #: ../../user/configuration.md
 msgid "ReScript"
-msgstr ""
+msgstr "ReScript"
 
 #: ../../user/configuration.md
 msgid ">= 12.0.0 (uncurried-by-default)"
-msgstr ""
+msgstr ">= 12.0.0（uncurried-by-default）"
 
 #: ../../user/configuration.md
 msgid ">= 1.6.0"
-msgstr ""
+msgstr ">= 1.6.0"
 
 #: ../../user/configuration.md
 msgid "Node.js"
-msgstr ""
+msgstr "Node.js"
 
 #: ../../user/configuration.md
 msgid "Active LTS"
-msgstr ""
+msgstr "Active LTS"
 
 #: ../../user/configuration.md
 msgid "OS"
-msgstr ""
+msgstr "OS"
 
 #: ../../user/configuration.md
 msgid "Linux / macOS / Windows (Tauri 2.x desktop targets)"
-msgstr ""
+msgstr "Linux / macOS / Windows（Tauri 2.x デスクトップ対象）"
 
 #: ../../user/configuration.md:40
 msgid ""
@@ -148,16 +157,23 @@ msgid ""
 "[steering document](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/.steering/20260508-002-rescript-v12-only)."
 msgstr ""
+"ReScript 11 は **サポート対象外** です。決定経緯と根拠は [PRD §10 行 7]"
+"(https://github.com/Nagatatz/rescript-tauri/blob/main/docs/product-"
+"requirements.md) と対応する [ステアリングドキュメント]"
+"(https://github.com/Nagatatz/rescript-tauri/tree/main/.steering"
+"/20260508-002-rescript-v12-only) に記録されています。"
 
 #: ../../user/configuration.md:42
 msgid "Top-level `Tauri` re-export"
-msgstr ""
+msgstr "トップレベル `Tauri` re-export"
 
 #: ../../user/configuration.md:44
 msgid ""
 "`Tauri.res` re-exports a curated subset of modules so you can `open "
 "Tauri` and reach the most common entry points without long paths."
 msgstr ""
+"`Tauri.res` は厳選したモジュール群を re-export しており、`open Tauri` するだけで"
+"主要なエントリポイントに長いパスなしでアクセスできます。"
 
 #: ../../user/configuration.md:51
 msgid ""
@@ -165,10 +181,12 @@ msgid ""
 " and listed in PRD §10 row 1 (\"Tauri.res の re-export 範囲\", confirmed "
 "pre-Phase-1-release)."
 msgstr ""
+"正確な re-export セットは `docs/functional-design.md` §2.13 で確定し、PRD §10 "
+"行 1（「Tauri.res の re-export 範囲」、Phase 1 リリース直前に確定）に記載されています。"
 
 #: ../../user/configuration.md:53
 msgid "Plugin packages (Phase 2+)"
-msgstr ""
+msgstr "プラグインパッケージ（Phase 2+）"
 
 #: ../../user/configuration.md:55
 msgid ""
@@ -177,48 +195,50 @@ msgid ""
 "declare the upstream `@tauri-apps/plugin-*` as their own "
 "`peerDependency`."
 msgstr ""
+"Phase 2 以降、各上流 `@tauri-apps/plugin-*` に対応する `@rescript-tauri"
+"/plugin-*` バインディングパッケージを提供します。プラグインパッケージは"
+"上流 `@tauri-apps/plugin-*` を自身の `peerDependency` として宣言します。"
 
 #: ../../user/configuration.md
 msgid "Package"
-msgstr ""
+msgstr "パッケージ"
 
 #: ../../user/configuration.md
 msgid "Upstream"
-msgstr ""
+msgstr "上流"
 
 #: ../../user/configuration.md
 msgid "Phase"
-msgstr ""
+msgstr "Phase"
 
 #: ../../user/configuration.md
 msgid "`@rescript-tauri/plugin-fs`"
-msgstr ""
+msgstr "`@rescript-tauri/plugin-fs`"
 
 #: ../../user/configuration.md
 msgid "`@tauri-apps/plugin-fs`"
-msgstr ""
+msgstr "`@tauri-apps/plugin-fs`"
 
 #: ../../user/configuration.md
 msgid "Phase 2+"
-msgstr ""
+msgstr "Phase 2+"
 
 #: ../../user/configuration.md
 msgid "`@rescript-tauri/plugin-dialog`"
-msgstr ""
+msgstr "`@rescript-tauri/plugin-dialog`"
 
 #: ../../user/configuration.md
 msgid "`@tauri-apps/plugin-dialog`"
-msgstr ""
+msgstr "`@tauri-apps/plugin-dialog`"
 
 #: ../../user/configuration.md
 msgid "`@rescript-tauri/schema`"
-msgstr ""
+msgstr "`@rescript-tauri/schema`"
 
 #: ../../user/configuration.md
 msgid "`rescript-schema` / `rescript-struct`"
-msgstr ""
+msgstr "`rescript-schema` / `rescript-struct`"
 
 #: ../../user/configuration.md
 msgid "Phase 2"
-msgstr ""
-
+msgstr "Phase 2"

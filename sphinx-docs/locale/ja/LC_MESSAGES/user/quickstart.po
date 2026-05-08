@@ -1,17 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
+# Japanese translations for rescript-tauri docs.
 # Copyright (C) 2026, Nagatatz and rescript-tauri contributors
 # This file is distributed under the same license as the rescript-tauri
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-08 12:58+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-05-08 13:00+0900\n"
+"Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
 "Language-Team: ja <LL@li.org>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -22,7 +20,7 @@ msgstr ""
 
 #: ../../user/quickstart.md:1
 msgid "Quick Start"
-msgstr ""
+msgstr "クイックスタート"
 
 #: ../../user/quickstart.md:4
 msgid ""
@@ -33,70 +31,85 @@ msgid ""
 "tauri/blob/main/docs/functional-design.md) §2. Implementation is in "
 "progress in Phase 1."
 msgstr ""
+"Target API です。以下のサンプルは "
+"[RFC-0001](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) および [`docs"
+"/functional-design.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/functional-design.md) §2 で定義された設計を反映しています。"
+"実装は Phase 1 で進行中です。"
 
 #: ../../user/quickstart.md:7
 msgid "Prerequisites"
-msgstr ""
+msgstr "前提条件"
 
 #: ../../user/quickstart.md:9
 msgid "Completed [Installation](installation.md)"
-msgstr ""
+msgstr "[インストール](installation.md) を完了済み"
 
 #: ../../user/quickstart.md:10
 msgid ""
 "A Tauri 2.x project with at least one `#[tauri::command]` defined on the "
 "Rust side"
 msgstr ""
+"Rust 側に少なくとも 1 つの `#[tauri::command]` が定義されている Tauri 2.x プロジェクト"
 
 #: ../../user/quickstart.md:12
 msgid "Layer 1 — Raw `invoke`"
-msgstr ""
+msgstr "Layer 1 — Raw `invoke`"
 
 #: ../../user/quickstart.md:14
 msgid ""
 "The lowest layer mirrors `@tauri-apps/api/core` 1:1. Use it when you want"
 " to start as thin as possible or as an escape hatch from the typed layer."
 msgstr ""
+"最下層は `@tauri-apps/api/core` を 1:1 でミラーします。可能な限り薄く始めたい場合や、"
+"型付き層からの逃げ道として使用してください。"
 
 #: ../../user/quickstart.md:21
 msgid "Layer 2 — typed `Command`"
-msgstr ""
+msgstr "Layer 2 — typed `Command`"
 
 #: ../../user/quickstart.md:23
 msgid ""
 "Layer 2 wraps a single command name with an explicit encoder and decoder,"
 " giving you an end-to-end typed `Command.t<'args, 'result>`."
 msgstr ""
+"Layer 2 では、コマンド名を明示的なエンコーダ・デコーダと一緒にラップし、エンドツーエンドで"
+"型付けされた `Command.t<'args, 'result>` を提供します。"
 
 #: ../../user/quickstart.md:46
 msgid ""
 "`Core.Command.invokeExn` is provided for callers that prefer exception-"
 "based control flow."
 msgstr ""
+"例外ベースの制御フローを好む呼び出し元のために、`Core.Command.invokeExn` も提供されます。"
 
 #: ../../user/quickstart.md:48
 msgid "Event subscription"
-msgstr ""
+msgstr "Event 購読"
 
 #: ../../user/quickstart.md:50
 msgid ""
 "`Event.make` declares a typed event handle once; `Event.listen` "
 "subscribes and returns an `unlisten` function."
 msgstr ""
+"`Event.make` で型付きの event handle を 1 度宣言し、`Event.listen` で購読すると "
+"`unlisten` 関数が返されます。"
 
 #: ../../user/quickstart.md:67
 msgid "What's next?"
-msgstr ""
+msgstr "次のステップ"
 
 #: ../../user/quickstart.md:69
 msgid ""
 "[Configuration](configuration.md) — `rescript.json`, peerDeps, "
 "compatibility"
 msgstr ""
+"[設定](configuration.md) — `rescript.json` / peerDeps / 互換性"
 
 #: ../../user/quickstart.md:70
 msgid "[Changelog](changelog.md) — Release notes"
-msgstr ""
+msgstr "[変更履歴](changelog.md) — リリースノート"
 
 #: ../../user/quickstart.md:71
 msgid ""
@@ -104,6 +117,8 @@ msgid ""
 "tauri/blob/main/docs/functional-design.md) — Per-module API "
 "specifications (Japanese)"
 msgstr ""
+"[`docs/functional-design.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/functional-design.md) — モジュール別の API 仕様（日本語）"
 
 #: ../../user/quickstart.md:72
 msgid ""
@@ -112,4 +127,6 @@ msgid ""
 "`Command.fromSchemas` helper, planned for `@rescript-tauri/schema` (Phase"
 " 2)"
 msgstr ""
-
+"[Layer 3 (Schema 統合)](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) — "
+"`Command.fromSchemas` ヘルパ、`@rescript-tauri/schema` で提供予定（Phase 2）"

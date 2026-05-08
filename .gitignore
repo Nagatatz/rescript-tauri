@@ -22,6 +22,9 @@ lib/
 # Sphinx build outputs
 sphinx-docs/_build/
 
+# gettext compiled message catalogs (generated from .po by make build-ja)
+sphinx-docs/locale/**/*.mo
+
 # Editors
 .vscode/
 .idea/

@@ -1,17 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
+# Japanese translations for rescript-tauri docs.
 # Copyright (C) 2026, Nagatatz and rescript-tauri contributors
 # This file is distributed under the same license as the rescript-tauri
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-08 12:58+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-05-08 13:00+0900\n"
+"Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
 "Language-Team: ja <LL@li.org>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -22,7 +20,7 @@ msgstr ""
 
 #: ../../user/installation.md:1
 msgid "Installation"
-msgstr ""
+msgstr "インストール"
 
 #: ../../user/installation.md:4
 msgid ""
@@ -33,70 +31,76 @@ msgid ""
 "/product-requirements.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/docs/product-requirements.md) for the design intent."
 msgstr ""
+"npm にはまだ公開されていません。以下のコマンドは Phase 1 リリース後の"
+"インストール手順を示すものです。設計意図は "
+"[RFC-0001](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) および [`docs"
+"/product-requirements.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/product-requirements.md) を参照してください。"
 
 #: ../../user/installation.md:7
 msgid "Requirements"
-msgstr ""
+msgstr "要件"
 
 #: ../../user/installation.md:3
 msgid "Component"
-msgstr ""
+msgstr "コンポーネント"
 
 #: ../../user/installation.md:3
 msgid "Supported range"
-msgstr ""
+msgstr "サポート範囲"
 
 #: ../../user/installation.md:3
 msgid "Tauri"
-msgstr ""
+msgstr "Tauri"
 
 #: ../../user/installation.md:3
 msgid "2.x (matches the `@tauri-apps/api` peerDep range)"
-msgstr ""
+msgstr "2.x（`@tauri-apps/api` の peerDep 範囲に一致）"
 
 #: ../../user/installation.md:3
 msgid "ReScript"
-msgstr ""
+msgstr "ReScript"
 
 #: ../../user/installation.md:3
 msgid ">= 12.0.0 (uncurried-by-default)"
-msgstr ""
+msgstr ">= 12.0.0（uncurried-by-default）"
 
 #: ../../user/installation.md:3
 msgid "`@rescript/core`"
-msgstr ""
+msgstr "`@rescript/core`"
 
 #: ../../user/installation.md:3
 msgid ">= 1.6.0"
-msgstr ""
+msgstr ">= 1.6.0"
 
 #: ../../user/installation.md:3
 msgid "Node.js"
-msgstr ""
+msgstr "Node.js"
 
 #: ../../user/installation.md:3
 msgid "Active LTS"
-msgstr ""
+msgstr "Active LTS"
 
 #: ../../user/installation.md:3
 msgid "pnpm"
-msgstr ""
+msgstr "pnpm"
 
 #: ../../user/installation.md:3
 msgid ">= 9"
-msgstr ""
+msgstr ">= 9"
 
 #: ../../user/installation.md:3
 msgid "OS"
-msgstr ""
+msgstr "OS"
 
 #: ../../user/installation.md:3
 msgid "Linux / macOS / Windows (Tauri 2.x desktop targets)"
-msgstr ""
+msgstr "Linux / macOS / Windows（Tauri 2.x デスクトップ対象）"
 
 #: ../../user/installation.md:18
 msgid "Install (planned, post Phase 1 release)"
-msgstr ""
+msgstr "インストール（Phase 1 リリース後の予定）"
 
 #: ../../user/installation.md:24
 msgid ""
@@ -104,18 +108,21 @@ msgid ""
 "so the two are versioned independently and you control the upstream Tauri"
 " version."
 msgstr ""
+"`@rescript-tauri/core` は `@tauri-apps/api` を `peerDependency` として宣言"
+"しているため、両者は独立してバージョン管理され、上流 Tauri のバージョンは"
+"利用者側で制御できます。"
 
 #: ../../user/installation.md:26
 msgid "Then add `@rescript-tauri/core` to `dependencies` in your `rescript.json`:"
-msgstr ""
+msgstr "次に `rescript.json` の `dependencies` に `@rescript-tauri/core` を追加します:"
 
 #: ../../user/installation.md:36
 msgid "Verify"
-msgstr ""
+msgstr "動作確認"
 
 #: ../../user/installation.md:38
 msgid "After Phase 1 ships, a minimal verification looks like:"
-msgstr ""
+msgstr "Phase 1 リリース後、最小の動作確認は次のようになります:"
 
 #: ../../user/installation.md:44
 #, python-brace-format
@@ -123,10 +130,12 @@ msgid ""
 "Combined with a Rust-side `#[tauri::command] fn ping() {}`, this round-"
 "trip confirms the bridge works."
 msgstr ""
+"Rust 側の `#[tauri::command] fn ping() {}` と組み合わせれば、この往復で"
+"ブリッジが機能することを確認できます。"
 
 #: ../../user/installation.md:46
 msgid "Troubleshooting"
-msgstr ""
+msgstr "トラブルシューティング"
 
 #: ../../user/installation.md:48
 msgid ""
@@ -135,4 +144,7 @@ msgid ""
 "[github.com/Nagatatz/rescript-tauri/issues](https://github.com/Nagatatz"
 "/rescript-tauri/issues)."
 msgstr ""
-
+"詳細なトラブルシューティングは、Phase 1 実装によって典型的な落とし穴が"
+"明らかになるにつれて追加します。早期のフィードバックは "
+"[github.com/Nagatatz/rescript-tauri/issues](https://github.com/Nagatatz"
+"/rescript-tauri/issues) に Issue を起票してください。"

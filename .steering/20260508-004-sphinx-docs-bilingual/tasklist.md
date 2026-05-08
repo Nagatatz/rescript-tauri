@@ -36,9 +36,9 @@
 
 ### 2.4 日本語翻訳
 
-- [ ] **commit 6**: `locale/ja/LC_MESSAGES/{index,user/*}.po` の msgid を翻訳 → コミット `🌐 Translate user/* .po files into Japanese`
+- [x] **commit 6**: `locale/ja/LC_MESSAGES/{index,user/*}.po` の msgid を翻訳 → コミット `🌐 Translate user/* .po files into Japanese`
 - [ ] **commit 7**: `locale/ja/LC_MESSAGES/dev/*.po` の msgid を翻訳 → コミット `🌐 Translate dev/* .po files into Japanese`
-- [ ] 検証: 各コミット後に `make build-ja` で `_build/html_ja/` が生成
+- [x] 検証: commit 6 後に `make build-ja` 実行 → `_build/html_ja/` 生成成功 (12 sources, 5 warnings, 617 lines llms-full.txt)。dev/* 翻訳後にも再実行する
 
 ## Phase 3: 統合検証
 

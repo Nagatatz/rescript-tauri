@@ -1,17 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
+# Japanese translations for rescript-tauri docs.
 # Copyright (C) 2026, Nagatatz and rescript-tauri contributors
 # This file is distributed under the same license as the rescript-tauri
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-08 12:58+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-05-08 13:00+0900\n"
+"Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
 "Language-Team: ja <LL@li.org>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -22,7 +20,7 @@ msgstr ""
 
 #: ../../user/changelog.md:1
 msgid "Changelog"
-msgstr ""
+msgstr "変更履歴"
 
 #: ../../user/changelog.md:4
 msgid ""
@@ -32,25 +30,29 @@ msgid ""
 "documents under [`.steering/`](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/.steering) on the GitHub repository."
 msgstr ""
+"本プロジェクトは Phase 1 — 設計フェーズです。`@rescript-tauri/core` の最初の"
+"公開バージョンは、Phase 1 リリース時にこの変更履歴に登録されます。それまでは"
+"GitHub リポジトリの [`.steering/`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/.steering) 配下のステアリングドキュメントを通じて設計と"
+"ドキュメントが進化します。"
 
 #: ../../user/changelog.md:7
 msgid "Unreleased"
-msgstr ""
+msgstr "Unreleased"
 
 #: ../../user/changelog.md:9
 msgid "Added"
-msgstr ""
+msgstr "Added"
 
 #: ../../user/changelog.md:11 ../../user/changelog.md:15
 #: ../../user/changelog.md:19
 msgid "(none yet)"
-msgstr ""
+msgstr "（まだありません）"
 
 #: ../../user/changelog.md:13
 msgid "Changed"
-msgstr ""
+msgstr "Changed"
 
 #: ../../user/changelog.md:17
 msgid "Fixed"
-msgstr ""
-
+msgstr "Fixed"

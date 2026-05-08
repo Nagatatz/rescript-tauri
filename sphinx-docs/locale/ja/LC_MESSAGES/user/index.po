@@ -1,17 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
+# Japanese translations for rescript-tauri docs.
 # Copyright (C) 2026, Nagatatz and rescript-tauri contributors
 # This file is distributed under the same license as the rescript-tauri
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-08 12:58+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-05-08 13:00+0900\n"
+"Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
 "Language-Team: ja <LL@li.org>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -22,39 +20,41 @@ msgstr ""
 
 #: ../../user/index.md:1
 msgid "User Guide"
-msgstr ""
+msgstr "ユーザーガイド"
 
 #: ../../user/index.md:3
 msgid "Everything you need to start writing Tauri 2.x desktop apps with ReScript."
-msgstr ""
+msgstr "ReScript で Tauri 2.x デスクトップアプリを書き始めるために必要な情報を集めています。"
 
 #: ../../user/index.md:5
 msgid "Getting Started"
-msgstr ""
+msgstr "はじめに"
 
 #: ../../user/index.md:7
 msgid ""
 "[Installation](installation.md) — Add `@rescript-tauri/core` to a Tauri "
 "project"
 msgstr ""
+"[インストール](installation.md) — Tauri プロジェクトに `@rescript-tauri/core` を追加します"
 
 #: ../../user/index.md:8
 msgid ""
 "[Quick Start](quickstart.md) — Try the 3-layer IPC API in a minimal "
 "example"
 msgstr ""
+"[クイックスタート](quickstart.md) — 最小例で 3 層 IPC API を試します"
 
 #: ../../user/index.md:10
 msgid "Reference"
-msgstr ""
+msgstr "リファレンス"
 
 #: ../../user/index.md:12
 msgid ""
 "[Configuration](configuration.md) — `rescript.json`, `peerDependencies`, "
 "compatibility matrix"
 msgstr ""
+"[設定](configuration.md) — `rescript.json` / `peerDependencies` / 互換マトリクス"
 
 #: ../../user/index.md:13
 msgid "[Changelog](changelog.md) — Release notes"
-msgstr ""
-
+msgstr "[変更履歴](changelog.md) — リリースノート"
