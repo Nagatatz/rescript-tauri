@@ -7,19 +7,13 @@ let _check_get_all: unit => array<Window.t> = Window.getAll
 let _check_get_by_label: string => promise<Nullable.t<Window.t>> = Window.getByLabel
 let _check_get_focused_window: unit => promise<Nullable.t<Window.t>> = Window.getFocusedWindow
 
-let _check_current_monitor: unit => promise<
-  Nullable.t<Window.monitor<'size, 'position>>,
-> = Window.currentMonitor
-let _check_primary_monitor: unit => promise<
-  Nullable.t<Window.monitor<'size, 'position>>,
-> = Window.primaryMonitor
+let _check_current_monitor: unit => promise<Nullable.t<Window.monitor>> = Window.currentMonitor
+let _check_primary_monitor: unit => promise<Nullable.t<Window.monitor>> = Window.primaryMonitor
 let _check_monitor_from_point: (float, float) => promise<
-  Nullable.t<Window.monitor<'size, 'position>>,
+  Nullable.t<Window.monitor>,
 > = Window.monitorFromPoint
-let _check_available_monitors: unit => promise<
-  array<Window.monitor<'size, 'position>>,
-> = Window.availableMonitors
-let _check_cursor_position: unit => promise<'position> = Window.cursorPosition
+let _check_available_monitors: unit => promise<array<Window.monitor>> = Window.availableMonitors
+let _check_cursor_position: unit => promise<Dpi.PhysicalPosition.t> = Window.cursorPosition
 
 let _check_label: Window.t => string = Window.label
 let _check_set_title: (Window.t, string) => promise<unit> = Window.setTitle
@@ -44,14 +38,14 @@ let _check_is_always_on_top: Window.t => promise<bool> = Window.isAlwaysOnTop
 let _check_is_enabled: Window.t => promise<bool> = Window.isEnabled
 let _check_set_focus: Window.t => promise<unit> = Window.setFocus
 let _check_is_focused: Window.t => promise<bool> = Window.isFocused
-let _check_set_size: (Window.t, 'size) => promise<unit> = Window.setSize
-let _check_set_min_size: (Window.t, Nullable.t<'size>) => promise<unit> = Window.setMinSize
-let _check_set_max_size: (Window.t, Nullable.t<'size>) => promise<unit> = Window.setMaxSize
+let _check_set_size: (Window.t, Dpi.Size.t) => promise<unit> = Window.setSize
+let _check_set_min_size: (Window.t, Nullable.t<Dpi.Size.t>) => promise<unit> = Window.setMinSize
+let _check_set_max_size: (Window.t, Nullable.t<Dpi.Size.t>) => promise<unit> = Window.setMaxSize
 let _check_set_size_constraints: (
   Window.t,
   Nullable.t<Window.windowSizeConstraints>,
 ) => promise<unit> = Window.setSizeConstraints
-let _check_set_position: (Window.t, 'position) => promise<unit> = Window.setPosition
+let _check_set_position: (Window.t, Dpi.Position.t) => promise<unit> = Window.setPosition
 let _check_center: Window.t => promise<unit> = Window.center
 let _check_set_fullscreen: (Window.t, bool) => promise<unit> = Window.setFullscreen
 let _check_set_resizable: (Window.t, bool) => promise<unit> = Window.setResizable
@@ -73,7 +67,7 @@ let _check_set_ignore_cursor_events: (Window.t, bool) => promise<unit> = Window.
 let _check_set_cursor_icon: (Window.t, Window.cursorIcon) => promise<unit> = Window.setCursorIcon
 let _check_set_cursor_visible: (Window.t, bool) => promise<unit> = Window.setCursorVisible
 let _check_set_cursor_grab: (Window.t, bool) => promise<unit> = Window.setCursorGrab
-let _check_set_cursor_position: (Window.t, 'position) => promise<unit> = Window.setCursorPosition
+let _check_set_cursor_position: (Window.t, Dpi.Position.t) => promise<unit> = Window.setCursorPosition
 let _check_start_dragging: Window.t => promise<unit> = Window.startDragging
 let _check_start_resize_dragging: (Window.t, Window.resizeDirection) => promise<
   unit,
@@ -92,13 +86,17 @@ let _check_set_title_bar_style: (Window.t, Window.titleBarStyle) => promise<unit
 let _check_set_theme: (Window.t, Nullable.t<Window.theme>) => promise<unit> = Window.setTheme
 let _check_theme: Window.t => promise<Nullable.t<Window.theme>> = Window.theme
 let _check_scale_factor: Window.t => promise<float> = Window.scaleFactor
-let _check_inner_size: Window.t => promise<'size> = Window.innerSize
-let _check_outer_size: Window.t => promise<'size> = Window.outerSize
-let _check_inner_position: Window.t => promise<'position> = Window.innerPosition
-let _check_outer_position: Window.t => promise<'position> = Window.outerPosition
+let _check_inner_size: Window.t => promise<Dpi.PhysicalSize.t> = Window.innerSize
+let _check_outer_size: Window.t => promise<Dpi.PhysicalSize.t> = Window.outerSize
+let _check_inner_position: Window.t => promise<Dpi.PhysicalPosition.t> = Window.innerPosition
+let _check_outer_position: Window.t => promise<Dpi.PhysicalPosition.t> = Window.outerPosition
 
-let _check_on_resized: (Window.t, 'size => unit) => promise<Window.unlisten> = Window.onResized
-let _check_on_moved: (Window.t, 'position => unit) => promise<Window.unlisten> = Window.onMoved
+let _check_on_resized: (Window.t, Dpi.PhysicalSize.t => unit) => promise<
+  Window.unlisten,
+> = Window.onResized
+let _check_on_moved: (Window.t, Dpi.PhysicalPosition.t => unit) => promise<
+  Window.unlisten,
+> = Window.onMoved
 let _check_on_close_requested: (
   Window.t,
   Window.closeRequestedEvent => unit,
@@ -106,7 +104,7 @@ let _check_on_close_requested: (
 let _check_on_focus_changed: (Window.t, bool => unit) => promise<Window.unlisten> = Window.onFocusChanged
 let _check_on_scale_changed: (
   Window.t,
-  Window.scaleFactorChanged<'size> => unit,
+  Window.scaleFactorChanged => unit,
 ) => promise<Window.unlisten> = Window.onScaleChanged
 let _check_on_theme_changed: (Window.t, Window.theme => unit) => promise<
   Window.unlisten,

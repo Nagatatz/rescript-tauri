@@ -130,14 +130,14 @@ type closeRequestedEvent = {
   isPreventDefault: unit => bool,
 }
 
-/** Payload of the `onScaleChanged` event. `size` is a `PhysicalSize`
-    record but is exposed as polymorphic until the `Dpi` module ships.
+/** Payload of the `onScaleChanged` event. `size` is the window's new
+    physical size after the scale change.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#scalefactorchanged
 */
-type scaleFactorChanged<'size> = {
+type scaleFactorChanged = {
   scaleFactor: float,
-  size: 'size,
+  size: Dpi.PhysicalSize.t,
 }
 
 /** RGBA color used by `setBackgroundColor` / `effects.color`.
@@ -198,15 +198,15 @@ type effects = {
 }
 
 /** Monitor descriptor returned by `currentMonitor` / `primaryMonitor`
-    / `availableMonitors`. `size` and `position` are polymorphic until
-    the `Dpi` module lands.
+    / `availableMonitors`. `size` and `position` are reported in
+    physical (DPI-independent) pixels.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#monitor
 */
-type monitor<'size, 'position> = {
+type monitor = {
   name: Nullable.t<string>,
-  size: 'size,
-  position: 'position,
+  size: Dpi.PhysicalSize.t,
+  position: Dpi.PhysicalPosition.t,
   scaleFactor: float,
 }
 
@@ -277,32 +277,31 @@ let getFocusedWindow: unit => promise<Nullable.t<t>>
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#currentmonitor
 */
-let currentMonitor: unit => promise<Nullable.t<monitor<'size, 'position>>>
+let currentMonitor: unit => promise<Nullable.t<monitor>>
 
 /** Returns the primary OS monitor.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#primarymonitor
 */
-let primaryMonitor: unit => promise<Nullable.t<monitor<'size, 'position>>>
+let primaryMonitor: unit => promise<Nullable.t<monitor>>
 
 /** Returns the monitor that contains the given physical point.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#monitorfrompoint
 */
-let monitorFromPoint: (float, float) => promise<Nullable.t<monitor<'size, 'position>>>
+let monitorFromPoint: (float, float) => promise<Nullable.t<monitor>>
 
 /** Returns every monitor available to the OS.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#availablemonitors
 */
-let availableMonitors: unit => promise<array<monitor<'size, 'position>>>
+let availableMonitors: unit => promise<array<monitor>>
 
-/** Returns the cursor position in physical coordinates. Polymorphic
-    return type until the `Dpi` module lands.
+/** Returns the cursor position in physical pixels.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#cursorposition
 */
-let cursorPosition: unit => promise<'position>
+let cursorPosition: unit => promise<Dpi.PhysicalPosition.t>
 
 /** The window's label.
 
@@ -443,26 +442,26 @@ let setFocus: t => promise<unit>
 */
 let isFocused: t => promise<bool>
 
-/** Sets the window size. Pass a `LogicalSize` / `PhysicalSize` value
-    as documented by Tauri. Polymorphic until the `Dpi` module lands.
+/** Sets the window size. Wrap a `LogicalSize` or `PhysicalSize` with
+    `Dpi.Size.fromLogical` / `Dpi.Size.fromPhysical`.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#setsize
 */
-let setSize: (t, 'size) => promise<unit>
+let setSize: (t, Dpi.Size.t) => promise<unit>
 
 /** Sets the window's minimum size, or clears it when given
-    `Nullable.null`. Polymorphic until the `Dpi` module lands.
+    `Nullable.null`.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#setminsize
 */
-let setMinSize: (t, Nullable.t<'size>) => promise<unit>
+let setMinSize: (t, Nullable.t<Dpi.Size.t>) => promise<unit>
 
 /** Sets the window's maximum size, or clears it when given
-    `Nullable.null`. Polymorphic until the `Dpi` module lands.
+    `Nullable.null`.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#setmaxsize
 */
-let setMaxSize: (t, Nullable.t<'size>) => promise<unit>
+let setMaxSize: (t, Nullable.t<Dpi.Size.t>) => promise<unit>
 
 /** Sets the window's resize constraints, or clears them when given
     `Nullable.null`.
@@ -471,11 +470,13 @@ let setMaxSize: (t, Nullable.t<'size>) => promise<unit>
 */
 let setSizeConstraints: (t, Nullable.t<windowSizeConstraints>) => promise<unit>
 
-/** Sets the window position. Polymorphic until the `Dpi` module lands.
+/** Sets the window position. Wrap a `LogicalPosition` or
+    `PhysicalPosition` with `Dpi.Position.fromLogical` /
+    `Dpi.Position.fromPhysical`.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#setposition
 */
-let setPosition: (t, 'position) => promise<unit>
+let setPosition: (t, Dpi.Position.t) => promise<unit>
 
 /** Centers the window on the current monitor.
 
@@ -607,12 +608,12 @@ let setCursorVisible: (t, bool) => promise<unit>
 */
 let setCursorGrab: (t, bool) => promise<unit>
 
-/** Sets the cursor position. Polymorphic until the `Dpi` module
-    lands.
+/** Sets the cursor position. Wrap with `Dpi.Position.fromLogical` /
+    `Dpi.Position.fromPhysical`.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#setcursorposition
 */
-let setCursorPosition: (t, 'position) => promise<unit>
+let setCursorPosition: (t, Dpi.Position.t) => promise<unit>
 
 /** Begins a window drag operation. Call from a mousedown handler.
 
@@ -692,45 +693,41 @@ let theme: t => promise<Nullable.t<theme>>
 let scaleFactor: t => promise<float>
 
 /** Returns the size of the client area in physical pixels.
-    Polymorphic until the `Dpi` module lands.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#innersize
 */
-let innerSize: t => promise<'size>
+let innerSize: t => promise<Dpi.PhysicalSize.t>
 
 /** Returns the size including decorations in physical pixels.
-    Polymorphic until the `Dpi` module lands.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#outersize
 */
-let outerSize: t => promise<'size>
+let outerSize: t => promise<Dpi.PhysicalSize.t>
 
 /** Returns the position of the client area in physical pixels.
-    Polymorphic until the `Dpi` module lands.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#innerposition
 */
-let innerPosition: t => promise<'position>
+let innerPosition: t => promise<Dpi.PhysicalPosition.t>
 
 /** Returns the position including decorations in physical pixels.
-    Polymorphic until the `Dpi` module lands.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#outerposition
 */
-let outerPosition: t => promise<'position>
+let outerPosition: t => promise<Dpi.PhysicalPosition.t>
 
 /** Subscribes to `tauri://resize`. Returns an `unlisten` function
     that detaches the handler.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#onresized
 */
-let onResized: (t, 'size => unit) => promise<unlisten>
+let onResized: (t, Dpi.PhysicalSize.t => unit) => promise<unlisten>
 
 /** Subscribes to `tauri://move`.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#onmoved
 */
-let onMoved: (t, 'position => unit) => promise<unlisten>
+let onMoved: (t, Dpi.PhysicalPosition.t => unit) => promise<unlisten>
 
 /** Subscribes to `tauri://close-requested`. The handler can call
     `event.preventDefault()` to keep the window open.
@@ -750,7 +747,7 @@ let onFocusChanged: (t, bool => unit) => promise<unlisten>
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#onscalechanged
 */
-let onScaleChanged: (t, scaleFactorChanged<'size> => unit) => promise<unlisten>
+let onScaleChanged: (t, scaleFactorChanged => unit) => promise<unlisten>
 
 /** Subscribes to `tauri://theme-changed`.
 
