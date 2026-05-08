@@ -17,3 +17,6 @@ let _check_invoke_signature: (
 let _check_invoke_options_type: Core.Raw.invokeOptions = {
   headers: ?None,
 }
+
+let _check_convert_signature: (string, ~protocol: string=?) => string =
+  Core.Raw.convertFileSrc
