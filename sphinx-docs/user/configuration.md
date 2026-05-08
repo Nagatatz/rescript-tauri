@@ -48,7 +48,24 @@ open Tauri
 let result = await Core.Raw.invoke("greet", ~args={"name": "World"})
 ```
 
-The exact re-export set is finalized in `docs/functional-design.md` §2.13 and listed in PRD §10 row 1 ("Tauri.res の re-export 範囲", confirmed pre-Phase-1-release).
+The Phase 1 re-export set (confirmed 2026-05-09 — PRD §10 row 1):
+
+| In `Tauri` | Reach via `open Tauri` |
+|---|---|
+| `Core` | `Core.Raw.invoke`, `Core.Command.make`, `Core.Channel`, `Core.convertFileSrc` |
+| `Event` | `Event.make`, `Event.listen`, `Event.once`, `Event.emit`, `Event.emitTo` |
+| `Window` | `Window.t` + ~80 instance / static methods |
+| `Webview` | `Webview.t` + 14 instance methods + drag-drop variant |
+| `WebviewWindow` | `WebviewWindow.asWindow` / `asWebview` casts + frequently-used methods |
+
+| Not in `Tauri` (use explicitly) | Why |
+|---|---|
+| `Path` | Utility namespace; 31 helpers would shadow user names |
+| `App` | Process metadata; explicit `App.getName()` is clearer |
+| `Dpi` | Sized opaque types; explicit `Dpi.LogicalSize.make` reads better |
+| `Image` | Opaque resource handle; explicit lifecycle |
+| `Menu` / `Tray` | Heavy with sub-modules (`Menu.MenuItem`, `Menu.Submenu`, ...) |
+| `Mocks` | Test-only |
 
 ## Plugin packages (Phase 2+)
 
