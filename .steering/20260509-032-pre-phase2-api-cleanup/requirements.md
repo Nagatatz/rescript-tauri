@@ -2,7 +2,7 @@
 
 | 項目 | 内容 |
 |---|---|
-| 作業 ID | 20260509-031-pre-phase2-api-cleanup |
+| 作業 ID | 20260509-032-pre-phase2-api-cleanup |
 | 開始日 | 2026-05-09 |
 | 状態 | 進行中 |
 | 関連 | `.steering/20260509-027-core-refactoring/`、`.steering/20260509-030-phase2-planning/` |
