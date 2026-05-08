@@ -59,6 +59,7 @@ rescript-tauri/                          # monorepo root
 ├── README.md
 ├── pnpm-workspace.yaml
 ├── package.json
+├── biome.json                          # Biome (手書き JS / JSON の format + lint)
 ├── .mcp.json.template
 ├── .env.example
 └── .gitignore
@@ -314,6 +315,7 @@ CI ジョブ定義の詳細は `docs/functional-design.md` §6 を参照。
 | `README.md` | プロジェクト全体の overview / インストール / 互換マトリクス |
 | `pnpm-workspace.yaml` | `packages/*`, `examples/*` を workspace として宣言 |
 | `package.json` | ルート package（`devDependencies`、共通スクリプト） |
+| `biome.json` | 手書き JS / JSON の format + lint 設定（ReScript 生成物 `*.res.mjs` / `lib/` は除外） |
 | `.mcp.json.template` | MCP サーバー設定テンプレート（実体 `.mcp.json` は `.gitignore`） |
 | `.env.example` | 環境変数テンプレート |
 | `.gitignore` | `node_modules/`, `.mcp.json`, `CLAUDE.local.md`, `.steering/archive/.*` 等 |

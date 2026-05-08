@@ -118,7 +118,13 @@ pnpm --recursive test
 
 # Incremental build of the core package only
 pnpm --filter @rescript-tauri/core build
+
+# Format + lint hand-written JS / JSON (Biome)
+pnpm run check        # verify (CI gate)
+pnpm run check:fix    # auto-fix locally
 ```
+
+`.res` / `.resi` files are formatted by `rescript format` (run via `pnpm --recursive build` toolchain). Hand-written `.mjs` and JSON files are formatted and linted by [Biome](https://biomejs.dev/); ReScript-generated `*.res.mjs` and `lib/` outputs are excluded from Biome.
 
 For contributor-facing details (development flow, local setup, the new-module recipe, coding patterns, PR review angles), see [`docs/development-guidelines.md`](./docs/development-guidelines.md) (Japanese, internal-facing).
 
