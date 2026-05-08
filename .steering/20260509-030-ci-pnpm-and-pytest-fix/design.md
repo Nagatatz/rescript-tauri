@@ -2,7 +2,7 @@
 
 | 項目 | 内容 |
 |---|---|
-| 作業 ID | 20260509-029-ci-pnpm-and-pytest-fix |
+| 作業 ID | 20260509-030-ci-pnpm-and-pytest-fix |
 | 関連 | [requirements.md](./requirements.md) |
 
 ## 1. 問題 1: pnpm/action-setup の version 重複

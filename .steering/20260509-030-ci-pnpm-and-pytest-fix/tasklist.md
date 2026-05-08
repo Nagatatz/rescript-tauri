@@ -2,7 +2,7 @@
 
 | 項目 | 内容 |
 |---|---|
-| 作業 ID | 20260509-029-ci-pnpm-and-pytest-fix |
+| 作業 ID | 20260509-030-ci-pnpm-and-pytest-fix |
 | 関連 | [requirements.md](./requirements.md), [design.md](./design.md) |
 
 ## タスク
@@ -12,6 +12,7 @@
 - [x] design.md 作成
 - [x] tasklist.md 作成
 - [x] worktree 作成（`worktree-ci-pnpm-and-pytest-fix`）
+- [x] 番号衝突を解消（029 → 030 にリナンバー）
 
 ### Phase 2: 実装
 
