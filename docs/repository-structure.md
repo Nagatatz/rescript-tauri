@@ -133,6 +133,23 @@ packages/plugin-fs/                      # 着手済み (steering 032, 2026-05-0
 
 `FileHandle` クラス・`watch` 系・`readTextFileLines` 等の複雑 API は plugin-fs 後続 sub-steering に分離（steering 032 §Non-goals）。
 
+```
+packages/plugin-dialog/                  # 着手済み (steering 035, 2026-05-09)
+├── src/
+│   └── PluginDialog.res / .resi         # open / save / message / ask / confirm + 関連型
+├── tests/
+│   ├── plugin_dialog_signature.res      # 型レベル網羅
+│   └── runtime/plugin_dialog.test.mjs   # vitest + Mocks 経由
+├── rescript.json
+├── package.json                         # @rescript-tauri/plugin-dialog
+├── vitest.config.mjs
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-dialog ^2.7.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+upstream `open(options)` の TypeScript 条件型戻り値を 4 関数（`openFile` / `openFiles` / `openDirectory` / `openDirectories`）に分割して静的化（steering 035 §3.1）。`MessageDialogButtonsYesNoCustom` 等のカスタム文言・examples・専用 CI は plugin-dialog 後続 sub-steering に分離。
+
 ### 2.3 `packages/schema/`
 
 Phase 2 着手済み (steering 031, 2026-05-09)。`rescript-schema` 向けの Layer 3 IPC ヘルパを提供する独立パッケージ:
