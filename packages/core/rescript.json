@@ -1,6 +1,5 @@
 {
   "name": "@rescript-tauri/core",
-  "version": "0.0.0",
   "namespace": true,
   "package-specs": [
     {
@@ -20,10 +19,10 @@
       "subdirs": true
     }
   ],
-  "bs-dev-dependencies": [
+  "dev-dependencies": [
     "@rescript/core"
   ],
-  "bs-dependencies": [
+  "dependencies": [
     "@rescript/core"
   ],
   "jsx": {

@@ -18,6 +18,9 @@ CLAUDE.local.md
 
 # ReScript build artifacts
 lib/
+# In-source compiled output: kept in npm publish (via package.json `files`)
+# but ignored in git so working tree stays clean.
+**/*.res.mjs
 
 # Sphinx build outputs
 sphinx-docs/_build/

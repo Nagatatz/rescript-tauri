@@ -30,8 +30,8 @@
 
 ### 2.3 Core.Raw.invoke 実装
 
-- [ ] **commit 4**: `packages/core/src/Core.res` + `packages/core/src/Core.resi`（design §2.5 / §2.6）→ コミット `✨ Implement Core.Raw.invoke binding`
-- [ ] 検証: `pnpm --filter @rescript-tauri/core build` 成功、`packages/core/src/Core.res.mjs` 生成
+- [x] **commit 4**: `packages/core/src/Core.res` + `packages/core/src/Core.resi`（design §2.5 / §2.6）+ `rescript.json` の ReScript 12 deprecation 警告 3 件解消（`bs-dependencies` → `dependencies`、`bs-dev-dependencies` → `dev-dependencies`、`version` フィールド削除）→ コミット `✨ Implement Core.Raw.invoke binding (+ adopt ReScript 12 rescript.json schema)`
+- [x] 検証: clean rebuild で警告ゼロ + `Compiled 58 modules` + `packages/core/src/Core.res.mjs` 生成（458B）
 
 ### 2.4 型レベルテスト
 
