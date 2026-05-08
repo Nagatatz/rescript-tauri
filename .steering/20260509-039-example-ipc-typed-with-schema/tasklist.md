@@ -62,29 +62,29 @@
 
 ## Phase 4: コミット
 
-- [ ] commit 1: `✨ Add examples/ipc-typed-with-schema`
+- [x] commit 1: `✨ Add examples/ipc-typed-with-schema`
   - 含む: `examples/ipc-typed-with-schema/**` 全ファイル + ステアリング 3 種 + pnpm-lock 更新
-- [ ] commit 2: `📝 Register ipc-typed-with-schema in repository-structure`
+- [x] commit 2: `📝 Register ipc-typed-with-schema in repository-structure`
   - 含む: `docs/repository-structure.md` 更新
-- [ ] commit 3 (最終): `📝 Mark steering 039 tasks complete pre-merge`
+- [x] commit 3 (最終): `📝 Mark steering 039 tasks complete pre-merge`
 
 ## Phase 5: マージ
 
-- [ ] `AskUserQuestion` で main マージ可否確認
-- [ ] 承認後:
-  - [ ] CWD を main リポジトリに移動 (ExitWorktree keep)
-  - [ ] 並行セッション WIP の取り扱い (stash / 切替)
-  - [ ] `git merge worktree-example-ipc-typed-with-schema --no-ff -m "..."`
-  - [ ] `git worktree remove .claude/worktrees/example-ipc-typed-with-schema`
-  - [ ] `git branch -d worktree-example-ipc-typed-with-schema`
+- [x] `AskUserQuestion` で main マージ可否確認
+- [x] 承認後:
+  - [x] CWD を main リポジトリに移動 (ExitWorktree keep)
+  - [x] 並行セッション WIP の取り扱い (stash / 切替)
+  - [x] `git merge worktree-example-ipc-typed-with-schema --no-ff -m "..."`
+  - [x] `git worktree remove .claude/worktrees/example-ipc-typed-with-schema`
+  - [x] `git branch -d worktree-example-ipc-typed-with-schema`
 
 ## Phase 6: 検証
 
-- [ ] `git worktree list` から example-ipc-typed-with-schema が消える
-- [ ] `git branch --list 'worktree-example-ipc-typed-with-schema'` 空
+- [x] `git worktree list` から example-ipc-typed-with-schema が消える
+- [x] `git branch --list 'worktree-example-ipc-typed-with-schema'` 空
 
 ## Phase 7: 親プラン更新
 
-- [ ] `.steering/20260509-030-phase2-planning/tasklist.md` の §D
+- [x] `.steering/20260509-030-phase2-planning/tasklist.md` の §D
       schema 実装セクションの `examples/ipc-typed-with-schema/ 追加`
       を `[x]` に更新
