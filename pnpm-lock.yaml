@@ -17,6 +17,9 @@ importers:
       '@rescript/core':
         specifier: ^1.6.0
         version: 1.6.1(rescript@12.2.0)
+      '@rescript/runtime':
+        specifier: ^12.2.0
+        version: 12.2.0
       '@tauri-apps/api':
         specifier: ^2.11.0
         version: 2.11.0

@@ -40,8 +40,8 @@
 
 ### 2.5 ランタイムテスト（vitest）
 
-- [ ] **commit 6**: `packages/core/tests/runtime/core_raw.test.mjs`（design §2.8）→ コミット `✅ Add vitest runtime test for Core.Raw.invoke`
-- [ ] 検証: `pnpm --filter @rescript-tauri/core test` で vitest 2 ケース pass
+- [x] **commit 6**: `packages/core/tests/runtime/core_raw.test.mjs`（design §2.8）+ `@rescript/runtime ^12.2.0` を `packages/core/devDependencies` に追加（pnpm strict hoisting で `Core.res.mjs` の `import "@rescript/runtime/lib/es6/Primitive_option.js"` が解決できなかったため）→ コミット `✅ Add vitest runtime test for Core.Raw.invoke (+ explicit @rescript/runtime devDep)`
+- [x] 検証: `pnpm --filter @rescript-tauri/core test` → `tests/runtime/core_raw.test.mjs (2 tests) 75ms` / `Test Files 1 passed (1) / Tests 2 passed (2)`
 
 ## Phase 3: 統合検証（worktree 内、コミット前）
 

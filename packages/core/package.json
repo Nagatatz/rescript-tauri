@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@rescript/core": "^1.6.0",
+    "@rescript/runtime": "^12.2.0",
     "@tauri-apps/api": "^2.11.0",
     "@types/node": "^22.0.0",
     "happy-dom": "^15.0.0",
