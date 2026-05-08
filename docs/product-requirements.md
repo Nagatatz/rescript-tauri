@@ -406,7 +406,7 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 
 | # | 論点 | 暫定方針 | 確定タイミング |
 |---|---|---|---|
-| 1 | `Tauri.res` の re-export 範囲 | コア・Event・Window のみ | Phase 1 リリース直前 |
+| 1 | `Tauri.res` の re-export 範囲 | **Core / Event / Window / Webview / WebviewWindow（確定）**（経緯: `.steering/20260509-023-tauri-reexport/`） | **確定済み（2026-05-09）** |
 | 2 | `Channel` を `Core` に同梱 vs 独立モジュール化 | `Core.Channel` サブモジュールとして実装 | Phase 1 設計レビュー |
 | 3 | `invokeExn` 命名（`invokeOrThrow` / `invokeUnsafe` 等） | `invokeExn`（`@rescript/core` 慣習） | Phase 1 直前確定 |
 | 4 | `Event.Predefined` の網羅範囲 | RFC 列挙の 7 種を Must、それ以外は段階追加 | Phase 1 リリース後継続 |
