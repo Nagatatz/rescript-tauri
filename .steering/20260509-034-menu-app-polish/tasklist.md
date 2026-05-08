@@ -18,20 +18,20 @@
 
 ### Step B — App.setTheme パラメータ名改善
 
-- [ ] `packages/core/src/App.res` で `~theme` → `~preferred` に rename
-- [ ] `packages/core/src/App.resi` で対応シグネチャ更新
-- [ ] `packages/core/tests/app_signature.res` でテスト追従
+- [x] `packages/core/src/App.res` で `~theme` → `~preferred` に rename
+- [x] `packages/core/src/App.resi` で対応シグネチャ更新
+- [x] `packages/core/tests/app_signature.res` でテスト追従
 
 ## Phase 3: 検証
 
-- [ ] `pnpm --recursive build` が成功する
-- [ ] `pnpm --recursive test` が成功する
-- [ ] `examples/` で `App.setTheme` を使う箇所がないか確認（あれば修正）
+- [x] `pnpm --recursive build` が成功する
+- [x] `pnpm --recursive test` が成功する
+- [x] `examples/` で `App.setTheme` を使う箇所がないか確認（あれば修正）
 
 ## Phase 4: コミット
 
-- [ ] Step A を 1 コミット: `♻️ Concretize Dpi.Position.t in Menu/Submenu popup`
-- [ ] Step B を 1 コミット: `♻️ Rename App.setTheme parameter to ~preferred`
+- [x] Step A を 1 コミット: `♻️ Concretize Dpi.Position.t in Menu/Submenu popup`
+- [x] Step B を 1 コミット: `♻️ Rename App.setTheme parameter to ~preferred`
 - [ ] tasklist.md 更新を最終コミット
 
 ## Phase 5: マージ

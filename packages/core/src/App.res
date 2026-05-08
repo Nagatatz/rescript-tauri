@@ -22,7 +22,7 @@ external hide: unit => promise<unit> = "hide"
 external defaultWindowIcon: unit => promise<Nullable.t<Image.t>> = "defaultWindowIcon"
 
 @module("@tauri-apps/api/app")
-external setTheme: (~theme: Nullable.t<theme>=?) => promise<unit> = "setTheme"
+external setTheme: (~preferred: Nullable.t<theme>=?) => promise<unit> = "setTheme"
 
 @module("@tauri-apps/api/app")
 external setDockVisibility: bool => promise<unit> = "setDockVisibility"
