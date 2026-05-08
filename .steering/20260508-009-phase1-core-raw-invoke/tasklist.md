@@ -1,0 +1,91 @@
+# タスクリスト: Phase 1 着手 — pnpm workspace + packages/core スケルトン + Core.Raw.invoke
+
+| 項目 | 内容 |
+|---|---|
+| 関連 | `requirements.md` / `design.md` |
+| 作成日 | 2026-05-08 |
+
+## Phase 0: 事前承認
+
+- [x] requirements.md レビュー・承認
+- [x] design.md レビュー・承認（特に §1 の派生決定 5 つ + §2 の各ファイル内容）
+- [x] tasklist.md レビュー・承認
+
+## Phase 1: ステアリング配置 + worktree 起動
+
+- [x] **commit 1 (main)**: ステアリング 3 ファイルを main に配置 → コミット `📝 Add steering for 20260508-009 (phase1-core-raw-invoke)`
+- [ ] `EnterWorktree` で `phase1-core-raw-invoke` worktree を作成
+
+## Phase 2: 実装（worktree 内、コミットは順次）
+
+### 2.1 ルートワークスペース
+
+- [ ] **commit 2**: `package.json` + `pnpm-workspace.yaml` + `.gitignore` 追記 + `pnpm install` で生成された `pnpm-lock.yaml` をまとめて → コミット `✨ Add pnpm workspace root for monorepo`
+- [ ] 検証: `pnpm install` がエラーなく完了
+
+### 2.2 packages/core スケルトン
+
+- [ ] **commit 3**: `packages/core/{package.json, rescript.json, README.md, vitest.config.mjs}` + `src/` `tests/` `tests/runtime/` の空ディレクトリ（`.gitkeep` 配置）+ 必要なら `pnpm-lock.yaml` 更新 → コミット `✨ Add packages/core scaffolding`
+- [ ] 検証: `pnpm install` 後 `pnpm --filter @rescript-tauri/core exec rescript --version` で 12.2.0 が返る
+
+### 2.3 Core.Raw.invoke 実装
+
+- [ ] **commit 4**: `packages/core/src/Core.res` + `packages/core/src/Core.resi`（design §2.5 / §2.6）→ コミット `✨ Implement Core.Raw.invoke binding`
+- [ ] 検証: `pnpm --filter @rescript-tauri/core build` 成功、`packages/core/src/Core.res.mjs` 生成
+
+### 2.4 型レベルテスト
+
+- [ ] **commit 5**: `packages/core/tests/core_raw_signature.res`（design §2.7、`tests/runtime/.gitkeep` も配置済みなら削除）→ コミット `✅ Add type-level signature test for Core.Raw`
+- [ ] 検証: `pnpm --filter @rescript-tauri/core build` で tests を含めた全モジュールがコンパイル成功
+
+### 2.5 ランタイムテスト（vitest）
+
+- [ ] **commit 6**: `packages/core/tests/runtime/core_raw.test.mjs`（design §2.8）→ コミット `✅ Add vitest runtime test for Core.Raw.invoke`
+- [ ] 検証: `pnpm --filter @rescript-tauri/core test` で vitest 2 ケース pass
+
+## Phase 3: 統合検証（worktree 内、コミット前）
+
+- [ ] `pnpm --recursive build` 全 workspace ビルド成功
+- [ ] `pnpm --recursive test` 全テスト pass
+- [ ] `grep` で `Core.Raw.invoke` の `.resi` doc comment に Tauri 公式 URL (`v2.tauri.app/`) が含まれることを確認（PRD §7 KPI / functional-design §6 doc-link-lint 準拠）
+- [ ] `node_modules/` / `lib/` / `pnpm-lock.yaml` 等の git status を確認し、`pnpm-lock.yaml` のみ追跡対象、他は ignore されていることを確認
+
+## Phase 4: マージ準備
+
+- [ ] **commit 7**: tasklist.md を全 `[x]` 化 + 適用結果（build / test 出力の要点）を本書末尾に記録 → コミット `📝 Mark steering 20260508-009 complete (verify build/test)`
+- [ ] `AskUserQuestion` で main へのマージ可否を確認
+
+## Phase 5: マージ・クリーンアップ
+
+`.claude/rules/steering-workflow.md` の「worktree マージ・クリーンアップ手順」に従う:
+
+- [ ] CWD をメインリポジトリに移動
+- [ ] worktree のブランチを `--no-ff` で main にマージ
+- [ ] worktree 削除 (`git worktree remove`)
+- [ ] ブランチ削除 (`git branch -d`)
+- [ ] クリーンアップ検証: `git worktree list` / `git branch --list 'worktree-*'` / `ls .claude/worktrees/`
+- [ ] `git push origin main`
+
+---
+
+## 適用結果記録（commit 7 で更新）
+
+### Build / Test 結果
+
+```
+pnpm --filter @rescript-tauri/core build:
+<fill>
+
+pnpm --filter @rescript-tauri/core test:
+<fill>
+
+pnpm-lock.yaml diff サマリ:
+<fill>
+```
+
+### Generated artifacts
+
+```
+packages/core/src/Core.res.mjs: <size>
+packages/core/lib/.../*.cmt: <count>
+```
