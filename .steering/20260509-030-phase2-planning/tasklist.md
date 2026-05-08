@@ -59,12 +59,12 @@
 
 ## F. `@rescript-tauri/plugin-dialog` 実装
 
-- [ ] `packages/plugin-dialog/` 雛形
-- [ ] upstream `@tauri-apps/plugin-dialog` v2.7.x の API 表面把握
-- [ ] バインディング本体
-- [ ] options 型 / multiple-selection / directory-selection の variant 設計
-- [ ] 型レベル signature テスト + runtime テスト
-- [ ] `examples/plugin-dialog-demo/` 追加
+- [x] `packages/plugin-dialog/` 雛形 (steering 035)
+- [x] upstream `@tauri-apps/plugin-dialog` v2.7.x の API 表面把握 (steering 035)
+- [x] バインディング本体 (steering 035)
+- [x] options 型 / multiple-selection / directory-selection の variant 設計 (steering 035)
+- [x] 型レベル signature テスト + runtime テスト (steering 035)
+- [x] `examples/plugin-dialog-demo/` 追加 (steering 036)
 - [ ] CI 拡張
 - [ ] README + 互換マトリクス
 - [ ] `plugin-dialog-v0.1.0` tag → npm publish

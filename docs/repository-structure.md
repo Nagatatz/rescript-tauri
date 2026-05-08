@@ -182,6 +182,7 @@ examples/hello-world/                     # 最小構成。invoke + Window
 examples/window-management/               # Window / WebviewWindow 操作
 examples/ipc-typed/                       # Command.make の典型例
 examples/streaming-ipc/                   # Channel デモ
+examples/plugin-dialog-demo/              # @rescript-tauri/plugin-dialog 全関数デモ (steering 036)
 ```
 
 各 `examples/*/` には:
