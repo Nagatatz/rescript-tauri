@@ -19,30 +19,31 @@ type invokeError =
   | DecodeError(string)
   | RustError(JSON.t)
 
-/** Internal: decode a raw JSON payload and forward the result to a
-    user callback. Shared by `Channel.onMessage` and `Event._wrap` so
-    the decode-then-dispatch pattern lives in one place. The callback
-    receives the full `result`, allowing callers to surface decode
-    errors instead of dropping them silently. */
-let _applyDecoder = (
-  decoder: decoder<'a>,
-  raw: JSON.t,
-  callback: result<'a, string> => unit,
-): unit => callback(decoder(raw))
+/** Intra-package helpers. NOT part of the stable public API; do not
+    depend on the shape of `Internal` outside `@rescript-tauri/core`. */
+module Internal = {
+  /** Decode a raw JSON payload and forward the result to a user
+      callback. Shared by `Channel.onMessage` and `Event._wrap` so the
+      decode-then-dispatch pattern lives in one place. */
+  let applyDecoder = (
+    decoder: decoder<'a>,
+    raw: JSON.t,
+    callback: result<'a, string> => unit,
+  ): unit => callback(decoder(raw))
 
-/** Internal: convert a caught JS exception to a JSON value used as the
-    payload of `RustError`. JS `Error` objects are encoded as
-    `{name, message}`; non-`Error` exceptions fall back to their
-    `Exn.toString` form. */
-let _exnToJson = (exn: exn): JSON.t =>
-  switch exn->JsExn.fromException {
-  | Some(jsExn) =>
-    Dict.fromArray([
-      ("name", JSON.Encode.string(jsExn->JsExn.name->Option.getOr("Error"))),
-      ("message", JSON.Encode.string(jsExn->JsExn.message->Option.getOr(""))),
-    ])->JSON.Encode.object
-  | None => JSON.Encode.string("(non-Error exception)")
-  }
+  /** Convert a caught JS exception to a JSON value used as the payload
+      of `RustError`. JS `Error` objects are encoded as `{name, message}`;
+      non-`Error` exceptions fall back to a string marker. */
+  let exnToJson = (exn: exn): JSON.t =>
+    switch exn->JsExn.fromException {
+    | Some(jsExn) =>
+      Dict.fromArray([
+        ("name", JSON.Encode.string(jsExn->JsExn.name->Option.getOr("Error"))),
+        ("message", JSON.Encode.string(jsExn->JsExn.message->Option.getOr(""))),
+      ])->JSON.Encode.object
+    | None => JSON.Encode.string("(non-Error exception)")
+    }
+}
 
 module Command = {
   type t<'args, 'result> = {
@@ -62,7 +63,7 @@ module Command = {
       | Error(msg) => Error(DecodeError(msg))
       }
     } catch {
-    | exn => Error(RustError(_exnToJson(exn)))
+    | exn => Error(RustError(Internal.exnToJson(exn)))
     }
   }
 
@@ -97,7 +98,7 @@ module Channel = {
   }
 
   let onMessage = (chan, callback) =>
-    chan.instance->_setOnmessage(raw => _applyDecoder(chan.decode, raw, callback))
+    chan.instance->_setOnmessage(raw => Internal.applyDecoder(chan.decode, raw, callback))
 
   let id = chan => chan.instance->_getId
 }

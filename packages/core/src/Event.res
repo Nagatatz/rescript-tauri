@@ -51,7 +51,7 @@ let _wrap = (
   handler: result<event<'payload>, string> => unit,
   raw: rawEvent,
 ): unit =>
-  Core._applyDecoder(event.decode, raw.payload, decoded =>
+  Core.Internal.applyDecoder(event.decode, raw.payload, decoded =>
     handler(
       switch decoded {
       | Ok(p) => Ok({event: raw.event, id: raw.id, payload: p})
