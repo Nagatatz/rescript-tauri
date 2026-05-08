@@ -22,7 +22,9 @@ requirements.md §4 に対し、本設計で以下を採用する:
 
 #### ベース
 
-[Contributor Covenant 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct/) のテキストを全文転載する（CC BY 4.0 ライセンス、attribution 必須）。
+[Contributor Covenant 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct/) を採用するが、**全文転載ではなく公式 URL リンク + 要点抜粋** で構成する（実装フェーズで content filter が「Examples of unacceptable behavior」セクションを誤検知しブロックしたため、ユーザー再承認のうえ方針を変更）。
+
+公式 URL がプロジェクトの authoritative source として機能し、かつ `CODE_OF_CONDUCT.md` 自体には Pledge 要約 / Standards 要約 / Enforcement contact / Enforcement Guidelines (4 段階の名称) / Attribution (CC BY 4.0) を記載する。Yarn など一部の OSS で採用されている軽量パターン。
 
 #### 章立て（Contributor Covenant 標準）
 
