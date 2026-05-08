@@ -32,10 +32,10 @@
 
 - [x] Step A を 1 コミット: `♻️ Concretize Dpi.Position.t in Menu/Submenu popup`
 - [x] Step B を 1 コミット: `♻️ Rename App.setTheme parameter to ~preferred`
-- [ ] tasklist.md 更新を最終コミット
+- [x] tasklist.md 更新を最終コミット
 
 ## Phase 5: マージ
 
-- [ ] AskUserQuestion で main マージ可否確認
-- [ ] 承認後、worktree マージ・クリーンアップ手順に従い実行
-- [ ] クリーンアップ完了の検証
+- [x] AskUserQuestion で main マージ可否確認
+- [x] 承認後、worktree マージ・クリーンアップ手順に従い実行
+- [x] クリーンアップ完了の検証
