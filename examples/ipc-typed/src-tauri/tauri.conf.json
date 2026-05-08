@@ -14,6 +14,13 @@
         "height": 480
       }
     ],
+    "bundle": {
+      "active": true,
+      "targets": "all",
+      "icon": [
+        "icons/icon.png"
+      ]
+    },
     "security": {
       "csp": null
     }
