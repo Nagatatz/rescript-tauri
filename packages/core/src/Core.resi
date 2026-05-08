@@ -24,4 +24,22 @@ module Raw: {
       ```
   */
   let invoke: (string, ~args: 'args=?, ~options: invokeOptions=?) => promise<'result>
+
+  /** Converts a file path into a URL accessible by the webview.
+
+      Tauri's protocol scheme (`asset://`, `https://asset.localhost/...`)
+      differs across operating systems; `convertFileSrc` returns the
+      right URL for the current platform. Pass an explicit `protocol`
+      to override the default `asset` scheme — for example `stream` or
+      a custom protocol registered via the Tauri config.
+
+      See: https://v2.tauri.app/reference/javascript/api/namespacecore/#convertfilesrc
+
+      ## Example
+
+      ```rescript
+      let url = Tauri.Core.Raw.convertFileSrc("/Users/me/photo.png")
+      ```
+  */
+  let convertFileSrc: (string, ~protocol: string=?) => string
 }
