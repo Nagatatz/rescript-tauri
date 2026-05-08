@@ -174,7 +174,30 @@ Layer 2: result<'a, invokeError>
 **設計判断:**
 - 共通親 `tauriError` union を作らない: 各 call site で関係ないバリアントが型に乗ってしまうのを避けるため。
 - `*Exn` 版を併設: 例外スタイルを好むコードベースとも親和性を保つ。
-- `RustError` は decode せず `JSON.t` のまま: Rust 側エラー型は自由（Tauri は何でも返せる）なので、ユーザー側で必要に応じて decode する。
+- `RustError` は decode せず `JSON.t` のまま: Rust 側エラー型は自由（Tauri は何でも返せる）なので、ユーザー側で必要に応じて decode する。`RustError(JSON.t)` の実体は捕捉した JS exception を `{name, message}` の JSON object に正規化したもの（非 `Error` 例外の場合のみ "(non-Error exception)" 文字列にフォールバック）。
+
+### 5.1.1 デコード失敗ポリシー（統一）
+
+`@rescript-tauri/core` は **すべての decode 失敗を `result<_, string>` で呼び出し側に surface する**。サイレントドロップは行わない。
+
+| API | デコード失敗時の挙動 |
+|---|---|
+| `Core.Command.invoke` | 戻り値 `result<_, invokeError>` の `Error(DecodeError(msg))` |
+| `Core.Channel.onMessage` | callback に `Error(decoderMessage)` を渡す |
+| `Event.listen` / `Event.once` | callback に `Error(decoderMessage)` を渡す |
+
+共通の decoder 型エイリアスを `Core.decoder<'value> = JSON.t => result<'value, string>` として `.resi` で公開し、Command/Channel/Event すべてが同じ型を target にする。Phase 2 の `@rescript-tauri/schema` パッケージはこの `Core.decoder<_>` 型を返す `Command.fromSchemas` ヘルパを提供する。
+
+呼び出し側で silent-drop を選びたい場合は明示的にパターンマッチで `Error` ブランチを破棄する:
+
+```rescript
+event->Event.listen(result =>
+  switch result {
+  | Ok(evt) => Console.log(evt.payload)
+  | Error(_) => () // 意図的に無視
+  }
+)
+```
 
 ### 5.2 リソース解放
 

@@ -127,10 +127,10 @@ Phase 2 で追加。`rescript-schema` / `rescript-struct` 向けの `Command.fro
 各例題は **Linux / macOS / Windows** で CI ビルドされ、1 つでも失敗するとリリース不可（PRD §5.4）。
 
 ```
-examples/hello-world/                     # 最小構成。invoke + Window
-examples/window-management/               # Window / WebviewWindow 操作
-examples/ipc-typed/                       # Command.make の典型例
-examples/streaming-ipc/                   # Channel デモ
+examples/hello-world/                     # 最小構成。invoke + Window（実装済み）
+examples/window-management/               # Window / WebviewWindow 操作（Phase 2+ 計画、未作成）
+examples/ipc-typed/                       # Command.make の典型例（Phase 2+ 計画、未作成）
+examples/streaming-ipc/                   # Channel デモ（Phase 2+ 計画、未作成）
 ```
 
 各 `examples/*/` には:

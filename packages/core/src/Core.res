@@ -9,15 +9,46 @@ module Raw = {
   external convertFileSrc: (string, ~protocol: string=?) => string = "convertFileSrc"
 }
 
+/** Maps a raw IPC JSON payload to a typed value. Used by `Command`,
+    `Channel`, and `Event` for decoder definitions, and re-used by the
+    Phase 2 `Schema` package as the target type for schema-derived
+    decoders. */
+type decoder<'value> = JSON.t => result<'value, string>
+
 type invokeError =
   | DecodeError(string)
   | RustError(JSON.t)
+
+/** Internal: decode a raw JSON payload and forward the result to a
+    user callback. Shared by `Channel.onMessage` and `Event._wrap` so
+    the decode-then-dispatch pattern lives in one place. The callback
+    receives the full `result`, allowing callers to surface decode
+    errors instead of dropping them silently. */
+let _applyDecoder = (
+  decoder: decoder<'a>,
+  raw: JSON.t,
+  callback: result<'a, string> => unit,
+): unit => callback(decoder(raw))
+
+/** Internal: convert a caught JS exception to a JSON value used as the
+    payload of `RustError`. JS `Error` objects are encoded as
+    `{name, message}`; non-`Error` exceptions fall back to their
+    `Exn.toString` form. */
+let _exnToJson = (exn: exn): JSON.t =>
+  switch exn->JsExn.fromException {
+  | Some(jsExn) =>
+    Dict.fromArray([
+      ("name", JSON.Encode.string(jsExn->JsExn.name->Option.getOr("Error"))),
+      ("message", JSON.Encode.string(jsExn->JsExn.message->Option.getOr(""))),
+    ])->JSON.Encode.object
+  | None => JSON.Encode.string("(non-Error exception)")
+  }
 
 module Command = {
   type t<'args, 'result> = {
     name: string,
     encodeArgs: 'args => JSON.t,
-    decodeResult: JSON.t => result<'result, string>,
+    decodeResult: decoder<'result>,
   }
 
   let make = (~name, ~encodeArgs, ~decodeResult) => {name, encodeArgs, decodeResult}
@@ -31,7 +62,7 @@ module Command = {
       | Error(msg) => Error(DecodeError(msg))
       }
     } catch {
-    | exn => Error(RustError(exn->Obj.magic))
+    | exn => Error(RustError(_exnToJson(exn)))
     }
   }
 
@@ -50,7 +81,7 @@ module Channel = {
 
   type t<'message> = {
     instance: internal,
-    decode: JSON.t => result<'message, string>,
+    decode: decoder<'message>,
   }
 
   @module("@tauri-apps/api/core") @new
@@ -65,14 +96,8 @@ module Channel = {
     decode,
   }
 
-  let onMessage = (chan, callback) => {
-    chan.instance->_setOnmessage(raw =>
-      switch chan.decode(raw) {
-      | Ok(msg) => callback(msg)
-      | Error(_) => ()
-      }
-    )
-  }
+  let onMessage = (chan, callback) =>
+    chan.instance->_setOnmessage(raw => _applyDecoder(chan.decode, raw, callback))
 
   let id = chan => chan.instance->_getId
 }

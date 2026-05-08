@@ -20,7 +20,7 @@ type rawEvent = {
 
 type t<'payload> = {
   name: string,
-  decode: JSON.t => result<'payload, string>,
+  decode: Core.decoder<'payload>,
 }
 
 type unlisten = unit => unit
@@ -34,16 +34,31 @@ external _once: (string, rawEvent => unit) => promise<unlisten> = "once"
 @module("@tauri-apps/api/event")
 external _emit: (string, 'payload) => promise<unit> = "emit"
 
+/** Internal: shape of the JS-side `EventTarget` object that Tauri's
+    `emitTo` accepts. Always `{kind, label?}` — `label` is omitted for
+    the `Any` and `App` variants. */
+type targetJs = {kind: string, label?: string}
+
 @module("@tauri-apps/api/event")
-external _emitTo: ('jsTarget, string, 'payload) => promise<unit> = "emitTo"
+external _emitTo: (targetJs, string, 'payload) => promise<unit> = "emitTo"
 
 let make = (~name, ~decode): t<'payload> => {name, decode}
 
-let _wrap = (event: t<'payload>, handler: event<'payload> => unit, raw: rawEvent): unit =>
-  switch event.decode(raw.payload) {
-  | Ok(p) => handler({event: raw.event, id: raw.id, payload: p})
-  | Error(_) => ()
-  }
+/** Internal: decode a raw event payload and forward it to the user
+    handler as `Ok(event<'payload>)` or `Error(decoderMessage)`. */
+let _wrap = (
+  event: t<'payload>,
+  handler: result<event<'payload>, string> => unit,
+  raw: rawEvent,
+): unit =>
+  Core._applyDecoder(event.decode, raw.payload, decoded =>
+    handler(
+      switch decoded {
+      | Ok(p) => Ok({event: raw.event, id: raw.id, payload: p})
+      | Error(msg) => Error(msg)
+      },
+    )
+  )
 
 let listen = (event: t<'payload>, handler) =>
   _listen(event.name, raw => _wrap(event, handler, raw))
@@ -53,14 +68,16 @@ let once = (event: t<'payload>, handler) =>
 
 let emit = (event: t<'payload>, payload) => _emit(event.name, payload)
 
-let _targetToJs = target =>
+/** Internal: encode the public `eventTarget` variant as the JS-side
+    `{kind, label?}` object that Tauri's `emitTo` expects. */
+let _targetToJs = (target): targetJs =>
   switch target {
-  | Any => Obj.magic({"kind": "Any"})
-  | AnyLabel(label) => Obj.magic({"kind": "AnyLabel", "label": label})
-  | App => Obj.magic({"kind": "App"})
-  | Window(label) => Obj.magic({"kind": "Window", "label": label})
-  | Webview(label) => Obj.magic({"kind": "Webview", "label": label})
-  | WebviewWindow(label) => Obj.magic({"kind": "WebviewWindow", "label": label})
+  | Any => {kind: "Any"}
+  | AnyLabel(label) => {kind: "AnyLabel", label}
+  | App => {kind: "App"}
+  | Window(label) => {kind: "Window", label}
+  | Webview(label) => {kind: "Webview", label}
+  | WebviewWindow(label) => {kind: "WebviewWindow", label}
   }
 
 let emitTo = (event: t<'payload>, ~target, payload) => _emitTo(_targetToJs(target), event.name, payload)
