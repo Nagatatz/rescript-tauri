@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: 質問・相談
-    url: https://github.com/{{GITHUB_REPO}}/discussions
-    about: 一般的な質問は Issue ではなく Discussions で
+  - name: 設計・RFC へのフィードバック
+    url: https://github.com/Nagatatz/rescript-tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md
+    about: 設計 RFC や PRD への議論は当面 Issue ベースで受け付けます。Phase 1 後に Discussions 開設を検討します。
+  - name: セキュリティ脆弱性の報告
+    url: https://github.com/Nagatatz/rescript-tauri/security/advisories/new
+    about: 公開 Issue ではなく GitHub Security Advisories で（SECURITY.md 参照、private 期間中は SECURITY.md の email fallback も使用可）
