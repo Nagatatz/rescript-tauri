@@ -25,15 +25,15 @@
 
 design.md §5 に従い:
 
-- [ ] `ls CODE_OF_CONDUCT.md SECURITY.md` で両ファイル存在を確認
-- [ ] `CONTRIBUTING.md` から `CODE_OF_CONDUCT.md` / `SECURITY.md` への相対 link が解決可能（ファイル存在確認）
-- [ ] `grep -n 'TBD\|will be added at the Phase 1 release' CONTRIBUTING.md` の出力が該当行ゼロ（sphinx-docs publication TBD は README にあり別件）
-- [ ] `CODE_OF_CONDUCT.md` 末尾に Contributor Covenant 2.1 の attribution と CC BY 4.0 表示と原典 URL が含まれている
-- [ ] `SECURITY.md` 内の GHSA URL が `https://github.com/Nagatatz/rescript-tauri/security/advisories/new` の形式
+- [x] `ls CODE_OF_CONDUCT.md SECURITY.md` で両ファイル存在を確認（2650B / 2529B）
+- [x] `CONTRIBUTING.md` から `CODE_OF_CONDUCT.md` / `SECURITY.md` への相対 link が解決可能（両ファイル実在）
+- [x] `grep -n 'TBD\|will be added at the Phase 1 release' CONTRIBUTING.md` の出力ゼロ（sphinx-docs publication TBD は README にあり別件）
+- [x] `CODE_OF_CONDUCT.md` 末尾に Contributor Covenant 2.1 の attribution と CC BY 4.0 表示と原典 URL（contributor-covenant.org）が含まれている
+- [x] `SECURITY.md` 内の GHSA URL が `https://github.com/Nagatatz/rescript-tauri/security/advisories/new` の形式
 
 ## Phase 4: マージ準備（worktree なしのためマージ手順なし、push のみ）
 
-- [ ] **commit 5**: tasklist.md を全 `[x]` 化、本タスク自身を含めて完了マーク → コミット `📝 Mark steering 20260508-005 complete`
+- [x] **commit 5**: tasklist.md を全 `[x]` 化、本タスク自身を含めて完了マーク → コミット `📝 Mark steering 20260508-005 complete`
 - [ ] `git push origin main` で全コミットを反映
 
 ## Phase 5: ユーザー手動作業（Claude 実行不可、メモ）
