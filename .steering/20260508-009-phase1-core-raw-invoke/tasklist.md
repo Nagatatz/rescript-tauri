@@ -35,8 +35,8 @@
 
 ### 2.4 型レベルテスト
 
-- [ ] **commit 5**: `packages/core/tests/core_raw_signature.res`（design §2.7、`tests/runtime/.gitkeep` も配置済みなら削除）→ コミット `✅ Add type-level signature test for Core.Raw`
-- [ ] 検証: `pnpm --filter @rescript-tauri/core build` で tests を含めた全モジュールがコンパイル成功
+- [x] **commit 5**: `packages/core/tests/core_raw_signature.res`（design §2.7）→ コミット `✅ Add type-level signature test for Core.Raw`
+- [x] 検証: `pnpm --filter @rescript-tauri/core build` で 1 source / 1 module コンパイル成功（tests も `.gitignore`'d な `.res.mjs` を生成）
 
 ### 2.5 ランタイムテスト（vitest）
 
