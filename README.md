@@ -54,7 +54,7 @@ Not yet published. Once Phase 1 ships, installation will look like:
 pnpm add @rescript-tauri/core @tauri-apps/api
 ```
 
-Then add `@rescript-tauri/core` to `bs-dependencies` in your `rescript.json`.
+Then add `@rescript-tauri/core` to your `rescript.json` (`dependencies` on ReScript 12; `bs-dependencies` on ReScript 11 — the legacy key is still accepted in 12 but deprecated).
 
 ---
 
