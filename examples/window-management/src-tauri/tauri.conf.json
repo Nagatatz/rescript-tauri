@@ -3,6 +3,13 @@
   "productName": "rescript-tauri-window-management",
   "version": "0.0.0",
   "identifier": "com.rescript-tauri.example.window-management",
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/icon.png"
+    ]
+  },
   "build": {
     "frontendDist": "../"
   },
@@ -15,13 +22,6 @@
         "height": 600
       }
     ],
-    "bundle": {
-      "active": true,
-      "targets": "all",
-      "icon": [
-        "icons/icon.png"
-      ]
-    },
     "security": {
       "csp": null
     }

@@ -3,6 +3,13 @@
   "productName": "rescript-tauri-streaming-ipc",
   "version": "0.0.0",
   "identifier": "com.rescript-tauri.example.streaming-ipc",
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/icon.png"
+    ]
+  },
   "build": {
     "frontendDist": "../"
   },
@@ -14,13 +21,6 @@
         "height": 480
       }
     ],
-    "bundle": {
-      "active": true,
-      "targets": "all",
-      "icon": [
-        "icons/icon.png"
-      ]
-    },
     "security": {
       "csp": null
     }
