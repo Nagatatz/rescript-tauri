@@ -1,1 +1,1 @@
-import "./App.res.mjs";
+import "./App.res.mjs"
