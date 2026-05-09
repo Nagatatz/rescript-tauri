@@ -56,6 +56,13 @@ let getCurrentWebview: unit => t
 */
 let getAllWebviews: unit => promise<array<t>>
 
+/** Looks up a webview by its label, returning `Nullable.null` if no
+    such webview exists.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacewebview/#getbylabel
+*/
+let getByLabel: string => promise<Nullable.t<t>>
+
 /** The webview's label.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewebview/#label
@@ -137,6 +144,13 @@ let setBackgroundColor: (t, Nullable.t<Window.color>) => promise<unit>
     See: https://v2.tauri.app/reference/javascript/api/namespacewebview/#close
 */
 let close: t => promise<unit>
+
+/** Clears all browsing data (cookies, storage, etc.) for this
+    webview's data store.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacewebview/#clearallbrowsingdata
+*/
+let clearAllBrowsingData: t => promise<unit>
 
 /** Subscribes to drag-and-drop events on this webview.
 

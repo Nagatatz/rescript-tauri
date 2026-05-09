@@ -115,3 +115,15 @@ let _check_on_theme_changed: (Window.t, Window.theme => unit) => promise<
 let _check_unlisten_type: Window.unlisten = () => ()
 let _check_theme_value: Window.theme = #light
 let _check_cursor_icon_value: Window.cursorIcon = #default
+
+let _check_activity_name: Window.t => promise<string> = Window.activityName
+let _check_scene_identifier: Window.t => promise<string> = Window.sceneIdentifier
+let _check_set_focusable: (Window.t, bool) => promise<unit> = Window.setFocusable
+let _check_set_simple_fullscreen: (Window.t, bool) => promise<unit> = Window.setSimpleFullscreen
+let _check_toggle_maximize: Window.t => promise<unit> = Window.toggleMaximize
+let _check_unminimize: Window.t => promise<unit> = Window.unminimize
+let _check_on_drag_drop_event: (Window.t, Window.dragDropEvent => unit) => promise<
+  Window.unlisten,
+> = Window.onDragDropEvent
+
+let _check_drag_drop_leave: Window.dragDropEvent = Leave

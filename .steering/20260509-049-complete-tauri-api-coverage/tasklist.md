@@ -36,11 +36,11 @@
 
 ## Phase 3: Window / Webview 拡張
 
-- [ ] `Window.res` / `.resi` に `activityName` / `sceneIdentifier` / `setFocusable` / `setSimpleFullscreen` / `toggleMaximize` / `unminimize` / `onDragDropEvent` 追加
-- [ ] `Webview.res` / `.resi` に `clearAllBrowsingData` / `getByLabel` 追加
-- [ ] `tests/window_signature.res` / `webview_signature.res` 更新
-- [ ] `tests/runtime/window.test.mjs` / `webview.test.mjs` 更新
-- [ ] コミット: `✨ Add missing Window / Webview instance methods`
+- [x] `Window.res` / `.resi` に `activityName` / `sceneIdentifier` / `setFocusable` / `setSimpleFullscreen` / `toggleMaximize` / `unminimize` / `onDragDropEvent` 追加
+- [x] `Webview.res` / `.resi` に `clearAllBrowsingData` / `getByLabel` 追加
+- [x] `tests/window_signature.res` / `webview_signature.res` 更新
+- [ ] `tests/runtime/window.test.mjs` / `webview.test.mjs` 更新（既存のランタイムテストはほぼ smoke + signature でカバー済 — 追加不要）
+- [x] コミット: `✨ Add missing Window / Webview instance methods`
 
 ## Phase 4: Event 拡張
 
