@@ -50,7 +50,8 @@ rescript-tauri/                          # monorepo root
 │   ├── skills/                          # 状況発火型スキル
 │   ├── agents/                          # サブエージェント定義
 │   ├── rules/                           # 常時適用ルール
-│   ├── hooks/                           # 自動実行 hook
+│   ├── hooks/                           # 自動実行 hook (check-secrets / check-disk-space / biome-format)
+│   ├── settings.json                    # PreToolUse / PostToolUse hook 登録
 │   ├── output-styles/
 │   ├── statusline.sh
 │   └── worktrees/                       # ビルトイン worktree 作成先
@@ -298,7 +299,8 @@ sphinx-docs/
 | `skills/` | 状況発火型スキル本体（`SKILL.md` + 補助ファイル） |
 | `agents/` | code-reviewer / debugger 等のサブエージェント定義 |
 | `rules/` | CLAUDE.md から @import される常時適用ルール |
-| `hooks/` | 自動実行される shell hook（`validate-bash.sh` 等） |
+| `hooks/` | 自動実行される shell hook（`check-secrets.sh` / `check-disk-space.sh` / `biome-format.sh`） |
+| `settings.json` | Claude Code lifecycle hook 登録（PreToolUse / PostToolUse） |
 | `output-styles/` | 出力スタイル設定 |
 | `statusline.sh` | ステータスライン表示スクリプト |
 | `worktrees/` | ビルトイン worktree 作成先（一時的） |
