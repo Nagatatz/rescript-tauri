@@ -43,6 +43,25 @@ pnpm tauri dev
   (full namespace path). Apps that prefer shorter access can
   `open Tauri` to reach `Core.Raw.invoke` once the `Tauri` re-export
   is imported (see [`packages/core/src/Tauri.resi`](../../packages/core/src/Tauri.resi)).
+
+## Content-Security-Policy (CSP)
+
+`src-tauri/tauri.conf.json` ships with an explicit CSP:
+
+```json
+"csp": "default-src 'self'; img-src 'self' asset: https://asset.localhost; style-src 'self' 'unsafe-inline'; connect-src ipc: http://ipc.localhost"
+```
+
+The other examples in this repository leave `"csp": null` to keep
+their setup minimal, but **production apps must define an explicit
+CSP**. `default-src 'self'` blocks remote script / object loads;
+`asset:` and `https://asset.localhost` are required for
+`Core.Raw.convertFileSrc`; `ipc:` and `http://ipc.localhost` are
+required for Tauri 2.x's `invoke` transport on Windows / macOS.
+Tighten the policy (e.g., remove `'unsafe-inline'` and inline only
+hashed styles) when your app's bundling pipeline allows it. See
+[Tauri's CSP guidance](https://v2.tauri.app/security/csp/) for
+details.
 - `tauri.conf.json` keeps `frontendDist` pointing to `../` (this
   directory) so Tauri loads `index.html` directly. A real production
   setup would route through Vite or another bundler.

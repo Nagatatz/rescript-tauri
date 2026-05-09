@@ -29,15 +29,15 @@
 
 ## C. セキュリティ修正
 
-- [ ] C-1 `.github/workflows/claude-code-review.yml.template` の `actions/checkout@v4` / `anthropics/claude-code-action@v1` を SHA pinned に変更
-- [ ] C-2 `.github/workflows/auto-pr-description.yml.template` の `actions/checkout@v4` を SHA pinned に変更
-- [ ] C-3 `.github/workflows/auto-pr-description.yml.template` の `${{ github.base_ref }}` / PR 番号を `env:` 経由 + quote で受ける
-- [ ] C-4 `examples/hello-world/src-tauri/tauri.conf.json` に推奨 CSP を設定
-- [ ] C-5 `examples/hello-world/README.md` に CSP 設定の説明を追加
-- [ ] C-6 `packages/core/src/Core.resi` の `convertFileSrc` / `RustError` バリアント doc を補強
-- [ ] C-7 `packages/schema/src/Schema.res` 内部コメントに decoder 例外契約を明記
-- [ ] C-8 ビルド・テスト・Biome check 緑確認
-- [ ] C-9 Scope C をコミット（絵文字: 🔧 + 📝、または分割）
+- [x] C-1 `.github/workflows/claude-code-review.yml.template` の `actions/checkout@v4` / `anthropics/claude-code-action@v1` を SHA pinned に変更（v6.0.2 / v1 SHA `c7d6092...`）
+- [x] C-2 `.github/workflows/auto-pr-description.yml.template` の `actions/checkout@v4` を SHA pinned に変更（v6.0.2）
+- [x] C-3 `.github/workflows/auto-pr-description.yml.template` の `${{ github.base_ref }}` / PR 番号を `env:` 経由 + quote で受ける
+- [x] C-4 `examples/hello-world/src-tauri/tauri.conf.json` に推奨 CSP を設定
+- [x] C-5 `examples/hello-world/README.md` に CSP 設定の説明を追加
+- [x] C-6 `packages/core/src/Core.resi` の `convertFileSrc` / `RustError` バリアント doc を補強
+- [x] C-7 `packages/schema/src/Schema.res` 内部コメントに decoder 例外契約を明記
+- [x] C-8 ビルド・テスト緑確認
+- [x] C-9 Scope C をコミット（一括）
 
 ## D. API 整合リファクタ
 
