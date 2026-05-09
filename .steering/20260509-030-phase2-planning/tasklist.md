@@ -90,8 +90,9 @@
 
 - [ ] 「必須スコープ」がすべて publish + CI 緑
 - [ ] 各パッケージの README に互換マトリクス記載
-- [ ] `docs/repository-structure.md` を Phase 2 構成に更新
-- [ ] `sphinx-docs/` を Phase 2 全パッケージに対応
+- [x] `docs/repository-structure.md` を Phase 2 構成に更新
+      (steering 036/037/039/041 で逐次反映済)
+- [x] `sphinx-docs/` を Phase 2 全パッケージに対応 (steering 042)
 - [ ] PRD §10 残課題 #5 が「確定済み」に
 - [ ] CHANGELOG が各パッケージで `0.1.0` 以降の履歴を持つ
 
