@@ -37,10 +37,21 @@ jobs:
           if [ -z "$version" ]; then
             echo "::warning::dist-tag '${{ matrix.rescript-tag }}' not published; skipping"
             echo "skip=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "::notice::resolved rescript@${{ matrix.rescript-tag }} -> $version"
-            echo "skip=false" >> "$GITHUB_OUTPUT"
-            echo "version=$version" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "::notice::resolved rescript@${{ matrix.rescript-tag }} -> $version"
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          # Since ReScript 13.0.0-alpha, the runtime ships as the
+          # separately-versioned @rescript/runtime package and the compiler
+          # generates `import ... from "@rescript/runtime/lib/es6/..."`.
+          # Override the runtime in lockstep so that vitest can resolve the
+          # 13.x-only modules (e.g. Stdlib_JsExn). For older rescript versions
+          # the dependency is absent and we leave the project's pin in place.
+          runtime=$(npm view "rescript@$version" 'dependencies.@rescript/runtime' 2>/dev/null || echo "")
+          if [ -n "$runtime" ]; then
+            echo "::notice::resolved @rescript/runtime -> $runtime"
+            echo "runtime=$runtime" >> "$GITHUB_OUTPUT"
           fi
       - run: pnpm install --frozen-lockfile
         if: steps.resolve.outputs.skip != 'true'
@@ -52,6 +63,12 @@ jobs:
           for pkg in packages/core examples/hello-world examples/window-management examples/ipc-typed examples/streaming-ipc; do
             (cd "$pkg" && pnpm add --save-dev rescript@${{ steps.resolve.outputs.version }})
           done
+      - name: Override @rescript/runtime in lockstep
+        if: steps.resolve.outputs.skip != 'true' && steps.resolve.outputs.runtime != ''
+        run: |
+          set -euo pipefail
+          # Only packages/core declares @rescript/runtime as a devDependency.
+          (cd packages/core && pnpm add --save-dev @rescript/runtime@${{ steps.resolve.outputs.runtime }})
       - name: Show installed rescript versions
         if: steps.resolve.outputs.skip != 'true'
         run: pnpm ls --recursive rescript
