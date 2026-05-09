@@ -103,6 +103,7 @@ The full user-guide write-up of these pitfalls is in
 
 ## See also
 
+- [Changelog](./CHANGELOG.md)
 - [User guide page](https://github.com/Nagatatz/rescript-tauri/blob/main/sphinx-docs/user/plugin-fs.md)
 - Runnable demo:
   [`examples/plugin-fs-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-fs-demo)

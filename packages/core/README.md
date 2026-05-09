@@ -79,6 +79,7 @@ matching upstream Tauri pages.
 
 ## See also
 
+- [Changelog](./CHANGELOG.md)
 - [User guide (English)](https://github.com/Nagatatz/rescript-tauri/blob/main/sphinx-docs/user/index.md)
 - [Quick start](https://github.com/Nagatatz/rescript-tauri/blob/main/sphinx-docs/user/quickstart.md)
 - [Functional design (内部設計, 日本語)](https://github.com/Nagatatz/rescript-tauri/blob/main/docs/functional-design.md)
