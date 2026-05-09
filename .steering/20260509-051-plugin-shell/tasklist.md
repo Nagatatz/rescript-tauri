@@ -7,64 +7,64 @@
 
 ## Phase 0: 準備
 
-- [ ] worktree を作成 (`EnterWorktree plugin-shell`)
-- [ ] requirements.md / design.md / tasklist.md をユーザー承認
+- [x] worktree を作成 (`EnterWorktree plugin-shell`)
+- [x] requirements.md / design.md / tasklist.md をユーザー承認
 
 ## Phase 1: パッケージ scaffolding
 
-- [ ] `packages/plugin-shell/package.json`
-- [ ] `packages/plugin-shell/rescript.json`
-- [ ] `packages/plugin-shell/vitest.config.mjs`
-- [ ] `packages/plugin-shell/README.md`
-- [ ] `packages/plugin-shell/CHANGELOG.md`
-- [ ] `pnpm install` で workspace に取り込み・peerDependency を解決
-- [ ] コミット: `🔧 Scaffold @rescript-tauri/plugin-shell package`
+- [x] `packages/plugin-shell/package.json`
+- [x] `packages/plugin-shell/rescript.json`
+- [x] `packages/plugin-shell/vitest.config.mjs`
+- [x] `packages/plugin-shell/README.md`
+- [x] `packages/plugin-shell/CHANGELOG.md`
+- [x] `pnpm install` で workspace に取り込み・peerDependency を解決
+- [x] コミット: `🔧 Scaffold @rescript-tauri/plugin-shell package`
 
 ## Phase 2: バインディング実装
 
-- [ ] `src/PluginShell.res` / `.resi`
-  - [ ] 型: `spawnOptions` / `childProcess<'o>` / `terminatedPayload`
-  - [ ] `openPath` 関数
-  - [ ] `Command` モジュール（`create` / `createRaw` / `sidecar` / `sidecarRaw` / `spawn` / `execute` / `onClose` / `onError` / `onStdoutData` / `onStderrData` / `removeAllListeners` / `stdout` / `stderr`）
-  - [ ] `Child` モジュール（`pid` / `write` / `kill`）
-  - [ ] `EventEmitter` モジュール（9 method）
-- [ ] `pnpm --filter @rescript-tauri/plugin-shell build` 成功
-- [ ] コミット: `✨ Implement @rescript-tauri/plugin-shell bindings`
+- [x] `src/PluginShell.res` / `.resi`
+  - [x] 型: `spawnOptions` / `childProcess<'o>` / `terminatedPayload`
+  - [x] `openPath` 関数
+  - [x] `Command` モジュール（`create` / `createRaw` / `sidecar` / `sidecarRaw` / `spawn` / `execute` / `onClose` / `onError` / `onStdoutData` / `onStderrData` / `removeAllListeners` / `stdout` / `stderr`）
+  - [x] `Child` モジュール（`pid` / `write` / `kill`）
+  - [x] `EventEmitter` モジュール（9 method）
+- [x] `pnpm --filter @rescript-tauri/plugin-shell build` 成功
+- [x] コミット: `✨ Implement @rescript-tauri/plugin-shell bindings`
 
 ## Phase 3: テスト
 
-- [ ] `tests/plugin_shell_signature.res` — 全公開シンボルへの型注釈付き呼び出し
-- [ ] `tests/runtime/plugin_shell.test.mjs` — `Mocks.mockIPC` で IPC コマンド名検証
-- [ ] `pnpm --filter @rescript-tauri/plugin-shell test` 全件 pass
-- [ ] コミット: `✅ Add type-level and runtime tests for plugin-shell`
+- [x] `tests/plugin_shell_signature.res` — 全公開シンボルへの型注釈付き呼び出し
+- [x] `tests/runtime/plugin_shell.test.mjs` — `Mocks.mockIPC` で IPC コマンド名検証
+- [x] `pnpm --filter @rescript-tauri/plugin-shell test` 全件 pass
+- [x] コミット: `✅ Add type-level and runtime tests for plugin-shell`
 
 ## Phase 4: CI 拡張
 
-- [ ] `.github/workflows/tests-plugin-shell-types.yml` 新設
-- [ ] `.github/workflows/tests-plugin-shell-runtime.yml` 新設
-- [ ] `.github/workflows/tests-coverage.yml` matrix に `plugin-shell` 追加
-- [ ] コミット: `🔧 Add plugin-shell CI workflows and coverage matrix entry`
+- [x] `.github/workflows/tests-plugin-shell-types.yml` 新設
+- [x] `.github/workflows/tests-plugin-shell-runtime.yml` 新設
+- [x] `.github/workflows/tests-coverage.yml` matrix に `plugin-shell` 追加
+- [x] コミット: `🔧 Add plugin-shell CI workflows and coverage matrix entry`
 
 ## Phase 5: ドキュメント更新
 
-- [ ] `docs/repository-structure.md` §2.2 に `plugin-shell/` セクション追記
-- [ ] `README.md` (root) Packages 表に `@rescript-tauri/plugin-shell` 行追加
-- [ ] `packages/plugin-shell/README.md` の features を埋める
-- [ ] `packages/plugin-shell/CHANGELOG.md` の `Unreleased` エントリを記入
-- [ ] コミット: `📝 Document @rescript-tauri/plugin-shell`
+- [x] `docs/repository-structure.md` §2.2 に `plugin-shell/` セクション追記
+- [x] `README.md` (root) Packages 表に `@rescript-tauri/plugin-shell` 行追加
+- [x] `packages/plugin-shell/README.md` の features を埋める
+- [x] `packages/plugin-shell/CHANGELOG.md` の `Unreleased` エントリを記入
+- [x] コミット: `📝 Document @rescript-tauri/plugin-shell`
 
 ## Phase 6: 最終検証
 
-- [ ] `pnpm --workspace-concurrency 1 --recursive build` 成功
-- [ ] `pnpm --workspace-concurrency 1 --recursive test` 全件 pass
-- [ ] tasklist.md の全タスクを `[x]` に更新
-- [ ] コミット: `✅ Mark steering 051 tasks complete`
+- [x] `pnpm --workspace-concurrency 1 --recursive build` 成功
+- [x] `pnpm --workspace-concurrency 1 --recursive test` 全件 pass
+- [x] tasklist.md の全タスクを `[x]` に更新
+- [x] コミット: `✅ Mark steering 051 tasks complete`
 
 ## Phase 7: マージ・クリーンアップ
 
-- [ ] CWD をメインリポジトリに変更
-- [ ] 未追跡 `.steering/` ファイルがあれば事前削除
-- [ ] `git merge worktree-plugin-shell --no-ff -m "Merge branch 'worktree-plugin-shell'"`
-- [ ] worktree 削除
-- [ ] ブランチ削除
-- [ ] `git worktree list` で main のみ確認
+- [x] CWD をメインリポジトリに変更
+- [x] 未追跡 `.steering/` ファイルがあれば事前削除
+- [x] `git merge worktree-plugin-shell --no-ff -m "Merge branch 'worktree-plugin-shell'"`
+- [x] worktree 削除
+- [x] ブランチ削除
+- [x] `git worktree list` で main のみ確認
