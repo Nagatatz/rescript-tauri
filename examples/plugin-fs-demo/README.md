@@ -49,7 +49,7 @@ That covers all 14 public plugin-fs functions (`readTextFile`,
 | `src-tauri/src/main.rs` | Rust entry registering `tauri_plugin_fs::init()`. |
 | `src-tauri/Cargo.toml` | Pulls in `tauri-plugin-fs = "2"`. |
 | `src-tauri/tauri.conf.json` | App config (productName, identifier, window). |
-| `src-tauri/capabilities/default.json` | Allows `core:default` + `fs:default` + `fs:allow-app-local-data-recursive`. |
+| `src-tauri/capabilities/default.json` | Allows `core:default` + `fs:default` + `fs:allow-applocaldata-{read,write,meta}-recursive`. |
 
 ## Compatibility
 
@@ -66,10 +66,10 @@ That covers all 14 public plugin-fs functions (`readTextFile`,
 - `BaseDirectory.appLocalData` is re-exported by plugin-fs from
   `@rescript-tauri/core`'s `Path.BaseDirectory.t`, so callers don't
   need to add a separate import to choose the sandbox.
-- `fs:allow-app-local-data-recursive` extends `fs:default` to permit
-  reading and writing under `$APPLOCALDATA` recursively. Without
-  this, every operation in the demo would fail at the capability
-  layer.
+- `fs:allow-applocaldata-{read,write,meta}-recursive` extend
+  `fs:default` to permit reading, writing, and stat/lstat under
+  `$APPLOCALDATA` recursively. Without these, every operation in the
+  demo would fail at the capability layer.
 - `Uint8Array.length` lives on the parent `TypedArray` module in
   `@rescript/core`; the demo uses `TypedArray.length(bytes)` to
   match.
