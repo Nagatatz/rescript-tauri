@@ -181,7 +181,7 @@ describe("Webview drag-drop variant interpretation", () => {
   const captureWrapper = async () => {
     const upstream = await import("@tauri-apps/api/webview")
     let captured
-    upstream.Webview.prototype.onDragDropEvent = function (handler) {
+    upstream.Webview.prototype.onDragDropEvent = (handler) => {
       captured = handler
       return Promise.resolve(() => {}) // unlisten thunk
     }

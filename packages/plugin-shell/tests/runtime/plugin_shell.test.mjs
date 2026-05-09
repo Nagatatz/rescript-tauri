@@ -85,7 +85,7 @@ describe("PluginShell", () => {
 
   describe("Command.spawn + Child", () => {
     it("dispatches plugin:shell|spawn and Child.write/kill use stdin_write/kill", async () => {
-      let seen = []
+      const seen = []
       Mocks.mockIPC(async (cmd, _args) => {
         seen.push(cmd)
         if (cmd === "plugin:shell|spawn") return 1234
@@ -101,11 +101,7 @@ describe("PluginShell", () => {
       await PluginShell.Child.write(child, "hello")
       await PluginShell.Child.kill(child)
 
-      expect(seen).toEqual([
-        "plugin:shell|spawn",
-        "plugin:shell|stdin_write",
-        "plugin:shell|kill",
-      ])
+      expect(seen).toEqual(["plugin:shell|spawn", "plugin:shell|stdin_write", "plugin:shell|kill"])
     })
   })
 
