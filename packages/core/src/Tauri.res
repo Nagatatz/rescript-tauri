@@ -1,3 +1,4 @@
+module Common = Common
 module Core = Core
 module Event = Event
 module Window = Window

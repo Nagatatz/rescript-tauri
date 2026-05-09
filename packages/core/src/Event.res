@@ -61,8 +61,6 @@ type t<'payload> = {
   decode: Core.decoder<'payload>,
 }
 
-type unlisten = unit => unit
-
 /** Internal: shape of the JS-side `EventTarget` object that Tauri's
     `emitTo` / `listen` / `once` accept. Always `{kind, label?}` —
     `label` is omitted for the `Any` and `App` variants. */
@@ -71,11 +69,18 @@ type targetJs = {kind: string, label?: string}
 type listenOptions = {target: targetJs}
 
 @module("@tauri-apps/api/event")
-external _listen: (string, rawEvent => unit, ~options: listenOptions=?) => promise<unlisten> =
-  "listen"
+external _listen: (
+  string,
+  rawEvent => unit,
+  ~options: listenOptions=?,
+) => promise<Common.unlisten> = "listen"
 
 @module("@tauri-apps/api/event")
-external _once: (string, rawEvent => unit, ~options: listenOptions=?) => promise<unlisten> = "once"
+external _once: (
+  string,
+  rawEvent => unit,
+  ~options: listenOptions=?,
+) => promise<Common.unlisten> = "once"
 
 @module("@tauri-apps/api/event")
 external _emit: (string, 'payload) => promise<unit> = "emit"

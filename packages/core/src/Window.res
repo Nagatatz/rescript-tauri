@@ -1,7 +1,5 @@
 type t
 
-type unlisten = unit => unit
-
 type theme = [#light | #dark]
 
 type userAttentionType = [#critical | #informational]
@@ -81,8 +79,6 @@ type scaleFactorChanged = {
   size: Dpi.PhysicalSize.t,
 }
 
-type color = {r: int, g: int, b: int, a: int}
-
 type effectStyle = [
   | #appearanceBased
   | #blur
@@ -118,7 +114,7 @@ type effects = {
   effects: array<effectStyle>,
   state?: effectState,
   radius?: float,
-  color?: color,
+  color?: Common.color,
 }
 
 type monitor = {
@@ -155,7 +151,7 @@ type options = {
   closable?: bool,
   parent?: t,
   visibleOnAllWorkspaces?: bool,
-  backgroundColor?: color,
+  backgroundColor?: Common.color,
 }
 
 @module("@tauri-apps/api/window") @new
@@ -237,7 +233,8 @@ external setSizeConstraints: (t, Nullable.t<windowSizeConstraints>) => promise<u
 @send external clearEffects: t => promise<unit> = "clearEffects"
 @send external setIcon: (t, 'icon) => promise<unit> = "setIcon"
 @send external setSkipTaskbar: (t, bool) => promise<unit> = "setSkipTaskbar"
-@send external setBackgroundColor: (t, Nullable.t<color>) => promise<unit> = "setBackgroundColor"
+@send
+external setBackgroundColor: (t, Nullable.t<Common.color>) => promise<unit> = "setBackgroundColor"
 @send external setIgnoreCursorEvents: (t, bool) => promise<unit> = "setIgnoreCursorEvents"
 @send external setCursorIcon: (t, cursorIcon) => promise<unit> = "setCursorIcon"
 @send external setCursorVisible: (t, bool) => promise<unit> = "setCursorVisible"
@@ -263,15 +260,18 @@ external setVisibleOnAllWorkspaces: (t, bool) => promise<unit> = "setVisibleOnAl
 @send external innerPosition: t => promise<Dpi.PhysicalPosition.t> = "innerPosition"
 @send external outerPosition: t => promise<Dpi.PhysicalPosition.t> = "outerPosition"
 
-@send external onResized: (t, Dpi.PhysicalSize.t => unit) => promise<unlisten> = "onResized"
-@send external onMoved: (t, Dpi.PhysicalPosition.t => unit) => promise<unlisten> = "onMoved"
 @send
-external onCloseRequested: (t, closeRequestedEvent => unit) => promise<unlisten> =
+external onResized: (t, Dpi.PhysicalSize.t => unit) => promise<Common.unlisten> = "onResized"
+@send
+external onMoved: (t, Dpi.PhysicalPosition.t => unit) => promise<Common.unlisten> = "onMoved"
+@send
+external onCloseRequested: (t, closeRequestedEvent => unit) => promise<Common.unlisten> =
   "onCloseRequested"
-@send external onFocusChanged: (t, bool => unit) => promise<unlisten> = "onFocusChanged"
+@send external onFocusChanged: (t, bool => unit) => promise<Common.unlisten> = "onFocusChanged"
 @send
-external onScaleChanged: (t, scaleFactorChanged => unit) => promise<unlisten> = "onScaleChanged"
-@send external onThemeChanged: (t, theme => unit) => promise<unlisten> = "onThemeChanged"
+external onScaleChanged: (t, scaleFactorChanged => unit) => promise<Common.unlisten> =
+  "onScaleChanged"
+@send external onThemeChanged: (t, theme => unit) => promise<Common.unlisten> = "onThemeChanged"
 
 @send external activityName: t => promise<string> = "activityName"
 @send external sceneIdentifier: t => promise<string> = "sceneIdentifier"
@@ -280,27 +280,8 @@ external onScaleChanged: (t, scaleFactorChanged => unit) => promise<unlisten> = 
 @send external toggleMaximize: t => promise<unit> = "toggleMaximize"
 @send external unminimize: t => promise<unit> = "unminimize"
 
-// Same payload shape as Webview.dragDropEvent. Defined locally to avoid
-// circular module dependency (Webview already imports Window.color).
-type dragDropEvent =
-  | Enter({paths: array<string>, position: Dpi.PhysicalPosition.t})
-  | Over({position: Dpi.PhysicalPosition.t})
-  | Drop({paths: array<string>, position: Dpi.PhysicalPosition.t})
-  | Leave
-
 @send
-external _onDragDropEvent: (t, {..} => unit) => promise<unlisten> = "onDragDropEvent"
+external _onDragDropEvent: (t, {..} => unit) => promise<Common.unlisten> = "onDragDropEvent"
 
 let onDragDropEvent = (window, handler) =>
-  _onDragDropEvent(window, raw => {
-    let payload = (Obj.magic(raw): {..})["payload"]
-    let kind: string = payload["type"]
-    let position: Dpi.PhysicalPosition.t = Obj.magic(payload["position"])
-    switch kind {
-    | "enter" => handler(Enter({paths: payload["paths"], position}))
-    | "over" => handler(Over({position: position}))
-    | "drop" => handler(Drop({paths: payload["paths"], position}))
-    | "leave" => handler(Leave)
-    | other => Console.warn2("[rescript-tauri] Unknown drag-drop event type:", other)
-    }
-  })
+  _onDragDropEvent(window, raw => Common.decodeDragDropEvent(raw, handler))

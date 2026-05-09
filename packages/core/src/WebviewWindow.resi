@@ -62,7 +62,7 @@ type options = {
   closable?: bool,
   parent?: Window.t,
   visibleOnAllWorkspaces?: bool,
-  backgroundColor?: Window.color,
+  backgroundColor?: Common.color,
 }
 
 /** Creates a new `WebviewWindow`. The label must be unique among all
@@ -114,4 +114,4 @@ let close: t => promise<unit>
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewebviewwindow/#setbackgroundcolor
 */
-let setBackgroundColor: (t, Nullable.t<Window.color>) => promise<unit>
+let setBackgroundColor: (t, Nullable.t<Common.color>) => promise<unit>

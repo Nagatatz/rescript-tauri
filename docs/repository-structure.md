@@ -79,6 +79,7 @@ rescript-tauri/                          # monorepo root
 ```
 packages/core/
 ├── src/
+│   ├── Common.res / .resi               # 横断型 (unlisten / color / dragDropEvent) と共有 decoder。Window / Webview / WebviewWindow / Event から参照
 │   ├── Core.res / .resi                 # invoke / convertFileSrc / Channel / Command / Resource / PluginListener / addPluginListener / permissions / isTauri / LowLevel
 │   ├── Event.res / .resi                # listen / once / emit / emitTo / TauriEvent enum / ~target option
 │   ├── Window.res / .resi               # Window クラスバインディング (~90 メソッド)

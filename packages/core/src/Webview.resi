@@ -14,22 +14,6 @@
 */
 type t
 
-/** Returned by `listen` / `once` / `onDragDropEvent` — call it to
-    detach the handler.
-*/
-type unlisten = unit => unit
-
-/** Drag-and-drop lifecycle event delivered to `onDragDropEvent`.
-    Positions are reported in physical pixels.
-
-    See: https://v2.tauri.app/reference/javascript/api/namespacewebview/#dragdropevent
-*/
-type dragDropEvent =
-  | Enter({paths: array<string>, position: Dpi.PhysicalPosition.t})
-  | Over({position: Dpi.PhysicalPosition.t})
-  | Drop({paths: array<string>, position: Dpi.PhysicalPosition.t})
-  | Leave
-
 /** Construction options (excluding window-layer-only keys).
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewebview/#webviewoptions
@@ -41,7 +25,7 @@ type options = {
   acceptFirstMouse?: bool,
   dragDropEnabled?: bool,
   transparent?: bool,
-  backgroundColor?: Window.color,
+  backgroundColor?: Common.color,
 }
 
 /** Returns the webview hosting the current page.
@@ -137,7 +121,7 @@ let reparent: (t, 'windowOrLabel) => promise<unit>
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewebview/#setbackgroundcolor
 */
-let setBackgroundColor: (t, Nullable.t<Window.color>) => promise<unit>
+let setBackgroundColor: (t, Nullable.t<Common.color>) => promise<unit>
 
 /** Closes the webview.
 
@@ -161,4 +145,4 @@ let clearAllBrowsingData: t => promise<unit>
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewebview/#ondragdropevent
 */
-let onDragDropEvent: (t, dragDropEvent => unit) => promise<unlisten>
+let onDragDropEvent: (t, Common.dragDropEvent => unit) => promise<Common.unlisten>
