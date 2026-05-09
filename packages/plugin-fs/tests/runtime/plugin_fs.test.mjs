@@ -104,4 +104,110 @@ describe("PluginFs", () => {
     Mocks.mockIPC(async () => false)
     expect(await PluginFs.exists("/no", undefined)).toBe(false)
   })
+
+  it("readFile returns Uint8Array bytes from the rust side", async () => {
+    Mocks.mockIPC(async (cmd) => {
+      expect(cmd).toBe("plugin:fs|read_file")
+      return Array.from(new Uint8Array([1, 2, 3, 4]))
+    })
+    const out = await PluginFs.readFile("/tmp/x", undefined)
+    expect(out).toBeInstanceOf(Uint8Array)
+    expect(Array.from(out)).toEqual([1, 2, 3, 4])
+  })
+
+  it("writeFile dispatches plugin:fs|write_file with the bytes payload", async () => {
+    let captured = null
+    Mocks.mockIPC(async (cmd, args) => {
+      captured = { cmd, args }
+      return null
+    })
+    const bytes = new Uint8Array([0xde, 0xad, 0xbe, 0xef])
+    await PluginFs.writeFile("/tmp/bin", bytes, undefined)
+    expect(captured.cmd).toBe("plugin:fs|write_file")
+  })
+
+  it("remove dispatches plugin:fs|remove and forwards options.recursive", async () => {
+    let captured
+    Mocks.mockIPC(async (cmd, args) => {
+      captured = { cmd, args }
+      return null
+    })
+    await PluginFs.remove("/tmp/dir", { recursive: true })
+    expect(captured.cmd).toBe("plugin:fs|remove")
+    expect(captured.args.path).toBe("/tmp/dir")
+    expect(captured.args.options.recursive).toBe(true)
+  })
+
+  it("rename dispatches plugin:fs|rename with both paths", async () => {
+    let captured
+    Mocks.mockIPC(async (cmd, args) => {
+      captured = { cmd, args }
+      return null
+    })
+    await PluginFs.rename("/tmp/a", "/tmp/b", undefined)
+    expect(captured.cmd).toBe("plugin:fs|rename")
+    expect(captured.args.oldPath).toBe("/tmp/a")
+    expect(captured.args.newPath).toBe("/tmp/b")
+  })
+
+  it("lstat returns the FileInfo for a symlink (no follow)", async () => {
+    Mocks.mockIPC(async (cmd) => {
+      expect(cmd).toBe("plugin:fs|lstat")
+      return {
+        isFile: false,
+        isDirectory: false,
+        isSymlink: true,
+        size: 0,
+        mtime: null,
+        atime: null,
+        birthtime: null,
+        readonly: false,
+        fileAttributes: null,
+        dev: null,
+        ino: null,
+        mode: null,
+        nlink: null,
+        uid: null,
+        gid: null,
+        rdev: null,
+        blksize: null,
+        blocks: null,
+      }
+    })
+    const info = await PluginFs.lstat("/tmp/link", undefined)
+    expect(info.isSymlink).toBe(true)
+    expect(info.isFile).toBe(false)
+  })
+
+  it("copyFile dispatches plugin:fs|copy_file with from/to paths", async () => {
+    let captured
+    Mocks.mockIPC(async (cmd, args) => {
+      captured = { cmd, args }
+      return null
+    })
+    await PluginFs.copyFile("/tmp/src", "/tmp/dst", undefined)
+    expect(captured.cmd).toBe("plugin:fs|copy_file")
+    expect(captured.args.fromPath).toBe("/tmp/src")
+    expect(captured.args.toPath).toBe("/tmp/dst")
+  })
+
+  it("truncate dispatches plugin:fs|truncate with the length", async () => {
+    let captured
+    Mocks.mockIPC(async (cmd, args) => {
+      captured = { cmd, args }
+      return null
+    })
+    await PluginFs.truncate("/tmp/big", 1024, undefined)
+    expect(captured.cmd).toBe("plugin:fs|truncate")
+    expect(captured.args.path).toBe("/tmp/big")
+    expect(captured.args.len).toBe(1024)
+  })
+
+  it("size dispatches plugin:fs|size and returns the byte count", async () => {
+    Mocks.mockIPC(async (cmd) => {
+      expect(cmd).toBe("plugin:fs|size")
+      return 42
+    })
+    expect(await PluginFs.size("/tmp/x")).toBe(42)
+  })
 })

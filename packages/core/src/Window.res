@@ -170,7 +170,9 @@ external getAll: unit => array<t> = "getAll"
 @module("@tauri-apps/api/window") @scope("Window")
 external getByLabel: string => promise<Nullable.t<t>> = "getByLabel"
 
-@module("@tauri-apps/api/window")
+// `getFocusedWindow` is a static method on the upstream `Window`
+// class, not a top-level export. `@scope("Window")` is required.
+@module("@tauri-apps/api/window") @scope("Window")
 external getFocusedWindow: unit => promise<Nullable.t<t>> = "getFocusedWindow"
 
 @module("@tauri-apps/api/window")
