@@ -29,6 +29,10 @@ msgid ""
 "awaiting its first npm publish (`v0.1.0`); until then, consume "
 "`@rescript-tauri/core` via the source repository or a workspace link."
 msgstr ""
+"Phase 1 のモジュール一式は `main` で機能完備済みです。以下のサンプルは `main` "
+"上で出荷されている実際の `.resi` シグネチャを反映しています。本パッケージは初回 npm "
+"公開（`v0.1.0`）を待っている状態です。それまでは、ソースリポジトリ経由か "
+"ワークスペースリンクで `@rescript-tauri/core` を利用してください。"
 
 #: ../../user/quickstart.md:11
 msgid "Prerequisites"
@@ -88,11 +92,11 @@ msgstr ""
 
 #: ../../user/quickstart.md:76
 msgid "Window operations"
-msgstr ""
+msgstr "ウィンドウ操作"
 
 #: ../../user/quickstart.md:78
 msgid "`Window.t` is opaque; instance methods are pipe-first."
-msgstr ""
+msgstr "`Window.t` は不透明型です。インスタンスメソッドは pipe-first 形式で呼び出します。"
 
 #: ../../user/quickstart.md:91
 msgid ""
@@ -100,14 +104,17 @@ msgid ""
 "management`](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/examples/window-management)."
 msgstr ""
+"ボタン付きの完全なデモは [`examples/window-"
+"management`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/examples/window-management) にあります。"
 
 #: ../../user/quickstart.md:94
 msgid "Spawning a `WebviewWindow`"
-msgstr ""
+msgstr "`WebviewWindow` の生成"
 
 #: ../../user/quickstart.md:113
 msgid "Streaming with `Channel`"
-msgstr ""
+msgstr "`Channel` によるストリーミング"
 
 #: ../../user/quickstart.md:115
 msgid ""
@@ -116,6 +123,9 @@ msgid ""
 "explicitly — pattern match on `Ok(...)` / `Error(_)` to choose how to "
 "handle them."
 msgstr ""
+"`Core.Channel` は Rust からフロントエンドへの一方向ストリーミングを提供します。各コールバックは "
+"`result<'message, string>` を受け取るため、デコーダの失敗が明示的に表面化します。"
+"`Ok(...)` / `Error(_)` をパターンマッチして処理方法を選択してください。"
 
 #: ../../user/quickstart.md:150
 msgid ""
@@ -123,10 +133,13 @@ msgid ""
 "/streaming-ipc`](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/examples/streaming-ipc)."
 msgstr ""
+"対応する Rust ハンドラ付きの完全なデモは [`examples"
+"/streaming-ipc`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/examples/streaming-ipc) にあります。"
 
 #: ../../user/quickstart.md:153
 msgid "Path / App utilities"
-msgstr ""
+msgstr "Path / App ユーティリティ"
 
 #: ../../user/quickstart.md:161
 msgid ""
@@ -134,6 +147,8 @@ msgid ""
 "explicitly (`Path.appConfigDir()`) instead of `open Tauri`'ing it into "
 "scope alongside Window / Event."
 msgstr ""
+"`Path` は意図的に `Tauri` から再エクスポート **されません**。`open Tauri` で Window / "
+"Event と一緒にスコープに取り込むのではなく、明示的に `Path.appConfigDir()` のように呼び出してください。"
 
 #: ../../user/quickstart.md:165
 msgid "What's next?"

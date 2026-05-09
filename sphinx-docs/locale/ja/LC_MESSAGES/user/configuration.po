@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-09 16:33+0900\n"
-"PO-Revision-Date: 2026-05-08 13:00+0900\n"
+"PO-Revision-Date: 2026-05-09 17:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
 "Language-Team: ja <LL@li.org>\n"
@@ -37,7 +37,6 @@ msgstr ""
 " deprecated です。"
 
 #: ../../user/configuration.md:16
-#, fuzzy
 msgid ""
 "If you enable `\"namespace\": true` in your own package, `@rescript-"
 "tauri/core` modules remain accessible under the `Tauri` namespace top-"
@@ -46,9 +45,9 @@ msgid ""
 "/functional-design.md) §2.8)."
 msgstr ""
 "自身のパッケージで `\"namespace\": true` を有効化しても、`@rescript-tauri/core` のモジュールは "
-"`Tauri` トップレベル re-export 経由で引き続きアクセス可能です（[`docs/functional-"
+"`Tauri` 名前空間のトップレベル re-export 経由で引き続きアクセス可能です（[`docs/functional-"
 "design.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/docs"
-"/functional-design.md) §2.13 参照）。"
+"/functional-design.md) §2.8 参照）。"
 
 #: ../../user/configuration.md:18
 msgid "`peerDependencies`"
@@ -178,118 +177,119 @@ msgstr ""
 
 #: ../../user/configuration.md:51
 msgid "The Phase 1 re-export set (confirmed 2026-05-09 — PRD §10 row 1):"
-msgstr ""
+msgstr "Phase 1 の re-export セット（2026-05-09 確定 — PRD §10 行 1）:"
 
 #: ../../user/configuration.md
-#, fuzzy
 msgid "In `Tauri`"
-msgstr "Tauri"
+msgstr "`Tauri` に含まれる"
 
 #: ../../user/configuration.md
 msgid "Reach via `open Tauri`"
-msgstr ""
+msgstr "`open Tauri` でアクセス可能"
 
 #: ../../user/configuration.md
 msgid "`Core`"
-msgstr ""
+msgstr "`Core`"
 
 #: ../../user/configuration.md
 msgid ""
 "`Core.Raw.invoke`, `Core.Command.make`, `Core.Channel`, "
 "`Core.convertFileSrc`"
 msgstr ""
+"`Core.Raw.invoke` / `Core.Command.make` / `Core.Channel` / "
+"`Core.convertFileSrc`"
 
 #: ../../user/configuration.md
 msgid "`Event`"
-msgstr ""
+msgstr "`Event`"
 
 #: ../../user/configuration.md
 msgid "`Event.make`, `Event.listen`, `Event.once`, `Event.emit`, `Event.emitTo`"
-msgstr ""
+msgstr "`Event.make` / `Event.listen` / `Event.once` / `Event.emit` / `Event.emitTo`"
 
 #: ../../user/configuration.md
 msgid "`Window`"
-msgstr ""
+msgstr "`Window`"
 
 #: ../../user/configuration.md
 msgid "`Window.t` + ~80 instance / static methods"
-msgstr ""
+msgstr "`Window.t` と約 80 個のインスタンス / 静的メソッド"
 
 #: ../../user/configuration.md
 msgid "`Webview`"
-msgstr ""
+msgstr "`Webview`"
 
 #: ../../user/configuration.md
 msgid "`Webview.t` + 14 instance methods + drag-drop variant"
-msgstr ""
+msgstr "`Webview.t` と 14 個のインスタンスメソッド、ドラッグ & ドロップ variant"
 
 #: ../../user/configuration.md
 msgid "`WebviewWindow`"
-msgstr ""
+msgstr "`WebviewWindow`"
 
 #: ../../user/configuration.md
 msgid "`WebviewWindow.asWindow` / `asWebview` casts + frequently-used methods"
-msgstr ""
+msgstr "`WebviewWindow.asWindow` / `asWebview` キャストとよく使うメソッド"
 
 #: ../../user/configuration.md
 msgid "Not in `Tauri` (use explicitly)"
-msgstr ""
+msgstr "`Tauri` に含まれない（明示的に呼び出す）"
 
 #: ../../user/configuration.md
 msgid "Why"
-msgstr ""
+msgstr "理由"
 
 #: ../../user/configuration.md
 msgid "`Path`"
-msgstr ""
+msgstr "`Path`"
 
 #: ../../user/configuration.md
 msgid "Utility namespace; 31 helpers would shadow user names"
-msgstr ""
+msgstr "ユーティリティ名前空間。31 個のヘルパーが利用者の名前を覆い隠してしまうため"
 
 #: ../../user/configuration.md
 msgid "`App`"
-msgstr ""
+msgstr "`App`"
 
 #: ../../user/configuration.md
 msgid "Process metadata; explicit `App.getName()` is clearer"
-msgstr ""
+msgstr "プロセスメタデータ。`App.getName()` と明示する方が読みやすい"
 
 #: ../../user/configuration.md
 msgid "`Dpi`"
-msgstr ""
+msgstr "`Dpi`"
 
 #: ../../user/configuration.md
 msgid "Sized opaque types; explicit `Dpi.LogicalSize.make` reads better"
-msgstr ""
+msgstr "サイズを持つ不透明型。`Dpi.LogicalSize.make` と明示する方が読みやすい"
 
 #: ../../user/configuration.md
 msgid "`Image`"
-msgstr ""
+msgstr "`Image`"
 
 #: ../../user/configuration.md
 msgid "Opaque resource handle; explicit lifecycle"
-msgstr ""
+msgstr "不透明なリソースハンドルで、ライフサイクルを明示する必要があるため"
 
 #: ../../user/configuration.md
 msgid "`Menu` / `Tray`"
-msgstr ""
+msgstr "`Menu` / `Tray`"
 
 #: ../../user/configuration.md
 msgid "Heavy with sub-modules (`Menu.MenuItem`, `Menu.Submenu`, ...)"
-msgstr ""
+msgstr "サブモジュールが多い（`Menu.MenuItem`、`Menu.Submenu` ほか）"
 
 #: ../../user/configuration.md
 msgid "`Mocks`"
-msgstr ""
+msgstr "`Mocks`"
 
 #: ../../user/configuration.md
 msgid "Test-only"
-msgstr ""
+msgstr "テスト専用"
 
 #: ../../user/configuration.md:70
 msgid "Phase 2 add-on packages"
-msgstr ""
+msgstr "Phase 2 アドオンパッケージ"
 
 #: ../../user/configuration.md:72
 msgid ""
@@ -297,74 +297,73 @@ msgid ""
 "published. They declare both `@rescript-tauri/core` and the matching "
 "upstream library as `peerDependencies`."
 msgstr ""
+"Phase 2 では 3 つのアドオンパッケージを提供し、それぞれ独立してバージョン管理・公開されます。"
+"いずれも `@rescript-tauri/core` と対応する上流ライブラリの両方を `peerDependencies` "
+"として宣言します。"
 
 #: ../../user/configuration.md
 msgid "Package"
 msgstr "パッケージ"
 
 #: ../../user/configuration.md
-#, fuzzy
 msgid "Upstream peer"
-msgstr "上流"
+msgstr "上流の peer"
 
 #: ../../user/configuration.md
 msgid "Status"
-msgstr ""
+msgstr "ステータス"
 
 #: ../../user/configuration.md
 msgid "Guide"
-msgstr ""
+msgstr "ガイド"
 
 #: ../../user/configuration.md
 msgid "`@rescript-tauri/plugin-fs`"
 msgstr "`@rescript-tauri/plugin-fs`"
 
 #: ../../user/configuration.md
-#, fuzzy
 msgid "`@tauri-apps/plugin-fs ^2.5.0`"
-msgstr "`@tauri-apps/plugin-fs`"
+msgstr "`@tauri-apps/plugin-fs ^2.5.0`"
 
 #: ../../user/configuration.md
 msgid "Phase 2 implementation merged; `plugin-fs-v0.1.0` npm publish pending"
-msgstr ""
+msgstr "Phase 2 実装はマージ済み。`plugin-fs-v0.1.0` の npm 公開待ち"
 
 #: ../../user/configuration.md
 msgid "[plugin-fs](plugin-fs.md)"
-msgstr ""
+msgstr "[plugin-fs](plugin-fs.md)"
 
 #: ../../user/configuration.md
 msgid "`@rescript-tauri/plugin-dialog`"
 msgstr "`@rescript-tauri/plugin-dialog`"
 
 #: ../../user/configuration.md
-#, fuzzy
 msgid "`@tauri-apps/plugin-dialog ^2.7.0`"
-msgstr "`@tauri-apps/plugin-dialog`"
+msgstr "`@tauri-apps/plugin-dialog ^2.7.0`"
 
 #: ../../user/configuration.md
 msgid "Phase 2 implementation merged; `plugin-dialog-v0.1.0` npm publish pending"
-msgstr ""
+msgstr "Phase 2 実装はマージ済み。`plugin-dialog-v0.1.0` の npm 公開待ち"
 
 #: ../../user/configuration.md
 msgid "[plugin-dialog](plugin-dialog.md)"
-msgstr ""
+msgstr "[plugin-dialog](plugin-dialog.md)"
 
 #: ../../user/configuration.md
 msgid "`@rescript-tauri/schema`"
 msgstr "`@rescript-tauri/schema`"
 
 #: ../../user/configuration.md
-#, fuzzy
 msgid "`rescript-schema ^9.0.0`"
-msgstr "`@rescript-tauri/schema`"
+msgstr "`rescript-schema ^9.0.0`"
 
 #: ../../user/configuration.md
 msgid "Phase 2 implementation merged; `schema-v0.1.0` npm publish pending"
-msgstr ""
+msgstr "Phase 2 実装はマージ済み。`schema-v0.1.0` の npm 公開待ち"
 
 #: ../../user/configuration.md
 msgid "[schema](schema.md)"
-msgstr ""
+msgstr "[schema](schema.md)"
 
 #: ../../user/configuration.md:82
 msgid ""
@@ -372,44 +371,6 @@ msgid ""
 "[RFC-0002 §2.1](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md))."
 msgstr ""
-
-#~ msgid ""
-#~ "The exact re-export set is "
-#~ "finalized in `docs/functional-design.md` §2.13"
-#~ " and listed in PRD §10 row 1"
-#~ " (\"Tauri.res の re-export 範囲\", "
-#~ "confirmed pre-Phase-1-release)."
-#~ msgstr ""
-#~ "正確な re-export セットは `docs/functional-"
-#~ "design.md` §2.13 で確定し、PRD §10 行 "
-#~ "1（「Tauri.res の re-export 範囲」、Phase 1 "
-#~ "リリース直前に確定）に記載されています。"
-
-#~ msgid "Plugin packages (Phase 2+)"
-#~ msgstr "プラグインパッケージ（Phase 2+）"
-
-#~ msgid ""
-#~ "Each upstream `@tauri-apps/plugin-*` will "
-#~ "get a corresponding `@rescript-tauri/plugin-*`"
-#~ " binding package starting in Phase 2."
-#~ " Plugin packages declare the upstream "
-#~ "`@tauri-apps/plugin-*` as their own "
-#~ "`peerDependency`."
-#~ msgstr ""
-#~ "Phase 2 以降、各上流 `@tauri-apps/plugin-*` "
-#~ "に対応する `@rescript-tauri/plugin-*` "
-#~ "バインディングパッケージを提供します。プラグインパッケージは上流 `@tauri-apps/plugin-*`"
-#~ " を自身の `peerDependency` として宣言します。"
-
-#~ msgid "Phase"
-#~ msgstr "Phase"
-
-#~ msgid "Phase 2+"
-#~ msgstr "Phase 2+"
-
-#~ msgid "`rescript-schema` / `rescript-struct`"
-#~ msgstr "`rescript-schema` / `rescript-struct`"
-
-#~ msgid "Phase 2"
-#~ msgstr "Phase 2"
-
+"`rescript-struct` は **非対応** です（上流で deprecated 済み。"
+"[RFC-0002 §2.1](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md) 参照）。"

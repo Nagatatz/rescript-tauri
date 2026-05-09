@@ -30,6 +30,10 @@ msgid ""
 "link — the commands below show the future `pnpm add @rescript-tauri/core`"
 " workflow that will work post-publish."
 msgstr ""
+"Phase 1 のモジュール一式は `main` で機能完備済みです。初回 npm 公開（`v0.1.0`）は "
+"Phase 1 リリースに合わせて予定されています。それまでは、ソースリポジトリ経由か "
+"ワークスペースリンクで `@rescript-tauri/core` を利用してください。以下のコマンドは "
+"公開後に有効になる `pnpm add @rescript-tauri/core` のワークフローを示しています。"
 
 #: ../../user/installation.md:12
 msgid "Requirements"
@@ -110,13 +114,15 @@ msgstr "次に `rescript.json` の `dependencies` に `@rescript-tauri/core` を
 
 #: ../../user/installation.md:41
 msgid "Phase 2 add-on packages"
-msgstr ""
+msgstr "Phase 2 アドオンパッケージ"
 
 #: ../../user/installation.md:43
 msgid ""
 "Each Phase 2 package is published independently. Install them as needed "
 "alongside the matching upstream plugin / schema library:"
 msgstr ""
+"各 Phase 2 パッケージは個別に公開されます。必要に応じて、対応する上流のプラグイン / "
+"スキーマライブラリと一緒にインストールしてください:"
 
 #: ../../user/installation.md:57
 msgid ""
@@ -124,6 +130,8 @@ msgid ""
 " [schema](schema.md) guides for the matching ReScript / Rust / capability"
 " setup."
 msgstr ""
+"対応する ReScript / Rust / capability の設定については [plugin-fs](plugin-fs.md)、"
+"[plugin-dialog](plugin-dialog.md)、[schema](schema.md) の各ガイドを参照してください。"
 
 #: ../../user/installation.md:61
 msgid "Verify"
