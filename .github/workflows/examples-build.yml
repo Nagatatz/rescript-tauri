@@ -7,6 +7,7 @@ on:
       - "examples/**"
       - "packages/core/**"
       - "pnpm-lock.yaml"
+      - "Cargo.toml"
       - ".github/workflows/examples-build.yml"
   pull_request:
     branches: [main]
@@ -14,6 +15,7 @@ on:
       - "examples/**"
       - "packages/core/**"
       - "pnpm-lock.yaml"
+      - "Cargo.toml"
 
 permissions:
   contents: read
