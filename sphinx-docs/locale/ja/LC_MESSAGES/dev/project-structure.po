@@ -122,6 +122,8 @@ msgid ""
 "`packages/core/` is the Phase 1 hub; Phase 2 adds `packages/schema/`, "
 "`packages/plugin-fs/`, `packages/plugin-dialog/`. The core layout is:"
 msgstr ""
+"`packages/core/` が Phase 1 の中心で、Phase 2 では `packages/schema/`、"
+"`packages/plugin-fs/`、`packages/plugin-dialog/` が追加されています。core の配置は次のとおりです:"
 
 #: ../../dev/project-structure.md:64
 msgid ""
