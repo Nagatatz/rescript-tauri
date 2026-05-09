@@ -34,7 +34,7 @@
     "@rescript-tauri/core": "workspace:*",
     "@rescript/core": "^1.6.0",
     "@rescript/runtime": "^12.2.0",
-    "@types/node": "^22.0.0",
+    "@types/node": "^25.0.0",
     "@vitest/coverage-v8": "^3.2.4",
     "happy-dom": "^20.9.0",
     "rescript": "^12.2.0",
