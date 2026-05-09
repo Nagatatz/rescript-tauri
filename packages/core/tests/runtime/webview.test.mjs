@@ -38,7 +38,7 @@ describe("Webview", () => {
   })
 
   it("setSize / setPosition / position / size dispatch through IPC", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd) => {
       calls.push(cmd)
       if (cmd.includes("position") && !cmd.includes("set_")) {
@@ -72,7 +72,7 @@ describe("Webview", () => {
   })
 
   it("setFocus / setAutoResize / hide / show / setZoom / close dispatch through IPC", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd) => {
       calls.push(cmd)
       return null
@@ -89,7 +89,7 @@ describe("Webview", () => {
   })
 
   it("setBackgroundColor accepts Nullable.null and Nullable.make({...})", async () => {
-    let captures = []
+    const captures = []
     Mocks.mockIPC(async (cmd, args) => {
       captures.push({ cmd, args })
       return null

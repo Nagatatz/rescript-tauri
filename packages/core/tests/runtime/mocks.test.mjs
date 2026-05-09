@@ -79,8 +79,6 @@ describe("Mocks", () => {
   })
 
   it("mockIPC accepts ~options without throwing", () => {
-    expect(() =>
-      Mocks.mockIPC(async () => null, { shouldMockEvents: true }),
-    ).not.toThrow()
+    expect(() => Mocks.mockIPC(async () => null, { shouldMockEvents: true })).not.toThrow()
   })
 })

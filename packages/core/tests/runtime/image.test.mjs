@@ -44,7 +44,7 @@ describe("Image", () => {
 
   it("rgba round-trips bytes through the rust side", async () => {
     let phase = "create"
-    Mocks.mockIPC(async (cmd) => {
+    Mocks.mockIPC(async (_cmd) => {
       if (phase === "create") {
         phase = "rgba"
         return 13

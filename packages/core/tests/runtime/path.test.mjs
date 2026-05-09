@@ -35,7 +35,7 @@ describe("Path directory accessors", () => {
   })
 
   it("each directory accessor delegates to plugin:path|resolve_directory", async () => {
-    let cmds = []
+    const cmds = []
     Mocks.mockIPC(async (cmd) => {
       cmds.push(cmd)
       return "/dummy"
@@ -68,7 +68,9 @@ describe("Path directory accessors", () => {
     // specific name — the count keeps a regression net if the upstream
     // skips one.
     expect(cmds.length).toBe(21)
-    cmds.forEach((cmd) => expect(cmd).toContain("path"))
+    for (const cmd of cmds) {
+      expect(cmd).toContain("path")
+    }
   })
 })
 

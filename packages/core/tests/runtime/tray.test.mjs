@@ -60,7 +60,7 @@ describe("Tray", () => {
   })
 
   it("setIcon / setTooltip / setTitle accept Nullable.null", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd) => {
       if (cmd.includes("new")) return [3, "t"]
       calls.push(cmd)
@@ -81,7 +81,7 @@ describe("Tray", () => {
   })
 
   it("setVisible / setIconAsTemplate / setShowMenuOnLeftClick accept booleans", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd) => {
       if (cmd.includes("new")) return [4, "t"]
       calls.push(cmd)
@@ -102,7 +102,7 @@ describe("Tray", () => {
   })
 
   it("close releases the resource via plugin:resources|close", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd) => {
       if (cmd.includes("tray|new")) return [5, "t"]
       calls.push(cmd)
@@ -115,7 +115,7 @@ describe("Tray", () => {
   })
 
   it("setMenu / setTempDirPath / setIconWithAsTemplate dispatch through IPC", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd) => {
       if (cmd.includes("tray|new") || cmd.includes("menu|new")) return [6, "t"]
       calls.push(cmd)

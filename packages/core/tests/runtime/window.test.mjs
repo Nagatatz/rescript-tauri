@@ -128,8 +128,7 @@ describe("Window", () => {
       if (cmd.includes("scale_factor")) return 2.0
       if (cmd.includes("inner_size") || cmd.includes("outer_size"))
         return { width: 1280, height: 720 }
-      if (cmd.includes("inner_position") || cmd.includes("outer_position"))
-        return { x: 0, y: 0 }
+      if (cmd.includes("inner_position") || cmd.includes("outer_position")) return { x: 0, y: 0 }
       if (cmd.includes("title")) return "demo"
       if (cmd.includes("theme") && !cmd.includes("set_")) return "dark"
       return null

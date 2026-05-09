@@ -12,7 +12,7 @@ describe("Menu.MenuItem", () => {
   afterEach(() => Mocks.clearMocks())
 
   it("make + id + setText + setEnabled + setAccelerator round-trip through IPC", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd, args) => {
       calls.push({ cmd, args })
       if (cmd.includes("new")) return [1, "open"]
@@ -46,7 +46,7 @@ describe("Menu.CheckMenuItem", () => {
   afterEach(() => Mocks.clearMocks())
 
   it("make + isChecked + setChecked", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd) => {
       calls.push(cmd)
       if (cmd.includes("new")) return [2, "auto"]
@@ -77,7 +77,7 @@ describe("Menu.IconMenuItem", () => {
   afterEach(() => Mocks.clearMocks())
 
   it("make + setIcon", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd) => {
       calls.push(cmd)
       if (cmd.includes("new")) return [3, "save"]
@@ -91,10 +91,7 @@ describe("Menu.IconMenuItem", () => {
     await Menu.IconMenuItem.setIcon(item, "/icons/save-active.png")
 
     expect(calls).toEqual(
-      expect.arrayContaining([
-        expect.stringContaining("new"),
-        expect.stringContaining("set_icon"),
-      ]),
+      expect.arrayContaining([expect.stringContaining("new"), expect.stringContaining("set_icon")]),
     )
   })
 })
@@ -141,7 +138,7 @@ describe("Menu.Submenu", () => {
   afterEach(() => Mocks.clearMocks())
 
   it("make + append + remove + items + popup", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd) => {
       calls.push(cmd)
       if (cmd.includes("new")) return [6, "edit"]
@@ -167,7 +164,7 @@ describe("Menu.Submenu", () => {
   })
 
   it("prepend + insert + removeAt + get + text + setText + isEnabled + setEnabled", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd) => {
       calls.push(cmd)
       if (cmd.includes("new")) return [60, "edit"]
@@ -192,7 +189,7 @@ describe("Menu.Submenu", () => {
   })
 
   it("setAsWindowsMenuForNSApp / setAsHelpMenuForNSApp dispatch through IPC", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd) => {
       calls.push(cmd)
       if (cmd.includes("new")) return [61, "win"]
@@ -210,7 +207,7 @@ describe("Menu.Menu", () => {
   afterEach(() => Mocks.clearMocks())
 
   it("make + default + setAsAppMenu round-trips through IPC", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd) => {
       calls.push(cmd)
       if (cmd.includes("new") || cmd.includes("default")) return [9, "main"]
@@ -235,7 +232,7 @@ describe("Menu.Menu", () => {
   })
 
   it("append / prepend / insert / remove / removeAt / items / get / popup / setAsWindowMenu", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd) => {
       calls.push(cmd)
       if (cmd.includes("new")) return [90, "main"]

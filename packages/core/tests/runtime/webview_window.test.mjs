@@ -69,7 +69,7 @@ describe("WebviewWindow", () => {
   })
 
   it("setTitle dispatches through IPC", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd) => {
       calls.push(cmd)
       return null
@@ -80,7 +80,7 @@ describe("WebviewWindow", () => {
   })
 
   it("close dispatches through IPC", async () => {
-    let calls = []
+    const calls = []
     Mocks.mockIPC(async (cmd) => {
       calls.push(cmd)
       return null
