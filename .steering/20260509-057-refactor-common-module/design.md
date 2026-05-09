@@ -1,4 +1,4 @@
-# Steering 055: Design — Common モジュール抽出
+# Steering 057: Design — Common モジュール抽出
 
 ## 1. モジュール構成
 

@@ -1,4 +1,4 @@
-# Steering 055: Tasklist — Common モジュール抽出
+# Steering 057: Tasklist — Common モジュール抽出
 
 各タスクは単独でコミット可能な粒度で構成。実装 + テスト + ドキュメントを 1 ユニットに収め、各完了時点で `pnpm --recursive build && pnpm --recursive test` が green になることを保つ。
 
@@ -46,7 +46,7 @@ Window / Webview / WebviewWindow / Event は `Window.color` の cross-reference 
 
 ## Phase 3: マージ前
 
-- [x] `.steering/20260509-055-refactor-common-module/tasklist.md` の全タスクを `[x]` に更新
+- [x] `.steering/20260509-057-refactor-common-module/tasklist.md` の全タスクを `[x]` に更新
 - [x] tasklist 更新を含めた最終コミット
 - [x] `git diff origin/main...HEAD --stat` で変更概要を確認
 

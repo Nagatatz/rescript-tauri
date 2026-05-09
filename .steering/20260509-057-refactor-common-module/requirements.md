@@ -1,4 +1,6 @@
-# Steering 055: Common モジュール抽出によるリファクタリング
+# Steering 057: Common モジュール抽出によるリファクタリング
+
+> 当初 055 で採番していたが、並列セッションが 055 (plugin-log) / 056 (plugin-os) を先に採番済みだったため `steering-workflow.md` の衝突対処手順に従い 057 へ再採番した。
 
 ## 1. 背景
 
