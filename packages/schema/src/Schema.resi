@@ -1,15 +1,23 @@
 /** rescript-schema integration for @rescript-tauri/core.
 
     Provides Layer 3 of the IPC stack from RFC-0001: declare a
-    `Core.Command.t<'args, 'result>` from a single `S.t<'args>` +
-    `S.t<'result>` pair instead of writing the encoder and decoder
-    by hand.
+    `Core.Command.t<'args, 'result>`, `Core.Channel.t<'message>`, or
+    `Event.t<'payload>` from a `rescript-schema` schema instead of
+    writing the encoder and decoder by hand.
 
-    See: https://github.com/Nagatatz/rescript-tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md
+    `Schema.S` re-exports `RescriptSchema.S` so callers can reach the
+    schema DSL through a single import. The `Core` / `Event`
+    sub-aliases used inside the implementation are intentionally not
+    re-exported; reach those modules through `@rescript-tauri/core`
+    directly.
+
+    See: https://v2.tauri.app/develop/calling-rust/
 */
 
-module Core = RescriptTauriCore.Core
-module Event = RescriptTauriCore.Event
+/** Re-export of `RescriptSchema.S` so `@rescript-tauri/schema`
+    callers do not need a separate `rescript-schema` import for the
+    schema DSL itself. Both `Schema.S.string` and
+    `RescriptSchema.S.string` resolve to the same module. */
 module S = RescriptSchema.S
 
 /** Converts a `rescript-schema` schema into the `Core.decoder` shape
@@ -17,9 +25,14 @@ module S = RescriptSchema.S
     `Event.make`. Decode failures from `S.parseJsonOrThrow` are caught
     via the `S.Raised(error)` exception and surfaced as `Error(message)`.
 
-    See: https://github.com/Nagatatz/rescript-tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md
+    Custom transforms must signal failure through `S.Raised` (or
+    equivalent schema combinators); throwing JS-native errors bypasses
+    this catch and surfaces as an unhandled rejection in
+    `Channel.onMessage` / `Event.listen`.
+
+    See: https://v2.tauri.app/develop/calling-rust/
 */
-let toDecoder: S.t<'value> => Core.decoder<'value>
+let toDecoder: S.t<'value> => RescriptTauriCore.Core.decoder<'value>
 
 /** Declares a typed Tauri command from a single `S.t<'args>` and
     `S.t<'result>`. Encoding goes through `S.reverseConvertToJsonOrThrow`,
@@ -30,27 +43,34 @@ let toDecoder: S.t<'value> => Core.decoder<'value>
     ```rescript
     let greet = Schema.fromSchemas(
       ~name="greet",
-      ~args=S.object(s => {name: s->S.field("name", S.string)}),
-      ~result=S.string,
+      ~args=Schema.S.object(s => {name: s->Schema.S.field("name", Schema.S.string)}),
+      ~result=Schema.S.string,
     )
     ```
 
-    See: https://github.com/Nagatatz/rescript-tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md
+    See: https://v2.tauri.app/develop/calling-rust/
 */
 let fromSchemas: (
   ~name: string,
   ~args: S.t<'args>,
   ~result: S.t<'result>,
-) => Core.Command.t<'args, 'result>
+) => RescriptTauriCore.Core.Command.t<'args, 'result>
 
 /** Declares a typed Channel using a schema as the message decoder.
 
-    See: https://github.com/Nagatatz/rescript-tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md
+    See: https://v2.tauri.app/develop/calling-rust/#channels
 */
-let channelFromSchema: (~message: S.t<'message>) => Core.Channel.t<'message>
+let channelFromSchema: (~message: S.t<'message>) => RescriptTauriCore.Core.Channel.t<'message>
 
 /** Declares a typed Event using a schema as the payload decoder.
+    The `~schema` label mirrors `channelFromSchema`'s `~message`
+    naming so all three Layer-3 helpers read uniformly; the schema
+    is wrapped via `toDecoder` and forwarded to `Event.make`'s
+    `~decode` argument.
 
-    See: https://github.com/Nagatatz/rescript-tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md
+    See: https://v2.tauri.app/develop/calling-frontend/#listening-to-events
 */
-let eventFromSchema: (~name: string, ~payload: S.t<'payload>) => Event.t<'payload>
+let eventFromSchema: (
+  ~name: string,
+  ~schema: S.t<'payload>,
+) => RescriptTauriCore.Event.t<'payload>

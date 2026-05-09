@@ -53,6 +53,12 @@ type predefinedItem =
 
 /** Plain text menu item.
 
+    The `id` / `text` / `setText` / `isEnabled` / `setEnabled` /
+    `setAccelerator` group is shared verbatim with `CheckMenuItem`
+    and `IconMenuItem`; consult any one of the three for parameter
+    semantics. Each module re-declares them so the type-system can
+    enforce the right `t` is passed.
+
     See: https://v2.tauri.app/reference/javascript/api/namespacemenu/#menuitem
 */
 module MenuItem: {
@@ -91,7 +97,9 @@ module MenuItem: {
   let setAccelerator: (t, Nullable.t<string>) => promise<unit>
 }
 
-/** Menu item with a check-mark toggle.
+/** Menu item with a check-mark toggle. The first 6 methods mirror
+    `MenuItem` (see that module's note); `isChecked` / `setChecked`
+    are specific to this kind.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacemenu/#checkmenuitem
 */
@@ -122,7 +130,8 @@ module CheckMenuItem: {
   let setChecked: (t, bool) => promise<unit>
 }
 
-/** Menu item with an icon.
+/** Menu item with an icon. The first 6 methods mirror `MenuItem`
+    (see that module's note); `setIcon` is specific to this kind.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacemenu/#iconmenuitem
 */

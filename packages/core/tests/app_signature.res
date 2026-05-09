@@ -7,7 +7,7 @@ let _check_get_identifier: unit => promise<string> = App.getIdentifier
 let _check_show: unit => promise<unit> = App.show
 let _check_hide: unit => promise<unit> = App.hide
 let _check_default_window_icon: unit => promise<Nullable.t<Image.t>> = App.defaultWindowIcon
-let _check_set_theme: (~preferred: Nullable.t<App.theme>=?) => promise<unit> = App.setTheme
+let _check_set_theme: Nullable.t<App.theme> => promise<unit> = App.setTheme
 let _check_set_dock_visibility: bool => promise<unit> = App.setDockVisibility
 
 let _check_theme_value: App.theme = #light

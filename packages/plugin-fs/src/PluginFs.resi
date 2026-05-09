@@ -49,6 +49,12 @@ type dirEntry = {
 
 /** Options for `readFile` / `readTextFile`.
 
+    `encoding` is currently a `string` because upstream
+    `@tauri-apps/plugin-fs` accepts only `"utf-8"` at the time of this
+    binding (v2.5.0). Passing any other value falls through to the
+    Rust side as a runtime error. The shape will tighten to a
+    polymorphic variant once upstream documents additional values.
+
     See: https://v2.tauri.app/reference/javascript/fs/#readfileoptions
 */
 type readFileOptions = {

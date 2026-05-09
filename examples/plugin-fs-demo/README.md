@@ -5,11 +5,11 @@ Tauri 2.x desktop example exercising every public function of
 
 ## Status
 
-Phase 2 — added 2026-05-09 (steering 037). The frontend ReScript
-piece builds today (`pnpm --filter plugin-fs-demo build`); the Rust
-side requires the Tauri toolchain (`pnpm tauri dev` from this
-directory) and is fully exercised once the CI matrix gets a
-`plugin-fs-demo` job (scheduled for the next CI-extension steering).
+Phase 2 — shipped (added 2026-05-09 via steering 037). The frontend
+ReScript piece builds with `pnpm --filter plugin-fs-demo build`; the
+Rust side requires the Tauri toolchain (`pnpm tauri dev` from this
+directory). The example is included in the `examples-build` CI
+matrix and is exercised on Linux / macOS / Windows on every PR.
 
 ## Run locally
 

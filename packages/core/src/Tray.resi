@@ -159,6 +159,6 @@ let setShowMenuOnLeftClick: (t, bool) => promise<unit>
 /** Releases the tray-icon resource immediately. Without this call
     the resource is kept alive until the Tauri app exits.
 
-    See: https://v2.tauri.app/reference/javascript/api/namespacecore/#close
+    See: https://v2.tauri.app/reference/javascript/api/namespacetray/#close
 */
 let close: t => promise<unit>

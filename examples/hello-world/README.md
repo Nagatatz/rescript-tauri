@@ -5,13 +5,12 @@ Layer 1 (`Core.Raw.invoke`).
 
 ## Status
 
-Phase 1 — implementation in progress. The frontend ReScript piece
-builds today (`pnpm --filter hello-world build`); the Rust side
-requires the Tauri toolchain (`pnpm tauri dev` from this directory)
-and is fully exercised once the CI matrix is wired up
-(.steering/20260508-017-ci-workflows; in flight).
+Phase 1 baseline — shipped. The frontend ReScript piece builds with
+`pnpm --filter hello-world build`; the Rust side requires the Tauri
+toolchain (`pnpm tauri dev` from this directory). Linux / macOS /
+Windows builds run on every PR via the `examples-build` CI matrix.
 
-## Run locally (after Phase 1 release)
+## Run locally
 
 ```bash
 cd examples/hello-world
@@ -41,9 +40,28 @@ pnpm tauri dev
 ## Notes
 
 - `App.res` reaches into Tauri via `RescriptTauriCore.Core.Raw.invoke`
-  (full namespace path) because the top-level `Tauri.res` re-export
-  module hasn't been added yet (PRD §10 row 1 — finalized at Phase 1
-  release).
+  (full namespace path). Apps that prefer shorter access can
+  `open Tauri` to reach `Core.Raw.invoke` once the `Tauri` re-export
+  is imported (see [`packages/core/src/Tauri.resi`](../../packages/core/src/Tauri.resi)).
+
+## Content-Security-Policy (CSP)
+
+`src-tauri/tauri.conf.json` ships with an explicit CSP:
+
+```json
+"csp": "default-src 'self'; img-src 'self' asset: https://asset.localhost; style-src 'self' 'unsafe-inline'; connect-src ipc: http://ipc.localhost"
+```
+
+The other examples in this repository leave `"csp": null` to keep
+their setup minimal, but **production apps must define an explicit
+CSP**. `default-src 'self'` blocks remote script / object loads;
+`asset:` and `https://asset.localhost` are required for
+`Core.Raw.convertFileSrc`; `ipc:` and `http://ipc.localhost` are
+required for Tauri 2.x's `invoke` transport on Windows / macOS.
+Tighten the policy (e.g., remove `'unsafe-inline'` and inline only
+hashed styles) when your app's bundling pipeline allows it. See
+[Tauri's CSP guidance](https://v2.tauri.app/security/csp/) for
+details.
 - `tauri.conf.json` keeps `frontendDist` pointing to `../` (this
   directory) so Tauri loads `index.html` directly. A real production
   setup would route through Vite or another bundler.

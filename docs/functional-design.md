@@ -7,9 +7,9 @@
 | 作成日 | 2026-05-08 |
 | 関連 PRD | [docs/product-requirements.md](./product-requirements.md) |
 | 関連 RFC | [docs/ideas/RFC-0001-core-api-design.md](./ideas/RFC-0001-core-api-design.md) |
-| ステータス | Draft |
+| ステータス | Confirmed (Phase 1+2 merged, awaiting first publish) |
 
-> 本書は PRD の機能要件を「何を」「どのモジュールで」「どんな型で」提供するかに落としたもの。実装方針・型シグネチャ・ファイル配置・テスト方針までを定義し、各モジュール実装時の指針とする。アーキテクチャ寄りの判断は `docs/architecture.md`（後続作成予定）、リポジトリ物理構造は `docs/repository-structure.md` を参照。
+> 本書は PRD の機能要件を「何を」「どのモジュールで」「どんな型で」提供するかに落としたもの。実装方針・型シグネチャ・ファイル配置・テスト方針までを定義し、各モジュール実装時の指針とする。アーキテクチャ寄りの判断は `docs/architecture.md`、リポジトリ物理構造は `docs/repository-structure.md` を参照。
 
 ---
 
@@ -45,7 +45,10 @@ rescript-tauri/                       # monorepo root
 │   ├── hello-world/                  # Phase 1 必須
 │   ├── window-management/
 │   ├── ipc-typed/
-│   └── streaming-ipc/
+│   ├── streaming-ipc/
+│   ├── plugin-fs-demo/               # Phase 2
+│   ├── plugin-dialog-demo/           # Phase 2
+│   └── ipc-typed-with-schema/        # Phase 2 (Layer 3 demo)
 └── docs/
 ```
 
@@ -617,7 +620,7 @@ let setTitle: (t, string) => promise<unit>
 
 ### 5.3 統合テスト（examples ビルド）
 
-- `examples/hello-world`、`examples/window-management`、`examples/ipc-typed`、`examples/streaming-ipc` を CI で **Linux / macOS / Windows** ビルド。
+- 7 例（`examples/hello-world`、`examples/window-management`、`examples/ipc-typed`、`examples/streaming-ipc`、`examples/plugin-fs-demo`、`examples/plugin-dialog-demo`、`examples/ipc-typed-with-schema`）を CI で **Linux / macOS / Windows** ビルド。
 - 1 環境でも失敗したらリリースを止める（PRD 5.4 信頼性ゲート）。
 
 ### 5.4 互換性チェック
@@ -631,13 +634,14 @@ let setTitle: (t, string) => promise<unit>
 
 | ジョブ | トリガ | 内容 |
 |---|---|---|
-| `lint` | PR | ReScript フォーマット差分チェック |
+| `lint-format` | PR | Biome で手書き `.mjs` / JSON の format + lint（ReScript 生成物 `*.res.mjs` / `lib/` は除外） |
 | `build-core` | PR / push | `packages/core` ビルド + 計測値（`time pnpm --filter @rescript-tauri/core build`）をジョブログに出力。クリーンビルド 30 秒・インクリメンタル 1 秒の閾値を超えたら fail（PRD §5.2） |
-| `tests-core-types` | PR | `tests/` の型レベルコンパイル + `.resi` 公開シンボル 100% 参照カバレッジ（PRD §5.4） |
-| `tests-core-runtime` | PR | vitest 実行（`Mocks.mockIPC` 経由の round-trip 検証を含む） |
+| `tests-core-types` / `tests-{schema,plugin-fs,plugin-dialog}-types` | PR | 各パッケージの型レベルコンパイル + `.resi` 公開シンボル 100% 参照カバレッジ（PRD §5.4） |
+| `tests-core-runtime` / `tests-{schema,plugin-fs,plugin-dialog}-runtime` | PR | 各パッケージの vitest 実行（`Mocks.mockIPC` 経由の round-trip 検証を含む） |
 | `tests-coverage` | PR / push | 4 パッケージ（core / plugin-fs / plugin-dialog / schema）を `strategy.matrix` で並列実行し、`@vitest/coverage-v8` で行・分岐・関数カバレッジを計測。Job summary に表で出力、LCOV / HTML を artifact 化（30 日保持）。**観測フェーズ：しきい値による fail ゲートは設定しない**（次フェーズで設定予定） |
-| `examples-build` | PR | `examples/*` を 3 OS でビルド |
+| `examples-build` | PR | 7 例題（hello-world / window-management / ipc-typed / streaming-ipc / plugin-fs-demo / plugin-dialog-demo / ipc-typed-with-schema）を 3 OS でビルド |
 | `doc-link-lint` | PR | 全 `.resi` 公開シンボルの doc comment に `v2.tauri.app` リンクが含まれているかを grep で検証（PRD §7 KPI） |
+| `docs` | PR / push | Sphinx EN+JA の HTML ビルド + Pagefind アセンブリ |
 | `compat-tauri-latest` | nightly | `@tauri-apps/api` を latest にして build |
 | `compat-rescript-prerelease` | nightly | ReScript 12.x 次期マイナー / 次期メジャー prerelease で build。v12 系 API drift を先行検知 |
 | `release` | tag push | npm publish（各パッケージ独立 semver）|
@@ -660,9 +664,9 @@ let setTitle: (t, string) => promise<unit>
 
 | # | 論点 | 暫定 | 確定タイミング |
 |---|---|---|---|
-| 1 | `Tauri.res` re-export 範囲 | core/event/window のみ | Phase 1 リリース直前 |
-| 2 | `Channel` を `Core` 内 vs 独立モジュール | `Core.Channel` サブモジュール | 設計レビュー時 |
-| 3 | `*Exn` 命名 | `*Exn`（`@rescript/core` 慣習） | Phase 1 直前 |
+| 1 | `Tauri.res` re-export 範囲 | **Core / Event / Window / Webview / WebviewWindow 確定**（経緯: `.steering/20260509-023-tauri-reexport/`） | **確定済み（2026-05-09）** |
+| 2 | `Channel` を `Core` 内 vs 独立モジュール | **`Core.Channel` サブモジュール採用（確定）** | **確定済み（Phase 1 設計レビュー）** |
+| 3 | `*Exn` 命名 | **`*Exn` 採用（確定）**（`@rescript/core` 慣習） | **確定済み** |
 | 4 | `Event.Predefined` の網羅範囲 | RFC 列挙 7 種を Must | Phase 1 後継続追加 |
 | 5 | `Mocks` の独立パッケージ化 | **core 同梱を継続（確定）**（経緯: `.steering/20260509-045-mocks-packaging-decision/`） | **確定済み（2026-05-09）** |
 | 6 | Belt-only ユーザー向け shim 提供可否 | 当面提供しない（`@rescript/core` を peerDep 必須） | Phase 1 リリース直前 |

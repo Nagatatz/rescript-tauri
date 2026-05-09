@@ -287,9 +287,13 @@ let primaryMonitor: unit => promise<Nullable.t<monitor>>
 
 /** Returns the monitor that contains the given physical point.
 
+    `~x` and `~y` are physical pixel coordinates (matching Tauri's JS
+    API). The labels make the call site self-documenting compared to
+    a positional `(float, float)` pair.
+
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#monitorfrompoint
 */
-let monitorFromPoint: (float, float) => promise<Nullable.t<monitor>>
+let monitorFromPoint: (~x: float, ~y: float) => promise<Nullable.t<monitor>>
 
 /** Returns every monitor available to the OS.
 
@@ -577,11 +581,16 @@ let setIcon: (t, 'icon) => promise<unit>
 */
 let setSkipTaskbar: (t, bool) => promise<unit>
 
-/** Sets the window background color.
+/** Sets the window background color, or clears it back to the OS
+    default when given `Nullable.null`.
+
+    Aligned with `Webview.setBackgroundColor` and
+    `WebviewWindow.setBackgroundColor` so callers can flow values
+    between the three layers without conversion.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#setbackgroundcolor
 */
-let setBackgroundColor: (t, color) => promise<unit>
+let setBackgroundColor: (t, Nullable.t<color>) => promise<unit>
 
 /** Toggles whether cursor events pass through this window to the
     window beneath it.

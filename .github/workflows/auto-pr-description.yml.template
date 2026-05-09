@@ -25,7 +25,7 @@ jobs:
   describe:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
 
@@ -37,15 +37,20 @@ jobs:
       - name: Generate PR description
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Receive the GitHub event payload via env vars so untrusted ref
+          # values can never be expanded directly into the shell command
+          # (avoids `$(...)` / backtick injection from a fork branch name).
+          BASE_REF: ${{ github.base_ref }}
+          PR_NUM: ${{ github.event.pull_request.number }}
         run: |
           # diff の概要を取得
-          diff_summary=$(git diff origin/${{ github.base_ref }}...HEAD --stat | tail -50)
+          diff_summary=$(git diff "origin/${BASE_REF}...HEAD" --stat | tail -50)
 
           # claude -p で PR description を生成
           desc=$(echo "$diff_summary" | claude -p "以下の git diff --stat を見て、簡潔な PR description を生成してください。フォーマット:\n## 概要\n(1-2 文)\n## 主要変更点\n(3-5 個の bullet)\n## 動作確認\n(チェックボックス)" 2>/dev/null || echo "")
 
           if [ -n "$desc" ]; then
-            gh pr edit ${{ github.event.pull_request.number }} --body "$desc"
+            gh pr edit "$PR_NUM" --body "$desc"
             echo "PR description updated."
           else
             echo "Failed to generate description; skipping."

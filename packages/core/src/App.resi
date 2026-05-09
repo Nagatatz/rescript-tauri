@@ -62,9 +62,13 @@ let defaultWindowIcon: unit => promise<Nullable.t<Image.t>>
 /** Sets the application's preferred theme. Pass `Nullable.null` to
     defer to the OS setting.
 
+    Aligned with `Window.setTheme(t, Nullable.t<theme>)` so callers
+    can flow theme values between the two APIs without restructuring
+    the call site.
+
     See: https://v2.tauri.app/reference/javascript/api/namespaceapp/#settheme
 */
-let setTheme: (~preferred: Nullable.t<theme>=?) => promise<unit>
+let setTheme: Nullable.t<theme> => promise<unit>
 
 /** Toggles the dock icon visibility (macOS-only).
 

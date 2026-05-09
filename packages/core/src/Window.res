@@ -180,7 +180,8 @@ external currentMonitor: unit => promise<Nullable.t<monitor>> = "currentMonitor"
 external primaryMonitor: unit => promise<Nullable.t<monitor>> = "primaryMonitor"
 
 @module("@tauri-apps/api/window")
-external monitorFromPoint: (float, float) => promise<Nullable.t<monitor>> = "monitorFromPoint"
+external monitorFromPoint: (~x: float, ~y: float) => promise<Nullable.t<monitor>> =
+  "monitorFromPoint"
 
 @module("@tauri-apps/api/window")
 external availableMonitors: unit => promise<array<monitor>> = "availableMonitors"
@@ -234,7 +235,7 @@ external setSizeConstraints: (t, Nullable.t<windowSizeConstraints>) => promise<u
 @send external clearEffects: t => promise<unit> = "clearEffects"
 @send external setIcon: (t, 'icon) => promise<unit> = "setIcon"
 @send external setSkipTaskbar: (t, bool) => promise<unit> = "setSkipTaskbar"
-@send external setBackgroundColor: (t, color) => promise<unit> = "setBackgroundColor"
+@send external setBackgroundColor: (t, Nullable.t<color>) => promise<unit> = "setBackgroundColor"
 @send external setIgnoreCursorEvents: (t, bool) => promise<unit> = "setIgnoreCursorEvents"
 @send external setCursorIcon: (t, cursorIcon) => promise<unit> = "setCursorIcon"
 @send external setCursorVisible: (t, bool) => promise<unit> = "setCursorVisible"

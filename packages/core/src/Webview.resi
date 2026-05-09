@@ -140,6 +140,11 @@ let close: t => promise<unit>
 
 /** Subscribes to drag-and-drop events on this webview.
 
+    The handler receives one of `Enter` / `Over` / `Drop` / `Leave`.
+    If upstream Tauri introduces a new variant before this binding
+    catches up, the unknown payload type is logged via `Console.warn`
+    and otherwise ignored — file an issue when you see the warning.
+
     See: https://v2.tauri.app/reference/javascript/api/namespacewebview/#ondragdropevent
 */
 let onDragDropEvent: (t, dragDropEvent => unit) => promise<unlisten>

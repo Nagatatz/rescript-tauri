@@ -3,7 +3,7 @@
 This page is a docs-site-specific extension of the canonical [`CONTRIBUTING.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/CONTRIBUTING.md) at the repository root. **Read the root `CONTRIBUTING.md` first** for project-wide context (status, branch naming, commit style, PR process, Definition of Done).
 
 ```{important}
-The repository is currently in **Phase 1 — design phase** and external pull requests are not yet accepted. Issues are welcome (design feedback, RFC discussion). The workflow described below is the post-Phase-1 contributor workflow; familiarizing yourself with it now is encouraged.
+Phase 1 + Phase 2 implementations are merged on `main` and external pull requests are accepted. Issues remain welcome for design feedback and RFC discussion. The workflow described below is the live contributor workflow.
 ```
 
 ## Where to start

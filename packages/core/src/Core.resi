@@ -33,6 +33,13 @@ module Raw: {
       to override the default `asset` scheme — for example `stream` or
       a custom protocol registered via the Tauri config.
 
+      **Security**: `~protocol` is intended for built-in or
+      app-registered Tauri protocols (`asset`, `stream`, ...). Do not
+      derive it from untrusted user input — combined with a custom
+      protocol handler this would enable scheme confusion. Treat the
+      returned URL as untrusted markup as well; insert it via DOM APIs
+      (`element.src = url`) rather than `innerHTML` interpolation.
+
       See: https://v2.tauri.app/reference/javascript/api/namespacecore/#convertfilesrc
 
       ## Example
@@ -68,7 +75,12 @@ type invokeError =
       the returned JSON. The string is the decoder's error message. */
   | DecodeError(string)
   /** The Rust handler rejected the promise. The payload is the raw
-      value Tauri rejected with (typically a string or a JSON object). */
+      value Tauri rejected with (typically a string or a JSON object).
+
+      **Security**: this payload mirrors the captured Rust-side error
+      and may include internal details (file paths, SQL fragments,
+      stack traces, etc.). Sanitize before surfacing it in user-facing
+      UI or sending it to remote telemetry. */
   | RustError(JSON.t)
 
 module Command: {
