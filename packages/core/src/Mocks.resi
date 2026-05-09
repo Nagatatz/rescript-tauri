@@ -5,6 +5,13 @@
     Available in production builds — this module is intentionally
     test-oriented and should only be imported from test files.
 
+    Packaging: this module is part of `@rescript-tauri/core` and
+    will not be split into a separate `@rescript-tauri/mocks`
+    package — confirmed 2026-05-09 (PRD §10 #5, steering
+    `20260509-045-mocks-packaging-decision`). All Phase 2 packages
+    (`schema` / `plugin-fs` / `plugin-dialog`) consume it via the
+    core peer dependency.
+
     See: https://v2.tauri.app/reference/javascript/api/namespacemocks/#mockipc
 
     ## Example
