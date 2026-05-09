@@ -414,7 +414,7 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 | 2 | `Channel` を `Core` に同梱 vs 独立モジュール化 | `Core.Channel` サブモジュールとして実装 | Phase 1 設計レビュー |
 | 3 | `invokeExn` 命名（`invokeOrThrow` / `invokeUnsafe` 等） | `invokeExn`（`@rescript/core` 慣習） | Phase 1 直前確定 |
 | 4 | `Event.Predefined` の網羅範囲 | RFC 列挙の 7 種を Must、それ以外は段階追加 | Phase 1 リリース後継続 |
-| 5 | `Mocks` の独立パッケージ化 | 当面 `@rescript-tauri/core` に同梱 | Phase 2 で再評価 |
+| 5 | `Mocks` の独立パッケージ化 | **`@rescript-tauri/core` 同梱を継続（確定）**（経緯: `.steering/20260509-045-mocks-packaging-decision/`） | **確定済み（2026-05-09）** |
 | 6 | Belt-only ユーザー向け shim 提供可否 | 当面提供しない（`@rescript/core` を peerDep 必須にする） | Phase 1 リリース直前 |
 | 7 | ReScript v11 サポート | **除外（v12+ のみ）**（経緯: `.steering/20260508-002-rescript-v12-only/`） | **確定済み（2026-05-08）** |
 

@@ -664,7 +664,7 @@ let setTitle: (t, string) => promise<unit>
 | 2 | `Channel` を `Core` 内 vs 独立モジュール | `Core.Channel` サブモジュール | 設計レビュー時 |
 | 3 | `*Exn` 命名 | `*Exn`（`@rescript/core` 慣習） | Phase 1 直前 |
 | 4 | `Event.Predefined` の網羅範囲 | RFC 列挙 7 種を Must | Phase 1 後継続追加 |
-| 5 | `Mocks` の独立パッケージ化 | core 同梱 | Phase 2 で再評価 |
+| 5 | `Mocks` の独立パッケージ化 | **core 同梱を継続（確定）**（経緯: `.steering/20260509-045-mocks-packaging-decision/`） | **確定済み（2026-05-09）** |
 | 6 | Belt-only ユーザー向け shim 提供可否 | 当面提供しない（`@rescript/core` を peerDep 必須） | Phase 1 リリース直前 |
 
 ---
