@@ -60,8 +60,8 @@
 
 ## マージ
 
-- [ ] M-1 tasklist.md の全タスクを `[x]` に更新（マージタスク自体を含む）
-- [ ] M-2 tasklist 更新コミットを作成
-- [ ] M-3 ユーザーに main へのマージ可否を確認
-- [ ] M-4 main にマージ + worktree / ブランチ クリーンアップ
-- [ ] M-5 クリーンアップ完了の検証 (`git worktree list` / `git branch --list 'worktree-*'` / `.claude/worktrees/`)
+- [x] M-1 tasklist.md の全タスクを `[x]` に更新（マージタスク自体を含む）
+- [x] M-2 tasklist 更新コミットを作成
+- [x] M-3 ユーザーに main へのマージ可否を確認
+- [x] M-4 main にマージ + worktree / ブランチ クリーンアップ
+- [x] M-5 クリーンアップ完了の検証 (`git worktree list` / `git branch --list 'worktree-*'` / `.claude/worktrees/`)
