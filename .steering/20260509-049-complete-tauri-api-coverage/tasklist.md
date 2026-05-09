@@ -52,12 +52,12 @@
 
 ## Phase 5: Mocks 拡張
 
-- [ ] `Mocks.res` / `.resi` に `mockIPCOptions` 型追加
-- [ ] `Mocks.res` / `.resi` の `mockIPC` に `~options=?` 追加
-- [ ] `Mocks.res` / `.resi` に `mockConvertFileSrc` 追加
-- [ ] `tests/mocks_signature.res` 更新（存在する場合）
-- [ ] `tests/runtime/mocks.test.mjs` 更新
-- [ ] コミット: `✨ Add mockConvertFileSrc and MockIPCOptions to Mocks`
+- [x] `Mocks.res` / `.resi` に `mockIPCOptions` 型追加
+- [x] `Mocks.res` / `.resi` の `mockIPC` に `~options=?` 追加
+- [x] `Mocks.res` / `.resi` に `mockConvertFileSrc` 追加
+- [x] `tests/mocks_signature.res` 更新
+- [x] `tests/runtime/mocks.test.mjs` 更新
+- [x] コミット: `✨ Add mockConvertFileSrc and MockIPCOptions to Mocks`
 
 ## Phase 6: Menu 拡張
 
