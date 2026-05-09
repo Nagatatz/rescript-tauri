@@ -56,6 +56,9 @@ let onDragDropEvent = (webview, handler) =>
     | "over" => handler(Over({position: position}))
     | "drop" => handler(Drop({paths: payload["paths"], position}))
     | "leave" => handler(Leave)
-    | _ => ()
+    // If upstream Tauri introduces a new drag-drop variant we have not
+    // mapped yet, log it via Console.warn instead of silently dropping
+    // the event so the gap surfaces during development.
+    | other => Console.warn2("[rescript-tauri] Unknown drag-drop event type:", other)
     }
   })

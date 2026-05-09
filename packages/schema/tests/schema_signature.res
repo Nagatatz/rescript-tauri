@@ -2,19 +2,23 @@
 
 module Core = RescriptTauriCore.Core
 module Event = RescriptTauriCore.Event
-module S = RescriptSchema.S
 
-let _check_to_decoder: S.t<'value> => Core.decoder<'value> = Schema.toDecoder
+// Schema.S is the public re-export of RescriptSchema.S.
+let _check_s_module_alias: Schema.S.t<string> = Schema.S.string
+
+let _check_to_decoder: Schema.S.t<'value> => Core.decoder<'value> = Schema.toDecoder
 
 let _check_from_schemas: (
   ~name: string,
-  ~args: S.t<'args>,
-  ~result: S.t<'result>,
+  ~args: Schema.S.t<'args>,
+  ~result: Schema.S.t<'result>,
 ) => Core.Command.t<'args, 'result> = Schema.fromSchemas
 
-let _check_channel_from_schema: (~message: S.t<'message>) => Core.Channel.t<'message> = Schema.channelFromSchema
+let _check_channel_from_schema: (
+  ~message: Schema.S.t<'message>,
+) => Core.Channel.t<'message> = Schema.channelFromSchema
 
 let _check_event_from_schema: (
   ~name: string,
-  ~payload: S.t<'payload>,
+  ~schema: Schema.S.t<'payload>,
 ) => Event.t<'payload> = Schema.eventFromSchema

@@ -41,22 +41,22 @@
 
 ## D. API 整合リファクタ
 
-- [ ] D-1 `packages/core/src/Window.{resi,res}` の `setBackgroundColor` を `Nullable.t<color>` 化
-- [ ] D-2 `packages/core/src/Webview.res` `onDragDropEvent` の未知 kind を `Console.warn` ログに変更
-- [ ] D-3 `packages/core/src/Webview.resi` `onDragDropEvent` doc comment 補強
-- [ ] D-4 `packages/schema/src/Schema.{resi,res}` の `module Core/Event/S` 公開シグネチャ削除
-- [ ] D-5 `packages/schema/src/Schema.{resi,res}` の See リンクを Tauri 公式 URL に差し替え
-- [ ] D-6 `packages/schema/src/Schema.{resi,res}` `eventFromSchema` のラベルを `~payload` → `~schema` に変更
-- [ ] D-7 `examples/ipc-typed-with-schema/src/App.res` 呼び出し側を更新
-- [ ] D-8 `packages/schema/tests/schema_signature.res` を更新
-- [ ] D-9 `packages/core/src/Tray.resi` `close` の See リンクを `namespacetray` に修正
-- [ ] D-10 `packages/core/src/App.{resi,res}` `setTheme` を `Nullable.t<theme>` の単一引数に変更
-- [ ] D-11 `packages/core/src/Window.{resi,res}` `monitorFromPoint` を `(~x, ~y)` ラベル化
-- [ ] D-12 `packages/plugin-fs/src/PluginFs.resi` `readFileOptions.encoding` doc に `"utf-8"` 限定を明記
-- [ ] D-13 `packages/core/src/Menu.resi` 各モジュール先頭の共通 6 メソッド注記
-- [ ] D-14 破壊変更の波及（examples / sphinx-docs / docs / tests）を grep 確認・更新
-- [ ] D-15 ビルド・テスト・Biome check 緑確認
-- [ ] D-16 Scope D をコミット（絵文字: ♻️ + 🐛、または分割）
+- [x] D-1 `packages/core/src/Window.{resi,res}` の `setBackgroundColor` を `Nullable.t<color>` 化
+- [x] D-2 `packages/core/src/Webview.res` `onDragDropEvent` の未知 kind を `Console.warn` ログに変更
+- [x] D-3 `packages/core/src/Webview.resi` `onDragDropEvent` doc comment 補強
+- [x] D-4 `packages/schema/src/Schema.resi` から `Core` / `Event` 公開シグネチャ削除（`S` は DSL convenience として examples で使用中なので維持）
+- [x] D-5 `packages/schema/src/Schema.resi` の See リンクを Tauri 公式 URL に差し替え
+- [x] D-6 `packages/schema/src/Schema.{resi,res}` `eventFromSchema` のラベルを `~payload` → `~schema` に変更
+- [x] D-7 `examples/ipc-typed-with-schema/src/App.res` 呼び出し側を更新
+- [x] D-8 `packages/schema/tests/schema_signature.res` を更新
+- [x] D-9 `packages/core/src/Tray.resi` `close` の See リンクを `namespacetray` に修正
+- [x] D-10 `packages/core/src/App.{resi,res}` `setTheme` を `Nullable.t<theme>` の単一引数に変更（`tests/app_signature.res` も併修）
+- [x] D-11 `packages/core/src/Window.{resi,res}` `monitorFromPoint` を `(~x, ~y)` ラベル化（`tests/window_signature.res` も併修）
+- [x] D-12 `packages/plugin-fs/src/PluginFs.resi` `readFileOptions.encoding` doc に `"utf-8"` 限定を明記
+- [x] D-13 `packages/core/src/Menu.resi` 各モジュール先頭の共通 6 メソッド注記
+- [x] D-14 破壊変更の波及（tests / example）を grep で網羅。sphinx-docs / docs に該当呼び出しはなし
+- [x] D-15 クリーンビルド + 全 4 パッケージ test 緑確認（core 26 / plugin-fs 6 / plugin-dialog 10 / schema 5）
+- [x] D-16 Scope D をコミット
 
 ## マージ
 

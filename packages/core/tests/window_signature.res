@@ -9,7 +9,7 @@ let _check_get_focused_window: unit => promise<Nullable.t<Window.t>> = Window.ge
 
 let _check_current_monitor: unit => promise<Nullable.t<Window.monitor>> = Window.currentMonitor
 let _check_primary_monitor: unit => promise<Nullable.t<Window.monitor>> = Window.primaryMonitor
-let _check_monitor_from_point: (float, float) => promise<
+let _check_monitor_from_point: (~x: float, ~y: float) => promise<
   Nullable.t<Window.monitor>,
 > = Window.monitorFromPoint
 let _check_available_monitors: unit => promise<array<Window.monitor>> = Window.availableMonitors
@@ -62,7 +62,7 @@ let _check_set_effects: (Window.t, Window.effects) => promise<unit> = Window.set
 let _check_clear_effects: Window.t => promise<unit> = Window.clearEffects
 let _check_set_icon: (Window.t, 'icon) => promise<unit> = Window.setIcon
 let _check_set_skip_taskbar: (Window.t, bool) => promise<unit> = Window.setSkipTaskbar
-let _check_set_background_color: (Window.t, Window.color) => promise<unit> = Window.setBackgroundColor
+let _check_set_background_color: (Window.t, Nullable.t<Window.color>) => promise<unit> = Window.setBackgroundColor
 let _check_set_ignore_cursor_events: (Window.t, bool) => promise<unit> = Window.setIgnoreCursorEvents
 let _check_set_cursor_icon: (Window.t, Window.cursorIcon) => promise<unit> = Window.setCursorIcon
 let _check_set_cursor_visible: (Window.t, bool) => promise<unit> = Window.setCursorVisible

@@ -89,7 +89,7 @@ let appStatusSchema = Schema.S.object(s => {
   uptimeMs: s.field("uptime_ms", Schema.S.int),
 })
 let appStatusEvent: Event.t<appStatus> =
-  Schema.eventFromSchema(~name="app://status", ~payload=appStatusSchema)
+  Schema.eventFromSchema(~name="app://status", ~schema=appStatusSchema)
 
 let _stringDecoder: Core.decoder<string> = Schema.toDecoder(Schema.S.string)
 let _ = appStatusEvent

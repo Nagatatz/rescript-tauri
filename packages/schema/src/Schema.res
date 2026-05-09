@@ -27,5 +27,5 @@ let fromSchemas = (
 let channelFromSchema = (~message: S.t<'message>): Core.Channel.t<'message> =>
   Core.Channel.make(~decode=toDecoder(message))
 
-let eventFromSchema = (~name, ~payload: S.t<'payload>): Event.t<'payload> =>
-  Event.make(~name, ~decode=toDecoder(payload))
+let eventFromSchema = (~name, ~schema: S.t<'payload>): Event.t<'payload> =>
+  Event.make(~name, ~decode=toDecoder(schema))
