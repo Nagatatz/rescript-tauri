@@ -1,3 +1,9 @@
 packages:
   - "packages/*"
   - "examples/*"
+
+# pnpm 11 fails `pnpm install` when build scripts are ignored.
+# Allow esbuild (vitest's prebuilt-binary fetcher) to run its postinstall.
+allowBuilds:
+  esbuild: true
+
