@@ -185,6 +185,7 @@ examples/ipc-typed/                       # Command.make の典型例
 examples/streaming-ipc/                   # Channel デモ
 examples/plugin-dialog-demo/              # @rescript-tauri/plugin-dialog 全関数デモ (steering 036)
 examples/plugin-fs-demo/                  # @rescript-tauri/plugin-fs 全関数デモ (steering 037)
+examples/ipc-typed-with-schema/           # @rescript-tauri/schema (Layer 3) デモ — ipc-typed の対比版 (steering 039)
 ```
 
 各 `examples/*/` には:
@@ -296,6 +297,7 @@ sphinx-docs/
 │   ├── build-core.yml                   # PR / push トリガ
 │   ├── tests-core-types.yml
 │   ├── tests-core-runtime.yml
+│   ├── tests-coverage.yml               # 4 パッケージ matrix で vitest v8 カバレッジ計測（観測フェーズ）
 │   ├── examples-build.yml               # 3 OS マトリクス
 │   ├── doc-link-lint.yml
 │   ├── compat-tauri-latest.yml          # nightly

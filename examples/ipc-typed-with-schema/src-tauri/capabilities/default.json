@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Default capability for the ipc-typed-with-schema demo",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}

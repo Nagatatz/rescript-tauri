@@ -35,6 +35,18 @@ upstream page.
 | `Dpi` | DPI-aware size and position (`LogicalSize`, `PhysicalSize`, `LogicalPosition`, `PhysicalPosition`, `Size`, `Position`) |
 | `Mocks` | Test helpers (`mockIPC`, `mockWindows`, `clearMocks`) |
 
+## Phase 2 packages
+
+Phase 2 introduces three add-on packages that build on the Phase 1
+core. Each ships independently and pulls the matching upstream
+plugin / schema library through `peerDependencies`.
+
+| Package | Purpose | Guide |
+|---|---|---|
+| `@rescript-tauri/plugin-fs` | Filesystem operations (read / write / dir / stat) | [plugin-fs](plugin-fs.md) |
+| `@rescript-tauri/plugin-dialog` | Native dialogs (open / save / message / ask / confirm) | [plugin-dialog](plugin-dialog.md) |
+| `@rescript-tauri/schema` | Layer 3 typed IPC via `rescript-schema` | [schema](schema.md) |
+
 ```{toctree}
 :hidden:
 :maxdepth: 2
@@ -42,5 +54,8 @@ upstream page.
 installation
 quickstart
 configuration
+plugin-fs
+plugin-dialog
+schema
 changelog
 ```

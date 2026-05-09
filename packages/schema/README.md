@@ -9,7 +9,7 @@ decoder by hand.
 
 ## Status
 
-Phase 2 — under active development. Awaiting first npm publish
+Phase 2 — feature-complete on `main`. Awaiting first npm publish
 (`schema-v0.1.0`).
 
 ## Install (planned)
@@ -35,7 +35,7 @@ module S = RescriptSchema.S
 
 let greet = Schema.fromSchemas(
   ~name="greet",
-  ~args=S.object(s => {name: s->S.field("name", S.string)}),
+  ~args=S.object(s => {name: s.field("name", S.string)}),
   ~result=S.string,
 )
 
@@ -46,11 +46,20 @@ switch await greet->Core.Command.invoke({name: "ReScript"}) {
 }
 ```
 
-## Compatibility matrix
+## Compatibility
 
-| `@rescript-tauri/schema` | `@rescript-tauri/core` | `rescript-schema` | `@tauri-apps/api` |
-|---|---|---|---|
-| `^0.1.0` | `^0.1.0` | `^9.0.0` | `^2.0.0` |
+| Component | Supported range |
+|---|---|
+| `@rescript-tauri/schema` | this package |
+| `@rescript-tauri/core` | `^0.1.0` (peer) |
+| `rescript-schema` | `^9.0.0` (peer) |
+| `@tauri-apps/api` | `^2.0.0` (transitive via core) |
+| `rescript` | `>=12.0.0` |
+| `@rescript/core` | `>=1.6.0` |
+| OS | Linux / macOS / Windows |
+
+`rescript-struct` is **not** supported (deprecated upstream — see
+[RFC-0002 §2.1](https://github.com/Nagatatz/rescript-tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md)).
 
 ## Public API
 
@@ -64,8 +73,13 @@ switch await greet->Core.Command.invoke({name: "ReScript"}) {
 See `src/Schema.resi` for full doc comments and the linked Tauri /
 rescript-schema upstream documentation.
 
-## References
+## See also
 
-- [RFC-0002 Schema Integration](../../docs/ideas/RFC-0002-schema-integration.md)
+- [Changelog](./CHANGELOG.md)
+- [User guide page](https://github.com/Nagatatz/rescript-tauri/blob/main/sphinx-docs/user/schema.md)
+- Runnable demo:
+  [`examples/ipc-typed-with-schema`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/ipc-typed-with-schema)
+  (pairs against `examples/ipc-typed/` to compare Layer 2 vs Layer 3)
+- [RFC-0002 Schema Integration](https://github.com/Nagatatz/rescript-tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md)
 - [`@rescript-tauri/core` README](../core/README.md)
 - [rescript-schema docs](https://github.com/DZakh/rescript-schema)

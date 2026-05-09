@@ -67,12 +67,17 @@ The Phase 1 re-export set (confirmed 2026-05-09 — PRD §10 row 1):
 | `Menu` / `Tray` | Heavy with sub-modules (`Menu.MenuItem`, `Menu.Submenu`, ...) |
 | `Mocks` | Test-only |
 
-## Plugin packages (Phase 2+)
+## Phase 2 add-on packages
 
-Each upstream `@tauri-apps/plugin-*` will get a corresponding `@rescript-tauri/plugin-*` binding package starting in Phase 2. Plugin packages declare the upstream `@tauri-apps/plugin-*` as their own `peerDependency`.
+Phase 2 ships three add-on packages, each independently versioned
+and published. They declare both `@rescript-tauri/core` and the
+matching upstream library as `peerDependencies`.
 
-| Package | Upstream | Phase |
-|---|---|---|
-| `@rescript-tauri/plugin-fs` | `@tauri-apps/plugin-fs` | Phase 2+ |
-| `@rescript-tauri/plugin-dialog` | `@tauri-apps/plugin-dialog` | Phase 2+ |
-| `@rescript-tauri/schema` | `rescript-schema` / `rescript-struct` | Phase 2 |
+| Package | Upstream peer | Status | Guide |
+|---|---|---|---|
+| `@rescript-tauri/plugin-fs` | `@tauri-apps/plugin-fs ^2.5.0` | Phase 2 implementation merged; `plugin-fs-v0.1.0` npm publish pending | [plugin-fs](plugin-fs.md) |
+| `@rescript-tauri/plugin-dialog` | `@tauri-apps/plugin-dialog ^2.7.0` | Phase 2 implementation merged; `plugin-dialog-v0.1.0` npm publish pending | [plugin-dialog](plugin-dialog.md) |
+| `@rescript-tauri/schema` | `rescript-schema ^9.0.0` | Phase 2 implementation merged; `schema-v0.1.0` npm publish pending | [schema](schema.md) |
+
+`rescript-struct` is **not** supported (deprecated upstream;
+see [RFC-0002 §2.1](https://github.com/Nagatatz/rescript-tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md)).
