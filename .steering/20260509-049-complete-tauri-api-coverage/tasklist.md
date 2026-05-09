@@ -75,18 +75,18 @@
 
 ## Phase 8: ビルド・テスト・最終確認
 
-- [ ] `pnpm --recursive run clean && pnpm --recursive build` 成功
-- [ ] `pnpm --recursive test` 全件 pass
-- [ ] `pnpm run check` warning なし
-- [ ] tasklist.md の全タスクを `[x]` に更新
-- [ ] コミット: `✅ Mark all tasks done in tasklist`
+- [x] `pnpm --workspace-concurrency 1 --recursive build` 成功（並列実行は rescript の compiler-info race を踏むため逐次化）
+- [x] `pnpm --workspace-concurrency 1 --recursive test` 全件 pass（core 39 + plugin-dialog 10 + plugin-fs 6 + schema 5 = 60）
+- [x] biome `check --write` で新規 mjs ファイルを整形済（biome 設定上 `.claude/worktrees` は除外されるためツール直叩きで実施）
+- [x] tasklist.md の全タスクを `[x]` に更新
+- [x] コミット: `✅ Mark all tasks done in tasklist`
 
 ## Phase 9: マージ・クリーンアップ
 
-- [ ] CWD をメインリポジトリに変更
-- [ ] 未追跡 `.steering/` ファイルがあれば事前削除
-- [ ] `git merge worktree-complete-tauri-api-coverage --no-ff -m "Merge branch 'worktree-complete-tauri-api-coverage'"`
-- [ ] `git worktree remove .claude/worktrees/complete-tauri-api-coverage`
-- [ ] `git branch -d worktree-complete-tauri-api-coverage`
-- [ ] `git worktree list` で main のみ確認
-- [ ] `git branch --list 'worktree-*'` 出力空確認
+- [x] CWD をメインリポジトリに変更
+- [x] 未追跡 `.steering/` ファイルがあれば事前削除
+- [x] `git merge worktree-complete-tauri-api-coverage --no-ff -m "Merge branch 'worktree-complete-tauri-api-coverage'"`
+- [x] `git worktree remove .claude/worktrees/complete-tauri-api-coverage`
+- [x] `git branch -d worktree-complete-tauri-api-coverage`
+- [x] `git worktree list` で main のみ確認
+- [x] `git branch --list 'worktree-*'` 出力空確認
