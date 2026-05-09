@@ -2,16 +2,16 @@
 
 ## A. core 新規 runtime テスト (8 モジュール)
 
-- [ ] A-1 `tests/runtime/dpi.test.mjs` 追加（IPC 不要 / 純 JS 構築）
-- [ ] A-2 `tests/runtime/path.test.mjs` 追加（23 関数）
-- [ ] A-3 `tests/runtime/app.test.mjs` 追加（9 関数）
-- [ ] A-4 `tests/runtime/image.test.mjs` 追加（5 関数）
-- [ ] A-5 `tests/runtime/menu.test.mjs` 追加（6 module の make + 共通メソッド代表）
-- [ ] A-6 `tests/runtime/tray.test.mjs` 追加（make + 主要 send + getById/close）
-- [ ] A-7 `tests/runtime/webview.test.mjs` 追加（14 メソッド代表）
-- [ ] A-8 `tests/runtime/webview_window.test.mjs` 追加（make + getCurrent + asWindow/asWebview）
-- [ ] A-9 core test:coverage で 8 モジュールが 50% 超まで上昇することを確認
-- [ ] A-10 Scope A をコミット（絵文字: ✅）
+- [x] A-1 `tests/runtime/dpi.test.mjs` 追加（IPC 不要 / 純 JS 構築）→ Dpi 100%
+- [x] A-2 `tests/runtime/path.test.mjs` 追加（23 関数 + sep/delimiter は plugins.path グローバル経由）→ Path 100%
+- [x] A-3 `tests/runtime/app.test.mjs` 追加（9 関数）→ App 100%
+- [x] A-4 `tests/runtime/image.test.mjs` 追加（5 関数）→ Image 100%
+- [x] A-5 `tests/runtime/menu.test.mjs` 追加（6 module の make + Submenu/Menu 全メソッド）→ Menu 63.36%
+- [x] A-6 `tests/runtime/tray.test.mjs` 追加（11 send メソッド + action handler）→ Tray 62.96%
+- [x] A-7 `tests/runtime/webview.test.mjs` 追加（14 メソッド + onDragDropEvent unlisten）→ Webview 61.53%
+- [x] A-8 `tests/runtime/webview_window.test.mjs` 追加（make/getCurrent/getAll/getByLabel/label/setTitle/close/setBackgroundColor。`asWindow`/`asWebview` は `%identity` キャストで実体関数なし、型レベルテストで担保）→ WebviewWindow 100%
+- [x] A-9 core test:coverage で 8 モジュールが 50% 超まで上昇することを確認。Total 14.85% → 62.86%
+- [x] A-10 Scope A をコミット（絵文字: ✅）
 
 ## B. core Window 補強
 
