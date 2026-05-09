@@ -41,6 +41,7 @@ For the full rationale and scope, see [`docs/product-requirements.md`](./docs/pr
 | `@rescript-tauri/plugin-fs` | Bindings for `@tauri-apps/plugin-fs` | Phase 2+ |
 | `@rescript-tauri/plugin-dialog` | Bindings for `@tauri-apps/plugin-dialog` | Phase 2+ |
 | `@rescript-tauri/plugin-shell` | Bindings for `@tauri-apps/plugin-shell` (process spawning + `openPath`) | Phase 2+ |
+| `@rescript-tauri/plugin-notification` | Bindings for `@tauri-apps/plugin-notification` (toast notifications + scheduling + Android channels) | Phase 2+ |
 | `@rescript-tauri/schema` | `Command.fromSchemas` helper integrating `rescript-schema` / `rescript-struct` | Phase 2 |
 
 Each package is published with independent semver and declares the corresponding upstream `@tauri-apps/*` package as a `peerDependency`.
