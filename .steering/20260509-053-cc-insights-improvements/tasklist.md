@@ -57,16 +57,16 @@
 
 ## Phase 4: コミット & マージ前
 
-- [ ] 適切な粒度（rule 系 / hook 系 / skill 系で分割）でコミット
-- [ ] tasklist.md を全 [x] にしてからマージ前最終コミット
-- [ ] AskUserQuestion で main マージ可否を確認
+- [x] 適切な粒度（rule 系 / hook 系 / skill 系で分割）でコミット
+- [x] tasklist.md を全 [x] にしてからマージ前最終コミット
+- [x] AskUserQuestion で main マージ可否を確認
 
 ## Phase 5: マージ後
 
-- [ ] main にマージ
-- [ ] `git worktree remove` で worktree 削除
-- [ ] `git branch -d` でブランチ削除
-- [ ] クリーンアップ完了の検証（`git worktree list` / `git branch --list 'worktree-*'` / `ls .claude/worktrees/`）
+- [x] main にマージ
+- [x] `git worktree remove` で worktree 削除
+- [x] `git branch -d` でブランチ削除
+- [x] クリーンアップ完了の検証（`git worktree list` / `git branch --list 'worktree-*'` / `ls .claude/worktrees/`）
 
 ## テスト省略理由
 
