@@ -1,0 +1,264 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Nagatatz and rescript-tauri contributors
+# This file is distributed under the same license as the rescript-tauri
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-tauri \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-09 16:33+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../user/schema.md:1
+msgid "`@rescript-tauri/schema`"
+msgstr ""
+
+#: ../../user/schema.md:3
+msgid ""
+"Layer 3 typed IPC for `@rescript-tauri/core`. Declare a Tauri command "
+"from a single [rescript-schema](https://github.com/DZakh/rescript-schema)"
+" schema pair instead of writing the encoder and decoder by hand."
+msgstr ""
+
+#: ../../user/schema.md:9
+msgid ""
+"The Phase 2 implementation is feature-complete in `main`. The first npm "
+"publish (`schema-v0.1.0`) is scheduled alongside the other Phase 2 "
+"packages. Until then, consume `@rescript-tauri/schema` via the source "
+"repository or a workspace link."
+msgstr ""
+
+#: ../../user/schema.md:16
+msgid "Install"
+msgstr ""
+
+#: ../../user/schema.md:22
+msgid ""
+"`@rescript-tauri/schema` declares both `@rescript-tauri/core` and "
+"`rescript-schema` as `peerDependencies`. Add it to your `rescript.json`:"
+msgstr ""
+
+#: ../../user/schema.md:36
+msgid "No Rust side change is required — schema is purely a frontend-side helper."
+msgstr ""
+
+#: ../../user/schema.md:39
+msgid "Why Layer 3?"
+msgstr ""
+
+#: ../../user/schema.md:41
+msgid ""
+"Layer 2 (`Core.Command.make`) wraps a single command name with an "
+"explicit encoder and decoder:"
+msgstr ""
+
+#: ../../user/schema.md:58
+msgid "Layer 3 collapses the same command into a single declaration:"
+msgstr ""
+
+#: ../../user/schema.md:70
+msgid ""
+"Both layers return `Core.Command.t<'args, 'result>`, so callers of "
+"`Core.Command.invoke` don't have to care which layer was used to declare "
+"the command."
+msgstr ""
+
+#: ../../user/schema.md:74
+msgid "Minimal example"
+msgstr ""
+
+#: ../../user/schema.md:95
+msgid ""
+"`S.parseJsonOrThrow` failures are caught inside `toDecoder` and surfaced "
+"as `Error(DecodeError(message))`, matching the existing "
+"`Core.Command.invoke` error variant."
+msgstr ""
+
+#: ../../user/schema.md:99
+msgid "Public API"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "Entry point"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "Purpose"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "`Schema.fromSchemas`"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "Typed command from a `S.t<'args>` + `S.t<'result>` pair"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "`Schema.channelFromSchema`"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "Schema-decoded `Core.Channel.t<'message>`"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "`Schema.eventFromSchema`"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "Schema-decoded `Event.t<'payload>`"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "`Schema.toDecoder`"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid ""
+"Lower-level helper that returns the `Core.decoder<_>` used internally — "
+"useful when you want to plug a schema decoder into a hand-rolled "
+"`Core.Command.make`"
+msgstr ""
+
+#: ../../user/schema.md:108
+msgid ""
+"`Schema.S` re-exports `RescriptSchema.S`, so a caller only imports "
+"`@rescript-tauri/schema` and reaches the schema DSL through one path."
+msgstr ""
+
+#: ../../user/schema.md:112
+msgid "Channel example"
+msgstr ""
+
+#: ../../user/schema.md:114
+msgid "The receive side of a Tauri `Channel<u32>` becomes a one-liner:"
+msgstr ""
+
+#: ../../user/schema.md:127
+msgid ""
+"The command that opens the channel still needs a hand-written encoder "
+"because `Core.Channel.t` is opaque to schemas — see [`examples/ipc-typed-"
+"with-schema`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/examples/ipc-typed-with-schema) for the full pattern."
+msgstr ""
+
+#: ../../user/schema.md:132
+msgid "rescript-schema DSL pitfalls"
+msgstr ""
+
+#: ../../user/schema.md:134
+msgid "`field` is a method, not a top-level function"
+msgstr ""
+
+#: ../../user/schema.md:136
+msgid ""
+"rescript-schema 9.x exposes the field builder as a method on the "
+"`Object.s` argument. Use the dot syntax:"
+msgstr ""
+
+#: ../../user/schema.md:151
+msgid "Tauri command argument flattening"
+msgstr ""
+
+#: ../../user/schema.md:153
+msgid ""
+"Tauri 2.x's `tauri::command` flattens single-record arguments into the "
+"args object's top-level keys. A Rust signature like"
+msgstr ""
+
+#: ../../user/schema.md:161
+#, python-brace-format
+msgid ""
+"expects an args JSON of `{\"title\": ..., \"items\": ...}`, not a nested "
+"`{\"args\": {\"title\": ...}}`. Author your `S.object` schema against the"
+" flat shape."
+msgstr ""
+
+#: ../../user/schema.md:165
+msgid "Compatibility"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "Component"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "Supported range"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "Upstream `rescript-schema`"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "`^9.0.0` (peer)"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "`@rescript-tauri/core`"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "`^0.1.0` (peer)"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "ReScript"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "`>=12.0.0`"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "`@rescript/core`"
+msgstr ""
+
+#: ../../user/schema.md:8
+msgid "`>=1.6.0`"
+msgstr ""
+
+#: ../../user/schema.md:174
+msgid ""
+"`rescript-struct` is **not** supported. The upstream package was "
+"deprecated in favor of `rescript-schema` (confirmed 2026-05-09 — recorded"
+" in [RFC-0002 §2.1](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md))."
+msgstr ""
+
+#: ../../user/schema.md:178
+msgid "See also"
+msgstr ""
+
+#: ../../user/schema.md:180
+msgid ""
+"Live demo: [`examples/ipc-typed-with-schema`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/ipc-typed-with-schema) — pairs against"
+" `examples/ipc-typed/` to show the same commands in both Layer 2 and "
+"Layer 3 form."
+msgstr ""
+
+#: ../../user/schema.md:184
+msgid ""
+"Source: [`packages/schema`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/packages/schema)"
+msgstr ""
+
+#: ../../user/schema.md:186
+msgid ""
+"RFC-0002: [Schema integration design](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md)"
+msgstr ""
+

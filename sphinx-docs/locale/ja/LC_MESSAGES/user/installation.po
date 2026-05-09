@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-08 12:58+0900\n"
+"POT-Creation-Date: 2026-05-09 16:33+0900\n"
 "PO-Revision-Date: 2026-05-08 13:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -24,21 +24,14 @@ msgstr "インストール"
 
 #: ../../user/installation.md:4
 msgid ""
-"Not yet published on npm. The commands below describe what installation "
-"will look like once Phase 1 ships. See "
-"[RFC-0001](https://github.com/Nagatatz/rescript-"
-"tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) and [`docs"
-"/product-requirements.md`](https://github.com/Nagatatz/rescript-"
-"tauri/blob/main/docs/product-requirements.md) for the design intent."
+"The Phase 1 module set is feature-complete in `main`. The first npm "
+"publish (`v0.1.0`) is scheduled at the Phase 1 release. Until then, "
+"consume `@rescript-tauri/core` via the source repository or a workspace "
+"link — the commands below show the future `pnpm add @rescript-tauri/core`"
+" workflow that will work post-publish."
 msgstr ""
-"npm にはまだ公開されていません。以下のコマンドは Phase 1 リリース後の"
-"インストール手順を示すものです。設計意図は "
-"[RFC-0001](https://github.com/Nagatatz/rescript-"
-"tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) および [`docs"
-"/product-requirements.md`](https://github.com/Nagatatz/rescript-"
-"tauri/blob/main/docs/product-requirements.md) を参照してください。"
 
-#: ../../user/installation.md:7
+#: ../../user/installation.md:12
 msgid "Requirements"
 msgstr "要件"
 
@@ -98,53 +91,86 @@ msgstr "OS"
 msgid "Linux / macOS / Windows (Tauri 2.x desktop targets)"
 msgstr "Linux / macOS / Windows（Tauri 2.x デスクトップ対象）"
 
-#: ../../user/installation.md:18
+#: ../../user/installation.md:23
 msgid "Install (planned, post Phase 1 release)"
 msgstr "インストール（Phase 1 リリース後の予定）"
 
-#: ../../user/installation.md:24
+#: ../../user/installation.md:29
 msgid ""
 "`@rescript-tauri/core` declares `@tauri-apps/api` as a `peerDependency`, "
 "so the two are versioned independently and you control the upstream Tauri"
 " version."
 msgstr ""
-"`@rescript-tauri/core` は `@tauri-apps/api` を `peerDependency` として宣言"
-"しているため、両者は独立してバージョン管理され、上流 Tauri のバージョンは"
-"利用者側で制御できます。"
+"`@rescript-tauri/core` は `@tauri-apps/api` を `peerDependency` "
+"として宣言しているため、両者は独立してバージョン管理され、上流 Tauri のバージョンは利用者側で制御できます。"
 
-#: ../../user/installation.md:26
+#: ../../user/installation.md:31
 msgid "Then add `@rescript-tauri/core` to `dependencies` in your `rescript.json`:"
 msgstr "次に `rescript.json` の `dependencies` に `@rescript-tauri/core` を追加します:"
 
-#: ../../user/installation.md:36
+#: ../../user/installation.md:41
+msgid "Phase 2 add-on packages"
+msgstr ""
+
+#: ../../user/installation.md:43
+msgid ""
+"Each Phase 2 package is published independently. Install them as needed "
+"alongside the matching upstream plugin / schema library:"
+msgstr ""
+
+#: ../../user/installation.md:57
+msgid ""
+"See the [plugin-fs](plugin-fs.md), [plugin-dialog](plugin-dialog.md), and"
+" [schema](schema.md) guides for the matching ReScript / Rust / capability"
+" setup."
+msgstr ""
+
+#: ../../user/installation.md:61
 msgid "Verify"
 msgstr "動作確認"
 
-#: ../../user/installation.md:38
+#: ../../user/installation.md:63
 msgid "After Phase 1 ships, a minimal verification looks like:"
 msgstr "Phase 1 リリース後、最小の動作確認は次のようになります:"
 
-#: ../../user/installation.md:44
+#: ../../user/installation.md:69
 #, python-brace-format
 msgid ""
 "Combined with a Rust-side `#[tauri::command] fn ping() {}`, this round-"
 "trip confirms the bridge works."
-msgstr ""
-"Rust 側の `#[tauri::command] fn ping() {}` と組み合わせれば、この往復で"
-"ブリッジが機能することを確認できます。"
+msgstr "Rust 側の `#[tauri::command] fn ping() {}` と組み合わせれば、この往復でブリッジが機能することを確認できます。"
 
-#: ../../user/installation.md:46
+#: ../../user/installation.md:71
 msgid "Troubleshooting"
 msgstr "トラブルシューティング"
 
-#: ../../user/installation.md:48
+#: ../../user/installation.md:73
 msgid ""
 "Detailed troubleshooting will be added as Phase 1 implementation reveals "
 "common pitfalls. For early feedback, please open an issue at "
 "[github.com/Nagatatz/rescript-tauri/issues](https://github.com/Nagatatz"
 "/rescript-tauri/issues)."
 msgstr ""
-"詳細なトラブルシューティングは、Phase 1 実装によって典型的な落とし穴が"
-"明らかになるにつれて追加します。早期のフィードバックは "
+"詳細なトラブルシューティングは、Phase 1 実装によって典型的な落とし穴が明らかになるにつれて追加します。早期のフィードバックは "
 "[github.com/Nagatatz/rescript-tauri/issues](https://github.com/Nagatatz"
 "/rescript-tauri/issues) に Issue を起票してください。"
+
+#~ msgid ""
+#~ "Not yet published on npm. The "
+#~ "commands below describe what installation "
+#~ "will look like once Phase 1 ships."
+#~ " See [RFC-0001](https://github.com/Nagatatz/rescript-"
+#~ "tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md)"
+#~ " and [`docs/product-"
+#~ "requirements.md`](https://github.com/Nagatatz/rescript-"
+#~ "tauri/blob/main/docs/product-requirements.md) for "
+#~ "the design intent."
+#~ msgstr ""
+#~ "npm にはまだ公開されていません。以下のコマンドは Phase 1 "
+#~ "リリース後のインストール手順を示すものです。設計意図は "
+#~ "[RFC-0001](https://github.com/Nagatatz/rescript-"
+#~ "tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md)"
+#~ " および [`docs/product-"
+#~ "requirements.md`](https://github.com/Nagatatz/rescript-"
+#~ "tauri/blob/main/docs/product-requirements.md) を参照してください。"
+

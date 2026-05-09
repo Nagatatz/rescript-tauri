@@ -1,0 +1,344 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Nagatatz and rescript-tauri contributors
+# This file is distributed under the same license as the rescript-tauri
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-tauri \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-09 16:33+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../user/plugin-fs.md:1
+msgid "`@rescript-tauri/plugin-fs`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:3
+msgid ""
+"ReScript bindings for the [Tauri 2.x filesystem "
+"plugin](https://v2.tauri.app/plugin/file-system/). Single-shot file IO "
+"(read / write / dir / stat) is covered; `FileHandle`, `watch`, "
+"`readTextFileLines`, and the iOS-only security-scoped APIs are deferred "
+"to a follow-up package iteration."
+msgstr ""
+
+#: ../../user/plugin-fs.md:10
+msgid ""
+"The Phase 2 implementation is feature-complete in `main`. The first npm "
+"publish (`plugin-fs-v0.1.0`) is scheduled alongside the other Phase 2 "
+"packages. Until then, consume `@rescript-tauri/plugin-fs` via the source "
+"repository or a workspace link."
+msgstr ""
+
+#: ../../user/plugin-fs.md:17
+msgid "Install"
+msgstr ""
+
+#: ../../user/plugin-fs.md:23
+msgid ""
+"`@rescript-tauri/plugin-fs` declares both `@rescript-tauri/core` and "
+"`@tauri-apps/plugin-fs` as `peerDependencies`, so you control each "
+"upstream version."
+msgstr ""
+
+#: ../../user/plugin-fs.md:27
+msgid "Add the package to `dependencies` in your `rescript.json`:"
+msgstr ""
+
+#: ../../user/plugin-fs.md:38
+msgid "On the Rust side, add the plugin crate and register it on the builder:"
+msgstr ""
+
+#: ../../user/plugin-fs.md:57
+msgid "Capabilities"
+msgstr ""
+
+#: ../../user/plugin-fs.md:59
+msgid ""
+"Tauri 2.x requires every filesystem operation to be granted a capability."
+" The minimal set used by [`examples/plugin-fs-"
+"demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
+"/plugin-fs-demo) is:"
+msgstr ""
+
+#: ../../user/plugin-fs.md:77
+msgid ""
+"`fs:allow-app-local-data-recursive` is a permission alias shipped by the "
+"plugin that opens up the entire `$APPLOCALDATA` subtree. Swap it for `fs"
+":allow-home-recursive`, `fs:allow-document-recursive`, etc. when you need"
+" a different sandbox."
+msgstr ""
+
+#: ../../user/plugin-fs.md:83
+msgid "Minimal example"
+msgstr ""
+
+#: ../../user/plugin-fs.md:106
+msgid "Public API"
+msgstr ""
+
+#: ../../user/plugin-fs.md:108
+msgid "All 14 single-shot IO functions are exposed under `PluginFs`:"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Function"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Notes"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`readTextFile`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "UTF-8 text read"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`writeTextFile`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "UTF-8 text write"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`readFile`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Raw bytes (`Uint8Array.t`)"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`writeFile`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Raw bytes"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`exists`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Path existence"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`remove`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "File or directory (set `recursive: true` for trees)"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`rename`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Move within the filesystem"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`mkdir`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Directory creation (`recursive: true` for parents)"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`readDir`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Direct children of a directory"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`stat`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Metadata, follows symlinks"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`lstat`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Metadata, does **not** follow symlinks"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`truncate`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Resize a file to N bytes"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`copyFile`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Copy with optional cross-base-dir paths"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`size`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Plain byte count"
+msgstr ""
+
+#: ../../user/plugin-fs.md:127
+msgid ""
+"The associated option records (`readFileOptions`, `writeFileOptions`, "
+"`mkdirOptions`, `removeOptions`, `renameOptions`, `copyFileOptions`, "
+"`statOptions`, `existsOptions`, `readDirOptions`, `truncateOptions`) are "
+"all re-exported from `PluginFs` and the upstream "
+"[FileInfo](https://v2.tauri.app/reference/javascript/fs/#fileinfo) / "
+"[DirEntry](https://v2.tauri.app/reference/javascript/fs/#direntry) shapes"
+" are available as `PluginFs.fileInfo` / `PluginFs.dirEntry`."
+msgstr ""
+
+#: ../../user/plugin-fs.md:137
+msgid ""
+"`BaseDirectory` is **re-exported from `@rescript-tauri/core`** so you "
+"don't need a separate import:"
+msgstr ""
+
+#: ../../user/plugin-fs.md:145
+msgid "Pitfalls"
+msgstr ""
+
+#: ../../user/plugin-fs.md:147
+msgid "Single-field record punning"
+msgstr ""
+
+#: ../../user/plugin-fs.md:149
+#, python-brace-format
+msgid ""
+"ReScript treats `{baseDir}` as a *block* with a single statement, not a "
+"record with one punned field. Always spell out single-field options as "
+"`{baseDir: baseDir}`:"
+msgstr ""
+
+#: ../../user/plugin-fs.md:161
+#, python-brace-format
+msgid "Multi-field records (`{baseDir, recursive: true}`) work as expected."
+msgstr ""
+
+#: ../../user/plugin-fs.md:164
+msgid "`Uint8Array` length"
+msgstr ""
+
+#: ../../user/plugin-fs.md:166
+msgid ""
+"`Uint8Array.t` in `@rescript/core` is an alias for `TypedArray.t<int>`. "
+"The length getter lives on the parent module:"
+msgstr ""
+
+#: ../../user/plugin-fs.md:175
+msgid "Compatibility"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Component"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Supported range"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Upstream `@tauri-apps/plugin-fs`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`^2.5.0` (peer)"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Rust `tauri-plugin-fs`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`2.x`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`@rescript-tauri/core`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`^0.1.0` (peer)"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "ReScript"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`>=12.0.0`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`@rescript/core`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "`>=1.6.0`"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "OS"
+msgstr ""
+
+#: ../../user/plugin-fs.md:9
+msgid "Linux / macOS / Windows"
+msgstr ""
+
+#: ../../user/plugin-fs.md:186
+msgid "See also"
+msgstr ""
+
+#: ../../user/plugin-fs.md:188
+msgid ""
+"Live demo: [`examples/plugin-fs-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-fs-demo)"
+msgstr ""
+
+#: ../../user/plugin-fs.md:190
+msgid ""
+"Source: [`packages/plugin-fs`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/packages/plugin-fs)"
+msgstr ""
+
+#: ../../user/plugin-fs.md:192
+msgid ""
+"Upstream docs: [Tauri 2.x file-system plugin](https://v2.tauri.app/plugin"
+"/file-system/)"
+msgstr ""
+

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-08 12:58+0900\n"
+"POT-Creation-Date: 2026-05-09 16:33+0900\n"
 "PO-Revision-Date: 2026-05-08 13:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -34,15 +34,13 @@ msgstr "はじめに"
 msgid ""
 "[Installation](installation.md) — Add `@rescript-tauri/core` to a Tauri "
 "project"
-msgstr ""
-"[インストール](installation.md) — Tauri プロジェクトに `@rescript-tauri/core` を追加します"
+msgstr "[インストール](installation.md) — Tauri プロジェクトに `@rescript-tauri/core` を追加します"
 
 #: ../../user/index.md:8
 msgid ""
 "[Quick Start](quickstart.md) — Try the 3-layer IPC API in a minimal "
 "example"
-msgstr ""
-"[クイックスタート](quickstart.md) — 最小例で 3 層 IPC API を試します"
+msgstr "[クイックスタート](quickstart.md) — 最小例で 3 層 IPC API を試します"
 
 #: ../../user/index.md:10
 msgid "Reference"
@@ -52,9 +50,205 @@ msgstr "リファレンス"
 msgid ""
 "[Configuration](configuration.md) — `rescript.json`, `peerDependencies`, "
 "compatibility matrix"
-msgstr ""
-"[設定](configuration.md) — `rescript.json` / `peerDependencies` / 互換マトリクス"
+msgstr "[設定](configuration.md) — `rescript.json` / `peerDependencies` / 互換マトリクス"
 
 #: ../../user/index.md:13
 msgid "[Changelog](changelog.md) — Release notes"
 msgstr "[変更履歴](changelog.md) — リリースノート"
+
+#: ../../user/index.md:15
+msgid "Modules at a glance"
+msgstr ""
+
+#: ../../user/index.md:17
+msgid ""
+"`@rescript-tauri/core` ships with 12 Phase-1 modules plus a curated "
+"`Tauri` umbrella for the most common imports. Each module has its own "
+"`.resi` and a doc-comment line linking to the matching Tauri upstream "
+"page."
+msgstr ""
+
+#: ../../user/index.md
+msgid "Module"
+msgstr ""
+
+#: ../../user/index.md
+msgid "Purpose"
+msgstr ""
+
+#: ../../user/index.md
+msgid "`Tauri`"
+msgstr ""
+
+#: ../../user/index.md
+msgid ""
+"`open Tauri` re-export of the 5 most common modules (Core / Event / "
+"Window / Webview / WebviewWindow)"
+msgstr ""
+
+#: ../../user/index.md
+msgid "`Core`"
+msgstr ""
+
+#: ../../user/index.md
+msgid ""
+"IPC bridge — `Raw.invoke`, typed `Command`, streaming `Channel`, "
+"`convertFileSrc`"
+msgstr ""
+
+#: ../../user/index.md
+msgid "`Event`"
+msgstr ""
+
+#: ../../user/index.md
+msgid "Pub/sub event bus (`make`, `listen`, `once`, `emit`, `emitTo`)"
+msgstr ""
+
+#: ../../user/index.md
+msgid "`Window`"
+msgstr ""
+
+#: ../../user/index.md
+msgid ""
+"Window class — opaque handle + ~80 instance / static methods, full type "
+"set (theme, cursorIcon, effects, monitor, ...)"
+msgstr ""
+
+#: ../../user/index.md
+msgid "`Webview`"
+msgstr ""
+
+#: ../../user/index.md
+msgid ""
+"Webview class — opaque handle + 14 instance methods + drag-and-drop event"
+" variant"
+msgstr ""
+
+#: ../../user/index.md
+msgid "`WebviewWindow`"
+msgstr ""
+
+#: ../../user/index.md
+msgid ""
+"Combined Window + Webview surface; zero-cost `asWindow` / `asWebview` "
+"casts"
+msgstr ""
+
+#: ../../user/index.md
+msgid "`Menu`"
+msgstr ""
+
+#: ../../user/index.md
+msgid ""
+"Application menu hierarchy (`MenuItem`, `CheckMenuItem`, `IconMenuItem`, "
+"`PredefinedMenuItem`, `Submenu`, `Menu`)"
+msgstr ""
+
+#: ../../user/index.md
+msgid "`Tray`"
+msgstr ""
+
+#: ../../user/index.md
+msgid "System tray icon (`TrayIcon`) with click-event variant"
+msgstr ""
+
+#: ../../user/index.md
+msgid "`Path`"
+msgstr ""
+
+#: ../../user/index.md
+msgid "Path utilities — 31 helpers + `BaseDirectory` enum"
+msgstr ""
+
+#: ../../user/index.md
+msgid "`App`"
+msgstr ""
+
+#: ../../user/index.md
+msgid ""
+"Application metadata + lifecycle (`getName`, `getVersion`, `setTheme`, "
+"`defaultWindowIcon`, ...)"
+msgstr ""
+
+#: ../../user/index.md
+msgid "`Image`"
+msgstr ""
+
+#: ../../user/index.md
+msgid "RGBA-image opaque handle (`fromPath`, `fromBytes`, `new_`, `rgba`, `size`)"
+msgstr ""
+
+#: ../../user/index.md
+msgid "`Dpi`"
+msgstr ""
+
+#: ../../user/index.md
+msgid ""
+"DPI-aware size and position (`LogicalSize`, `PhysicalSize`, "
+"`LogicalPosition`, `PhysicalPosition`, `Size`, `Position`)"
+msgstr ""
+
+#: ../../user/index.md
+msgid "`Mocks`"
+msgstr ""
+
+#: ../../user/index.md
+msgid "Test helpers (`mockIPC`, `mockWindows`, `clearMocks`)"
+msgstr ""
+
+#: ../../user/index.md:38
+msgid "Phase 2 packages"
+msgstr ""
+
+#: ../../user/index.md:40
+msgid ""
+"Phase 2 introduces three add-on packages that build on the Phase 1 core. "
+"Each ships independently and pulls the matching upstream plugin / schema "
+"library through `peerDependencies`."
+msgstr ""
+
+#: ../../user/index.md
+msgid "Package"
+msgstr ""
+
+#: ../../user/index.md
+#, fuzzy
+msgid "Guide"
+msgstr "ユーザーガイド"
+
+#: ../../user/index.md
+msgid "`@rescript-tauri/plugin-fs`"
+msgstr ""
+
+#: ../../user/index.md
+msgid "Filesystem operations (read / write / dir / stat)"
+msgstr ""
+
+#: ../../user/index.md
+msgid "[plugin-fs](plugin-fs.md)"
+msgstr ""
+
+#: ../../user/index.md
+msgid "`@rescript-tauri/plugin-dialog`"
+msgstr ""
+
+#: ../../user/index.md
+msgid "Native dialogs (open / save / message / ask / confirm)"
+msgstr ""
+
+#: ../../user/index.md
+msgid "[plugin-dialog](plugin-dialog.md)"
+msgstr ""
+
+#: ../../user/index.md
+msgid "`@rescript-tauri/schema`"
+msgstr ""
+
+#: ../../user/index.md
+msgid "Layer 3 typed IPC via `rescript-schema`"
+msgstr ""
+
+#: ../../user/index.md
+msgid "[schema](schema.md)"
+msgstr ""
+
