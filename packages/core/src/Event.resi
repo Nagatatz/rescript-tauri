@@ -5,7 +5,8 @@ type event<'payload> = {
   payload: 'payload,
 }
 
-/** Targets for `emitTo`. Mirrors Tauri's `EventTarget` discriminator. */
+/** Targets for `emitTo` (and the `~target` option of `listen` / `once`).
+    Mirrors Tauri's `EventTarget` discriminator. */
 type eventTarget =
   | Any
   | AnyLabel(string)
@@ -13,6 +14,52 @@ type eventTarget =
   | Window(string)
   | Webview(string)
   | WebviewWindow(string)
+
+/** Predefined Tauri event names (e.g. `tauri://resize`). The string
+    enum mirrors upstream's `TauriEvent` enum exactly so callers can
+    pattern-match without losing exhaustiveness.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespaceevent/#taurievent
+*/
+type tauriEvent = [
+  | #"tauri://resize"
+  | #"tauri://move"
+  | #"tauri://close-requested"
+  | #"tauri://destroyed"
+  | #"tauri://focus"
+  | #"tauri://blur"
+  | #"tauri://scale-change"
+  | #"tauri://theme-changed"
+  | #"tauri://window-created"
+  | #"tauri://suspended"
+  | #"tauri://resumed"
+  | #"tauri://webview-created"
+  | #"tauri://drag-enter"
+  | #"tauri://drag-over"
+  | #"tauri://drag-drop"
+  | #"tauri://drag-leave"
+]
+
+/** Named bindings for each `tauriEvent` value, useful when constructing
+    typed `Event.t<...>` for a predefined event. */
+module TauriEvent: {
+  let windowResized: tauriEvent
+  let windowMoved: tauriEvent
+  let windowCloseRequested: tauriEvent
+  let windowDestroyed: tauriEvent
+  let windowFocus: tauriEvent
+  let windowBlur: tauriEvent
+  let windowScaleFactorChanged: tauriEvent
+  let windowThemeChanged: tauriEvent
+  let windowCreated: tauriEvent
+  let windowSuspended: tauriEvent
+  let windowResumed: tauriEvent
+  let webviewCreated: tauriEvent
+  let dragEnter: tauriEvent
+  let dragOver: tauriEvent
+  let dragDrop: tauriEvent
+  let dragLeave: tauriEvent
+}
 
 /** A typed handle to one event name with its decoder. */
 type t<'payload>
@@ -34,6 +81,10 @@ let make: (~name: string, ~decode: Core.decoder<'payload>) => t<'payload>
     silent-drop behavior, ignore the `Error` branch. The returned
     `unlisten` must be called to stop receiving events.
 
+    `~target` (optional) restricts the subscription to a specific
+    window / webview / app target. When omitted, all emissions
+    matching the event name are delivered.
+
     See: https://v2.tauri.app/reference/javascript/api/namespaceevent/#listen
 
     ## Example
@@ -51,17 +102,22 @@ let make: (~name: string, ~decode: Core.decoder<'payload>) => t<'payload>
 let listen: (
   t<'payload>,
   result<event<'payload>, string> => unit,
+  ~target: eventTarget=?,
 ) => promise<unlisten>
 
 /** Subscribes for exactly one emission, then auto-unsubscribes.
     Decode failures still consume the single emission and arrive as
     `Error(msg)`; the listener auto-unsubscribes either way.
 
+    `~target` accepts the same values as `emitTo` to scope the
+    subscription to a specific window / webview.
+
     See: https://v2.tauri.app/reference/javascript/api/namespaceevent/#once
 */
 let once: (
   t<'payload>,
   result<event<'payload>, string> => unit,
+  ~target: eventTarget=?,
 ) => promise<unlisten>
 
 /** Emits the event globally to every listener.

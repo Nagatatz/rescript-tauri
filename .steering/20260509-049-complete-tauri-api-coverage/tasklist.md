@@ -44,11 +44,11 @@
 
 ## Phase 4: Event 拡張
 
-- [ ] `Event.res` / `.resi` に `tauriEvent` polymorphic variant 追加
-- [ ] `Event.res` / `.resi` の `listen` / `once` に `~target` オプション追加
-- [ ] `tests/event_signature.res` 更新
-- [ ] `tests/runtime/event.test.mjs` 更新
-- [ ] コミット: `✨ Add TauriEvent enum and listen/once target option`
+- [x] `Event.res` / `.resi` に `tauriEvent` polymorphic variant 追加
+- [x] `Event.res` / `.resi` の `listen` / `once` に `~target` オプション追加
+- [x] `tests/event_signature.res` 更新
+- [x] `tests/runtime/event.test.mjs` 更新
+- [x] コミット: `✨ Add TauriEvent enum and listen/once target option`
 
 ## Phase 5: Mocks 拡張
 

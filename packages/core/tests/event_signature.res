@@ -6,11 +6,13 @@ let _check_make: (~name: string, ~decode: JSON.t => result<'payload, string>) =>
 let _check_listen: (
   Event.t<'payload>,
   result<Event.event<'payload>, string> => unit,
+  ~target: Event.eventTarget=?,
 ) => promise<Event.unlisten> = Event.listen
 
 let _check_once: (
   Event.t<'payload>,
   result<Event.event<'payload>, string> => unit,
+  ~target: Event.eventTarget=?,
 ) => promise<Event.unlisten> = Event.once
 
 let _check_emit: (Event.t<'payload>, 'payload) => promise<unit> = Event.emit
@@ -25,3 +27,7 @@ let _t3: Event.eventTarget = App
 let _t4: Event.eventTarget = Window("main")
 let _t5: Event.eventTarget = Webview("main")
 let _t6: Event.eventTarget = WebviewWindow("main")
+
+let _check_tauri_event_window_resized: Event.tauriEvent = Event.TauriEvent.windowResized
+let _check_tauri_event_drag_drop: Event.tauriEvent = Event.TauriEvent.dragDrop
+let _check_tauri_event_literal: Event.tauriEvent = #"tauri://resize"
