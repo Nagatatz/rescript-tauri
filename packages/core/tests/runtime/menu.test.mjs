@@ -437,3 +437,61 @@ describe("Menu.IconMenuItem with NativeIcon", () => {
     })
   }
 })
+
+// Methods the broader Menu tests had skipped: per-class `isEnabled`
+// getters on CheckMenuItem / IconMenuItem (MenuItem.isEnabled is
+// already covered), `Submenu.id`, and the `Menu.make({...options})`
+// branch (only the no-options form was exercised earlier).
+describe("Menu missed accessors / overloads", () => {
+  beforeEach(() => Mocks.clearMocks())
+  afterEach(() => Mocks.clearMocks())
+
+  it("CheckMenuItem.isEnabled dispatches plugin:menu|is_enabled", async () => {
+    let captured
+    Mocks.mockIPC(async (cmd) => {
+      if (cmd.includes("new")) return [300, "chk"]
+      captured = cmd
+      return true
+    })
+    const item = await Menu.CheckMenuItem.make({ text: "Auto" })
+    expect(await Menu.CheckMenuItem.isEnabled(item)).toBe(true)
+    expect(captured).toContain("is_enabled")
+  })
+
+  it("IconMenuItem.isEnabled dispatches plugin:menu|is_enabled", async () => {
+    let captured
+    Mocks.mockIPC(async (cmd) => {
+      if (cmd.includes("new")) return [301, "ico"]
+      captured = cmd
+      return false
+    })
+    const item = await Menu.IconMenuItem.make({ text: "Save", icon: "x.png" })
+    expect(await Menu.IconMenuItem.isEnabled(item)).toBe(false)
+    expect(captured).toContain("is_enabled")
+  })
+
+  it("Submenu.id reads the @get id field on a Submenu handle", async () => {
+    Mocks.mockIPC(async (cmd) => {
+      if (cmd.includes("new")) return [302, "edit-submenu"]
+      return null
+    })
+    const submenu = await Menu.Submenu.make({ text: "Edit" })
+    expect(Menu.Submenu.id(submenu)).toBe("edit-submenu")
+  })
+
+  it("Menu.make({~options}) dispatches with id + items mapping", async () => {
+    Mocks.mockIPC(async (cmd) => {
+      if (cmd.includes("new")) return [303, "main-menu"]
+      return null
+    })
+    const child = await Menu.MenuItem.make({ id: "open", text: "Open" })
+    const menu = await Menu.Menu.make({
+      id: "main-menu",
+      items: [{ TAG: "Item", _0: child }],
+    })
+    expect(Menu.Menu.id(menu)).toBe("main-menu")
+    // Calling Menu.make with options present drives the
+    // `options !== undefined` branch in the compiled wrapper.
+    expect(menu).toBeDefined()
+  })
+})

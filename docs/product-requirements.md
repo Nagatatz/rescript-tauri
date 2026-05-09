@@ -327,8 +327,8 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 - 行 / 分岐 / 関数カバレッジ（しきい値ゲート確定）:
   - 全公開パッケージ（`core` / `plugin-fs` / `plugin-dialog` / `schema`）の vitest ランタイムテストに対して `@vitest/coverage-v8` で計測し、CI ジョブ `tests-coverage` で Job summary と artifact（LCOV / HTML、30 日保持）として可視化する。
   - 上記「`.resi` 公開シンボル参照カバレッジ」とは別概念。
-  - 各 `vitest.config.mjs` の `coverage.thresholds` で **floor を確定済み**（steering 051、2026-05-09）:
-    - `core`: statements 92 / branches 73 / functions 95 / lines 92
+  - 各 `vitest.config.mjs` の `coverage.thresholds` で **floor を確定済み**（steering 051 で導入、C/D/E 残カバレッジ補強で更新）:
+    - `core`: statements 96 / branches 80 / functions 96 / lines 96
     - `plugin-fs`: 100 / 45 / 100 / 100
     - `plugin-dialog`: 100 / 55 / 100 / 100
     - `schema`: 88 / 45 / 95 / 88
