@@ -266,4 +266,50 @@ describe("Window", () => {
       expect(typeof u).toBe("function")
     }
   })
+
+  it("steering 049 additions (activityName / sceneIdentifier / setFocusable / setSimpleFullscreen / toggleMaximize / unminimize) all dispatch through invoke", async () => {
+    const invoke = vi.fn(async (cmd) => {
+      if (cmd.includes("activity_name")) return "main-window"
+      if (cmd.includes("scene_identifier")) return "scene-1"
+      return null
+    })
+    installInternals(invoke)
+    const Window = await import("../../src/Window.res.mjs")
+    const w = Window.make("049")
+
+    expect(await Window.activityName(w)).toBe("main-window")
+    expect(await Window.sceneIdentifier(w)).toBe("scene-1")
+    await Window.setFocusable(w, true)
+    await Window.setSimpleFullscreen(w, false)
+    await Window.toggleMaximize(w)
+    await Window.unminimize(w)
+    expect(invoke).toHaveBeenCalled()
+  })
+
+  it("Window.onDragDropEvent (steering 049) registers upstream listeners and resolves to an unlisten thunk", async () => {
+    // Window-level onDragDropEvent mirrors the Webview API. The
+    // upstream method internally calls `this.listen(TauriEvent.DRAG_*, ...)`
+    // for each of the 4 drag-drop variants. We verify the
+    // registration completes and yields a callable unlisten thunk.
+    let nextId = 1
+    const callbacks = []
+    globalThis.window = globalThis.window ?? {}
+    globalThis.window.__TAURI_INTERNALS__ = {
+      invoke: async () => 1,
+      transformCallback: (cb) => {
+        const id = nextId++
+        callbacks.push(cb)
+        return id
+      },
+      metadata: { currentWindow: { label: "main" } },
+    }
+    const Window = await import("../../src/Window.res.mjs")
+    const w = Window.make("dragdrop")
+    const unlisten = await Window.onDragDropEvent(w, () => {})
+    expect(typeof unlisten).toBe("function")
+    // 4 callbacks should be registered (drag-enter, drag-over,
+    // drag-drop, drag-leave).
+    expect(callbacks.length).toBeGreaterThanOrEqual(4)
+    delete globalThis.window.__TAURI_INTERNALS__
+  })
 })
