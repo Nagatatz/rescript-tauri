@@ -89,7 +89,7 @@
 ## I. Phase 2 完了条件
 
 - [ ] 「必須スコープ」がすべて publish + CI 緑
-- [ ] 各パッケージの README に互換マトリクス記載
+- [x] 各パッケージの README に互換マトリクス記載 (steering 043)
 - [x] `docs/repository-structure.md` を Phase 2 構成に更新
       (steering 036/037/039/041 で逐次反映済)
 - [x] `sphinx-docs/` を Phase 2 全パッケージに対応 (steering 042)
