@@ -64,9 +64,6 @@ module TauriEvent: {
 /** A typed handle to one event name with its decoder. */
 type t<'payload>
 
-/** Returned by `listen` / `once` — call it to detach the handler. */
-type unlisten = unit => unit
-
 /** Declares one event with its name and JSON decoder.
 
     See: https://v2.tauri.app/reference/javascript/api/namespaceevent/
@@ -103,7 +100,7 @@ let listen: (
   t<'payload>,
   result<event<'payload>, string> => unit,
   ~target: eventTarget=?,
-) => promise<unlisten>
+) => promise<Common.unlisten>
 
 /** Subscribes for exactly one emission, then auto-unsubscribes.
     Decode failures still consume the single emission and arrive as
@@ -118,7 +115,7 @@ let once: (
   t<'payload>,
   result<event<'payload>, string> => unit,
   ~target: eventTarget=?,
-) => promise<unlisten>
+) => promise<Common.unlisten>
 
 /** Emits the event globally to every listener.
 

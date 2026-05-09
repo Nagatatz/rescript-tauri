@@ -214,6 +214,36 @@ importers:
         specifier: ^4.0.0
         version: 4.1.5(@types/node@25.6.2)(@vitest/coverage-v8@4.1.5)(happy-dom@20.9.0)(vite@7.3.3(@types/node@25.6.2))
 
+  packages/plugin-clipboard-manager:
+    devDependencies:
+      '@rescript-tauri/core':
+        specifier: workspace:*
+        version: link:../core
+      '@rescript/core':
+        specifier: ^1.6.0
+        version: 1.6.1(rescript@12.2.0)
+      '@rescript/runtime':
+        specifier: ^12.2.0
+        version: 12.2.0
+      '@tauri-apps/plugin-clipboard-manager':
+        specifier: ^2.3.2
+        version: 2.3.2
+      '@types/node':
+        specifier: ^25.0.0
+        version: 25.6.2
+      '@vitest/coverage-v8':
+        specifier: ^4.0.0
+        version: 4.1.5(vitest@4.1.5)
+      happy-dom:
+        specifier: ^20.9.0
+        version: 20.9.0
+      rescript:
+        specifier: ^12.2.0
+        version: 12.2.0
+      vitest:
+        specifier: ^4.0.0
+        version: 4.1.5(@types/node@25.6.2)(@vitest/coverage-v8@4.1.5)(happy-dom@20.9.0)(vite@7.3.3(@types/node@25.6.2))
+
   packages/plugin-dialog:
     devDependencies:
       '@rescript-tauri/core':
@@ -928,6 +958,9 @@ packages:
     engines: {node: '>= 10'}
     hasBin: true
 
+  '@tauri-apps/plugin-clipboard-manager@2.3.2':
+    resolution: {integrity: sha512-CUlb5Hqi2oZbcZf4VUyUH53XWPPdtpw43EUpCza5HWZJwxEoDowFzNUDt1tRUXA8Uq+XPn17Ysfptip33sG4eQ==}
+
   '@tauri-apps/plugin-dialog@2.7.1':
     resolution: {integrity: sha512-OK1UBXYt+ojcmxMktzzuyonYIFta8CmAASpX+CA+DTGK24KlHjhYI6x2iOJ/TjZF4N7/ACK1oFmEOjIY9IhzOQ==}
 
@@ -1555,6 +1588,10 @@ snapshots:
       '@tauri-apps/cli-win32-arm64-msvc': 2.11.1
       '@tauri-apps/cli-win32-ia32-msvc': 2.11.1
       '@tauri-apps/cli-win32-x64-msvc': 2.11.1
+
+  '@tauri-apps/plugin-clipboard-manager@2.3.2':
+    dependencies:
+      '@tauri-apps/api': 2.11.0
 
   '@tauri-apps/plugin-dialog@2.7.1':
     dependencies:

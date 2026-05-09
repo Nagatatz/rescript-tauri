@@ -1,13 +1,5 @@
 type t
 
-type unlisten = unit => unit
-
-type dragDropEvent =
-  | Enter({paths: array<string>, position: Dpi.PhysicalPosition.t})
-  | Over({position: Dpi.PhysicalPosition.t})
-  | Drop({paths: array<string>, position: Dpi.PhysicalPosition.t})
-  | Leave
-
 type options = {
   url?: string,
   userAgent?: string,
@@ -15,7 +7,7 @@ type options = {
   acceptFirstMouse?: bool,
   dragDropEnabled?: bool,
   transparent?: bool,
-  backgroundColor?: Window.color,
+  backgroundColor?: Common.color,
 }
 
 @module("@tauri-apps/api/webview")
@@ -39,30 +31,12 @@ external getByLabel: string => promise<Nullable.t<t>> = "getByLabel"
 @send external setZoom: (t, float) => promise<unit> = "setZoom"
 @send external reparent: (t, 'windowOrLabel) => promise<unit> = "reparent"
 @send
-external setBackgroundColor: (t, Nullable.t<Window.color>) => promise<unit> = "setBackgroundColor"
+external setBackgroundColor: (t, Nullable.t<Common.color>) => promise<unit> = "setBackgroundColor"
 @send external close: t => promise<unit> = "close"
 @send external clearAllBrowsingData: t => promise<unit> = "clearAllBrowsingData"
 
-// onDragDropEvent: upstream delivers an event whose payload has shape
-// { type: 'enter' | 'over' | 'drop' | 'leave', ... }. The JS-side
-// `position` is a `Dpi.PhysicalPosition` class instance; we cast it
-// through `Obj.magic` since the type is opaque on the ReScript side.
 @send
-external _onDragDropEvent: (t, {..} => unit) => promise<unlisten> = "onDragDropEvent"
+external _onDragDropEvent: (t, {..} => unit) => promise<Common.unlisten> = "onDragDropEvent"
 
 let onDragDropEvent = (webview, handler) =>
-  _onDragDropEvent(webview, raw => {
-    let payload = (Obj.magic(raw): {..})["payload"]
-    let kind: string = payload["type"]
-    let position: Dpi.PhysicalPosition.t = Obj.magic(payload["position"])
-    switch kind {
-    | "enter" => handler(Enter({paths: payload["paths"], position}))
-    | "over" => handler(Over({position: position}))
-    | "drop" => handler(Drop({paths: payload["paths"], position}))
-    | "leave" => handler(Leave)
-    // If upstream Tauri introduces a new drag-drop variant we have not
-    // mapped yet, log it via Console.warn instead of silently dropping
-    // the event so the gap surfaces during development.
-    | other => Console.warn2("[rescript-tauri] Unknown drag-drop event type:", other)
-    }
-  })
+  _onDragDropEvent(webview, raw => Common.decodeDragDropEvent(raw, handler))

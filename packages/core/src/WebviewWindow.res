@@ -33,7 +33,7 @@ type options = {
   closable?: bool,
   parent?: Window.t,
   visibleOnAllWorkspaces?: bool,
-  backgroundColor?: Window.color,
+  backgroundColor?: Common.color,
 }
 
 @module("@tauri-apps/api/webviewWindow") @new
@@ -52,4 +52,4 @@ external getByLabel: string => promise<Nullable.t<t>> = "getByLabel"
 @send external setTitle: (t, string) => promise<unit> = "setTitle"
 @send external close: t => promise<unit> = "close"
 @send
-external setBackgroundColor: (t, Nullable.t<Window.color>) => promise<unit> = "setBackgroundColor"
+external setBackgroundColor: (t, Nullable.t<Common.color>) => promise<unit> = "setBackgroundColor"

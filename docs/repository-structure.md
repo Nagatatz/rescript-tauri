@@ -23,6 +23,7 @@ rescript-tauri/                          # monorepo root
 │   ├── plugin-notification/             # @rescript-tauri/plugin-notification (Phase 2+)
 │   ├── plugin-log/                      # @rescript-tauri/plugin-log (Phase 2+)
 │   ├── plugin-os/                       # @rescript-tauri/plugin-os (Phase 2+)
+│   ├── plugin-clipboard-manager/        # @rescript-tauri/plugin-clipboard-manager (Phase 2+)
 │   └── schema/                          # @rescript-tauri/schema (Phase 2)
 ├── examples/                            # ビルド可能な使用例（CI ゲート対象）
 │   ├── hello-world/                     # Phase 1 必須
@@ -86,6 +87,7 @@ rescript-tauri/                          # monorepo root
 ```
 packages/core/
 ├── src/
+│   ├── Common.res / .resi               # 横断型 (unlisten / color / dragDropEvent) と共有 decoder。Window / Webview / WebviewWindow / Event から参照
 │   ├── Core.res / .resi                 # invoke / convertFileSrc / Channel / Command / Resource / PluginListener / addPluginListener / permissions / isTauri / LowLevel
 │   ├── Event.res / .resi                # listen / once / emit / emitTo / TauriEvent enum / ~target option
 │   ├── Window.res / .resi               # Window クラスバインディング (~90 メソッド)
@@ -232,6 +234,24 @@ packages/plugin-os/                      # 着手済み (steering 056, 2026-05-0
 `peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-os ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
 
 upstream の `type()` は ReScript の予約語 `type` と衝突するため `osType_()` にリネームして公開。7 つの sync getter (`eol` / `platform` / `version` / `family` / `osType_` / `arch` / `exeExtension`) は upstream で `window.__TAURI_OS_PLUGIN_INTERNALS__` を直接読み取るため、テストではこの globals を stub する。残り 2 つ (`locale` / `hostname`) は IPC (`plugin:os|locale` / `plugin:os|hostname`) 経由で `Mocks.mockIPC` で検証可能。`examples/plugin-os-demo/` と sphinx-docs `user/plugin-os.md` は後続 sub-steering に分離。
+
+```
+packages/plugin-clipboard-manager/       # 着手済み (steering 057, 2026-05-09)
+├── src/
+│   └── PluginClipboardManager.res / .resi # 6 関数 (writeText/readText/writeImage/readImage/writeHtml/clear) + writeTextOptions
+├── tests/
+│   ├── plugin_clipboard_manager_signature.res # 型レベル網羅 (8 _check_)
+│   └── runtime/plugin_clipboard_manager.test.mjs # vitest + Mocks (7 cases)
+├── rescript.json
+├── package.json                         # @rescript-tauri/plugin-clipboard-manager
+├── vitest.config.mjs
+├── CHANGELOG.md
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-clipboard-manager ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+`readImage` は `RescriptTauriCore.Image.t` を返す（peerDep 経由で core モジュールを再利用、独自 type を持たない）。`writeImage` は upstream union (`string | Image | Uint8Array | ArrayBuffer | number[]`) を polymorphic `'image` で受ける。`examples/plugin-clipboard-manager-demo/` と sphinx-docs `user/plugin-clipboard-manager.md` は後続 sub-steering に分離。
 
 ### 2.3 `packages/schema/`
 
@@ -403,9 +423,11 @@ sphinx-docs/
 │   ├── tests-plugin-log-runtime.yml
 │   ├── tests-plugin-os-types.yml
 │   ├── tests-plugin-os-runtime.yml
+│   ├── tests-plugin-clipboard-manager-types.yml
+│   ├── tests-plugin-clipboard-manager-runtime.yml
 │   ├── tests-schema-types.yml
 │   ├── tests-schema-runtime.yml
-│   ├── tests-coverage.yml                        # 8 パッケージ matrix で vitest v8 カバレッジ計測（観測フェーズ）
+│   ├── tests-coverage.yml                        # 9 パッケージ matrix で vitest v8 カバレッジ計測（観測フェーズ）
 │   ├── examples-build.yml                        # 3 OS マトリクス
 │   ├── lint-format.yml                           # Biome (手書き JS / JSON の format + lint)
 │   ├── doc-link-lint.yml                         # docs / README 内リンク検証

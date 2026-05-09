@@ -9,14 +9,6 @@
 */
 type t
 
-/** Returned by `on*` handlers — call it to detach the listener.
-    Identical in shape to `Event.unlisten` so the two can be used
-    interchangeably from a caller's perspective.
-
-    See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#unlistenfn
-*/
-type unlisten = unit => unit
-
 /** Window theme as exposed by Tauri.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#theme
@@ -140,12 +132,6 @@ type scaleFactorChanged = {
   size: Dpi.PhysicalSize.t,
 }
 
-/** RGBA color used by `setBackgroundColor` / `effects.color`.
-
-    See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#color
-*/
-type color = {r: int, g: int, b: int, a: int}
-
 /** Allowed visual effect styles. Most are macOS-only; refer to the
     Tauri docs for cross-platform availability.
 
@@ -194,7 +180,7 @@ type effects = {
   effects: array<effectStyle>,
   state?: effectState,
   radius?: float,
-  color?: color,
+  color?: Common.color,
 }
 
 /** Monitor descriptor returned by `currentMonitor` / `primaryMonitor`
@@ -238,7 +224,7 @@ type options = {
   closable?: bool,
   parent?: t,
   visibleOnAllWorkspaces?: bool,
-  backgroundColor?: color,
+  backgroundColor?: Common.color,
 }
 
 /** Creates a new window. The label must be unique among all windows.
@@ -590,7 +576,7 @@ let setSkipTaskbar: (t, bool) => promise<unit>
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#setbackgroundcolor
 */
-let setBackgroundColor: (t, Nullable.t<color>) => promise<unit>
+let setBackgroundColor: (t, Nullable.t<Common.color>) => promise<unit>
 
 /** Toggles whether cursor events pass through this window to the
     window beneath it.
@@ -730,39 +716,39 @@ let outerPosition: t => promise<Dpi.PhysicalPosition.t>
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#onresized
 */
-let onResized: (t, Dpi.PhysicalSize.t => unit) => promise<unlisten>
+let onResized: (t, Dpi.PhysicalSize.t => unit) => promise<Common.unlisten>
 
 /** Subscribes to `tauri://move`.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#onmoved
 */
-let onMoved: (t, Dpi.PhysicalPosition.t => unit) => promise<unlisten>
+let onMoved: (t, Dpi.PhysicalPosition.t => unit) => promise<Common.unlisten>
 
 /** Subscribes to `tauri://close-requested`. The handler can call
     `event.preventDefault()` to keep the window open.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#oncloserequested
 */
-let onCloseRequested: (t, closeRequestedEvent => unit) => promise<unlisten>
+let onCloseRequested: (t, closeRequestedEvent => unit) => promise<Common.unlisten>
 
 /** Subscribes to `tauri://focus` / `tauri://blur` (delivered as a
     boolean `focused` payload).
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#onfocuschanged
 */
-let onFocusChanged: (t, bool => unit) => promise<unlisten>
+let onFocusChanged: (t, bool => unit) => promise<Common.unlisten>
 
 /** Subscribes to `tauri://scale-change`.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#onscalechanged
 */
-let onScaleChanged: (t, scaleFactorChanged => unit) => promise<unlisten>
+let onScaleChanged: (t, scaleFactorChanged => unit) => promise<Common.unlisten>
 
 /** Subscribes to `tauri://theme-changed`.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#onthemechanged
 */
-let onThemeChanged: (t, theme => unit) => promise<unlisten>
+let onThemeChanged: (t, theme => unit) => promise<Common.unlisten>
 
 /** Returns the macOS `NSActivity` name associated with this window.
 
@@ -802,21 +788,10 @@ let toggleMaximize: t => promise<unit>
 */
 let unminimize: t => promise<unit>
 
-/** Drag-drop event payload. Same shape as `Webview.dragDropEvent` —
-    declared locally to keep Window independent of Webview.
-
-    See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#dragdropevent
-*/
-type dragDropEvent =
-  | Enter({paths: array<string>, position: Dpi.PhysicalPosition.t})
-  | Over({position: Dpi.PhysicalPosition.t})
-  | Drop({paths: array<string>, position: Dpi.PhysicalPosition.t})
-  | Leave
-
 /** Subscribes to drag-and-drop events on the window. Mirrors
     `Webview.onDragDropEvent` — they fire for the same gestures
     depending on which surface the OS routes the event to.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#ondragdropevent
 */
-let onDragDropEvent: (t, dragDropEvent => unit) => promise<unlisten>
+let onDragDropEvent: (t, Common.dragDropEvent => unit) => promise<Common.unlisten>
