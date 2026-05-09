@@ -2,12 +2,9 @@
 
 [Model Context Protocol (MCP)](https://modelcontextprotocol.io) は AI ツールを外部データソースに接続するためのオープンスタンダード。Claude Code では `.mcp.json`（プロジェクトスコープ）/ `~/.claude.json`（ユーザースコープ）/ コマンドラインオプション（ローカル）で MCP サーバーを定義できる。
 
-## このテンプレートが提供するもの
+## このリポジトリでの扱い
 
-- `.mcp.json.template`: 最小空構成のテンプレート（`{"mcpServers": {}}`）
-- このドキュメント: よく使う MCP サーバーの設定例
-
-`.mcp.json` 自体は `.gitignore` 対象。配布先で `cp .mcp.json.template .mcp.json` してから個別に編集する。
+`.mcp.json` 自体は `.gitignore` 対象。MCP を使う場合はリポジトリルートに `.mcp.json` を新規作成し、必要なサーバーを記述する（最小構成は `{"mcpServers": {}}`）。本ドキュメントはよく使う MCP サーバーの設定例を提供する。
 
 ## スコープの使い分け
 
@@ -91,7 +88,7 @@
 
 ## 有効化と確認
 
-1. `.mcp.json.template` を `.mcp.json` にコピーし、必要なサーバーを追加
+1. リポジトリルートに `.mcp.json` を作成し、必要なサーバーを追加
 2. Claude Code を再起動（または `claude mcp list` で認識確認）
 3. セッション内で `/mcp` を実行し、起動済みサーバーを確認
 
