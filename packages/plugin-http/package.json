@@ -1,0 +1,50 @@
+{
+  "name": "@rescript-tauri/plugin-http",
+  "version": "0.0.0",
+  "description": "ReScript bindings for @tauri-apps/plugin-http (Tauri 2.x HTTP fetch plugin)",
+  "license": "MIT",
+  "homepage": "https://github.com/Nagatatz/rescript-tauri",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nagatatz/rescript-tauri.git",
+    "directory": "packages/plugin-http"
+  },
+  "type": "module",
+  "main": "./src/PluginHttp.res.mjs",
+  "files": [
+    "src/**/*.res",
+    "src/**/*.resi",
+    "src/**/*.res.mjs",
+    "rescript.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rescript build",
+    "clean": "rescript clean",
+    "test": "rescript build && vitest run",
+    "test:coverage": "rescript build && vitest run --coverage"
+  },
+  "peerDependencies": {
+    "@rescript-tauri/core": "^0.1.0",
+    "@rescript/core": ">=1.6.0",
+    "@tauri-apps/plugin-http": "^2.0.0",
+    "rescript": ">=12.0.0"
+  },
+  "devDependencies": {
+    "@rescript-tauri/core": "workspace:*",
+    "@rescript/core": "^1.6.0",
+    "@rescript/runtime": "^12.2.0",
+    "@tauri-apps/plugin-http": "^2.5.9",
+    "@types/node": "^25.0.0",
+    "@vitest/coverage-v8": "^4.0.0",
+    "happy-dom": "^20.9.0",
+    "rescript": "^12.2.0",
+    "vitest": "^4.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
