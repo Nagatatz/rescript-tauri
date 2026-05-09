@@ -2,7 +2,7 @@
 
 | 項目 | 内容 |
 |---|---|
-| ステアリング番号 | 20260509-056 |
+| ステアリング番号 | 20260509-057 |
 | 関連 | requirements.md / design.md |
 
 ## Phase 1: 計画
@@ -72,15 +72,26 @@
 - [x] `sphinx-docs/dev/project-structure.md` Subsystem map に plugin-shell + plugin-notification を追記、Core/Event 行コメントを実装に合わせて修正
 - [x] commit: `📝 Mention plugin-shell in sphinx-docs installation guide`
 
+### Task G (途中で発生): main から plugin-log + plugin-os を取り込み、ステアリング再採番
+
+- [x] 並列セッションが同じ 056 番号で plugin-os を完了 → 自分を **056 → 057** に再採番（`git mv` + 内部 ref 更新）
+- [x] main に追加された 4 commit (steering 055 plugin-log + steering 056 plugin-os) を `git merge main --no-ff` で取り込み
+- [x] README.md の Packages テーブル衝突を解消（plugin-log + plugin-os 行を残しつつ schema 行の deprecated 注記を保持）
+- [x] README.md npm バッジに plugin-log + plugin-os を追加、publish 待ちパッケージ数を 6 → 8 に更新
+- [x] docs/repository-structure.md §8 に 4 件の新規 workflow を追加、tests-coverage.yml の matrix 注記を 6 → 8 に修正
+- [x] sphinx-docs/user/installation.md に plugin-log + plugin-os の install command を追加、未追加ガイド注記を 4 パッケージに拡張
+- [x] sphinx-docs/dev/project-structure.md Subsystem map を 7 パッケージに拡張
+- [x] commit: `Merge branch 'main' into worktree-doc-implementation-sync` (renumber + plugin absorption 同梱)
+
 ## Phase 4: マージ前検証
 
-- [ ] `pnpm --recursive build` 全件成功
-- [ ] `pnpm run check` 全件成功
-- [ ] `pnpm --recursive test` 全件成功
-- [ ] `grep -r "Event.Predefined" docs/ README.md sphinx-docs/` の結果が 0 件（Menu の `Predefined(predefinedMenuItemId)` は除外）
-- [ ] `ls .github/workflows/*.yml | wc -l` と repository-structure.md §8 の列挙数が一致
-- [ ] `tasklist.md` を本ファイルの全タスク `[x]` 状態でコミット
-- [ ] commit: `✅ Mark steering 056 tasklist complete`
+- [x] `pnpm --recursive build` 全件成功 (sequential, race 回避)
+- [x] `pnpm run check` 確認: 既知の Biome 2.x 問題（worktree path に `.claude/worktrees` が含まれて `!**/.claude/worktrees` exclude が CWD に該当し全除外）。CI (lint-format.yml) は main 上で success 継続
+- [x] `pnpm --recursive test` 全件成功 — 23 test files all pass (core 16, plugin-fs 1, plugin-dialog 1, plugin-shell 1, plugin-notification 1, plugin-log 1, plugin-os 1, schema 1)
+- [x] `grep -rn "Event.Predefined" docs/ README.md sphinx-docs/` 結果: 自己説明用の `glossary.md` 1 件のみ（"Event.Predefined という別モジュールは存在しない" の注記）
+- [x] `ls .github/workflows/*.yml | wc -l` (25) と repository-structure.md §8 の列挙数 (25) が一致
+- [x] `tasklist.md` を本ファイルの全タスク `[x]` 状態でコミット
+- [ ] commit: `✅ Mark steering 057 tasklist complete`
 
 ## Phase 5: マージ
 
@@ -93,4 +104,4 @@
 ## ロールバック条件
 
 - 各 Task のコミット後、`pnpm --recursive build` が失敗した場合は直前コミットを `git revert` し、原因を切り分けて再着手
-- 並列 `worktree-plugin-log` 等が同じファイルを編集している場合、最終マージ時に rebase で解消
+- 並列 worktree が同じファイルを編集している場合、最終マージ時に rebase で解消
