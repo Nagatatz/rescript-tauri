@@ -9,6 +9,8 @@ on:
       - "plugin-dialog-v*"
       - "plugin-shell-v*"
       - "plugin-notification-v*"
+      - "plugin-log-v*"
+      - "plugin-os-v*"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -72,6 +74,14 @@ jobs:
             plugin-notification-v*)
               echo "package=@rescript-tauri/plugin-notification" >> "$GITHUB_OUTPUT"
               echo "directory=packages/plugin-notification"     >> "$GITHUB_OUTPUT"
+              ;;
+            plugin-log-v*)
+              echo "package=@rescript-tauri/plugin-log" >> "$GITHUB_OUTPUT"
+              echo "directory=packages/plugin-log"     >> "$GITHUB_OUTPUT"
+              ;;
+            plugin-os-v*)
+              echo "package=@rescript-tauri/plugin-os" >> "$GITHUB_OUTPUT"
+              echo "directory=packages/plugin-os"     >> "$GITHUB_OUTPUT"
               ;;
             v*)
               echo "package=@rescript-tauri/core" >> "$GITHUB_OUTPUT"

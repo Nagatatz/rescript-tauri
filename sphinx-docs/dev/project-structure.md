@@ -35,7 +35,7 @@ rescript-tauri/
 
 ## Subsystem map
 
-`packages/core/` is the Phase 1 hub; Phase 2 adds `packages/schema/`, `packages/plugin-fs/`, `packages/plugin-dialog/`, `packages/plugin-shell/`, and `packages/plugin-notification/`. The core layout is:
+`packages/core/` is the Phase 1 hub; Phase 2 adds `packages/schema/`, `packages/plugin-fs/`, `packages/plugin-dialog/`, `packages/plugin-shell/`, `packages/plugin-notification/`, `packages/plugin-log/`, and `packages/plugin-os/`. The core layout is:
 
 ```
 packages/core/

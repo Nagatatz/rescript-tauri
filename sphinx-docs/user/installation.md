@@ -56,6 +56,12 @@ pnpm add @rescript-tauri/plugin-shell @tauri-apps/plugin-shell
 # Toast notifications + scheduling (desktop) / Android channels
 pnpm add @rescript-tauri/plugin-notification @tauri-apps/plugin-notification
 
+# Structured logging (5 levels + log targets)
+pnpm add @rescript-tauri/plugin-log @tauri-apps/plugin-log
+
+# OS info (platform / version / arch / family / hostname / locale)
+pnpm add @rescript-tauri/plugin-os @tauri-apps/plugin-os
+
 # Layer 3 typed IPC (rescript-schema)
 pnpm add @rescript-tauri/schema rescript-schema
 ```
@@ -65,12 +71,12 @@ and [schema](schema.md) guides for the matching ReScript / Rust /
 capability setup.
 
 ```{note}
-Dedicated user guides for `@rescript-tauri/plugin-shell` and
-`@rescript-tauri/plugin-notification` are scheduled for follow-up
+Dedicated user guides for `@rescript-tauri/plugin-shell`,
+`@rescript-tauri/plugin-notification`, `@rescript-tauri/plugin-log`,
+and `@rescript-tauri/plugin-os` are scheduled for follow-up
 sub-steerings. Until then, refer to each package's own README
-(`packages/plugin-shell/README.md`,
-`packages/plugin-notification/README.md`) for full API coverage and
-copy-pasteable examples.
+(`packages/plugin-{shell,notification,log,os}/README.md`) for full
+API coverage and copy-pasteable examples.
 ```
 
 ## Verify
