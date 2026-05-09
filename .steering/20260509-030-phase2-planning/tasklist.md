@@ -36,9 +36,9 @@
 - [x] 型レベル signature テスト (steering 031)
 - [x] runtime テスト（vitest + Mocks 経由）(steering 031)
 - [x] `examples/ipc-typed-with-schema/` 追加 (steering 039)
-- [ ] CI: `tests-schema-types.yml` / `tests-schema-runtime.yml` 追加
+- [x] CI: `tests-schema-types.yml` / `tests-schema-runtime.yml` 追加 (steering 041)
 - [ ] CI: `compat-rescript-schema-prerelease.yml` 追加（任意）
-- [ ] `release.yml` を `schema-v*` タグに対応するよう拡張
+- [x] `release.yml` を `schema-v*` タグに対応するよう拡張 (steering 041)
 - [ ] README + 互換マトリクス
 - [ ] `schema-v0.1.0` tag → npm publish
 
@@ -52,8 +52,8 @@
 - [x] 型レベル signature テスト (steering 032)
 - [x] runtime テスト（Mocks 経由）(steering 032)
 - [x] `examples/plugin-fs-demo/` 追加 (steering 037)
-- [ ] CI 拡張
-- [ ] `release.yml` を `plugin-fs-v*` タグに対応
+- [x] CI 拡張 (steering 041: tests-plugin-fs-types/runtime + examples-build matrix)
+- [x] `release.yml` を `plugin-fs-v*` タグに対応 (steering 041)
 - [ ] README + 互換マトリクス
 - [ ] `plugin-fs-v0.1.0` tag → npm publish
 
@@ -65,7 +65,7 @@
 - [x] options 型 / multiple-selection / directory-selection の variant 設計 (steering 035)
 - [x] 型レベル signature テスト + runtime テスト (steering 035)
 - [x] `examples/plugin-dialog-demo/` 追加 (steering 036)
-- [ ] CI 拡張
+- [x] CI 拡張 (steering 041: tests-plugin-dialog-types/runtime + examples-build matrix + release.yml plugin-dialog-v* タグ)
 - [ ] README + 互換マトリクス
 - [ ] `plugin-dialog-v0.1.0` tag → npm publish
 
