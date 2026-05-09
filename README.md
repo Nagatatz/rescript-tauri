@@ -16,9 +16,9 @@
 
 Production-ready ReScript bindings for Tauri 2.x's official JS SDK (`@tauri-apps/api`). A monorepo centered on `@rescript-tauri/core`, exposing the entire Tauri public API surface—IPC, Event, Window, Webview, Menu, Tray—from ReScript.
 
-> **Status:** Phase 1 — design complete, implementation not yet started. This repository currently contains the PRD, functional design, architecture, repository structure, and glossary; no source code is published yet. See [`docs/product-requirements.md`](./docs/product-requirements.md) and [`docs/functional-design.md`](./docs/functional-design.md) for details.
+> **Status:** Phase 1 + Phase 2 implementations are merged on `main`. The `@rescript-tauri/core`, `@rescript-tauri/plugin-fs`, `@rescript-tauri/plugin-dialog`, and `@rescript-tauri/schema` packages are awaiting their first npm publish (`v0.1.0` track); CI matrices, the release runbook, and the Sphinx documentation site are all in place. See [`docs/product-requirements.md`](./docs/product-requirements.md) and [`docs/functional-design.md`](./docs/functional-design.md) for the full scope.
 >
-> **Visibility:** the repository is **public**. Phase 1 is still in progress — no `@rescript-tauri/*` package has been published to npm yet, so the npm version badges above will remain blank until the first release ships. The CI workflow status is summarized in [`.github/workflows/README.md`](./.github/workflows/README.md). [`LICENSE`](./LICENSE) (MIT) and [`CONTRIBUTING.md`](./CONTRIBUTING.md) are in place.
+> **Visibility:** the repository is **public**. The npm version badges above will populate once the first `0.1.0` releases ship. The CI workflow status is summarized in [`.github/workflows/README.md`](./.github/workflows/README.md). [`LICENSE`](./LICENSE) (MIT) and [`CONTRIBUTING.md`](./CONTRIBUTING.md) are in place.
 
 ---
 
@@ -56,13 +56,13 @@ Each package is published with independent semver and declares the corresponding
 | Node.js | Active LTS |
 | OS | Linux / macOS / Windows (Tauri 2.x desktop targets) |
 
-Nightly CI against the latest Tauri release and the next ReScript 12.x minor / next-major prerelease line is planned to detect API drift early. The job definitions are tracked in [`docs/functional-design.md`](./docs/functional-design.md) §6 and will be implemented during Phase 1. The current status of every workflow file (active / opt-in template / planned) is documented in [`.github/workflows/README.md`](./.github/workflows/README.md).
+Nightly CI against the latest Tauri release and the next ReScript 12.x minor / next-major prerelease line detects API drift early (`compat-tauri-latest.yml`, `compat-rescript-prerelease.yml`). The full job catalogue is documented in [`.github/workflows/README.md`](./.github/workflows/README.md), with design rationale in [`docs/functional-design.md`](./docs/functional-design.md) §6.
 
 ---
 
-## 🚀 Installation (planned; post Phase 1 release)
+## 🚀 Installation (pending first npm publish)
 
-Not yet published. Once Phase 1 ships, installation will look like:
+The packages are not yet on npm. Once `v0.1.0` ships, installation will look like:
 
 ```bash
 pnpm add @rescript-tauri/core @tauri-apps/api
@@ -111,7 +111,7 @@ let fileChanged = Event.make(
 let unlisten = await fileChanged->Event.listen(evt => Console.log(evt.payload))
 ```
 
-Runnable examples will live under `examples/` starting in Phase 1 (`hello-world`, `window-management`, `ipc-typed`, `streaming-ipc`).
+Runnable examples live under `examples/` (`hello-world`, `window-management`, `ipc-typed`, `streaming-ipc`, `plugin-fs-demo`, `plugin-dialog-demo`, `ipc-typed-with-schema`) and are CI-built on Linux / macOS / Windows.
 
 ---
 
@@ -151,7 +151,7 @@ The top-level layout is summarized below. **The canonical source is [`docs/repos
 ```
 rescript-tauri/
 ├── packages/         # @rescript-tauri/core, plugin-*, schema
-├── examples/         # hello-world / window-management / ipc-typed / streaming-ipc
+├── examples/         # hello-world / window-management / ipc-typed / streaming-ipc / plugin-fs-demo / plugin-dialog-demo / ipc-typed-with-schema
 ├── docs/             # Internal design docs (PRD, functional design, architecture, ...)
 │   └── ideas/        # Drafts / RFCs (input only; not edited after acceptance)
 ├── sphinx-docs/      # External-facing docs (English base + Japanese via Sphinx i18n)
@@ -220,7 +220,7 @@ When introducing a new convention or workflow, choose its location in this prior
 
 ## 🤝 Contributing
 
-External pull requests are not yet accepted while the project is in its design phase. Feedback on the design or RFCs is welcome through GitHub Issues. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for how to engage today (issues only) and the future PR workflow that will apply once Phase 1 ships.
+External pull requests and design feedback are welcome. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the branch / commit / steering / CI conventions, and [`SECURITY.md`](./SECURITY.md) for vulnerability disclosure.
 
 ---
 

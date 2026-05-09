@@ -5,13 +5,12 @@ Layer 1 (`Core.Raw.invoke`).
 
 ## Status
 
-Phase 1 — implementation in progress. The frontend ReScript piece
-builds today (`pnpm --filter hello-world build`); the Rust side
-requires the Tauri toolchain (`pnpm tauri dev` from this directory)
-and is fully exercised once the CI matrix is wired up
-(.steering/20260508-017-ci-workflows; in flight).
+Phase 1 baseline — shipped. The frontend ReScript piece builds with
+`pnpm --filter hello-world build`; the Rust side requires the Tauri
+toolchain (`pnpm tauri dev` from this directory). Linux / macOS /
+Windows builds run on every PR via the `examples-build` CI matrix.
 
-## Run locally (after Phase 1 release)
+## Run locally
 
 ```bash
 cd examples/hello-world
@@ -41,9 +40,9 @@ pnpm tauri dev
 ## Notes
 
 - `App.res` reaches into Tauri via `RescriptTauriCore.Core.Raw.invoke`
-  (full namespace path) because the top-level `Tauri.res` re-export
-  module hasn't been added yet (PRD §10 row 1 — finalized at Phase 1
-  release).
+  (full namespace path). Apps that prefer shorter access can
+  `open Tauri` to reach `Core.Raw.invoke` once the `Tauri` re-export
+  is imported (see [`packages/core/src/Tauri.resi`](../../packages/core/src/Tauri.resi)).
 - `tauri.conf.json` keeps `frontendDist` pointing to `../` (this
   directory) so Tauri loads `index.html` directly. A real production
   setup would route through Vite or another bundler.

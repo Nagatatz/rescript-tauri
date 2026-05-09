@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-The project is in **Phase 1 — design phase**. No published `@rescript-tauri/core` release exists yet; the first published release will be marked as the supported version. Pre-release reports (covering the design itself, RFC content, or any planned API surface) are welcome through the channel below.
+Phase 1 + Phase 2 implementations are merged on `main`; the first published `@rescript-tauri/*` release (`v0.1.0` track) is pending. Until that release lands, "supported version" means the `main` branch HEAD. Reports against the merged code, the design documents, or RFC content are all welcome through the channel below.
 
 ## Reporting a Vulnerability
 
@@ -29,7 +29,7 @@ The more of the following you can supply, the faster we can triage:
 
 ## Response Timeline
 
-Best-effort timelines during the Phase 1 design phase. A guaranteed timeline applies starting with the first published release.
+Best-effort timelines apply until the first npm publish; a guaranteed timeline applies starting with the first published release.
 
 | Stage | Target |
 |---|---|

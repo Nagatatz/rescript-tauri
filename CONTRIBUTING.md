@@ -1,35 +1,31 @@
 # Contributing to rescript-tauri
 
-Thank you for your interest in `rescript-tauri`! This document covers how to engage today and the workflow we will use once external pull requests are accepted.
+Thank you for your interest in `rescript-tauri`! This document covers the branch / commit / steering / CI conventions every external PR is expected to follow.
 
 ---
 
 ## 1. Project status
 
-`rescript-tauri` is in **Phase 1 — design complete, implementation not yet started**. The repository is currently **private**; external pull requests are **not yet accepted**. The visibility transition criteria are listed in the [README "Visibility" block](./README.md#-rescript-tauri).
+Phase 1 + Phase 2 implementations are merged on `main` (core, plugin-fs, plugin-dialog, schema, seven examples, CI matrices, release runbook, Sphinx docs). The packages are awaiting their first npm publish on the `v0.1.0` track.
 
-What this means for you right now:
-
-- **GitHub Issues are welcome** for design feedback, RFC discussion, and clarifying questions.
-- Pull requests will be accepted once we ship Phase 1 (first `@rescript-tauri/core` npm release, examples on the 3 OS matrix, CI gates wired up).
-- Until then, the "Future PR workflow" section below describes the workflow we plan to operate under, so you can familiarize yourself with the conventions in advance.
+The repository is **public** and external pull requests are accepted. GitHub Issues remain the right channel for design feedback, RFC discussion, and clarifying questions.
 
 ---
 
-## 2. How you can help today
+## 2. How you can help
 
 | Channel | Purpose |
 |---|---|
-| GitHub Issues | Design feedback, RFC discussion, clarifying questions, bug reports for the design docs themselves |
-| Star / Watch | Be notified when Phase 1 ships and external PRs open |
+| GitHub Pull Requests | Code, docs, examples, CI improvements |
+| GitHub Issues | Bug reports, design feedback, RFC discussion, clarifying questions |
 
-Please file issues against the relevant document or design surface (PRD, functional design, RFC-0001, etc.) and link the specific section so we can ground the discussion.
+Please link the specific PRD / functional-design / RFC section in your issue or PR description so the discussion stays grounded in the canonical documents.
 
 ---
 
-## 3. Future PR workflow (post-Phase 1)
+## 3. PR workflow
 
-Once external PRs are accepted, the workflow below will apply. Each item links to the canonical convention (the Source of Truth lives in `.claude/rules/`, not here).
+Each item links to the canonical convention (the Source of Truth lives in `.claude/rules/`, not here).
 
 ### 3.1 Branch naming
 
@@ -78,17 +74,22 @@ A failing example build on any of the three OSes blocks release.
 
 ### 3.6 Required doc comments
 
-Every public symbol in `.resi` requires a doc comment with a `See:` line linking to the corresponding Tauri documentation page. See [`.claude/rules/code-comments.md`](./.claude/rules/code-comments.md). The `doc-link-lint.yml` workflow (planned for Phase 1) verifies this with grep.
+Every public symbol in `.resi` requires a doc comment with a `See:` line linking to the corresponding Tauri documentation page. See [`.claude/rules/code-comments.md`](./.claude/rules/code-comments.md). The `doc-link-lint.yml` workflow verifies this with grep.
 
 ### 3.7 CI gates
 
-The current state of every workflow file (active / opt-in template / planned for Phase 1) is documented in [`.github/workflows/README.md`](./.github/workflows/README.md). Once Phase 1 ships, every PR must clear:
+Every PR must clear the workflows catalogued in [`.github/workflows/README.md`](./.github/workflows/README.md):
 
 - `build-core` (with a wall-clock budget per PRD §5.2)
-- `tests-core-types` (100% public-symbol coverage)
-- `tests-core-runtime` (vitest)
-- `examples-build` (3 OS matrix)
+- `tests-core-types` / `tests-schema-types` / `tests-plugin-fs-types` / `tests-plugin-dialog-types` (100% public-symbol coverage per package)
+- `tests-core-runtime` / `tests-schema-runtime` / `tests-plugin-fs-runtime` / `tests-plugin-dialog-runtime` (vitest)
+- `tests-coverage` (matrix coverage observation; non-gating in the current phase)
+- `examples-build` (3 OS matrix across all 7 examples)
 - `doc-link-lint` (Tauri URL presence)
+- `lint-format` (Biome on hand-written `.mjs` / JSON)
+- `docs` (Sphinx EN+JA build)
+
+Nightly: `compat-tauri-latest` and `compat-rescript-prerelease` exercise upstream drift detection.
 
 ### 3.8 Definition of Done
 
@@ -108,7 +109,7 @@ For a quick start, the README's [Development setup](./README.md#-development-set
 
 Please use **GitHub Issues** with the templates under `.github/ISSUE_TEMPLATE/`. Include:
 
-- The version of `@rescript-tauri/core` you are using (once Phase 1 ships)
+- The version of `@rescript-tauri/core` you are using (once `0.1.0` ships; until then, the commit SHA on `main`)
 - The version of `@tauri-apps/api`, ReScript, and `@rescript/core`
 - Operating system
 - Minimal reproduction (a snippet or, ideally, a forkable example based on `examples/`)

@@ -2,15 +2,15 @@
 
 ## A. Status sweep
 
-- [ ] A-1 README.md の Status / Visibility ブロック (L19-21) を Phase 1+2 merged に書き換え
-- [ ] A-2 README.md L62-71 / L223 の design-phase 表現を実装済み・PR 受け入れ可に書き換え
-- [ ] A-3 CONTRIBUTING.md §1 / §3 を現行運用に書き換え
-- [ ] A-4 CONTRIBUTING.md §3.7 CI gates 列挙を最新ワークフローに揃える
-- [ ] A-5 SECURITY.md Phase 1 design-phase 表現を実態に合わせて修正
-- [ ] A-6 examples 各 README の Status ブロックを統一（hello-world / window-management / ipc-typed / streaming-ipc / plugin-fs-demo / plugin-dialog-demo / ipc-typed-with-schema）
-- [ ] A-7 sphinx-docs `index.md` / `dev/contributing.md` / `dev/setup.md` の design-phase 表現を更新
-- [ ] A-8 ビルド・テスト・Biome check 緑確認
-- [ ] A-9 Scope A をコミット（絵文字: 📝）
+- [x] A-1 README.md の Status / Visibility ブロック (L19-21) を Phase 1+2 merged に書き換え
+- [x] A-2 README.md L62-71 / L223 の design-phase 表現を実装済み・PR 受け入れ可に書き換え
+- [x] A-3 CONTRIBUTING.md §1 / §3 を現行運用に書き換え
+- [x] A-4 CONTRIBUTING.md §3.7 CI gates 列挙を最新ワークフローに揃える
+- [x] A-5 SECURITY.md Phase 1 design-phase 表現を実態に合わせて修正
+- [x] A-6 examples 各 README の Status ブロックを統一（hello-world / plugin-fs-demo / plugin-dialog-demo / ipc-typed-with-schema）。window-management / ipc-typed / streaming-ipc は元々 Status 欄を持たないため touch なし
+- [x] A-7 sphinx-docs `index.md` / `dev/contributing.md` の design-phase 表現を更新（`dev/setup.md` には該当箇所なし）
+- [x] A-8 ビルド・テスト緑確認（Biome は worktree 内では `!**/.claude/worktrees` ignore で実行不能、main マージ後 CI で確認）
+- [x] A-9 Scope A をコミット（絵文字: 📝）
 
 ## B. docs/ 整合
 
