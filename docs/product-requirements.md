@@ -324,10 +324,15 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
   - `packages/core/tests/*.res` のコンパイル成功を CI 必須条件にする。
   - `.resi` で公開された全シンボル（`let` / `module` / `type`）の **100%** を `tests/` 配下から少なくとも 1 度参照する。
   - CI に grep ベースのカバレッジチェックジョブを追加し、未参照シンボルを検出した場合 fail する。
-- 行 / 分岐 / 関数カバレッジ（観測フェーズ）:
+- 行 / 分岐 / 関数カバレッジ（しきい値ゲート確定）:
   - 全公開パッケージ（`core` / `plugin-fs` / `plugin-dialog` / `schema`）の vitest ランタイムテストに対して `@vitest/coverage-v8` で計測し、CI ジョブ `tests-coverage` で Job summary と artifact（LCOV / HTML、30 日保持）として可視化する。
-  - 上記「`.resi` 公開シンボル参照カバレッジ」とは別概念で、ベースライン取得の観測フェーズに位置づける。
-  - **本フェーズではしきい値による fail ゲートを設けない**。数 PR ぶんの実測後、別ステアリングで `coverage.thresholds` を導入する予定。
+  - 上記「`.resi` 公開シンボル参照カバレッジ」とは別概念。
+  - 各 `vitest.config.mjs` の `coverage.thresholds` で **floor を確定済み**（steering 051 で導入、C/D/E 残カバレッジ補強で更新）:
+    - `core`: statements 96 / branches 80 / functions 96 / lines 96
+    - `plugin-fs`: 100 / 45 / 100 / 100
+    - `plugin-dialog`: 100 / 55 / 100 / 100
+    - `schema`: 88 / 45 / 95 / 88
+  - floor を下回ると `test:coverage` が exit 非 0 を返し、CI ジョブ `tests-coverage` が fail する。floor を引き上げるときはこの表と `vitest.config.mjs` を同時更新する。
 
 ### 5.5 ドキュメント
 

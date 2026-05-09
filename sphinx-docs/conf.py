@@ -101,6 +101,17 @@ ogp_site_url = html_baseurl
 ogp_site_name = "rescript-tauri"
 ogp_type = "website"
 
+# Description length for social previews (default 200; expanded for richer cards).
+ogp_description_length = 300
+ogp_enable_meta_description = True
+
+# Static custom meta tags. og:locale[:alternate] are appended dynamically in
+# setup() because `make build-ja` overrides `language` via `-D language=ja`
+# after this file is evaluated.
+ogp_custom_meta_tags = [
+    '<meta name="twitter:card" content="summary_large_image" />',
+]
+
 # -- Sitemap (SEO) -----------------------------------------------------------
 
 sitemap_url_scheme = "{link}"
@@ -143,3 +154,29 @@ suppress_warnings = ["toc.excluded"]
 linkcheck_ignore = [
     r"^https://github\.com/Nagatatz/rescript-tauri/(blob|tree|issues|graphs)(/.*)?$",
 ]
+
+
+# -- Dynamic OGP locale tags -------------------------------------------------
+
+
+def setup(app):
+    """Append per-build OGP locale meta tags after Sphinx finalizes config.
+
+    `make build-ja` overrides the Sphinx `language` config via `-D language=ja`,
+    so og:locale must be computed from the *final* language at config-inited
+    time rather than at conf.py module load time.
+    """
+
+    _OGP_LOCALE_MAP = {
+        "en": ("en_US", "ja_JP"),
+        "ja": ("ja_JP", "en_US"),
+    }
+
+    def _add_locale_meta(_app, config):
+        primary, alternate = _OGP_LOCALE_MAP.get(config.language, ("en_US", "ja_JP"))
+        config.ogp_custom_meta_tags = list(config.ogp_custom_meta_tags) + [
+            f'<meta property="og:locale" content="{primary}" />',
+            f'<meta property="og:locale:alternate" content="{alternate}" />',
+        ]
+
+    app.connect("config-inited", _add_locale_meta)

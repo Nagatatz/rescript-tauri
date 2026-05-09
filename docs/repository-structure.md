@@ -19,6 +19,8 @@ rescript-tauri/                          # monorepo root
 │   ├── core/                            # @rescript-tauri/core
 │   ├── plugin-fs/                       # @rescript-tauri/plugin-fs (Phase 2+)
 │   ├── plugin-dialog/                   # @rescript-tauri/plugin-dialog (Phase 2+)
+│   ├── plugin-shell/                    # @rescript-tauri/plugin-shell (Phase 2+)
+│   ├── plugin-notification/             # @rescript-tauri/plugin-notification (Phase 2+)
 │   └── schema/                          # @rescript-tauri/schema (Phase 2)
 ├── examples/                            # ビルド可能な使用例（CI ゲート対象）
 │   ├── hello-world/                     # Phase 1 必須
@@ -49,20 +51,18 @@ rescript-tauri/                          # monorepo root
 │   ├── skills/                          # 状況発火型スキル
 │   ├── agents/                          # サブエージェント定義
 │   ├── rules/                           # 常時適用ルール
-│   ├── hooks/                           # 自動実行 hook
+│   ├── hooks/                           # 自動実行 hook (check-secrets / check-disk-space / biome-format)
+│   ├── settings.json                    # PreToolUse / PostToolUse hook 登録
 │   ├── output-styles/
 │   ├── statusline.sh
 │   └── worktrees/                       # ビルトイン worktree 作成先
 ├── .github/                             # GitHub Actions / Templates
 │   └── workflows/
-├── .devcontainer/
 ├── CLAUDE.md                            # プロジェクト指示書（本構造を @import）
 ├── README.md
 ├── pnpm-workspace.yaml
 ├── package.json
 ├── biome.json                          # Biome (手書き JS / JSON の format + lint)
-├── .mcp.json.template
-├── .env.example
 └── .gitignore
 ```
 
@@ -151,6 +151,42 @@ packages/plugin-dialog/                  # 着手済み (steering 035, 2026-05-0
 `peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-dialog ^2.7.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
 
 upstream `open(options)` の TypeScript 条件型戻り値を 4 関数（`openFile` / `openFiles` / `openDirectory` / `openDirectories`）に分割して静的化（steering 035 §3.1）。`MessageDialogButtonsYesNoCustom` 等のカスタム文言・examples・専用 CI は plugin-dialog 後続 sub-steering に分離。
+
+```
+packages/plugin-shell/                   # 着手済み (steering 051, 2026-05-09)
+├── src/
+│   └── PluginShell.res / .resi          # openPath / Command / Child / EventEmitter
+├── tests/
+│   ├── plugin_shell_signature.res       # 型レベル網羅 (21 _check_)
+│   └── runtime/plugin_shell.test.mjs    # vitest + Mocks 経由 (8 cases)
+├── rescript.json
+├── package.json                         # @rescript-tauri/plugin-shell
+├── vitest.config.mjs
+├── CHANGELOG.md
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-shell ^2.3.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+upstream `Command.create({encoding: 'raw'})` の TypeScript 条件型戻り値を `Command.create` / `Command.createRaw` / `Command.sidecar` / `Command.sidecarRaw` に分割して静的化（steering 051 §3.1）。トップレベル `open` は ReScript 予約語との衝突回避のため `openPath` にリネーム。`examples/plugin-shell-demo/` と sphinx-docs `user/plugin-shell.md` は後続 sub-steering に分離。
+
+```
+packages/plugin-notification/            # 着手済み (steering 054, 2026-05-09)
+├── src/
+│   └── PluginNotification.res / .resi   # 15 関数 + Schedule / Importance / Visibility モジュール + 8 records + notificationPermission
+├── tests/
+│   ├── plugin_notification_signature.res # 型レベル網羅 (38 _check_)
+│   └── runtime/plugin_notification.test.mjs # vitest + Mocks + window.Notification stub (19 cases)
+├── rescript.json
+├── package.json                         # @rescript-tauri/plugin-notification
+├── vitest.config.mjs
+├── CHANGELOG.md
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-notification ^2.3.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+upstream の `sendNotification(options: Options | string)` overload を `sendNotification` / `sendNotificationText` の 2 関数に分割して静的化（steering 054 §3.1）。`Importance` / `Visibility` の数値 enum は ReScript 側で `int` の named constants として公開し、`default_` / `private_` / `public_` は JS 出力の `$$default` / `$$private` / `$$public` エスケープを避けるため suffix 付き。`requestPermission` / `sendNotification` / `sendNotificationText` は upstream で IPC ではなく `window.Notification` Web API 経由で動作するため、テストでは `globalThis.window.Notification` を stub する。`examples/plugin-notification-demo/` と sphinx-docs `user/plugin-notification.md` は後続 sub-steering に分離。
 
 ### 2.3 `packages/schema/`
 
@@ -279,7 +315,8 @@ sphinx-docs/
 | `skills/` | 状況発火型スキル本体（`SKILL.md` + 補助ファイル） |
 | `agents/` | code-reviewer / debugger 等のサブエージェント定義 |
 | `rules/` | CLAUDE.md から @import される常時適用ルール |
-| `hooks/` | 自動実行される shell hook（`validate-bash.sh` 等） |
+| `hooks/` | 自動実行される shell hook（`check-secrets.sh` / `check-disk-space.sh` / `biome-format.sh`） |
+| `settings.json` | Claude Code lifecycle hook 登録（PreToolUse / PostToolUse） |
 | `output-styles/` | 出力スタイル設定 |
 | `statusline.sh` | ステータスライン表示スクリプト |
 | `worktrees/` | ビルトイン worktree 作成先（一時的） |
@@ -319,8 +356,6 @@ CI ジョブ定義の詳細は `docs/functional-design.md` §6 を参照。
 | `pnpm-workspace.yaml` | `packages/*`, `examples/*` を workspace として宣言 |
 | `package.json` | ルート package（`devDependencies`、共通スクリプト） |
 | `biome.json` | 手書き JS / JSON の format + lint 設定（ReScript 生成物 `*.res.mjs` / `lib/` は除外） |
-| `.mcp.json.template` | MCP サーバー設定テンプレート（実体 `.mcp.json` は `.gitignore`） |
-| `.env.example` | 環境変数テンプレート |
 | `.gitignore` | `node_modules/`, `.mcp.json`, `CLAUDE.local.md`, `.steering/archive/.*` 等 |
 
 ---
