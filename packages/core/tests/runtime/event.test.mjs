@@ -144,4 +144,63 @@ describe("Event", () => {
     expect(Event.TauriEvent.dragDrop).toBe("tauri://drag-drop")
     expect(Event.TauriEvent.windowCloseRequested).toBe("tauri://close-requested")
   })
+
+  it("Event.TauriEvent exposes all 16 predefined event names", async () => {
+    const Event = await import("../../src/Event.res.mjs")
+    // Cover every TauriEvent constant so each line in the enum block
+    // shows up as covered.
+    expect(Event.TauriEvent.windowResized).toBe("tauri://resize")
+    expect(Event.TauriEvent.windowMoved).toBe("tauri://move")
+    expect(Event.TauriEvent.windowCloseRequested).toBe("tauri://close-requested")
+    expect(Event.TauriEvent.windowDestroyed).toBe("tauri://destroyed")
+    expect(Event.TauriEvent.windowFocus).toBe("tauri://focus")
+    expect(Event.TauriEvent.windowBlur).toBe("tauri://blur")
+    expect(Event.TauriEvent.windowScaleFactorChanged).toBe("tauri://scale-change")
+    expect(Event.TauriEvent.windowThemeChanged).toBe("tauri://theme-changed")
+    expect(Event.TauriEvent.windowCreated).toBe("tauri://window-created")
+    expect(Event.TauriEvent.windowSuspended).toBe("tauri://suspended")
+    expect(Event.TauriEvent.windowResumed).toBe("tauri://resumed")
+    expect(Event.TauriEvent.webviewCreated).toBe("tauri://webview-created")
+    expect(Event.TauriEvent.dragEnter).toBe("tauri://drag-enter")
+    expect(Event.TauriEvent.dragOver).toBe("tauri://drag-over")
+    expect(Event.TauriEvent.dragDrop).toBe("tauri://drag-drop")
+    expect(Event.TauriEvent.dragLeave).toBe("tauri://drag-leave")
+  })
+
+  it("once with ~target invokes plugin:event|listen with the target option", async () => {
+    // Upstream's `once` is built on top of `listen` (it wraps the
+    // handler in an auto-unsubscribe and forwards options), so the
+    // IPC dispatch goes to plugin:event|listen, not plugin:event|once.
+    const Event = await import("../../src/Event.res.mjs")
+    const ch = Event.make("once-scoped", (raw) =>
+      typeof raw === "string" ? Ok(raw) : Err("expected string"),
+    )
+    await Event.once(ch, () => {}, { TAG: "Webview", _0: "secondary" })
+
+    const calls = globalThis.window.__TAURI_INTERNALS__.invoke.mock.calls
+    const listenCall = calls.find(
+      ([name, args]) => name === "plugin:event|listen" && args.event === "once-scoped",
+    )
+    expect(listenCall).toBeDefined()
+    expect(listenCall[1].target).toEqual({ kind: "Webview", label: "secondary" })
+  })
+
+  it("emitTo accepts every eventTarget variant", async () => {
+    // _targetToJs covers Any / AnyLabel / App / Window / Webview /
+    // WebviewWindow. The first two test cases above already cover
+    // Any (via no ~target = none) and Window. This run hits the
+    // remaining variants explicitly.
+    const Event = await import("../../src/Event.res.mjs")
+    const ch = Event.make("ping", (_) => Ok())
+
+    await Event.emitTo(ch, "Any", { hello: "world" })
+    await Event.emitTo(ch, { TAG: "AnyLabel", _0: "label" }, { hello: "world" })
+    await Event.emitTo(ch, "App", { hello: "world" })
+    await Event.emitTo(ch, { TAG: "Window", _0: "main" }, { hello: "world" })
+    await Event.emitTo(ch, { TAG: "Webview", _0: "wv" }, { hello: "world" })
+    await Event.emitTo(ch, { TAG: "WebviewWindow", _0: "ww" }, { hello: "world" })
+
+    const calls = globalThis.window.__TAURI_INTERNALS__.invoke.mock.calls
+    expect(calls.length).toBeGreaterThanOrEqual(6)
+  })
 })

@@ -1,0 +1,25 @@
+name: tests-plugin-clipboard-manager-types
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/plugin-clipboard-manager/**"
+      - "packages/core/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/tests-plugin-clipboard-manager-types.yml"
+      - ".github/workflows/_test-package-types.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "packages/plugin-clipboard-manager/**"
+      - "packages/core/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/_test-package-types.yml"
+
+jobs:
+  call:
+    uses: ./.github/workflows/_test-package-types.yml
+    with:
+      package-name: "@rescript-tauri/plugin-clipboard-manager"
+      package-path: "packages/plugin-clipboard-manager"

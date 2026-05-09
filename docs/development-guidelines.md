@@ -72,12 +72,10 @@
 ```bash
 git clone git@github.com:Nagatatz/rescript-tauri.git
 cd rescript-tauri
-cp .env.example .env           # 必要に応じて編集
-cp .mcp.json.template .mcp.json  # MCP を使う場合のみ。.gitignore 対象
 pnpm install
 ```
 
-`.env` および `.mcp.json` は `.gitignore` 対象。秘密情報を含めて git に上げないこと。
+`.env` および `.mcp.json` は `.gitignore` 対象（必要なら手元で作成して使う）。秘密情報を含めて git に上げないこと。
 
 ---
 

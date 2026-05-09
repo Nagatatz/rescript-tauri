@@ -9,7 +9,7 @@ let _check_set_title: (WebviewWindow.t, string) => promise<unit> = WebviewWindow
 let _check_close: WebviewWindow.t => promise<unit> = WebviewWindow.close
 let _check_set_background_color: (
   WebviewWindow.t,
-  Nullable.t<Window.color>,
+  Nullable.t<Common.color>,
 ) => promise<unit> = WebviewWindow.setBackgroundColor
 
 // %identity casts are externals (not lets) so they don't count toward

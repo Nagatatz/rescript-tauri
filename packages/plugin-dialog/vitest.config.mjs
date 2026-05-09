@@ -11,6 +11,16 @@ export default defineConfig({
       reporter: ["text-summary", "json-summary", "lcov", "html"],
       reportsDirectory: "./coverage",
       reportOnFailure: false,
+      // PluginDialog statements / functions / lines hit 100% — must
+      // stay there. Branches at 60% reflect the optional argument
+      // shape; raise as additional default-branch combinations get
+      // exercised.
+      thresholds: {
+        statements: 100,
+        branches: 55,
+        functions: 100,
+        lines: 100,
+      },
     },
   },
 })

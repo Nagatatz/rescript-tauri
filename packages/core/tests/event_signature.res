@@ -7,13 +7,13 @@ let _check_listen: (
   Event.t<'payload>,
   result<Event.event<'payload>, string> => unit,
   ~target: Event.eventTarget=?,
-) => promise<Event.unlisten> = Event.listen
+) => promise<Common.unlisten> = Event.listen
 
 let _check_once: (
   Event.t<'payload>,
   result<Event.event<'payload>, string> => unit,
   ~target: Event.eventTarget=?,
-) => promise<Event.unlisten> = Event.once
+) => promise<Common.unlisten> = Event.once
 
 let _check_emit: (Event.t<'payload>, 'payload) => promise<unit> = Event.emit
 

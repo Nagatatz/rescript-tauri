@@ -1,0 +1,25 @@
+name: tests-plugin-notification-types
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/plugin-notification/**"
+      - "packages/core/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/tests-plugin-notification-types.yml"
+      - ".github/workflows/_test-package-types.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "packages/plugin-notification/**"
+      - "packages/core/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/_test-package-types.yml"
+
+jobs:
+  call:
+    uses: ./.github/workflows/_test-package-types.yml
+    with:
+      package-name: "@rescript-tauri/plugin-notification"
+      package-path: "packages/plugin-notification"

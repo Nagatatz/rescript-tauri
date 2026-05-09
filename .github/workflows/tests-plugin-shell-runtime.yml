@@ -1,0 +1,24 @@
+name: tests-plugin-shell-runtime
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/plugin-shell/**"
+      - "packages/core/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/tests-plugin-shell-runtime.yml"
+      - ".github/workflows/_test-package-runtime.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "packages/plugin-shell/**"
+      - "packages/core/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/_test-package-runtime.yml"
+
+jobs:
+  call:
+    uses: ./.github/workflows/_test-package-runtime.yml
+    with:
+      package-name: "@rescript-tauri/plugin-shell"
