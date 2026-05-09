@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - "v*"
+      - "schema-v*"
+      - "plugin-fs-v*"
+      - "plugin-dialog-v*"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -30,10 +33,50 @@ jobs:
           cache: pnpm
           registry-url: "https://registry.npmjs.org"
       - run: pnpm install --frozen-lockfile
-      - name: Build @rescript-tauri/core
-        run: pnpm --filter @rescript-tauri/core build
-      - name: Test @rescript-tauri/core
-        run: pnpm --filter @rescript-tauri/core test
+      - name: Determine target package
+        id: target
+        shell: bash
+        env:
+          GITHUB_REF: ${{ github.ref }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          # workflow_dispatch (no tag context) defaults to core so existing
+          # manual dry-runs keep working unchanged.
+          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
+            echo "package=@rescript-tauri/core" >> "$GITHUB_OUTPUT"
+            echo "directory=packages/core"      >> "$GITHUB_OUTPUT"
+            echo "::notice::workflow_dispatch — defaulting to @rescript-tauri/core"
+            exit 0
+          fi
+          tag="${GITHUB_REF#refs/tags/}"
+          case "$tag" in
+            schema-v*)
+              echo "package=@rescript-tauri/schema" >> "$GITHUB_OUTPUT"
+              echo "directory=packages/schema"     >> "$GITHUB_OUTPUT"
+              ;;
+            plugin-fs-v*)
+              echo "package=@rescript-tauri/plugin-fs" >> "$GITHUB_OUTPUT"
+              echo "directory=packages/plugin-fs"     >> "$GITHUB_OUTPUT"
+              ;;
+            plugin-dialog-v*)
+              echo "package=@rescript-tauri/plugin-dialog" >> "$GITHUB_OUTPUT"
+              echo "directory=packages/plugin-dialog"     >> "$GITHUB_OUTPUT"
+              ;;
+            v*)
+              echo "package=@rescript-tauri/core" >> "$GITHUB_OUTPUT"
+              echo "directory=packages/core"      >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "::error::Unrecognized release tag pattern: $tag"
+              exit 1
+              ;;
+          esac
+          echo "::notice::Releasing tag $tag"
+      - name: Build target package
+        run: pnpm --filter ${{ steps.target.outputs.package }} build
+      - name: Test target package
+        run: pnpm --filter ${{ steps.target.outputs.package }} test
       - name: Determine publish mode
         id: mode
         shell: bash
@@ -51,14 +94,14 @@ jobs:
           else
             echo "publish=true" >> "$GITHUB_OUTPUT"
           fi
-      - name: Publish @rescript-tauri/core
+      - name: Publish target package
         if: steps.mode.outputs.publish == 'true'
-        working-directory: packages/core
+        working-directory: ${{ steps.target.outputs.directory }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish --provenance --access public
       - name: Create GitHub Release
-        if: startsWith(github.ref, 'refs/tags/v')
+        if: startsWith(github.ref, 'refs/tags/')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
