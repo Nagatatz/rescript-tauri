@@ -105,6 +105,7 @@ upstream URLs.
 
 ## See also
 
+- [Changelog](./CHANGELOG.md)
 - [User guide page](https://github.com/Nagatatz/rescript-tauri/blob/main/sphinx-docs/user/plugin-dialog.md)
 - Runnable demo:
   [`examples/plugin-dialog-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-dialog-demo)

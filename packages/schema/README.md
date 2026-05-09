@@ -75,6 +75,7 @@ rescript-schema upstream documentation.
 
 ## See also
 
+- [Changelog](./CHANGELOG.md)
 - [User guide page](https://github.com/Nagatatz/rescript-tauri/blob/main/sphinx-docs/user/schema.md)
 - Runnable demo:
   [`examples/ipc-typed-with-schema`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/ipc-typed-with-schema)
