@@ -69,4 +69,18 @@ describe("Mocks", () => {
     expect(() => Mocks.mockWindows("main", ["settings", "about"])).not.toThrow()
     expect(() => Mocks.clearMocks()).not.toThrow()
   })
+
+  it("mockConvertFileSrc rewrites Core.Raw.convertFileSrc per OS", async () => {
+    Mocks.mockConvertFileSrc("windows")
+    const url = Core.Raw.convertFileSrc("C:\\Users\\me\\photo.png")
+    // Tauri's Windows-style convertFileSrc returns an https://asset.localhost
+    // URL; the mock follows the same scheme.
+    expect(url).toContain("asset.localhost")
+  })
+
+  it("mockIPC accepts ~options without throwing", () => {
+    expect(() =>
+      Mocks.mockIPC(async () => null, { shouldMockEvents: true }),
+    ).not.toThrow()
+  })
 })

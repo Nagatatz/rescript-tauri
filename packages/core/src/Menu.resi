@@ -27,6 +27,73 @@ type aboutMetadata = {
   icon?: string,
 }
 
+/** macOS-only `NSImage` system icon names usable as the `icon` field
+    of `IconMenuItem.options` / `Submenu.options`. The polymorphic
+    variant lets users still pass arbitrary string / `Image.t` values
+    via the existing `'icon` parameter — this enum is purely a
+    convenience for the named macOS icons.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacemenu/#nativeicon
+*/
+type nativeIcon = [
+  | #Add
+  | #Advanced
+  | #Bluetooth
+  | #Bookmarks
+  | #Caution
+  | #ColorPanel
+  | #ColumnView
+  | #Computer
+  | #EnterFullScreen
+  | #Everyone
+  | #ExitFullScreen
+  | #FlowView
+  | #Folder
+  | #FolderBurnable
+  | #FolderSmart
+  | #FollowLinkFreestanding
+  | #FontPanel
+  | #GoLeft
+  | #GoRight
+  | #Home
+  | #IChatTheater
+  | #IconView
+  | #Info
+  | #InvalidDataFreestanding
+  | #LeftFacingTriangle
+  | #ListView
+  | #LockLocked
+  | #LockUnlocked
+  | #MenuMixedState
+  | #MenuOnState
+  | #MobileMe
+  | #MultipleDocuments
+  | #Network
+  | #Path
+  | #PreferencesGeneral
+  | #QuickLook
+  | #RefreshFreestanding
+  | #Refresh
+  | #Remove
+  | #RevealFreestanding
+  | #RightFacingTriangle
+  | #Share
+  | #Slideshow
+  | #SmartBadge
+  | #StatusAvailable
+  | #StatusNone
+  | #StatusPartiallyAvailable
+  | #StatusUnavailable
+  | #StopProgressFreestanding
+  | #StopProgress
+  | #TrashEmpty
+  | #TrashFull
+  | #User
+  | #UserAccounts
+  | #UserGroup
+  | #UserGuest
+]
+
 /** Identifies the OS-provided behavior backing a `PredefinedMenuItem`.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacemenu/#predefinedmenuitemoptions

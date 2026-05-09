@@ -1,5 +1,11 @@
 type theme = Window.theme
 
+type dataStoreIdentifier = array<int>
+
+type bundleType = [#nsis | #msi | #deb | #rpm | #appimage | #app]
+
+type onBackButtonPressPayload = {canGoBack: bool}
+
 @module("@tauri-apps/api/app")
 external getName: unit => promise<string> = "getName"
 
@@ -26,3 +32,21 @@ external setTheme: Nullable.t<theme> => promise<unit> = "setTheme"
 
 @module("@tauri-apps/api/app")
 external setDockVisibility: bool => promise<unit> = "setDockVisibility"
+
+@module("@tauri-apps/api/app")
+external fetchDataStoreIdentifiers: unit => promise<array<dataStoreIdentifier>> =
+  "fetchDataStoreIdentifiers"
+
+@module("@tauri-apps/api/app")
+external removeDataStore: dataStoreIdentifier => promise<unit> = "removeDataStore"
+
+@module("@tauri-apps/api/app")
+external getBundleType: unit => promise<bundleType> = "getBundleType"
+
+@module("@tauri-apps/api/app")
+external onBackButtonPress: (
+  onBackButtonPressPayload => unit,
+) => promise<Core.PluginListener.t> = "onBackButtonPress"
+
+@module("@tauri-apps/api/app")
+external supportsMultipleWindows: unit => promise<bool> = "supportsMultipleWindows"

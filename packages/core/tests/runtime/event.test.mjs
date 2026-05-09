@@ -124,4 +124,24 @@ describe("Event", () => {
     const calls = globalThis.window.__TAURI_INTERNALS__.invoke.mock.calls
     expect(calls.length).toBeGreaterThanOrEqual(2)
   })
+
+  it("listen with ~target invokes plugin:event|listen with the target option", async () => {
+    const Event = await import("../../src/Event.res.mjs")
+    const ch = Event.make("scoped", (raw) =>
+      typeof raw === "string" ? Ok(raw) : Err("expected string"),
+    )
+    await Event.listen(ch, () => {}, { TAG: "Window", _0: "main" })
+
+    const calls = globalThis.window.__TAURI_INTERNALS__.invoke.mock.calls
+    const listenCall = calls.find(([name]) => name === "plugin:event|listen")
+    expect(listenCall).toBeDefined()
+    expect(listenCall[1].target).toEqual({ kind: "Window", label: "main" })
+  })
+
+  it("Event.TauriEvent values match upstream string literals", async () => {
+    const Event = await import("../../src/Event.res.mjs")
+    expect(Event.TauriEvent.windowResized).toBe("tauri://resize")
+    expect(Event.TauriEvent.dragDrop).toBe("tauri://drag-drop")
+    expect(Event.TauriEvent.windowCloseRequested).toBe("tauri://close-requested")
+  })
 })

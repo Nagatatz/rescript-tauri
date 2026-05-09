@@ -9,6 +9,49 @@ module Raw = {
   external convertFileSrc: (string, ~protocol: string=?) => string = "convertFileSrc"
 }
 
+@module("@tauri-apps/api/core")
+external isTauri: unit => bool = "isTauri"
+
+module Resource = {
+  type t
+
+  @get external rid: t => int = "rid"
+  @send external close: t => promise<unit> = "close"
+}
+
+module PluginListener = {
+  type t
+
+  @get external plugin: t => string = "plugin"
+  @get external event: t => string = "event"
+  @get external channelId: t => int = "channelId"
+  @send external unregister: t => promise<unit> = "unregister"
+}
+
+@module("@tauri-apps/api/core")
+external addPluginListener: (
+  string,
+  string,
+  'payload => unit,
+) => promise<PluginListener.t> = "addPluginListener"
+
+type permissionState = [#granted | #denied | #prompt | #"prompt-with-rationale"]
+
+@module("@tauri-apps/api/core")
+external checkPermissions: string => promise<'state> = "checkPermissions"
+
+@module("@tauri-apps/api/core")
+external requestPermissions: string => promise<'state> = "requestPermissions"
+
+module LowLevel = {
+  @module("@tauri-apps/api/core")
+  external serializeToIpcFn: string = "SERIALIZE_TO_IPC_FN"
+
+  @module("@tauri-apps/api/core")
+  external transformCallback: (~callback: 'response => unit=?, ~once: bool=?) => int =
+    "transformCallback"
+}
+
 /** Maps a raw IPC JSON payload to a typed value. Used by `Command`,
     `Channel`, and `Event` for decoder definitions, and re-used by the
     Phase 2 `Schema` package as the target type for schema-derived

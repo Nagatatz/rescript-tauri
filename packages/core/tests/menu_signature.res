@@ -72,3 +72,7 @@ let _check_menu_set_as_window: (Menu.Menu.t, ~window: Window.t=?) => promise<Nul
 // Variant value smoke checks
 let _check_predef_separator: Menu.predefinedItem = Separator
 let _check_predef_about: Menu.predefinedItem = About({})
+
+let _check_native_icon_add: Menu.nativeIcon = #Add
+let _check_native_icon_user_guest: Menu.nativeIcon = #UserGuest
+let _check_native_icon_status_partial: Menu.nativeIcon = #StatusPartiallyAvailable

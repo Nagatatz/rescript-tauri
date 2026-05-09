@@ -1,3 +1,120 @@
+/** Returns `true` when the JS context is hosted by a Tauri webview.
+
+    Useful in code that may run both inside Tauri and in plain web/SSR
+    contexts so callers can branch on capability availability without
+    triggering an IPC error.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacecore/#istauri
+*/
+let isTauri: unit => bool
+
+/** A Rust-allocated resource referenced by an integer id (`rid`).
+
+    Several Tauri APIs return resource handles whose lifetime is tied
+    to the Rust side (`Image`, `Channel`, plugin handles); they share
+    the `Resource` shape upstream. Use `close` to release the resource
+    eagerly — after that point any further use is undefined.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacecore/#resource
+*/
+module Resource: {
+  /** Opaque resource handle. Cast targets are intentionally not
+      exposed; pass values returned by APIs that hand them out. */
+  type t
+
+  /** Returns the resource id assigned by the Rust side. */
+  let rid: t => int
+
+  /** Releases the resource. Idempotent on the JS side; subsequent
+      calls on a closed resource may reject. */
+  let close: t => promise<unit>
+}
+
+/** Handle returned by `addPluginListener` and `App.onBackButtonPress`.
+
+    Holds the plugin name, event name, and the channel id used by Tauri
+    to dispatch the event to the JS callback. Call `unregister` to stop
+    receiving events.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacecore/#pluginlistener
+*/
+module PluginListener: {
+  type t
+
+  /** Plugin name the listener is attached to. */
+  let plugin: t => string
+
+  /** Event name within the plugin. */
+  let event: t => string
+
+  /** Channel id used by Tauri's IPC layer. */
+  let channelId: t => int
+
+  /** Stops listening. Idempotent. */
+  let unregister: t => promise<unit>
+}
+
+/** Adds a listener to a plugin event.
+
+    `plugin` is the upstream plugin name (e.g. `"fs"`); `event` is the
+    plugin-specific event name. The callback receives each emitted
+    payload — the JSON value is delivered as-is, so callers should
+    decode it before use.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacecore/#addpluginlistener
+*/
+let addPluginListener: (
+  string,
+  string,
+  'payload => unit,
+) => promise<PluginListener.t>
+
+/** Permission states returned by Tauri's plugin permission system.
+    Plugin authors may extend this set; the polymorphic variant covers
+    the four documented values.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacecore/#permissionstate
+*/
+type permissionState = [#granted | #denied | #prompt | #"prompt-with-rationale"]
+
+/** Checks the current permission state for `pluginName`.
+
+    The return type is `'state` polymorphic because plugins extend the
+    permission shape (e.g. per-feature toggles); annotate at the call
+    site to narrow.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacecore/#checkpermissions
+*/
+let checkPermissions: string => promise<'state>
+
+/** Requests permission from the user for `pluginName`. May surface a
+    system prompt depending on the plugin and OS.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacecore/#requestpermissions
+*/
+let requestPermissions: string => promise<'state>
+
+/** Low-level IPC helpers. Stable, but rarely needed by application
+    code — they exist for plugin authors and for advanced custom
+    serialization. Prefer `Command` / `Channel` for typed IPC. */
+module LowLevel: {
+  /** The string used as a method key on JS objects to declare custom
+      IPC serialization (`object[SERIALIZE_TO_IPC_FN]() {...}`). Tauri
+      runs this method when packing the value into an IPC payload.
+
+      See: https://v2.tauri.app/reference/javascript/api/namespacecore/#serialize_to_ipc_fn
+  */
+  let serializeToIpcFn: string
+
+  /** Stores a callback in a JS-side map and returns a numeric id that
+      the Rust backend can later use to invoke it via `eval`. Pass
+      `~once=true` to auto-unregister after the first call.
+
+      See: https://v2.tauri.app/reference/javascript/api/namespacecore/#transformcallback
+  */
+  let transformCallback: (~callback: 'response => unit=?, ~once: bool=?) => int
+}
+
 module Raw: {
   /** Optional headers passed alongside the IPC call. */
   type invokeOptions = {headers?: Dict.t<string>}

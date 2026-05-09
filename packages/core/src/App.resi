@@ -1,9 +1,8 @@
 /** Application metadata and lifecycle from `@tauri-apps/api/app`.
 
-    Bindings cover the stable, cross-platform subset. Mobile / Webview
-    only or experimental APIs (`fetchDataStoreIdentifiers`,
-    `removeDataStore`, `getBundleType`, `onBackButtonPress`) are
-    deferred to Phase 2 once their stability is confirmed.
+    Bindings cover the full stable surface of `@tauri-apps/api/app`,
+    including macOS / iOS data-store helpers, the Android back-button
+    listener, and capability checks.
 
     See: https://v2.tauri.app/reference/javascript/api/namespaceapp/
 */
@@ -14,6 +13,42 @@
     See: https://v2.tauri.app/reference/javascript/api/namespaceapp/#theme
 */
 type theme = Window.theme
+
+/** A 128-bit identifier (16 bytes) used to address a data store on
+    macOS / iOS. Represented as `array<int>` matching upstream's
+    fixed-length-tuple encoding.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespaceapp/#datastoreidentifier
+*/
+type dataStoreIdentifier = array<int>
+
+/** Bundle format the running application was packaged in.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespaceapp/#bundletype
+*/
+type bundleType = [
+  | /** Windows NSIS installer. */
+  #nsis
+  | /** Windows MSI installer. */
+  #msi
+  | /** Linux Debian package. */
+  #deb
+  | /** Linux RPM package. */
+  #rpm
+  | /** Linux AppImage. */
+  #appimage
+  | /** macOS `.app` bundle. */
+  #app
+]
+
+/** Payload delivered to the `onBackButtonPress` callback (Android).
+
+    `canGoBack` mirrors the webview's `canGoBack` property — the
+    handler can choose to navigate back rather than exit the app.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespaceapp/#onbackbuttonpresspayload
+*/
+type onBackButtonPressPayload = {canGoBack: bool}
 
 /** Returns the application name from `tauri.conf.json`.
 
@@ -75,3 +110,42 @@ let setTheme: Nullable.t<theme> => promise<unit>
     See: https://v2.tauri.app/reference/javascript/api/namespaceapp/#setdockvisibility
 */
 let setDockVisibility: bool => promise<unit>
+
+/** Returns the `WKWebsiteDataStore` identifiers known to the OS
+    (macOS / iOS only).
+
+    See: https://v2.tauri.app/reference/javascript/api/namespaceapp/#fetchdatastoreidentifiers
+*/
+let fetchDataStoreIdentifiers: unit => promise<array<dataStoreIdentifier>>
+
+/** Removes a `WKWebsiteDataStore` by its identifier (macOS / iOS).
+
+    Any webview using the targeted data store should be closed before
+    invoking this; the upstream API rejects otherwise.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespaceapp/#removedatastore
+*/
+let removeDataStore: dataStoreIdentifier => promise<unit>
+
+/** Returns the bundle type the running application was installed as.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespaceapp/#getbundletype
+*/
+let getBundleType: unit => promise<bundleType>
+
+/** Subscribes to the Android back-button press event. The callback
+    receives `{canGoBack}` so the handler can decide between webview
+    navigation and app exit. Returns a `Core.PluginListener.t` —
+    call its `unregister` to stop listening.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespaceapp/#onbackbuttonpress
+*/
+let onBackButtonPress: (
+  onBackButtonPressPayload => unit,
+) => promise<Core.PluginListener.t>
+
+/** Returns whether the platform supports multiple top-level windows.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespaceapp/#supportsmultiplewindows
+*/
+let supportsMultipleWindows: unit => promise<bool>

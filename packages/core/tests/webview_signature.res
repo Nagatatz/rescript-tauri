@@ -21,3 +21,6 @@ let _check_on_drag_drop_event: (
 ) => promise<Webview.unlisten> = Webview.onDragDropEvent
 
 let _check_unlisten_value: Webview.unlisten = () => ()
+
+let _check_get_by_label: string => promise<Nullable.t<Webview.t>> = Webview.getByLabel
+let _check_clear_all_browsing_data: Webview.t => promise<unit> = Webview.clearAllBrowsingData

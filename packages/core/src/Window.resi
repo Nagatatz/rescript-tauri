@@ -763,3 +763,60 @@ let onScaleChanged: (t, scaleFactorChanged => unit) => promise<unlisten>
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#onthemechanged
 */
 let onThemeChanged: (t, theme => unit) => promise<unlisten>
+
+/** Returns the macOS `NSActivity` name associated with this window.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#activityname
+*/
+let activityName: t => promise<string>
+
+/** Returns the macOS / iOS `UIScene` identifier this window is bound
+    to.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#sceneidentifier
+*/
+let sceneIdentifier: t => promise<string>
+
+/** Toggles whether the window can receive keyboard focus.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#setfocusable
+*/
+let setFocusable: (t, bool) => promise<unit>
+
+/** macOS-style "simple fullscreen" toggle (uses the legacy fullscreen
+    mode rather than `NSWindowFullscreen`).
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#setsimplefullscreen
+*/
+let setSimpleFullscreen: (t, bool) => promise<unit>
+
+/** Toggles between maximized and restored.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#togglemaximize
+*/
+let toggleMaximize: t => promise<unit>
+
+/** Restores a previously minimized window.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#unminimize
+*/
+let unminimize: t => promise<unit>
+
+/** Drag-drop event payload. Same shape as `Webview.dragDropEvent` —
+    declared locally to keep Window independent of Webview.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#dragdropevent
+*/
+type dragDropEvent =
+  | Enter({paths: array<string>, position: Dpi.PhysicalPosition.t})
+  | Over({position: Dpi.PhysicalPosition.t})
+  | Drop({paths: array<string>, position: Dpi.PhysicalPosition.t})
+  | Leave
+
+/** Subscribes to drag-and-drop events on the window. Mirrors
+    `Webview.onDragDropEvent` — they fire for the same gestures
+    depending on which surface the OS routes the event to.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#ondragdropevent
+*/
+let onDragDropEvent: (t, dragDropEvent => unit) => promise<unlisten>

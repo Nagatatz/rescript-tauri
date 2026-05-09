@@ -24,6 +24,9 @@ external getCurrentWebview: unit => t = "getCurrentWebview"
 @module("@tauri-apps/api/webview")
 external getAllWebviews: unit => promise<array<t>> = "getAllWebviews"
 
+@scope("Webview") @module("@tauri-apps/api/webview")
+external getByLabel: string => promise<Nullable.t<t>> = "getByLabel"
+
 @get external label: t => string = "label"
 @send external setSize: (t, Dpi.Size.t) => promise<unit> = "setSize"
 @send external setPosition: (t, Dpi.Position.t) => promise<unit> = "setPosition"
@@ -38,6 +41,7 @@ external getAllWebviews: unit => promise<array<t>> = "getAllWebviews"
 @send
 external setBackgroundColor: (t, Nullable.t<Window.color>) => promise<unit> = "setBackgroundColor"
 @send external close: t => promise<unit> = "close"
+@send external clearAllBrowsingData: t => promise<unit> = "clearAllBrowsingData"
 
 // onDragDropEvent: upstream delivers an event whose payload has shape
 // { type: 'enter' | 'over' | 'drop' | 'leave', ... }. The JS-side

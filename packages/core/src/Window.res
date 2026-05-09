@@ -270,3 +270,35 @@ external onCloseRequested: (t, closeRequestedEvent => unit) => promise<unlisten>
 @send
 external onScaleChanged: (t, scaleFactorChanged => unit) => promise<unlisten> = "onScaleChanged"
 @send external onThemeChanged: (t, theme => unit) => promise<unlisten> = "onThemeChanged"
+
+@send external activityName: t => promise<string> = "activityName"
+@send external sceneIdentifier: t => promise<string> = "sceneIdentifier"
+@send external setFocusable: (t, bool) => promise<unit> = "setFocusable"
+@send external setSimpleFullscreen: (t, bool) => promise<unit> = "setSimpleFullscreen"
+@send external toggleMaximize: t => promise<unit> = "toggleMaximize"
+@send external unminimize: t => promise<unit> = "unminimize"
+
+// Same payload shape as Webview.dragDropEvent. Defined locally to avoid
+// circular module dependency (Webview already imports Window.color).
+type dragDropEvent =
+  | Enter({paths: array<string>, position: Dpi.PhysicalPosition.t})
+  | Over({position: Dpi.PhysicalPosition.t})
+  | Drop({paths: array<string>, position: Dpi.PhysicalPosition.t})
+  | Leave
+
+@send
+external _onDragDropEvent: (t, {..} => unit) => promise<unlisten> = "onDragDropEvent"
+
+let onDragDropEvent = (window, handler) =>
+  _onDragDropEvent(window, raw => {
+    let payload = (Obj.magic(raw): {..})["payload"]
+    let kind: string = payload["type"]
+    let position: Dpi.PhysicalPosition.t = Obj.magic(payload["position"])
+    switch kind {
+    | "enter" => handler(Enter({paths: payload["paths"], position}))
+    | "over" => handler(Over({position: position}))
+    | "drop" => handler(Drop({paths: payload["paths"], position}))
+    | "leave" => handler(Leave)
+    | other => Console.warn2("[rescript-tauri] Unknown drag-drop event type:", other)
+    }
+  })

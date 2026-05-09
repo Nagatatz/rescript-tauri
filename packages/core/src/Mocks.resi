@@ -1,3 +1,13 @@
+/** Options forwarded to `mockIPC`'s second argument.
+
+    `shouldMockEvents` (default `false`) makes Tauri's `listen` /
+    `emit` round-trip through the in-process mock store as well —
+    enabling event-handling tests without a real backend.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacemocks/#mockipcoptions
+*/
+type mockIPCOptions = {shouldMockEvents?: bool}
+
 /** Installs an IPC mock handler. The handler receives the command
     name and the raw JSON payload, and must return a `promise<JSON.t>`
     representing what the Rust side would have replied with.
@@ -25,7 +35,10 @@
     )
     ```
 */
-let mockIPC: ((string, JSON.t) => promise<JSON.t>) => unit
+let mockIPC: (
+  (string, JSON.t) => promise<JSON.t>,
+  ~options: mockIPCOptions=?,
+) => unit
 
 /** Installs Window mocks. The current window's label is `current`;
     additional named windows can be supplied via `~additional`.
@@ -33,6 +46,14 @@ let mockIPC: ((string, JSON.t) => promise<JSON.t>) => unit
     See: https://v2.tauri.app/reference/javascript/api/namespacemocks/#mockwindows
 */
 let mockWindows: (~current: string, ~additional: array<string>=?) => unit
+
+/** Mocks `Core.Raw.convertFileSrc` for the given OS so tests run
+    consistently across platforms. `~osName` accepts `"linux"`,
+    `"macos"`, or `"windows"`.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacemocks/#mockconvertfilesrc
+*/
+let mockConvertFileSrc: (~osName: string) => unit
 
 /** Removes any previously installed mocks. Call in `afterEach` to
     keep tests isolated.
