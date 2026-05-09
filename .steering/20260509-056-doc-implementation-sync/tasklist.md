@@ -50,11 +50,12 @@
 
 ### Task D: M4 — README publish 待ちリストに plugin-shell + plugin-notification を追加
 
-- [ ] `README.md:19` の文を 5+ パッケージに更新（core / plugin-fs / plugin-dialog / plugin-shell / plugin-notification / schema）
-- [ ] Packages 表 (line 38-44) に plugin-notification が無ければ追加（054 で追加済みのはずなので確認）
-- [ ] npm 版バッジに plugin-shell / plugin-notification が追加されているか確認、無ければ追加
-- [ ] `pnpm --recursive build` 成功確認
-- [ ] commit: `📝 Add plugin-shell and plugin-notification to README publish status`
+- [x] `README.md:19` の文を 6 パッケージに更新（core / plugin-fs / plugin-dialog / plugin-shell / plugin-notification / schema）
+- [x] Packages 表に plugin-notification あり（054 で追加済み確認）
+- [x] npm 版バッジに plugin-shell / plugin-notification を追加
+- [x] schema 行の "rescript-struct" を deprecated 注記付きに修正（追加で発見した乖離）
+- [x] `pnpm --recursive build` 成功確認
+- [x] commit: `📝 Add plugin-shell and plugin-notification to README publish status`
 
 ### Task E: M5+M6+L1 — functional-design Core / Event / Dpi セクション拡張
 
