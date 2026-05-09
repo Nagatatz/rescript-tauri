@@ -34,10 +34,10 @@
     "@rescript/runtime": "^12.2.0",
     "@tauri-apps/api": "^2.11.0",
     "@types/node": "^25.0.0",
-    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/coverage-v8": "^4.0.0",
     "happy-dom": "^20.9.0",
     "rescript": "^12.2.0",
-    "vitest": "^3.0.0"
+    "vitest": "^4.0.0"
   },
   "publishConfig": {
     "access": "public"
