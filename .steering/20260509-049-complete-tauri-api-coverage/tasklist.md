@@ -25,14 +25,14 @@
 
 ## Phase 2: App 拡張
 
-- [ ] `App.res` / `.resi` の deferred コメント削除
-- [ ] `App.res` / `.resi` に `dataStoreIdentifier` / `bundleType` / `onBackButtonPressPayload` 型追加
-- [ ] `App.res` / `.resi` に `fetchDataStoreIdentifiers` / `removeDataStore` 追加
-- [ ] `App.res` / `.resi` に `getBundleType` 追加
-- [ ] `App.res` / `.resi` に `onBackButtonPress` / `supportsMultipleWindows` 追加
-- [ ] `tests/app_signature.res` に新規 API 呼び出しを追加
-- [ ] `tests/runtime/app.test.mjs` にランタイムテスト追加
-- [ ] コミット: `✨ Add deferred App APIs (BundleType, DataStore, BackButton)`
+- [x] `App.res` / `.resi` の deferred コメント削除
+- [x] `App.res` / `.resi` に `dataStoreIdentifier` / `bundleType` / `onBackButtonPressPayload` 型追加
+- [x] `App.res` / `.resi` に `fetchDataStoreIdentifiers` / `removeDataStore` 追加
+- [x] `App.res` / `.resi` に `getBundleType` 追加
+- [x] `App.res` / `.resi` に `onBackButtonPress` / `supportsMultipleWindows` 追加
+- [x] `tests/app_signature.res` に新規 API 呼び出しを追加
+- [x] `tests/runtime/app.test.mjs` にランタイムテスト追加
+- [x] コミット: `✨ Add deferred App APIs (BundleType, DataStore, BackButton)`
 
 ## Phase 3: Window / Webview 拡張
 
