@@ -28,14 +28,14 @@
 
 ## D. `@rescript-tauri/schema` 実装
 
-- [ ] `packages/schema/` 雛形（package.json / rescript.json / src/Schema.res(.resi)）
-- [ ] `peerDependencies` 確定（`@rescript-tauri/core ^1.0.0`, `rescript-schema >=...`）
-- [ ] `Command.fromSchemas` 実装
-- [ ] `Channel.fromSchema` 実装
-- [ ] `Event.fromSchema` 実装
-- [ ] 型レベル signature テスト
-- [ ] runtime テスト（vitest + Mocks 経由）
-- [ ] `examples/ipc-typed-with-schema/` 追加
+- [x] `packages/schema/` 雛形（package.json / rescript.json / src/Schema.res(.resi)）(steering 031)
+- [x] `peerDependencies` 確定（`@rescript-tauri/core ^1.0.0`, `rescript-schema >=...`）(steering 031: `^0.1.0` + `^9.0.0`)
+- [x] `Command.fromSchemas` 実装 (steering 031: `Schema.fromSchemas`)
+- [x] `Channel.fromSchema` 実装 (steering 031: `Schema.channelFromSchema`)
+- [x] `Event.fromSchema` 実装 (steering 031: `Schema.eventFromSchema`)
+- [x] 型レベル signature テスト (steering 031)
+- [x] runtime テスト（vitest + Mocks 経由）(steering 031)
+- [x] `examples/ipc-typed-with-schema/` 追加 (steering 039)
 - [ ] CI: `tests-schema-types.yml` / `tests-schema-runtime.yml` 追加
 - [ ] CI: `compat-rescript-schema-prerelease.yml` 追加（任意）
 - [ ] `release.yml` を `schema-v*` タグに対応するよう拡張
