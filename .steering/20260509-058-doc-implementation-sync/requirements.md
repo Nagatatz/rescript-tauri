@@ -2,7 +2,7 @@
 
 | 項目 | 内容 |
 |---|---|
-| ステアリング番号 | 20260509-056 |
+| ステアリング番号 | 20260509-058 |
 | タイトル | doc-implementation-sync |
 | 作成日 | 2026-05-09 |
 | 関連 | 調査セッション (2026-05-09 の乖離レポート) |
@@ -53,7 +53,7 @@ Phase 1 + Phase 2 の実装が `main` にマージされた現時点で、`docs/
 - [ ] 修正後に `pnpm --recursive build` が成功（doc-only 修正だが念のため）
 - [ ] 修正後に `pnpm run check` が成功（Biome）
 - [ ] 修正後にリンクチェック (`doc-link-lint.yml` 相当) で死リンクが新規発生していない
-- [ ] `docs/repository-structure.md` に本ステアリング 056 を Section 6 に追記不要（archive 規約により完了後 30 日経過時に archive へ）
+- [ ] `docs/repository-structure.md` に本ステアリング 058 を Section 6 に追記不要（archive 規約により完了後 30 日経過時に archive へ）
 - [ ] `tasklist.md` の全タスクが `[x]`
 
 ## 5. 検証方法

@@ -2,7 +2,7 @@
 
 | 項目 | 内容 |
 |---|---|
-| ステアリング番号 | 20260509-057 |
+| ステアリング番号 | 20260509-058 |
 | 関連 | requirements.md / design.md |
 
 ## Phase 1: 計画
@@ -74,7 +74,7 @@
 
 ### Task G (途中で発生): main から plugin-log + plugin-os を取り込み、ステアリング再採番
 
-- [x] 並列セッションが同じ 056 番号で plugin-os を完了 → 自分を **056 → 057** に再採番（`git mv` + 内部 ref 更新）
+- [x] 並列セッションが同じ 056 番号で plugin-os を完了 → 自分を **056 → 057** に再採番。さらに別セッションが 057 を plugin-clipboard-manager / Common module で同時使用していたため **057 → 058** に再々採番（`git mv` + 内部 ref 更新）
 - [x] main に追加された 4 commit (steering 055 plugin-log + steering 056 plugin-os) を `git merge main --no-ff` で取り込み
 - [x] README.md の Packages テーブル衝突を解消（plugin-log + plugin-os 行を残しつつ schema 行の deprecated 注記を保持）
 - [x] README.md npm バッジに plugin-log + plugin-os を追加、publish 待ちパッケージ数を 6 → 8 に更新
@@ -91,7 +91,7 @@
 - [x] `grep -rn "Event.Predefined" docs/ README.md sphinx-docs/` 結果: 自己説明用の `glossary.md` 1 件のみ（"Event.Predefined という別モジュールは存在しない" の注記）
 - [x] `ls .github/workflows/*.yml | wc -l` (25) と repository-structure.md §8 の列挙数 (25) が一致
 - [x] `tasklist.md` を本ファイルの全タスク `[x]` 状態でコミット
-- [ ] commit: `✅ Mark steering 057 tasklist complete`
+- [ ] commit: `✅ Mark steering 058 tasklist complete`
 
 ## Phase 5: マージ
 
