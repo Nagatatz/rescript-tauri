@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-08 12:58+0900\n"
-"PO-Revision-Date: 2026-05-08 13:00+0900\n"
+"POT-Creation-Date: 2026-05-09 16:33+0900\n"
+"PO-Revision-Date: 2026-05-09 17:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
 "Language-Team: ja <LL@li.org>\n"
@@ -34,15 +34,13 @@ msgstr "はじめに"
 msgid ""
 "[Installation](installation.md) — Add `@rescript-tauri/core` to a Tauri "
 "project"
-msgstr ""
-"[インストール](installation.md) — Tauri プロジェクトに `@rescript-tauri/core` を追加します"
+msgstr "[インストール](installation.md) — Tauri プロジェクトに `@rescript-tauri/core` を追加します"
 
 #: ../../user/index.md:8
 msgid ""
 "[Quick Start](quickstart.md) — Try the 3-layer IPC API in a minimal "
 "example"
-msgstr ""
-"[クイックスタート](quickstart.md) — 最小例で 3 層 IPC API を試します"
+msgstr "[クイックスタート](quickstart.md) — 最小例で 3 層 IPC API を試します"
 
 #: ../../user/index.md:10
 msgid "Reference"
@@ -52,9 +50,225 @@ msgstr "リファレンス"
 msgid ""
 "[Configuration](configuration.md) — `rescript.json`, `peerDependencies`, "
 "compatibility matrix"
-msgstr ""
-"[設定](configuration.md) — `rescript.json` / `peerDependencies` / 互換マトリクス"
+msgstr "[設定](configuration.md) — `rescript.json` / `peerDependencies` / 互換マトリクス"
 
 #: ../../user/index.md:13
 msgid "[Changelog](changelog.md) — Release notes"
 msgstr "[変更履歴](changelog.md) — リリースノート"
+
+#: ../../user/index.md:15
+msgid "Modules at a glance"
+msgstr "モジュール一覧"
+
+#: ../../user/index.md:17
+msgid ""
+"`@rescript-tauri/core` ships with 12 Phase-1 modules plus a curated "
+"`Tauri` umbrella for the most common imports. Each module has its own "
+"`.resi` and a doc-comment line linking to the matching Tauri upstream "
+"page."
+msgstr ""
+"`@rescript-tauri/core` は 12 個の Phase 1 モジュールに加え、よく使うインポートをまとめた "
+"`Tauri` アンブレラモジュールを提供します。各モジュールは専用の `.resi` を持ち、"
+"対応する Tauri 上流ドキュメントへのリンクを doc-comment に記載しています。"
+
+#: ../../user/index.md
+msgid "Module"
+msgstr "モジュール"
+
+#: ../../user/index.md
+msgid "Purpose"
+msgstr "用途"
+
+#: ../../user/index.md
+msgid "`Tauri`"
+msgstr "`Tauri`"
+
+#: ../../user/index.md
+msgid ""
+"`open Tauri` re-export of the 5 most common modules (Core / Event / "
+"Window / Webview / WebviewWindow)"
+msgstr ""
+"`open Tauri` で再エクスポートされる 5 つの主要モジュール（Core / Event / Window / "
+"Webview / WebviewWindow）"
+
+#: ../../user/index.md
+msgid "`Core`"
+msgstr "`Core`"
+
+#: ../../user/index.md
+msgid ""
+"IPC bridge — `Raw.invoke`, typed `Command`, streaming `Channel`, "
+"`convertFileSrc`"
+msgstr ""
+"IPC ブリッジ — `Raw.invoke` / 型付き `Command` / ストリーミング `Channel` / "
+"`convertFileSrc`"
+
+#: ../../user/index.md
+msgid "`Event`"
+msgstr "`Event`"
+
+#: ../../user/index.md
+msgid "Pub/sub event bus (`make`, `listen`, `once`, `emit`, `emitTo`)"
+msgstr "pub/sub イベントバス（`make` / `listen` / `once` / `emit` / `emitTo`）"
+
+#: ../../user/index.md
+msgid "`Window`"
+msgstr "`Window`"
+
+#: ../../user/index.md
+msgid ""
+"Window class — opaque handle + ~80 instance / static methods, full type "
+"set (theme, cursorIcon, effects, monitor, ...)"
+msgstr ""
+"Window クラス — 不透明ハンドル + 約 80 個のインスタンス / 静的メソッド、theme / "
+"cursorIcon / effects / monitor などフル型セット"
+
+#: ../../user/index.md
+msgid "`Webview`"
+msgstr "`Webview`"
+
+#: ../../user/index.md
+msgid ""
+"Webview class — opaque handle + 14 instance methods + drag-and-drop event"
+" variant"
+msgstr ""
+"Webview クラス — 不透明ハンドル + 14 個のインスタンスメソッド + ドラッグ &"
+" ドロップイベントの variant"
+
+#: ../../user/index.md
+msgid "`WebviewWindow`"
+msgstr "`WebviewWindow`"
+
+#: ../../user/index.md
+msgid ""
+"Combined Window + Webview surface; zero-cost `asWindow` / `asWebview` "
+"casts"
+msgstr ""
+"Window と Webview を統合した API。ゼロコストの `asWindow` / `asWebview` "
+"キャストを提供"
+
+#: ../../user/index.md
+msgid "`Menu`"
+msgstr "`Menu`"
+
+#: ../../user/index.md
+msgid ""
+"Application menu hierarchy (`MenuItem`, `CheckMenuItem`, `IconMenuItem`, "
+"`PredefinedMenuItem`, `Submenu`, `Menu`)"
+msgstr ""
+"アプリケーションメニューの階層構造（`MenuItem` / `CheckMenuItem` / `IconMenuItem` / "
+"`PredefinedMenuItem` / `Submenu` / `Menu`）"
+
+#: ../../user/index.md
+msgid "`Tray`"
+msgstr "`Tray`"
+
+#: ../../user/index.md
+msgid "System tray icon (`TrayIcon`) with click-event variant"
+msgstr "システムトレイアイコン（`TrayIcon`）とクリックイベントの variant"
+
+#: ../../user/index.md
+msgid "`Path`"
+msgstr "`Path`"
+
+#: ../../user/index.md
+msgid "Path utilities — 31 helpers + `BaseDirectory` enum"
+msgstr "パスユーティリティ — 31 個のヘルパー関数と `BaseDirectory` 列挙型"
+
+#: ../../user/index.md
+msgid "`App`"
+msgstr "`App`"
+
+#: ../../user/index.md
+msgid ""
+"Application metadata + lifecycle (`getName`, `getVersion`, `setTheme`, "
+"`defaultWindowIcon`, ...)"
+msgstr ""
+"アプリケーションメタデータとライフサイクル（`getName` / `getVersion` / `setTheme` / "
+"`defaultWindowIcon` ほか）"
+
+#: ../../user/index.md
+msgid "`Image`"
+msgstr "`Image`"
+
+#: ../../user/index.md
+msgid "RGBA-image opaque handle (`fromPath`, `fromBytes`, `new_`, `rgba`, `size`)"
+msgstr "RGBA 画像の不透明ハンドル（`fromPath` / `fromBytes` / `new_` / `rgba` / `size`）"
+
+#: ../../user/index.md
+msgid "`Dpi`"
+msgstr "`Dpi`"
+
+#: ../../user/index.md
+msgid ""
+"DPI-aware size and position (`LogicalSize`, `PhysicalSize`, "
+"`LogicalPosition`, `PhysicalPosition`, `Size`, `Position`)"
+msgstr ""
+"DPI を考慮したサイズ・位置（`LogicalSize` / `PhysicalSize` / "
+"`LogicalPosition` / `PhysicalPosition` / `Size` / `Position`）"
+
+#: ../../user/index.md
+msgid "`Mocks`"
+msgstr "`Mocks`"
+
+#: ../../user/index.md
+msgid "Test helpers (`mockIPC`, `mockWindows`, `clearMocks`)"
+msgstr "テスト用ヘルパー（`mockIPC` / `mockWindows` / `clearMocks`）"
+
+#: ../../user/index.md:38
+msgid "Phase 2 packages"
+msgstr "Phase 2 パッケージ"
+
+#: ../../user/index.md:40
+msgid ""
+"Phase 2 introduces three add-on packages that build on the Phase 1 core. "
+"Each ships independently and pulls the matching upstream plugin / schema "
+"library through `peerDependencies`."
+msgstr ""
+"Phase 2 では Phase 1 core の上に乗る 3 つのアドオンパッケージを追加します。"
+"いずれも独立して公開され、対応する上流のプラグイン / スキーマライブラリを "
+"`peerDependencies` 経由で取り込みます。"
+
+#: ../../user/index.md
+msgid "Package"
+msgstr "パッケージ"
+
+#: ../../user/index.md
+msgid "Guide"
+msgstr "ガイド"
+
+#: ../../user/index.md
+msgid "`@rescript-tauri/plugin-fs`"
+msgstr "`@rescript-tauri/plugin-fs`"
+
+#: ../../user/index.md
+msgid "Filesystem operations (read / write / dir / stat)"
+msgstr "ファイルシステム操作（read / write / dir / stat）"
+
+#: ../../user/index.md
+msgid "[plugin-fs](plugin-fs.md)"
+msgstr "[plugin-fs](plugin-fs.md)"
+
+#: ../../user/index.md
+msgid "`@rescript-tauri/plugin-dialog`"
+msgstr "`@rescript-tauri/plugin-dialog`"
+
+#: ../../user/index.md
+msgid "Native dialogs (open / save / message / ask / confirm)"
+msgstr "ネイティブダイアログ（open / save / message / ask / confirm）"
+
+#: ../../user/index.md
+msgid "[plugin-dialog](plugin-dialog.md)"
+msgstr "[plugin-dialog](plugin-dialog.md)"
+
+#: ../../user/index.md
+msgid "`@rescript-tauri/schema`"
+msgstr "`@rescript-tauri/schema`"
+
+#: ../../user/index.md
+msgid "Layer 3 typed IPC via `rescript-schema`"
+msgstr "`rescript-schema` を用いた Layer 3 型付き IPC"
+
+#: ../../user/index.md
+msgid "[schema](schema.md)"
+msgstr "[schema](schema.md)"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-08 12:58+0900\n"
+"POT-Creation-Date: 2026-05-09 16:33+0900\n"
 "PO-Revision-Date: 2026-05-08 13:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -24,94 +24,147 @@ msgstr "クイックスタート"
 
 #: ../../user/quickstart.md:4
 msgid ""
-"Target API. The samples below reflect the design defined in "
-"[RFC-0001](https://github.com/Nagatatz/rescript-"
-"tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) and [`docs"
-"/functional-design.md`](https://github.com/Nagatatz/rescript-"
-"tauri/blob/main/docs/functional-design.md) §2. Implementation is in "
-"progress in Phase 1."
+"The Phase 1 module set is feature-complete in `main`. The samples below "
+"reflect the actual `.resi` signatures shipped on `main`. The package is "
+"awaiting its first npm publish (`v0.1.0`); until then, consume "
+"`@rescript-tauri/core` via the source repository or a workspace link."
 msgstr ""
-"Target API です。以下のサンプルは "
-"[RFC-0001](https://github.com/Nagatatz/rescript-"
-"tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) および [`docs"
-"/functional-design.md`](https://github.com/Nagatatz/rescript-"
-"tauri/blob/main/docs/functional-design.md) §2 で定義された設計を反映しています。"
-"実装は Phase 1 で進行中です。"
+"Phase 1 のモジュール一式は `main` で機能完備済みです。以下のサンプルは `main` "
+"上で出荷されている実際の `.resi` シグネチャを反映しています。本パッケージは初回 npm "
+"公開（`v0.1.0`）を待っている状態です。それまでは、ソースリポジトリ経由か "
+"ワークスペースリンクで `@rescript-tauri/core` を利用してください。"
 
-#: ../../user/quickstart.md:7
+#: ../../user/quickstart.md:11
 msgid "Prerequisites"
 msgstr "前提条件"
 
-#: ../../user/quickstart.md:9
+#: ../../user/quickstart.md:13
 msgid "Completed [Installation](installation.md)"
 msgstr "[インストール](installation.md) を完了済み"
 
-#: ../../user/quickstart.md:10
+#: ../../user/quickstart.md:14
 msgid ""
 "A Tauri 2.x project with at least one `#[tauri::command]` defined on the "
 "Rust side"
-msgstr ""
-"Rust 側に少なくとも 1 つの `#[tauri::command]` が定義されている Tauri 2.x プロジェクト"
+msgstr "Rust 側に少なくとも 1 つの `#[tauri::command]` が定義されている Tauri 2.x プロジェクト"
 
-#: ../../user/quickstart.md:12
+#: ../../user/quickstart.md:16
 msgid "Layer 1 — Raw `invoke`"
 msgstr "Layer 1 — Raw `invoke`"
 
-#: ../../user/quickstart.md:14
+#: ../../user/quickstart.md:18
 msgid ""
 "The lowest layer mirrors `@tauri-apps/api/core` 1:1. Use it when you want"
 " to start as thin as possible or as an escape hatch from the typed layer."
 msgstr ""
-"最下層は `@tauri-apps/api/core` を 1:1 でミラーします。可能な限り薄く始めたい場合や、"
-"型付き層からの逃げ道として使用してください。"
+"最下層は `@tauri-apps/api/core` を 1:1 "
+"でミラーします。可能な限り薄く始めたい場合や、型付き層からの逃げ道として使用してください。"
 
-#: ../../user/quickstart.md:21
+#: ../../user/quickstart.md:25
 msgid "Layer 2 — typed `Command`"
 msgstr "Layer 2 — typed `Command`"
 
-#: ../../user/quickstart.md:23
+#: ../../user/quickstart.md:27
 msgid ""
 "Layer 2 wraps a single command name with an explicit encoder and decoder,"
 " giving you an end-to-end typed `Command.t<'args, 'result>`."
 msgstr ""
-"Layer 2 では、コマンド名を明示的なエンコーダ・デコーダと一緒にラップし、エンドツーエンドで"
-"型付けされた `Command.t<'args, 'result>` を提供します。"
+"Layer 2 では、コマンド名を明示的なエンコーダ・デコーダと一緒にラップし、エンドツーエンドで型付けされた `Command.t<'args,"
+" 'result>` を提供します。"
 
-#: ../../user/quickstart.md:46
+#: ../../user/quickstart.md:50
 msgid ""
 "`Core.Command.invokeExn` is provided for callers that prefer exception-"
 "based control flow."
-msgstr ""
-"例外ベースの制御フローを好む呼び出し元のために、`Core.Command.invokeExn` も提供されます。"
+msgstr "例外ベースの制御フローを好む呼び出し元のために、`Core.Command.invokeExn` も提供されます。"
 
-#: ../../user/quickstart.md:48
+#: ../../user/quickstart.md:52
 msgid "Event subscription"
 msgstr "Event 購読"
 
-#: ../../user/quickstart.md:50
+#: ../../user/quickstart.md:54
 msgid ""
 "`Event.make` declares a typed event handle once; `Event.listen` "
 "subscribes and returns an `unlisten` function."
 msgstr ""
-"`Event.make` で型付きの event handle を 1 度宣言し、`Event.listen` で購読すると "
-"`unlisten` 関数が返されます。"
+"`Event.make` で型付きの event handle を 1 度宣言し、`Event.listen` で購読すると `unlisten`"
+" 関数が返されます。"
 
-#: ../../user/quickstart.md:67
+#: ../../user/quickstart.md:76
+msgid "Window operations"
+msgstr "ウィンドウ操作"
+
+#: ../../user/quickstart.md:78
+msgid "`Window.t` is opaque; instance methods are pipe-first."
+msgstr "`Window.t` は不透明型です。インスタンスメソッドは pipe-first 形式で呼び出します。"
+
+#: ../../user/quickstart.md:91
+msgid ""
+"A complete buttoned demo is in [`examples/window-"
+"management`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/examples/window-management)."
+msgstr ""
+"ボタン付きの完全なデモは [`examples/window-"
+"management`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/examples/window-management) にあります。"
+
+#: ../../user/quickstart.md:94
+msgid "Spawning a `WebviewWindow`"
+msgstr "`WebviewWindow` の生成"
+
+#: ../../user/quickstart.md:113
+msgid "Streaming with `Channel`"
+msgstr "`Channel` によるストリーミング"
+
+#: ../../user/quickstart.md:115
+msgid ""
+"`Core.Channel` provides one-way Rust-to-frontend streaming. Each callback"
+" receives a `result<'message, string>` so decoder failures are surfaced "
+"explicitly — pattern match on `Ok(...)` / `Error(_)` to choose how to "
+"handle them."
+msgstr ""
+"`Core.Channel` は Rust からフロントエンドへの一方向ストリーミングを提供します。各コールバックは "
+"`result<'message, string>` を受け取るため、デコーダの失敗が明示的に表面化します。"
+"`Ok(...)` / `Error(_)` をパターンマッチして処理方法を選択してください。"
+
+#: ../../user/quickstart.md:150
+msgid ""
+"A complete demo (with the matching Rust handler) is in [`examples"
+"/streaming-ipc`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/examples/streaming-ipc)."
+msgstr ""
+"対応する Rust ハンドラ付きの完全なデモは [`examples"
+"/streaming-ipc`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/examples/streaming-ipc) にあります。"
+
+#: ../../user/quickstart.md:153
+msgid "Path / App utilities"
+msgstr "Path / App ユーティリティ"
+
+#: ../../user/quickstart.md:161
+msgid ""
+"`Path` is intentionally **not** re-exported by `Tauri`, so reach for it "
+"explicitly (`Path.appConfigDir()`) instead of `open Tauri`'ing it into "
+"scope alongside Window / Event."
+msgstr ""
+"`Path` は意図的に `Tauri` から再エクスポート **されません**。`open Tauri` で Window / "
+"Event と一緒にスコープに取り込むのではなく、明示的に `Path.appConfigDir()` のように呼び出してください。"
+
+#: ../../user/quickstart.md:165
 msgid "What's next?"
 msgstr "次のステップ"
 
-#: ../../user/quickstart.md:69
+#: ../../user/quickstart.md:167
 msgid ""
 "[Configuration](configuration.md) — `rescript.json`, peerDeps, "
 "compatibility"
-msgstr ""
-"[設定](configuration.md) — `rescript.json` / peerDeps / 互換性"
+msgstr "[設定](configuration.md) — `rescript.json` / peerDeps / 互換性"
 
-#: ../../user/quickstart.md:70
+#: ../../user/quickstart.md:168
 msgid "[Changelog](changelog.md) — Release notes"
 msgstr "[変更履歴](changelog.md) — リリースノート"
 
-#: ../../user/quickstart.md:71
+#: ../../user/quickstart.md:169
 msgid ""
 "[`docs/functional-design.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/docs/functional-design.md) — Per-module API "
@@ -120,7 +173,7 @@ msgstr ""
 "[`docs/functional-design.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/docs/functional-design.md) — モジュール別の API 仕様（日本語）"
 
-#: ../../user/quickstart.md:72
+#: ../../user/quickstart.md:170
 msgid ""
 "[Layer 3 (Schema integration)](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) — "
@@ -130,3 +183,23 @@ msgstr ""
 "[Layer 3 (Schema 統合)](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) — "
 "`Command.fromSchemas` ヘルパ、`@rescript-tauri/schema` で提供予定（Phase 2）"
+
+#~ msgid ""
+#~ "Target API. The samples below reflect"
+#~ " the design defined in "
+#~ "[RFC-0001](https://github.com/Nagatatz/rescript-"
+#~ "tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md)"
+#~ " and [`docs/functional-"
+#~ "design.md`](https://github.com/Nagatatz/rescript-"
+#~ "tauri/blob/main/docs/functional-design.md) §2. "
+#~ "Implementation is in progress in Phase"
+#~ " 1."
+#~ msgstr ""
+#~ "Target API です。以下のサンプルは "
+#~ "[RFC-0001](https://github.com/Nagatatz/rescript-"
+#~ "tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md)"
+#~ " および [`docs/functional-"
+#~ "design.md`](https://github.com/Nagatatz/rescript-"
+#~ "tauri/blob/main/docs/functional-design.md) §2 "
+#~ "で定義された設計を反映しています。実装は Phase 1 で進行中です。"
+
