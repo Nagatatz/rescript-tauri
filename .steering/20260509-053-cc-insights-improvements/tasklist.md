@@ -5,55 +5,55 @@
 - [x] requirements.md を作成
 - [x] design.md を作成
 - [x] tasklist.md を作成（本ファイル）
-- [ ] EnterWorktree で隔離環境を作成
+- [x] EnterWorktree で隔離環境を作成
 
 ## Phase 2: 実装（worktree 内）
 
 ### #1 #2 #4 — `steering-workflow.md` 拡張
 
-- [ ] worktree 作成前の `git fetch origin` 鮮度チェック手順を追記
-- [ ] ステップ 1 のステアリング番号採番手順を更新（`ls + sort | tail -1` + 衝突確認）
-- [ ] 「長時間タスクの Checkpoint 計画」サブセクションを追記
+- [x] worktree 作成前の `git fetch origin` 鮮度チェック手順を追記
+- [x] ステップ 1 のステアリング番号採番手順を更新（`ls + sort | tail -1` + 衝突確認）
+- [x] 「長時間タスクの Checkpoint 計画」サブセクションを追記
 
 ### #3 — `pre-flight-verification.md` 新規
 
-- [ ] `.claude/rules/pre-flight-verification.md` を新規作成
-- [ ] CLAUDE.md の @import チェーンに追加
-- [ ] テスト省略理由を本ファイルに明記（ドキュメントのため `testing.md` 例外）
+- [x] `.claude/rules/pre-flight-verification.md` を新規作成
+- [x] CLAUDE.md の @import チェーンに追加
+- [x] テスト省略理由を本ファイルに明記（ドキュメントのため `testing.md` 例外）
 
 ### #5 — Hooks (`.claude/settings.json` + `.claude/hooks/*.sh`)
 
-- [ ] `.claude/hooks/check-disk-space.sh` を新規作成（PreToolUse Bash 用）
-- [ ] `.claude/hooks/biome-format.sh` を新規作成（PostToolUse Edit/Write 用）
-- [ ] 両スクリプトに実行権限付与 (`chmod +x`)
-- [ ] `.claude/settings.json` を新規作成し hook を登録
-- [ ] `bash -n` で構文チェック
-- [ ] テスト省略理由を本ファイルに明記（hook の挙動はランタイム依存、`testing.md` 例外）
+- [x] `.claude/hooks/check-disk-space.sh` を新規作成（PreToolUse Bash 用）
+- [x] `.claude/hooks/biome-format.sh` を新規作成（PostToolUse Edit/Write 用）
+- [x] 両スクリプトに実行権限付与 (`chmod +x`)
+- [x] `.claude/settings.json` を新規作成し hook を登録
+- [x] `bash -n` で構文チェック
+- [x] テスト省略理由を本ファイルに明記（hook の挙動はランタイム依存、`testing.md` 例外）
 
 ### #8 — `parallel-implementation-swarm` skill
 
-- [ ] `.claude/skills/parallel-implementation-swarm/SKILL.md` を新規作成
-- [ ] YAML frontmatter (`name`, `description`) を含める
-- [ ] 番号予約 / coordinator / batch merge の手順を記述
+- [x] `.claude/skills/parallel-implementation-swarm/SKILL.md` を新規作成
+- [x] YAML frontmatter (`name`, `description`) を含める
+- [x] 番号予約 / coordinator / batch merge の手順を記述
 
 ### #9 — `coverage-climber` skill
 
-- [ ] `.claude/skills/coverage-climber/SKILL.md` を新規作成
-- [ ] state file `.claude/coverage-progress.json` 設計を記述
-- [ ] gitignore 更新指示を skill 本文に記載
-- [ ] ガードレール（production code 変更禁止 等）を明記
+- [x] `.claude/skills/coverage-climber/SKILL.md` を新規作成
+- [x] state file `.claude/coverage-progress.json` 設計を記述
+- [x] gitignore 更新指示を skill 本文に記載
+- [x] ガードレール（production code 変更禁止 等）を明記
 
 ### ドキュメント更新
 
-- [ ] `docs/repository-structure.md` に `.claude/hooks/`、`.claude/skills/` の新規追加を反映
-- [ ] `CLAUDE.md` の「状況発火型の知識 (skills)」表に新規 skill 2 件を追加
+- [x] `docs/repository-structure.md` に `.claude/hooks/`、`.claude/skills/` の新規追加を反映
+- [x] `CLAUDE.md` の「状況発火型の知識 (skills)」表に新規 skill 2 件を追加
 
 ## Phase 3: 検証
 
-- [ ] `jq . .claude/settings.json` で JSON 妥当性確認
-- [ ] `bash -n .claude/hooks/*.sh` で hook 構文確認
-- [ ] `head -10` で skill md frontmatter を目視確認
-- [ ] `pnpm run check` で Biome lint pass を確認
+- [x] `jq . .claude/settings.json` で JSON 妥当性確認
+- [x] `bash -n .claude/hooks/*.sh` で hook 構文確認
+- [x] `head -10` で skill md frontmatter を目視確認
+- [x] 新規追加ファイル単体での Biome lint pass を確認（worktree 内 `biome check .` は pre-existing な includes 設定の挙動で `.` 無視。新規ファイル個別指定は OK。main 上では `.claude/worktrees/` 配下が除外されるため無関係）
 
 ## Phase 4: コミット & マージ前
 
