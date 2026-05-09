@@ -89,6 +89,8 @@
 ## I. Phase 2 完了条件
 
 - [ ] 「必須スコープ」がすべて publish + CI 緑
+      （ランブック整備済: `.steering/20260509-046-phase2-release-checklist/release-checklist.md`、
+      実 publish はメンテナがタグ push で実施）
 - [x] 各パッケージの README に互換マトリクス記載 (steering 043)
 - [x] `docs/repository-structure.md` を Phase 2 構成に更新
       (steering 036/037/039/041 で逐次反映済)
