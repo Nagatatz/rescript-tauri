@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>rescript-tauri ipc-typed-with-schema</title>
+    <style>
+      body { font-family: system-ui, sans-serif; padding: 16px; max-width: 720px; }
+      h2 { font-size: 1.05rem; margin-top: 1.2rem; }
+      label { display: block; margin: 8px 0; }
+      input { width: 12em; }
+      textarea { width: 100%; font-family: monospace; }
+      .out { font-family: monospace; padding: 8px; background: #f4f4f4; min-height: 1em;
+             border-radius: 4px; white-space: pre-wrap; }
+      pre.out { min-height: 4em; }
+      button { padding: 6px 12px; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <h1>typed Command demo (Schema layer)</h1>
+    <p>Each Rust command is declared from a single
+    <code>rescript-schema</code> schema pair via
+    <code>Schema.fromSchemas</code> — no hand-written encoder/decoder.</p>
+
+    <h2>greet ({name} &rarr; string)</h2>
+    <label>Name <input id="name" value="ReScript" /></label>
+    <button type="button" id="run-greet">invoke greet</button>
+    <p>Result: <span id="greet-out" class="out">-</span></p>
+
+    <h2>add ({a, b} &rarr; int)</h2>
+    <label>a <input id="a" type="number" value="3" /></label>
+    <label>b <input id="b" type="number" value="4" /></label>
+    <button type="button" id="run-add">invoke add</button>
+    <p>Result: <span id="add-out" class="out">-</span></p>
+
+    <h2>summarize ({title, items[]} &rarr; {count, joined})</h2>
+    <label>Title <input id="title" value="Groceries" /></label>
+    <label>Items (one per line)
+      <textarea id="items" rows="3">apples
+oats
+chocolate</textarea>
+    </label>
+    <button type="button" id="run-summarize">invoke summarize</button>
+    <pre id="summarize-out" class="out">-</pre>
+
+    <h2>count_to (channel of int)</h2>
+    <p>Schema-decoded Channel: each int is parsed via
+    <code>Schema.channelFromSchema(~message=S.int)</code>.</p>
+    <label>Target <input id="target" type="number" value="5" /></label>
+    <button type="button" id="run-count-to">start stream</button>
+    <p>Last received: <span id="channel-last" class="out">-</span></p>
+    <pre id="channel-out" class="out">-</pre>
+
+    <script type="module" src="/src/main.mjs"></script>
+  </body>
+</html>
