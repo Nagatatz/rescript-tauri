@@ -31,6 +31,7 @@ jobs:
           - plugin-notification
           - plugin-log
           - plugin-os
+          - plugin-clipboard-manager
           - schema
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
