@@ -41,12 +41,12 @@
 
 ### Task C: M1+M2+M3 — repository-structure.md の §5/§8/§9 更新
 
-- [ ] §1 ルートレイアウトの ASCII ツリーに `LICENSE` `CONTRIBUTING.md` `CODE_OF_CONDUCT.md` `SECURITY.md` `AGENTS.md` `Cargo.toml` `pnpm-lock.yaml` を追加（既存の `.gitignore` 行と並べる）
-- [ ] §5 sphinx-docs ツリー更新（実在 14 ファイル反映）
-- [ ] §8 workflows 列挙を 19 件（テンプレート 2 件除外）に更新、`tests-coverage.yml` の "4 パッケージ matrix" → "5 パッケージ matrix" 修正
-- [ ] §9 ルート設定ファイル表に 7 ファイル追記
-- [ ] `pnpm --recursive build` 成功確認
-- [ ] commit: `📝 Sync repository-structure.md with current workflows / sphinx-docs / root files`
+- [x] §1 ルートレイアウトの ASCII ツリーに `LICENSE` `CONTRIBUTING.md` `CODE_OF_CONDUCT.md` `SECURITY.md` `AGENTS.md` `Cargo.toml` `pnpm-lock.yaml` を追加
+- [x] §5 sphinx-docs ツリー更新（実在 14 ファイル + sphinx-docs/{conf.py,Makefile,pyproject.toml,tests,_static,_templates,index.md} 反映、未追加 plugin-shell/notification ガイドを注記）
+- [x] §8 workflows 列挙を 21 件（template 2 件は別途注記）に更新、`tests-coverage.yml` の "4 パッケージ matrix" → "6 パッケージ matrix" 修正
+- [x] §9 ルート設定ファイル表に 7 ファイル追記（AGENTS / CONTRIBUTING / CODE_OF_CONDUCT / SECURITY / LICENSE / Cargo.toml / pnpm-lock.yaml）
+- [x] `pnpm --recursive build` 成功確認 (doc-only 修正)
+- [x] commit: `📝 Sync repository-structure.md with current workflows / sphinx-docs / root files`
 
 ### Task D: M4 — README publish 待ちリストに plugin-shell + plugin-notification を追加
 
