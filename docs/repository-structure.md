@@ -20,6 +20,7 @@ rescript-tauri/                          # monorepo root
 │   ├── plugin-fs/                       # @rescript-tauri/plugin-fs (Phase 2+)
 │   ├── plugin-dialog/                   # @rescript-tauri/plugin-dialog (Phase 2+)
 │   ├── plugin-shell/                    # @rescript-tauri/plugin-shell (Phase 2+)
+│   ├── plugin-notification/             # @rescript-tauri/plugin-notification (Phase 2+)
 │   └── schema/                          # @rescript-tauri/schema (Phase 2)
 ├── examples/                            # ビルド可能な使用例（CI ゲート対象）
 │   ├── hello-world/                     # Phase 1 必須
@@ -168,6 +169,24 @@ packages/plugin-shell/                   # 着手済み (steering 051, 2026-05-0
 `peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-shell ^2.3.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
 
 upstream `Command.create({encoding: 'raw'})` の TypeScript 条件型戻り値を `Command.create` / `Command.createRaw` / `Command.sidecar` / `Command.sidecarRaw` に分割して静的化（steering 051 §3.1）。トップレベル `open` は ReScript 予約語との衝突回避のため `openPath` にリネーム。`examples/plugin-shell-demo/` と sphinx-docs `user/plugin-shell.md` は後続 sub-steering に分離。
+
+```
+packages/plugin-notification/            # 着手済み (steering 054, 2026-05-09)
+├── src/
+│   └── PluginNotification.res / .resi   # 15 関数 + Schedule / Importance / Visibility モジュール + 8 records + notificationPermission
+├── tests/
+│   ├── plugin_notification_signature.res # 型レベル網羅 (38 _check_)
+│   └── runtime/plugin_notification.test.mjs # vitest + Mocks + window.Notification stub (19 cases)
+├── rescript.json
+├── package.json                         # @rescript-tauri/plugin-notification
+├── vitest.config.mjs
+├── CHANGELOG.md
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-notification ^2.3.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+upstream の `sendNotification(options: Options | string)` overload を `sendNotification` / `sendNotificationText` の 2 関数に分割して静的化（steering 054 §3.1）。`Importance` / `Visibility` の数値 enum は ReScript 側で `int` の named constants として公開し、`default_` / `private_` / `public_` は JS 出力の `$$default` / `$$private` / `$$public` エスケープを避けるため suffix 付き。`requestPermission` / `sendNotification` / `sendNotificationText` は upstream で IPC ではなく `window.Notification` Web API 経由で動作するため、テストでは `globalThis.window.Notification` を stub する。`examples/plugin-notification-demo/` と sphinx-docs `user/plugin-notification.md` は後続 sub-steering に分離。
 
 ### 2.3 `packages/schema/`
 
