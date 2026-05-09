@@ -388,9 +388,12 @@ sphinx-docs/
 ```
 .github/
 ├── workflows/                           # GitHub Actions ジョブ
+│   ├── _test-package-runtime.yml        # 再利用 workflow (workflow_call) — vitest 実行
+│   ├── _test-package-types.yml         # 再利用 workflow (workflow_call) — rescript build + public-symbol 網羅検証
 │   ├── build-core.yml                   # PR / push トリガ
-│   ├── tests-core-types.yml
-│   ├── tests-core-runtime.yml
+│   ├── tests-core-types.yml             # _test-package-types.yml 呼び出しの薄い wrapper
+│   ├── tests-core-runtime.yml           # _test-package-runtime.yml 呼び出しの薄い wrapper
+│   ├── tests-<plugin>-{runtime,types}.yml  # 各 plugin / schema 用 wrapper (steering 058 でテンプレ化)
 │   ├── tests-coverage.yml               # 4 パッケージ matrix で vitest v8 カバレッジ計測（観測フェーズ）
 │   ├── examples-build.yml               # 3 OS マトリクス
 │   ├── doc-link-lint.yml
@@ -401,7 +404,7 @@ sphinx-docs/
 └── PULL_REQUEST_TEMPLATE.md
 ```
 
-CI ジョブ定義の詳細は `docs/functional-design.md` §6 を参照。
+`_` プレフィックスのファイルは `workflow_call` 経由で他 workflow から呼ばれる再利用 workflow。新 plugin 追加時は `tests-<name>-runtime.yml` / `tests-<name>-types.yml` の 2 つを `tests-plugin-fs-*` 等を雛形にして `package-name` / `package-path` / `paths` を書き換えるだけで済む。CI ジョブ定義の詳細は `docs/functional-design.md` §6 を参照。
 
 ---
 
