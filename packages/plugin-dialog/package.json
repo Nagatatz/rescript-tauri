@@ -21,7 +21,8 @@
   "scripts": {
     "build": "rescript build",
     "clean": "rescript clean",
-    "test": "rescript build && vitest run"
+    "test": "rescript build && vitest run",
+    "test:coverage": "rescript build && vitest run --coverage"
   },
   "peerDependencies": {
     "@rescript-tauri/core": "^0.1.0",
@@ -35,6 +36,7 @@
     "@rescript/runtime": "^12.2.0",
     "@tauri-apps/plugin-dialog": "^2.7.1",
     "@types/node": "^22.0.0",
+    "@vitest/coverage-v8": "^3.2.4",
     "happy-dom": "^20.9.0",
     "rescript": "^12.2.0",
     "vitest": "^3.0.0"
