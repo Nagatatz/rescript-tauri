@@ -110,7 +110,12 @@ let fileChanged = Event.make(
     | None => Error("expected string")
     },
 )
-let unlisten = await fileChanged->Event.listen(evt => Console.log(evt.payload))
+let unlisten = await fileChanged->Event.listen(result =>
+  switch result {
+  | Ok(evt) => Console.log(evt.payload)
+  | Error(_) => () // ignore decode failures
+  }
+)
 ```
 
 Runnable examples live under `examples/` (`hello-world`, `window-management`, `ipc-typed`, `streaming-ipc`, `plugin-fs-demo`, `plugin-dialog-demo`, `ipc-typed-with-schema`) and are CI-built on Linux / macOS / Windows.
