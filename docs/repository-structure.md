@@ -21,6 +21,8 @@ rescript-tauri/                          # monorepo root
 │   ├── plugin-dialog/                   # @rescript-tauri/plugin-dialog (Phase 2+)
 │   ├── plugin-shell/                    # @rescript-tauri/plugin-shell (Phase 2+)
 │   ├── plugin-notification/             # @rescript-tauri/plugin-notification (Phase 2+)
+│   ├── plugin-log/                      # @rescript-tauri/plugin-log (Phase 2+)
+│   ├── plugin-os/                       # @rescript-tauri/plugin-os (Phase 2+)
 │   └── schema/                          # @rescript-tauri/schema (Phase 2)
 ├── examples/                            # ビルド可能な使用例（CI ゲート対象）
 │   ├── hello-world/                     # Phase 1 必須
@@ -188,6 +190,42 @@ packages/plugin-notification/            # 着手済み (steering 054, 2026-05-0
 `peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-notification ^2.3.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
 
 upstream の `sendNotification(options: Options | string)` overload を `sendNotification` / `sendNotificationText` の 2 関数に分割して静的化（steering 054 §3.1）。`Importance` / `Visibility` の数値 enum は ReScript 側で `int` の named constants として公開し、`default_` / `private_` / `public_` は JS 出力の `$$default` / `$$private` / `$$public` エスケープを避けるため suffix 付き。`requestPermission` / `sendNotification` / `sendNotificationText` は upstream で IPC ではなく `window.Notification` Web API 経由で動作するため、テストでは `globalThis.window.Notification` を stub する。`examples/plugin-notification-demo/` と sphinx-docs `user/plugin-notification.md` は後続 sub-steering に分離。
+
+```
+packages/plugin-log/                     # 着手済み (steering 055, 2026-05-09)
+├── src/
+│   └── PluginLog.res / .resi            # 5 log fn + attachLogger + attachConsole + LogLevel + types
+├── tests/
+│   ├── plugin_log_signature.res         # 型レベル網羅 (16 _check_)
+│   └── runtime/plugin_log.test.mjs      # vitest + Mocks 経由 (9 cases)
+├── rescript.json
+├── package.json                         # @rescript-tauri/plugin-log
+├── vitest.config.mjs
+├── CHANGELOG.md
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-log ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+`LogLevel` の数値 enum (`Trace=1` / `Debug=2` / `Info=3` / `Warn=4` / `Error=5`) は ReScript 側で `int` named constants として公開し、`debug_` / `info_` / `warn_` / `error_` は JS 出力での `$$debug` / `$$info` / `$$warn` / `$$error` エスケープを避けるため suffix 付き（`trace` のみ素のまま）。トップレベル log 関数 (`error` / `warn` / `info` / `debug` / `trace`) は名前衝突なし。`attachLogger` / `attachConsole` は Tauri Event (`log://log`) 経由で動作するため、テストでは `__TAURI_INTERNALS__` の `transformCallback` / `invoke` を stub する。`examples/plugin-log-demo/` と sphinx-docs `user/plugin-log.md` は後続 sub-steering に分離。
+
+```
+packages/plugin-os/                      # 着手済み (steering 056, 2026-05-09)
+├── src/
+│   └── PluginOs.res / .resi             # 9 関数 (eol/platform/version/family/osType_/arch/exeExtension/locale/hostname) + 4 polymorphic variants
+├── tests/
+│   ├── plugin_os_signature.res          # 型レベル網羅 (19 _check_)
+│   └── runtime/plugin_os.test.mjs       # vitest + globals stub + Mocks (10 cases)
+├── rescript.json
+├── package.json                         # @rescript-tauri/plugin-os
+├── vitest.config.mjs
+├── CHANGELOG.md
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-os ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+upstream の `type()` は ReScript の予約語 `type` と衝突するため `osType_()` にリネームして公開。7 つの sync getter (`eol` / `platform` / `version` / `family` / `osType_` / `arch` / `exeExtension`) は upstream で `window.__TAURI_OS_PLUGIN_INTERNALS__` を直接読み取るため、テストではこの globals を stub する。残り 2 つ (`locale` / `hostname`) は IPC (`plugin:os|locale` / `plugin:os|hostname`) 経由で `Mocks.mockIPC` で検証可能。`examples/plugin-os-demo/` と sphinx-docs `user/plugin-os.md` は後続 sub-steering に分離。
 
 ### 2.3 `packages/schema/`
 
