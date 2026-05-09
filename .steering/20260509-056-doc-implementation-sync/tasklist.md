@@ -67,10 +67,10 @@
 
 ### Task F: M7 — sphinx-docs plugin-shell 言及追加
 
-- [ ] `sphinx-docs/user/installation.md` のプラグインインストール表に `@rescript-tauri/plugin-shell` を追加
-- [ ] 注記: 「専用ユーザーガイドは後続 sub-steering で追加予定、現状は `packages/plugin-shell/README.md` 参照」
-- [ ] `sphinx-docs/dev/project-structure.md` で plugin-shell の項目が無ければ追加（既存なら確認のみ）
-- [ ] commit: `📝 Mention plugin-shell in sphinx-docs installation guide`
+- [x] `sphinx-docs/user/installation.md` のプラグインインストールセクションに `@rescript-tauri/plugin-shell` と `@rescript-tauri/plugin-notification` を追加
+- [x] 注記: 「専用ユーザーガイドは後続 sub-steering で追加予定、現状は各 README.md 参照」
+- [x] `sphinx-docs/dev/project-structure.md` Subsystem map に plugin-shell + plugin-notification を追記、Core/Event 行コメントを実装に合わせて修正
+- [x] commit: `📝 Mention plugin-shell in sphinx-docs installation guide`
 
 ## Phase 4: マージ前検証
 
