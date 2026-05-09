@@ -61,9 +61,9 @@
 
 ## Phase 6: Menu 拡張
 
-- [ ] `Menu.res` / `.resi` に `nativeIcon` polymorphic variant 追加
-- [ ] `tests/menu_signature.res` 更新
-- [ ] コミット: `✨ Add NativeIcon polymorphic variant to Menu`
+- [x] `Menu.res` / `.resi` に `nativeIcon` polymorphic variant 追加
+- [x] `tests/menu_signature.res` 更新
+- [x] コミット: `✨ Add NativeIcon polymorphic variant to Menu`
 
 ## Phase 7: ドキュメント更新
 

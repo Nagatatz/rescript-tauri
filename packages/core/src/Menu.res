@@ -12,6 +12,65 @@ type aboutMetadata = {
   icon?: string,
 }
 
+type nativeIcon = [
+  | #Add
+  | #Advanced
+  | #Bluetooth
+  | #Bookmarks
+  | #Caution
+  | #ColorPanel
+  | #ColumnView
+  | #Computer
+  | #EnterFullScreen
+  | #Everyone
+  | #ExitFullScreen
+  | #FlowView
+  | #Folder
+  | #FolderBurnable
+  | #FolderSmart
+  | #FollowLinkFreestanding
+  | #FontPanel
+  | #GoLeft
+  | #GoRight
+  | #Home
+  | #IChatTheater
+  | #IconView
+  | #Info
+  | #InvalidDataFreestanding
+  | #LeftFacingTriangle
+  | #ListView
+  | #LockLocked
+  | #LockUnlocked
+  | #MenuMixedState
+  | #MenuOnState
+  | #MobileMe
+  | #MultipleDocuments
+  | #Network
+  | #Path
+  | #PreferencesGeneral
+  | #QuickLook
+  | #RefreshFreestanding
+  | #Refresh
+  | #Remove
+  | #RevealFreestanding
+  | #RightFacingTriangle
+  | #Share
+  | #Slideshow
+  | #SmartBadge
+  | #StatusAvailable
+  | #StatusNone
+  | #StatusPartiallyAvailable
+  | #StatusUnavailable
+  | #StopProgressFreestanding
+  | #StopProgress
+  | #TrashEmpty
+  | #TrashFull
+  | #User
+  | #UserAccounts
+  | #UserGroup
+  | #UserGuest
+]
+
 type predefinedItem =
   | Separator
   | Copy
