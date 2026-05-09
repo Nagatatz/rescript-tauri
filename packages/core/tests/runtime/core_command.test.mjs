@@ -94,4 +94,24 @@ describe("Core.Command", () => {
 
     await expect(Command.invokeExn(greet, {})).rejects.toThrow(/Core\.Command decode error/)
   })
+
+  it("invokeExn returns the decoded value on a successful round-trip", async () => {
+    // Covers the Ok branch of invokeExn (Core.res.mjs:81 `return v._0`).
+    // The earlier invokeExn tests only drive the decode-failure and
+    // rust-rejection error paths.
+    Mocks.mockIPC(async (cmd, args) => {
+      expect(cmd).toBe("greet")
+      expect(args).toEqual({ name: "ReScript" })
+      return "hello, ReScript"
+    })
+
+    const greet = Command.make(
+      "greet",
+      ({ name }) => ({ name }),
+      (raw) => (typeof raw === "string" ? Ok(raw) : Err("expected string")),
+    )
+
+    const out = await Command.invokeExn(greet, { name: "ReScript" })
+    expect(out).toBe("hello, ReScript")
+  })
 })

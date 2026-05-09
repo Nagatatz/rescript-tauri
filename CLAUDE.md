@@ -67,6 +67,7 @@ make check                      # 品質チェック (lint + test)
 @.claude/rules/documentation.md
 @.claude/rules/definition-of-done.md
 @.claude/rules/permission-modes.md
+@.claude/rules/pre-flight-verification.md
 
 <!--
   /learn skill が `.claude/rules/learnings.md` を生成したら、以下のコメントを外して有効化する。
@@ -86,6 +87,8 @@ make check                      # 品質チェック (lint + test)
 | **worktree-safety** | git worktree の作成・削除・整理時 / CWD 壊れの復旧時 |
 | **context-management** | コンテキスト圧迫時 / 探索→実装の切替時 |
 | **token-optimization** | サブエージェント / モデル選択時 |
+| **parallel-implementation-swarm** | N >= 2 の独立実装（plugin / template 並列追加）/ 番号予約 + coordinator + batch merge |
+| **coverage-climber** | 「カバレッジを上げて」「coverage を N% まで」/ state file ベースの再開可能ループ |
 
 ## 個人ノート
 

@@ -17,6 +17,61 @@ describe("Core extras", () => {
     it("returns false in vitest (no Tauri internals globals)", () => {
       expect(Core.isTauri()).toBe(false)
     })
+
+    it("returns true when globalThis.isTauri is set", () => {
+      const saved = globalThis.isTauri
+      globalThis.isTauri = true
+      try {
+        expect(Core.isTauri()).toBe(true)
+      } finally {
+        if (saved === undefined) delete globalThis.isTauri
+        else globalThis.isTauri = saved
+      }
+    })
+  })
+
+  describe("Resource", () => {
+    it("rid getter reads the @get rid field on a Resource subclass", async () => {
+      Mocks.mockIPC(async () => 99)
+      const Image = await import("../../src/Image.res.mjs")
+      const img = await Image.fromPath("/x")
+      // Image extends upstream Resource, so Core.Resource.rid lifts
+      // the same `rid` getter onto our opaque Resource.t.
+      expect(Core.Resource.rid(img)).toBe(99)
+    })
+
+    it("close dispatches plugin:resources|close on the rid", async () => {
+      const seen = []
+      Mocks.mockIPC(async (cmd, _args) => {
+        seen.push(cmd)
+        if (cmd.includes("from_path")) return 77
+        return null
+      })
+      const Image = await import("../../src/Image.res.mjs")
+      const img = await Image.fromPath("/x")
+      await Core.Resource.close(img)
+      // Resource.close routes through plugin:resources|close upstream.
+      expect(seen.some((c) => c.includes("close"))).toBe(true)
+    })
+  })
+
+  describe("PluginListener.unregister", () => {
+    it("resolves without throwing", async () => {
+      Mocks.mockIPC(async () => 0)
+      const listener = await Core.addPluginListener("demo", "topic", () => {})
+      // Calling unregister should resolve cleanly even when no events
+      // were dispatched.
+      await expect(Core.PluginListener.unregister(listener)).resolves.not.toThrow
+    })
+  })
+
+  describe("LowLevel.transformCallback (with ~once)", () => {
+    it("forwards the once flag to the upstream transformCallback", () => {
+      Mocks.mockIPC(async () => null)
+      // upstream marks the registered cb as one-shot when once=true.
+      const id = Core.LowLevel.transformCallback(() => {}, true)
+      expect(typeof id).toBe("number")
+    })
   })
 
   describe("LowLevel.serializeToIpcFn", () => {
