@@ -1,5 +1,10 @@
-// Verifies that the Tauri umbrella module re-exports Core / Event /
-// Window / Webview / WebviewWindow without altering their signatures.
+// Verifies that the Tauri umbrella module re-exports Common / Core /
+// Event / Window / Webview / WebviewWindow without altering their
+// signatures.
+
+let _check_common_unlisten: Tauri.Common.unlisten = () => ()
+let _check_common_color: Tauri.Common.color = {r: 0, g: 0, b: 0, a: 255}
+let _check_common_drag_drop_leave: Tauri.Common.dragDropEvent = Leave
 
 let _check_core_invoke: (
   string,

@@ -1,18 +1,23 @@
 /** Top-level umbrella module for `@rescript-tauri/core`.
 
     `open Tauri` brings the most commonly co-used Phase 1 modules into
-    scope: IPC (`Core`), event pub/sub (`Event`), and the window /
-    webview surface (`Window`, `Webview`, `WebviewWindow`). Other
-    modules (`Path`, `App`, `Dpi`, `Image`, `Menu`, `Tray`, `Mocks`)
-    are intentionally **not** re-exported — they are either utility
-    namespaces, heavy sub-module trees, or test-only — and should be
-    referenced explicitly as `Path.appConfigDir()`, `Menu.Menu.make()`,
-    etc.
+    scope: shared cross-cutting types (`Common`), IPC (`Core`), event
+    pub/sub (`Event`), and the window / webview surface (`Window`,
+    `Webview`, `WebviewWindow`). Other modules (`Path`, `App`, `Dpi`,
+    `Image`, `Menu`, `Tray`, `Mocks`) are intentionally **not**
+    re-exported — they are either utility namespaces, heavy sub-module
+    trees, or test-only — and should be referenced explicitly as
+    `Path.appConfigDir()`, `Menu.Menu.make()`, etc.
 
     Decision recorded in PRD §10 #1 and steering 023.
 
     See: https://v2.tauri.app/reference/javascript/api/
 */
+
+/** Shared cross-cutting types used across Window / Webview /
+    WebviewWindow / Event: `unlisten`, `color`, `dragDropEvent`.
+*/
+module Common = Common
 
 /** IPC bridge: `Raw.invoke`, typed `Command`, streaming `Channel`,
     and `convertFileSrc`.
