@@ -19,6 +19,7 @@ rescript-tauri/                          # monorepo root
 │   ├── core/                            # @rescript-tauri/core
 │   ├── plugin-fs/                       # @rescript-tauri/plugin-fs (Phase 2+)
 │   ├── plugin-dialog/                   # @rescript-tauri/plugin-dialog (Phase 2+)
+│   ├── plugin-shell/                    # @rescript-tauri/plugin-shell (Phase 2+)
 │   └── schema/                          # @rescript-tauri/schema (Phase 2)
 ├── examples/                            # ビルド可能な使用例（CI ゲート対象）
 │   ├── hello-world/                     # Phase 1 必須
@@ -151,6 +152,24 @@ packages/plugin-dialog/                  # 着手済み (steering 035, 2026-05-0
 `peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-dialog ^2.7.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
 
 upstream `open(options)` の TypeScript 条件型戻り値を 4 関数（`openFile` / `openFiles` / `openDirectory` / `openDirectories`）に分割して静的化（steering 035 §3.1）。`MessageDialogButtonsYesNoCustom` 等のカスタム文言・examples・専用 CI は plugin-dialog 後続 sub-steering に分離。
+
+```
+packages/plugin-shell/                   # 着手済み (steering 051, 2026-05-09)
+├── src/
+│   └── PluginShell.res / .resi          # openPath / Command / Child / EventEmitter
+├── tests/
+│   ├── plugin_shell_signature.res       # 型レベル網羅 (21 _check_)
+│   └── runtime/plugin_shell.test.mjs    # vitest + Mocks 経由 (8 cases)
+├── rescript.json
+├── package.json                         # @rescript-tauri/plugin-shell
+├── vitest.config.mjs
+├── CHANGELOG.md
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-shell ^2.3.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+upstream `Command.create({encoding: 'raw'})` の TypeScript 条件型戻り値を `Command.create` / `Command.createRaw` / `Command.sidecar` / `Command.sidecarRaw` に分割して静的化（steering 051 §3.1）。トップレベル `open` は ReScript 予約語との衝突回避のため `openPath` にリネーム。`examples/plugin-shell-demo/` と sphinx-docs `user/plugin-shell.md` は後続 sub-steering に分離。
 
 ### 2.3 `packages/schema/`
 
