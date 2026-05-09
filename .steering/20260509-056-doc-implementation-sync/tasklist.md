@@ -59,11 +59,11 @@
 
 ### Task E: M5+M6+L1 — functional-design Core / Event / Dpi セクション拡張
 
-- [ ] §2.1 を §2.1.1〜§2.1.7 のサブセクションに分割し、`isTauri` / `Resource` / `PluginListener` / `addPluginListener` / `permission*` / `LowLevel` / `Internal` を追記
-- [ ] §2.2 で `PhysicalSize` / `PhysicalPosition` の脚注（Dpi モジュール出所）を追加
-- [ ] §2.5 Dpi セクションに `LogicalSize` / `PhysicalSize` / `LogicalPosition` / `PhysicalPosition` / `Size` / `Position` の型定義リストを追加
-- [ ] `pnpm --recursive build` 成功確認
-- [ ] commit: `📝 Expand functional-design Core/Dpi sections to match Core.resi surface`
+- [x] §2.1 に「IPC 中核」「プラグイン共通基盤・環境」の 2 つのシグネチャブロックを設け、`isTauri` / `Resource` / `PluginListener` / `addPluginListener` / `permissionState` / `checkPermissions` / `requestPermissions` / `LowLevel` / `Internal` / `decoder` を追記。実装方針節も更新
+- [x] §2.2 修正時に `PhysicalSize` / `PhysicalPosition` の出所 (`Dpi`) コメントを Predefined Tauri 注釈に同梱済み（Task B で実施）
+- [x] §2.5 Dpi セクションを完全な opaque-type + accessor 仕様に置き換え、`LogicalSize` / `PhysicalSize` / `LogicalPosition` / `PhysicalPosition` / `Size` / `Position` を追記。`Event` 連携の補足も追加
+- [x] `pnpm --recursive --workspace-concurrency=1 build` 成功確認（並列時の race 回避）
+- [x] commit: `📝 Expand functional-design Core/Dpi sections to match Core.resi surface`
 
 ### Task F: M7 — sphinx-docs plugin-shell 言及追加
 
