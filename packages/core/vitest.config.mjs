@@ -11,6 +11,16 @@ export default defineConfig({
       reporter: ["text-summary", "json-summary", "lcov", "html"],
       reportsDirectory: "./coverage",
       reportOnFailure: false,
+      // Thresholds set 2-3 pt below the value measured at the close
+      // of steering 051 so coverage cannot regress. To raise these,
+      // re-run `pnpm --filter @rescript-tauri/core test:coverage`
+      // and bump in lockstep with the new floor.
+      thresholds: {
+        statements: 92,
+        branches: 73,
+        functions: 95,
+        lines: 92,
+      },
     },
   },
 })
