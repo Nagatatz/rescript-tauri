@@ -16,7 +16,7 @@
 
 Production-ready ReScript bindings for Tauri 2.x's official JS SDK (`@tauri-apps/api`). A monorepo centered on `@rescript-tauri/core`, exposing the entire Tauri public API surface—IPC, Event, Window, Webview, Menu, Tray—from ReScript.
 
-> **Status:** Phase 1 + Phase 2 implementations are merged on `main`. The `@rescript-tauri/core`, `@rescript-tauri/plugin-fs`, `@rescript-tauri/plugin-dialog`, and `@rescript-tauri/schema` packages are awaiting their first npm publish (`v0.1.0` track); CI matrices, the release runbook, and the Sphinx documentation site are all in place. See [`docs/product-requirements.md`](./docs/product-requirements.md) and [`docs/functional-design.md`](./docs/functional-design.md) for the full scope.
+> **Status:** Phase 1 + Phase 2 implementations are merged on `main`. `@rescript-tauri/core` provides 100% coverage of the stable public surface of `@tauri-apps/api` v2.11.0 (only `Image.transformImage` is intentionally omitted as upstream marks it unstable). The `@rescript-tauri/core`, `@rescript-tauri/plugin-fs`, `@rescript-tauri/plugin-dialog`, and `@rescript-tauri/schema` packages are awaiting their first npm publish (`v0.1.0` track); CI matrices, the release runbook, and the Sphinx documentation site are all in place. See [`docs/product-requirements.md`](./docs/product-requirements.md) and [`docs/functional-design.md`](./docs/functional-design.md) for the full scope.
 >
 > **Visibility:** the repository is **public**. The npm version badges above will populate once the first `0.1.0` releases ship. The CI workflow status is summarized in [`.github/workflows/README.md`](./.github/workflows/README.md). [`LICENSE`](./LICENSE) (MIT) and [`CONTRIBUTING.md`](./CONTRIBUTING.md) are in place.
 

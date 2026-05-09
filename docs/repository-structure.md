@@ -72,23 +72,23 @@ rescript-tauri/                          # monorepo root
 
 ### 2.1 `packages/core/`
 
-`@rescript-tauri/core`。Phase 1 の中心パッケージ。
+`@rescript-tauri/core`。Phase 1 の中心パッケージ。`@tauri-apps/api` v2.11.0 の **stable public 表面の 100%** をカバー（`Image.transformImage` のみ upstream の "API not stable" 明記により意図的に除外。steering 049, 2026-05-09）。
 
 ```
 packages/core/
 ├── src/
-│   ├── Core.res / .resi                 # invoke / convertFileSrc / Channel / Command
-│   ├── Event.res / .resi                # listen / once / emit / Predefined
-│   ├── Window.res / .resi               # Window クラスバインディング
-│   ├── Webview.res / .resi
+│   ├── Core.res / .resi                 # invoke / convertFileSrc / Channel / Command / Resource / PluginListener / addPluginListener / permissions / isTauri / LowLevel
+│   ├── Event.res / .resi                # listen / once / emit / emitTo / TauriEvent enum / ~target option
+│   ├── Window.res / .resi               # Window クラスバインディング (~90 メソッド)
+│   ├── Webview.res / .resi              # Webview クラスバインディング (getByLabel / clearAllBrowsingData 含む)
 │   ├── WebviewWindow.res / .resi
 │   ├── Path.res / .resi
-│   ├── App.res / .resi
+│   ├── App.res / .resi                  # BundleType / DataStore / onBackButtonPress / supportsMultipleWindows 含む完全カバー
 │   ├── Dpi.res / .resi
-│   ├── Menu.res / .resi
+│   ├── Menu.res / .resi                 # NativeIcon polymorphic variant 含む
 │   ├── Tray.res / .resi
 │   ├── Image.res / .resi
-│   ├── Mocks.res / .resi
+│   ├── Mocks.res / .resi                # mockConvertFileSrc / mockIPCOptions 含む
 │   └── Tauri.res / .resi                # 上位 re-export
 ├── tests/
 │   ├── (型レベルテスト, *.res)         # コンパイル成功 = pass

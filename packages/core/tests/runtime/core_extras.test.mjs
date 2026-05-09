@@ -48,10 +48,7 @@ describe("Core extras", () => {
       const got2 = await Core.requestPermissions("fs")
       expect(got2).toEqual({ foo: "granted" })
 
-      expect(seen).toEqual([
-        "plugin:fs|check_permissions",
-        "plugin:fs|request_permissions",
-      ])
+      expect(seen).toEqual(["plugin:fs|check_permissions", "plugin:fs|request_permissions"])
     })
   })
 

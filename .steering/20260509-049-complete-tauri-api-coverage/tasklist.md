@@ -67,11 +67,11 @@
 
 ## Phase 7: ドキュメント更新
 
-- [ ] `packages/core/README.md` に新規 API を Features に追記
-- [ ] `README.md` (root) のカバレッジ記述を更新
-- [ ] `docs/repository-structure.md` の Phase 1 完了状況を更新
-- [ ] `sphinx-docs/dev/architecture.md` を更新（該当部）
-- [ ] コミット: `📝 Update docs to reflect 100% @tauri-apps/api coverage`
+- [x] `packages/core/README.md` に新規 API を Features に追記
+- [x] `README.md` (root) のカバレッジ記述を更新
+- [x] `docs/repository-structure.md` の Phase 1 完了状況を更新
+- [x] `sphinx-docs/dev/architecture.md` は既に "entire upstream public API surface" 表記済 — 修正不要
+- [x] コミット: `📝 Update docs to reflect 100% @tauri-apps/api coverage`
 
 ## Phase 8: ビルド・テスト・最終確認
 
