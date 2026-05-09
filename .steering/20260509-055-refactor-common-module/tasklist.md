@@ -18,36 +18,17 @@
 - [x] `pnpm --filter @rescript-tauri/core test` 成功確認 (既存 runtime テスト無破壊)
 - [x] コミット: `✨ Add Common module for shared types (unlisten / color / dragDropEvent)`
 
-### Task 2: `Window.res(i)` を Common 参照に切り替え
-- [x] `Window.res` から `unlisten` / `color` / `dragDropEvent` 型定義を削除し alias 化
-- [x] `Window.resi` の同 3 型を `Common.X` 参照に変更
-- [x] `Window.res` の workaround コメント (line 283-284) と `Window.resi` の同等コメント (line 805-808) を削除
-- [x] `let onDragDropEvent` を `Common.decodeDragDropEvent` 経由に書き換え
-- [x] `tests/window_signature.res` を更新 (`Window.color` → `Common.color` 等)
-- [x] `pnpm --filter @rescript-tauri/core build && test` 成功確認
-- [x] コミット: `♻️ Switch Window to Common.{unlisten, color, dragDropEvent}`
+### Tasks 2-5: 既存モジュールを Common 参照に切り替え (合体コミット)
 
-### Task 3: `Webview.res(i)` を Common 参照に切り替え
-- [x] `Webview.res` から `unlisten` / `dragDropEvent` 削除し alias 化
-- [x] `Webview.resi` の同型を `Common.X` 参照に変更
-- [x] `Webview.options.backgroundColor` / `setBackgroundColor` の型を `Common.color` に変更
-- [x] `let onDragDropEvent` を `Common.decodeDragDropEvent` 経由に書き換え
-- [x] `tests/webview_signature.res` を更新
-- [x] `pnpm --filter @rescript-tauri/core build && test` 成功確認
-- [x] コミット: `♻️ Drop Webview→Window dependency by routing through Common`
+Window / Webview / WebviewWindow / Event は `Window.color` の cross-reference を介して相互依存していたため、当初予定していた個別コミットには分割できず、4 モジュールを **1 つの合体コミット** として landing した:
 
-### Task 4: `WebviewWindow.res(i)` の `color` 参照を Common に切り替え
-- [x] `WebviewWindow.options.backgroundColor` の型を `Common.color` に変更
-- [x] `WebviewWindow.setBackgroundColor` の型を `Common.color` に変更
-- [x] `tests/webview_window_signature.res` を更新
-- [x] `pnpm --filter @rescript-tauri/core build && test` 成功確認
-- [x] コミット: `♻️ Switch WebviewWindow color references to Common.color`
-
-### Task 5: `Event.res(i)` の `unlisten` を Common に切り替え
-- [x] `Event.res` の `type unlisten` を `Common.unlisten` 参照に変更
-- [x] `Event.resi` の同 (`.resi` には独立定義はなく `unlisten` を export しているのみ。要確認)
-- [x] `pnpm --filter @rescript-tauri/core build && test` 成功確認
-- [x] コミット: `♻️ Switch Event.unlisten to Common.unlisten`
+- [x] `Window.res(i)`: `unlisten` / `color` / `dragDropEvent` を削除し `Common.X` 参照化、workaround コメント (line 283-284 / 805-808) を削除、`onDragDropEvent` を `Common.decodeDragDropEvent` 経由に書き換え
+- [x] `Webview.res(i)`: `unlisten` / `dragDropEvent` 削除、`backgroundColor` 系を `Common.color` 参照化、`onDragDropEvent` を `Common.decodeDragDropEvent` 経由に書き換え (Webview→Window 依存が完全に消えた)
+- [x] `WebviewWindow.res(i)`: `backgroundColor` 系を `Common.color` 参照化
+- [x] `Event.res(i)`: `unlisten` を `Common.unlisten` 参照化
+- [x] `tests/window_signature.res` / `tests/webview_signature.res` / `tests/webview_window_signature.res` / `tests/event_signature.res` 更新
+- [x] `pnpm --filter @rescript-tauri/core build && test` 成功確認 (182 tests pass)
+- [x] コミット: `♻️ Route Window / Webview / WebviewWindow / Event through Common`
 
 ### Task 6: `Tauri.res(i)` umbrella に Common 追加
 - [x] `Tauri.res` に `module Common = Common` 追加
