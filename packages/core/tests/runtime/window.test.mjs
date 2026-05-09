@@ -313,3 +313,107 @@ describe("Window", () => {
     delete globalThis.window.__TAURI_INTERNALS__
   })
 })
+
+// Window.onDragDropEvent's variant translation lives in the same
+// ReScript wrapper as Webview's. The earlier test only verifies
+// registration; this block monkey-patches upstream's
+// Window.prototype.onDragDropEvent to capture the inner switch
+// closure and feed it synthetic payloads, mirroring the Webview
+// drag-drop variant block.
+describe("Window drag-drop variant interpretation", () => {
+  let savedOnDragDropEvent
+  let warnSpy
+
+  beforeEach(async () => {
+    globalThis.window = globalThis.window ?? {}
+    globalThis.window.__TAURI_INTERNALS__ = globalThis.window.__TAURI_INTERNALS__ ?? {}
+    globalThis.window.__TAURI_INTERNALS__.metadata = {
+      currentWindow: { label: "main" },
+    }
+
+    const upstream = await import("@tauri-apps/api/window")
+    savedOnDragDropEvent = upstream.Window.prototype.onDragDropEvent
+    warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {})
+  })
+
+  afterEach(async () => {
+    if (savedOnDragDropEvent) {
+      const upstream = await import("@tauri-apps/api/window")
+      upstream.Window.prototype.onDragDropEvent = savedOnDragDropEvent
+    }
+    warnSpy.mockRestore()
+    delete globalThis.window.__TAURI_INTERNALS__
+  })
+
+  // Capture the ReScript wrapper closure passed into upstream.
+  const captureWrapper = async () => {
+    const upstream = await import("@tauri-apps/api/window")
+    let captured
+    upstream.Window.prototype.onDragDropEvent = (handler) => {
+      captured = handler
+      return Promise.resolve(() => {})
+    }
+    const Window = await import("../../src/Window.res.mjs")
+    const w = Window.make("dragdrop-variant")
+    const state = { received: null }
+    await Window.onDragDropEvent(w, (event) => {
+      state.received = event
+    })
+    return { state, wrapper: captured }
+  }
+
+  const samplePos = { x: 10, y: 20 }
+
+  it('switches on type:"enter" → Enter({paths, position})', async () => {
+    const t = await captureWrapper()
+    t.wrapper({
+      event: "tauri://drag-enter",
+      id: 1,
+      payload: { type: "enter", paths: ["/a.txt"], position: samplePos },
+    })
+    expect(t.state.received.TAG).toBe("Enter")
+    expect(t.state.received.paths).toEqual(["/a.txt"])
+  })
+
+  it('switches on type:"over" → Over({position})', async () => {
+    const t = await captureWrapper()
+    t.wrapper({
+      event: "tauri://drag-over",
+      id: 2,
+      payload: { type: "over", position: samplePos },
+    })
+    expect(t.state.received.TAG).toBe("Over")
+  })
+
+  it('switches on type:"drop" → Drop({paths, position})', async () => {
+    const t = await captureWrapper()
+    t.wrapper({
+      event: "tauri://drag-drop",
+      id: 3,
+      payload: { type: "drop", paths: ["/a.txt", "/b.txt"], position: samplePos },
+    })
+    expect(t.state.received.TAG).toBe("Drop")
+    expect(t.state.received.paths).toHaveLength(2)
+  })
+
+  it('switches on type:"leave" → Leave', async () => {
+    const t = await captureWrapper()
+    t.wrapper({
+      event: "tauri://drag-leave",
+      id: 4,
+      payload: { type: "leave", position: samplePos },
+    })
+    expect(t.state.received).toBe("Leave")
+  })
+
+  it("logs Console.warn and ignores unknown payload types", async () => {
+    const t = await captureWrapper()
+    t.wrapper({
+      event: "tauri://drag-future",
+      id: 5,
+      payload: { type: "future-unknown-variant", position: samplePos },
+    })
+    expect(t.state.received).toBeNull()
+    expect(warnSpy).toHaveBeenCalledOnce()
+  })
+})

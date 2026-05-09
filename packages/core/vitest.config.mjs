@@ -11,15 +11,19 @@ export default defineConfig({
       reporter: ["text-summary", "json-summary", "lcov", "html"],
       reportsDirectory: "./coverage",
       reportOnFailure: false,
-      // Thresholds set 2-3 pt below the value measured at the close
-      // of steering 051 so coverage cannot regress. To raise these,
-      // re-run `pnpm --filter @rescript-tauri/core test:coverage`
-      // and bump in lockstep with the new floor.
+      // Thresholds set 2-3 pt below the value measured after the
+      // C/D/E residual cleanup (invokeExn Ok path, Window drag-drop
+      // variant interpretation, the Menu accessors that had been
+      // skipped). The remaining uncovered surface is the
+      // defensive-fallback category that won't fire under normal
+      // operation (Internal.exnToJson non-Error fallback, Event
+      // listen/once with-target wrapper closures). Raise this floor
+      // only after a corresponding test addition.
       thresholds: {
-        statements: 92,
-        branches: 73,
-        functions: 95,
-        lines: 92,
+        statements: 96,
+        branches: 80,
+        functions: 96,
+        lines: 96,
       },
     },
   },
