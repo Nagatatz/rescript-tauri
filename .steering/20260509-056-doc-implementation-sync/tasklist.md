@@ -22,19 +22,20 @@
 
 ### Task B: H2+H3 — Event.Predefined → Event.TauriEvent への doc 移行
 
-- [ ] `docs/functional-design.md` 内 `Event.Predefined` 参照 6 箇所のうち Event 関連 5 箇所を書き換え (L435 Menu は除外)
-  - [ ] L26 (ツリー図コメント)
-  - [ ] L206-213 (`Predefined` モジュール仕様 → `TauriEvent` モジュール仕様)
-  - [ ] L227 (機能リスト)
-  - [ ] L589 (テスト対応表)
-  - [ ] L670 (意思決定表)
-- [ ] `docs/product-requirements.md` 内 4 箇所を書き換え
-  - [ ] L144-150 (User Story)
-  - [ ] L276 (状態表: Should/Phase 1 → Done/Phase 1, ラベル修正)
-  - [ ] L422 (decision table)
-- [ ] doc 内に `Event.Predefined` の文字列が残存しないことを `grep` で確認
-- [ ] `pnpm --recursive build` 成功確認
-- [ ] commit: `📝 Replace Event.Predefined references with Event.TauriEvent`
+- [x] `docs/functional-design.md` 内 `Event.Predefined` 参照 6 箇所のうち Event 関連 5 箇所を書き換え (L435 Menu は除外)
+  - [x] L26 (ツリー図コメント)
+  - [x] L206-213 (`Predefined` モジュール仕様 → `TauriEvent` モジュール仕様 + listen/once シグネチャを result 形式に修正)
+  - [x] L227 (機能リスト)
+  - [x] L589 (テスト対応表)
+  - [x] L670 (意思決定表)
+- [x] `docs/product-requirements.md` 内 4 箇所を書き換え
+  - [x] L144-150 (User Story: 16 種に拡張、利用形態を文字列定数として明示)
+  - [x] L276 (状態表: Should/Phase 1 → Must/Phase 1（実装済み）、ラベル修正)
+  - [x] L422 (decision table)
+- [x] `docs/glossary.md` の Predefined Event エントリで `Event.TauriEvent` への対応を明記
+- [x] doc 内に `Event.Predefined` の文字列が残存しないことを `grep` で確認 (Menu 系 / `docs/ideas/RFC-0001` の編集禁止文書のみ残存)
+- [x] `pnpm --recursive build` 成功確認
+- [x] commit: `📝 Replace Event.Predefined references with Event.TauriEvent`
 
 ## Phase 3: 実装 (MEDIUM)
 

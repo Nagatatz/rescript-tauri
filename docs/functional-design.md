@@ -23,7 +23,7 @@ rescript-tauri/                       # monorepo root
 │   ├── core/                         # @rescript-tauri/core (本書スコープ)
 │   │   ├── src/
 │   │   │   ├── Core.res / .resi      # invoke / convertFileSrc / Channel / Command
-│   │   │   ├── Event.res / .resi     # listen / once / emit / Predefined
+│   │   │   ├── Event.res / .resi     # listen / once / emit / TauriEvent
 │   │   │   ├── Window.res / .resi
 │   │   │   ├── Webview.res / .resi
 │   │   │   ├── WebviewWindow.res / .resi
@@ -198,19 +198,48 @@ let make: (
   ~decode: JSON.t => result<'payload, string>,
 ) => t<'payload>
 
-let listen: (t<'payload>, event<'payload> => unit) => promise<unlisten>
-let once: (t<'payload>, event<'payload> => unit) => promise<unlisten>
+let listen: (
+  t<'payload>,
+  result<event<'payload>, string> => unit,
+  ~target: eventTarget=?,
+) => promise<unlisten>
+let once: (
+  t<'payload>,
+  result<event<'payload>, string> => unit,
+  ~target: eventTarget=?,
+) => promise<unlisten>
 let emit: (t<'payload>, 'payload) => promise<unit>
 let emitTo: (t<'payload>, ~target: eventTarget, 'payload) => promise<unit>
 
-module Predefined: {
-  let closeRequested: t<unit>
-  let focus: t<unit>
-  let blur: t<unit>
-  let scaleFactorChanged: t<{scaleFactor: float, size: PhysicalSize.t}>
-  let resized: t<PhysicalSize.t>
-  let moved: t<PhysicalPosition.t>
-  let fileDrop: t<fileDropEvent>
+/* Predefined Tauri event names — string-level constants that callers feed
+   into `Event.make(~name=..., ~decode=...)` to build a typed handle. The
+   polymorphic-variant `tauriEvent` mirrors upstream `TauriEvent` exactly
+   (16 values, see Event.resi). PhysicalSize / PhysicalPosition payloads
+   are defined in the `Dpi` module (see §2.5). */
+type tauriEvent = [
+  | #"tauri://resize"
+  | #"tauri://move"
+  | #"tauri://close-requested"
+  // ... 13 more — see packages/core/src/Event.resi
+]
+
+module TauriEvent: {
+  let windowResized: tauriEvent
+  let windowMoved: tauriEvent
+  let windowCloseRequested: tauriEvent
+  let windowDestroyed: tauriEvent
+  let windowFocus: tauriEvent
+  let windowBlur: tauriEvent
+  let windowScaleFactorChanged: tauriEvent
+  let windowThemeChanged: tauriEvent
+  let windowCreated: tauriEvent
+  let windowSuspended: tauriEvent
+  let windowResumed: tauriEvent
+  let webviewCreated: tauriEvent
+  let dragEnter: tauriEvent
+  let dragOver: tauriEvent
+  let dragDrop: tauriEvent
+  let dragLeave: tauriEvent
 }
 ```
 
@@ -224,7 +253,7 @@ module Predefined: {
 | PRD Story | 対応箇所 |
 |---|---|
 | 2-1 typed Event ハンドル | `make` / `listen` / `once` / `emit` / `emitTo` |
-| 2-2 Predefined イベント | `Predefined.*` |
+| 2-2 Predefined イベント名 | `TauriEvent.*`（`tauriEvent` 文字列定数 16 種） |
 
 ---
 
@@ -586,7 +615,7 @@ let setTitle: (t, string) => promise<unit>
 | 1-2 typed Command | `Core.Command` | `make`, `invoke`, `invokeExn` | `tests/core_command.res`, encode/decode round-trip |
 | 1-3 schema 非依存 | `Core.Command` 署名 | (`JSON.t` のみ) | `tests/core_command_no_schema.res` |
 | 2-1 typed Event | `Event` | `make`, `listen`, `once`, `emit`, `emitTo` | `tests/event.res`, listen/unlisten 検証 |
-| 2-2 Predefined Event | `Event.Predefined` | `closeRequested` ほか 7 種 | `tests/event_predefined.res` |
+| 2-2 Predefined Event 名 | `Event.TauriEvent` | `windowCloseRequested` ほか 16 種（`tauriEvent` 文字列定数） | `tests/event_signature.res` |
 | 2-3 Channel | `Core.Channel` | `make`, `onMessage`, `id` | `tests/core_channel.res` |
 | 3-1 Window opaque | `Window` | `t`, 全 `@send` メソッド | `tests/window.res`（型レベル） |
 | 3-2 WebviewWindow 継承 | `WebviewWindow` | `asWindow`, `asWebview` | `tests/webview_window.res` |
@@ -667,7 +696,7 @@ let setTitle: (t, string) => promise<unit>
 | 1 | `Tauri.res` re-export 範囲 | **Core / Event / Window / Webview / WebviewWindow 確定**（経緯: `.steering/20260509-023-tauri-reexport/`） | **確定済み（2026-05-09）** |
 | 2 | `Channel` を `Core` 内 vs 独立モジュール | **`Core.Channel` サブモジュール採用（確定）** | **確定済み（Phase 1 設計レビュー）** |
 | 3 | `*Exn` 命名 | **`*Exn` 採用（確定）**（`@rescript/core` 慣習） | **確定済み** |
-| 4 | `Event.Predefined` の網羅範囲 | RFC 列挙 7 種を Must | Phase 1 後継続追加 |
+| 4 | `Event.TauriEvent` の網羅範囲 | **upstream `TauriEvent` enum 16 種を完全カバー（確定）** — `closeRequested` / `focus` / `blur` / `scaleFactorChanged` / `resized` / `moved` / `themeChanged` / `webviewCreated` / `windowCreated` / `windowSuspended` / `windowResumed` / drag-* (4 種) / `windowDestroyed`。typed handle ではなく `Event.make(~name=TauriEvent.*, ~decode=...)` 形式で利用 | **確定済み（2026-05-09、`packages/core/src/Event.resi`）** |
 | 5 | `Mocks` の独立パッケージ化 | **core 同梱を継続（確定）**（経緯: `.steering/20260509-045-mocks-packaging-decision/`） | **確定済み（2026-05-09）** |
 | 6 | Belt-only ユーザー向け shim 提供可否 | 当面提供しない（`@rescript/core` を peerDep 必須） | Phase 1 リリース直前 |
 
