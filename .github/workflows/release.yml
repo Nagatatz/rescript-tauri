@@ -12,6 +12,7 @@ on:
       - "plugin-log-v*"
       - "plugin-os-v*"
       - "plugin-clipboard-manager-v*"
+      - "plugin-http-v*"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -87,6 +88,10 @@ jobs:
             plugin-clipboard-manager-v*)
               echo "package=@rescript-tauri/plugin-clipboard-manager" >> "$GITHUB_OUTPUT"
               echo "directory=packages/plugin-clipboard-manager"     >> "$GITHUB_OUTPUT"
+              ;;
+            plugin-http-v*)
+              echo "package=@rescript-tauri/plugin-http" >> "$GITHUB_OUTPUT"
+              echo "directory=packages/plugin-http"     >> "$GITHUB_OUTPUT"
               ;;
             v*)
               echo "package=@rescript-tauri/core" >> "$GITHUB_OUTPUT"

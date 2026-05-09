@@ -1,0 +1,36 @@
+# Changelog
+
+All notable changes to **`@rescript-tauri/plugin-http`** are
+documented in this file.
+
+The format is based on
+[Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.1.0/), and
+this package adheres to
+[Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
+
+## Unreleased
+
+### Added
+
+- Bindings for `@tauri-apps/plugin-http` v2.5.9 — 100% of the
+  stable public surface (1 function + 5 record / variant types).
+- `fetch(input, ~init=?)` — polymorphic Web-Fetch wrapper that
+  bypasses webview CORS by routing through the Rust side. Returns
+  `'response` (the DOM `Response` type is intentionally not bound).
+- `proxy<'proxyValue>` (parameterized over the proxy value type so
+  `string` / `proxyConfig` both type-check), `proxyConfig`,
+  `basicAuth`, `clientOptions<'proxyValue>`, and
+  `dangerousSettings` records covering the Tauri-specific options.
+- `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
+  `@tauri-apps/plugin-http ^2.0.0`, `rescript >=12.0.0`,
+  `@rescript/core >=1.6.0`.
+- GitHub Actions workflows: `tests-plugin-http-types.yml` /
+  `tests-plugin-http-runtime.yml`, plus `release.yml` recognition
+  of the `plugin-http-v*` tag prefix and a `plugin-http` entry in
+  the `tests-coverage.yml` matrix.
+
+### Deferred to follow-up sub-steerings
+
+- Runnable example app (`examples/plugin-http-demo/`).
+- sphinx-docs `user/plugin-http.md` page.
+- Typed Web Fetch API surface (`Request` / `Response` / etc.).

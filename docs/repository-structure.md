@@ -24,6 +24,7 @@ rescript-tauri/                          # monorepo root
 │   ├── plugin-log/                      # @rescript-tauri/plugin-log (Phase 2+)
 │   ├── plugin-os/                       # @rescript-tauri/plugin-os (Phase 2+)
 │   ├── plugin-clipboard-manager/        # @rescript-tauri/plugin-clipboard-manager (Phase 2+)
+│   ├── plugin-http/                     # @rescript-tauri/plugin-http (Phase 2+)
 │   └── schema/                          # @rescript-tauri/schema (Phase 2)
 ├── examples/                            # ビルド可能な使用例（CI ゲート対象）
 │   ├── hello-world/                     # Phase 1 必須
@@ -245,6 +246,24 @@ packages/plugin-clipboard-manager/       # 着手済み (steering 057, 2026-05-0
 `peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-clipboard-manager ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
 
 `readImage` は `RescriptTauriCore.Image.t` を返す（peerDep 経由で core モジュールを再利用、独自 type を持たない）。`writeImage` は upstream union (`string | Image | Uint8Array | ArrayBuffer | number[]`) を polymorphic `'image` で受ける。`examples/plugin-clipboard-manager-demo/` と sphinx-docs `user/plugin-clipboard-manager.md` は後続 sub-steering に分離。
+
+```
+packages/plugin-http/                    # 着手済み (steering 058, 2026-05-09)
+├── src/
+│   └── PluginHttp.res / .resi           # fetch + 5 records (basicAuth/proxyConfig/proxy/dangerousSettings/clientOptions)
+├── tests/
+│   ├── plugin_http_signature.res        # 型レベル網羅 (8 _check_)
+│   └── runtime/plugin_http.test.mjs     # vitest + __TAURI_INTERNALS__ stub (3 cases)
+├── rescript.json
+├── package.json                         # @rescript-tauri/plugin-http
+├── vitest.config.mjs
+├── CHANGELOG.md
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-http ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+upstream `fetch(input, init)` は Web Fetch API のラッパー。`input` (`string | URL | Request`) / `init` (`RequestInit & ClientOptions`) / 戻り値 `Response` は DOM 型のため、ReScript 側では polymorphic `'input` / `'init` / `'response` で受け流し、呼び出し側で型注釈を付ける運用とする。Tauri 固有の設定 (`proxy` / `clientOptions` / `proxyConfig` / `dangerousSettings` / `basicAuth`) は明示的な record 型として公開。`proxy<'proxyValue>` と `clientOptions<'proxyValue>` は upstream の `string | ProxyConfig` union を polymorphic `'proxyValue` で表現。`examples/plugin-http-demo/` と sphinx-docs `user/plugin-http.md`、および完全な Web Fetch API 型バインディングは後続 sub-steering に分離。
 
 ### 2.3 `packages/schema/`
 
