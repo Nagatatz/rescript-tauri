@@ -323,6 +323,10 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
   - `packages/core/tests/*.res` のコンパイル成功を CI 必須条件にする。
   - `.resi` で公開された全シンボル（`let` / `module` / `type`）の **100%** を `tests/` 配下から少なくとも 1 度参照する。
   - CI に grep ベースのカバレッジチェックジョブを追加し、未参照シンボルを検出した場合 fail する。
+- 行 / 分岐 / 関数カバレッジ（観測フェーズ）:
+  - 全公開パッケージ（`core` / `plugin-fs` / `plugin-dialog` / `schema`）の vitest ランタイムテストに対して `@vitest/coverage-v8` で計測し、CI ジョブ `tests-coverage` で Job summary と artifact（LCOV / HTML、30 日保持）として可視化する。
+  - 上記「`.resi` 公開シンボル参照カバレッジ」とは別概念で、ベースライン取得の観測フェーズに位置づける。
+  - **本フェーズではしきい値による fail ゲートを設けない**。数 PR ぶんの実測後、別ステアリングで `coverage.thresholds` を導入する予定。
 
 ### 5.5 ドキュメント
 
@@ -410,7 +414,7 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 | 2 | `Channel` を `Core` に同梱 vs 独立モジュール化 | `Core.Channel` サブモジュールとして実装 | Phase 1 設計レビュー |
 | 3 | `invokeExn` 命名（`invokeOrThrow` / `invokeUnsafe` 等） | `invokeExn`（`@rescript/core` 慣習） | Phase 1 直前確定 |
 | 4 | `Event.Predefined` の網羅範囲 | RFC 列挙の 7 種を Must、それ以外は段階追加 | Phase 1 リリース後継続 |
-| 5 | `Mocks` の独立パッケージ化 | 当面 `@rescript-tauri/core` に同梱 | Phase 2 で再評価 |
+| 5 | `Mocks` の独立パッケージ化 | **`@rescript-tauri/core` 同梱を継続（確定）**（経緯: `.steering/20260509-045-mocks-packaging-decision/`） | **確定済み（2026-05-09）** |
 | 6 | Belt-only ユーザー向け shim 提供可否 | 当面提供しない（`@rescript/core` を peerDep 必須にする） | Phase 1 リリース直前 |
 | 7 | ReScript v11 サポート | **除外（v12+ のみ）**（経緯: `.steering/20260508-002-rescript-v12-only/`） | **確定済み（2026-05-08）** |
 

@@ -1,14 +1,17 @@
 # Changelog
 
 ```{note}
-The Phase 1 module set is feature-complete in `main`. The first
-published version of `@rescript-tauri/core` (`v0.1.0`) will appear
-here at the Phase 1 release. Until then, the entries under
-**Unreleased** describe what landed on `main` since the project's
-inception.
+The Phase 1 / Phase 2 module sets are feature-complete in `main`.
+First publishes (`v0.1.0`, `schema-v0.1.0`, `plugin-fs-v0.1.0`,
+`plugin-dialog-v0.1.0`) are pending. Each package keeps its own
+canonical changelog under `packages/<name>/CHANGELOG.md`; this
+page collects the highlights of the pre-release state across all
+four packages.
 ```
 
-## Unreleased
+## `@rescript-tauri/core` (Unreleased)
+
+Canonical: [`packages/core/CHANGELOG.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/core/CHANGELOG.md)
 
 ### Added
 
@@ -47,17 +50,81 @@ inception.
   `Webview`, `WebviewWindow` (PRD §10 row 1, confirmed 2026-05-09).
 - Four buildable examples gated by 3-OS CI: `hello-world`,
   `window-management`, `ipc-typed`, `streaming-ipc`.
-- Nine GitHub Actions workflows (build-core, tests-core-types,
-  tests-core-runtime, doc-link-lint, examples-build,
-  compat-tauri-latest, compat-rescript-prerelease, release, docs).
 
-### Changed
+## `@rescript-tauri/schema` (Unreleased)
 
-- (none yet)
+Canonical: [`packages/schema/CHANGELOG.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/schema/CHANGELOG.md)
 
-### Fixed
+### Added
 
-- (none yet)
+- `Schema.fromSchemas` — typed `Core.Command.t<'args, 'result>`
+  from a single `S.t<'args>` + `S.t<'result>` pair.
+- `Schema.channelFromSchema` / `Schema.eventFromSchema` —
+  schema-decoded `Core.Channel` and `Event` handles.
+- `Schema.toDecoder` — lower-level `S.t<'value>` →
+  `Core.decoder<'value>` helper.
+- `Schema.S` re-exports `RescriptSchema.S` for ergonomic access.
+- Runnable example
+  [`examples/ipc-typed-with-schema`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/ipc-typed-with-schema)
+  pairing against `examples/ipc-typed/` to compare Layer 2 vs
+  Layer 3.
+- `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
+  `rescript-schema ^9.0.0`. `rescript-struct` is intentionally
+  unsupported (RFC-0002 §2.1).
+
+## `@rescript-tauri/plugin-fs` (Unreleased)
+
+Canonical: [`packages/plugin-fs/CHANGELOG.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/plugin-fs/CHANGELOG.md)
+
+### Added
+
+- 14 single-shot filesystem functions (`readTextFile` /
+  `writeTextFile` / `readFile` / `writeFile` / `exists` / `remove` /
+  `rename` / `mkdir` / `readDir` / `stat` / `lstat` / `truncate` /
+  `copyFile` / `size`).
+- `PluginFs.BaseDirectory` re-exported from
+  `@rescript-tauri/core`'s `Path.BaseDirectory.t`.
+- Runnable example
+  [`examples/plugin-fs-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-fs-demo)
+  exercising the full surface inside the `$APPLOCALDATA` sandbox.
+- `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
+  `@tauri-apps/plugin-fs ^2.5.0`.
+
+## `@rescript-tauri/plugin-dialog` (Unreleased)
+
+Canonical: [`packages/plugin-dialog/CHANGELOG.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/plugin-dialog/CHANGELOG.md)
+
+### Added
+
+- 8 native-dialog functions (`openFile` / `openFiles` /
+  `openDirectory` / `openDirectories` / `save` / `message` / `ask` /
+  `confirm`).
+- The TypeScript-level conditional return type of upstream's
+  `open(options)` is unrolled into four ReScript functions so the
+  result type stays static.
+- Runnable example
+  [`examples/plugin-dialog-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-dialog-demo)
+  driving every public function from one button each.
+- `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
+  `@tauri-apps/plugin-dialog ^2.7.0`.
+
+## Repository-level updates
+
+These changes affect the monorepo as a whole and don't belong to a
+single package CHANGELOG.
+
+### Added
+
+- GitHub Actions workflows: per-package
+  `tests-{core,schema,plugin-fs,plugin-dialog}-{types,runtime}.yml`,
+  `examples-build` matrix covering 7 examples on Linux / macOS /
+  Windows, `lint-format` (Biome), `tests-coverage` (vitest v8),
+  `compat-tauri-latest` and `compat-rescript-prerelease` nightlies,
+  `release.yml` recognizing `v*` / `schema-v*` / `plugin-fs-v*` /
+  `plugin-dialog-v*` tag prefixes.
+- User guide pages for each Phase 2 package
+  ([plugin-fs](plugin-fs.md), [plugin-dialog](plugin-dialog.md),
+  [schema](schema.md)).
 
 ---
 
