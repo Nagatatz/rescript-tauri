@@ -62,7 +62,7 @@ let _check_set_effects: (Window.t, Window.effects) => promise<unit> = Window.set
 let _check_clear_effects: Window.t => promise<unit> = Window.clearEffects
 let _check_set_icon: (Window.t, 'icon) => promise<unit> = Window.setIcon
 let _check_set_skip_taskbar: (Window.t, bool) => promise<unit> = Window.setSkipTaskbar
-let _check_set_background_color: (Window.t, Nullable.t<Window.color>) => promise<unit> = Window.setBackgroundColor
+let _check_set_background_color: (Window.t, Nullable.t<Common.color>) => promise<unit> = Window.setBackgroundColor
 let _check_set_ignore_cursor_events: (Window.t, bool) => promise<unit> = Window.setIgnoreCursorEvents
 let _check_set_cursor_icon: (Window.t, Window.cursorIcon) => promise<unit> = Window.setCursorIcon
 let _check_set_cursor_visible: (Window.t, bool) => promise<unit> = Window.setCursorVisible
@@ -92,27 +92,26 @@ let _check_inner_position: Window.t => promise<Dpi.PhysicalPosition.t> = Window.
 let _check_outer_position: Window.t => promise<Dpi.PhysicalPosition.t> = Window.outerPosition
 
 let _check_on_resized: (Window.t, Dpi.PhysicalSize.t => unit) => promise<
-  Window.unlisten,
+  Common.unlisten,
 > = Window.onResized
 let _check_on_moved: (Window.t, Dpi.PhysicalPosition.t => unit) => promise<
-  Window.unlisten,
+  Common.unlisten,
 > = Window.onMoved
 let _check_on_close_requested: (
   Window.t,
   Window.closeRequestedEvent => unit,
-) => promise<Window.unlisten> = Window.onCloseRequested
-let _check_on_focus_changed: (Window.t, bool => unit) => promise<Window.unlisten> = Window.onFocusChanged
+) => promise<Common.unlisten> = Window.onCloseRequested
+let _check_on_focus_changed: (Window.t, bool => unit) => promise<Common.unlisten> = Window.onFocusChanged
 let _check_on_scale_changed: (
   Window.t,
   Window.scaleFactorChanged => unit,
-) => promise<Window.unlisten> = Window.onScaleChanged
+) => promise<Common.unlisten> = Window.onScaleChanged
 let _check_on_theme_changed: (Window.t, Window.theme => unit) => promise<
-  Window.unlisten,
+  Common.unlisten,
 > = Window.onThemeChanged
 
 // Type aliases — referencing them at the value level keeps the type
 // in scope and counts towards public-symbol coverage.
-let _check_unlisten_type: Window.unlisten = () => ()
 let _check_theme_value: Window.theme = #light
 let _check_cursor_icon_value: Window.cursorIcon = #default
 
@@ -122,8 +121,6 @@ let _check_set_focusable: (Window.t, bool) => promise<unit> = Window.setFocusabl
 let _check_set_simple_fullscreen: (Window.t, bool) => promise<unit> = Window.setSimpleFullscreen
 let _check_toggle_maximize: Window.t => promise<unit> = Window.toggleMaximize
 let _check_unminimize: Window.t => promise<unit> = Window.unminimize
-let _check_on_drag_drop_event: (Window.t, Window.dragDropEvent => unit) => promise<
-  Window.unlisten,
+let _check_on_drag_drop_event: (Window.t, Common.dragDropEvent => unit) => promise<
+  Common.unlisten,
 > = Window.onDragDropEvent
-
-let _check_drag_drop_leave: Window.dragDropEvent = Leave
