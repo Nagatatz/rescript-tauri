@@ -35,13 +35,13 @@ rescript-tauri/
 
 ## Subsystem map
 
-`packages/core/` is the Phase 1 hub; Phase 2 adds `packages/schema/`, `packages/plugin-fs/`, `packages/plugin-dialog/`. The core layout is:
+`packages/core/` is the Phase 1 hub; Phase 2 adds `packages/schema/`, `packages/plugin-fs/`, `packages/plugin-dialog/`, `packages/plugin-shell/`, `packages/plugin-notification/`, `packages/plugin-log/`, `packages/plugin-os/`, and `packages/plugin-clipboard-manager/`. The core layout is:
 
 ```
 packages/core/
 ├── src/
-│   ├── Core.res / .resi              # invoke / convertFileSrc / Channel / Command
-│   ├── Event.res / .resi             # listen / once / emit / Predefined
+│   ├── Core.res / .resi              # invoke / convertFileSrc / Channel / Command / Resource / PluginListener / permissions / isTauri / LowLevel
+│   ├── Event.res / .resi             # listen / once / emit / TauriEvent enum
 │   ├── Window.res / .resi
 │   ├── Webview.res / .resi
 │   ├── WebviewWindow.res / .resi

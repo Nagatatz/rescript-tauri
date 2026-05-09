@@ -11,12 +11,17 @@
 [![npm: core](https://img.shields.io/npm/v/@rescript-tauri/core.svg?label=%40rescript-tauri%2Fcore)](https://www.npmjs.com/package/@rescript-tauri/core)
 [![npm: plugin-fs](https://img.shields.io/npm/v/@rescript-tauri/plugin-fs.svg?label=%40rescript-tauri%2Fplugin-fs)](https://www.npmjs.com/package/@rescript-tauri/plugin-fs)
 [![npm: plugin-dialog](https://img.shields.io/npm/v/@rescript-tauri/plugin-dialog.svg?label=%40rescript-tauri%2Fplugin-dialog)](https://www.npmjs.com/package/@rescript-tauri/plugin-dialog)
+[![npm: plugin-shell](https://img.shields.io/npm/v/@rescript-tauri/plugin-shell.svg?label=%40rescript-tauri%2Fplugin-shell)](https://www.npmjs.com/package/@rescript-tauri/plugin-shell)
+[![npm: plugin-notification](https://img.shields.io/npm/v/@rescript-tauri/plugin-notification.svg?label=%40rescript-tauri%2Fplugin-notification)](https://www.npmjs.com/package/@rescript-tauri/plugin-notification)
+[![npm: plugin-log](https://img.shields.io/npm/v/@rescript-tauri/plugin-log.svg?label=%40rescript-tauri%2Fplugin-log)](https://www.npmjs.com/package/@rescript-tauri/plugin-log)
+[![npm: plugin-os](https://img.shields.io/npm/v/@rescript-tauri/plugin-os.svg?label=%40rescript-tauri%2Fplugin-os)](https://www.npmjs.com/package/@rescript-tauri/plugin-os)
+[![npm: plugin-clipboard-manager](https://img.shields.io/npm/v/@rescript-tauri/plugin-clipboard-manager.svg?label=%40rescript-tauri%2Fplugin-clipboard-manager)](https://www.npmjs.com/package/@rescript-tauri/plugin-clipboard-manager)
 [![npm: schema](https://img.shields.io/npm/v/@rescript-tauri/schema.svg?label=%40rescript-tauri%2Fschema)](https://www.npmjs.com/package/@rescript-tauri/schema)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 Production-ready ReScript bindings for Tauri 2.x's official JS SDK (`@tauri-apps/api`). A monorepo centered on `@rescript-tauri/core`, exposing the entire Tauri public API surface—IPC, Event, Window, Webview, Menu, Tray—from ReScript.
 
-> **Status:** Phase 1 + Phase 2 implementations are merged on `main`. `@rescript-tauri/core` provides 100% coverage of the stable public surface of `@tauri-apps/api` v2.11.0 (only `Image.transformImage` is intentionally omitted as upstream marks it unstable). The `@rescript-tauri/core`, `@rescript-tauri/plugin-fs`, `@rescript-tauri/plugin-dialog`, and `@rescript-tauri/schema` packages are awaiting their first npm publish (`v0.1.0` track); CI matrices, the release runbook, and the Sphinx documentation site are all in place. See [`docs/product-requirements.md`](./docs/product-requirements.md) and [`docs/functional-design.md`](./docs/functional-design.md) for the full scope.
+> **Status:** Phase 1 + Phase 2 implementations are merged on `main`. `@rescript-tauri/core` provides 100% coverage of the stable public surface of `@tauri-apps/api` v2.11.0 (only `Image.transformImage` is intentionally omitted as upstream marks it unstable). All nine packages (`@rescript-tauri/core`, `@rescript-tauri/plugin-fs`, `@rescript-tauri/plugin-dialog`, `@rescript-tauri/plugin-shell`, `@rescript-tauri/plugin-notification`, `@rescript-tauri/plugin-log`, `@rescript-tauri/plugin-os`, `@rescript-tauri/plugin-clipboard-manager`, `@rescript-tauri/schema`) are awaiting their first npm publish (`v0.1.0` track); CI matrices, the release runbook, and the Sphinx documentation site are all in place. See [`docs/product-requirements.md`](./docs/product-requirements.md) and [`docs/functional-design.md`](./docs/functional-design.md) for the full scope.
 >
 > **Visibility:** the repository is **public**. The npm version badges above will populate once the first `0.1.0` releases ship. The CI workflow status is summarized in [`.github/workflows/README.md`](./.github/workflows/README.md). [`LICENSE`](./LICENSE) (MIT) and [`CONTRIBUTING.md`](./CONTRIBUTING.md) are in place.
 
@@ -46,7 +51,7 @@ For the full rationale and scope, see [`docs/product-requirements.md`](./docs/pr
 | `@rescript-tauri/plugin-os` | Bindings for `@tauri-apps/plugin-os` (platform / version / arch / family / hostname / locale) | Phase 2+ |
 | `@rescript-tauri/plugin-clipboard-manager` | Bindings for `@tauri-apps/plugin-clipboard-manager` (read/write text / image / HTML) | Phase 2+ |
 | `@rescript-tauri/plugin-http` | Bindings for `@tauri-apps/plugin-http` (Web-Fetch wrapper that bypasses webview CORS) | Phase 2+ |
-| `@rescript-tauri/schema` | `Command.fromSchemas` helper integrating `rescript-schema` / `rescript-struct` | Phase 2 |
+| `@rescript-tauri/schema` | `Command.fromSchemas` helper integrating `rescript-schema` (`rescript-struct` is deprecated upstream and intentionally not supported) | Phase 2 |
 
 Each package is published with independent semver and declares the corresponding upstream `@tauri-apps/*` package as a `peerDependency`.
 
@@ -114,7 +119,12 @@ let fileChanged = Event.make(
     | None => Error("expected string")
     },
 )
-let unlisten = await fileChanged->Event.listen(evt => Console.log(evt.payload))
+let unlisten = await fileChanged->Event.listen(result =>
+  switch result {
+  | Ok(evt) => Console.log(evt.payload)
+  | Error(_) => () // ignore decode failures
+  }
+)
 ```
 
 Runnable examples live under `examples/` (`hello-world`, `window-management`, `ipc-typed`, `streaming-ipc`, `plugin-fs-demo`, `plugin-dialog-demo`, `ipc-typed-with-schema`) and are CI-built on Linux / macOS / Windows.
