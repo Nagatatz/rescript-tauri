@@ -334,6 +334,36 @@ importers:
         specifier: ^4.0.0
         version: 4.1.5(@types/node@25.6.2)(@vitest/coverage-v8@4.1.5)(happy-dom@20.9.0)(vite@7.3.3(@types/node@25.6.2))
 
+  packages/plugin-os:
+    devDependencies:
+      '@rescript-tauri/core':
+        specifier: workspace:*
+        version: link:../core
+      '@rescript/core':
+        specifier: ^1.6.0
+        version: 1.6.1(rescript@12.2.0)
+      '@rescript/runtime':
+        specifier: ^12.2.0
+        version: 12.2.0
+      '@tauri-apps/plugin-os':
+        specifier: ^2.3.2
+        version: 2.3.2
+      '@types/node':
+        specifier: ^25.0.0
+        version: 25.6.2
+      '@vitest/coverage-v8':
+        specifier: ^4.0.0
+        version: 4.1.5(vitest@4.1.5)
+      happy-dom:
+        specifier: ^20.9.0
+        version: 20.9.0
+      rescript:
+        specifier: ^12.2.0
+        version: 12.2.0
+      vitest:
+        specifier: ^4.0.0
+        version: 4.1.5(@types/node@25.6.2)(@vitest/coverage-v8@4.1.5)(happy-dom@20.9.0)(vite@7.3.3(@types/node@25.6.2))
+
   packages/plugin-shell:
     devDependencies:
       '@rescript-tauri/core':
@@ -909,6 +939,9 @@ packages:
 
   '@tauri-apps/plugin-notification@2.3.3':
     resolution: {integrity: sha512-Zw+ZH18RJb41G4NrfHgIuofJiymusqN+q8fGUIIV7vyCH+5sSn5coqRv/MWB9qETsUs97vmU045q7OyseCV3Qg==}
+
+  '@tauri-apps/plugin-os@2.3.2':
+    resolution: {integrity: sha512-n+nXWeuSeF9wcEsSPmRnBEGrRgOy6jjkSU+UVCOV8YUGKb2erhDOxis7IqRXiRVHhY8XMKks00BJ0OAdkpf6+A==}
 
   '@tauri-apps/plugin-shell@2.3.5':
     resolution: {integrity: sha512-jewtULhiQ7lI7+owCKAjc8tYLJr92U16bPOeAa472LHJdgaibLP83NcfAF2e+wkEcA53FxKQAZ7byDzs2eeizg==}
@@ -1536,6 +1569,10 @@ snapshots:
       '@tauri-apps/api': 2.11.0
 
   '@tauri-apps/plugin-notification@2.3.3':
+    dependencies:
+      '@tauri-apps/api': 2.11.0
+
+  '@tauri-apps/plugin-os@2.3.2':
     dependencies:
       '@tauri-apps/api': 2.11.0
 
