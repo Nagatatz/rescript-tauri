@@ -635,6 +635,7 @@ let setTitle: (t, string) => promise<unit>
 | `build-core` | PR / push | `packages/core` ビルド + 計測値（`time pnpm --filter @rescript-tauri/core build`）をジョブログに出力。クリーンビルド 30 秒・インクリメンタル 1 秒の閾値を超えたら fail（PRD §5.2） |
 | `tests-core-types` | PR | `tests/` の型レベルコンパイル + `.resi` 公開シンボル 100% 参照カバレッジ（PRD §5.4） |
 | `tests-core-runtime` | PR | vitest 実行（`Mocks.mockIPC` 経由の round-trip 検証を含む） |
+| `tests-coverage` | PR / push | 4 パッケージ（core / plugin-fs / plugin-dialog / schema）を `strategy.matrix` で並列実行し、`@vitest/coverage-v8` で行・分岐・関数カバレッジを計測。Job summary に表で出力、LCOV / HTML を artifact 化（30 日保持）。**観測フェーズ：しきい値による fail ゲートは設定しない**（次フェーズで設定予定） |
 | `examples-build` | PR | `examples/*` を 3 OS でビルド |
 | `doc-link-lint` | PR | 全 `.resi` 公開シンボルの doc comment に `v2.tauri.app` リンクが含まれているかを grep で検証（PRD §7 KPI） |
 | `compat-tauri-latest` | nightly | `@tauri-apps/api` を latest にして build |

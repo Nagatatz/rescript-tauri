@@ -28,17 +28,17 @@
 
 ## D. `@rescript-tauri/schema` 実装
 
-- [ ] `packages/schema/` 雛形（package.json / rescript.json / src/Schema.res(.resi)）
-- [ ] `peerDependencies` 確定（`@rescript-tauri/core ^1.0.0`, `rescript-schema >=...`）
-- [ ] `Command.fromSchemas` 実装
-- [ ] `Channel.fromSchema` 実装
-- [ ] `Event.fromSchema` 実装
-- [ ] 型レベル signature テスト
-- [ ] runtime テスト（vitest + Mocks 経由）
-- [ ] `examples/ipc-typed-with-schema/` 追加
-- [ ] CI: `tests-schema-types.yml` / `tests-schema-runtime.yml` 追加
+- [x] `packages/schema/` 雛形（package.json / rescript.json / src/Schema.res(.resi)）(steering 031)
+- [x] `peerDependencies` 確定（`@rescript-tauri/core ^1.0.0`, `rescript-schema >=...`）(steering 031: `^0.1.0` + `^9.0.0`)
+- [x] `Command.fromSchemas` 実装 (steering 031: `Schema.fromSchemas`)
+- [x] `Channel.fromSchema` 実装 (steering 031: `Schema.channelFromSchema`)
+- [x] `Event.fromSchema` 実装 (steering 031: `Schema.eventFromSchema`)
+- [x] 型レベル signature テスト (steering 031)
+- [x] runtime テスト（vitest + Mocks 経由）(steering 031)
+- [x] `examples/ipc-typed-with-schema/` 追加 (steering 039)
+- [x] CI: `tests-schema-types.yml` / `tests-schema-runtime.yml` 追加 (steering 041)
 - [ ] CI: `compat-rescript-schema-prerelease.yml` 追加（任意）
-- [ ] `release.yml` を `schema-v*` タグに対応するよう拡張
+- [x] `release.yml` を `schema-v*` タグに対応するよう拡張 (steering 041)
 - [ ] README + 互換マトリクス
 - [ ] `schema-v0.1.0` tag → npm publish
 
@@ -52,8 +52,8 @@
 - [x] 型レベル signature テスト (steering 032)
 - [x] runtime テスト（Mocks 経由）(steering 032)
 - [x] `examples/plugin-fs-demo/` 追加 (steering 037)
-- [ ] CI 拡張
-- [ ] `release.yml` を `plugin-fs-v*` タグに対応
+- [x] CI 拡張 (steering 041: tests-plugin-fs-types/runtime + examples-build matrix)
+- [x] `release.yml` を `plugin-fs-v*` タグに対応 (steering 041)
 - [ ] README + 互換マトリクス
 - [ ] `plugin-fs-v0.1.0` tag → npm publish
 
@@ -65,7 +65,7 @@
 - [x] options 型 / multiple-selection / directory-selection の variant 設計 (steering 035)
 - [x] 型レベル signature テスト + runtime テスト (steering 035)
 - [x] `examples/plugin-dialog-demo/` 追加 (steering 036)
-- [ ] CI 拡張
+- [x] CI 拡張 (steering 041: tests-plugin-dialog-types/runtime + examples-build matrix + release.yml plugin-dialog-v* タグ)
 - [ ] README + 互換マトリクス
 - [ ] `plugin-dialog-v0.1.0` tag → npm publish
 
@@ -90,8 +90,9 @@
 
 - [ ] 「必須スコープ」がすべて publish + CI 緑
 - [ ] 各パッケージの README に互換マトリクス記載
-- [ ] `docs/repository-structure.md` を Phase 2 構成に更新
-- [ ] `sphinx-docs/` を Phase 2 全パッケージに対応
+- [x] `docs/repository-structure.md` を Phase 2 構成に更新
+      (steering 036/037/039/041 で逐次反映済)
+- [x] `sphinx-docs/` を Phase 2 全パッケージに対応 (steering 042)
 - [ ] PRD §10 残課題 #5 が「確定済み」に
 - [ ] CHANGELOG が各パッケージで `0.1.0` 以降の履歴を持つ
 

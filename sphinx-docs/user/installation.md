@@ -38,6 +38,26 @@ Then add `@rescript-tauri/core` to `dependencies` in your `rescript.json`:
 }
 ```
 
+### Phase 2 add-on packages
+
+Each Phase 2 package is published independently. Install them as
+needed alongside the matching upstream plugin / schema library:
+
+```bash
+# Filesystem
+pnpm add @rescript-tauri/plugin-fs @tauri-apps/plugin-fs
+
+# Native dialogs
+pnpm add @rescript-tauri/plugin-dialog @tauri-apps/plugin-dialog
+
+# Layer 3 typed IPC (rescript-schema)
+pnpm add @rescript-tauri/schema rescript-schema
+```
+
+See the [plugin-fs](plugin-fs.md), [plugin-dialog](plugin-dialog.md),
+and [schema](schema.md) guides for the matching ReScript / Rust /
+capability setup.
+
 ## Verify
 
 After Phase 1 ships, a minimal verification looks like:
