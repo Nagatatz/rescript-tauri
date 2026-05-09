@@ -15,13 +15,13 @@
 
 ## B. core Window 補強
 
-- [ ] B-1 `window.test.mjs` に `setBackgroundColor` Nullable 両ケース追加
-- [ ] B-2 `window.test.mjs` に `setTheme` Nullable 両ケース追加
-- [ ] B-3 `window.test.mjs` に `monitorFromPoint(~x, ~y)` ラベル呼び出し追加
-- [ ] B-4 `window.test.mjs` に `setSize` + `Dpi.Size.fromLogical` 連携追加
-- [ ] B-5 `window.test.mjs` に `onResized` 登録 + unlisten 呼び出し追加
-- [ ] B-6 core test:coverage で Window が 50% 超になることを確認
-- [ ] B-7 Scope B をコミット（絵文字: ✅）
+- [x] B-1 `window.test.mjs` に `setBackgroundColor` Nullable 両ケース追加
+- [x] B-2 `window.test.mjs` に `setTheme` Nullable 両ケース追加
+- [x] B-3 `window.test.mjs` に `monitorFromPoint(~x, ~y)` ラベル呼び出し追加
+- [x] B-4 `window.test.mjs` に `setSize` + `Dpi.Size.fromLogical` 連携追加
+- [x] B-5 `window.test.mjs` に `onResized` 登録 + unlisten 呼び出し追加（onMoved/onCloseRequested/onFocusChanged/onScaleChanged/onThemeChanged も含む）
+- [x] B-6 core test:coverage で Window 7.31% → 97.56% に到達
+- [x] B-7 Scope B をコミット（絵文字: ✅）。**bonus**: 既存バインディング `Window.getFocusedWindow` が `@scope("Window")` 漏れで undefined を呼んでいた bug を発見・修正（🐛）
 
 ## C. plugin-fs 補強
 
