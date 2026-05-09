@@ -2,6 +2,9 @@
 members = [
   "examples/hello-world/src-tauri",
   "examples/ipc-typed/src-tauri",
+  "examples/ipc-typed-with-schema/src-tauri",
+  "examples/plugin-dialog-demo/src-tauri",
+  "examples/plugin-fs-demo/src-tauri",
   "examples/streaming-ipc/src-tauri",
   "examples/window-management/src-tauri",
 ]
