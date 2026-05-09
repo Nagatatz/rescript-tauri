@@ -296,6 +296,7 @@ sphinx-docs/
 │   ├── build-core.yml                   # PR / push トリガ
 │   ├── tests-core-types.yml
 │   ├── tests-core-runtime.yml
+│   ├── tests-coverage.yml               # 4 パッケージ matrix で vitest v8 カバレッジ計測（観測フェーズ）
 │   ├── examples-build.yml               # 3 OS マトリクス
 │   ├── doc-link-lint.yml
 │   ├── compat-tauri-latest.yml          # nightly
