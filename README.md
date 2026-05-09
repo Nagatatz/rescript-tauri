@@ -1,10 +1,24 @@
 # rescript-tauri
 
+[![Build](https://github.com/Nagatatz/rescript-tauri/actions/workflows/build-core.yml/badge.svg)](https://github.com/Nagatatz/rescript-tauri/actions/workflows/build-core.yml)
+[![Tests (types)](https://github.com/Nagatatz/rescript-tauri/actions/workflows/tests-core-types.yml/badge.svg)](https://github.com/Nagatatz/rescript-tauri/actions/workflows/tests-core-types.yml)
+[![Tests (runtime)](https://github.com/Nagatatz/rescript-tauri/actions/workflows/tests-core-runtime.yml/badge.svg)](https://github.com/Nagatatz/rescript-tauri/actions/workflows/tests-core-runtime.yml)
+[![Examples (3 OS)](https://github.com/Nagatatz/rescript-tauri/actions/workflows/examples-build.yml/badge.svg)](https://github.com/Nagatatz/rescript-tauri/actions/workflows/examples-build.yml)
+[![Tauri compat](https://github.com/Nagatatz/rescript-tauri/actions/workflows/compat-tauri-latest.yml/badge.svg)](https://github.com/Nagatatz/rescript-tauri/actions/workflows/compat-tauri-latest.yml)
+[![ReScript compat](https://github.com/Nagatatz/rescript-tauri/actions/workflows/compat-rescript-prerelease.yml/badge.svg)](https://github.com/Nagatatz/rescript-tauri/actions/workflows/compat-rescript-prerelease.yml)
+[![Docs](https://github.com/Nagatatz/rescript-tauri/actions/workflows/docs.yml/badge.svg)](https://github.com/Nagatatz/rescript-tauri/actions/workflows/docs.yml)
+
+[![npm: core](https://img.shields.io/npm/v/@rescript-tauri/core.svg?label=%40rescript-tauri%2Fcore)](https://www.npmjs.com/package/@rescript-tauri/core)
+[![npm: plugin-fs](https://img.shields.io/npm/v/@rescript-tauri/plugin-fs.svg?label=%40rescript-tauri%2Fplugin-fs)](https://www.npmjs.com/package/@rescript-tauri/plugin-fs)
+[![npm: plugin-dialog](https://img.shields.io/npm/v/@rescript-tauri/plugin-dialog.svg?label=%40rescript-tauri%2Fplugin-dialog)](https://www.npmjs.com/package/@rescript-tauri/plugin-dialog)
+[![npm: schema](https://img.shields.io/npm/v/@rescript-tauri/schema.svg?label=%40rescript-tauri%2Fschema)](https://www.npmjs.com/package/@rescript-tauri/schema)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+
 Production-ready ReScript bindings for Tauri 2.x's official JS SDK (`@tauri-apps/api`). A monorepo centered on `@rescript-tauri/core`, exposing the entire Tauri public API surface—IPC, Event, Window, Webview, Menu, Tray—from ReScript.
 
 > **Status:** Phase 1 — design complete, implementation not yet started. This repository currently contains the PRD, functional design, architecture, repository structure, and glossary; no source code is published yet. See [`docs/product-requirements.md`](./docs/product-requirements.md) and [`docs/functional-design.md`](./docs/functional-design.md) for details.
 >
-> **Visibility:** the repository is **private** while the design is being finalized. It will be switched to **public** at the Phase 1 release, once all of the following are in place: the first `@rescript-tauri/core` version is published to npm; every example workspace under `examples/` builds on the 3 OS matrix; and the CI workflows specified in [`docs/functional-design.md`](./docs/functional-design.md) §6 are wired up (see [`.github/workflows/README.md`](./.github/workflows/README.md) for current status). [`LICENSE`](./LICENSE) (MIT) and [`CONTRIBUTING.md`](./CONTRIBUTING.md) are already in place.
+> **Visibility:** the repository is **public**. Phase 1 is still in progress — no `@rescript-tauri/*` package has been published to npm yet, so the npm version badges above will remain blank until the first release ships. The CI workflow status is summarized in [`.github/workflows/README.md`](./.github/workflows/README.md). [`LICENSE`](./LICENSE) (MIT) and [`CONTRIBUTING.md`](./CONTRIBUTING.md) are in place.
 
 ---
 
@@ -162,7 +176,7 @@ rescript-tauri/
 | [`docs/ideas/RFC-0001-core-api-design.md`](./docs/ideas/RFC-0001-core-api-design.md) | Core API design RFC (historical input to the PRD; not edited) | English |
 | [`CLAUDE.md`](./CLAUDE.md) | Mandatory instructions for Claude Code | Japanese |
 
-External-facing user and contributor documentation lives in [`sphinx-docs/`](./sphinx-docs/) with English as the base language and Japanese translations provided through Sphinx i18n (`.po` files under `sphinx-docs/locale/ja/`). The site is built by [`.github/workflows/docs.yml`](./.github/workflows/docs.yml) and deployed to **GitHub Pages** at <https://nagatatz.github.io/rescript-tauri/> (English under `/en/`, Japanese under `/ja/`). The deployment workflow itself is active, but Pages goes live when the repository visibility is switched to public at the Phase 1 release (see the **Visibility** block above).
+External-facing user and contributor documentation lives in [`sphinx-docs/`](./sphinx-docs/) with English as the base language and Japanese translations provided through Sphinx i18n (`.po` files under `sphinx-docs/locale/ja/`). The site is built by [`.github/workflows/docs.yml`](./.github/workflows/docs.yml) and deployed to **GitHub Pages** at <https://nagatatz.github.io/rescript-tauri/> (English under `/en/`, Japanese under `/ja/`).
 
 ---
 
