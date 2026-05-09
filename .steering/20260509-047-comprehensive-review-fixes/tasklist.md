@@ -14,18 +14,18 @@
 
 ## B. docs/ 整合
 
-- [ ] B-1 docs/architecture.md L6 / L143-145 の `Phase 1〜Phase 3` / peerDep `^1.0.0` を修正
-- [ ] B-2 docs/development-guidelines.md / sphinx-docs/user/configuration.md の `§2.13` dangling anchor を修正
-- [ ] B-3 docs/functional-design.md L12 「後続作成予定」を削除
-- [ ] B-4 docs/migration-to-plugins.md と docs/quality-measurement.md を `git rm` 削除
-- [ ] B-5 docs/repository-structure.md の参照行 (§4 表) を削除し、CLAUDE.md / 他からの参照も grep して削除
-- [ ] B-6 docs/product-requirements.md ステータス + §4 + §8 + §10 を実態に更新
-- [ ] B-7 docs/functional-design.md ステータス + §1.1 examples 配置図 + §5.3 + §6 + §8 を更新
-- [ ] B-8 docs/development-guidelines.md / glossary.md の Phase 1 future tense / schema 説明を更新
-- [ ] B-9 README.md / docs/functional-design.md / sphinx-docs/dev/project-structure.md の examples 一覧を 7 例に揃える
-- [ ] B-10 AGENTS.md を CLAUDE.md と最小同期（Biome 行追加）
-- [ ] B-11 ビルド・テスト・Biome check 緑確認
-- [ ] B-12 Scope B をコミット（絵文字: 📝）
+- [x] B-1 docs/architecture.md L6 / L143-145 の `Phase 1〜Phase 3` / peerDep `^1.0.0` を修正（plugin-dialog 行追加 + `0.1 → 1.0` 昇格条件追記）
+- [x] B-2 docs/development-guidelines.md / sphinx-docs/user/configuration.md の `§2.13` を `§2.8` に修正
+- [x] B-3 docs/functional-design.md L12 「後続作成予定」を削除
+- [x] B-4 docs/migration-to-plugins.md と docs/quality-measurement.md を `git rm` 削除
+- [x] B-5 docs/repository-structure.md の参照行（§1 ルートレイアウト・§4 表）を削除（他に live 参照なし。`.steering/030` の言及はアーカイブ的記録なので touch なし）
+- [x] B-6 docs/product-requirements.md ステータス + §4 + §8 + §10 (#2/#3) を実態に更新
+- [x] B-7 docs/functional-design.md ステータス + §1.1 examples 配置図 + §5.3 + §6 + §8 (#1/#2/#3) を更新
+- [x] B-8 docs/development-guidelines.md / glossary.md の Phase 1 future tense / schema 説明を更新
+- [x] B-9 README.md / docs/functional-design.md / sphinx-docs/dev/project-structure.md の examples 一覧を 7 例に揃える（README は Scope A で実施済）
+- [x] B-10 AGENTS.md は実在しない（hallucination だった）ため不要、スキップ
+- [x] B-11 ビルド緑確認（テスト/Biome は Scope C で再実行）。Sphinx `.po` 翻訳キャッシュは `make update-po` 必要なので別タスクに分離
+- [x] B-12 Scope B をコミット（絵文字: 📝）
 
 ## C. セキュリティ修正
 

@@ -24,7 +24,10 @@ rescript-tauri/                          # monorepo root
 │   ├── hello-world/                     # Phase 1 必須
 │   ├── window-management/
 │   ├── ipc-typed/
-│   └── streaming-ipc/
+│   ├── streaming-ipc/
+│   ├── plugin-fs-demo/                  # Phase 2
+│   ├── plugin-dialog-demo/              # Phase 2
+│   └── ipc-typed-with-schema/           # Phase 2 (Layer 3 demo)
 ├── docs/                                # 開発チーム向け内部ドキュメント
 │   ├── ideas/                           # ドラフト・RFC 集約
 │   ├── product-requirements.md
@@ -33,9 +36,7 @@ rescript-tauri/                          # monorepo root
 │   ├── repository-structure.md          # 本書
 │   ├── glossary.md
 │   ├── development-guidelines.md
-│   ├── mcp-servers.md
-│   ├── migration-to-plugins.md
-│   └── quality-measurement.md
+│   └── mcp-servers.md
 ├── sphinx-docs/                         # 外部公開ドキュメント (GitHub Pages)
 │   ├── user/                            # ユーザーガイド
 │   ├── dev/                             # 開発者ガイド
@@ -210,8 +211,6 @@ examples/ipc-typed-with-schema/           # @rescript-tauri/schema (Layer 3) デ
 | `glossary.md` | ユビキタス言語定義 | 新概念導入時 |
 | `development-guidelines.md` | 開発ガイドライン | プロセス変更時 |
 | `mcp-servers.md` | MCP サーバー設定ガイド | MCP 導入時 |
-| `migration-to-plugins.md` | プラグイン化移行設計メモ | 検討時 |
-| `quality-measurement.md` | スキル品質計測設計メモ | Phase 10 時 |
 
 ### 4.1 `docs/ideas/`
 

@@ -7,7 +7,7 @@ A quick orientation. The canonical, kept-up-to-date layout reference is [`docs/r
 ```
 rescript-tauri/
 ├── packages/         # @rescript-tauri/core, plugin-*, schema
-├── examples/         # hello-world / window-management / ipc-typed / streaming-ipc
+├── examples/         # hello-world / window-management / ipc-typed / streaming-ipc / plugin-fs-demo / plugin-dialog-demo / ipc-typed-with-schema
 ├── docs/             # Internal design docs (PRD, functional design, architecture, ...)
 │   └── ideas/        # Drafts / RFCs (input only; not edited after acceptance)
 ├── sphinx-docs/      # External-facing docs (this site; English base + Japanese via Sphinx i18n)
@@ -35,7 +35,7 @@ rescript-tauri/
 
 ## Subsystem map
 
-`packages/core/` is the only Phase 1 source package. Its layout (planned) is:
+`packages/core/` is the Phase 1 hub; Phase 2 adds `packages/schema/`, `packages/plugin-fs/`, `packages/plugin-dialog/`. The core layout is:
 
 ```
 packages/core/

@@ -3,7 +3,7 @@
 | 項目 | 内容 |
 |---|---|
 | プロダクト | `@rescript-tauri/core` および周辺パッケージ群 |
-| 対象 | Phase 1〜Phase 3 全体 |
+| 対象 | Phase 0〜Phase 3 全体 |
 | 作成日 | 2026-05-08 |
 | 関連 | [PRD](./product-requirements.md), [Functional Design](./functional-design.md), [Repository Structure](./repository-structure.md), [RFC-0001](./ideas/RFC-0001-core-api-design.md) |
 
@@ -140,11 +140,14 @@ packages/
 
 | パッケージ | semver 起点 | peerDep |
 |---|---|---|
-| `@rescript-tauri/core` | Tauri 2.x ↔ ReScript 12+ で 1.x | `@tauri-apps/api ^2.0.0` |
-| `@rescript-tauri/plugin-fs` | 上流 `@tauri-apps/plugin-fs` の minor に追従 | `@rescript-tauri/core ^1.0.0`, `@tauri-apps/plugin-fs ^2.0.0` |
-| `@rescript-tauri/schema` | 独立 | `@rescript-tauri/core ^1.0.0`, `rescript-schema >=...` |
+| `@rescript-tauri/core` | `0.1.0` 系で初版を切り、API 安定後 `1.0.0` へ昇格 | `@tauri-apps/api ^2.0.0` |
+| `@rescript-tauri/plugin-fs` | 上流 `@tauri-apps/plugin-fs` の minor に追従 | `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-fs ^2.5.0` |
+| `@rescript-tauri/plugin-dialog` | 上流 `@tauri-apps/plugin-dialog` の minor に追従 | `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-dialog ^2.7.0` |
+| `@rescript-tauri/schema` | 独立 | `@rescript-tauri/core ^0.1.0`, `rescript-schema ^9.0.0` |
 
 互換マトリクスは README に必須掲載（PRD Story 7-1）。
+
+`0.1.x` から `1.0.0` への昇格条件: Phase 1 + Phase 2 で公開した API 表面が複数の利用側で揉まれ、破壊的変更が発生していない安定期に入ったと判断したタイミング（PRD §8 Phase 3 の責務）。`1.0.0` 昇格時は peerDep 表の `^0.1.0` 系を `^1.0.0` 系へ揃え、本書を更新する。
 
 ### 4.3 Tauri メジャーバンプ時の方針
 

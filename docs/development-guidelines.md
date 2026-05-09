@@ -6,7 +6,7 @@
 | 対象 | Phase 1 以降の全実装作業 |
 | 作成日 | 2026-05-08 |
 | 関連 | [docs/architecture.md](./architecture.md), [docs/functional-design.md](./functional-design.md), [docs/repository-structure.md](./repository-structure.md), [.claude/rules/](../.claude/rules/) |
-| ステータス | Draft |
+| ステータス | Confirmed (Phase 1+2 merged) |
 
 > 本書は「**どう開発するか**」の実務指針。コーディング規約や Git 規約自体は `.claude/rules/*` を SSoT とし、本書はそれらを開発者の動線に沿って組み立て直す。各規約の本文は対応する rule ファイルへのリンクで委譲し、本書では「いつ・どの順序で適用するか」を示す。
 
@@ -107,7 +107,7 @@ pnpm run lint           # lint のみ
 
 `.res` / `.resi` は ReScript コンパイラ標準のフォーマッタが管理する（`rescript build` 経由）。手書きの `.mjs` および JSON は [Biome](https://biomejs.dev/) で format + lint する。ReScript 生成物（`*.res.mjs` / `lib/`）は `biome.json` の `files.includes` で除外しているため、Biome はビルド成果物には影響を与えない。
 
-`examples/` の個別ビルドは各 `examples/<name>/README.md` を参照（Phase 1 で整備）。
+`examples/` の個別ビルドは各 `examples/<name>/README.md` を参照。
 
 ---
 
@@ -156,7 +156,7 @@ module Foo: {
 }
 ```
 
-`See:` 行の Tauri 公式 URL は `.github/workflows/doc-link-lint.yml`（Phase 1 で実装）が grep 検証する。各 public シンボルに必ず付与すること。
+`See:` 行の Tauri 公式 URL は `.github/workflows/doc-link-lint.yml` が grep 検証する。各 public シンボルに必ず付与すること。
 
 ### 5.3 型レベルテスト追加
 
@@ -168,11 +168,11 @@ let _ = Foo.someType: Foo.t => unit
 // ...
 ```
 
-`tests-core-types.yml`（Phase 1 で実装）が grep ベースで「.resi 公開シンボル 100% 参照カバレッジ」を強制する。
+`tests-core-types.yml` が grep ベースで「.resi 公開シンボル 100% 参照カバレッジ」を強制する。
 
 ### 5.4 `Tauri.res` re-export の更新
 
-トップレベル re-export ポリシーは `docs/functional-design.md` §2.13 を参照（PRD §10 残課題 #1 で curated subset 方針確定済み）。新モジュールが re-export 対象なら `Tauri.res` を更新する。
+トップレベル re-export ポリシーは `docs/functional-design.md` §2.8 を参照（PRD §10 残課題 #1 で curated subset 方針確定済み — 経緯: `.steering/20260509-023-tauri-reexport/`）。新モジュールが re-export 対象なら `Tauri.res` を更新する。
 
 ### 5.5 examples の追加（必要時）
 
@@ -228,7 +228,7 @@ let _ = Foo.someType: Foo.t => unit
 | `debugger` | バグ・予期しない挙動・エラー時 | 根本原因 vs 症状の切り分け、再発防止 |
 | `security-reviewer` | セキュリティ関連変更時 | 認証 / 認可 / インジェクション / シークレット漏洩 |
 
-### 8.2 リリースゲート（Phase 1）
+### 8.2 リリースゲート
 
 `docs/functional-design.md` §7 のリリース判定基準を全件満たすこと:
 
@@ -237,7 +237,7 @@ let _ = Foo.someType: Foo.t => unit
 3. 型レベル + vitest + examples ビルド (3 OS) 全緑
 4. `.github/workflows/release.yml` の tag push トリガで npm publish 可能
 
-加えて `definition-of-done.md` Phase 4 の全項目を順守する。
+加えて `definition-of-done.md` Phase 4 の全項目を順守する。Phase 2 の release runbook は `.steering/20260509-046-phase2-release-checklist/` を参照。
 
 ### 8.3 セキュリティ関連変更
 
@@ -247,13 +247,13 @@ let _ = Foo.someType: Foo.t => unit
 
 ## 9. リリース手順（概要）
 
-詳細は Phase 1 リリース直前に `release-manager` agent と連携して詳細化する。現時点では概要のみ:
+Phase 1 / Phase 2 のリリースランブックは `.steering/20260509-046-phase2-release-checklist/` に集約済み。現時点の概要:
 
 1. `release-manager` agent でリリース PR 作成・changelog 生成
-2. 各パッケージ独立 semver
+2. 各パッケージ独立 semver（初版は `core` / `plugin-fs` / `plugin-dialog` / `schema` を `v0.1.0` 系で揃える方針）
 3. `.github/workflows/release.yml` の tag push トリガで npm publish + GitHub Release
-4. `README.md` 互換マトリクスを更新（必要時）
-5. visibility 切替条件を満たしているか確認し、満たしていれば `gh repo edit Nagatatz/rescript-tauri --visibility public`
+4. `README.md` 互換マトリクス・各 `packages/*/CHANGELOG.md` を更新（必要時）
+5. リポジトリ visibility は既に public
 
 ---
 

@@ -13,7 +13,7 @@ Add `@rescript-tauri/core` to the `dependencies` key. ReScript 12 renamed the le
 }
 ```
 
-If you enable `"namespace": true` in your own package, `@rescript-tauri/core` modules remain accessible under the `Tauri` namespace top-level re-export (see [`docs/functional-design.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/docs/functional-design.md) §2.13).
+If you enable `"namespace": true` in your own package, `@rescript-tauri/core` modules remain accessible under the `Tauri` namespace top-level re-export (see [`docs/functional-design.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/docs/functional-design.md) §2.8).
 
 ## `peerDependencies`
 
