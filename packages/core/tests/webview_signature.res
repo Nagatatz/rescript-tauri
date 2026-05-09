@@ -13,14 +13,12 @@ let _check_hide: Webview.t => promise<unit> = Webview.hide
 let _check_show: Webview.t => promise<unit> = Webview.show
 let _check_set_zoom: (Webview.t, float) => promise<unit> = Webview.setZoom
 let _check_reparent: (Webview.t, 'wl) => promise<unit> = Webview.reparent
-let _check_set_background_color: (Webview.t, Nullable.t<Window.color>) => promise<unit> = Webview.setBackgroundColor
+let _check_set_background_color: (Webview.t, Nullable.t<Common.color>) => promise<unit> = Webview.setBackgroundColor
 let _check_close: Webview.t => promise<unit> = Webview.close
 let _check_on_drag_drop_event: (
   Webview.t,
-  Webview.dragDropEvent => unit,
-) => promise<Webview.unlisten> = Webview.onDragDropEvent
-
-let _check_unlisten_value: Webview.unlisten = () => ()
+  Common.dragDropEvent => unit,
+) => promise<Common.unlisten> = Webview.onDragDropEvent
 
 let _check_get_by_label: string => promise<Nullable.t<Webview.t>> = Webview.getByLabel
 let _check_clear_all_browsing_data: Webview.t => promise<unit> = Webview.clearAllBrowsingData

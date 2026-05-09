@@ -7,6 +7,11 @@ on:
       - "schema-v*"
       - "plugin-fs-v*"
       - "plugin-dialog-v*"
+      - "plugin-shell-v*"
+      - "plugin-notification-v*"
+      - "plugin-log-v*"
+      - "plugin-os-v*"
+      - "plugin-clipboard-manager-v*"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -62,6 +67,26 @@ jobs:
             plugin-dialog-v*)
               echo "package=@rescript-tauri/plugin-dialog" >> "$GITHUB_OUTPUT"
               echo "directory=packages/plugin-dialog"     >> "$GITHUB_OUTPUT"
+              ;;
+            plugin-shell-v*)
+              echo "package=@rescript-tauri/plugin-shell" >> "$GITHUB_OUTPUT"
+              echo "directory=packages/plugin-shell"     >> "$GITHUB_OUTPUT"
+              ;;
+            plugin-notification-v*)
+              echo "package=@rescript-tauri/plugin-notification" >> "$GITHUB_OUTPUT"
+              echo "directory=packages/plugin-notification"     >> "$GITHUB_OUTPUT"
+              ;;
+            plugin-log-v*)
+              echo "package=@rescript-tauri/plugin-log" >> "$GITHUB_OUTPUT"
+              echo "directory=packages/plugin-log"     >> "$GITHUB_OUTPUT"
+              ;;
+            plugin-os-v*)
+              echo "package=@rescript-tauri/plugin-os" >> "$GITHUB_OUTPUT"
+              echo "directory=packages/plugin-os"     >> "$GITHUB_OUTPUT"
+              ;;
+            plugin-clipboard-manager-v*)
+              echo "package=@rescript-tauri/plugin-clipboard-manager" >> "$GITHUB_OUTPUT"
+              echo "directory=packages/plugin-clipboard-manager"     >> "$GITHUB_OUTPUT"
               ;;
             v*)
               echo "package=@rescript-tauri/core" >> "$GITHUB_OUTPUT"

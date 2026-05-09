@@ -638,7 +638,7 @@ let setTitle: (t, string) => promise<unit>
 | `build-core` | PR / push | `packages/core` ビルド + 計測値（`time pnpm --filter @rescript-tauri/core build`）をジョブログに出力。クリーンビルド 30 秒・インクリメンタル 1 秒の閾値を超えたら fail（PRD §5.2） |
 | `tests-core-types` / `tests-{schema,plugin-fs,plugin-dialog}-types` | PR | 各パッケージの型レベルコンパイル + `.resi` 公開シンボル 100% 参照カバレッジ（PRD §5.4） |
 | `tests-core-runtime` / `tests-{schema,plugin-fs,plugin-dialog}-runtime` | PR | 各パッケージの vitest 実行（`Mocks.mockIPC` 経由の round-trip 検証を含む） |
-| `tests-coverage` | PR / push | 4 パッケージ（core / plugin-fs / plugin-dialog / schema）を `strategy.matrix` で並列実行し、`@vitest/coverage-v8` で行・分岐・関数カバレッジを計測。Job summary に表で出力、LCOV / HTML を artifact 化（30 日保持）。**観測フェーズ：しきい値による fail ゲートは設定しない**（次フェーズで設定予定） |
+| `tests-coverage` | PR / push | 4 パッケージ（core / plugin-fs / plugin-dialog / schema）を `strategy.matrix` で並列実行し、`@vitest/coverage-v8` で行・分岐・関数カバレッジを計測。Job summary に表で出力、LCOV / HTML を artifact 化（30 日保持）。**しきい値ゲート設定済み**（各 `vitest.config.mjs` の `coverage.thresholds`）。floor を下回ると `pnpm --filter @rescript-tauri/<pkg> test:coverage` が exit 非 0 を返し、ジョブが fail する |
 | `examples-build` | PR | 7 例題（hello-world / window-management / ipc-typed / streaming-ipc / plugin-fs-demo / plugin-dialog-demo / ipc-typed-with-schema）を 3 OS でビルド |
 | `doc-link-lint` | PR | 全 `.resi` 公開シンボルの doc comment に `v2.tauri.app` リンクが含まれているかを grep で検証（PRD §7 KPI） |
 | `docs` | PR / push | Sphinx EN+JA の HTML ビルド + Pagefind アセンブリ |

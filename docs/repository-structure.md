@@ -19,6 +19,11 @@ rescript-tauri/                          # monorepo root
 │   ├── core/                            # @rescript-tauri/core
 │   ├── plugin-fs/                       # @rescript-tauri/plugin-fs (Phase 2+)
 │   ├── plugin-dialog/                   # @rescript-tauri/plugin-dialog (Phase 2+)
+│   ├── plugin-shell/                    # @rescript-tauri/plugin-shell (Phase 2+)
+│   ├── plugin-notification/             # @rescript-tauri/plugin-notification (Phase 2+)
+│   ├── plugin-log/                      # @rescript-tauri/plugin-log (Phase 2+)
+│   ├── plugin-os/                       # @rescript-tauri/plugin-os (Phase 2+)
+│   ├── plugin-clipboard-manager/        # @rescript-tauri/plugin-clipboard-manager (Phase 2+)
 │   └── schema/                          # @rescript-tauri/schema (Phase 2)
 ├── examples/                            # ビルド可能な使用例（CI ゲート対象）
 │   ├── hello-world/                     # Phase 1 必須
@@ -49,20 +54,18 @@ rescript-tauri/                          # monorepo root
 │   ├── skills/                          # 状況発火型スキル
 │   ├── agents/                          # サブエージェント定義
 │   ├── rules/                           # 常時適用ルール
-│   ├── hooks/                           # 自動実行 hook
+│   ├── hooks/                           # 自動実行 hook (check-secrets / check-disk-space / biome-format)
+│   ├── settings.json                    # PreToolUse / PostToolUse hook 登録
 │   ├── output-styles/
 │   ├── statusline.sh
 │   └── worktrees/                       # ビルトイン worktree 作成先
 ├── .github/                             # GitHub Actions / Templates
 │   └── workflows/
-├── .devcontainer/
 ├── CLAUDE.md                            # プロジェクト指示書（本構造を @import）
 ├── README.md
 ├── pnpm-workspace.yaml
 ├── package.json
 ├── biome.json                          # Biome (手書き JS / JSON の format + lint)
-├── .mcp.json.template
-├── .env.example
 └── .gitignore
 ```
 
@@ -77,6 +80,7 @@ rescript-tauri/                          # monorepo root
 ```
 packages/core/
 ├── src/
+│   ├── Common.res / .resi               # 横断型 (unlisten / color / dragDropEvent) と共有 decoder。Window / Webview / WebviewWindow / Event から参照
 │   ├── Core.res / .resi                 # invoke / convertFileSrc / Channel / Command / Resource / PluginListener / addPluginListener / permissions / isTauri / LowLevel
 │   ├── Event.res / .resi                # listen / once / emit / emitTo / TauriEvent enum / ~target option
 │   ├── Window.res / .resi               # Window クラスバインディング (~90 メソッド)
@@ -151,6 +155,96 @@ packages/plugin-dialog/                  # 着手済み (steering 035, 2026-05-0
 `peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-dialog ^2.7.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
 
 upstream `open(options)` の TypeScript 条件型戻り値を 4 関数（`openFile` / `openFiles` / `openDirectory` / `openDirectories`）に分割して静的化（steering 035 §3.1）。`MessageDialogButtonsYesNoCustom` 等のカスタム文言・examples・専用 CI は plugin-dialog 後続 sub-steering に分離。
+
+```
+packages/plugin-shell/                   # 着手済み (steering 051, 2026-05-09)
+├── src/
+│   └── PluginShell.res / .resi          # openPath / Command / Child / EventEmitter
+├── tests/
+│   ├── plugin_shell_signature.res       # 型レベル網羅 (21 _check_)
+│   └── runtime/plugin_shell.test.mjs    # vitest + Mocks 経由 (8 cases)
+├── rescript.json
+├── package.json                         # @rescript-tauri/plugin-shell
+├── vitest.config.mjs
+├── CHANGELOG.md
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-shell ^2.3.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+upstream `Command.create({encoding: 'raw'})` の TypeScript 条件型戻り値を `Command.create` / `Command.createRaw` / `Command.sidecar` / `Command.sidecarRaw` に分割して静的化（steering 051 §3.1）。トップレベル `open` は ReScript 予約語との衝突回避のため `openPath` にリネーム。`examples/plugin-shell-demo/` と sphinx-docs `user/plugin-shell.md` は後続 sub-steering に分離。
+
+```
+packages/plugin-notification/            # 着手済み (steering 054, 2026-05-09)
+├── src/
+│   └── PluginNotification.res / .resi   # 15 関数 + Schedule / Importance / Visibility モジュール + 8 records + notificationPermission
+├── tests/
+│   ├── plugin_notification_signature.res # 型レベル網羅 (38 _check_)
+│   └── runtime/plugin_notification.test.mjs # vitest + Mocks + window.Notification stub (19 cases)
+├── rescript.json
+├── package.json                         # @rescript-tauri/plugin-notification
+├── vitest.config.mjs
+├── CHANGELOG.md
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-notification ^2.3.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+upstream の `sendNotification(options: Options | string)` overload を `sendNotification` / `sendNotificationText` の 2 関数に分割して静的化（steering 054 §3.1）。`Importance` / `Visibility` の数値 enum は ReScript 側で `int` の named constants として公開し、`default_` / `private_` / `public_` は JS 出力の `$$default` / `$$private` / `$$public` エスケープを避けるため suffix 付き。`requestPermission` / `sendNotification` / `sendNotificationText` は upstream で IPC ではなく `window.Notification` Web API 経由で動作するため、テストでは `globalThis.window.Notification` を stub する。`examples/plugin-notification-demo/` と sphinx-docs `user/plugin-notification.md` は後続 sub-steering に分離。
+
+```
+packages/plugin-log/                     # 着手済み (steering 055, 2026-05-09)
+├── src/
+│   └── PluginLog.res / .resi            # 5 log fn + attachLogger + attachConsole + LogLevel + types
+├── tests/
+│   ├── plugin_log_signature.res         # 型レベル網羅 (16 _check_)
+│   └── runtime/plugin_log.test.mjs      # vitest + Mocks 経由 (9 cases)
+├── rescript.json
+├── package.json                         # @rescript-tauri/plugin-log
+├── vitest.config.mjs
+├── CHANGELOG.md
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-log ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+`LogLevel` の数値 enum (`Trace=1` / `Debug=2` / `Info=3` / `Warn=4` / `Error=5`) は ReScript 側で `int` named constants として公開し、`debug_` / `info_` / `warn_` / `error_` は JS 出力での `$$debug` / `$$info` / `$$warn` / `$$error` エスケープを避けるため suffix 付き（`trace` のみ素のまま）。トップレベル log 関数 (`error` / `warn` / `info` / `debug` / `trace`) は名前衝突なし。`attachLogger` / `attachConsole` は Tauri Event (`log://log`) 経由で動作するため、テストでは `__TAURI_INTERNALS__` の `transformCallback` / `invoke` を stub する。`examples/plugin-log-demo/` と sphinx-docs `user/plugin-log.md` は後続 sub-steering に分離。
+
+```
+packages/plugin-os/                      # 着手済み (steering 056, 2026-05-09)
+├── src/
+│   └── PluginOs.res / .resi             # 9 関数 (eol/platform/version/family/osType_/arch/exeExtension/locale/hostname) + 4 polymorphic variants
+├── tests/
+│   ├── plugin_os_signature.res          # 型レベル網羅 (19 _check_)
+│   └── runtime/plugin_os.test.mjs       # vitest + globals stub + Mocks (10 cases)
+├── rescript.json
+├── package.json                         # @rescript-tauri/plugin-os
+├── vitest.config.mjs
+├── CHANGELOG.md
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-os ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+upstream の `type()` は ReScript の予約語 `type` と衝突するため `osType_()` にリネームして公開。7 つの sync getter (`eol` / `platform` / `version` / `family` / `osType_` / `arch` / `exeExtension`) は upstream で `window.__TAURI_OS_PLUGIN_INTERNALS__` を直接読み取るため、テストではこの globals を stub する。残り 2 つ (`locale` / `hostname`) は IPC (`plugin:os|locale` / `plugin:os|hostname`) 経由で `Mocks.mockIPC` で検証可能。`examples/plugin-os-demo/` と sphinx-docs `user/plugin-os.md` は後続 sub-steering に分離。
+
+```
+packages/plugin-clipboard-manager/       # 着手済み (steering 057, 2026-05-09)
+├── src/
+│   └── PluginClipboardManager.res / .resi # 6 関数 (writeText/readText/writeImage/readImage/writeHtml/clear) + writeTextOptions
+├── tests/
+│   ├── plugin_clipboard_manager_signature.res # 型レベル網羅 (8 _check_)
+│   └── runtime/plugin_clipboard_manager.test.mjs # vitest + Mocks (7 cases)
+├── rescript.json
+├── package.json                         # @rescript-tauri/plugin-clipboard-manager
+├── vitest.config.mjs
+├── CHANGELOG.md
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-clipboard-manager ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+`readImage` は `RescriptTauriCore.Image.t` を返す（peerDep 経由で core モジュールを再利用、独自 type を持たない）。`writeImage` は upstream union (`string | Image | Uint8Array | ArrayBuffer | number[]`) を polymorphic `'image` で受ける。`examples/plugin-clipboard-manager-demo/` と sphinx-docs `user/plugin-clipboard-manager.md` は後続 sub-steering に分離。
 
 ### 2.3 `packages/schema/`
 
@@ -279,7 +373,8 @@ sphinx-docs/
 | `skills/` | 状況発火型スキル本体（`SKILL.md` + 補助ファイル） |
 | `agents/` | code-reviewer / debugger 等のサブエージェント定義 |
 | `rules/` | CLAUDE.md から @import される常時適用ルール |
-| `hooks/` | 自動実行される shell hook（`validate-bash.sh` 等） |
+| `hooks/` | 自動実行される shell hook（`check-secrets.sh` / `check-disk-space.sh` / `biome-format.sh`） |
+| `settings.json` | Claude Code lifecycle hook 登録（PreToolUse / PostToolUse） |
 | `output-styles/` | 出力スタイル設定 |
 | `statusline.sh` | ステータスライン表示スクリプト |
 | `worktrees/` | ビルトイン worktree 作成先（一時的） |
@@ -319,8 +414,6 @@ CI ジョブ定義の詳細は `docs/functional-design.md` §6 を参照。
 | `pnpm-workspace.yaml` | `packages/*`, `examples/*` を workspace として宣言 |
 | `package.json` | ルート package（`devDependencies`、共通スクリプト） |
 | `biome.json` | 手書き JS / JSON の format + lint 設定（ReScript 生成物 `*.res.mjs` / `lib/` は除外） |
-| `.mcp.json.template` | MCP サーバー設定テンプレート（実体 `.mcp.json` は `.gitignore`） |
-| `.env.example` | 環境変数テンプレート |
 | `.gitignore` | `node_modules/`, `.mcp.json`, `CLAUDE.local.md`, `.steering/archive/.*` 等 |
 
 ---

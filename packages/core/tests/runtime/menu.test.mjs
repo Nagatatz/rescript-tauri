@@ -259,3 +259,239 @@ describe("Menu.Menu", () => {
     expect(calls.length).toBeGreaterThan(8)
   })
 })
+
+// PredefinedMenuItem encodes its `predefinedItem` variant into the
+// upstream JS shape via the internal `_predefinedToJs` helper. The
+// 17 string-only variants compile to plain strings; `About(meta)` is
+// the only object-shaped one (already covered above). We exercise
+// every string variant through `PredefinedMenuItem.make` and assert
+// the JSON-encoded `options.item` lands with the expected string.
+describe("Menu.Submenu items() decode (_itemFromJs branch coverage)", () => {
+  beforeEach(() => Mocks.clearMocks())
+  afterEach(() => Mocks.clearMocks())
+
+  it("items() decodes each itemKind variant", async () => {
+    // Upstream returns each item as a [rid, id, kind] triple that
+    // upstream's `itemFromKind` destructures into a class instance.
+    // ReScript's `_itemFromJs` then reads the `kind` getter on that
+    // instance.
+    Mocks.mockIPC(async (cmd) => {
+      if (cmd.includes("new")) return [70, "edit"]
+      if (cmd.includes("items")) {
+        return [
+          [1, "a", "MenuItem"],
+          [2, "b", "Check"],
+          [3, "c", "Icon"],
+          [4, "d", "Predefined"],
+          [5, "e", "Submenu"],
+        ]
+      }
+      return null
+    })
+    const submenu = await Menu.Submenu.make({ text: "Edit" })
+    const items = await Menu.Submenu.items(submenu)
+    expect(items).toHaveLength(5)
+    expect(items[0].TAG).toBe("Item")
+    expect(items[1].TAG).toBe("Check")
+    expect(items[2].TAG).toBe("Icon")
+    expect(items[3].TAG).toBe("Predefined")
+    expect(items[4].TAG).toBe("Submenu")
+  })
+
+  it("get() returns an itemKind when found", async () => {
+    Mocks.mockIPC(async (cmd) => {
+      if (cmd.includes("new")) return [71, "edit"]
+      if (cmd.includes("get")) return [99, "found", "MenuItem"]
+      return null
+    })
+    const submenu = await Menu.Submenu.make({ text: "Edit" })
+    const item = await Menu.Submenu.get(submenu, "found")
+    expect(item).not.toBeNull()
+    expect(item.TAG).toBe("Item")
+  })
+})
+
+describe("Menu MenuItem-class id/text getters and setters", () => {
+  beforeEach(() => Mocks.clearMocks())
+  afterEach(() => Mocks.clearMocks())
+
+  it("CheckMenuItem.text / setText / setEnabled / setAccelerator dispatch through IPC", async () => {
+    const calls = []
+    Mocks.mockIPC(async (cmd) => {
+      calls.push(cmd)
+      if (cmd.includes("new")) return [80, "check"]
+      if (cmd.includes("text")) return "Auto-save"
+      return null
+    })
+    const item = await Menu.CheckMenuItem.make({ text: "Auto-save" })
+    expect(Menu.CheckMenuItem.id(item)).toBe("check")
+    expect(await Menu.CheckMenuItem.text(item)).toBe("Auto-save")
+    await Menu.CheckMenuItem.setText(item, "Auto save")
+    await Menu.CheckMenuItem.setEnabled(item, true)
+    await Menu.CheckMenuItem.setAccelerator(item, "Cmd+Shift+S")
+  })
+
+  it("IconMenuItem.text / setText / setEnabled / setAccelerator dispatch through IPC", async () => {
+    const calls = []
+    Mocks.mockIPC(async (cmd) => {
+      calls.push(cmd)
+      if (cmd.includes("new")) return [81, "icon"]
+      if (cmd.includes("text")) return "Save"
+      return null
+    })
+    const item = await Menu.IconMenuItem.make({ text: "Save", icon: "/icons/save.png" })
+    expect(Menu.IconMenuItem.id(item)).toBe("icon")
+    expect(await Menu.IconMenuItem.text(item)).toBe("Save")
+    await Menu.IconMenuItem.setText(item, "Save File")
+    await Menu.IconMenuItem.setEnabled(item, false)
+    await Menu.IconMenuItem.setAccelerator(item, "Cmd+S")
+  })
+
+  it("PredefinedMenuItem id / text / setText dispatch through IPC", async () => {
+    const calls = []
+    Mocks.mockIPC(async (cmd) => {
+      calls.push(cmd)
+      if (cmd.includes("new")) return [82, "sep"]
+      if (cmd.includes("text")) return "Separator"
+      return null
+    })
+    const item = await Menu.PredefinedMenuItem.make({ item: "Separator" })
+    expect(Menu.PredefinedMenuItem.id(item)).toBe("sep")
+    expect(await Menu.PredefinedMenuItem.text(item)).toBe("Separator")
+    await Menu.PredefinedMenuItem.setText(item, "---")
+  })
+})
+
+describe("Menu.PredefinedMenuItem variant encoding", () => {
+  beforeEach(() => Mocks.clearMocks())
+  afterEach(() => Mocks.clearMocks())
+
+  const stringVariants = [
+    "Separator",
+    "Copy",
+    "Cut",
+    "Paste",
+    "SelectAll",
+    "Undo",
+    "Redo",
+    "Minimize",
+    "Maximize",
+    "Fullscreen",
+    "Hide",
+    "HideOthers",
+    "ShowAll",
+    "CloseWindow",
+    "Quit",
+    "Services",
+    "BringAllToFront",
+  ]
+
+  for (const variant of stringVariants) {
+    it(`encodes the ${variant} variant as the upstream string "${variant}"`, async () => {
+      let captured
+      Mocks.mockIPC(async (cmd, args) => {
+        if (cmd.includes("new")) {
+          captured = args
+          return [100, variant.toLowerCase()]
+        }
+        return null
+      })
+      // ReScript's variant constructors without payloads compile to
+      // plain strings, so { item: "Cut" } at the JS layer matches
+      // ReScript's `Cut` variant.
+      await Menu.PredefinedMenuItem.make({ item: variant })
+      expect(captured.options.item).toBe(variant)
+    })
+  }
+})
+
+// IconMenuItem.options.icon is polymorphic — we cover the "uses a
+// nativeIcon polymorphic variant" pathway here. The variant compiles
+// to a plain string, so `{ icon: "Add" }` reaches upstream as-is.
+describe("Menu.IconMenuItem with NativeIcon", () => {
+  beforeEach(() => Mocks.clearMocks())
+  afterEach(() => Mocks.clearMocks())
+
+  // Representative selection from the 56-element nativeIcon enum.
+  const nativeIconValues = ["Add", "Bluetooth", "User", "TrashEmpty", "Network"]
+
+  for (const icon of nativeIconValues) {
+    it(`accepts the ${icon} NativeIcon and forwards it to plugin:menu|new`, async () => {
+      let captured
+      Mocks.mockIPC(async (cmd, args) => {
+        if (cmd.includes("new")) {
+          captured = args
+          return [200, icon.toLowerCase()]
+        }
+        return null
+      })
+      await Menu.IconMenuItem.make({
+        id: `icon-${icon}`,
+        text: icon,
+        icon,
+      })
+      // ReScript polyvariants compile to bare strings, and upstream
+      // forwards the `icon` field through transformImage. We assert
+      // the round-trip lands with the expected string identifier.
+      expect(captured.options.icon).toBe(icon)
+    })
+  }
+})
+
+// Methods the broader Menu tests had skipped: per-class `isEnabled`
+// getters on CheckMenuItem / IconMenuItem (MenuItem.isEnabled is
+// already covered), `Submenu.id`, and the `Menu.make({...options})`
+// branch (only the no-options form was exercised earlier).
+describe("Menu missed accessors / overloads", () => {
+  beforeEach(() => Mocks.clearMocks())
+  afterEach(() => Mocks.clearMocks())
+
+  it("CheckMenuItem.isEnabled dispatches plugin:menu|is_enabled", async () => {
+    let captured
+    Mocks.mockIPC(async (cmd) => {
+      if (cmd.includes("new")) return [300, "chk"]
+      captured = cmd
+      return true
+    })
+    const item = await Menu.CheckMenuItem.make({ text: "Auto" })
+    expect(await Menu.CheckMenuItem.isEnabled(item)).toBe(true)
+    expect(captured).toContain("is_enabled")
+  })
+
+  it("IconMenuItem.isEnabled dispatches plugin:menu|is_enabled", async () => {
+    let captured
+    Mocks.mockIPC(async (cmd) => {
+      if (cmd.includes("new")) return [301, "ico"]
+      captured = cmd
+      return false
+    })
+    const item = await Menu.IconMenuItem.make({ text: "Save", icon: "x.png" })
+    expect(await Menu.IconMenuItem.isEnabled(item)).toBe(false)
+    expect(captured).toContain("is_enabled")
+  })
+
+  it("Submenu.id reads the @get id field on a Submenu handle", async () => {
+    Mocks.mockIPC(async (cmd) => {
+      if (cmd.includes("new")) return [302, "edit-submenu"]
+      return null
+    })
+    const submenu = await Menu.Submenu.make({ text: "Edit" })
+    expect(Menu.Submenu.id(submenu)).toBe("edit-submenu")
+  })
+
+  it("Menu.make({~options}) dispatches with id + items mapping", async () => {
+    Mocks.mockIPC(async (cmd) => {
+      if (cmd.includes("new")) return [303, "main-menu"]
+      return null
+    })
+    const child = await Menu.MenuItem.make({ id: "open", text: "Open" })
+    const menu = await Menu.Menu.make({
+      id: "main-menu",
+      items: [{ TAG: "Item", _0: child }],
+    })
+    expect(Menu.Menu.id(menu)).toBe("main-menu")
+    // Calling Menu.make with options present drives the
+    // `options !== undefined` branch in the compiled wrapper.
+    expect(menu).toBeDefined()
+  })
+})

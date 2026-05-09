@@ -40,6 +40,11 @@ For the full rationale and scope, see [`docs/product-requirements.md`](./docs/pr
 | `@rescript-tauri/core` | Core bindings covering the entire `@tauri-apps/api` public surface | Phase 1 |
 | `@rescript-tauri/plugin-fs` | Bindings for `@tauri-apps/plugin-fs` | Phase 2+ |
 | `@rescript-tauri/plugin-dialog` | Bindings for `@tauri-apps/plugin-dialog` | Phase 2+ |
+| `@rescript-tauri/plugin-shell` | Bindings for `@tauri-apps/plugin-shell` (process spawning + `openPath`) | Phase 2+ |
+| `@rescript-tauri/plugin-notification` | Bindings for `@tauri-apps/plugin-notification` (toast notifications + scheduling + Android channels) | Phase 2+ |
+| `@rescript-tauri/plugin-log` | Bindings for `@tauri-apps/plugin-log` (5 log levels + `attachLogger` / `attachConsole`) | Phase 2+ |
+| `@rescript-tauri/plugin-os` | Bindings for `@tauri-apps/plugin-os` (platform / version / arch / family / hostname / locale) | Phase 2+ |
+| `@rescript-tauri/plugin-clipboard-manager` | Bindings for `@tauri-apps/plugin-clipboard-manager` (read/write text / image / HTML) | Phase 2+ |
 | `@rescript-tauri/schema` | `Command.fromSchemas` helper integrating `rescript-schema` / `rescript-struct` | Phase 2 |
 
 Each package is published with independent semver and declares the corresponding upstream `@tauri-apps/*` package as a `peerDependency`.

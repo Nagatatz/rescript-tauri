@@ -60,7 +60,8 @@ and the runnable
 
 | Module | Purpose |
 |---|---|
-| `Tauri` | `open Tauri` re-export of the 5 most common modules (Core / Event / Window / Webview / WebviewWindow) |
+| `Tauri` | `open Tauri` re-export of the 6 most common modules (Common / Core / Event / Window / Webview / WebviewWindow) |
+| `Common` | Cross-cutting shared types (`unlisten`, `color`, `dragDropEvent`) used by Window / Webview / WebviewWindow / Event |
 | `Core` | IPC bridge — `Raw.invoke`, typed `Command`, streaming `Channel`, `convertFileSrc`, `isTauri`, `Resource`, `PluginListener`, `addPluginListener`, `checkPermissions` / `requestPermissions`, `LowLevel` (transformCallback / SERIALIZE_TO_IPC_FN) |
 | `Event` | Pub/sub event bus (`make`, `listen`, `once`, `emit`, `emitTo`); `tauriEvent` polymorphic variant + `TauriEvent` named values; `~target` option on `listen` / `once` |
 | `Window` | Window class — opaque handle + ~90 instance / static methods (incl. `activityName`, `sceneIdentifier`, `setFocusable`, `setSimpleFullscreen`, `toggleMaximize`, `unminimize`, `onDragDropEvent`), full type set |

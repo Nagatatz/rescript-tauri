@@ -4,7 +4,7 @@
 
 コードの変更を伴う指示を受けた場合、**コードを1行も書く前に**以下を実行すること:
 
-1. `.steering/[YYYYMMDD]-[NNN]-[開発タイトル]/` ディレクトリを作成する
+1. `.steering/[YYYYMMDD]-[NNN]-[開発タイトル]/` ディレクトリを作成する（→ 「ステアリング番号の採番」参照）
 2. `requirements.md` を作成し、ユーザーの承認を得る
 3. `design.md` を作成し、ユーザーの承認を得る
 4. `tasklist.md` を作成し、ユーザーの承認を得る
@@ -24,6 +24,66 @@ worktree での実装が完了しコミットした後、以下のフローを�
 ## tasklist.md 更新ルール
 
 tasklist.md の更新タイミングとルールは `definition-of-done.md` の Phase 2・Phase 3・Phase 4 を参照すること。
+
+## ステアリング番号の採番
+
+`.steering/[YYYYMMDD]-[NNN]-[開発タイトル]/` の **NNN** は当日内で連番。並列セッションが稼働している環境では衝突が発生しやすいため、以下の手順で採番すること。
+
+### 採番手順
+
+```bash
+# 1. 当日の最大番号を確認
+ls -1 .steering/ 2>/dev/null | grep -oE '^[0-9]{8}-[0-9]{3}' | sort -u | tail -1
+# → 例: 20260509-052 が表示 → 次は 053
+
+# 2. 並列 worktree ブランチでの予約済み番号を確認
+git branch --list 'worktree-*' --format='%(refname:short)'
+# → 同番号を含むブランチが無いことを確認
+
+# 3. AskUserQuestion で並列セッション稼働状況を確認（任意）
+#   並列で複数の Claude セッションが走っている可能性がある場合は採番をユーザーに確認
+```
+
+### 衝突発生時の対処
+
+別セッションが先に同番号を採用した場合（commit / push / worktree branch 作成のいずれか）は、自分の番号を `+1` で**即座に再採番**してリネーム:
+
+```bash
+git mv .steering/20260509-053-... .steering/20260509-054-...
+```
+
+worktree ブランチ名も合わせてリネーム:
+
+```bash
+git branch -m worktree-<旧名> worktree-<新名>
+```
+
+### 背景
+
+CC Insights レポート（2026-04 〜 2026-05）で「039 vs 040 の衝突」「021 を採番すべき場面で 027 を採番」等が複数回観測されたため、本手順を明文化する。
+
+## 長時間タスクの Checkpoint 計画
+
+usage limit / セッション中断による作業ロストを防ぐため、tasklist.md は以下を満たすように設計すること:
+
+- **各タスクが単独でコミット可能な粒度** であること（実装 + テスト + ドキュメントを 1 ユニットに収める）
+- **各タスク完了時点でテストが pass する green commit** が残ること
+- **大規模 refactor / 翻訳 / API 全カバー / 多パッケージ実装** は N 個の独立 PR に分割可能な単位に分けること
+- 中断が発生した場合、最後の green commit から再開できる構造を保つこと
+
+### 適用判断
+
+以下のいずれかに該当する場合は本ルールを必ず適用:
+
+- 推定作業量が **30 分超** または **トークン消費が大きい** （翻訳 / 大規模 audit / 多パッケージ追加等）
+- ステアリング 1 件で **複数パッケージ / 複数ディレクトリ** を横断する変更
+- 過去のレポートで `usage limit cut off mid-task` が観測されたカテゴリの作業
+
+軽量タスク（数ファイル編集 / 単一バグ修正等）には適用不要。
+
+### 背景
+
+CC Insights レポートで「sphinx-docs ja 翻訳が中断」「@tauri-apps/api Phase 2 が partial で残った」「refactor coverage が中断」等が観測されたため、本ルールで commit-shaped checkpoint を強制する。
 
 ## 必ず守ること
 
@@ -74,6 +134,36 @@ ls .claude/worktrees/ 2>/dev/null
 
 **CWD が壊れている場合（Bash コマンドがすべて失敗する場合）:**
 `worktree-safety` skill の「CWD が既に壊れている場合」を参照（Agent ツール経由でのクリーンアップ手順）。
+
+### worktree 作成前の鮮度確認
+
+worktree を作成する**直前に必ず**以下を実行し、ベースとなる ref が最新であることを確認すること。stale な ref から分岐すると、後でステアリングコミットを取り込むためのマージが必要になり手戻りになる。
+
+```bash
+# 1. リモート最新を取得
+git fetch origin
+
+# 2. ローカル main が origin/main より進んでいるかを確認
+git log --oneline origin/main..HEAD
+# → 出力があれば、未 push のコミットが存在する
+# → 出力が空なら origin/main がローカル main と同一
+
+# 3. EnterWorktree のベース ref を選択
+#    - origin/main を使う（既定 worktree.baseRef = fresh）: 未 push の commit は worktree に入らない
+#    - 局所 HEAD を使う (worktree.baseRef = head):       未 push commit を取り込む
+```
+
+#### 推奨フロー
+
+| 状況 | 推奨 baseRef | 理由 |
+|---|---|---|
+| ローカル main = origin/main | `fresh`（既定） | 完全に同期しているので fresh で OK |
+| ローカル main にステアリングコミットあり（未 push） | `head` または手動 `git worktree add ... HEAD` | worktree に直近 commit を取り込む必要がある |
+| 別 worktree で先行作業がある | merge / rebase で取り込んでから worktree 作成 | 競合の予防 |
+
+#### 背景
+
+CC Insights レポートで「Worktree based on stale origin/main required a merge to pull in steering commits」が観測されたため、本手順を明文化する。
 
 ### worktree マージ・クリーンアップ手順
 
