@@ -25,9 +25,9 @@
 
 ## Phase 2: index.md 更新
 
-- [ ] T2.1 `sphinx-docs/user/index.md` の Phase 2 packages テーブルに `@rescript-tauri/plugin-shell` 行を追加（design §4.1 の通り）
-- [ ] T2.2 同 toctree に `plugin-shell` を `plugin-dialog` と `schema` の間に追加（design §4.2）
-- [ ] T2.3 **コミット**: `📝 Link plugin-shell user guide from sphinx-docs/user/index.md`
+- [x] T2.1 `sphinx-docs/user/index.md` の Phase 2 packages テーブルに `@rescript-tauri/plugin-shell` 行を追加（design §4.1 の通り）。あわせて先頭文 "three add-on packages" を "four add-on packages" に更新
+- [x] T2.2 同 toctree に `plugin-shell` を `plugin-dialog` と `schema` の間に追加（design §4.2）
+- [x] T2.3 **コミット**: `📝 Link plugin-shell user guide from sphinx-docs/user/index.md`
 
 ## Phase 3: repository-structure.md 更新
 
