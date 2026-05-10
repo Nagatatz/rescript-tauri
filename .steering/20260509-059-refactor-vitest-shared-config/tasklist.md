@@ -36,12 +36,12 @@
 - [x] コミット: `📝 Document tools/ directory in repository-structure`
 
 ## Phase 3: マージ前
-- [ ] tasklist.md の全タスクを `[x]` に更新
-- [ ] `git diff --stat origin/main..HEAD` で純減 50 行以上を確認
-- [ ] 最終コミット (tasklist 更新)
+- [x] tasklist.md の全タスクを `[x]` に更新
+- [x] `git diff --stat origin/main..HEAD` で純減 50 行以上を確認 (153 insertions / 223 deletions = -70 lines)
+- [x] 最終コミット (tasklist 更新)
 
 ## Phase 4: マージ・クリーンアップ
-- [ ] AskUserQuestion で main へのマージ可否を確認
-- [ ] CWD を main repo へ移動 (ExitWorktree)
-- [ ] `git merge worktree-refactor-vitest-shared-config --no-ff`
-- [ ] worktree 削除 / ブランチ削除 / 検証
+- [x] AskUserQuestion で main へのマージ可否を確認
+- [x] CWD を main repo へ移動 (ExitWorktree)
+- [x] `git merge worktree-refactor-vitest-shared-config --no-ff`
+- [x] worktree 削除 / ブランチ削除 / 検証
