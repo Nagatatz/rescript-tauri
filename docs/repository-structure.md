@@ -376,7 +376,7 @@ sphinx-docs/
 └── Makefile
 ```
 
-**未追加のユーザーガイド:** `user/plugin-shell.md`, `user/plugin-notification.md` は後続 sub-steering で追加予定（現状は各パッケージの `README.md` を参照）。
+**未追加のユーザーガイド:** `user/plugin-notification.md` は後続 sub-steering で追加予定（現状は `packages/plugin-notification/README.md` を参照）。
 
 **`docs/` との役割分担:**
 - `docs/` は開発チーム向け（PRD・設計）

@@ -31,8 +31,8 @@
 
 ## Phase 3: repository-structure.md 更新
 
-- [ ] T3.1 `docs/repository-structure.md` §5 末尾の「未追加のユーザーガイド」記述を design §5 の変更後内容に差し替え
-- [ ] T3.2 **コミット**: `📝 Mark plugin-shell user guide as added in repository-structure.md`
+- [x] T3.1 `docs/repository-structure.md` §5 末尾の「未追加のユーザーガイド」記述を design §5 の変更後内容に差し替え
+- [x] T3.2 **コミット**: `📝 Mark plugin-shell user guide as added in repository-structure.md`
 
 ## Phase 4: 検証
 
