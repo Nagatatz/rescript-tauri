@@ -25,6 +25,12 @@
 - [x] core で 1 回 `pnpm --filter @rescript-tauri/core test` を実行し変更前と同じ pass を確認
 - [x] コミット: `♻️ Migrate package vitest configs to definePackageConfig helper`
 
+### Task 2b: 後続マージで取り込んだ plugin-http の追従
+- [x] main から plugin-http (steering 058) を取り込み (`Merge local main into worktree-refactor-vitest-shared-config`)
+- [x] `packages/plugin-http/vitest.config.mjs` を helper 経由に書き換え
+- [x] `node --check packages/plugin-http/vitest.config.mjs` で構文確認
+- [x] コミット: `♻️ Migrate plugin-http vitest config to definePackageConfig helper`
+
 ### Task 3: ドキュメント更新
 - [ ] `docs/repository-structure.md` の `tools/` セクションを追記
 - [ ] コミット: `📝 Document tools/ directory in repository-structure`
