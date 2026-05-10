@@ -50,6 +50,21 @@ pnpm add @rescript-tauri/plugin-fs @tauri-apps/plugin-fs
 # Native dialogs
 pnpm add @rescript-tauri/plugin-dialog @tauri-apps/plugin-dialog
 
+# Process spawning + open URLs/files
+pnpm add @rescript-tauri/plugin-shell @tauri-apps/plugin-shell
+
+# Toast notifications + scheduling (desktop) / Android channels
+pnpm add @rescript-tauri/plugin-notification @tauri-apps/plugin-notification
+
+# Structured logging (5 levels + log targets)
+pnpm add @rescript-tauri/plugin-log @tauri-apps/plugin-log
+
+# OS info (platform / version / arch / family / hostname / locale)
+pnpm add @rescript-tauri/plugin-os @tauri-apps/plugin-os
+
+# Clipboard read/write (text / image / HTML)
+pnpm add @rescript-tauri/plugin-clipboard-manager @tauri-apps/plugin-clipboard-manager
+
 # Layer 3 typed IPC (rescript-schema)
 pnpm add @rescript-tauri/schema rescript-schema
 ```
@@ -57,6 +72,16 @@ pnpm add @rescript-tauri/schema rescript-schema
 See the [plugin-fs](plugin-fs.md), [plugin-dialog](plugin-dialog.md),
 and [schema](schema.md) guides for the matching ReScript / Rust /
 capability setup.
+
+```{note}
+Dedicated user guides for `@rescript-tauri/plugin-shell`,
+`@rescript-tauri/plugin-notification`, `@rescript-tauri/plugin-log`,
+`@rescript-tauri/plugin-os`, and
+`@rescript-tauri/plugin-clipboard-manager` are scheduled for follow-up
+sub-steerings. Until then, refer to each package's own README
+(`packages/plugin-{shell,notification,log,os,clipboard-manager}/README.md`)
+for full API coverage and copy-pasteable examples.
+```
 
 ## Verify
 

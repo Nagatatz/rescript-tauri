@@ -34,7 +34,7 @@
 | **convertFileSrc** | ローカルファイルパスを WebView から読める URL 形式に変換するユーティリティ。 | <https://v2.tauri.app/reference/javascript/api/namespacecore/#convertfilesrc> |
 | **Channel** | Tauri 2.0+ の一方向ストリーミング機構。Rust → フロントへ任意タイミングで複数メッセージを送る。`invoke` の引数として渡す。 | <https://v2.tauri.app/concept/inter-process-communication/#channel> |
 | **Event** | Tauri の pub/sub。`Window` / `App` スコープでブロードキャスト可能。`listen` / `emit` / `once` で操作。 | <https://v2.tauri.app/develop/calling-rust/#event-system> |
-| **Predefined Event** | Tauri が提供するビルトインイベント群（`tauri://close-requested`, `tauri://focus`, `tauri://blur` ほか）。 | — |
+| **Predefined Event** | Tauri が提供するビルトインイベント群（`tauri://close-requested`, `tauri://focus`, `tauri://blur` ほか）。`@rescript-tauri/core` では `Event.TauriEvent` モジュールに `tauriEvent` 型の文字列定数 16 種として公開（`Event.Predefined` という別モジュールは存在しない）。 | <https://v2.tauri.app/reference/javascript/api/namespaceevent/#taurievent> |
 | **Window** | Tauri のウィンドウ抽象。`@tauri-apps/api/window` の `Window` クラスに対応。 | <https://v2.tauri.app/reference/javascript/api/namespacewindow/> |
 | **Webview** | Tauri の WebView 抽象。`Window` とは独立して操作可能。 | <https://v2.tauri.app/reference/javascript/api/namespacewebview/> |
 | **WebviewWindow** | `Window` + `Webview` を合成した便利クラス。JS 上では prototype chain で両クラスのメソッドを継承。 | <https://v2.tauri.app/reference/javascript/api/namespacewebviewwindow/> |

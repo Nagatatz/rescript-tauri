@@ -23,7 +23,7 @@ rescript-tauri/                       # monorepo root
 │   ├── core/                         # @rescript-tauri/core (本書スコープ)
 │   │   ├── src/
 │   │   │   ├── Core.res / .resi      # invoke / convertFileSrc / Channel / Command
-│   │   │   ├── Event.res / .resi     # listen / once / emit / Predefined
+│   │   │   ├── Event.res / .resi     # listen / once / emit / TauriEvent
 │   │   │   ├── Window.res / .resi
 │   │   │   ├── Webview.res / .resi
 │   │   │   ├── WebviewWindow.res / .resi
@@ -88,13 +88,17 @@ rescript-tauri/                       # monorepo root
 
 #### 2.1.1 責務
 - Tauri IPC bridge のすべてのエントリポイント。
-- 3 つのサブモジュール: `Raw`, `Command`, `Channel`。
-- ファイル URL 変換 (`convertFileSrc`)。
+- IPC 系 3 サブモジュール: `Raw` (Layer 1), `Command` (Layer 2), `Channel` (streaming)。
+- ファイル URL 変換 (`convertFileSrc`)、環境判定 (`isTauri`)。
+- プラグイン共通基盤: `Resource` / `PluginListener` / `addPluginListener`、`permissionState` / `checkPermissions` / `requestPermissions`。
+- 低レベルヘルパ: `LowLevel.serializeToIpcFn` / `LowLevel.transformCallback`（プラグイン作者向け）。
+- 共通型: `decoder<'value> = JSON.t => result<'value, string>` を Command / Channel / Event / Schema パッケージで再利用。
+- `Internal` モジュール（パッケージ内ヘルパ。安定 API ではない）。
 
-#### 2.1.2 公開シグネチャ（抜粋）
+#### 2.1.2 公開シグネチャ（IPC 中核）
 
 ```rescript
-// Core.resi
+// Core.resi (一部抜粋。完全版は packages/core/src/Core.resi 参照)
 
 module Raw: {
   type invokeOptions = {headers?: Dict.t<string>}
@@ -112,13 +116,15 @@ type invokeError =
   | DecodeError(string)
   | RustError(JSON.t)
 
+type decoder<'value> = JSON.t => result<'value, string>
+
 module Command: {
   type t<'args, 'result>
 
   let make: (
     ~name: string,
     ~encodeArgs: 'args => JSON.t,
-    ~decodeResult: JSON.t => result<'result, string>,
+    ~decodeResult: decoder<'result>,
   ) => t<'args, 'result>
 
   let invoke: (
@@ -137,13 +143,70 @@ module Command: {
 module Channel: {
   type t<'message>
 
-  let make: (~decode: JSON.t => result<'message, string>) => t<'message>
+  let make: (~decode: decoder<'message>) => t<'message>
   let onMessage: (t<'message>, 'message => unit) => unit
   let id: t<'message> => int
 }
 ```
 
-#### 2.1.3 実装方針
+#### 2.1.3 公開シグネチャ（プラグイン共通基盤・環境）
+
+`Core.resi` は IPC 以外に、Tauri プラグイン群が共通で使う基盤も公開する。アプリ作成側が直接触る頻度は低いが、`@rescript-tauri/plugin-*` の実装と permission 制御で必須:
+
+```rescript
+// Core.resi (続き)
+
+/** プロセスが Tauri webview 上で動いているかを判定。
+    SSR / 通常 web 文脈と分岐したい時に使う。
+    See: https://v2.tauri.app/reference/javascript/api/namespacecore/#istauri */
+let isTauri: unit => bool
+
+/** Rust 側がオーナーシップを持つリソースの opaque handle。
+    `Image` / `Channel` / プラグインが返す handle が共通で持つ shape。 */
+module Resource: {
+  type t
+  let rid: t => int
+  let close: t => promise<unit>
+}
+
+/** プラグインイベントリスナの handle。`addPluginListener` が返す。 */
+module PluginListener: {
+  type t
+  let plugin: t => string
+  let event: t => string
+  let channelId: t => int
+  let unregister: t => promise<unit>
+}
+
+/** プラグインのカスタムイベントを購読する。`(plugin, event, callback)` で
+    callback には decoded されていない JSON が渡るので呼び出し側で decode。 */
+let addPluginListener: (string, string, 'payload => unit) => promise<PluginListener.t>
+
+/** プラグインの permission 状態。プラグイン作者は polymorphic-variant の
+    値を拡張可能（例: `[#granted | #denied | #prompt | #"prompt-with-rationale" | ...]`）。 */
+type permissionState = [#granted | #denied | #prompt | #"prompt-with-rationale"]
+
+let checkPermissions: string => promise<'state>
+let requestPermissions: string => promise<'state>
+
+/** カスタム IPC シリアライズ・コールバック登録の low-level ヘルパ。
+    プラグイン作者向け。アプリ側からは通常不要。 */
+module LowLevel: {
+  let serializeToIpcFn: string
+  let transformCallback: (~callback: 'response => unit=?, ~once: bool=?) => int
+}
+
+/** `@rescript-tauri/core` 内部ヘルパ。**安定 API ではない**。
+    外部から depend してはならない。 */
+module Internal: {
+  let applyDecoder: (decoder<'a>, JSON.t, result<'a, string> => unit) => unit
+  let exnToJson: exn => JSON.t
+}
+```
+
+これらは upstream `@tauri-apps/api/core` の stable surface (v2.11.0) に対応する。詳細 doc comment は `packages/core/src/Core.resi` を正本とする。
+
+#### 2.1.4 実装方針
 - `Raw.invoke`: `@module("@tauri-apps/api/core") external invoke` で薄くバインド。
 - `Command.make` / `invoke`:
   1. `encodeArgs(args)` で `JSON.t` を作成。
@@ -152,8 +215,11 @@ module Channel: {
   4. `result` で返却。
 - `Command.invokeExn`: `Command.invoke` の `result` を unwrap し、`Error` の場合は `JsError` に変換して `raise`。
 - `Channel.make`: 上流 `Channel` クラスを `@new` でインスタンス化、decoder は内部に保持。
+- `addPluginListener`: 上流 `addPluginListener(plugin, event, callback)` を直接バインドし、戻り値の `PluginListener` を typed handle として再ラップ。
+- `checkPermissions` / `requestPermissions`: `'state` を polymorphic にしてプラグイン拡張型を caller annotate で narrow。
+- `LowLevel.transformCallback`: 上流の `transformCallback(callback, once)` を `~callback=?` `~once=?` の named args に直してバインド。
 
-#### 2.1.4 受け入れ条件への対応
+#### 2.1.5 受け入れ条件への対応
 
 | PRD Story | 対応箇所 |
 |---|---|
@@ -198,19 +264,48 @@ let make: (
   ~decode: JSON.t => result<'payload, string>,
 ) => t<'payload>
 
-let listen: (t<'payload>, event<'payload> => unit) => promise<unlisten>
-let once: (t<'payload>, event<'payload> => unit) => promise<unlisten>
+let listen: (
+  t<'payload>,
+  result<event<'payload>, string> => unit,
+  ~target: eventTarget=?,
+) => promise<unlisten>
+let once: (
+  t<'payload>,
+  result<event<'payload>, string> => unit,
+  ~target: eventTarget=?,
+) => promise<unlisten>
 let emit: (t<'payload>, 'payload) => promise<unit>
 let emitTo: (t<'payload>, ~target: eventTarget, 'payload) => promise<unit>
 
-module Predefined: {
-  let closeRequested: t<unit>
-  let focus: t<unit>
-  let blur: t<unit>
-  let scaleFactorChanged: t<{scaleFactor: float, size: PhysicalSize.t}>
-  let resized: t<PhysicalSize.t>
-  let moved: t<PhysicalPosition.t>
-  let fileDrop: t<fileDropEvent>
+/* Predefined Tauri event names — string-level constants that callers feed
+   into `Event.make(~name=..., ~decode=...)` to build a typed handle. The
+   polymorphic-variant `tauriEvent` mirrors upstream `TauriEvent` exactly
+   (16 values, see Event.resi). PhysicalSize / PhysicalPosition payloads
+   are defined in the `Dpi` module (see §2.5). */
+type tauriEvent = [
+  | #"tauri://resize"
+  | #"tauri://move"
+  | #"tauri://close-requested"
+  // ... 13 more — see packages/core/src/Event.resi
+]
+
+module TauriEvent: {
+  let windowResized: tauriEvent
+  let windowMoved: tauriEvent
+  let windowCloseRequested: tauriEvent
+  let windowDestroyed: tauriEvent
+  let windowFocus: tauriEvent
+  let windowBlur: tauriEvent
+  let windowScaleFactorChanged: tauriEvent
+  let windowThemeChanged: tauriEvent
+  let windowCreated: tauriEvent
+  let windowSuspended: tauriEvent
+  let windowResumed: tauriEvent
+  let webviewCreated: tauriEvent
+  let dragEnter: tauriEvent
+  let dragOver: tauriEvent
+  let dragDrop: tauriEvent
+  let dragLeave: tauriEvent
 }
 ```
 
@@ -224,7 +319,7 @@ module Predefined: {
 | PRD Story | 対応箇所 |
 |---|---|
 | 2-1 typed Event ハンドル | `make` / `listen` / `once` / `emit` / `emitTo` |
-| 2-2 Predefined イベント | `Predefined.*` |
+| 2-2 Predefined イベント名 | `TauriEvent.*`（`tauriEvent` 文字列定数 16 種） |
 
 ---
 
@@ -369,18 +464,57 @@ let getTauriVersion: unit => promise<string>
 let show: unit => promise<unit>
 let hide: unit => promise<unit>
 
-// Dpi.resi
+// Dpi.resi — DPI-aware size / position 型群。
+// 上流 JS の class instance を opaque type として包み、accessor で読み取る。
+// Tauri IPC は class 由来の `type` discriminator フィールドを期待するので
+// **record / object literal で代用してはならない**（`make` 経由でのみ生成）。
+
 module LogicalSize: {
-  type t = {width: float, height: float}
+  type t  // opaque (class instance)
+  let make: (~width: float, ~height: float) => t
+  let width: t => float
+  let height: t => float
 }
+
 module PhysicalSize: {
-  type t = {width: float, height: float}
+  type t
+  let make: (~width: float, ~height: float) => t
+  let width: t => float
+  let height: t => float
+  let toLogical: (t, float) => LogicalSize.t  // ~scaleFactor で換算
 }
+
 module LogicalPosition: {
-  type t = {x: float, y: float}
+  type t
+  let make: (~x: float, ~y: float) => t
+  let x: t => float
+  let y: t => float
 }
+
 module PhysicalPosition: {
-  type t = {x: float, y: float}
+  type t
+  let make: (~x: float, ~y: float) => t
+  let x: t => float
+  let y: t => float
+  let toLogical: (t, float) => LogicalPosition.t
+}
+
+/** Tauri Rust 側の `tauri::Size` 引数として渡せる union 型。
+    JS では `{Logical: ...}` / `{Physical: ...}` の shape にシリアライズ。 */
+module Size: {
+  type t
+  let fromLogical: LogicalSize.t => t
+  let fromPhysical: PhysicalSize.t => t
+  let toPhysical: (t, float) => PhysicalSize.t
+  let toLogical: (t, float) => LogicalSize.t
+}
+
+module Position: {
+  type t
+  let fromLogical: LogicalPosition.t => t
+  let fromPhysical: PhysicalPosition.t => t
+  let toPhysical: (t, float) => PhysicalPosition.t
+  let toLogical: (t, float) => LogicalPosition.t
 }
 
 // Image.resi
@@ -392,9 +526,10 @@ let size: t => promise<PhysicalSize.t>
 ```
 
 #### 2.5.3 実装方針
-- 関数ベースモジュール。`@module @scope`/`@module` で外部関数バインド。
+- 関数ベースモジュール（`Path` / `App` / `Image`）。`@module @scope`/`@module` で外部関数バインド。
 - `Image.t` は opaque。
-- `Dpi` のサブモジュールは pure record 型として exposed（`%identity` でも JS 上 fine）。
+- `Dpi` の各サブモジュールは **opaque type + accessor 関数**として公開（class instance 維持のため）。`type t = {...}` ではなく `make` コンストラクタ経由でのみインスタンス化する。これにより Rust 側が `type` discriminator フィールドで Logical/Physical を判定でき、`Window.setSize` / `setPosition` / `cursorPosition` 等に同一インスタンスを渡せる。
+- `PhysicalSize` / `PhysicalPosition` は `Event` モジュールの payload 型としても参照される（§2.2）。`Event.TauriEvent.windowResized` / `windowMoved` を購読する際は、`Event.make(~name=..., ~decode=...)` の decoder で `PhysicalSize.t` / `PhysicalPosition.t` を構築する。
 
 ---
 
@@ -586,7 +721,7 @@ let setTitle: (t, string) => promise<unit>
 | 1-2 typed Command | `Core.Command` | `make`, `invoke`, `invokeExn` | `tests/core_command.res`, encode/decode round-trip |
 | 1-3 schema 非依存 | `Core.Command` 署名 | (`JSON.t` のみ) | `tests/core_command_no_schema.res` |
 | 2-1 typed Event | `Event` | `make`, `listen`, `once`, `emit`, `emitTo` | `tests/event.res`, listen/unlisten 検証 |
-| 2-2 Predefined Event | `Event.Predefined` | `closeRequested` ほか 7 種 | `tests/event_predefined.res` |
+| 2-2 Predefined Event 名 | `Event.TauriEvent` | `windowCloseRequested` ほか 16 種（`tauriEvent` 文字列定数） | `tests/event_signature.res` |
 | 2-3 Channel | `Core.Channel` | `make`, `onMessage`, `id` | `tests/core_channel.res` |
 | 3-1 Window opaque | `Window` | `t`, 全 `@send` メソッド | `tests/window.res`（型レベル） |
 | 3-2 WebviewWindow 継承 | `WebviewWindow` | `asWindow`, `asWebview` | `tests/webview_window.res` |
@@ -667,7 +802,7 @@ let setTitle: (t, string) => promise<unit>
 | 1 | `Tauri.res` re-export 範囲 | **Core / Event / Window / Webview / WebviewWindow 確定**（経緯: `.steering/20260509-023-tauri-reexport/`） | **確定済み（2026-05-09）** |
 | 2 | `Channel` を `Core` 内 vs 独立モジュール | **`Core.Channel` サブモジュール採用（確定）** | **確定済み（Phase 1 設計レビュー）** |
 | 3 | `*Exn` 命名 | **`*Exn` 採用（確定）**（`@rescript/core` 慣習） | **確定済み** |
-| 4 | `Event.Predefined` の網羅範囲 | RFC 列挙 7 種を Must | Phase 1 後継続追加 |
+| 4 | `Event.TauriEvent` の網羅範囲 | **upstream `TauriEvent` enum 16 種を完全カバー（確定）** — `closeRequested` / `focus` / `blur` / `scaleFactorChanged` / `resized` / `moved` / `themeChanged` / `webviewCreated` / `windowCreated` / `windowSuspended` / `windowResumed` / drag-* (4 種) / `windowDestroyed`。typed handle ではなく `Event.make(~name=TauriEvent.*, ~decode=...)` 形式で利用 | **確定済み（2026-05-09、`packages/core/src/Event.resi`）** |
 | 5 | `Mocks` の独立パッケージ化 | **core 同梱を継続（確定）**（経緯: `.steering/20260509-045-mocks-packaging-decision/`） | **確定済み（2026-05-09）** |
 | 6 | Belt-only ユーザー向け shim 提供可否 | 当面提供しない（`@rescript/core` を peerDep 必須） | Phase 1 リリース直前 |
 

@@ -24,6 +24,7 @@ rescript-tauri/                          # monorepo root
 │   ├── plugin-log/                      # @rescript-tauri/plugin-log (Phase 2+)
 │   ├── plugin-os/                       # @rescript-tauri/plugin-os (Phase 2+)
 │   ├── plugin-clipboard-manager/        # @rescript-tauri/plugin-clipboard-manager (Phase 2+)
+│   ├── plugin-http/                     # @rescript-tauri/plugin-http (Phase 2+)
 │   └── schema/                          # @rescript-tauri/schema (Phase 2)
 ├── examples/                            # ビルド可能な使用例（CI ゲート対象）
 │   ├── hello-world/                     # Phase 1 必須
@@ -62,10 +63,17 @@ rescript-tauri/                          # monorepo root
 ├── .github/                             # GitHub Actions / Templates
 │   └── workflows/
 ├── CLAUDE.md                            # プロジェクト指示書（本構造を @import）
+├── AGENTS.md                            # Claude Code 以外のエージェント参照集約
+├── CONTRIBUTING.md                      # コントリビュータ向けガイド
+├── CODE_OF_CONDUCT.md                   # 行動規範
+├── SECURITY.md                          # セキュリティポリシー / 脆弱性報告先
+├── LICENSE                              # MIT
 ├── README.md
 ├── pnpm-workspace.yaml
 ├── package.json
-├── biome.json                          # Biome (手書き JS / JSON の format + lint)
+├── pnpm-lock.yaml                       # pnpm lockfile（commit 対象）
+├── Cargo.toml                           # ルート Cargo workspace（examples の Rust 側を束ねる）
+├── biome.json                           # Biome (手書き JS / JSON の format + lint)
 └── .gitignore
 ```
 
@@ -246,6 +254,24 @@ packages/plugin-clipboard-manager/       # 着手済み (steering 057, 2026-05-0
 
 `readImage` は `RescriptTauriCore.Image.t` を返す（peerDep 経由で core モジュールを再利用、独自 type を持たない）。`writeImage` は upstream union (`string | Image | Uint8Array | ArrayBuffer | number[]`) を polymorphic `'image` で受ける。`examples/plugin-clipboard-manager-demo/` と sphinx-docs `user/plugin-clipboard-manager.md` は後続 sub-steering に分離。
 
+```
+packages/plugin-http/                    # 着手済み (steering 058, 2026-05-09)
+├── src/
+│   └── PluginHttp.res / .resi           # fetch + 5 records (basicAuth/proxyConfig/proxy/dangerousSettings/clientOptions)
+├── tests/
+│   ├── plugin_http_signature.res        # 型レベル網羅 (8 _check_)
+│   └── runtime/plugin_http.test.mjs     # vitest + __TAURI_INTERNALS__ stub (3 cases)
+├── rescript.json
+├── package.json                         # @rescript-tauri/plugin-http
+├── vitest.config.mjs
+├── CHANGELOG.md
+└── README.md
+```
+
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-http ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+
+upstream `fetch(input, init)` は Web Fetch API のラッパー。`input` (`string | URL | Request`) / `init` (`RequestInit & ClientOptions`) / 戻り値 `Response` は DOM 型のため、ReScript 側では polymorphic `'input` / `'init` / `'response` で受け流し、呼び出し側で型注釈を付ける運用とする。Tauri 固有の設定 (`proxy` / `clientOptions` / `proxyConfig` / `dangerousSettings` / `basicAuth`) は明示的な record 型として公開。`proxy<'proxyValue>` と `clientOptions<'proxyValue>` は upstream の `string | ProxyConfig` union を polymorphic `'proxyValue` で表現。`examples/plugin-http-demo/` と sphinx-docs `user/plugin-http.md`、および完全な Web Fetch API 型バインディングは後続 sub-steering に分離。
+
 ### 2.3 `packages/schema/`
 
 Phase 2 着手済み (steering 031, 2026-05-09)。`rescript-schema` 向けの Layer 3 IPC ヘルパを提供する独立パッケージ:
@@ -324,20 +350,33 @@ Sphinx + Furo テーマで構築し GitHub Pages にホスティング。
 
 ```
 sphinx-docs/
+├── index.md                             # トップページ
 ├── user/                                # エンドユーザー向け
+│   ├── index.md
 │   ├── installation.md
 │   ├── quickstart.md
 │   ├── configuration.md
+│   ├── plugin-fs.md                     # @rescript-tauri/plugin-fs ガイド
+│   ├── plugin-dialog.md                 # @rescript-tauri/plugin-dialog ガイド
+│   ├── schema.md                        # @rescript-tauri/schema (Layer 3) ガイド
 │   └── changelog.md
 ├── dev/                                 # コントリビュータ向け
+│   ├── index.md
 │   ├── setup.md
 │   ├── building.md
 │   ├── architecture.md                  # 簡易版（docs/architecture.md の抜粋）
+│   ├── project-structure.md             # 簡易版（本書の抜粋）
 │   └── contributing.md
 ├── locale/ja/                           # 日本語翻訳 (.po)
+├── tests/                               # ドキュメントの自動テスト（OGP 等）
+├── _static/
+├── _templates/
 ├── conf.py
+├── pyproject.toml                       # Sphinx ビルド用 Python 依存（uv 管理）
 └── Makefile
 ```
+
+**未追加のユーザーガイド:** `user/plugin-shell.md`, `user/plugin-notification.md` は後続 sub-steering で追加予定（現状は各パッケージの `README.md` を参照）。
 
 **`docs/` との役割分担:**
 - `docs/` は開発チーム向け（PRD・設計）
@@ -387,24 +426,47 @@ sphinx-docs/
 
 ```
 .github/
-├── workflows/                           # GitHub Actions ジョブ
-│   ├── _test-package-runtime.yml        # 再利用 workflow (workflow_call) — vitest 実行
-│   ├── _test-package-types.yml         # 再利用 workflow (workflow_call) — rescript build + public-symbol 網羅検証
-│   ├── build-core.yml                   # PR / push トリガ
-│   ├── tests-core-types.yml             # _test-package-types.yml 呼び出しの薄い wrapper
-│   ├── tests-core-runtime.yml           # _test-package-runtime.yml 呼び出しの薄い wrapper
-│   ├── tests-<plugin>-{runtime,types}.yml  # 各 plugin / schema 用 wrapper (steering 058 でテンプレ化)
-│   ├── tests-coverage.yml               # 4 パッケージ matrix で vitest v8 カバレッジ計測（観測フェーズ）
-│   ├── examples-build.yml               # 3 OS マトリクス
-│   ├── doc-link-lint.yml
-│   ├── compat-tauri-latest.yml          # nightly
-│   ├── compat-rescript-prerelease.yml   # nightly (12.x 次期マイナー / 次期メジャー prerelease 検証)
-│   └── release.yml                      # tag push
+├── workflows/                                    # GitHub Actions ジョブ
+│   ├── _test-package-runtime.yml                 # 再利用 workflow (workflow_call) — vitest 実行
+│   ├── _test-package-types.yml                   # 再利用 workflow (workflow_call) — rescript build + public-symbol 網羅検証
+│   ├── build-core.yml                            # PR / push トリガ — core ビルド検証
+│   ├── tests-core-types.yml
+│   ├── tests-core-runtime.yml
+│   ├── tests-plugin-fs-types.yml
+│   ├── tests-plugin-fs-runtime.yml
+│   ├── tests-plugin-dialog-types.yml
+│   ├── tests-plugin-dialog-runtime.yml
+│   ├── tests-plugin-shell-types.yml
+│   ├── tests-plugin-shell-runtime.yml
+│   ├── tests-plugin-notification-types.yml
+│   ├── tests-plugin-notification-runtime.yml
+│   ├── tests-plugin-log-types.yml
+│   ├── tests-plugin-log-runtime.yml
+│   ├── tests-plugin-os-types.yml
+│   ├── tests-plugin-os-runtime.yml
+│   ├── tests-plugin-clipboard-manager-types.yml
+│   ├── tests-plugin-clipboard-manager-runtime.yml
+│   ├── tests-plugin-http-types.yml
+│   ├── tests-plugin-http-runtime.yml
+│   ├── tests-schema-types.yml
+│   ├── tests-schema-runtime.yml
+│   ├── tests-coverage.yml                        # 10 パッケージ matrix で vitest v8 カバレッジ計測（観測フェーズ）
+│   ├── examples-build.yml                        # 3 OS マトリクス
+│   ├── lint-format.yml                           # Biome (手書き JS / JSON の format + lint)
+│   ├── doc-link-lint.yml                         # docs / README 内リンク検証
+│   ├── docs.yml                                  # sphinx-docs ビルド + GitHub Pages デプロイ
+│   ├── compat-tauri-latest.yml                   # nightly — 上流 Tauri 最新リリース追従
+│   ├── compat-rescript-prerelease.yml            # nightly — ReScript 12.x 次期マイナー / 次期メジャー prerelease 検証
+│   └── release.yml                               # tag push — npm publish + changelog
 ├── ISSUE_TEMPLATE/
-└── PULL_REQUEST_TEMPLATE.md
+├── PULL_REQUEST_TEMPLATE.md
+├── auto-pr-description.yml.template              # オプトイン: PR description 自動生成（未有効化）
+└── claude-code-review.yml.template               # オプトイン: Claude Code レビュー自動投稿（未有効化）
 ```
 
-`_` プレフィックスのファイルは `workflow_call` 経由で他 workflow から呼ばれる再利用 workflow。新 plugin 追加時は `tests-<name>-runtime.yml` / `tests-<name>-types.yml` の 2 つを `tests-plugin-fs-*` 等を雛形にして `package-name` / `package-path` / `paths` を書き換えるだけで済む。CI ジョブ定義の詳細は `docs/functional-design.md` §6 を参照。
+`_` プレフィックスのファイルは `workflow_call` 経由で他 workflow から呼ばれる再利用 workflow。新 plugin 追加時は `tests-<name>-runtime.yml` / `tests-<name>-types.yml` の 2 つを `tests-plugin-fs-*` 等を雛形にして `package-name` / `package-path` / `paths` を書き換えるだけで済む。`.template` 拡張子のファイルは opt-in 用テンプレートで、本リポジトリでは現状未有効化。
+
+CI ジョブ定義の詳細は `docs/functional-design.md` §6 を参照。
 
 ---
 
@@ -413,9 +475,16 @@ sphinx-docs/
 | ファイル | 役割 |
 |---|---|
 | `CLAUDE.md` | Claude Code への強制指示。`@docs/repository-structure.md` を含む @import チェーンの起点 |
+| `AGENTS.md` | Claude Code 以外のエージェント（Cursor / Copilot 等）が参照する集約ファイル |
+| `CONTRIBUTING.md` | コントリビュータ向けガイド（PR 出し方 / テスト / レビュー観点） |
+| `CODE_OF_CONDUCT.md` | 行動規範（Contributor Covenant ベース） |
+| `SECURITY.md` | セキュリティポリシー / 脆弱性報告先 |
+| `LICENSE` | MIT ライセンス全文 |
 | `README.md` | プロジェクト全体の overview / インストール / 互換マトリクス |
 | `pnpm-workspace.yaml` | `packages/*`, `examples/*` を workspace として宣言 |
 | `package.json` | ルート package（`devDependencies`、共通スクリプト） |
+| `pnpm-lock.yaml` | pnpm lockfile（commit 対象） |
+| `Cargo.toml` | ルート Cargo workspace（examples の `src-tauri/` 群を束ねる） |
 | `biome.json` | 手書き JS / JSON の format + lint 設定（ReScript 生成物 `*.res.mjs` / `lib/` は除外） |
 | `.gitignore` | `node_modules/`, `.mcp.json`, `CLAUDE.local.md`, `.steering/archive/.*` 等 |
 

@@ -139,15 +139,16 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 - `Event.emit`, `Event.emitTo(~target)` で送信できる。
 - `eventTarget` variant は `Any | AnyLabel(string) | App | Window(string) | Webview(string) | WebviewWindow(string)`。
 
-#### Story 2-2: Tauri ビルトインイベントを定型値として使う
+#### Story 2-2: Tauri ビルトインイベント名を定型値として使う
 **As a** 開発者
-**I want** `Event.Predefined.closeRequested` 等の事前定義 Event 値
-**So that** イベント名文字列を間違えない
+**I want** `Event.TauriEvent.windowCloseRequested` 等の事前定義イベント名定数
+**So that** イベント名文字列を間違えず、upstream `TauriEvent` enum の追加変更を型レベルで追跡できる
 
 **受け入れ条件:**
-- 少なくとも以下が pre-defined: `closeRequested`, `focus`, `blur`, `scaleFactorChanged`, `resized`, `moved`, `fileDrop`。
-- 各 Predefined イベントは適切な payload 型を持つ（例: `scaleFactorChanged: t<{scaleFactor: float, size: PhysicalSize.t}>`）。
-- 追加の Predefined イベントは future RFC で議論。
+- upstream `@tauri-apps/api/event` の `TauriEvent` enum 16 種すべてが `Event.TauriEvent` モジュールに `tauriEvent` 型の `let` 定数として公開される (`windowResized` / `windowMoved` / `windowCloseRequested` / `windowDestroyed` / `windowFocus` / `windowBlur` / `windowScaleFactorChanged` / `windowThemeChanged` / `windowCreated` / `windowSuspended` / `windowResumed` / `webviewCreated` / `dragEnter` / `dragOver` / `dragDrop` / `dragLeave`)。
+- 値は polymorphic-variant 文字列 (`tauriEvent = [#"tauri://resize" | ...]`) なので、`switch` で網羅性チェックが効く。
+- 利用形態は **typed handle ではなく文字列定数**: `Event.make(~name=(Event.TauriEvent.windowResized :> string), ~decode=...)` の形で `Event.t<'payload>` を構築する。payload 型 (`PhysicalSize.t` 等) は `Dpi` モジュールで定義され、各イベントごとに呼び出し側が `decode` を指定する。
+- upstream で新しい `TauriEvent` 値が追加された場合は `Event.TauriEvent` に追加する（互換性維持）。
 
 #### Story 2-3: Channel を使った Rust → フロントのストリーミング
 **As a** 開発者
@@ -273,7 +274,7 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 | IPC | `Core.Command.make` / `invoke` / `invokeExn` | Must | Phase 1 |
 | IPC | `Core.Channel` | Must | Phase 1 |
 | Event | `Event.make` / `listen` / `once` / `emit` / `emitTo` | Must | Phase 1 |
-| Event | `Event.Predefined.*`（`closeRequested` / `focus` / `blur` / `scaleFactorChanged` / `resized` / `moved` / `fileDrop` の 7 種） | Should | Phase 1 |
+| Event | `Event.TauriEvent.*`（upstream `TauriEvent` enum 16 種を `tauriEvent` 文字列定数として公開） | Must | Phase 1（実装済み） |
 | Window | `Window` クラスバインディング | Must | Phase 1 |
 | Webview | `Webview` / `WebviewWindow` クラスバインディング | Must | Phase 1 |
 | Util | `Path`, `App`, `Dpi`, `Image` | Must | Phase 1 |
@@ -419,7 +420,7 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 | 1 | `Tauri.res` の re-export 範囲 | **Core / Event / Window / Webview / WebviewWindow（確定）**（経緯: `.steering/20260509-023-tauri-reexport/`） | **確定済み（2026-05-09）** |
 | 2 | `Channel` を `Core` に同梱 vs 独立モジュール化 | **`Core.Channel` サブモジュールとして実装（確定）** | **確定済み（Phase 1 設計レビュー）** |
 | 3 | `invokeExn` 命名（`invokeOrThrow` / `invokeUnsafe` 等） | **`invokeExn` 採用（確定）**（`@rescript/core` 慣習） | **確定済み** |
-| 4 | `Event.Predefined` の網羅範囲 | RFC 列挙の 7 種を Must、それ以外は段階追加 | Phase 1 リリース後継続 |
+| 4 | `Event.TauriEvent` の網羅範囲 | **upstream `TauriEvent` enum 16 種を完全カバー（確定）**。typed handle ではなく `tauriEvent` 文字列定数として公開し、payload 型は `Event.make` 呼び出し側で指定する設計に確定 | **確定済み（2026-05-09、`packages/core/src/Event.resi`）** |
 | 5 | `Mocks` の独立パッケージ化 | **`@rescript-tauri/core` 同梱を継続（確定）**（経緯: `.steering/20260509-045-mocks-packaging-decision/`） | **確定済み（2026-05-09）** |
 | 6 | Belt-only ユーザー向け shim 提供可否 | 当面提供しない（`@rescript/core` を peerDep 必須にする） | Phase 1 リリース直前 |
 | 7 | ReScript v11 サポート | **除外（v12+ のみ）**（経緯: `.steering/20260508-002-rescript-v12-only/`） | **確定済み（2026-05-08）** |
