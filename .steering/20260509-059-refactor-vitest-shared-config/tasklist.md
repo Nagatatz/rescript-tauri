@@ -32,8 +32,8 @@
 - [x] コミット: `♻️ Migrate plugin-http vitest config to definePackageConfig helper`
 
 ### Task 3: ドキュメント更新
-- [ ] `docs/repository-structure.md` の `tools/` セクションを追記
-- [ ] コミット: `📝 Document tools/ directory in repository-structure`
+- [x] `docs/repository-structure.md` の `tools/` セクションを追記
+- [x] コミット: `📝 Document tools/ directory in repository-structure`
 
 ## Phase 3: マージ前
 - [ ] tasklist.md の全タスクを `[x]` に更新
