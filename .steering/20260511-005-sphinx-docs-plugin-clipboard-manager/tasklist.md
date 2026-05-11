@@ -31,14 +31,14 @@
 
 ### Checkpoint 3: Image APIs (writeImage polymorphic / readImage / Image.t 連携)
 
-- [ ] `### Image APIs` サブ節
+- [x] `### Image APIs` サブ節
   - 冒頭で再度 `Core.Image` 再利用を明示
   - `Image.t` を渡すケース（`Core.Image.fromPath`）
   - `Uint8Array` RGBA bytes を渡すケース
   - `readImage` + `Image.rgba` の例
-- [ ] `### Pitfalls — Image RGBA layout` 節（row-major top-to-bottom 注意）
-- [ ] `pnpm run check` pass
-- [ ] コミット: `📝 Document plugin-clipboard-manager image APIs with Core.Image reuse`
+- [x] `### Pitfalls — Image RGBA layout` 節（row-major top-to-bottom 注意）
+- [x] `pnpm run check` pass (pre-existing biome "no-files" no-op on docs-only changes)
+- [x] コミット: `📝 Document plugin-clipboard-manager image APIs with Core.Image reuse`
 
 ### Checkpoint 4: HTML + Clear + index/installation 整合 + 旁証
 
