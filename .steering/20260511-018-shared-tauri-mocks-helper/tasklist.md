@@ -41,6 +41,6 @@
 ## Phase 6: マージ
 
 - [x] `tasklist.md` の全タスクを `[x]` に更新（マージタスク自体含む）してコミット
-- [ ] `AskUserQuestion` でユーザーに main マージ可否を確認
-- [ ] 承認後、main マージ → worktree 削除 → ブランチ削除 を一括実行
-- [ ] クリーンアップ完了の検証（`git worktree list`, `git branch --list 'worktree-*'`, `.claude/worktrees/`）
+- [x] `AskUserQuestion` でユーザーに main マージ可否を確認
+- [x] 承認後、main マージ → worktree 削除 → ブランチ削除 を一括実行
+- [x] クリーンアップ完了の検証（`git worktree list` = main のみ / `git branch --list 'worktree-*'` = 空 / `.claude/worktrees/` = 空）
