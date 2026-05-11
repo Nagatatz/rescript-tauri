@@ -1,4 +1,4 @@
-import {definePackageConfig} from "../../tools/vitest.shared.mjs"
+import { definePackageConfig } from "../../tools/vitest.shared.mjs"
 
 export default definePackageConfig({
   thresholds: {

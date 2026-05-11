@@ -1,4 +1,4 @@
-import {defineConfig} from "vitest/config"
+import { defineConfig } from "vitest/config"
 
 /**
  * Shared vitest config for `@rescript-tauri/*` packages.
@@ -12,7 +12,7 @@ import {defineConfig} from "vitest/config"
  *   When supplied, vitest fails the run if coverage drops below the floors.
  *   Omit to run coverage in observe-only mode (no CI gate).
  */
-export function definePackageConfig({thresholds} = {}) {
+export function definePackageConfig({ thresholds } = {}) {
   return defineConfig({
     test: {
       environment: "happy-dom",
@@ -24,7 +24,7 @@ export function definePackageConfig({thresholds} = {}) {
         reporter: ["text-summary", "json-summary", "lcov", "html"],
         reportsDirectory: "./coverage",
         reportOnFailure: false,
-        ...(thresholds ? {thresholds} : {}),
+        ...(thresholds ? { thresholds } : {}),
       },
     },
   })

@@ -1,4 +1,4 @@
-import {definePackageConfig} from "../../tools/vitest.shared.mjs"
+import { definePackageConfig } from "../../tools/vitest.shared.mjs"
 
 // Schema's surface is 4 helper functions (toDecoder / fromSchemas /
 // channelFromSchema / eventFromSchema) plus the S re-export. Functions

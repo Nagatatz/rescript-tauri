@@ -1,4 +1,4 @@
-import {definePackageConfig} from "../../tools/vitest.shared.mjs"
+import { definePackageConfig } from "../../tools/vitest.shared.mjs"
 
 // Thresholds set 2-3 pt below the value measured after the C/D/E
 // residual cleanup (invokeExn Ok path, Window drag-drop variant

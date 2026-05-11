@@ -112,8 +112,9 @@ html_additional_pages = {"search": "search.html"}
 # -- Open Graph (social sharing previews) -----------------------------------
 
 # GitHub Pages base URL. The deployed site lives under /en/ and /ja/ via build-all
-# (see Makefile), and the SPHINX_SITE_PREFIX env var (html_context below) can prepend
-# a subpath at deploy time if needed.
+# (see Makefile). `html_baseurl` and `ogp_site_url` are finalized per-build in
+# `setup()` so canonical URLs, sitemap entries, and og:url all carry the locale
+# segment that matches where the page is actually deployed.
 html_baseurl = "https://nagatatz.github.io/rescript-tauri/"
 ogp_site_url = html_baseurl
 ogp_site_name = "rescript-tauri"
@@ -174,27 +175,33 @@ linkcheck_ignore = [
 ]
 
 
-# -- Dynamic OGP locale tags -------------------------------------------------
+# -- Dynamic per-locale config finalization ----------------------------------
 
 
 def setup(app):
-    """Append per-build OGP locale meta tags after Sphinx finalizes config.
+    """Finalize config that depends on the resolved `language` at build time.
 
     `make build-ja` overrides the Sphinx `language` config via `-D language=ja`,
-    so og:locale must be computed from the *final* language at config-inited
-    time rather than at conf.py module load time.
+    so anything derived from `language` (og:locale, canonical baseurl, og:url)
+    must be computed at config-inited time rather than at conf.py module load.
     """
 
     _OGP_LOCALE_MAP = {
         "en": ("en_US", "ja_JP"),
         "ja": ("ja_JP", "en_US"),
     }
+    _BASE_URL = "https://nagatatz.github.io/rescript-tauri/"
 
-    def _add_locale_meta(_app, config):
+    def _finalize_config(_app, config):
         primary, alternate = _OGP_LOCALE_MAP.get(config.language, ("en_US", "ja_JP"))
         config.ogp_custom_meta_tags = list(config.ogp_custom_meta_tags) + [
             f'<meta property="og:locale" content="{primary}" />',
             f'<meta property="og:locale:alternate" content="{alternate}" />',
         ]
+        # build-all deploys EN under /en/ and JA under /ja/, so the absolute URLs
+        # Sphinx emits (canonical <link>, sitemap.xml, og:url) must include the
+        # locale segment to match where each page is actually served.
+        config.html_baseurl = f"{_BASE_URL}{config.language}/"
+        config.ogp_site_url = config.html_baseurl
 
-    app.connect("config-inited", _add_locale_meta)
+    app.connect("config-inited", _finalize_config)

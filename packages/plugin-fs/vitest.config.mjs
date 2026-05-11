@@ -1,4 +1,4 @@
-import {definePackageConfig} from "../../tools/vitest.shared.mjs"
+import { definePackageConfig } from "../../tools/vitest.shared.mjs"
 
 // PluginFs is a thin wrapper of 14 single-shot IO functions —
 // statements / functions / lines hit 100% and must stay there.

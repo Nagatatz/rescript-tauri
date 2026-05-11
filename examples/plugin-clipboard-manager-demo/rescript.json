@@ -3,6 +3,10 @@
   "package-specs": [{ "module": "esmodule", "in-source": true }],
   "suffix": ".res.mjs",
   "sources": [{ "dir": "src", "subdirs": true }],
-  "dependencies": ["@rescript/core", "@rescript-tauri/core", "@rescript-tauri/plugin-clipboard-manager"],
+  "dependencies": [
+    "@rescript/core",
+    "@rescript-tauri/core",
+    "@rescript-tauri/plugin-clipboard-manager"
+  ],
   "jsx": { "version": 4 }
 }
