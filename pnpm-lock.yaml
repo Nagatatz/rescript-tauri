@@ -87,6 +87,34 @@ importers:
         specifier: ^12.2.0
         version: 12.2.0
 
+  examples/plugin-clipboard-manager-demo:
+    dependencies:
+      '@rescript-tauri/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@rescript-tauri/plugin-clipboard-manager':
+        specifier: workspace:*
+        version: link:../../packages/plugin-clipboard-manager
+      '@tauri-apps/api':
+        specifier: ^2.11.0
+        version: 2.11.0
+      '@tauri-apps/plugin-clipboard-manager':
+        specifier: ^2.0.0
+        version: 2.3.2
+    devDependencies:
+      '@rescript/core':
+        specifier: ^1.6.0
+        version: 1.6.1(rescript@12.2.0)
+      '@rescript/runtime':
+        specifier: ^12.2.0
+        version: 12.2.0
+      '@tauri-apps/cli':
+        specifier: ^2.0.0
+        version: 2.11.1
+      rescript:
+        specifier: ^12.2.0
+        version: 12.2.0
+
   examples/plugin-dialog-demo:
     dependencies:
       '@rescript-tauri/core':
@@ -129,6 +157,90 @@ importers:
       '@tauri-apps/plugin-fs':
         specifier: ^2.5.0
         version: 2.5.1
+    devDependencies:
+      '@rescript/core':
+        specifier: ^1.6.0
+        version: 1.6.1(rescript@12.2.0)
+      '@rescript/runtime':
+        specifier: ^12.2.0
+        version: 12.2.0
+      '@tauri-apps/cli':
+        specifier: ^2.0.0
+        version: 2.11.1
+      rescript:
+        specifier: ^12.2.0
+        version: 12.2.0
+
+  examples/plugin-http-demo:
+    dependencies:
+      '@rescript-tauri/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@rescript-tauri/plugin-http':
+        specifier: workspace:*
+        version: link:../../packages/plugin-http
+      '@tauri-apps/api':
+        specifier: ^2.11.0
+        version: 2.11.0
+      '@tauri-apps/plugin-http':
+        specifier: ^2.0.0
+        version: 2.5.9
+    devDependencies:
+      '@rescript/core':
+        specifier: ^1.6.0
+        version: 1.6.1(rescript@12.2.0)
+      '@rescript/runtime':
+        specifier: ^12.2.0
+        version: 12.2.0
+      '@tauri-apps/cli':
+        specifier: ^2.0.0
+        version: 2.11.1
+      rescript:
+        specifier: ^12.2.0
+        version: 12.2.0
+
+  examples/plugin-log-demo:
+    dependencies:
+      '@rescript-tauri/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@rescript-tauri/plugin-log':
+        specifier: workspace:*
+        version: link:../../packages/plugin-log
+      '@tauri-apps/api':
+        specifier: ^2.11.0
+        version: 2.11.0
+      '@tauri-apps/plugin-log':
+        specifier: ^2.0.0
+        version: 2.8.0
+    devDependencies:
+      '@rescript/core':
+        specifier: ^1.6.0
+        version: 1.6.1(rescript@12.2.0)
+      '@rescript/runtime':
+        specifier: ^12.2.0
+        version: 12.2.0
+      '@tauri-apps/cli':
+        specifier: ^2.0.0
+        version: 2.11.1
+      rescript:
+        specifier: ^12.2.0
+        version: 12.2.0
+
+  examples/plugin-notification-demo:
+    dependencies:
+      '@rescript-tauri/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@rescript-tauri/plugin-notification':
+        specifier: workspace:*
+        version: link:../../packages/plugin-notification
+      '@tauri-apps/api':
+        specifier: ^2.11.0
+        version: 2.11.0
+      '@tauri-apps/plugin-notification':
+        specifier: ^2.3.0
+        version: 2.3.3
     devDependencies:
       '@rescript/core':
         specifier: ^1.6.0

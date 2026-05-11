@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>plugin-log demo</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1.5rem; }
+      h1 { font-size: 1.4rem; }
+      .row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; }
+      button { padding: .4rem .8rem; cursor: pointer; }
+      pre { background: #111; color: #eee; padding: .8rem; min-height: 6rem;
+            border-radius: 4px; white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <h1>@rescript-tauri/plugin-log demo</h1>
+
+    <h2>Log levels</h2>
+    <div class="row">
+      <button type="button" id="btn-log-error">error</button>
+      <button type="button" id="btn-log-warn">warn</button>
+      <button type="button" id="btn-log-info">info</button>
+      <button type="button" id="btn-log-debug">debug</button>
+      <button type="button" id="btn-log-trace">trace</button>
+    </div>
+
+    <h2>Listeners</h2>
+    <div class="row">
+      <button type="button" id="btn-attach-logger">attachLogger (live tail in Result)</button>
+      <button type="button" id="btn-attach-console">attachConsole (JS console)</button>
+      <button type="button" id="btn-detach">Detach all</button>
+    </div>
+
+    <h2>Result</h2>
+    <pre id="result">(no action yet)</pre>
+
+    <script type="module" src="/src/main.mjs"></script>
+  </body>
+</html>

@@ -6,11 +6,10 @@ command from a single
 schema pair instead of writing the encoder and decoder by hand.
 
 ```{note}
-The Phase 2 implementation is feature-complete in `main`. The
-first npm publish (`schema-v0.1.0`) is scheduled alongside the
-other Phase 2 packages. Until then, consume
-`@rescript-tauri/schema` via the source repository or a workspace
-link.
+This package is feature-complete in `main`. The first npm publish
+(`schema-v0.1.0`) is scheduled alongside the other packages. Until
+then, consume `@rescript-tauri/schema` via the source repository or
+a workspace link.
 ```
 
 ## Install
