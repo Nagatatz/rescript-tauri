@@ -2,13 +2,13 @@
 
 ## Phase 0: 計画とセットアップ
 
-- [ ] requirements.md / design.md / tasklist.md をユーザー承認
-- [ ] `EnterWorktree` で worktree-sphinx-docs-ja-full-translation を作成
-- [ ] ステアリングファイル 3 点を初回コミット
+- [x] requirements.md / design.md / tasklist.md をユーザー承認
+- [x] `EnterWorktree` で worktree-sphinx-docs-ja-full-translation を作成
+- [x] ステアリングファイル 3 点を初回コミット
 
 ## Phase 1: 大規模ファイル（🔴 優先）
 
-- [ ] T1: `user/plugin-http.po` 翻訳 (85 entries) + コミット
+- [x] T1: `user/plugin-http.po` 翻訳 (85 entries) + コミット
 - [ ] T2: `user/plugin-shell.po` 翻訳 (73 entries) + コミット
 - [ ] T3: `user/plugin-clipboard-manager.po` 翻訳 (51 entries) + コミット
 
