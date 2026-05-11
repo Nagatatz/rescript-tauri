@@ -113,3 +113,45 @@ let dumpEnv = () => {
 | `osType_()` | `osType` variant | Renamed from upstream `type()` — `type` is reserved in ReScript |
 | `arch()` | `arch` variant | 11 CPU architectures |
 | `exeExtension()` | `string` | `"exe"` on Windows, `""` elsewhere |
+
+## Async getters
+
+The remaining two functions are async because they pull values
+from the OS at call time rather than at plugin init. They go
+through the regular Tauri IPC (`plugin:os|locale` and
+`plugin:os|hostname`) and return `promise<Nullable.t<string>>` —
+`Nullable.null` means the OS did not expose the value.
+
+```rescript
+open RescriptTauriPluginOs
+
+let printIdentity = async () => {
+  let host = await PluginOs.hostname()
+  let lang = await PluginOs.locale()
+
+  Console.log2(
+    "hostname:",
+    host->Nullable.toOption->Option.getOr("(unknown)"),
+  )
+  Console.log2(
+    "locale:  ",
+    lang->Nullable.toOption->Option.getOr("(unknown)"),
+  )
+}
+```
+
+| Function | Returns | Notes |
+|---|---|---|
+| `locale()` | `promise<Nullable.t<string>>` | BCP-47 language tag (e.g. `"en-US"`) |
+| `hostname()` | `promise<Nullable.t<string>>` | OS hostname; not guaranteed to be a DNS-resolvable name |
+
+### Capability requirement
+
+Both async getters are gated by the `os:default` capability set
+shown above; without it, the IPC bridge rejects the call before
+the plugin runs. Sync getters do not check capabilities — they
+read the cached globals directly — so a Tauri app could
+technically ship without `os:default` if it only uses
+`platform()` / `arch()` / etc. In practice, granting
+`os:default` is the simplest setup and matches what the upstream
+docs recommend.
