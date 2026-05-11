@@ -71,6 +71,11 @@ jobs:
       - name: Cargo check on plugin-fs-demo Rust side
         working-directory: examples/plugin-fs-demo/src-tauri
         run: cargo check --release
+      - name: Build plugin-shell-demo frontend
+        run: pnpm --filter plugin-shell-demo build
+      - name: Cargo check on plugin-shell-demo Rust side
+        working-directory: examples/plugin-shell-demo/src-tauri
+        run: cargo check --release
       - name: Build ipc-typed-with-schema frontend
         run: pnpm --filter ipc-typed-with-schema build
       - name: Cargo check on ipc-typed-with-schema Rust side
