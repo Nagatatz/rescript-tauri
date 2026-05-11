@@ -1,28 +1,17 @@
 import * as Mocks from "@rescript-tauri/core/src/Mocks.res.mjs"
 import { afterEach, beforeEach, describe, expect, it } from "vitest"
+import { installOsPluginInternals } from "../../../../tools/tauri-mocks.mjs"
 import * as PluginOs from "../../src/PluginOs.res.mjs"
 
 describe("PluginOs", () => {
+  let cleanup
   beforeEach(() => {
-    // Stub the OS plugin's compile-time globals consumed by all the
-    // sync getters.
-    globalThis.window = globalThis.window ?? {}
-    globalThis.window.__TAURI_OS_PLUGIN_INTERNALS__ = {
-      eol: "\n",
-      os_type: "macos",
-      platform: "macos",
-      family: "unix",
-      version: "14.0",
-      arch: "aarch64",
-      exe_extension: "",
-    }
+    cleanup = installOsPluginInternals()
     Mocks.clearMocks()
   })
   afterEach(() => {
     Mocks.clearMocks()
-    if (globalThis.window) {
-      delete globalThis.window.__TAURI_OS_PLUGIN_INTERNALS__
-    }
+    cleanup()
   })
 
   describe("sync getters", () => {

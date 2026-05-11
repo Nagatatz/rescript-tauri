@@ -7,11 +7,7 @@ notifications, scheduling, channels, and tap-action types. The
 v2.3.x is covered.
 
 ```{note}
-The Phase 2 implementation is feature-complete in `main`. The
-first npm publish (`plugin-notification-v0.1.0`) is scheduled
-alongside the other Phase 2 packages. Until then, consume
-`@rescript-tauri/plugin-notification` via the source repository
-or a workspace link.
+{{ phase_2_note }}
 ```
 
 ## Install
@@ -237,6 +233,8 @@ exercisable from `Mocks.mockIPC`.
 
 ## See also
 
+- Live demo:
+  [`examples/plugin-notification-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-notification-demo)
 - Source:
   [`packages/plugin-notification`](https://github.com/Nagatatz/rescript-tauri/tree/main/packages/plugin-notification)
 - Upstream docs:

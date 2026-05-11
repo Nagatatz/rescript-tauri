@@ -15,9 +15,9 @@
 | 用語 | 定義 |
 |---|---|
 | **rescript-tauri** | 本プロジェクト全体を指す名称。`@rescript-tauri` npm scope のパッケージ群（`core`, `schema`, `plugin-*`）を含む。 |
-| **`@rescript-tauri/core`** | Phase 1 の中心パッケージ。Tauri 2.x の `@tauri-apps/api` に対する ReScript バインディングを提供する。 |
-| **`@rescript-tauri/schema`** | Phase 2 で merged されたスキーマ統合パッケージ（初版 publish 待ち）。`rescript-schema` から `Command.t` / `Channel.t` / `Event.t` を派生させる。 |
-| **`@rescript-tauri/plugin-*`** | 上流 `@tauri-apps/plugin-*` に対応する ReScript バインディングパッケージ群。Phase 2 で `plugin-fs` / `plugin-dialog` が merged（初版 publish 待ち）。各々独立 publish。 |
+| **`@rescript-tauri/core`** | 中心パッケージ。Tauri 2.x の `@tauri-apps/api` に対する ReScript バインディングを提供する。 |
+| **`@rescript-tauri/schema`** | スキーマ統合パッケージ（初版 publish 待ち）。`rescript-schema` から `Command.t` / `Channel.t` / `Event.t` を派生させる。 |
+| **`@rescript-tauri/plugin-*`** | 上流 `@tauri-apps/plugin-*` に対応する ReScript バインディングパッケージ群（初版 publish 待ち、各々独立 publish）。 |
 | **Layer 1 / Layer 2 / Layer 3** | IPC API の抽象化階層。Layer 1 = Raw（薄い） / Layer 2 = Typed Command / Layer 3 = Schema 統合（外部パッケージ）。詳細は `architecture.md` §3。 |
 | **互換マトリクス** | `@rescript-tauri/core` の各バージョンが対応する `@tauri-apps/api` / ReScript / `@rescript/core` のバージョン対応表。README に必須掲載（PRD Story 7-1）。 |
 
@@ -92,7 +92,7 @@
 | **steering ワークフロー** | 中規模以上のコード変更時に `.steering/[YYYYMMDD]-[NNN]-[title]/` で `requirements.md` / `design.md` / `tasklist.md` を作成する本プロジェクトの規約。詳細は `.claude/rules/steering-workflow.md`。 |
 | **Definition of Done (DoD)** | 作業の完了条件を一元管理する正本。詳細は `.claude/rules/definition-of-done.md`。 |
 | **worktree** | git worktree。本プロジェクトでは Claude Code のビルトイン worktree 機能で隔離された実装環境を作る。 |
-| **Phase 1 / Phase 2 / Phase 3** | リリース計画上のマイルストーン区分。詳細は PRD §8。 |
+| **リリースマイルストーン** | リリース計画上のマイルストーン区分（初版リリース / 長期運用 等）。詳細は PRD §8。 |
 
 ---
 

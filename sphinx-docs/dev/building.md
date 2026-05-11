@@ -56,8 +56,8 @@ The active workflow is [`.github/workflows/docs.yml`](https://github.com/Nagatat
 | Build | `make build-all` (planned) | EN + JA + Pagefind |
 | Deploy | GitHub Pages | Only on `main` branch |
 
-The status of every workflow file (active / opt-in template / planned for Phase 1) is documented in [`.github/workflows/README.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/.github/workflows/README.md).
+The status of every workflow file (active / opt-in template / planned for the initial release) is documented in [`.github/workflows/README.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/.github/workflows/README.md).
 
 ```{note}
-GitHub Pages deployment is currently inactive because the repository is private (see the README "Visibility" block). Pages will be enabled at the Phase 1 release together with the visibility switch.
+GitHub Pages deployment is currently inactive because the repository is private (see the README "Visibility" block). Pages will be enabled at the initial release together with the visibility switch.
 ```

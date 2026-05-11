@@ -37,6 +37,10 @@ this package adheres to
 - Type-level signature test
   (`tests/plugin_shell_signature.res`) and vitest runtime tests
   (`tests/runtime/plugin_shell.test.mjs`).
+- Runnable example
+  [`examples/plugin-shell-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-shell-demo)
+  exercising the full surface (openPath / Command / Child /
+  EventEmitter chains) from button-driven UI.
 - `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
   `@tauri-apps/plugin-shell ^2.3.0`, `rescript >=12.0.0`,
   `@rescript/core >=1.6.0`.
@@ -44,11 +48,6 @@ this package adheres to
   `tests-plugin-shell-runtime.yml`, plus `release.yml`
   recognition of the `plugin-shell-v*` tag prefix and a
   `plugin-shell` entry in the `tests-coverage.yml` matrix.
-
-### Deferred to follow-up sub-steerings
-
-- Runnable example app (`examples/plugin-shell-demo/`).
-- sphinx-docs `user/plugin-shell.md` page.
 
 <!-- Template for new releases (do not remove)
 

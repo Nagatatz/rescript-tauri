@@ -9,11 +9,7 @@ four polymorphic-variant types that mirror the upstream
 string-literal unions.
 
 ```{note}
-The Phase 2 implementation is feature-complete in `main`. The
-first npm publish (`plugin-os-v0.1.0`) is scheduled alongside the
-other Phase 2 packages. Until then, consume
-`@rescript-tauri/plugin-os` via the source repository or a
-workspace link.
+{{ phase_2_note }}
 ```
 
 ## Install
@@ -254,6 +250,8 @@ upstream `"x86_64"` / `"powerpc64"` / `"riscv64"` / `"s390x"` /
 
 ## See also
 
+- Live demo:
+  [`examples/plugin-os-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-os-demo)
 - Source:
   [`packages/plugin-os`](https://github.com/Nagatatz/rescript-tauri/tree/main/packages/plugin-os)
 - Upstream docs:
