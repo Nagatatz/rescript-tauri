@@ -2,17 +2,17 @@
 
 ## Phase 0: 計画とセットアップ
 
-- [ ] requirements.md / design.md / tasklist.md を作成
-- [ ] `EnterWorktree` で worktree-bulk-package-reservation-tooling を作成
-- [ ] ステアリングファイル 3 点を初回コミット
+- [x] requirements.md / design.md / tasklist.md を作成
+- [x] `EnterWorktree` で worktree-bulk-package-reservation-tooling を作成
+- [x] ステアリングファイル 3 点を初回コミット
 
 ## Phase 1: ヘルパースクリプト作成
 
-- [ ] T1: `tools/reserve-npm-packages.sh` を作成（9 パッケージ予約、core 除外）
-- [ ] T2: `tools/setup-trusted-publishers.sh` を作成（10 パッケージ trust 設定、`SKIP_CORE` 環境変数オプション付き）
-- [ ] T3: 両スクリプトに実行権限を付与 (`chmod +x`)
-- [ ] T4: `bash -n` で構文検証 / `shellcheck` インストール済みなら shellcheck 実行
-- [ ] T5: T1-T4 を 1 commit にまとめてコミット
+- [x] T1: `tools/reserve-npm-packages.sh` を作成（9 パッケージ予約、core 除外）
+- [x] T2: `tools/setup-trusted-publishers.sh` を作成（10 パッケージ trust 設定、`SKIP_CORE` 環境変数オプション付き）
+- [x] T3: 両スクリプトに実行権限を付与 (`chmod +x`)
+- [x] T4: `bash -n` 構文検証 OK / `shellcheck` も pass
+- [x] T5: T1-T4 を 1 commit にまとめてコミット
 
 ## Phase 2: ドキュメント更新
 
