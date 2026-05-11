@@ -35,9 +35,9 @@ let bootstrap = async () => {
 | `error` / `warn` / `info` / `debug` / `trace` | Log a message at the given level |
 | `attachLogger` | Subscribe to all log records via callback |
 | `attachConsole` | Stream every log record to the JS console |
-| `LogLevel.{trace, debug_, info_, warn_, error_}` | Numeric level constants (1..5) |
+| `LogLevel.{Trace, Debug, Info, Warn, Error}` | `@unboxed` variant carrying the numeric level (1..5) |
 | `logOptions` | `{file?, line?, keyValues?}` |
-| `recordPayload` | `{level, message}` delivered to `attachLogger`'s callback |
+| `recordPayload` | `{level: LogLevel.t, message}` delivered to `attachLogger`'s callback |
 | `unlisten` | `unit => unit` returned by `attachLogger` / `attachConsole` |
 
 ## Compatibility

@@ -11,12 +11,14 @@ describe("PluginLog", () => {
   afterEach(() => Mocks.clearMocks())
 
   describe("level functions", () => {
+    // Numeric level values match the upstream enum:
+    // trace=1 / debug=2 / info=3 / warn=4 / error=5
     const levels = [
-      ["error", PluginLog.LogLevel.error_],
-      ["warn", PluginLog.LogLevel.warn_],
-      ["info", PluginLog.LogLevel.info_],
-      ["debug", PluginLog.LogLevel.debug_],
-      ["trace", PluginLog.LogLevel.trace],
+      ["error", 5],
+      ["warn", 4],
+      ["info", 3],
+      ["debug", 2],
+      ["trace", 1],
     ]
 
     for (const [fnName, expectedLevel] of levels) {
@@ -73,13 +75,9 @@ describe("PluginLog", () => {
     })
   })
 
-  describe("LogLevel constants", () => {
-    it("match the upstream numeric enum", () => {
-      expect(PluginLog.LogLevel.trace).toBe(1)
-      expect(PluginLog.LogLevel.debug_).toBe(2)
-      expect(PluginLog.LogLevel.info_).toBe(3)
-      expect(PluginLog.LogLevel.warn_).toBe(4)
-      expect(PluginLog.LogLevel.error_).toBe(5)
-    })
-  })
+  // LogLevel runtime representation is verified indirectly via the
+  // "level functions" describe block above — each level function
+  // dispatches its `@as(N)` value through IPC, exercising the wire
+  // format end-to-end. @unboxed variant constructors do not materialize
+  // as runtime JS values, so direct assertion is not possible.
 })

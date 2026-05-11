@@ -7,15 +7,17 @@ type logOptions = {
 }
 
 module LogLevel = {
-  let trace: int = 1
-  let debug_: int = 2
-  let info_: int = 3
-  let warn_: int = 4
-  let error_: int = 5
+  @unboxed
+  type t =
+    | @as(1) Trace
+    | @as(2) Debug
+    | @as(3) Info
+    | @as(4) Warn
+    | @as(5) Error
 }
 
 type recordPayload = {
-  level: int,
+  level: LogLevel.t,
   message: string,
 }
 
