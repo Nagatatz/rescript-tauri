@@ -78,3 +78,38 @@ synchronous getters do **not** travel over IPC (see [Sync
 getters](#sync-getters) below) and therefore do not consume a
 capability — but the plugin must still be registered on the Rust
 builder for the JavaScript globals to be initialized.
+
+## Sync getters
+
+Seven of the nine functions resolve at call-site without ever
+touching IPC: upstream caches the values on the
+`window.__TAURI_OS_PLUGIN_INTERNALS__` global during plugin
+initialization and the binding just reads them back. This makes
+them cheap to call repeatedly, but it also means
+`RescriptTauriCore.Mocks.mockIPC` **cannot intercept them** —
+runtime tests stub `globalThis.window.__TAURI_OS_PLUGIN_INTERNALS__`
+directly (see `packages/plugin-os/tests/runtime/plugin_os.test.mjs`).
+
+```rescript
+open RescriptTauriPluginOs
+
+let dumpEnv = () => {
+  Console.log2("eol bytes:    ", PluginOs.eol())          // "\n" or "\r\n"
+  Console.log2("platform:     ", PluginOs.platform())     // #linux | #macos | ...
+  Console.log2("version:      ", PluginOs.version())      // OS version string
+  Console.log2("family:       ", PluginOs.family())       // #unix | #windows
+  Console.log2("osType:       ", PluginOs.osType_())      // #linux | #windows | ...
+  Console.log2("arch:         ", PluginOs.arch())         // #x86_64 | #aarch64 | ...
+  Console.log2("exeExtension: ", PluginOs.exeExtension()) // "exe" or ""
+}
+```
+
+| Function | Returns | Notes |
+|---|---|---|
+| `eol()` | `string` | OS-specific line terminator (`"\n"` on POSIX, `"\r\n"` on Windows) |
+| `platform()` | `platform` variant | 10 cases covering every desktop / mobile target |
+| `version()` | `string` | Kernel / release identifier, freeform |
+| `family()` | `family` variant | `#unix` for POSIX-like systems, `#windows` otherwise |
+| `osType_()` | `osType` variant | Renamed from upstream `type()` — `type` is reserved in ReScript |
+| `arch()` | `arch` variant | 11 CPU architectures |
+| `exeExtension()` | `string` | `"exe"` on Windows, `""` elsewhere |
