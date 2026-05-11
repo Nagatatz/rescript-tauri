@@ -143,6 +143,34 @@ importers:
         specifier: ^12.2.0
         version: 12.2.0
 
+  examples/plugin-shell-demo:
+    dependencies:
+      '@rescript-tauri/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@rescript-tauri/plugin-shell':
+        specifier: workspace:*
+        version: link:../../packages/plugin-shell
+      '@tauri-apps/api':
+        specifier: ^2.11.0
+        version: 2.11.0
+      '@tauri-apps/plugin-shell':
+        specifier: ^2.3.0
+        version: 2.3.5
+    devDependencies:
+      '@rescript/core':
+        specifier: ^1.6.0
+        version: 1.6.1(rescript@12.2.0)
+      '@rescript/runtime':
+        specifier: ^12.2.0
+        version: 12.2.0
+      '@tauri-apps/cli':
+        specifier: ^2.0.0
+        version: 2.11.1
+      rescript:
+        specifier: ^12.2.0
+        version: 12.2.0
+
   examples/streaming-ipc:
     dependencies:
       '@rescript-tauri/core':

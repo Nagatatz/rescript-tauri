@@ -1,0 +1,21 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Default capability for the plugin-shell demo",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "shell:default",
+    {
+      "identifier": "shell:allow-execute",
+      "allow": [
+        { "name": "echo", "cmd": "echo", "args": true },
+        { "name": "cat", "cmd": "cat", "args": true }
+      ]
+    },
+    {
+      "identifier": "shell:allow-open",
+      "allow": [{ "url": "^https?://" }]
+    }
+  ]
+}

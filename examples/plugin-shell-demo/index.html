@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>plugin-shell demo</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1.5rem; }
+      h1 { font-size: 1.4rem; }
+      .row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; }
+      button { padding: .4rem .8rem; cursor: pointer; }
+      pre { background: #111; color: #eee; padding: .8rem; min-height: 4rem;
+            border-radius: 4px; white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <h1>@rescript-tauri/plugin-shell demo</h1>
+
+    <h2>openPath</h2>
+    <div class="row">
+      <button type="button" id="btn-open-url">Open https://tauri.app/</button>
+      <button type="button" id="btn-open-with-firefox">Open with firefox (~openWith)</button>
+    </div>
+
+    <h2>Command — one-shot</h2>
+    <div class="row">
+      <button type="button" id="btn-execute-utf8">Run `echo` (utf8)</button>
+      <button type="button" id="btn-execute-raw">Run `echo` (raw bytes)</button>
+    </div>
+
+    <h2>Command — spawn + Child</h2>
+    <div class="row">
+      <button type="button" id="btn-spawn-cat">Spawn `cat`, write, kill</button>
+    </div>
+
+    <h2>Command — streaming events</h2>
+    <div class="row">
+      <button type="button" id="btn-stream-echo">Echo via onStdoutData chain</button>
+      <button type="button" id="btn-stream-remove">removeAllListeners</button>
+    </div>
+
+    <h2>Result</h2>
+    <pre id="result">(no action yet)</pre>
+
+    <script type="module" src="/src/main.mjs"></script>
+  </body>
+</html>
