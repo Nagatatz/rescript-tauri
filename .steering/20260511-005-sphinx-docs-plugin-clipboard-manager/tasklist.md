@@ -22,12 +22,12 @@
 
 ### Checkpoint 2: Text APIs (writeText / readText / writeTextOptions)
 
-- [ ] `## Capabilities` 節 (clipboard-manager:default)
-- [ ] `## Minimal example` 節 (README の Quick example 流用)
-- [ ] `## Public API` 表（6 関数 + 1 record）
-- [ ] `### Text APIs` サブ節（writeText / readText / writeTextOptions.label）
-- [ ] `pnpm run check` pass
-- [ ] コミット: `📝 Document plugin-clipboard-manager text APIs`
+- [x] `## Capabilities` 節 (clipboard-manager:default)
+- [x] `## Minimal example` 節 (README の Quick example 流用)
+- [x] `## Public API` 表（6 関数 + 1 record）
+- [x] `### Text APIs` サブ節（writeText / readText / writeTextOptions.label）
+- [x] `pnpm run check` pass (pre-existing biome "no-files" no-op on docs-only changes; markdown not in scope)
+- [x] コミット: `📝 Document plugin-clipboard-manager text APIs`
 
 ### Checkpoint 3: Image APIs (writeImage polymorphic / readImage / Image.t 連携)
 

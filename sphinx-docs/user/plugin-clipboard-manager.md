@@ -61,3 +61,77 @@ fn main() {
         .expect("error while running app");
 }
 ```
+
+## Capabilities
+
+Tauri 2.x requires every clipboard operation to be granted a
+capability. The minimal set is:
+
+```json
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "clipboard-manager:default"
+  ]
+}
+```
+
+`clipboard-manager:default` covers every read and write API
+exposed by this binding. To allow only a subset, swap it for the
+narrower aliases shipped by the plugin
+([reference](https://v2.tauri.app/plugin/clipboard/#permissions)) —
+for example `clipboard-manager:allow-write-text` plus
+`clipboard-manager:allow-read-text` for a paste-only utility.
+
+## Minimal example
+
+```rescript
+module Cb = RescriptTauriPluginClipboardManager.PluginClipboardManager
+
+let copyAndPaste = async () => {
+  await Cb.writeText("Tauri is awesome!")
+  let text = await Cb.readText()
+  Console.log2("clipboard:", text)
+}
+```
+
+## Public API
+
+The six public functions plus the `writeTextOptions` record cover
+the entire upstream surface of
+`@tauri-apps/plugin-clipboard-manager` v2.3.x.
+
+| Symbol | Purpose |
+|---|---|
+| `writeText(text, ~opts=?)` | Write plain text. `opts.label` adds an Android entity name |
+| `readText()` | Read plain text |
+| `writeImage('image)` | Write a raw RGBA buffer / `Image.t` / `Uint8Array` / `array<int>` / file path |
+| `readImage()` | Read as `RescriptTauriCore.Image.t` (inspect with `Image.rgba`) |
+| `writeHtml(html, ~altText=?)` | Write HTML with optional plain-text fallback |
+| `clear()` | Clear the clipboard |
+| `writeTextOptions` | `{label?: string}` |
+
+### Text APIs
+
+`writeText` and `readText` are the most common entry points.
+`writeText` accepts an optional `writeTextOptions` record whose
+only field, `label`, surfaces as the *clipboard entity name* on
+Android clipboard history pickers (no-op on desktop):
+
+```rescript
+await Cb.writeText(
+  "Public address: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
+  ~opts={label: "Wallet address"},
+)
+
+let copied = await Cb.readText()
+Console.log("clipboard now contains: " ++ copied)
+```
+
+`readText()` returns `string`. If the clipboard does not contain
+text, the underlying Rust call surfaces an error — wrap the call
+in `try { ... } catch` if you need to differentiate "empty
+clipboard" from real failures.
