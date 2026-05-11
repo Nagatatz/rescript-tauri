@@ -21,14 +21,14 @@
 
 ## Phase 3: 完了検証
 
-- [ ] V1: `release.yml` に `NPM_TOKEN` / `NODE_AUTH_TOKEN` への参照が 0 件であることを `grep` で確認
-- [ ] V2: `release.yml` の `id-token: write` permission が残っていることを確認
-- [ ] V3: tasklist.md を全 `[x]` に更新して最終コミット
+- [x] V1: `release.yml` に `NPM_TOKEN` / `NODE_AUTH_TOKEN` への参照が 0 件であることを `grep` で確認（残る 1 件は「不要」と記載する説明コメント、意図的に保持）
+- [x] V2: `release.yml` の `id-token: write` permission が残っていることを確認
+- [x] V3: tasklist.md を全 `[x]` に更新して最終コミット
 
 ## Phase 4: マージ・クリーンアップ
 
-- [ ] M1: ユーザーに main へのマージ可否を確認
-- [ ] M2: `ExitWorktree` で worktree を keep して main repo に戻る
-- [ ] M3: main にマージ（`git merge worktree-npm-trusted-publishing --no-ff`）
-- [ ] M4: worktree を削除（`git worktree remove`）+ ブランチ削除（`git branch -d`）
-- [ ] M5: クリーンアップ完了検証
+- [x] M1: ユーザーに main へのマージ可否を確認
+- [x] M2: `ExitWorktree` で worktree を keep して main repo に戻る
+- [x] M3: main にマージ（`git merge worktree-npm-trusted-publishing --no-ff`）
+- [x] M4: worktree を削除（`git worktree remove`）+ ブランチ削除（`git branch -d`）
+- [x] M5: クリーンアップ完了検証
