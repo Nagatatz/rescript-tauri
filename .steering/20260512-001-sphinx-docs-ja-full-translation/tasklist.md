@@ -53,8 +53,8 @@ T1–T3 完了後の精密検査で、当初 awk スクリプトが multi-line m
 
 ## Phase 7: マージ・クリーンアップ
 
-- [ ] M1: ユーザーに main へのマージ可否を確認
-- [ ] M2: CWD をメインリポジトリに移動
-- [ ] M3: main にマージ（`git merge worktree-sphinx-docs-ja-full-translation --no-ff`）
-- [ ] M4: worktree を削除（`git worktree remove`）+ ブランチ削除（`git branch -d`）
-- [ ] M5: クリーンアップ完了検証（worktree list / branch list / .claude/worktrees/）
+- [x] M1: ユーザーに main へのマージ可否を確認
+- [x] M2: CWD をメインリポジトリに移動
+- [x] M3: main にマージ（`git merge worktree-sphinx-docs-ja-full-translation --no-ff`）
+- [x] M4: worktree を削除（`git worktree remove`）+ ブランチ削除（`git branch -d`）
+- [x] M5: クリーンアップ完了検証（worktree list / branch list / .claude/worktrees/）
