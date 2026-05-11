@@ -37,7 +37,7 @@ upstream page.
 
 ## Phase 2 packages
 
-Phase 2 introduces four add-on packages that build on the Phase 1
+Phase 2 introduces five add-on packages that build on the Phase 1
 core. Each ships independently and pulls the matching upstream
 plugin / schema library through `peerDependencies`.
 
@@ -46,6 +46,7 @@ plugin / schema library through `peerDependencies`.
 | `@rescript-tauri/plugin-fs` | Filesystem operations (read / write / dir / stat) | [plugin-fs](plugin-fs.md) |
 | `@rescript-tauri/plugin-dialog` | Native dialogs (open / save / message / ask / confirm) | [plugin-dialog](plugin-dialog.md) |
 | `@rescript-tauri/plugin-notification` | Native notifications (toast / schedule / channels) | [plugin-notification](plugin-notification.md) |
+| `@rescript-tauri/plugin-os` | OS info (platform / arch / family / locale / hostname) | [plugin-os](plugin-os.md) |
 | `@rescript-tauri/schema` | Layer 3 typed IPC via `rescript-schema` | [schema](schema.md) |
 
 ```{toctree}
@@ -58,6 +59,7 @@ configuration
 plugin-fs
 plugin-dialog
 plugin-notification
+plugin-os
 schema
 changelog
 ```
