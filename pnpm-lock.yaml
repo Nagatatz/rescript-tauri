@@ -255,6 +255,34 @@ importers:
         specifier: ^12.2.0
         version: 12.2.0
 
+  examples/plugin-os-demo:
+    dependencies:
+      '@rescript-tauri/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@rescript-tauri/plugin-os':
+        specifier: workspace:*
+        version: link:../../packages/plugin-os
+      '@tauri-apps/api':
+        specifier: ^2.11.0
+        version: 2.11.0
+      '@tauri-apps/plugin-os':
+        specifier: ^2.0.0
+        version: 2.3.2
+    devDependencies:
+      '@rescript/core':
+        specifier: ^1.6.0
+        version: 1.6.1(rescript@12.2.0)
+      '@rescript/runtime':
+        specifier: ^12.2.0
+        version: 12.2.0
+      '@tauri-apps/cli':
+        specifier: ^2.0.0
+        version: 2.11.1
+      rescript:
+        specifier: ^12.2.0
+        version: 12.2.0
+
   examples/plugin-shell-demo:
     dependencies:
       '@rescript-tauri/core':

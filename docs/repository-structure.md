@@ -38,6 +38,7 @@ rescript-tauri/                          # monorepo root
 │   ├── plugin-clipboard-manager-demo/
 │   ├── plugin-log-demo/
 │   ├── plugin-notification-demo/
+│   ├── plugin-os-demo/
 │   └── ipc-typed-with-schema/           # Layer 3 demo
 ├── docs/                                # 開発チーム向け内部ドキュメント
 │   ├── ideas/                           # ドラフト・RFC 集約
@@ -241,7 +242,7 @@ packages/plugin-os/                      # 着手済み (steering 056, 2026-05-0
 
 `peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-os ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
 
-upstream の `type()` は ReScript の予約語 `type` と衝突するため `osType_()` にリネームして公開。7 つの sync getter (`eol` / `platform` / `version` / `family` / `osType_` / `arch` / `exeExtension`) は upstream で `window.__TAURI_OS_PLUGIN_INTERNALS__` を直接読み取るため、テストではこの globals を stub する。残り 2 つ (`locale` / `hostname`) は IPC (`plugin:os|locale` / `plugin:os|hostname`) 経由で `Mocks.mockIPC` で検証可能。`examples/plugin-os-demo/` と sphinx-docs `user/plugin-os.md` は後続 sub-steering に分離。
+upstream の `type()` は ReScript の予約語 `type` と衝突するため `osType_()` にリネームして公開。7 つの sync getter (`eol` / `platform` / `version` / `family` / `osType_` / `arch` / `exeExtension`) は upstream で `window.__TAURI_OS_PLUGIN_INTERNALS__` を直接読み取るため、テストではこの globals を stub する。残り 2 つ (`locale` / `hostname`) は IPC (`plugin:os|locale` / `plugin:os|hostname`) 経由で `Mocks.mockIPC` で検証可能。sphinx-docs `user/plugin-os.md` は steering 20260511-004 で、`examples/plugin-os-demo/` は steering 20260511-017 で追加済み。
 
 ```
 packages/plugin-clipboard-manager/       # 着手済み (steering 057, 2026-05-09)
@@ -318,6 +319,7 @@ examples/plugin-http-demo/                # @rescript-tauri/plugin-http 4 step �
 examples/plugin-clipboard-manager-demo/   # @rescript-tauri/plugin-clipboard-manager 全関数デモ (steering 20260511-014)
 examples/plugin-log-demo/                 # @rescript-tauri/plugin-log 全関数デモ (steering 20260511-015)
 examples/plugin-notification-demo/        # @rescript-tauri/plugin-notification 全関数デモ (steering 20260511-016)
+examples/plugin-os-demo/                  # @rescript-tauri/plugin-os 全関数デモ (steering 20260511-017)
 examples/ipc-typed-with-schema/           # @rescript-tauri/schema (Layer 3) デモ — ipc-typed の対比版 (steering 039)
 ```
 

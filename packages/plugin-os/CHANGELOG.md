@@ -23,6 +23,10 @@ this package adheres to
   variants), `family` (`unix` / `windows`).
 - The upstream `type()` function is renamed to `osType_()` because
   `type` is a reserved keyword in ReScript.
+- Runnable example
+  [`examples/plugin-os-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-os-demo)
+  exercising the full surface (7 sync getters + 2 async getters)
+  from button-driven UI with polymorphic-variant decoders.
 - `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
   `@tauri-apps/plugin-os ^2.0.0`, `rescript >=12.0.0`,
   `@rescript/core >=1.6.0`.
@@ -30,8 +34,3 @@ this package adheres to
   `tests-plugin-os-runtime.yml`, plus `release.yml` recognition of
   the `plugin-os-v*` tag prefix and a `plugin-os` entry in the
   `tests-coverage.yml` matrix.
-
-### Deferred to follow-up sub-steerings
-
-- Runnable example app (`examples/plugin-os-demo/`).
-- sphinx-docs `user/plugin-os.md` page.
