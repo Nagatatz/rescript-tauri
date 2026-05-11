@@ -9,7 +9,7 @@ page collects the highlights of the pre-release state across all
 of them.
 ```
 
-## `@rescript-tauri/core` (Unreleased)
+## `@rescript-tauri/core` 0.1.0 (2026-05-12)
 
 Canonical: [`packages/core/CHANGELOG.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/core/CHANGELOG.md)
 
@@ -51,7 +51,7 @@ Canonical: [`packages/core/CHANGELOG.md`](https://github.com/Nagatatz/rescript-t
 - Four buildable examples gated by 3-OS CI: `hello-world`,
   `window-management`, `ipc-typed`, `streaming-ipc`.
 
-## `@rescript-tauri/schema` (Unreleased)
+## `@rescript-tauri/schema` 0.1.0 (2026-05-12)
 
 Canonical: [`packages/schema/CHANGELOG.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/schema/CHANGELOG.md)
 
@@ -72,7 +72,7 @@ Canonical: [`packages/schema/CHANGELOG.md`](https://github.com/Nagatatz/rescript
   `rescript-schema ^9.0.0`. `rescript-struct` is intentionally
   unsupported (RFC-0002 §2.1).
 
-## `@rescript-tauri/plugin-fs` (Unreleased)
+## `@rescript-tauri/plugin-fs` 0.1.0 (2026-05-12)
 
 Canonical: [`packages/plugin-fs/CHANGELOG.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/plugin-fs/CHANGELOG.md)
 
@@ -90,7 +90,7 @@ Canonical: [`packages/plugin-fs/CHANGELOG.md`](https://github.com/Nagatatz/rescr
 - `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
   `@tauri-apps/plugin-fs ^2.5.0`.
 
-## `@rescript-tauri/plugin-dialog` (Unreleased)
+## `@rescript-tauri/plugin-dialog` 0.1.0 (2026-05-12)
 
 Canonical: [`packages/plugin-dialog/CHANGELOG.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/plugin-dialog/CHANGELOG.md)
 
@@ -107,6 +107,107 @@ Canonical: [`packages/plugin-dialog/CHANGELOG.md`](https://github.com/Nagatatz/r
   driving every public function from one button each.
 - `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
   `@tauri-apps/plugin-dialog ^2.7.0`.
+
+## `@rescript-tauri/plugin-shell` 0.1.0 (2026-05-12)
+
+Canonical: [`packages/plugin-shell/CHANGELOG.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/plugin-shell/CHANGELOG.md)
+
+### Added
+
+- Bindings for `@tauri-apps/plugin-shell` v2.3.5 — 100% of the
+  stable public surface (`openPath` / `Command.{create,createRaw,
+  sidecar,sidecarRaw,spawn,execute,onClose,onError,onStdoutData,
+  onStderrData}` / `Child.{pid,kill,write}` / `EventEmitter`).
+- Runnable example
+  [`examples/plugin-shell-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-shell-demo).
+- `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
+  `@tauri-apps/plugin-shell ^2.3.0`.
+
+## `@rescript-tauri/plugin-notification` 0.1.0 (2026-05-12)
+
+Canonical: [`packages/plugin-notification/CHANGELOG.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/plugin-notification/CHANGELOG.md)
+
+### Added
+
+- Bindings for `@tauri-apps/plugin-notification` v2.3.3 — 100% of
+  the stable public surface (15 functions + 8 records +
+  `Schedule` module + `Importance` / `Visibility` `@unboxed`
+  variants).
+- The upstream `sendNotification(Options | string)` overload is
+  split into `sendNotification` / `sendNotificationText` so the
+  argument type stays static.
+- Runnable example
+  [`examples/plugin-notification-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-notification-demo).
+- `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
+  `@tauri-apps/plugin-notification ^2.3.0`.
+
+## `@rescript-tauri/plugin-log` 0.1.0 (2026-05-12)
+
+Canonical: [`packages/plugin-log/CHANGELOG.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/plugin-log/CHANGELOG.md)
+
+### Added
+
+- Bindings for `@tauri-apps/plugin-log` v2.8.0 — 100% of the
+  stable public surface (5 log functions + `attachLogger` +
+  `attachConsole` + `LogLevel` `@unboxed` variant).
+- `LogLevel.t` is an `@unboxed` polymorphic-variant wrapper over
+  the upstream numeric enum (`Trace`=1 … `Error`=5) so the runtime
+  representation stays wire-compatible.
+- Runnable example
+  [`examples/plugin-log-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-log-demo).
+- `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
+  `@tauri-apps/plugin-log ^2.0.0`.
+
+## `@rescript-tauri/plugin-os` 0.1.0 (2026-05-12)
+
+Canonical: [`packages/plugin-os/CHANGELOG.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/plugin-os/CHANGELOG.md)
+
+### Added
+
+- Bindings for `@tauri-apps/plugin-os` v2.3.2 — 100% of the
+  stable public surface (6 sync getters + `OsType.get` (sync) +
+  `locale` / `hostname` (async) + 4 polymorphic variants).
+- `OsType.get` lives in an `OsType` submodule because `type` is
+  reserved at the top level of a ReScript module.
+- Runnable example
+  [`examples/plugin-os-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-os-demo).
+- `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
+  `@tauri-apps/plugin-os ^2.0.0`.
+
+## `@rescript-tauri/plugin-clipboard-manager` 0.1.0 (2026-05-12)
+
+Canonical: [`packages/plugin-clipboard-manager/CHANGELOG.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/plugin-clipboard-manager/CHANGELOG.md)
+
+### Added
+
+- Bindings for `@tauri-apps/plugin-clipboard-manager` v2.3.2 —
+  100% of the stable public surface (6 functions: `writeText` /
+  `readText` / `writeImage` / `readImage` / `writeHtml` /
+  `clear`).
+- `readImage` returns `RescriptTauriCore.Image.t` (the existing
+  core image handle, reused via `peerDependencies`).
+- Runnable example
+  [`examples/plugin-clipboard-manager-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-clipboard-manager-demo).
+- `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
+  `@tauri-apps/plugin-clipboard-manager ^2.0.0`.
+
+## `@rescript-tauri/plugin-http` 0.1.0 (2026-05-12)
+
+Canonical: [`packages/plugin-http/CHANGELOG.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/plugin-http/CHANGELOG.md)
+
+### Added
+
+- Bindings for `@tauri-apps/plugin-http` v2.5.9 — 100% of the
+  stable public surface (`fetch` + 5 record / variant types:
+  `proxy<'proxyValue>` / `proxyConfig` / `basicAuth` /
+  `clientOptions<'proxyValue>` / `dangerousSettings`).
+- The DOM `Request` / `Response` / `RequestInit` types are
+  intentionally polymorphic; the call site picks a strategy
+  (annotation / `Obj.magic` / external binding).
+- Runnable example
+  [`examples/plugin-http-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-http-demo).
+- `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
+  `@tauri-apps/plugin-http ^2.0.0`.
 
 ## Repository-level updates
 

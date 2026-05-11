@@ -1,6 +1,6 @@
 {
   "name": "@rescript-tauri/schema",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "rescript-schema integration for @rescript-tauri/core (Layer 3 typed IPC)",
   "license": "MIT",
   "homepage": "https://github.com/Nagatatz/rescript-tauri",

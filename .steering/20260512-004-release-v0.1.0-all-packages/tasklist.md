@@ -8,14 +8,14 @@
 
 ## Phase 1: Cut commit 作成
 
-- [ ] T1: 10 個の `packages/*/package.json` の `version` を `0.1.0` に bump (sed)
-- [ ] T2: 10 個の `packages/*/CHANGELOG.md` の `## Unreleased` を `## 0.1.0 (2026-05-12)` に置換 (sed)
-- [ ] T3: `sphinx-docs/user/changelog.md` の既存 4 セクションヘッダを `(Unreleased)` から `0.1.0 (2026-05-12)` に置換 (sed)
-- [ ] T4: `sphinx-docs/user/changelog.md` に 6 プラグイン分の新セクション (`plugin-shell` / `plugin-notification` / `plugin-log` / `plugin-os` / `plugin-clipboard-manager` / `plugin-http`) を挿入
-- [ ] T5: `git diff --stat` で 22 ファイル変更を確認
-- [ ] T6: ローカル検証: `pnpm --recursive build` 成功
-- [ ] T7: ローカル検証: `pnpm --recursive test` 成功
-- [ ] T8: 単一 commit `📝 Cut all packages v0.1.0 (2026-05-12)` を作成
+- [x] T1: 10 個の `packages/*/package.json` の `version` を `0.1.0` に bump (sed)
+- [x] T2: 10 個の `packages/*/CHANGELOG.md` の `## Unreleased` を `## 0.1.0 (2026-05-12)` に置換 (sed)
+- [x] T3: `sphinx-docs/user/changelog.md` の既存 4 セクションヘッダを `(Unreleased)` から `0.1.0 (2026-05-12)` に置換 (sed)
+- [x] T4: `sphinx-docs/user/changelog.md` に 6 プラグイン分の新セクション (`plugin-shell` / `plugin-notification` / `plugin-log` / `plugin-os` / `plugin-clipboard-manager` / `plugin-http`) を挿入
+- [x] T5: `git diff --stat` で 21 ファイル変更を確認 (10 package.json + 10 CHANGELOG + 1 sphinx-docs)
+- [~] T6: ローカル `pnpm --recursive build` — **省略**: ディスク 93%、worktree に node_modules 不在で pnpm install のリスクあり。変更はメタデータのみで code 変更なし。CI に委ねる
+- [~] T7: ローカル `pnpm --recursive test` — **省略**: 同上
+- [x] T8: 単一 commit `📝 Cut all packages v0.1.0 (2026-05-12)` を作成
 
 ## Phase 2: User confirmation 1 (push commit 前)
 
