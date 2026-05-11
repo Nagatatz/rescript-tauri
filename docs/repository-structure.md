@@ -34,6 +34,7 @@ rescript-tauri/                          # monorepo root
 │   ├── plugin-fs-demo/                  # Phase 2
 │   ├── plugin-dialog-demo/              # Phase 2
 │   ├── plugin-shell-demo/               # Phase 2
+│   ├── plugin-http-demo/                # Phase 2 (steering 009)
 │   └── ipc-typed-with-schema/           # Phase 2 (Layer 3 demo)
 ├── docs/                                # 開発チーム向け内部ドキュメント
 │   ├── ideas/                           # ドラフト・RFC 集約
@@ -273,7 +274,7 @@ packages/plugin-http/                    # 着手済み (steering 058, 2026-05-0
 
 `peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-http ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
 
-upstream `fetch(input, init)` は Web Fetch API のラッパー。`input` (`string | URL | Request`) / `init` (`RequestInit & ClientOptions`) / 戻り値 `Response` は DOM 型のため、ReScript 側では polymorphic `'input` / `'init` / `'response` で受け流し、呼び出し側で型注釈を付ける運用とする。Tauri 固有の設定 (`proxy` / `clientOptions` / `proxyConfig` / `dangerousSettings` / `basicAuth`) は明示的な record 型として公開。`proxy<'proxyValue>` と `clientOptions<'proxyValue>` は upstream の `string | ProxyConfig` union を polymorphic `'proxyValue` で表現。`examples/plugin-http-demo/` と sphinx-docs `user/plugin-http.md`、および完全な Web Fetch API 型バインディングは後続 sub-steering に分離。
+upstream `fetch(input, init)` は Web Fetch API のラッパー。`input` (`string | URL | Request`) / `init` (`RequestInit & ClientOptions`) / 戻り値 `Response` は DOM 型のため、ReScript 側では polymorphic `'input` / `'init` / `'response` で受け流し、呼び出し側で型注釈を付ける運用とする。Tauri 固有の設定 (`proxy` / `clientOptions` / `proxyConfig` / `dangerousSettings` / `basicAuth`) は明示的な record 型として公開。`proxy<'proxyValue>` と `clientOptions<'proxyValue>` は upstream の `string | ProxyConfig` union を polymorphic `'proxyValue` で表現。sphinx-docs `user/plugin-http.md` は steering 20260511-007 で、`examples/plugin-http-demo/` は steering 20260511-009 で追加済み。完全な Web Fetch API 型バインディングは後続 sub-steering に分離。
 
 ### 2.3 `packages/schema/`
 
@@ -310,6 +311,7 @@ examples/streaming-ipc/                   # Channel デモ
 examples/plugin-dialog-demo/              # @rescript-tauri/plugin-dialog 全関数デモ (steering 036)
 examples/plugin-fs-demo/                  # @rescript-tauri/plugin-fs 全関数デモ (steering 037)
 examples/plugin-shell-demo/               # @rescript-tauri/plugin-shell 全関数デモ (steering 20260511-008)
+examples/plugin-http-demo/                # @rescript-tauri/plugin-http 4 step デモ (steering 20260511-009)
 examples/ipc-typed-with-schema/           # @rescript-tauri/schema (Layer 3) デモ — ipc-typed の対比版 (steering 039)
 ```
 

@@ -51,12 +51,12 @@
 
 ### Checkpoint 4: README + CI + ドキュメント整合
 
-- [ ] `examples/plugin-http-demo/README.md` 作成（plugin-fs-demo スタイル）
-- [ ] `.github/workflows/examples-build.yml` に `plugin-http-demo` build + `cargo check` ステップ追加（plugin-fs-demo ブロックの直後に挿入）
-- [ ] `docs/repository-structure.md` の `examples/` ツリーに `plugin-http-demo/` 追加
-- [ ] `sphinx-docs/user/plugin-http.md` の See also に live demo リンク追加
-- [ ] `packages/plugin-http/CHANGELOG.md` の Unreleased セクションに「examples/plugin-http-demo added (steering 009)」追記
-- [ ] commit: `📝 Wire plugin-http-demo into CI / docs / changelog`
+- [x] `examples/plugin-http-demo/README.md` 作成（plugin-fs-demo スタイル）
+- [x] `.github/workflows/examples-build.yml` に `plugin-http-demo` build + `cargo check` ステップ追加（plugin-fs-demo ブロックの直後に挿入）
+- [x] `docs/repository-structure.md` の `examples/` ツリー + §3 リスト + plugin-http 節 (line 277) に追加・整合
+- [x] `sphinx-docs/user/plugin-http.md` の See also に live demo リンク追加
+- [x] `packages/plugin-http/CHANGELOG.md` の Unreleased セクションに「examples/plugin-http-demo added (steering 009)」追記、Deferred 節から該当 2 項目を削除
+- [x] commit: `📝 Wire plugin-http-demo into CI / docs / changelog`
 
 ## Phase 3: マージ前検証
 

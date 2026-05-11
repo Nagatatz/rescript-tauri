@@ -279,6 +279,8 @@ keeps secure-by-default behaviour visible at the call site.
 
 ## See also
 
+- Live demo:
+  [`examples/plugin-http-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-http-demo)
 - Source:
   [`packages/plugin-http`](https://github.com/Nagatatz/rescript-tauri/tree/main/packages/plugin-http)
 - Package README:
