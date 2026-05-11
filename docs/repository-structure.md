@@ -502,11 +502,12 @@ CI ジョブ定義の詳細は `docs/functional-design.md` §6 を参照。
 
 ## 10. `tools/` — リポジトリ共通の Node ツール
 
-`packages/*` から共有して読み込む素の Node スクリプト置き場。パッケージ化はせず、各 package の設定ファイルから相対 import (`../../tools/...`) で利用する。
+`packages/*` から共有して読み込む素の Node スクリプト置き場。パッケージ化はせず、各 package の設定ファイル (`../../tools/...`) または `tests/runtime/*.test.mjs` (`../../../../tools/...`) から相対 import で利用する。
 
 | ファイル | 役割 |
 |---|---|
 | `vitest.shared.mjs` | 全 package の `vitest.config.mjs` から呼び出す `definePackageConfig({thresholds?})` helper。`happy-dom` / `tests/runtime/**` / v8 coverage 等のボイラープレートを一元化する (steering 059, 2026-05-09) |
+| `tauri-mocks.mjs` | `tests/runtime/*.test.mjs` 用の Tauri グローバル stub helper (`installTauriInternals` / `installEventPluginInternals` / `installOsPluginInternals` / `installNotificationStub`)。各 helper は cleanup 関数を返す。`__TAURI_INTERNALS__` / `__TAURI_OS_PLUGIN_INTERNALS__` / `window.Notification` の inline 重複を一元化する (steering 20260511-018, 2026-05-11) |
 
 新ヘルパ追加時は: (1) 純粋な default export または factory 関数を提供し、副作用を持たないこと; (2) `node --check` で構文確認できること; (3) 本書のテーブルに 1 行追記すること。
 
