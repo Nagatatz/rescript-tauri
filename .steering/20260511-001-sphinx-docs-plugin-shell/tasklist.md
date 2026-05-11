@@ -36,14 +36,21 @@
 
 ## Phase 4: 検証
 
-- [ ] T4.1 `git diff main..HEAD --stat` で本ステアリングの差分が `sphinx-docs/user/plugin-shell.md`, `sphinx-docs/user/index.md`, `docs/repository-structure.md`, `.steering/20260511-001-.../*.md` の 6 ファイルに限定されていることを確認
-- [ ] T4.2 `pnpm run check` 最終確認
-- [ ] T4.3 相対リンク (`plugin-fs.md`, `plugin-dialog.md`, `installation.md` 等) が存在することを `ls sphinx-docs/user/` で確認
+- [x] T4.1 `git diff main..HEAD --name-status` で本ステアリングの差分が `sphinx-docs/user/plugin-shell.md`, `sphinx-docs/user/index.md`, `docs/repository-structure.md`, `.steering/20260511-001-.../*.md` の 6 ファイルに限定されていることを確認
+- [x] T4.2 `pnpm exec biome check sphinx-docs/user/index.md docs/repository-structure.md` 実行（`.md` / `sphinx-docs` は biome.json で除外設定済みのため "ignored" 扱い、lint エラーなし）
+- [x] T4.3 相対リンク (`plugin-fs.md`, `plugin-dialog.md`, `installation.md`, `plugin-notification.md`, `schema.md` 等) が存在することを `ls sphinx-docs/user/` で確認
+
+### 並列セッション合流の補足
+
+実装中に並列セッションが steering 20260511-002 (sphinx-docs plugin-notification user guide) と steering 059 (vitest config 共通化) を main にマージしたため、worktree branch で 2 回 `git merge main` を実行して取り込んだ:
+
+- afcda6a: 1 回目の merge — sphinx-docs/user/index.md で conflict 発生、両方の plugin 行を共存させ "four" → "five" に更新、`docs/repository-structure.md` の「未追加のユーザーガイド」記述を全削除
+- b0a7e59: 2 回目の merge — steering 059 + 003 plan の追加、conflict なし
 
 ## Phase 5: マージ
 
-- [ ] T5.1 tasklist.md の Phase 0〜4 を全部 `[x]` に更新し、本マージタスク自体を含めて全項目チェック済みであることを確認
-- [ ] T5.2 **コミット**: `📝 Mark tasklist 20260511-001 complete`
+- [x] T5.1 tasklist.md の Phase 0〜4 を全部 `[x]` に更新し、本マージタスク自体を含めて全項目チェック済みであることを確認
+- [x] T5.2 **コミット**: `📝 Mark tasklist 20260511-001 complete`
 - [ ] T5.3 `AskUserQuestion` でユーザーに main へのマージ可否を確認
 - [ ] T5.4 承認後、メインリポジトリで未追跡の `.steering/20260511-001-sphinx-docs-plugin-shell/` を削除（worktree 作成前に main 側に作成した残骸を解消）
 - [ ] T5.5 `cd <main-repo>` → `git merge worktree-plugin-shell-userguide --no-ff` → `git worktree remove .claude/worktrees/plugin-shell-userguide` → `git branch -d worktree-plugin-shell-userguide`
