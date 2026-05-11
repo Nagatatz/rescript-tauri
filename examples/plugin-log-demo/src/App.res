@@ -31,19 +31,13 @@ let safe = (label: string, body: unit => promise<unit>): unit => {
     })
 }
 
-let levelToString = (level: int): string =>
-  if level === PluginLog.LogLevel.error_ {
-    "ERROR"
-  } else if level === PluginLog.LogLevel.warn_ {
-    "WARN"
-  } else if level === PluginLog.LogLevel.info_ {
-    "INFO"
-  } else if level === PluginLog.LogLevel.debug_ {
-    "DEBUG"
-  } else if level === PluginLog.LogLevel.trace {
-    "TRACE"
-  } else {
-    "L" ++ Int.toString(level)
+let levelToString = (level: PluginLog.LogLevel.t): string =>
+  switch level {
+  | Error => "ERROR"
+  | Warn => "WARN"
+  | Info => "INFO"
+  | Debug => "DEBUG"
+  | Trace => "TRACE"
   }
 
 // Latest unlisten handles so the Detach button can call them.

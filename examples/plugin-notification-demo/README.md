@@ -31,8 +31,8 @@ first time you run **sendNotificationText** or **sendNotification**.
 | **subscribe / detach onNotificationReceived** | `PluginNotification.onNotificationReceived` + `Core.PluginListener.unregister` |
 
 Type-only reachability covers `Schedule.{at, interval, every}`,
-`Importance.{none, min, low, default_, high}`,
-`Visibility.{secret, private_, public_}`, the `cancel(array<int>)`
+`Importance.{None, Min, Low, Default, High}`,
+`Visibility.{Secret, Private, Public}`, the `cancel(array<int>)`
 and `removeActive(array<removeActiveTarget>)` variants, and several
 related record shapes (`actionType` / `pendingNotification` /
 `activeNotification` / `attachment`).
