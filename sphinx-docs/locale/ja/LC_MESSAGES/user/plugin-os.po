@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-11 09:21+0900\n"
+"POT-Creation-Date: 2026-05-11 14:36+0900\n"
 "PO-Revision-Date: 2026-05-11 10:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -33,44 +33,43 @@ msgid ""
 "mirror the upstream string-literal unions."
 msgstr ""
 
-#: ../../user/plugin-os.md:12
+#: ../../user/plugin-os.md:13
 msgid ""
-"The Phase 2 implementation is feature-complete in `main`. The first npm "
-"publish (`plugin-os-v0.1.0`) is scheduled alongside the other Phase 2 "
-"packages. Until then, consume `@rescript-tauri/plugin-os` via the source "
-"repository or a workspace link."
+"The Phase 2 implementation of this package is feature-complete in `main`."
+" Its first npm publish is scheduled alongside the other Phase 2 packages."
+" Until then, consume it via the source repository or a workspace link."
 msgstr ""
 
-#: ../../user/plugin-os.md:19
+#: ../../user/plugin-os.md:15
 msgid "Install"
 msgstr "インストール"
 
-#: ../../user/plugin-os.md:25
+#: ../../user/plugin-os.md:21
 msgid ""
 "`@rescript-tauri/plugin-os` declares both `@rescript-tauri/core` and "
 "`@tauri-apps/plugin-os` as `peerDependencies`, so you control each "
 "upstream version."
 msgstr ""
 
-#: ../../user/plugin-os.md:29
+#: ../../user/plugin-os.md:25
 msgid "Add the package to `dependencies` in your `rescript.json`:"
 msgstr ""
 
-#: ../../user/plugin-os.md:40
+#: ../../user/plugin-os.md:36
 msgid "On the Rust side, register the plugin on the builder:"
 msgstr ""
 
-#: ../../user/plugin-os.md:58
+#: ../../user/plugin-os.md:54
 msgid ""
 "`tauri_plugin_os::init()` takes no configuration — the default builder is"
 " sufficient for every API exposed by this binding."
 msgstr ""
 
-#: ../../user/plugin-os.md:61
+#: ../../user/plugin-os.md:57
 msgid "Capabilities"
 msgstr "Capability 設定"
 
-#: ../../user/plugin-os.md:75
+#: ../../user/plugin-os.md:71
 msgid ""
 "`os:default` grants the IPC permissions `allow-locale` and `allow-"
 "hostname` that the two async getters require. The seven synchronous "
@@ -80,11 +79,11 @@ msgid ""
 "initialized."
 msgstr ""
 
-#: ../../user/plugin-os.md:82
+#: ../../user/plugin-os.md:78
 msgid "Sync getters"
 msgstr "Sync ゲッター"
 
-#: ../../user/plugin-os.md:84
+#: ../../user/plugin-os.md:80
 msgid ""
 "Seven of the nine functions resolve at call-site without ever touching "
 "IPC: upstream caches the values on the "
@@ -184,11 +183,11 @@ msgstr ""
 msgid "`\"exe\"` on Windows, `\"\"` elsewhere"
 msgstr ""
 
-#: ../../user/plugin-os.md:117
+#: ../../user/plugin-os.md:113
 msgid "Async getters"
 msgstr "Async ゲッター"
 
-#: ../../user/plugin-os.md:119
+#: ../../user/plugin-os.md:115
 msgid ""
 "The remaining two functions are async because they pull values from the "
 "OS at call time rather than at plugin init. They go through the regular "
@@ -217,11 +216,11 @@ msgstr ""
 msgid "OS hostname; not guaranteed to be a DNS-resolvable name"
 msgstr ""
 
-#: ../../user/plugin-os.md:148
+#: ../../user/plugin-os.md:144
 msgid "Capability requirement"
 msgstr "Capability 要件"
 
-#: ../../user/plugin-os.md:150
+#: ../../user/plugin-os.md:146
 msgid ""
 "Both async getters are gated by the `os:default` capability set shown "
 "above; without it, the IPC bridge rejects the call before the plugin "
@@ -232,11 +231,11 @@ msgid ""
 " docs recommend."
 msgstr ""
 
-#: ../../user/plugin-os.md:159
+#: ../../user/plugin-os.md:155
 msgid "Polymorphic variants"
 msgstr "Polymorphic variant"
 
-#: ../../user/plugin-os.md:161
+#: ../../user/plugin-os.md:157
 msgid ""
 "Four polymorphic-variant types mirror the upstream string-literal unions."
 " Each is exhaustively pattern-matchable, so the ReScript compiler flags "
@@ -291,15 +290,15 @@ msgstr ""
 msgid "`#unix` / `#windows` (2)"
 msgstr ""
 
-#: ../../user/plugin-os.md:172
+#: ../../user/plugin-os.md:168
 msgid "Pattern match example"
 msgstr "パターンマッチ例"
 
-#: ../../user/plugin-os.md:174
+#: ../../user/plugin-os.md:170
 msgid "Branch on `platform()` to label the runtime environment:"
 msgstr ""
 
-#: ../../user/plugin-os.md:196
+#: ../../user/plugin-os.md:192
 msgid ""
 "If upstream adds a new platform in a future minor release and the binding"
 " picks it up, the compiler will flag this `switch` as non-exhaustive on "
@@ -307,15 +306,15 @@ msgid ""
 "decision point."
 msgstr ""
 
-#: ../../user/plugin-os.md:201
+#: ../../user/plugin-os.md:197
 msgid "Pitfalls"
 msgstr "注意点"
 
-#: ../../user/plugin-os.md:203
+#: ../../user/plugin-os.md:199
 msgid "`type()` renamed to `osType_()`"
 msgstr "`type()` の `osType_()` へのリネーム"
 
-#: ../../user/plugin-os.md:205
+#: ../../user/plugin-os.md:201
 msgid ""
 "Upstream JavaScript exposes the OS type through a function called `type`."
 " `type` is reserved in ReScript, so the binding renames it to `osType_()`"
@@ -323,28 +322,28 @@ msgid ""
 "word avoidance):"
 msgstr ""
 
-#: ../../user/plugin-os.md:214
+#: ../../user/plugin-os.md:210
 msgid "Sync getters don't go through IPC"
 msgstr "Sync ゲッターは IPC を通らない"
 
-#: ../../user/plugin-os.md:216
+#: ../../user/plugin-os.md:212
 msgid ""
 "`Mocks.mockIPC` only intercepts IPC commands. The seven sync getters "
 "bypass IPC entirely, so tests that need to fake their return values stub "
 "the underlying global directly:"
 msgstr ""
 
-#: ../../user/plugin-os.md:234
+#: ../../user/plugin-os.md:230
 msgid ""
 "The async `locale()` / `hostname()` calls do go through IPC and can be "
 "mocked with `Mocks.mockIPC` as usual."
 msgstr ""
 
-#: ../../user/plugin-os.md:237
+#: ../../user/plugin-os.md:233
 msgid "`#x86_64`, `#powerpc64`, etc. are valid as-is"
 msgstr "`#x86_64`、`#powerpc64` 等はそのまま使える"
 
-#: ../../user/plugin-os.md:239
+#: ../../user/plugin-os.md:235
 msgid ""
 "ReScript polymorphic-variant tags accept `_` and digits, so the upstream "
 "`\"x86_64\"` / `\"powerpc64\"` / `\"riscv64\"` / `\"s390x\"` / "
@@ -352,7 +351,7 @@ msgid ""
 "/ `#s390x` / `#sparc64` without any quoting or escape."
 msgstr ""
 
-#: ../../user/plugin-os.md:244
+#: ../../user/plugin-os.md:240
 msgid "Compatibility"
 msgstr "互換性"
 
@@ -412,23 +411,33 @@ msgstr "対応 OS"
 msgid "Linux / macOS / Windows / iOS / Android"
 msgstr ""
 
-#: ../../user/plugin-os.md:255
+#: ../../user/plugin-os.md:251
 msgid "See also"
 msgstr "関連リンク"
 
-#: ../../user/plugin-os.md:257
+#: ../../user/plugin-os.md:253
 msgid ""
 "Source: [`packages/plugin-os`](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/packages/plugin-os)"
 msgstr ""
 
-#: ../../user/plugin-os.md:259
+#: ../../user/plugin-os.md:255
 msgid "Upstream docs: [Tauri 2.x os plugin](https://v2.tauri.app/plugin/os-info/)"
 msgstr ""
 
-#: ../../user/plugin-os.md:261
+#: ../../user/plugin-os.md:257
 msgid ""
 "Upstream JS reference: [os "
 "module](https://v2.tauri.app/reference/javascript/os/)"
 msgstr ""
+
+#~ msgid ""
+#~ "The Phase 2 implementation is "
+#~ "feature-complete in `main`. The first "
+#~ "npm publish (`plugin-os-v0.1.0`) is "
+#~ "scheduled alongside the other Phase 2"
+#~ " packages. Until then, consume "
+#~ "`@rescript-tauri/plugin-os` via the source"
+#~ " repository or a workspace link."
+#~ msgstr ""
 
