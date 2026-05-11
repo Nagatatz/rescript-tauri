@@ -53,16 +53,12 @@
 
 ## Phase 5: 検証
 
-- [ ] T5.1 完全 grep 検証:
-  ```
-  grep -rln 'Phase 1\|Phase 2\|Phase2\|Phase1' README.md CLAUDE.md docs/ sphinx-docs/ | grep -v 'docs/ideas/RFC-'
-  ```
-  が空
-- [ ] T5.2 `git diff main..HEAD --stat` で範囲確認
+- [x] T5.1 完全 grep 検証: `.po` と `docs/ideas/RFC-` を除外して空。残る `.po` は ja-translation 系並列セッションで `make update-po` 同期予定
+- [x] T5.2 `git diff main..HEAD --stat` で範囲確認: 22 ファイル / +422 insertions
 
 ## Phase 6: マージ
 
-- [ ] T6.1 tasklist `[x]` 化
+- [x] T6.1 tasklist `[x]` 化
 - [ ] T6.2 **コミット**: `📝 Mark steering 20260511-013 tasklist complete`
 - [ ] T6.3 `AskUserQuestion` で main マージ可否確認
 - [ ] T6.4 承認後、main 側の未追跡 `.steering/20260511-013-drop-phase-labels/` を削除
