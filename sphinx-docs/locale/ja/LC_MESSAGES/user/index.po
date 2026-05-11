@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-09 16:33+0900\n"
+"POT-Creation-Date: 2026-05-11 09:21+0900\n"
 "PO-Revision-Date: 2026-05-09 17:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -67,9 +67,9 @@ msgid ""
 "`.resi` and a doc-comment line linking to the matching Tauri upstream "
 "page."
 msgstr ""
-"`@rescript-tauri/core` は 12 個の Phase 1 モジュールに加え、よく使うインポートをまとめた "
-"`Tauri` アンブレラモジュールを提供します。各モジュールは専用の `.resi` を持ち、"
-"対応する Tauri 上流ドキュメントへのリンクを doc-comment に記載しています。"
+"`@rescript-tauri/core` は 12 個の Phase 1 モジュールに加え、よく使うインポートをまとめた `Tauri` "
+"アンブレラモジュールを提供します。各モジュールは専用の `.resi` を持ち、対応する Tauri 上流ドキュメントへのリンクを doc-"
+"comment に記載しています。"
 
 #: ../../user/index.md
 msgid "Module"
@@ -88,8 +88,8 @@ msgid ""
 "`open Tauri` re-export of the 5 most common modules (Core / Event / "
 "Window / Webview / WebviewWindow)"
 msgstr ""
-"`open Tauri` で再エクスポートされる 5 つの主要モジュール（Core / Event / Window / "
-"Webview / WebviewWindow）"
+"`open Tauri` で再エクスポートされる 5 つの主要モジュール（Core / Event / Window / Webview / "
+"WebviewWindow）"
 
 #: ../../user/index.md
 msgid "`Core`"
@@ -120,8 +120,8 @@ msgid ""
 "Window class — opaque handle + ~80 instance / static methods, full type "
 "set (theme, cursorIcon, effects, monitor, ...)"
 msgstr ""
-"Window クラス — 不透明ハンドル + 約 80 個のインスタンス / 静的メソッド、theme / "
-"cursorIcon / effects / monitor などフル型セット"
+"Window クラス — 不透明ハンドル + 約 80 個のインスタンス / 静的メソッド、theme / cursorIcon / "
+"effects / monitor などフル型セット"
 
 #: ../../user/index.md
 msgid "`Webview`"
@@ -131,9 +131,7 @@ msgstr "`Webview`"
 msgid ""
 "Webview class — opaque handle + 14 instance methods + drag-and-drop event"
 " variant"
-msgstr ""
-"Webview クラス — 不透明ハンドル + 14 個のインスタンスメソッド + ドラッグ &"
-" ドロップイベントの variant"
+msgstr "Webview クラス — 不透明ハンドル + 14 個のインスタンスメソッド + ドラッグ & ドロップイベントの variant"
 
 #: ../../user/index.md
 msgid "`WebviewWindow`"
@@ -143,9 +141,7 @@ msgstr "`WebviewWindow`"
 msgid ""
 "Combined Window + Webview surface; zero-cost `asWindow` / `asWebview` "
 "casts"
-msgstr ""
-"Window と Webview を統合した API。ゼロコストの `asWindow` / `asWebview` "
-"キャストを提供"
+msgstr "Window と Webview を統合した API。ゼロコストの `asWindow` / `asWebview` キャストを提供"
 
 #: ../../user/index.md
 msgid "`Menu`"
@@ -204,8 +200,8 @@ msgid ""
 "DPI-aware size and position (`LogicalSize`, `PhysicalSize`, "
 "`LogicalPosition`, `PhysicalPosition`, `Size`, `Position`)"
 msgstr ""
-"DPI を考慮したサイズ・位置（`LogicalSize` / `PhysicalSize` / "
-"`LogicalPosition` / `PhysicalPosition` / `Size` / `Position`）"
+"DPI を考慮したサイズ・位置（`LogicalSize` / `PhysicalSize` / `LogicalPosition` / "
+"`PhysicalPosition` / `Size` / `Position`）"
 
 #: ../../user/index.md
 msgid "`Mocks`"
@@ -221,12 +217,12 @@ msgstr "Phase 2 パッケージ"
 
 #: ../../user/index.md:40
 msgid ""
-"Phase 2 introduces three add-on packages that build on the Phase 1 core. "
+"Phase 2 introduces eight add-on packages that build on the Phase 1 core. "
 "Each ships independently and pulls the matching upstream plugin / schema "
 "library through `peerDependencies`."
 msgstr ""
-"Phase 2 では Phase 1 core の上に乗る 3 つのアドオンパッケージを追加します。"
-"いずれも独立して公開され、対応する上流のプラグイン / スキーマライブラリを "
+"Phase 2 では Phase 1 core の上に乗る 8 "
+"個のアドオンパッケージを追加します。いずれも独立して公開され、対応する上流のプラグイン / スキーマライブラリを "
 "`peerDependencies` 経由で取り込みます。"
 
 #: ../../user/index.md
@@ -262,6 +258,66 @@ msgid "[plugin-dialog](plugin-dialog.md)"
 msgstr "[plugin-dialog](plugin-dialog.md)"
 
 #: ../../user/index.md
+msgid "`@rescript-tauri/plugin-notification`"
+msgstr "`@rescript-tauri/plugin-notification`"
+
+#: ../../user/index.md
+msgid "Native notifications (toast / schedule / channels)"
+msgstr "ネイティブ通知（toast / schedule / channels）"
+
+#: ../../user/index.md
+msgid "[plugin-notification](plugin-notification.md)"
+msgstr "[plugin-notification](plugin-notification.md)"
+
+#: ../../user/index.md
+msgid "`@rescript-tauri/plugin-shell`"
+msgstr "`@rescript-tauri/plugin-shell`"
+
+#: ../../user/index.md
+msgid "Spawn child processes, open URLs / files with the OS default"
+msgstr "子プロセスの起動、OS デフォルトアプリで URL / ファイルを開く"
+
+#: ../../user/index.md
+msgid "[plugin-shell](plugin-shell.md)"
+msgstr "[plugin-shell](plugin-shell.md)"
+
+#: ../../user/index.md
+msgid "`@rescript-tauri/plugin-log`"
+msgstr "`@rescript-tauri/plugin-log`"
+
+#: ../../user/index.md
+msgid "Structured logging (5 levels + log-stream listeners)"
+msgstr "構造化ロギング（5 段階 + ログストリームリスナー）"
+
+#: ../../user/index.md
+msgid "[plugin-log](plugin-log.md)"
+msgstr "[plugin-log](plugin-log.md)"
+
+#: ../../user/index.md
+msgid "`@rescript-tauri/plugin-os`"
+msgstr "`@rescript-tauri/plugin-os`"
+
+#: ../../user/index.md
+msgid "OS info (platform / arch / family / locale / hostname)"
+msgstr "OS 情報（platform / arch / family / locale / hostname）"
+
+#: ../../user/index.md
+msgid "[plugin-os](plugin-os.md)"
+msgstr "[plugin-os](plugin-os.md)"
+
+#: ../../user/index.md
+msgid "`@rescript-tauri/plugin-clipboard-manager`"
+msgstr "`@rescript-tauri/plugin-clipboard-manager`"
+
+#: ../../user/index.md
+msgid "Clipboard read/write (text / image / HTML)"
+msgstr "クリップボードの読み書き（text / image / HTML）"
+
+#: ../../user/index.md
+msgid "[plugin-clipboard-manager](plugin-clipboard-manager.md)"
+msgstr "[plugin-clipboard-manager](plugin-clipboard-manager.md)"
+
+#: ../../user/index.md
 msgid "`@rescript-tauri/schema`"
 msgstr "`@rescript-tauri/schema`"
 
@@ -272,3 +328,4 @@ msgstr "`rescript-schema` を用いた Layer 3 型付き IPC"
 #: ../../user/index.md
 msgid "[schema](schema.md)"
 msgstr "[schema](schema.md)"
+

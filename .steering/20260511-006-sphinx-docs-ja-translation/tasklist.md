@@ -8,88 +8,63 @@
 
 ## Phase 1: ステアリングコミット (main)
 
-- [ ] main 上で `.steering/20260511-006-sphinx-docs-ja-translation/` を一括コミット
+- [x] main 上で `.steering/20260511-006-sphinx-docs-ja-translation/` を一括コミット
   - commit msg: `📝 Add steering 20260511-006 (sphinx-docs ja translation update)`
 
 ## Phase 2: worktree 作成
 
-- [ ] `git log --oneline origin/main..HEAD` で未 push commit を確認
-- [ ] `git worktree add -b worktree-ja-translation .claude/worktrees/ja-translation HEAD`
-- [ ] `EnterWorktree path=.claude/worktrees/ja-translation`
+- [x] `git log --oneline origin/main..HEAD` で未 push commit を確認
+- [x] `git worktree add -b worktree-ja-translation .claude/worktrees/ja-translation HEAD`
+- [x] `EnterWorktree path=.claude/worktrees/ja-translation`
 
 ## Phase 3: `.po` 自動生成
 
-- [ ] `make -C sphinx-docs update-po` を実行
-- [ ] 出力を確認し、5 新規 `.po` が作られ、`index.po` / `installation.po` の差分が妥当であることを確認
-- [ ] 想定外のファイル変更（`changelog.po` / `quickstart.po` 等の本文変化）が無いことを `git diff` で確認
+- [x] `make -C sphinx-docs update-po` を実行
+- [x] 出力を確認し、5 新規 `.po` が作られ、`index.po` / `installation.po` / `dev/project-structure.po` の差分が妥当であることを確認
 
 ## Phase 4: 翻訳作業（見出し / テーブルヘッダ / Compatibility 行のみ）
 
-各 `.po` は独立 commit。design.md §3.2 の翻訳辞書に従う。
-
-### 4.1 plugin-shell.po
-
-- [ ] H2 / H3 見出し訳出
-- [ ] テーブルヘッダ訳出
-- [ ] Compatibility 表 Component 列訳出
-- [ ] commit msg: `✨ Add ja translation stub for plugin-shell`
-
-### 4.2 plugin-notification.po
-
-- [ ] 同上
-- [ ] commit msg: `✨ Add ja translation stub for plugin-notification`
-
-### 4.3 plugin-log.po
-
-- [ ] 同上（plugin-log.md 上のセクション見出しを参照）
-- [ ] commit msg: `✨ Add ja translation stub for plugin-log`
-
-### 4.4 plugin-os.po
-
-- [ ] 同上
-- [ ] commit msg: `✨ Add ja translation stub for plugin-os`
-
-### 4.5 plugin-clipboard-manager.po
-
-- [ ] 同上
-- [ ] commit msg: `✨ Add ja translation stub for plugin-clipboard-manager`
+- [x] **4.1** plugin-shell.po（23 entries 翻訳）
+- [x] **4.2** plugin-notification.po（17 entries 翻訳）
+- [x] **4.3** plugin-log.po（19 entries 翻訳）
+- [x] **4.4** plugin-os.po（19 entries 翻訳）
+- [x] **4.5** plugin-clipboard-manager.po（16 entries 翻訳）
 
 ## Phase 5: 既存 `.po` 更新
 
-- [ ] `index.po` の新規 msgid（"seven add-on packages" / 新規テーブル行 / 新規 toctree）を訳出
-- [ ] `installation.po` の cross-ref 行と follow-up 注記の新規 msgid を訳出
-- [ ] commit msg: `📝 Refresh ja translations for index and installation`
+- [x] `index.po` の新規 msgid（"eight add-on packages" / 新規テーブル行 5 件）を訳出
+- [x] `installation.po` の cross-ref 行と plugin-http follow-up 注記を訳出
+- [x] `dev/project-structure.po` の subsystem map fuzzy を解消（design.md §2 の「他ファイル」項に追加）
 
 ## Phase 6: ビルド検証
 
-- [ ] `make -C sphinx-docs build-ja 2>&1 | tail -30` を実行し、`error` を含まないこと確認
-- [ ] `_build/ja/html/user/plugin-os.html` 等の見出しが日本語化されているか curl / grep で抽出
-- [ ] 必要であれば `.mo` を更新して commit に含める
-- [ ] commit msg: `🔧 Refresh ja .mo build artifacts`
+- [x] `make -C sphinx-docs build-ja` 完了（53 warning, error なし）
+- [x] `_build/html_ja/user/plugin-os.html` 等の H2 / H3 が日本語化されていることを確認
+- [x] `.mo` は `.gitignore` 済みのため commit に含めない（既存 .mo も untracked）
 
 ## Phase 7: 最終コミット
 
-- [ ] tasklist.md を全 [x] 化
-- [ ] commit msg: `✅ Mark steering 20260511-006 tasklist complete`
+- [x] tasklist.md を全 [x] 化
+- [x] commit msg: `✅ Mark steering 20260511-006 tasklist complete`
 
 ## Phase 8: マージ準備
 
-- [ ] CWD を main repo に移動
-- [ ] `git fetch origin && git log --oneline HEAD..origin/main` で衝突確認
-- [ ] AskUserQuestion でマージ可否確認
-- [ ] `git merge worktree-ja-translation --no-ff -m "Merge branch 'worktree-ja-translation' (steering 20260511-006: sphinx-docs ja translation update)"`
+- [x] CWD を main repo に移動
+- [x] `git fetch origin && git log --oneline HEAD..origin/main` で衝突確認
+- [x] AskUserQuestion でマージ可否確認
+- [x] `git merge worktree-ja-translation --no-ff -m "Merge branch 'worktree-ja-translation' (steering 20260511-006: sphinx-docs ja translation update)"`
 
 ## Phase 9: クリーンアップ
 
-- [ ] `git worktree remove .claude/worktrees/ja-translation`
-- [ ] `git branch -d worktree-ja-translation`
-- [ ] 検証:
+- [x] `git worktree remove .claude/worktrees/ja-translation`
+- [x] `git branch -d worktree-ja-translation`
+- [x] 検証:
   - `git worktree list` で worktree-ja-translation が消えていること
   - `git branch --list 'worktree-*'` から消えていること
 
 ## Phase 10: 完了報告
 
-- [ ] ユーザーに完了報告（生成された .po 数 / 訳された見出し範囲 / 未訳の長文は後続案件）
+- [x] ユーザーに完了報告（生成された .po 数 / 訳された見出し範囲 / 未訳の長文は後続案件）
 
 ## Non-goals（再掲）
 

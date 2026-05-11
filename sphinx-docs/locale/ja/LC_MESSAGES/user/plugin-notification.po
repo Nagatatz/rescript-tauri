@@ -1,0 +1,430 @@
+# Japanese translations for rescript-tauri docs.
+# Copyright (C) 2026, Nagatatz and rescript-tauri contributors
+# This file is distributed under the same license as the rescript-tauri
+# package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-tauri \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-11 09:21+0900\n"
+"PO-Revision-Date: 2026-05-11 10:00+0900\n"
+"Last-Translator: rescript-tauri contributors\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../user/plugin-notification.md:1
+msgid "`@rescript-tauri/plugin-notification`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:3
+#, python-format
+msgid ""
+"ReScript bindings for the [Tauri 2.x notification "
+"plugin](https://v2.tauri.app/plugin/notification/) — toast notifications,"
+" scheduling, channels, and tap-action types. The 100% stable public "
+"surface of `@tauri-apps/plugin-notification` v2.3.x is covered."
+msgstr ""
+
+#: ../../user/plugin-notification.md:10
+msgid ""
+"The Phase 2 implementation is feature-complete in `main`. The first npm "
+"publish (`plugin-notification-v0.1.0`) is scheduled alongside the other "
+"Phase 2 packages. Until then, consume `@rescript-tauri/plugin-"
+"notification` via the source repository or a workspace link."
+msgstr ""
+
+#: ../../user/plugin-notification.md:17
+msgid "Install"
+msgstr "インストール"
+
+#: ../../user/plugin-notification.md:23
+msgid ""
+"`@rescript-tauri/plugin-notification` declares both `@rescript-"
+"tauri/core` and `@tauri-apps/plugin-notification` as `peerDependencies`, "
+"so you control each upstream version."
+msgstr ""
+
+#: ../../user/plugin-notification.md:27
+msgid "Add the package to `dependencies` in your `rescript.json`:"
+msgstr ""
+
+#: ../../user/plugin-notification.md:38
+msgid "On the Rust side, add the plugin crate and register it on the builder:"
+msgstr ""
+
+#: ../../user/plugin-notification.md:57
+msgid "Capabilities"
+msgstr "Capability 設定"
+
+#: ../../user/plugin-notification.md:59
+msgid ""
+"Tauri 2.x requires every plugin permission to be granted explicitly. The "
+"minimal set for notifications is:"
+msgstr ""
+
+#: ../../user/plugin-notification.md:74
+msgid ""
+"`notification:default` covers every notification API surfaced by this "
+"binding (permission queries, sending, scheduling, action type "
+"registration, pending / active management, and Android channel "
+"management)."
+msgstr ""
+
+#: ../../user/plugin-notification.md:79
+msgid "Permission flow"
+msgstr "Permission フロー"
+
+#: ../../user/plugin-notification.md:81
+msgid ""
+"Most platforms require the user to grant notification permission before "
+"delivery succeeds. Always gate `sendNotification` calls behind a "
+"permission check:"
+msgstr ""
+
+#: ../../user/plugin-notification.md:99
+msgid ""
+"`requestPermission` returns a polymorphic variant `[#default | #granted |"
+" #denied]` (`notificationPermission`). `#default` represents the \"not "
+"yet decided\" state on platforms that distinguish it from `#denied`."
+msgstr ""
+
+#: ../../user/plugin-notification.md:104
+msgid "Minimal example"
+msgstr "最小サンプル"
+
+#: ../../user/plugin-notification.md:119
+msgid "Public API"
+msgstr "公開 API"
+
+#: ../../user/plugin-notification.md:121
+msgid ""
+"All 15 notification functions are exposed under `PluginNotification`, "
+"together with the `Schedule` factory module and the numeric-enum modules "
+"`Importance` / `Visibility`:"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "Symbol"
+msgstr "シンボル"
+
+#: ../../user/plugin-notification.md:9
+msgid "Purpose"
+msgstr "用途"
+
+#: ../../user/plugin-notification.md:9
+msgid "`isPermissionGranted` / `requestPermission`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "Permission queries"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`sendNotification` / `sendNotificationText`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "Show a notification (record / string form)"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`registerActionTypes`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "Declare tap-actions referenced by `options.actionTypeId`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`pending` / `cancel` / `cancelAll`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "Pending (scheduled) notification management"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`active` / `removeActive` / `removeAllActive`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "Active (delivered) notification management"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`createChannel` / `removeChannel` / `channels`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "Android channel management"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`onNotificationReceived` / `onAction`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "Subscribe to delivery / tap events (returns `Core.PluginListener.t`)"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`Schedule.at` / `Schedule.interval` / `Schedule.every`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "Build a `Schedule.t` for `options.schedule`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+#, python-brace-format
+msgid "`Importance.{none, min, low, default_, high}`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "Android channel importance (numeric enum)"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+#, python-brace-format
+msgid "`Visibility.{secret, private_, public_}`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "Android channel visibility (numeric enum)"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`notificationPermission`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`[#default | #granted | #denied]`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:139
+msgid ""
+"The associated record and variant types — `options`, `attachment`, "
+"`action`, `actionType`, `pendingNotification`, `activeNotification`, "
+"`channel`, `scheduleInterval`, `scheduleEvery`, and `removeActiveTarget` "
+"— are all re-exported from `PluginNotification`. Per-field doc comments "
+"and upstream URLs live in `packages/plugin-"
+"notification/src/PluginNotification.resi`."
+msgstr ""
+
+#: ../../user/plugin-notification.md:146
+msgid "Schedule helpers"
+msgstr "Schedule ヘルパー"
+
+#: ../../user/plugin-notification.md:148
+msgid "`Schedule.t` is an opaque type built through three factories:"
+msgstr ""
+
+#: ../../user/plugin-notification.md:161
+msgid ""
+"The recurrence kinds accepted by `Schedule.every` are `#year`, `#month`, "
+"`#twoWeeks`, `#week`, `#day`, `#hour`, `#minute`, and `#second`. "
+"`#second` is **not** supported on iOS upstream — see [Schedule.every "
+"reference](https://v2.tauri.app/reference/javascript/notification/#scheduleevery)."
+msgstr ""
+
+#: ../../user/plugin-notification.md:166
+msgid ""
+"`scheduleInterval` follows upstream's `1=Sunday … 7=Saturday` convention "
+"for the `weekday` field."
+msgstr ""
+
+#: ../../user/plugin-notification.md:169
+msgid "Pitfalls"
+msgstr "注意点"
+
+#: ../../user/plugin-notification.md:171
+msgid "Split `sendNotification` overload"
+msgstr "`sendNotification` overload の分割"
+
+#: ../../user/plugin-notification.md:173
+msgid "Upstream's TypeScript signature is:"
+msgstr ""
+
+#: ../../user/plugin-notification.md:179
+msgid ""
+"ReScript can't express the `Options | string` union without phantom types"
+" or runtime branching. The binding splits the overload into two functions"
+" whose argument types are pinned:"
+msgstr ""
+
+#: ../../user/plugin-notification.md:188
+msgid "Numeric enum constants"
+msgstr "数値 enum の定数"
+
+#: ../../user/plugin-notification.md:190
+msgid ""
+"`Importance` and `Visibility` are exposed as `int` named constants "
+"because the upstream values are numeric:"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "Module"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "Constants"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "Upstream values"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`Importance`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`none` / `min` / `low` / `default_` / `high`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`0 / 1 / 2 / 3 / 4`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`Visibility`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`secret` / `private_` / `public_`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`-1 / 0 / 1`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:203
+msgid ""
+"The trailing underscores on `default_`, `private_`, and `public_` avoid "
+"the `$$default` / `$$private` / `$$public` escapes ReScript would "
+"otherwise emit for reserved JavaScript keywords."
+msgstr ""
+
+#: ../../user/plugin-notification.md:207
+msgid "Web API path, not IPC"
+msgstr "IPC ではなく Web API 経由"
+
+#: ../../user/plugin-notification.md:209
+msgid ""
+"`isPermissionGranted`, `requestPermission`, `sendNotification`, and "
+"`sendNotificationText` are dispatched by upstream through the DOM "
+"`window.Notification` Web API rather than Tauri IPC. The practical "
+"consequences:"
+msgstr ""
+
+#: ../../user/plugin-notification.md:214
+msgid ""
+"`Mocks.mockIPC` cannot intercept these calls. Runtime tests stub "
+"`globalThis.window.Notification` (and `Notification.requestPermission`) "
+"directly — see the package's "
+"`tests/runtime/plugin_notification.test.mjs`."
+msgstr ""
+
+#: ../../user/plugin-notification.md:218
+msgid ""
+"`core:default` is not sufficient on its own; the plugin's "
+"`notification:default` permission must also be granted so the Tauri "
+"capability layer allows the Web API call."
+msgstr ""
+
+#: ../../user/plugin-notification.md:222
+msgid ""
+"The remaining functions (`pending`, `cancel`, `active`, "
+"`registerActionTypes`, channel APIs, `onNotificationReceived`, "
+"`onAction`, …) go through the regular Tauri IPC and are exercisable from "
+"`Mocks.mockIPC`."
+msgstr ""
+
+#: ../../user/plugin-notification.md:227
+msgid "Compatibility"
+msgstr "互換性"
+
+#: ../../user/plugin-notification.md:9
+msgid "Component"
+msgstr "項目"
+
+#: ../../user/plugin-notification.md:9
+msgid "Supported range"
+msgstr "対応バージョン"
+
+#: ../../user/plugin-notification.md:9
+msgid "Upstream `@tauri-apps/plugin-notification`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`^2.3.0` (peer)"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "Rust `tauri-plugin-notification`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`2.x`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`@rescript-tauri/core`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`^0.1.0` (peer)"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "ReScript"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`>=12.0.0`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`@rescript/core`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "`>=1.6.0`"
+msgstr ""
+
+#: ../../user/plugin-notification.md:9
+msgid "OS"
+msgstr "対応 OS"
+
+#: ../../user/plugin-notification.md:9
+msgid "Linux / macOS / Windows / iOS / Android"
+msgstr ""
+
+#: ../../user/plugin-notification.md:238
+msgid "See also"
+msgstr "関連リンク"
+
+#: ../../user/plugin-notification.md:240
+msgid ""
+"Source: [`packages/plugin-notification`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/packages/plugin-notification)"
+msgstr ""
+
+#: ../../user/plugin-notification.md:242
+msgid ""
+"Upstream docs: [Tauri 2.x notification "
+"plugin](https://v2.tauri.app/plugin/notification/)"
+msgstr ""
+
+#: ../../user/plugin-notification.md:244
+msgid ""
+"Upstream JS reference: [notification "
+"module](https://v2.tauri.app/reference/javascript/notification/)"
+msgstr ""
+
