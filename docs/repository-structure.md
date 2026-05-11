@@ -17,24 +17,24 @@
 rescript-tauri/                          # monorepo root
 ├── packages/                            # 公開パッケージ群
 │   ├── core/                            # @rescript-tauri/core
-│   ├── plugin-fs/                       # @rescript-tauri/plugin-fs (Phase 2+)
-│   ├── plugin-dialog/                   # @rescript-tauri/plugin-dialog (Phase 2+)
-│   ├── plugin-shell/                    # @rescript-tauri/plugin-shell (Phase 2+)
-│   ├── plugin-notification/             # @rescript-tauri/plugin-notification (Phase 2+)
-│   ├── plugin-log/                      # @rescript-tauri/plugin-log (Phase 2+)
-│   ├── plugin-os/                       # @rescript-tauri/plugin-os (Phase 2+)
-│   ├── plugin-clipboard-manager/        # @rescript-tauri/plugin-clipboard-manager (Phase 2+)
-│   ├── plugin-http/                     # @rescript-tauri/plugin-http (Phase 2+)
-│   └── schema/                          # @rescript-tauri/schema (Phase 2)
+│   ├── plugin-fs/                       # @rescript-tauri/plugin-fs
+│   ├── plugin-dialog/                   # @rescript-tauri/plugin-dialog
+│   ├── plugin-shell/                    # @rescript-tauri/plugin-shell
+│   ├── plugin-notification/             # @rescript-tauri/plugin-notification
+│   ├── plugin-log/                      # @rescript-tauri/plugin-log
+│   ├── plugin-os/                       # @rescript-tauri/plugin-os
+│   ├── plugin-clipboard-manager/        # @rescript-tauri/plugin-clipboard-manager
+│   ├── plugin-http/                     # @rescript-tauri/plugin-http
+│   └── schema/                          # @rescript-tauri/schema
 ├── examples/                            # ビルド可能な使用例（CI ゲート対象）
-│   ├── hello-world/                     # Phase 1 必須
+│   ├── hello-world/                     # 最小構成
 │   ├── window-management/
 │   ├── ipc-typed/
 │   ├── streaming-ipc/
-│   ├── plugin-fs-demo/                  # Phase 2
-│   ├── plugin-dialog-demo/              # Phase 2
-│   ├── plugin-shell-demo/               # Phase 2
-│   └── ipc-typed-with-schema/           # Phase 2 (Layer 3 demo)
+│   ├── plugin-fs-demo/
+│   ├── plugin-dialog-demo/
+│   ├── plugin-shell-demo/
+│   └── ipc-typed-with-schema/           # Layer 3 demo
 ├── docs/                                # 開発チーム向け内部ドキュメント
 │   ├── ideas/                           # ドラフト・RFC 集約
 │   ├── product-requirements.md
@@ -86,7 +86,7 @@ rescript-tauri/                          # monorepo root
 
 ### 2.1 `packages/core/`
 
-`@rescript-tauri/core`。Phase 1 の中心パッケージ。`@tauri-apps/api` v2.11.0 の **stable public 表面の 100%** をカバー（`Image.transformImage` のみ upstream の "API not stable" 明記により意図的に除外。steering 049, 2026-05-09）。
+`@rescript-tauri/core`。中心パッケージ。`@tauri-apps/api` v2.11.0 の **stable public 表面の 100%** をカバー（`Image.transformImage` のみ upstream の "API not stable" 明記により意図的に除外。steering 049, 2026-05-09）。
 
 ```
 packages/core/
@@ -120,7 +120,7 @@ packages/core/
 
 ### 2.2 `packages/plugin-*/`
 
-Phase 2 着手済み。各プラグインは独立 publish。
+各プラグインは独立 publish。
 
 ```
 packages/plugin-fs/                      # 着手済み (steering 032, 2026-05-09)
@@ -277,7 +277,7 @@ upstream `fetch(input, init)` は Web Fetch API のラッパー。`input` (`stri
 
 ### 2.3 `packages/schema/`
 
-Phase 2 着手済み (steering 031, 2026-05-09)。`rescript-schema` 向けの Layer 3 IPC ヘルパを提供する独立パッケージ:
+着手済み (steering 031, 2026-05-09)。`rescript-schema` 向けの Layer 3 IPC ヘルパを提供する独立パッケージ:
 
 ```
 packages/schema/
