@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-11 09:21+0900\n"
+"POT-Creation-Date: 2026-05-11 14:36+0900\n"
 "PO-Revision-Date: 2026-05-11 10:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -32,30 +32,29 @@ msgid ""
 "`@tauri-apps/plugin-log` v2.8.x is covered."
 msgstr ""
 
-#: ../../user/plugin-log.md:11
+#: ../../user/plugin-log.md:12
 msgid ""
-"The Phase 2 implementation is feature-complete in `main`. The first npm "
-"publish (`plugin-log-v0.1.0`) is scheduled alongside the other Phase 2 "
-"packages. Until then, consume `@rescript-tauri/plugin-log` via the source"
-" repository or a workspace link."
+"The Phase 2 implementation of this package is feature-complete in `main`."
+" Its first npm publish is scheduled alongside the other Phase 2 packages."
+" Until then, consume it via the source repository or a workspace link."
 msgstr ""
 
-#: ../../user/plugin-log.md:18
+#: ../../user/plugin-log.md:14
 msgid "Install"
 msgstr "インストール"
 
-#: ../../user/plugin-log.md:24
+#: ../../user/plugin-log.md:20
 msgid ""
 "`@rescript-tauri/plugin-log` declares both `@rescript-tauri/core` and "
 "`@tauri-apps/plugin-log` as `peerDependencies`, so you control each "
 "upstream version."
 msgstr ""
 
-#: ../../user/plugin-log.md:28
+#: ../../user/plugin-log.md:24
 msgid "Add the package to `dependencies` in your `rescript.json`:"
 msgstr ""
 
-#: ../../user/plugin-log.md:39
+#: ../../user/plugin-log.md:35
 msgid ""
 "On the Rust side, add the plugin crate and register it on the builder. "
 "`tauri_plugin_log::Builder` lets you select which sinks (stdout, the "
@@ -63,7 +62,7 @@ msgid ""
 "level filter:"
 msgstr ""
 
-#: ../../user/plugin-log.md:72
+#: ../../user/plugin-log.md:68
 msgid ""
 "The three `TargetKind` variants above are the most common combo: `Stdout`"
 " prints to the host terminal, `Webview` forwards each record so "
@@ -71,28 +70,28 @@ msgid ""
 " platform-appropriate `$APPLOG/<bundle>.log` file."
 msgstr ""
 
-#: ../../user/plugin-log.md:78
+#: ../../user/plugin-log.md:74
 msgid "Capabilities"
 msgstr "Capability 設定"
 
-#: ../../user/plugin-log.md:80
+#: ../../user/plugin-log.md:76
 msgid ""
 "Tauri 2.x requires every plugin permission to be granted explicitly. The "
 "minimal set for logging is:"
 msgstr ""
 
-#: ../../user/plugin-log.md:95
+#: ../../user/plugin-log.md:91
 msgid ""
 "`log:default` covers every log API surfaced by this binding (level "
 "functions, attach helpers, and the underlying `plugin:log|log` IPC "
 "command)."
 msgstr ""
 
-#: ../../user/plugin-log.md:99
+#: ../../user/plugin-log.md:95
 msgid "Minimal example"
 msgstr "最小サンプル"
 
-#: ../../user/plugin-log.md:113
+#: ../../user/plugin-log.md:109
 msgid ""
 "`attachConsole` subscribes a JS-console writer to the log stream (useful "
 "while developing in a webview that doesn't show stdout). The returned "
@@ -100,11 +99,11 @@ msgid ""
 "subscription."
 msgstr ""
 
-#: ../../user/plugin-log.md:118
+#: ../../user/plugin-log.md:114
 msgid "Public API"
 msgstr "公開 API"
 
-#: ../../user/plugin-log.md:120
+#: ../../user/plugin-log.md:116
 msgid ""
 "All seven functions are exposed under `PluginLog`, together with the "
 "numeric-enum module `LogLevel`:"
@@ -176,21 +175,21 @@ msgstr ""
 msgid "`unit => unit` returned by `attachLogger` / `attachConsole`"
 msgstr ""
 
-#: ../../user/plugin-log.md:133
+#: ../../user/plugin-log.md:129
 msgid "Level functions"
 msgstr "レベル別関数"
 
-#: ../../user/plugin-log.md:135
+#: ../../user/plugin-log.md:131
 msgid "Each of the five level functions has the same shape:"
 msgstr ""
 
-#: ../../user/plugin-log.md:145
+#: ../../user/plugin-log.md:141
 msgid ""
 "The labeled `~options` argument is optional. When provided it attaches "
 "per-call metadata that the Rust side records alongside the message:"
 msgstr ""
 
-#: ../../user/plugin-log.md:163
+#: ../../user/plugin-log.md:159
 msgid "`logOptions` fields:"
 msgstr ""
 
@@ -242,17 +241,17 @@ msgstr ""
 msgid "Free-form structured fields appended to the record"
 msgstr ""
 
-#: ../../user/plugin-log.md:171
+#: ../../user/plugin-log.md:167
 msgid ""
 "`@rescript/core`'s `Dict.t<string>` maps to a plain JS object on output, "
 "which the upstream plugin reads as the structured-fields payload."
 msgstr ""
 
-#: ../../user/plugin-log.md:175
+#: ../../user/plugin-log.md:171
 msgid "Numeric `LogLevel` constants"
 msgstr "`LogLevel` の数値定数"
 
-#: ../../user/plugin-log.md:177
+#: ../../user/plugin-log.md:173
 msgid ""
 "`LogLevel` exposes the upstream numeric enum as `int` named constants so "
 "you can compare against `recordPayload.level` or pass them to host-level "
@@ -307,24 +306,24 @@ msgstr ""
 msgid "`5`"
 msgstr ""
 
-#: ../../user/plugin-log.md:197
+#: ../../user/plugin-log.md:193
 msgid ""
 "The trailing underscores on `debug_` / `info_` / `warn_` / `error_` avoid"
 " the `$$debug` / `$$info` / `$$warn` / `$$error` escapes ReScript would "
 "otherwise emit for reserved JavaScript keywords. `trace` is unchanged."
 msgstr ""
 
-#: ../../user/plugin-log.md:202
+#: ../../user/plugin-log.md:198
 msgid "`attachLogger` / `attachConsole`"
 msgstr "`attachLogger` / `attachConsole`"
 
-#: ../../user/plugin-log.md:209
+#: ../../user/plugin-log.md:205
 msgid ""
 "`attachLogger` runs your callback for every record the Rust side emits. "
 "Compare `record.level` against `LogLevel` constants to branch:"
 msgstr ""
 
-#: ../../user/plugin-log.md:231
+#: ../../user/plugin-log.md:227
 msgid ""
 "`attachConsole` is a convenience helper that wires the records to "
 "`console.log` / `console.warn` / `console.error` based on level — useful "
@@ -332,7 +331,7 @@ msgid ""
 "dispatcher yourself."
 msgstr ""
 
-#: ../../user/plugin-log.md:236
+#: ../../user/plugin-log.md:232
 msgid ""
 "Both functions return a `promise<unlisten>`. Always await the promise "
 "before treating the subscription as live, and call the returned "
@@ -340,15 +339,15 @@ msgid ""
 "in parallel but they are not de-duplicated."
 msgstr ""
 
-#: ../../user/plugin-log.md:241
+#: ../../user/plugin-log.md:237
 msgid "Pitfalls"
 msgstr "注意点"
 
-#: ../../user/plugin-log.md:243
+#: ../../user/plugin-log.md:239
 msgid "`LogLevel` constants are suffixed"
 msgstr "`LogLevel` 定数の接尾辞"
 
-#: ../../user/plugin-log.md:245
+#: ../../user/plugin-log.md:241
 msgid ""
 "Four of the five `LogLevel` constants carry a trailing underscore — "
 "`debug_` / `info_` / `warn_` / `error_` — because the bare names are "
@@ -358,34 +357,34 @@ msgid ""
 "has no conflict and is unchanged."
 msgstr ""
 
-#: ../../user/plugin-log.md:253
+#: ../../user/plugin-log.md:249
 msgid ""
 "The top-level log functions (`PluginLog.error`, `PluginLog.info`, …) are "
 "*not* suffixed; only the `LogLevel` numeric constants are."
 msgstr ""
 
-#: ../../user/plugin-log.md:256
+#: ../../user/plugin-log.md:252
 msgid "Log calls are async — await them"
 msgstr "ログ呼び出しは async — await が必要"
 
-#: ../../user/plugin-log.md:258
+#: ../../user/plugin-log.md:254
 msgid ""
 "The five level functions return `promise<unit>`, not `unit`. Forgetting "
 "to `await` swallows errors silently and can race against process "
 "shutdown:"
 msgstr ""
 
-#: ../../user/plugin-log.md:270
+#: ../../user/plugin-log.md:266
 msgid ""
 "If you do not need to wait for delivery, bind the promise to `_ignore` "
 "explicitly so the intent is visible at the call site."
 msgstr ""
 
-#: ../../user/plugin-log.md:273
+#: ../../user/plugin-log.md:269
 msgid "`attachLogger` / `attachConsole` are not covered by `Mocks.mockIPC`"
 msgstr "`attachLogger` / `attachConsole` は `Mocks.mockIPC` ではテストできない"
 
-#: ../../user/plugin-log.md:275
+#: ../../user/plugin-log.md:271
 msgid ""
 "The two attach helpers subscribe via "
 "`__TAURI_INTERNALS__.transformCallback`, not the regular IPC command "
@@ -395,14 +394,14 @@ msgid ""
 "working pattern."
 msgstr ""
 
-#: ../../user/plugin-log.md:283
+#: ../../user/plugin-log.md:279
 msgid ""
 "The level functions themselves (`error` / `warn` / `info` / `debug` / "
 "`trace`) go through the normal Tauri IPC (`plugin:log|log`) and *are* "
 "mockable with `Mocks.mockIPC`."
 msgstr ""
 
-#: ../../user/plugin-log.md:287
+#: ../../user/plugin-log.md:283
 msgid "Compatibility"
 msgstr "互換性"
 
@@ -462,32 +461,42 @@ msgstr "対応 OS"
 msgid "Linux / macOS / Windows"
 msgstr ""
 
-#: ../../user/plugin-log.md:298
+#: ../../user/plugin-log.md:294
 msgid "See also"
 msgstr "関連リンク"
 
-#: ../../user/plugin-log.md:300
+#: ../../user/plugin-log.md:296
 msgid ""
 "Source: [`packages/plugin-log`](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/packages/plugin-log)"
 msgstr ""
 
-#: ../../user/plugin-log.md:302
+#: ../../user/plugin-log.md:298
 msgid ""
 "Package README: [`packages/plugin-"
 "log/README.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/packages/plugin-log/README.md)"
 msgstr ""
 
-#: ../../user/plugin-log.md:304
+#: ../../user/plugin-log.md:300
 msgid ""
 "Upstream docs: [Tauri 2.x logging "
 "plugin](https://v2.tauri.app/plugin/logging/)"
 msgstr ""
 
-#: ../../user/plugin-log.md:306
+#: ../../user/plugin-log.md:302
 msgid ""
 "Upstream JS reference: [log "
 "module](https://v2.tauri.app/reference/javascript/log/)"
 msgstr ""
+
+#~ msgid ""
+#~ "The Phase 2 implementation is "
+#~ "feature-complete in `main`. The first "
+#~ "npm publish (`plugin-log-v0.1.0`) is "
+#~ "scheduled alongside the other Phase 2"
+#~ " packages. Until then, consume "
+#~ "`@rescript-tauri/plugin-log` via the source"
+#~ " repository or a workspace link."
+#~ msgstr ""
 
