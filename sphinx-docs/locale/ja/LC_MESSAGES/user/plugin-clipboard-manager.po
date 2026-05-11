@@ -1,0 +1,370 @@
+# Japanese translations for rescript-tauri docs.
+# Copyright (C) 2026, Nagatatz and rescript-tauri contributors
+# This file is distributed under the same license as the rescript-tauri
+# package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-tauri \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-11 09:21+0900\n"
+"PO-Revision-Date: 2026-05-11 10:00+0900\n"
+"Last-Translator: rescript-tauri contributors\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../user/plugin-clipboard-manager.md:1
+msgid "`@rescript-tauri/plugin-clipboard-manager`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:3
+msgid ""
+"ReScript bindings for the [Tauri 2.x clipboard "
+"plugin](https://v2.tauri.app/plugin/clipboard/) — read and write text, "
+"HTML, and images."
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:8
+msgid ""
+"The Phase 2 implementation is feature-complete in `main`. The first npm "
+"publish (`plugin-clipboard-manager-v0.1.0`) is scheduled alongside the "
+"other Phase 2 packages. Until then, consume `@rescript-tauri/plugin-"
+"clipboard-manager` via the source repository or a workspace link."
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:16
+msgid ""
+"The image APIs (`writeImage` / `readImage`) reuse `@rescript-"
+"tauri/core`'s [`Image`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/packages/core/src/Image.resi) module directly — no "
+"separate image type ships with this package. Construct an `Image.t` with "
+"`Core.Image.fromPath` or `Core.Image.fromBytes`, write it via "
+"`writeImage`, and inspect clipboard image bytes with `Core.Image.rgba`."
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:25
+msgid "Install"
+msgstr "インストール"
+
+#: ../../user/plugin-clipboard-manager.md:31
+msgid ""
+"`@rescript-tauri/plugin-clipboard-manager` declares both `@rescript-"
+"tauri/core` and `@tauri-apps/plugin-clipboard-manager` as "
+"`peerDependencies`, so you control each upstream version."
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:35
+msgid "Add the package to `dependencies` in your `rescript.json`:"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:46
+msgid "On the Rust side, add the plugin crate and register it on the builder:"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:65
+msgid "Capabilities"
+msgstr "Capability 設定"
+
+#: ../../user/plugin-clipboard-manager.md:67
+msgid ""
+"Tauri 2.x requires every clipboard operation to be granted a capability. "
+"The minimal set is:"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:82
+msgid ""
+"`clipboard-manager:default` covers every read and write API exposed by "
+"this binding. To allow only a subset, swap it for the narrower aliases "
+"shipped by the plugin "
+"([reference](https://v2.tauri.app/plugin/clipboard/#permissions)) — for "
+"example `clipboard-manager:allow-write-text` plus `clipboard-manager"
+":allow-read-text` for a paste-only utility."
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:89
+msgid "Minimal example"
+msgstr "最小サンプル"
+
+#: ../../user/plugin-clipboard-manager.md:101
+msgid "Public API"
+msgstr "公開 API"
+
+#: ../../user/plugin-clipboard-manager.md:103
+msgid ""
+"The six public functions plus the `writeTextOptions` record cover the "
+"entire upstream surface of `@tauri-apps/plugin-clipboard-manager` v2.3.x."
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:15
+msgid "Symbol"
+msgstr "シンボル"
+
+#: ../../user/plugin-clipboard-manager.md:15
+msgid "Purpose"
+msgstr "用途"
+
+#: ../../user/plugin-clipboard-manager.md:15
+msgid "`writeText(text, ~opts=?)`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:15
+msgid "Write plain text. `opts.label` adds an Android entity name"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:15
+msgid "`readText()`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:15
+msgid "Read plain text"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:15
+msgid "`writeImage('image)`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:15
+msgid ""
+"Write a raw RGBA buffer / `Image.t` / `Uint8Array` / `array<int>` / file "
+"path"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:15
+msgid "`readImage()`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:15
+msgid "Read as `RescriptTauriCore.Image.t` (inspect with `Image.rgba`)"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:15
+msgid "`writeHtml(html, ~altText=?)`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:15
+msgid "Write HTML with optional plain-text fallback"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:15
+msgid "`clear()`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:15
+msgid "Clear the clipboard"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:15
+msgid "`writeTextOptions`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:15
+#, python-brace-format
+msgid "`{label?: string}`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:117
+msgid "Text APIs"
+msgstr "テキスト API"
+
+#: ../../user/plugin-clipboard-manager.md:119
+msgid ""
+"`writeText` and `readText` are the most common entry points. `writeText` "
+"accepts an optional `writeTextOptions` record whose only field, `label`, "
+"surfaces as the *clipboard entity name* on Android clipboard history "
+"pickers (no-op on desktop):"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:134
+#, python-brace-format
+msgid ""
+"`readText()` returns `string`. If the clipboard does not contain text, "
+"the underlying Rust call surfaces an error — wrap the call in `try { ... "
+"} catch` if you need to differentiate \"empty clipboard\" from real "
+"failures."
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:139
+msgid "Image APIs"
+msgstr "画像 API"
+
+#: ../../user/plugin-clipboard-manager.md:141
+msgid ""
+"The image APIs share `Image.t` with `@rescript-tauri/core` — this package"
+" does **not** define a separate image type. Pull `Core.Image` through the"
+" peer dependency and use its constructors / accessors when round-tripping"
+" clipboard images."
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:147
+msgid ""
+"`writeImage` is intentionally typed with a polymorphic `'image` parameter"
+" to mirror the upstream union `string | Image | Uint8Array | ArrayBuffer "
+"| number[]`. Pass any of those forms and annotate the call site if the "
+"inferred type is ambiguous."
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:152
+msgid "**(a) Write a `Core.Image.t` constructed from a file path:**"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:162
+msgid "**(b) Write raw RGBA bytes directly:**"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:170
+msgid ""
+"`readImage()` returns a `RescriptTauriCore.Image.t` resource handle; "
+"inspect the pixel buffer with `Core.Image.rgba` (and `Core.Image.size` "
+"for the dimensions):"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:187
+msgid ""
+"`writeImage` / `readImage` are unsupported on Android / iOS upstream. On "
+"desktop, ensure your capability set actually grants `clipboard-manager"
+":allow-write-image` and `clipboard-manager:allow-read-image` (both are "
+"bundled in the `clipboard-manager:default` alias used above)."
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:194
+msgid "Pitfalls — Image RGBA layout"
+msgstr "注意点 — 画像の RGBA レイアウト"
+
+#: ../../user/plugin-clipboard-manager.md:196
+msgid ""
+"`Core.Image.rgba` and the bytes accepted by `Core.Image.new_` are **row-"
+"major, top-to-bottom, RGBA8** (one byte per channel, alpha last). Image "
+"libraries that hand back BGRA, bottom-to-top scans, or pre-multiplied "
+"alpha must be converted before being handed to the clipboard — otherwise "
+"pasted images will exhibit channel swaps or vertical mirroring."
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:203
+msgid "HTML APIs"
+msgstr "HTML API"
+
+#: ../../user/plugin-clipboard-manager.md:205
+msgid ""
+"`writeHtml(html, ~altText=?)` stores rich-text on the clipboard using the"
+" OS-native HTML format. The typical use case is making formatted text "
+"(bold, colors, links, tables) pasteable into apps that honor HTML "
+"clipboard data (word processors, email composers, rich text editors). The"
+" optional `~altText` argument is the plain-text fallback handed to "
+"clients that decline HTML payloads — always supply it if the rich content"
+" has a meaningful textual equivalent."
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:221
+msgid ""
+"Omitting `~altText` leaves the plain-text slot empty; consumers that "
+"cannot accept HTML may then paste nothing."
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:224
+msgid "Clear"
+msgstr "クリア"
+
+#: ../../user/plugin-clipboard-manager.md:226
+msgid ""
+"`clear()` empties the clipboard. On Android with SDK < 28 the underlying "
+"platform API is unavailable and the binding falls back to writing an "
+"empty string — be aware that on those versions the clipboard will still "
+"contain a (zero-length) text item afterwards rather than being truly "
+"empty."
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:236
+msgid "Compatibility"
+msgstr "互換性"
+
+#: ../../user/plugin-clipboard-manager.md:186
+msgid "Component"
+msgstr "項目"
+
+#: ../../user/plugin-clipboard-manager.md:186
+msgid "Supported range"
+msgstr "対応バージョン"
+
+#: ../../user/plugin-clipboard-manager.md:186
+msgid "Upstream `@tauri-apps/plugin-clipboard-manager`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:186
+msgid "`^2.0.0` (peer)"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:186
+msgid "Rust `tauri-plugin-clipboard-manager`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:186
+msgid "`2.x`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:186
+msgid "`@rescript-tauri/core`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:186
+msgid "`^0.1.0` (peer)"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:186
+msgid "ReScript"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:186
+msgid "`>=12.0.0`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:186
+msgid "`@rescript/core`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:186
+msgid "`>=1.6.0`"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:186
+msgid "OS"
+msgstr "対応 OS"
+
+#: ../../user/plugin-clipboard-manager.md:186
+msgid "Linux / macOS / Windows (image and HTML APIs unsupported on Android / iOS)"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:247
+msgid "See also"
+msgstr "関連リンク"
+
+#: ../../user/plugin-clipboard-manager.md:249
+msgid ""
+"Source: [`packages/plugin-clipboard-manager`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/packages/plugin-clipboard-manager)"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:251
+msgid ""
+"Package README: [`packages/plugin-clipboard-"
+"manager/README.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/packages/plugin-clipboard-manager/README.md)"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:253
+msgid ""
+"Image type (peer-dep reuse): "
+"[`packages/core/src/Image.resi`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/packages/core/src/Image.resi)"
+msgstr ""
+
+#: ../../user/plugin-clipboard-manager.md:255
+msgid ""
+"Upstream docs: [Tauri 2.x clipboard "
+"plugin](https://v2.tauri.app/plugin/clipboard/)"
+msgstr ""
+
