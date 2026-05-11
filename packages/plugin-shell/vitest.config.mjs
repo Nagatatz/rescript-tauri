@@ -1,16 +1,5 @@
-import { defineConfig } from "vitest/config"
+import {definePackageConfig} from "../../tools/vitest.shared.mjs"
 
-export default defineConfig({
-  test: {
-    environment: "happy-dom",
-    include: ["tests/runtime/**/*.test.mjs"],
-    coverage: {
-      provider: "v8",
-      include: ["src/**/*.res.mjs"],
-      exclude: ["src/**/*.test.mjs", "tests/**", "node_modules/**", "lib/**"],
-      reporter: ["text-summary", "json-summary", "lcov", "html"],
-      reportsDirectory: "./coverage",
-      reportOnFailure: false,
-    },
-  },
-})
+// PluginShell currently runs in observe-only mode (no thresholds);
+// add a `thresholds: {...}` arg once an initial floor is agreed on.
+export default definePackageConfig()
