@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-11 14:36+0900\n"
+"POT-Creation-Date: 2026-05-11 20:29+0900\n"
 "PO-Revision-Date: 2026-05-11 10:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../../user/plugin-os.md:1
 msgid "`@rescript-tauri/plugin-os`"
-msgstr ""
+msgstr "`@rescript-tauri/plugin-os`"
 
 #: ../../user/plugin-os.md:3
 #, python-format
@@ -32,13 +32,21 @@ msgid ""
 "v2.3.x is covered, surfaced through four polymorphic-variant types that "
 "mirror the upstream string-literal unions."
 msgstr ""
+"[Tauri 2.x OS 情報プラグイン](https://v2.tauri.app/plugin/os-info/) の "
+"ReScript バインディング。`platform` / `version` / `arch` / `family` の sync "
+"ゲッターと `locale` / `hostname` の async ゲッターを提供します。"
+"`@tauri-apps/plugin-os` v2.3.x の安定公開 API を 100% カバーし、上流の"
+"文字列リテラル共用体に対応する 4 つの polymorphic variant 型で公開します。"
 
 #: ../../user/plugin-os.md:13
 msgid ""
-"The Phase 2 implementation of this package is feature-complete in `main`."
-" Its first npm publish is scheduled alongside the other Phase 2 packages."
-" Until then, consume it via the source repository or a workspace link."
+"This package is feature-complete in `main`. Its first npm publish is "
+"scheduled alongside the other packages. Until then, consume it via the "
+"source repository or a workspace link."
 msgstr ""
+"本パッケージは `main` ブランチで機能実装が完了しています。初回 npm 公開は "
+"他のパッケージと同タイミングで予定されています。それまでは、ソース"
+"リポジトリ経由または workspace link で利用してください。"
 
 #: ../../user/plugin-os.md:15
 msgid "Install"
@@ -50,20 +58,25 @@ msgid ""
 "`@tauri-apps/plugin-os` as `peerDependencies`, so you control each "
 "upstream version."
 msgstr ""
+"`@rescript-tauri/plugin-os` は `@rescript-tauri/core` と "
+"`@tauri-apps/plugin-os` の両方を `peerDependencies` として宣言しているため、"
+"上流の各バージョンを呼び出し側で管理できます。"
 
 #: ../../user/plugin-os.md:25
 msgid "Add the package to `dependencies` in your `rescript.json`:"
-msgstr ""
+msgstr "`rescript.json` の `dependencies` に本パッケージを追加します:"
 
 #: ../../user/plugin-os.md:36
 msgid "On the Rust side, register the plugin on the builder:"
-msgstr ""
+msgstr "Rust 側では builder にプラグインを登録します:"
 
 #: ../../user/plugin-os.md:54
 msgid ""
 "`tauri_plugin_os::init()` takes no configuration — the default builder is"
 " sufficient for every API exposed by this binding."
 msgstr ""
+"`tauri_plugin_os::init()` は設定を受け取りません。本バインディングが公開する"
+"すべての API は、デフォルトの builder で動作します。"
 
 #: ../../user/plugin-os.md:57
 msgid "Capabilities"
@@ -78,6 +91,11 @@ msgid ""
 "still be registered on the Rust builder for the JavaScript globals to be "
 "initialized."
 msgstr ""
+"`os:default` は 2 つの async ゲッターが必要とする `allow-locale` と "
+"`allow-hostname` の IPC 権限を許可します。7 つの sync ゲッターは IPC を "
+"**通らない** ため (後述の [Sync ゲッター](#sync-getters) を参照) "
+"capability を消費しません。ただし JavaScript 側のグローバル変数を初期化"
+"するために、プラグインは引き続き Rust builder に登録する必要があります。"
 
 #: ../../user/plugin-os.md:78
 msgid "Sync getters"
@@ -94,6 +112,13 @@ msgid ""
 "tests stub `globalThis.window.__TAURI_OS_PLUGIN_INTERNALS__` directly "
 "(see `packages/plugin-os/tests/runtime/plugin_os.test.mjs`)."
 msgstr ""
+"9 関数のうち 7 つは IPC を通らず呼び出し時に解決されます。上流はプラグイン"
+"初期化時に `window.__TAURI_OS_PLUGIN_INTERNALS__` グローバルへ値をキャッシュ"
+"し、本バインディングはそれを読み出すだけです。そのため繰り返し呼び出しても"
+"低コストですが、`RescriptTauriCore.Mocks.mockIPC` では **インターセプト"
+"できません**。ランタイムテストでは `globalThis.window.__TAURI_OS_PLUGIN_INTERNALS__` "
+"を直接 stub します (`packages/plugin-os/tests/runtime/plugin_os.test.mjs` "
+"を参照)。"
 
 #: ../../user/plugin-os.md:11
 msgid "Function"
@@ -109,79 +134,79 @@ msgstr "備考"
 
 #: ../../user/plugin-os.md:11
 msgid "`eol()`"
-msgstr ""
+msgstr "`eol()`"
 
 #: ../../user/plugin-os.md:11
 msgid "`string`"
-msgstr ""
+msgstr "`string`"
 
 #: ../../user/plugin-os.md:11
 msgid "OS-specific line terminator (`\"\\n\"` on POSIX, `\"\\r\\n\"` on Windows)"
-msgstr ""
+msgstr "OS 固有の行終端文字 (POSIX では `\"\\n\"`、Windows では `\"\\r\\n\"`)"
 
 #: ../../user/plugin-os.md:11
 msgid "`platform()`"
-msgstr ""
+msgstr "`platform()`"
 
 #: ../../user/plugin-os.md:11
 msgid "`platform` variant"
-msgstr ""
+msgstr "`platform` バリアント"
 
 #: ../../user/plugin-os.md:11
 msgid "10 cases covering every desktop / mobile target"
-msgstr ""
+msgstr "デスクトップ / モバイルのすべてのターゲットをカバーする 10 ケース"
 
 #: ../../user/plugin-os.md:11
 msgid "`version()`"
-msgstr ""
+msgstr "`version()`"
 
 #: ../../user/plugin-os.md:11
 msgid "Kernel / release identifier, freeform"
-msgstr ""
+msgstr "カーネル / リリース識別子。自由形式の文字列"
 
 #: ../../user/plugin-os.md:11
 msgid "`family()`"
-msgstr ""
+msgstr "`family()`"
 
 #: ../../user/plugin-os.md:11
 msgid "`family` variant"
-msgstr ""
+msgstr "`family` バリアント"
 
 #: ../../user/plugin-os.md:11
 msgid "`#unix` for POSIX-like systems, `#windows` otherwise"
-msgstr ""
+msgstr "POSIX 系では `#unix`、それ以外は `#windows`"
 
 #: ../../user/plugin-os.md:11
-msgid "`osType_()`"
-msgstr ""
+msgid "`OsType.get()`"
+msgstr "`OsType.get()`"
 
 #: ../../user/plugin-os.md:11
 msgid "`osType` variant"
-msgstr ""
+msgstr "`osType` バリアント"
 
 #: ../../user/plugin-os.md:11
-msgid "Renamed from upstream `type()` — `type` is reserved in ReScript"
-msgstr ""
+msgid "Submodule because `type` is reserved at the top level in ReScript"
+msgstr "ReScript ではトップレベルで `type` が予約語のためサブモジュール経由で公開"
 
 #: ../../user/plugin-os.md:11
 msgid "`arch()`"
-msgstr ""
+msgstr "`arch()`"
 
 #: ../../user/plugin-os.md:11
 msgid "`arch` variant"
-msgstr ""
+msgstr "`arch` バリアント"
 
 #: ../../user/plugin-os.md:11
 msgid "11 CPU architectures"
-msgstr ""
+msgstr "11 種類の CPU アーキテクチャ"
 
 #: ../../user/plugin-os.md:11
 msgid "`exeExtension()`"
-msgstr ""
+msgstr "`exeExtension()`"
 
 #: ../../user/plugin-os.md:11
 msgid "`\"exe\"` on Windows, `\"\"` elsewhere"
-msgstr ""
+msgstr "Windows では `\"exe\"`、それ以外は `\"\"`"
 
 #: ../../user/plugin-os.md:113
 msgid "Async getters"
@@ -195,26 +220,30 @@ msgid ""
 "`promise<Nullable.t<string>>` — `Nullable.null` means the OS did not "
 "expose the value."
 msgstr ""
+"残り 2 つの関数は async です。プラグイン初期化時ではなく呼び出し時に OS "
+"から値を取得するためです。通常の Tauri IPC (`plugin:os|locale` と "
+"`plugin:os|hostname`) を経由し、`promise<Nullable.t<string>>` を返します。"
+"`Nullable.null` は OS が値を公開していないことを意味します。"
 
 #: ../../user/plugin-os.md:11
 msgid "`locale()`"
-msgstr ""
+msgstr "`locale()`"
 
 #: ../../user/plugin-os.md:11
 msgid "`promise<Nullable.t<string>>`"
-msgstr ""
+msgstr "`promise<Nullable.t<string>>`"
 
 #: ../../user/plugin-os.md:11
 msgid "BCP-47 language tag (e.g. `\"en-US\"`)"
-msgstr ""
+msgstr "BCP-47 形式の言語タグ (例: `\"en-US\"`)"
 
 #: ../../user/plugin-os.md:11
 msgid "`hostname()`"
-msgstr ""
+msgstr "`hostname()`"
 
 #: ../../user/plugin-os.md:11
 msgid "OS hostname; not guaranteed to be a DNS-resolvable name"
-msgstr ""
+msgstr "OS のホスト名。DNS で解決できる名前である保証はありません"
 
 #: ../../user/plugin-os.md:144
 msgid "Capability requirement"
@@ -230,6 +259,12 @@ msgid ""
 "granting `os:default` is the simplest setup and matches what the upstream"
 " docs recommend."
 msgstr ""
+"両 async ゲッターは上記の `os:default` capability セットの管理下にあります。"
+"これがないと、プラグインが実行される前に IPC ブリッジが呼び出しを拒否"
+"します。Sync ゲッターは capability をチェックせず (キャッシュされたグローバル"
+"を直接読むため)、`platform()` / `arch()` 等しか使わない Tauri アプリは "
+"理論上 `os:default` 無しで動かせます。実用上は `os:default` を許可するのが"
+"最もシンプルで、上流ドキュメントの推奨にも沿います。"
 
 #: ../../user/plugin-os.md:155
 msgid "Polymorphic variants"
@@ -241,54 +276,61 @@ msgid ""
 " Each is exhaustively pattern-matchable, so the ReScript compiler flags "
 "missing cases at build time."
 msgstr ""
+"4 つの polymorphic variant 型が上流の文字列リテラル共用体に対応します。"
+"いずれも網羅的にパターンマッチできるため、ReScript コンパイラはビルド時に "
+"欠落ケースを警告します。"
 
 #: ../../user/plugin-os.md:11
 msgid "Type"
-msgstr ""
+msgstr "型"
 
 #: ../../user/plugin-os.md:11
 msgid "Cases"
-msgstr ""
+msgstr "ケース"
 
 #: ../../user/plugin-os.md:11
 msgid "Returned by"
-msgstr ""
+msgstr "返却元"
 
 #: ../../user/plugin-os.md:11
 msgid "`platform`"
-msgstr ""
+msgstr "`platform`"
 
 #: ../../user/plugin-os.md:11
 msgid ""
 "`#linux` / `#macos` / `#ios` / `#freebsd` / `#dragonfly` / `#netbsd` / "
 "`#openbsd` / `#solaris` / `#android` / `#windows` (10)"
 msgstr ""
+"`#linux` / `#macos` / `#ios` / `#freebsd` / `#dragonfly` / `#netbsd` / "
+"`#openbsd` / `#solaris` / `#android` / `#windows` (10)"
 
 #: ../../user/plugin-os.md:11
 msgid "`osType`"
-msgstr ""
+msgstr "`osType`"
 
 #: ../../user/plugin-os.md:11
 msgid "`#linux` / `#windows` / `#macos` / `#ios` / `#android` (5)"
-msgstr ""
+msgstr "`#linux` / `#windows` / `#macos` / `#ios` / `#android` (5)"
 
 #: ../../user/plugin-os.md:11
 msgid "`arch`"
-msgstr ""
+msgstr "`arch`"
 
 #: ../../user/plugin-os.md:11
 msgid ""
 "`#x86` / `#x86_64` / `#arm` / `#aarch64` / `#mips` / `#mips64` / "
 "`#powerpc` / `#powerpc64` / `#riscv64` / `#s390x` / `#sparc64` (11)"
 msgstr ""
+"`#x86` / `#x86_64` / `#arm` / `#aarch64` / `#mips` / `#mips64` / "
+"`#powerpc` / `#powerpc64` / `#riscv64` / `#s390x` / `#sparc64` (11)"
 
 #: ../../user/plugin-os.md:11
 msgid "`family`"
-msgstr ""
+msgstr "`family`"
 
 #: ../../user/plugin-os.md:11
 msgid "`#unix` / `#windows` (2)"
-msgstr ""
+msgstr "`#unix` / `#windows` (2)"
 
 #: ../../user/plugin-os.md:168
 msgid "Pattern match example"
@@ -296,7 +338,7 @@ msgstr "パターンマッチ例"
 
 #: ../../user/plugin-os.md:170
 msgid "Branch on `platform()` to label the runtime environment:"
-msgstr ""
+msgstr "`platform()` で分岐して実行環境のラベルを生成します:"
 
 #: ../../user/plugin-os.md:192
 msgid ""
@@ -305,53 +347,68 @@ msgid ""
 "the next build — turning a silent upstream expansion into a deliberate "
 "decision point."
 msgstr ""
+"将来の上流マイナーリリースで新しい platform が追加され、本バインディングが"
+"それを取り込むと、次回ビルド時にコンパイラはこの `switch` を non-exhaustive "
+"と警告します。これにより、上流の暗黙的な拡張が明示的な意思決定ポイントに"
+"変わります。"
 
 #: ../../user/plugin-os.md:197
 msgid "Pitfalls"
 msgstr "注意点"
 
 #: ../../user/plugin-os.md:199
-msgid "`type()` renamed to `osType_()`"
-msgstr "`type()` の `osType_()` へのリネーム"
+msgid "`type()` lives under the `OsType` submodule"
+msgstr "`type()` は `OsType` サブモジュール配下"
 
 #: ../../user/plugin-os.md:201
 msgid ""
 "Upstream JavaScript exposes the OS type through a function called `type`."
-" `type` is reserved in ReScript, so the binding renames it to `osType_()`"
-" (suffixed underscore matches the project-wide convention for reserved-"
-"word avoidance):"
+" `type` is reserved at the top level of a ReScript module, so the binding"
+" exposes it through an `OsType` submodule:"
 msgstr ""
+"上流 JavaScript は OS の type を `type` という関数で公開します。`type` は "
+"ReScript モジュールのトップレベルで予約語のため、本バインディングは "
+"`OsType` サブモジュール経由で公開します:"
 
-#: ../../user/plugin-os.md:210
+#: ../../user/plugin-os.md:209
 msgid "Sync getters don't go through IPC"
 msgstr "Sync ゲッターは IPC を通らない"
 
-#: ../../user/plugin-os.md:212
+#: ../../user/plugin-os.md:211
 msgid ""
 "`Mocks.mockIPC` only intercepts IPC commands. The seven sync getters "
 "bypass IPC entirely, so tests that need to fake their return values stub "
 "the underlying global directly:"
 msgstr ""
+"`Mocks.mockIPC` は IPC コマンドしかインターセプトしません。7 つの sync "
+"ゲッターは IPC を完全にバイパスするため、戻り値をフェイクしたいテストでは"
+"内部のグローバル変数を直接 stub します:"
 
-#: ../../user/plugin-os.md:230
+#: ../../user/plugin-os.md:229
 msgid ""
 "The async `locale()` / `hostname()` calls do go through IPC and can be "
 "mocked with `Mocks.mockIPC` as usual."
 msgstr ""
+"async の `locale()` / `hostname()` は IPC を経由するため、通常どおり "
+"`Mocks.mockIPC` でモックできます。"
 
-#: ../../user/plugin-os.md:233
+#: ../../user/plugin-os.md:232
 msgid "`#x86_64`, `#powerpc64`, etc. are valid as-is"
 msgstr "`#x86_64`、`#powerpc64` 等はそのまま使える"
 
-#: ../../user/plugin-os.md:235
+#: ../../user/plugin-os.md:234
 msgid ""
 "ReScript polymorphic-variant tags accept `_` and digits, so the upstream "
 "`\"x86_64\"` / `\"powerpc64\"` / `\"riscv64\"` / `\"s390x\"` / "
 "`\"sparc64\"` strings translate to `#x86_64` / `#powerpc64` / `#riscv64` "
 "/ `#s390x` / `#sparc64` without any quoting or escape."
 msgstr ""
+"ReScript の polymorphic variant タグは `_` と数字を受け付けるため、上流の "
+"`\"x86_64\"` / `\"powerpc64\"` / `\"riscv64\"` / `\"s390x\"` / `\"sparc64\"` "
+"はクオートやエスケープなしで `#x86_64` / `#powerpc64` / `#riscv64` / "
+"`#s390x` / `#sparc64` にそのまま対応します。"
 
-#: ../../user/plugin-os.md:240
+#: ../../user/plugin-os.md:239
 msgid "Compatibility"
 msgstr "互換性"
 
@@ -365,43 +422,43 @@ msgstr "対応バージョン"
 
 #: ../../user/plugin-os.md:11
 msgid "Upstream `@tauri-apps/plugin-os`"
-msgstr ""
+msgstr "上流 `@tauri-apps/plugin-os`"
 
 #: ../../user/plugin-os.md:11
 msgid "`^2.0.0` (peer)"
-msgstr ""
+msgstr "`^2.0.0` (peer)"
 
 #: ../../user/plugin-os.md:11
 msgid "Rust `tauri-plugin-os`"
-msgstr ""
+msgstr "Rust `tauri-plugin-os`"
 
 #: ../../user/plugin-os.md:11
 msgid "`2.x`"
-msgstr ""
+msgstr "`2.x`"
 
 #: ../../user/plugin-os.md:11
 msgid "`@rescript-tauri/core`"
-msgstr ""
+msgstr "`@rescript-tauri/core`"
 
 #: ../../user/plugin-os.md:11
 msgid "`^0.1.0` (peer)"
-msgstr ""
+msgstr "`^0.1.0` (peer)"
 
 #: ../../user/plugin-os.md:11
 msgid "ReScript"
-msgstr ""
+msgstr "ReScript"
 
 #: ../../user/plugin-os.md:11
 msgid "`>=12.0.0`"
-msgstr ""
+msgstr "`>=12.0.0`"
 
 #: ../../user/plugin-os.md:11
 msgid "`@rescript/core`"
-msgstr ""
+msgstr "`@rescript/core`"
 
 #: ../../user/plugin-os.md:11
 msgid "`>=1.6.0`"
-msgstr ""
+msgstr "`>=1.6.0`"
 
 #: ../../user/plugin-os.md:11
 msgid "OS"
@@ -409,27 +466,39 @@ msgstr "対応 OS"
 
 #: ../../user/plugin-os.md:11
 msgid "Linux / macOS / Windows / iOS / Android"
-msgstr ""
+msgstr "Linux / macOS / Windows / iOS / Android"
 
-#: ../../user/plugin-os.md:251
+#: ../../user/plugin-os.md:250
 msgid "See also"
 msgstr "関連リンク"
 
-#: ../../user/plugin-os.md:253
+#: ../../user/plugin-os.md:252
+msgid ""
+"Live demo: [`examples/plugin-os-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-os-demo)"
+msgstr ""
+"動作デモ: [`examples/plugin-os-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-os-demo)"
+
+#: ../../user/plugin-os.md:254
 msgid ""
 "Source: [`packages/plugin-os`](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/packages/plugin-os)"
 msgstr ""
+"ソース: [`packages/plugin-os`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/packages/plugin-os)"
 
-#: ../../user/plugin-os.md:255
+#: ../../user/plugin-os.md:256
 msgid "Upstream docs: [Tauri 2.x os plugin](https://v2.tauri.app/plugin/os-info/)"
-msgstr ""
+msgstr "上流ドキュメント: [Tauri 2.x OS プラグイン](https://v2.tauri.app/plugin/os-info/)"
 
-#: ../../user/plugin-os.md:257
+#: ../../user/plugin-os.md:258
 msgid ""
 "Upstream JS reference: [os "
 "module](https://v2.tauri.app/reference/javascript/os/)"
 msgstr ""
+"上流 JS リファレンス: [os "
+"module](https://v2.tauri.app/reference/javascript/os/)"
 
 #~ msgid ""
 #~ "The Phase 2 implementation is "
@@ -439,5 +508,34 @@ msgstr ""
 #~ " packages. Until then, consume "
 #~ "`@rescript-tauri/plugin-os` via the source"
 #~ " repository or a workspace link."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The Phase 2 implementation of this "
+#~ "package is feature-complete in `main`."
+#~ " Its first npm publish is scheduled"
+#~ " alongside the other Phase 2 "
+#~ "packages. Until then, consume it via "
+#~ "the source repository or a workspace "
+#~ "link."
+#~ msgstr ""
+
+#~ msgid "`osType_()`"
+#~ msgstr ""
+
+#~ msgid "Renamed from upstream `type()` — `type` is reserved in ReScript"
+#~ msgstr ""
+
+#~ msgid "`type()` renamed to `osType_()`"
+#~ msgstr "`type()` の `osType_()` へのリネーム"
+
+#~ msgid ""
+#~ "Upstream JavaScript exposes the OS type"
+#~ " through a function called `type`. "
+#~ "`type` is reserved in ReScript, so "
+#~ "the binding renames it to `osType_()`"
+#~ " (suffixed underscore matches the "
+#~ "project-wide convention for reserved-word"
+#~ " avoidance):"
 #~ msgstr ""
 
