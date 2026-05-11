@@ -2,6 +2,10 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import os
+import sys
+
+# Make project-local Sphinx extensions importable (rescript_lexer lives here).
+sys.path.insert(0, os.path.abspath("_ext"))
 
 project = "rescript-tauri"
 copyright = "2026, Nagatatz and rescript-tauri contributors"
@@ -21,6 +25,7 @@ extensions = [
     "sphinx_llms_txt",
     "sphinxcontrib.budoux",
     "atsphinx.htmx_boost",
+    "rescript_lexer",
 ]
 
 # MyST Parser settings
