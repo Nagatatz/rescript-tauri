@@ -40,17 +40,21 @@ module Schedule = {
 }
 
 module Importance = {
-  let none: int = 0
-  let min: int = 1
-  let low: int = 2
-  let default_: int = 3
-  let high: int = 4
+  @unboxed
+  type t =
+    | @as(0) None
+    | @as(1) Min
+    | @as(2) Low
+    | @as(3) Default
+    | @as(4) High
 }
 
 module Visibility = {
-  let secret: int = -1
-  let private_: int = 0
-  let public_: int = 1
+  @unboxed
+  type t =
+    | @as(-1) Secret
+    | @as(0) Private
+    | @as(1) Public
 }
 
 type options = {
@@ -74,7 +78,7 @@ type options = {
   ongoing?: bool,
   autoCancel?: bool,
   silent?: bool,
-  visibility?: int,
+  visibility?: Visibility.t,
   number?: int,
 }
 
@@ -129,8 +133,8 @@ type channel = {
   lights?: bool,
   lightColor?: string,
   vibration?: bool,
-  importance?: int,
-  visibility?: int,
+  importance?: Importance.t,
+  visibility?: Visibility.t,
 }
 
 type removeActiveTarget = {id: int, tag?: string}

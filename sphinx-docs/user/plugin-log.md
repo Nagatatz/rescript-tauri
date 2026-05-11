@@ -121,7 +121,7 @@ the numeric-enum module `LogLevel`:
 | `error` / `warn` / `info` / `debug` / `trace` | Emit a record at the given level |
 | `attachLogger` | Subscribe a callback to every record |
 | `attachConsole` | Forward every record to the JS console |
-| `LogLevel.{trace, debug_, info_, warn_, error_}` | Numeric level constants (1..5) |
+| `LogLevel.{Trace, Debug, Info, Warn, Error}` | `@unboxed` variant carrying the numeric level (1..5) |
 | `logOptions` | Optional metadata record passed to a log call |
 | `recordPayload` | `{level, message}` delivered to `attachLogger`'s callback |
 | `unlisten` | `unit => unit` returned by `attachLogger` / `attachConsole` |
@@ -168,32 +168,31 @@ await PluginLog.warn(
 output, which the upstream plugin reads as the structured-fields
 payload.
 
-### Numeric `LogLevel` constants
+### `LogLevel.t` variant
 
-`LogLevel` exposes the upstream numeric enum as `int` named
-constants so you can compare against `recordPayload.level` or
-pass them to host-level integrations:
+`LogLevel` exposes the upstream numeric enum as an `@unboxed`
+variant with `@as(N)` annotations, so the runtime representation is
+the bare integer while ReScript code uses constructor names:
 
 ```rescript
-PluginLog.LogLevel.trace   // 1
-PluginLog.LogLevel.debug_  // 2
-PluginLog.LogLevel.info_   // 3
-PluginLog.LogLevel.warn_   // 4
-PluginLog.LogLevel.error_  // 5
+PluginLog.LogLevel.Trace   // @as(1)
+PluginLog.LogLevel.Debug   // @as(2)
+PluginLog.LogLevel.Info    // @as(3)
+PluginLog.LogLevel.Warn    // @as(4)
+PluginLog.LogLevel.Error   // @as(5)
 ```
 
-| Constant | Upstream value |
+| Constructor | Wire value |
 |---|---|
-| `trace` | `1` |
-| `debug_` | `2` |
-| `info_` | `3` |
-| `warn_` | `4` |
-| `error_` | `5` |
+| `Trace` | `1` |
+| `Debug` | `2` |
+| `Info` | `3` |
+| `Warn` | `4` |
+| `Error` | `5` |
 
-The trailing underscores on `debug_` / `info_` / `warn_` /
-`error_` avoid the `$$debug` / `$$info` / `$$warn` / `$$error`
-escapes ReScript would otherwise emit for reserved JavaScript
-keywords. `trace` is unchanged.
+Use `switch` over `recordPayload.level` for exhaustive matching —
+the compiler will warn if a case is missed when a new level is
+added upstream.
 
 ### `attachLogger` / `attachConsole`
 
@@ -203,19 +202,16 @@ let attachConsole: unit => promise<unlisten>
 ```
 
 `attachLogger` runs your callback for every record the Rust
-side emits. Compare `record.level` against `LogLevel` constants
-to branch:
+side emits. Pattern-match on `record.level`:
 
 ```rescript
 let unlisten = await PluginLog.attachLogger(record => {
-  let label = if record.level >= PluginLog.LogLevel.error_ {
-    "ERROR"
-  } else if record.level >= PluginLog.LogLevel.warn_ {
-    "WARN"
-  } else if record.level >= PluginLog.LogLevel.info_ {
-    "INFO"
-  } else {
-    "DEBUG"
+  let label = switch record.level {
+  | Error => "ERROR"
+  | Warn => "WARN"
+  | Info => "INFO"
+  | Debug => "DEBUG"
+  | Trace => "TRACE"
   }
   Console.log(label ++ ": " ++ record.message)
 })
@@ -235,19 +231,6 @@ returned `unlisten()` once when you're done — multiple listeners
 can be attached in parallel but they are not de-duplicated.
 
 ## Pitfalls
-
-### `LogLevel` constants are suffixed
-
-Four of the five `LogLevel` constants carry a trailing underscore
-— `debug_` / `info_` / `warn_` / `error_` — because the bare
-names are reserved words in the JavaScript output. Without the
-suffix ReScript would emit `$$debug` / `$$info` / `$$warn` /
-`$$error`, which is awkward to read in stack traces and breaks
-interop with hand-written JS. `trace` has no conflict and is
-unchanged.
-
-The top-level log functions (`PluginLog.error`, `PluginLog.info`,
-…) are *not* suffixed; only the `LogLevel` numeric constants are.
 
 ### Log calls are async — await them
 

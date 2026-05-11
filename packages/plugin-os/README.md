@@ -37,7 +37,7 @@ let logEnv = async () => {
 | `platform()` | sync | `[#linux \| #macos \| #ios \| #freebsd \| #dragonfly \| #netbsd \| #openbsd \| #solaris \| #android \| #windows]` |
 | `version()` | sync | OS version string |
 | `family()` | sync | `[#unix \| #windows]` |
-| `osType_()` | sync | `[#linux \| #windows \| #macos \| #ios \| #android]` (renamed from upstream `type` because `type` is reserved in ReScript) |
+| `OsType.get()` | sync | `[#linux \| #windows \| #macos \| #ios \| #android]` (submodule because `type` is reserved at the top level in ReScript) |
 | `arch()` | sync | `[#x86 \| #x86_64 \| #arm \| #aarch64 \| ...]` (11 variants) |
 | `exeExtension()` | sync | Executable file extension (`"exe"` or `""`) |
 | `locale()` | async | BCP-47 language tag, or `Nullable.null` |

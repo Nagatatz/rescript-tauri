@@ -14,15 +14,16 @@ this package adheres to
 
 - Bindings for `@tauri-apps/plugin-os` v2.3.2 — 100% of the stable
   public surface (9 functions + 4 polymorphic variants).
-- 7 sync getters: `eol` / `platform` / `version` / `family` /
-  `osType_` / `arch` / `exeExtension`.
+- 6 top-level sync getters: `eol` / `platform` / `version` / `family`
+  / `arch` / `exeExtension`.
+- `OsType.get` (sync) — the upstream `type()` accessor lives in an
+  `OsType` submodule because `type` is reserved at the top level of a
+  ReScript module.
 - 2 async getters: `locale` / `hostname` (return
   `promise<Nullable.t<string>>`).
 - 4 polymorphic variants matching the upstream string-literal types:
   `platform` (10 variants), `osType` (5 variants), `arch` (11
   variants), `family` (`unix` / `windows`).
-- The upstream `type()` function is renamed to `osType_()` because
-  `type` is a reserved keyword in ReScript.
 - Runnable example
   [`examples/plugin-os-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-os-demo)
   exercising the full surface (7 sync getters + 2 async getters)

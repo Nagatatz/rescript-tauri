@@ -94,7 +94,7 @@ let dumpEnv = () => {
   Console.log2("platform:     ", PluginOs.platform())     // #linux | #macos | ...
   Console.log2("version:      ", PluginOs.version())      // OS version string
   Console.log2("family:       ", PluginOs.family())       // #unix | #windows
-  Console.log2("osType:       ", PluginOs.osType_())      // #linux | #windows | ...
+  Console.log2("osType:       ", PluginOs.OsType.get())   // #linux | #windows | ...
   Console.log2("arch:         ", PluginOs.arch())         // #x86_64 | #aarch64 | ...
   Console.log2("exeExtension: ", PluginOs.exeExtension()) // "exe" or ""
 }
@@ -106,7 +106,7 @@ let dumpEnv = () => {
 | `platform()` | `platform` variant | 10 cases covering every desktop / mobile target |
 | `version()` | `string` | Kernel / release identifier, freeform |
 | `family()` | `family` variant | `#unix` for POSIX-like systems, `#windows` otherwise |
-| `osType_()` | `osType` variant | Renamed from upstream `type()` — `type` is reserved in ReScript |
+| `OsType.get()` | `osType` variant | Submodule because `type` is reserved at the top level in ReScript |
 | `arch()` | `arch` variant | 11 CPU architectures |
 | `exeExtension()` | `string` | `"exe"` on Windows, `""` elsewhere |
 
@@ -161,7 +161,7 @@ compiler flags missing cases at build time.
 | Type | Cases | Returned by |
 |---|---|---|
 | `platform` | `#linux` / `#macos` / `#ios` / `#freebsd` / `#dragonfly` / `#netbsd` / `#openbsd` / `#solaris` / `#android` / `#windows` (10) | `platform()` |
-| `osType` | `#linux` / `#windows` / `#macos` / `#ios` / `#android` (5) | `osType_()` |
+| `osType` | `#linux` / `#windows` / `#macos` / `#ios` / `#android` (5) | `OsType.get()` |
 | `arch` | `#x86` / `#x86_64` / `#arm` / `#aarch64` / `#mips` / `#mips64` / `#powerpc` / `#powerpc64` / `#riscv64` / `#s390x` / `#sparc64` (11) | `arch()` |
 | `family` | `#unix` / `#windows` (2) | `family()` |
 
@@ -196,15 +196,14 @@ expansion into a deliberate decision point.
 
 ## Pitfalls
 
-### `type()` renamed to `osType_()`
+### `type()` lives under the `OsType` submodule
 
 Upstream JavaScript exposes the OS type through a function called
-`type`. `type` is reserved in ReScript, so the binding renames it
-to `osType_()` (suffixed underscore matches the project-wide
-convention for reserved-word avoidance):
+`type`. `type` is reserved at the top level of a ReScript module,
+so the binding exposes it through an `OsType` submodule:
 
 ```rescript
-let osType = PluginOs.osType_() // not PluginOs.type()
+let osType = PluginOs.OsType.get() // not PluginOs.type()
 ```
 
 ### Sync getters don't go through IPC

@@ -29,15 +29,15 @@ let _check_schedule_every_fn: (
   ~allowWhileIdle: bool=?,
 ) => PluginNotification.Schedule.t = PluginNotification.Schedule.every
 
-let _check_importance_none: int = PluginNotification.Importance.none
-let _check_importance_min: int = PluginNotification.Importance.min
-let _check_importance_low: int = PluginNotification.Importance.low
-let _check_importance_default: int = PluginNotification.Importance.default_
-let _check_importance_high: int = PluginNotification.Importance.high
+let _check_importance_none: PluginNotification.Importance.t = PluginNotification.Importance.None
+let _check_importance_min: PluginNotification.Importance.t = PluginNotification.Importance.Min
+let _check_importance_low: PluginNotification.Importance.t = PluginNotification.Importance.Low
+let _check_importance_default: PluginNotification.Importance.t = PluginNotification.Importance.Default
+let _check_importance_high: PluginNotification.Importance.t = PluginNotification.Importance.High
 
-let _check_visibility_secret: int = PluginNotification.Visibility.secret
-let _check_visibility_private: int = PluginNotification.Visibility.private_
-let _check_visibility_public: int = PluginNotification.Visibility.public_
+let _check_visibility_secret: PluginNotification.Visibility.t = PluginNotification.Visibility.Secret
+let _check_visibility_private: PluginNotification.Visibility.t = PluginNotification.Visibility.Private
+let _check_visibility_public: PluginNotification.Visibility.t = PluginNotification.Visibility.Public
 
 let _check_options: PluginNotification.options = {
   title: "hi",

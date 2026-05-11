@@ -19,10 +19,10 @@ pnpm --filter plugin-log-demo tauri dev
 | **attachConsole** | `PluginLog.attachConsole()` — pipes records to the JS console |
 | **Detach all** | Calls both `unlisten` handles |
 
-The numeric `level: int` field on `recordPayload` is mapped back to
-its label via `PluginLog.LogLevel` constants (`error_` / `warn_` /
-`info_` / `debug_` / `trace`) — the suffixed names avoid `$$debug`
-etc. escapes in the JS output.
+`recordPayload.level: LogLevel.t` is pattern-matched into a label
+via `switch` over `Error` / `Warn` / `Info` / `Debug` / `Trace` —
+the `@unboxed` variant compiles to the bare integer at runtime so
+the wire format stays compatible with upstream's numeric enum.
 
 ## Capabilities
 

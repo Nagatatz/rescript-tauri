@@ -16,7 +16,7 @@ let _check_eol: unit => string = PluginOs.eol
 let _check_platform_fn: unit => PluginOs.platform = PluginOs.platform
 let _check_version: unit => string = PluginOs.version
 let _check_family_fn: unit => PluginOs.family = PluginOs.family
-let _check_os_type_fn: unit => PluginOs.osType = PluginOs.osType_
+let _check_os_type_get: unit => PluginOs.osType = PluginOs.OsType.get
 let _check_arch_fn: unit => PluginOs.arch = PluginOs.arch
 let _check_exe_extension: unit => string = PluginOs.exeExtension
 let _check_locale: unit => promise<Nullable.t<string>> = PluginOs.locale

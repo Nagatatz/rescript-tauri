@@ -113,8 +113,8 @@ let runCreateChannel = async () => {
   await PluginNotification.createChannel({
     id: "test-channel",
     name: "Test Channel",
-    importance: PluginNotification.Importance.default_,
-    visibility: PluginNotification.Visibility.public_,
+    importance: PluginNotification.Importance.Default,
+    visibility: PluginNotification.Visibility.Public,
   })
   appendResult("createChannel test-channel ok (Android-only)")
 }
@@ -179,18 +179,18 @@ let _demoScheduleInterval: PluginNotification.Schedule.t =
 let _demoScheduleEvery: PluginNotification.Schedule.t =
   PluginNotification.Schedule.every(#day, ~count=1)
 
-let _demoImportance: array<int> = [
-  PluginNotification.Importance.none,
-  PluginNotification.Importance.min,
-  PluginNotification.Importance.low,
-  PluginNotification.Importance.default_,
-  PluginNotification.Importance.high,
+let _demoImportance: array<PluginNotification.Importance.t> = [
+  PluginNotification.Importance.None,
+  PluginNotification.Importance.Min,
+  PluginNotification.Importance.Low,
+  PluginNotification.Importance.Default,
+  PluginNotification.Importance.High,
 ]
 
-let _demoVisibility: array<int> = [
-  PluginNotification.Visibility.secret,
-  PluginNotification.Visibility.private_,
-  PluginNotification.Visibility.public_,
+let _demoVisibility: array<PluginNotification.Visibility.t> = [
+  PluginNotification.Visibility.Secret,
+  PluginNotification.Visibility.Private,
+  PluginNotification.Visibility.Public,
 ]
 
 // `cancel(array<int>)` exists alongside `cancelAll` — the demo UI

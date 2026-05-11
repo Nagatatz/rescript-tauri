@@ -14,7 +14,7 @@ pnpm --filter plugin-os-demo tauri dev
 
 | Button | Calls |
 |---|---|
-| **Show all OS info** | 7 sync getters: `eol` / `platform` / `version` / `family` / `osType_` / `arch` / `exeExtension` |
+| **Show all OS info** | 7 sync getters: `eol` / `platform` / `version` / `family` / `OsType.get` / `arch` / `exeExtension` |
 | **Get locale** | `PluginOs.locale()` (async, `Nullable.t<string>`) |
 | **Get hostname** | `PluginOs.hostname()` (async, `Nullable.t<string>`) |
 
@@ -22,8 +22,9 @@ The polymorphic variants (`platform` / `osType` / `arch` / `family`)
 are decoded into human-readable strings via switch-based helpers in
 `src/App.res`.
 
-`osType_` is suffixed because `type` is reserved in ReScript —
-upstream's `os.type()` is exposed under the suffixed name.
+The upstream `os.type()` is exposed under the `OsType` submodule
+(as `OsType.get()`) because `type` is reserved at the top level
+in ReScript.
 
 ## Capabilities
 

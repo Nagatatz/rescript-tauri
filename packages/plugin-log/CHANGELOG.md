@@ -13,22 +13,19 @@ this package adheres to
 ### Added
 
 - Bindings for `@tauri-apps/plugin-log` v2.8.0 — 100% of the stable
-  public surface (7 functions + 3 types + `LogLevel` numeric-enum
-  module).
+  public surface (7 functions + 3 types + `LogLevel` variant module).
 - 7 functions: `error` / `warn` / `info` / `debug` / `trace` (each
   takes a `message` plus optional `~options=?: logOptions`),
   `attachLogger` (subscribe via callback), `attachConsole` (stream
   to the JS console).
-- `LogLevel` module exposing the upstream numeric enum
-  (`Trace=1` / `Debug=2` / `Info=3` / `Warn=4` / `Error=5`) as `int`
-  constants `trace` / `debug_` / `info_` / `warn_` / `error_`. The
-  trailing underscore on `debug_` / `info_` / `warn_` / `error_`
-  matches the convention used in `plugin-notification`'s
-  `Visibility.{private_, public_}` to avoid the `$$` reserved-word
-  escape ReScript would otherwise emit.
+- `LogLevel.t` — `@unboxed` variant with constructors
+  `Trace` / `Debug` / `Info` / `Warn` / `Error` carrying the upstream
+  numeric enum (`@as(1)` … `@as(5)`). Runtime representation is the
+  bare integer so the variant is wire-compatible with upstream's
+  `recordPayload.level` field.
 - `logOptions` (`{file?, line?, keyValues?}`), `recordPayload`
-  (`{level, message}` delivered to `attachLogger`'s callback), and
-  `unlisten` (`unit => unit`).
+  (`{level: LogLevel.t, message}` delivered to `attachLogger`'s
+  callback), and `unlisten` (`unit => unit`).
 - Runnable example
   [`examples/plugin-log-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-log-demo)
   exercising the full surface (5 log levels + `attachLogger` /

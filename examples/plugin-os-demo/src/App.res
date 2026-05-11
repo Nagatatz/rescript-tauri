@@ -84,7 +84,7 @@ let runShowAll = async () => {
     "platform    : " ++ platformToString(PluginOs.platform()),
     "version     : " ++ PluginOs.version(),
     "family      : " ++ familyToString(PluginOs.family()),
-    "osType      : " ++ osTypeToString(PluginOs.osType_()),
+    "osType      : " ++ osTypeToString(PluginOs.OsType.get()),
     "arch        : " ++ archToString(PluginOs.arch()),
     "exeExtension: '" ++ PluginOs.exeExtension() ++ "'",
   ]

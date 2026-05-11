@@ -23,22 +23,23 @@ type logOptions = {
   keyValues?: Dict.t<string>,
 }
 
-/** Numeric log level matching the upstream enum:
-    `trace=1` / `debug_=2` / `info_=3` / `warn_=4` / `error_=5`.
+/** Log level. Matches the upstream numeric enum
+    `trace=1` / `debug=2` / `info=3` / `warn=4` / `error=5`.
 
-    `debug_` / `info_` / `warn_` / `error_` are suffixed because the
-    bare names are reserved words in the JavaScript output (ReScript
-    would otherwise emit `$$debug` / `$$info` / `$$warn` / `$$error`).
-    `trace` is unchanged.
+    The variant is `@unboxed` with per-constructor `@as(N)` so its
+    runtime representation is the bare integer — wire-compatible with
+    upstream's `recordPayload.level` field.
 
     See: https://v2.tauri.app/reference/javascript/log/#loglevel
 */
 module LogLevel: {
-  let trace: int
-  let debug_: int
-  let info_: int
-  let warn_: int
-  let error_: int
+  @unboxed
+  type t =
+    | @as(1) Trace
+    | @as(2) Debug
+    | @as(3) Info
+    | @as(4) Warn
+    | @as(5) Error
 }
 
 /** Payload delivered to `attachLogger`'s callback.
@@ -46,8 +47,8 @@ module LogLevel: {
     See: https://v2.tauri.app/reference/javascript/log/#recordpayload
 */
 type recordPayload = {
-  /** Numeric level (use `LogLevel` constants for comparison). */
-  level: int,
+  /** Log level — pattern-match on `LogLevel.Error` / `LogLevel.Warn`. */
+  level: LogLevel.t,
   /** Log message. */
   message: string,
 }
