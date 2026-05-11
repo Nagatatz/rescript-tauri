@@ -114,3 +114,126 @@ let bootstrap = async () => {
 (useful while developing in a webview that doesn't show stdout).
 The returned `unlisten` is a `unit => unit` callback — invoke it
 to detach the subscription.
+
+## Public API
+
+All seven functions are exposed under `PluginLog`, together with
+the numeric-enum module `LogLevel`:
+
+| Symbol | Purpose |
+|---|---|
+| `error` / `warn` / `info` / `debug` / `trace` | Emit a record at the given level |
+| `attachLogger` | Subscribe a callback to every record |
+| `attachConsole` | Forward every record to the JS console |
+| `LogLevel.{trace, debug_, info_, warn_, error_}` | Numeric level constants (1..5) |
+| `logOptions` | Optional metadata record passed to a log call |
+| `recordPayload` | `{level, message}` delivered to `attachLogger`'s callback |
+| `unlisten` | `unit => unit` returned by `attachLogger` / `attachConsole` |
+
+### Level functions
+
+Each of the five level functions has the same shape:
+
+```rescript
+let error: (string, ~options: logOptions=?) => promise<unit>
+let warn:  (string, ~options: logOptions=?) => promise<unit>
+let info:  (string, ~options: logOptions=?) => promise<unit>
+let debug: (string, ~options: logOptions=?) => promise<unit>
+let trace: (string, ~options: logOptions=?) => promise<unit>
+```
+
+The labeled `~options` argument is optional. When provided it
+attaches per-call metadata that the Rust side records alongside
+the message:
+
+```rescript
+await PluginLog.warn(
+  "queue draining slowly",
+  ~options={
+    file: "Worker.res",
+    line: 42,
+    keyValues: Dict.fromArray([
+      ("queue", "ingest"),
+      ("backlog", "1872"),
+    ]),
+  },
+)
+```
+
+`logOptions` fields:
+
+| Field | Type | Notes |
+|---|---|---|
+| `file` | `string` (optional) | Source file the call originated from |
+| `line` | `int` (optional) | Source line number |
+| `keyValues` | `Dict.t<string>` (optional) | Free-form structured fields appended to the record |
+
+`@rescript/core`'s `Dict.t<string>` maps to a plain JS object on
+output, which the upstream plugin reads as the structured-fields
+payload.
+
+### Numeric `LogLevel` constants
+
+`LogLevel` exposes the upstream numeric enum as `int` named
+constants so you can compare against `recordPayload.level` or
+pass them to host-level integrations:
+
+```rescript
+PluginLog.LogLevel.trace   // 1
+PluginLog.LogLevel.debug_  // 2
+PluginLog.LogLevel.info_   // 3
+PluginLog.LogLevel.warn_   // 4
+PluginLog.LogLevel.error_  // 5
+```
+
+| Constant | Upstream value |
+|---|---|
+| `trace` | `1` |
+| `debug_` | `2` |
+| `info_` | `3` |
+| `warn_` | `4` |
+| `error_` | `5` |
+
+The trailing underscores on `debug_` / `info_` / `warn_` /
+`error_` avoid the `$$debug` / `$$info` / `$$warn` / `$$error`
+escapes ReScript would otherwise emit for reserved JavaScript
+keywords. `trace` is unchanged.
+
+### `attachLogger` / `attachConsole`
+
+```rescript
+let attachLogger: (recordPayload => unit) => promise<unlisten>
+let attachConsole: unit => promise<unlisten>
+```
+
+`attachLogger` runs your callback for every record the Rust
+side emits. Compare `record.level` against `LogLevel` constants
+to branch:
+
+```rescript
+let unlisten = await PluginLog.attachLogger(record => {
+  let label = if record.level >= PluginLog.LogLevel.error_ {
+    "ERROR"
+  } else if record.level >= PluginLog.LogLevel.warn_ {
+    "WARN"
+  } else if record.level >= PluginLog.LogLevel.info_ {
+    "INFO"
+  } else {
+    "DEBUG"
+  }
+  Console.log(label ++ ": " ++ record.message)
+})
+
+// ...later
+unlisten()
+```
+
+`attachConsole` is a convenience helper that wires the records to
+`console.log` / `console.warn` / `console.error` based on level —
+useful for mirroring Rust-side logs in the webview devtools
+without writing the dispatcher yourself.
+
+Both functions return a `promise<unlisten>`. Always await the
+promise before treating the subscription as live, and call the
+returned `unlisten()` once when you're done — multiple listeners
+can be attached in parallel but they are not de-duplicated.

@@ -10,8 +10,8 @@
 - [x] requirements.md 作成
 - [x] design.md 作成
 - [x] tasklist.md 作成
-- [ ] ユーザー承認
-- [ ] EnterWorktree で `plugin-log-userguide` 作成（base ref: fresh = origin/main、ローカル main は origin と同期済み）
+- [x] ユーザー承認（「T5を実装してください」で承認、ステアリング 3 点セットを main 上 `0554696` で commit 済み）
+- [x] EnterWorktree で `plugin-log-userguide` 作成（base ref: head — ローカル main 13 ahead 取り込みのため `git worktree add HEAD` 経由）
 
 ## Phase 2: 実装
 
@@ -19,22 +19,22 @@
 
 ### Checkpoint 1: 骨格 + Install + Capabilities + Minimal example
 
-- [ ] `sphinx-docs/user/plugin-log.md` 新規作成
+- [x] `sphinx-docs/user/plugin-log.md` 新規作成
   - Title + intro 段落 + `{note}` ステータスブロック
   - `## Install` セクション（JS pnpm add / peerDeps / rescript.json dependencies / Rust Cargo.toml / Rust Builder + targets サンプル）
   - `## Capabilities` セクション（`log:default` JSON）
   - `## Minimal example` セクション（attachConsole + info の最小コード）
-- [ ] `pnpm run check` 警告なし
-- [ ] commit: `📝 Add sphinx-docs/user/plugin-log.md skeleton (install + capabilities + minimal example)`
+- [x] `pnpm run check` — worktree CWD では既知の Biome 2.x exclude 問題で全除外、md は Biome 対象外なので影響なし
+- [x] commit `2c45bb1`: `📝 Add sphinx-docs/user/plugin-log.md skeleton (install + capabilities + minimal example)`
 
 ### Checkpoint 2: Public API リファレンス
 
-- [ ] `## Public API` セクション追加
+- [x] `## Public API` セクション追加
   - 7 関数表 (`error` / `warn` / `info` / `debug` / `trace` / `attachLogger` / `attachConsole`)
-  - `### Numeric LogLevel constants` サブセクション + 5 定数のコード例
-  - `### logOptions / recordPayload` サブセクション + 各フィールドの説明
+  - `### Level functions` サブセクション + `logOptions` 3 フィールド表
+  - `### Numeric LogLevel constants` サブセクション + 5 定数のコード例と upstream 値の表
   - `### attachLogger / attachConsole` サブセクション + level 分岐付きコード例
-- [ ] `pnpm run check` 警告なし
+- [x] `pnpm run check` — md 対象外なので影響なし（既知 Biome exclude 問題）
 - [ ] commit: `📝 Document plugin-log public API in sphinx-docs user guide`
 
 ### Checkpoint 3: Pitfalls + Compatibility + See also
