@@ -123,7 +123,6 @@ msgid ""
 msgstr "各 Phase 2 パッケージは個別に公開されます。必要に応じて、対応する上流のプラグイン / スキーマライブラリと一緒にインストールしてください:"
 
 #: ../../user/installation.md:75
-#, fuzzy
 msgid ""
 "See the [plugin-fs](plugin-fs.md), [plugin-dialog](plugin-dialog.md), "
 "[plugin-notification](plugin-notification.md), [plugin-shell](plugin-"
@@ -136,7 +135,8 @@ msgstr ""
 ")、[plugin-dialog](plugin-dialog.md)、[plugin-notification](plugin-"
 "notification.md)、[plugin-shell](plugin-shell.md)、[plugin-log](plugin-"
 "log.md)、[plugin-os](plugin-os.md)、[plugin-clipboard-manager](plugin-"
-"clipboard-manager.md)、[schema](schema.md) の各ガイドを参照してください。"
+"clipboard-manager.md)、[plugin-http](plugin-http.md)、[schema](schema.md) の"
+"各ガイドを参照してください。"
 
 #: ../../user/installation.md:85
 msgid "Verify"

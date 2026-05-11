@@ -23,7 +23,6 @@ msgid "`@rescript-tauri/plugin-os`"
 msgstr "`@rescript-tauri/plugin-os`"
 
 #: ../../user/plugin-os.md:3
-#, python-format
 msgid ""
 "ReScript bindings for the [Tauri 2.x OS info "
 "plugin](https://v2.tauri.app/plugin/os-info/) — synchronous getters for "

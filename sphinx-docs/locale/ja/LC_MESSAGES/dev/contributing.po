@@ -36,16 +36,16 @@ msgstr ""
 " Done）は、**まずルートの `CONTRIBUTING.md` を参照してください**。"
 
 #: ../../dev/contributing.md:6
-#, fuzzy
 msgid ""
 "Phase 1 + Phase 2 implementations are merged on `main` and external pull "
 "requests are accepted. Issues remain welcome for design feedback and RFC "
 "discussion. The workflow described below is the live contributor "
 "workflow."
 msgstr ""
-"リポジトリは現在 **Phase 1 — 設計フェーズ** であり、外部 PR はまだ受け付けていません。Issue "
-"は歓迎します（設計フィードバック、RFC 議論）。下記のワークフローは Phase 1 "
-"リリース後のコントリビュータ向けです。今のうちに目を通しておくことを推奨します。"
+"Phase 1 と Phase 2 の実装は `main` にマージ済みで、外部からの pull request "
+"も受け付けています。設計フィードバックや RFC の議論については引き続き "
+"Issue を歓迎します。以下に示すワークフローは、現在運用中のコントリビュータ"
+"向けワークフローです。"
 
 #: ../../dev/contributing.md:9
 msgid "Where to start"

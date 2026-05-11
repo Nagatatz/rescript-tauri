@@ -1,17 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
+# Japanese translations for rescript-tauri docs.
 # Copyright (C) 2026, Nagatatz and rescript-tauri contributors
 # This file is distributed under the same license as the rescript-tauri
 # package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-11 14:36+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-05-12 09:00+0900\n"
+"Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
 "Language-Team: ja <LL@li.org>\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -22,10 +20,9 @@ msgstr ""
 
 #: ../../user/plugin-http.md:1
 msgid "`@rescript-tauri/plugin-http`"
-msgstr ""
+msgstr "`@rescript-tauri/plugin-http`"
 
 #: ../../user/plugin-http.md:3
-#, python-format
 msgid ""
 "ReScript bindings for the [Tauri 2.x HTTP fetch "
 "plugin](https://v2.tauri.app/plugin/http-client/) — a Web Fetch API "
@@ -33,6 +30,10 @@ msgid ""
 "typed proxy / TLS configuration. The 100% stable public surface of "
 "`@tauri-apps/plugin-http` v2.5.9 is covered."
 msgstr ""
+"[Tauri 2.x HTTP fetch プラグイン](https://v2.tauri.app/plugin/http-client/) の "
+"ReScript バインディングです。Web Fetch API のラッパーとして Rust 側を経由するこ"
+"とで webview の CORS を回避し、型付きの proxy / TLS 設定も提供します。`@tauri-"
+"apps/plugin-http` v2.5.9 の stable な公開 API を 100% カバーします。"
 
 #: ../../user/plugin-http.md:11
 msgid ""
@@ -40,10 +41,13 @@ msgid ""
 " Its first npm publish is scheduled alongside the other Phase 2 packages."
 " Until then, consume it via the source repository or a workspace link."
 msgstr ""
+"本パッケージの Phase 2 実装は `main` で機能完備済みです。初回 npm 公開は他の "
+"Phase 2 パッケージと合わせて予定されています。それまでは、ソースリポジトリ経"
+"由かワークスペースリンクで利用してください。"
 
 #: ../../user/plugin-http.md:13
 msgid "Install"
-msgstr ""
+msgstr "インストール"
 
 #: ../../user/plugin-http.md:19
 msgid ""
@@ -51,24 +55,29 @@ msgid ""
 "`@tauri-apps/plugin-http` as `peerDependencies`, so you control each "
 "upstream version."
 msgstr ""
+"`@rescript-tauri/plugin-http` は `@rescript-tauri/core` と `@tauri-apps/"
+"plugin-http` の両方を `peerDependencies` として宣言しているため、上流側の各"
+"バージョンを利用者側で制御できます。"
 
 #: ../../user/plugin-http.md:23
 msgid "Add the package to `dependencies` in your `rescript.json`:"
-msgstr ""
+msgstr "`rescript.json` の `dependencies` にパッケージを追加します:"
 
 #: ../../user/plugin-http.md:34
 msgid "On the Rust side, add the plugin crate and register it on the builder:"
-msgstr ""
+msgstr "Rust 側では、プラグイン crate を追加して builder に登録します:"
 
 #: ../../user/plugin-http.md:53
 msgid ""
 "Allowed origins are not configured in `tauri.conf.json` — Tauri 2.x "
 "routes them through the capability layer covered in the next section."
 msgstr ""
+"許可されるオリジンは `tauri.conf.json` では設定しません。Tauri 2.x では次節で"
+"説明する capability 層でルーティングされます。"
 
 #: ../../user/plugin-http.md:57
 msgid "Capabilities"
-msgstr ""
+msgstr "Capabilities"
 
 #: ../../user/plugin-http.md:59
 msgid ""
@@ -76,6 +85,9 @@ msgid ""
 "Combine `http:default` (allows the `fetch` API) with a scoped `allow` "
 "list that pins the URLs your app may reach:"
 msgstr ""
+"Tauri 2.x では、すべてのプラグイン権限を明示的に付与する必要があります。"
+"`http:default` (`fetch` API を許可) と、アプリがアクセスできる URL を限定する "
+"scoped な `allow` リストを組み合わせます:"
 
 #: ../../user/plugin-http.md:78
 msgid ""
@@ -84,38 +96,45 @@ msgid ""
 "development; production capabilities should enumerate every host the app "
 "talks to."
 msgstr ""
+"scoped な `allow` 配列はホワイトリストです。マッチしない URL は CORS とは独立"
+"に Rust 境界で拒否されます。`**` は開発時にのみ使用し、本番の capability で"
+"はアプリが通信するすべてのホストを列挙してください。"
 
 #: ../../user/plugin-http.md:83
 msgid "Minimal example"
-msgstr ""
+msgstr "最小例"
 
 #: ../../user/plugin-http.md:101
 msgid ""
 "A POST with Tauri-specific options (proxy, custom timeout) looks much the"
 " same — pass `~init` as a JS object literal:"
 msgstr ""
+"Tauri 固有のオプション (proxy、独自のタイムアウト) を伴う POST もほぼ同じ書"
+"き方です。`~init` を JS オブジェクトリテラルとして渡します:"
 
 #: ../../user/plugin-http.md:119
 msgid "Public API"
-msgstr ""
+msgstr "公開 API"
 
 #: ../../user/plugin-http.md:121
 msgid ""
 "`PluginHttp` exposes a single `fetch` function plus five record types "
 "covering the Tauri-specific options:"
 msgstr ""
+"`PluginHttp` は単一の `fetch` 関数と、Tauri 固有のオプションをカバーする "
+"5 つの record 型を公開します:"
 
 #: ../../user/plugin-http.md:9
 msgid "Symbol"
-msgstr ""
+msgstr "シンボル"
 
 #: ../../user/plugin-http.md:9
 msgid "Purpose"
-msgstr ""
+msgstr "用途"
 
 #: ../../user/plugin-http.md:9
 msgid "`fetch(input, ~init=?)`"
-msgstr ""
+msgstr "`fetch(input, ~init=?)`"
 
 #: ../../user/plugin-http.md:9
 msgid ""
@@ -123,10 +142,13 @@ msgid ""
 "`input` accepts `string` / `URL.t` / `Request`; `init` accepts "
 "`RequestInit & ClientOptions`"
 msgstr ""
+"Rust に裏付けされた polymorphic な Web Fetch ラッパー (webview の CORS を"
+"回避)。`input` は `string` / `URL.t` / `Request` を、`init` は "
+"`RequestInit & ClientOptions` を受け取ります"
 
 #: ../../user/plugin-http.md:9
 msgid "`proxy<'proxyValue>`"
-msgstr ""
+msgstr "`proxy<'proxyValue>`"
 
 #: ../../user/plugin-http.md:9
 #, python-brace-format
@@ -134,52 +156,56 @@ msgid ""
 "`{all?, http?, https?}` — `'proxyValue` is `string` (URL) or "
 "`proxyConfig` per slot"
 msgstr ""
+"`{all?, http?, https?}` — `'proxyValue` はスロットごとに `string` (URL) または "
+"`proxyConfig` のいずれか"
 
 #: ../../user/plugin-http.md:9
 msgid "`proxyConfig`"
-msgstr ""
+msgstr "`proxyConfig`"
 
 #: ../../user/plugin-http.md:9
 #, python-brace-format
 msgid "`{url, basicAuth?, noProxy?}`"
-msgstr ""
+msgstr "`{url, basicAuth?, noProxy?}`"
 
 #: ../../user/plugin-http.md:9
 msgid "`basicAuth`"
-msgstr ""
+msgstr "`basicAuth`"
 
 #: ../../user/plugin-http.md:9
 #, python-brace-format
 msgid "`{username, password}` — forwarded as `Proxy-Authorization`"
-msgstr ""
+msgstr "`{username, password}` — `Proxy-Authorization` ヘッダーとして転送されます"
 
 #: ../../user/plugin-http.md:9
 msgid "`clientOptions<'proxyValue>`"
-msgstr ""
+msgstr "`clientOptions<'proxyValue>`"
 
 #: ../../user/plugin-http.md:9
 #, python-brace-format
 msgid "`{maxRedirections?, connectTimeout?, proxy?, danger?}`"
-msgstr ""
+msgstr "`{maxRedirections?, connectTimeout?, proxy?, danger?}`"
 
 #: ../../user/plugin-http.md:9 ../../user/plugin-http.md:190
 msgid "`dangerousSettings`"
-msgstr ""
+msgstr "`dangerousSettings`"
 
 #: ../../user/plugin-http.md:9
 #, python-brace-format
 msgid "`{acceptInvalidCerts?, acceptInvalidHostnames?}` (off by default)"
-msgstr ""
+msgstr "`{acceptInvalidCerts?, acceptInvalidHostnames?}` (デフォルトで無効)"
 
 #: ../../user/plugin-http.md:133
 msgid "`fetch` signature"
-msgstr ""
+msgstr "`fetch` のシグネチャ"
 
 #: ../../user/plugin-http.md:139
 msgid ""
 "All three of `'input`, `'init`, and `'response` are polymorphic on "
 "purpose:"
 msgstr ""
+"`'input`、`'init`、`'response` の 3 つはすべて意図的に polymorphic にしてい"
+"ます:"
 
 #: ../../user/plugin-http.md:142
 msgid ""
@@ -187,6 +213,9 @@ msgid ""
 "ReScript infers the type from the call site, so passing a `string` "
 "literal works without an explicit annotation."
 msgstr ""
+"**`'input`** — 通常は `string`、`URL.t`、または `Request` インスタンスを使"
+"います。ReScript は呼び出し側から型を推論するため、`string` リテラルを渡す場"
+"合は明示的な型注釈は不要です。"
 
 #: ../../user/plugin-http.md:146
 #, python-brace-format
@@ -196,72 +225,78 @@ msgid ""
 "standard `RequestInit` fields (`method`, `headers`, `body`, `signal`, …) "
 "and the Tauri-specific `clientOptions` fields documented below."
 msgstr ""
+"**`'init`** — `RequestInit & ClientOptions` の形状を持ちます。実際には、標"
+"準の `RequestInit` フィールド (`method`、`headers`、`body`、`signal` など) "
+"と、後述する Tauri 固有の `clientOptions` フィールドの両方を含む JS オブジェ"
+"クトリテラル (`{\"method\": \"POST\", ...}`) を渡します。"
 
 #: ../../user/plugin-http.md:151
 msgid ""
 "**`'response`** — the DOM `Response`. The DOM type isn't bound here; see "
 "the *Pitfalls* section for the three idioms that work."
 msgstr ""
+"**`'response`** — DOM の `Response` です。DOM 型はここではバインドしていま"
+"せん。実用的な 3 つのイディオムは *Pitfalls* 節を参照してください。"
 
 #: ../../user/plugin-http.md:155
 msgid "`clientOptions` fields"
-msgstr ""
+msgstr "`clientOptions` のフィールド"
 
 #: ../../user/plugin-http.md:9
 msgid "Field"
-msgstr ""
+msgstr "フィールド"
 
 #: ../../user/plugin-http.md:9
 msgid "Type"
-msgstr ""
+msgstr "型"
 
 #: ../../user/plugin-http.md:9
 msgid "`maxRedirections`"
-msgstr ""
+msgstr "`maxRedirections`"
 
 #: ../../user/plugin-http.md:9
 msgid "`int` (optional)"
-msgstr ""
+msgstr "`int` (省略可)"
 
 #: ../../user/plugin-http.md:9
 msgid "Maximum redirects to follow. `0` disables following entirely."
-msgstr ""
+msgstr "追従する最大リダイレクト数。`0` でリダイレクト追従を完全に無効化します。"
 
 #: ../../user/plugin-http.md:9
 msgid "`connectTimeout`"
-msgstr ""
+msgstr "`connectTimeout`"
 
 #: ../../user/plugin-http.md:9
 msgid "Connect timeout in milliseconds."
-msgstr ""
+msgstr "接続タイムアウト (ミリ秒単位)。"
 
 #: ../../user/plugin-http.md:9
 msgid "`proxy`"
-msgstr ""
+msgstr "`proxy`"
 
 #: ../../user/plugin-http.md:9
 msgid "`proxy<'proxyValue>` (optional)"
-msgstr ""
+msgstr "`proxy<'proxyValue>` (省略可)"
 
 #: ../../user/plugin-http.md:9
 msgid "Proxy specification per URL scheme."
-msgstr ""
+msgstr "URL スキームごとの proxy 指定。"
 
 #: ../../user/plugin-http.md:9
 msgid "`danger`"
-msgstr ""
+msgstr "`danger`"
 
 #: ../../user/plugin-http.md:9
 msgid "`dangerousSettings` (optional)"
-msgstr ""
+msgstr "`dangerousSettings` (省略可)"
 
 #: ../../user/plugin-http.md:9
 msgid "Dangerous TLS settings (off by default)."
-msgstr ""
+msgstr "危険な TLS 設定 (デフォルトで無効)。"
 
 #: ../../user/plugin-http.md:164
 msgid "`proxy` / `proxyConfig` / `basicAuth`"
-msgstr ""
+msgstr "`proxy` / `proxyConfig` / `basicAuth`"
 
 #: ../../user/plugin-http.md:166
 msgid ""
@@ -269,12 +304,17 @@ msgid ""
 "on a single `'proxyValue` type that is either a plain URL `string` or a "
 "full `proxyConfig` record:"
 msgstr ""
+"`proxy<'proxyValue>` は各スロットがどのトラフィックをカバーするかを選択し、"
+"スロット間で共通の `'proxyValue` 型 (プレーンな URL `string` または完全な "
+"`proxyConfig` record) でパラメータ化されます:"
 
 #: ../../user/plugin-http.md:186
 msgid ""
 "`proxyConfig.noProxy` accepts the upstream comma-separated host pattern "
 "syntax (`localhost`, `*.internal`, `192.168.0.0/16`, etc.)."
 msgstr ""
+"`proxyConfig.noProxy` は上流のカンマ区切りホストパターン構文 (`localhost`、"
+"`*.internal`、`192.168.0.0/16` など) を受け付けます。"
 
 #: ../../user/plugin-http.md:201
 msgid ""
@@ -284,14 +324,19 @@ msgid ""
 "internal staging, or mTLS experiments. **Do not enable either in shipped "
 "production code.**"
 msgstr ""
+"`acceptInvalidCerts` は SSL/TLS 証明書の検証をスキップし、"
+"`acceptInvalidHostnames` は証明書のホスト名チェックをスキップします。両方とも"
+"デフォルトは `false` です。開発ビルド時の自己署名証明書、内部ステージング、"
+"mTLS の実験用途以外では有効化しないでください。**本番リリースコードでは"
+"いずれも有効化してはいけません。**"
 
 #: ../../user/plugin-http.md:207
 msgid "Pitfalls"
-msgstr ""
+msgstr "落とし穴"
 
 #: ../../user/plugin-http.md:209
 msgid "DOM Web Fetch types are intentionally unbound"
-msgstr ""
+msgstr "DOM の Web Fetch 型は意図的にバインドしていません"
 
 #: ../../user/plugin-http.md:211
 msgid ""
@@ -301,34 +346,47 @@ msgid ""
 "partially-typed binding, `fetch` is left polymorphic and the call site "
 "picks a strategy:"
 msgstr ""
+"DOM の `Request` / `Response` / `RequestInit` 型は `@rescript/core` の限定"
+"的な Web Fetch 表面にあり、プラグインが公開する streaming / progress / "
+"clone API をカバーしていません。中途半端に型付けされたバインディングを提供"
+"するのではなく、`fetch` を polymorphic のまま残し、呼び出し側で戦略を選"
+"択します:"
 
 #: ../../user/plugin-http.md:217
 msgid ""
 "**Type annotation** — when you already have a concrete record-or-object "
 "type that captures the fields you touch:"
 msgstr ""
+"**型注釈** — 操作するフィールドを捉える具体的な record / object 型を既に"
+"持っている場合:"
 
 #: ../../user/plugin-http.md:226
 msgid ""
 "**`Obj.magic` + inline structural type** — the minimum-cost path, useful "
 "when you only need a couple of fields:"
 msgstr ""
+"**`Obj.magic` + インラインの構造的型** — 必要なフィールドが少数の場合に有"
+"用な最小コストの方法:"
 
 #: ../../user/plugin-http.md:236
 msgid ""
 "**External binding** — for repeated access, wrap the surface you actually"
 " use behind a `@send` / `@get` external block in your own module."
 msgstr ""
+"**External バインディング** — 繰り返しアクセスする場合は、実際に利用する"
+"表面を独自モジュールの `@send` / `@get` external ブロックで包んでください。"
 
 #: ../../user/plugin-http.md:240
 msgid ""
 "A typed Web Fetch surface is deferred to a follow-up sub-steering (see "
 "the package CHANGELOG)."
 msgstr ""
+"型付きの Web Fetch 表面は後続のサブステアリングに先送りされています "
+"(パッケージの CHANGELOG を参照)。"
 
 #: ../../user/plugin-http.md:243
 msgid "`proxy<'proxyValue>` takes a single type parameter"
-msgstr ""
+msgstr "`proxy<'proxyValue>` は単一の型パラメータを取ります"
 
 #: ../../user/plugin-http.md:245
 msgid ""
@@ -337,12 +395,18 @@ msgid ""
 "full `proxyConfig` record in another is a type error when you build the "
 "record with the `~init` ReScript record syntax. Two workarounds:"
 msgstr ""
+"`proxy<'proxyValue>` は `all` / `http` / `https` スロット間で共通の型変数を"
+"1 つ持つため、`~init` の ReScript record 構文で record を組み立てる際に、"
+"あるスロットで `string` URL を、別のスロットで完全な `proxyConfig` record を"
+"混在させると型エラーになります。回避策は 2 つあります:"
 
 #: ../../user/plugin-http.md:251
 msgid ""
 "**Unify the type**: wrap every slot in `proxyConfig`, even when you only "
 "need a URL."
 msgstr ""
+"**型を統一する**: URL しか必要ない場合でも、すべてのスロットを "
+"`proxyConfig` で包みます。"
 
 #: ../../user/plugin-http.md:253
 #, python-brace-format
@@ -351,10 +415,14 @@ msgid ""
 "parameter, so a mixed `{\"http\": \"http://...\", \"https\": {\"url\": "
 "\"https://...\", \"basicAuth\": …}}` shape is accepted as `'init`."
 msgstr ""
+"**JS オブジェクトリテラルを使う**: オブジェクトリテラルは型パラメータを"
+"強制しないため、`{\"http\": \"http://...\", \"https\": {\"url\": "
+"\"https://...\", \"basicAuth\": …}}` のような混在形状も `'init` として"
+"受け付けられます。"
 
 #: ../../user/plugin-http.md:258
 msgid "`dangerousSettings` ships disabled"
-msgstr ""
+msgstr "`dangerousSettings` はデフォルトで無効"
 
 #: ../../user/plugin-http.md:260
 msgid ""
@@ -363,76 +431,82 @@ msgid ""
 "explicit `init.danger` record can. This keeps secure-by-default behaviour"
 " visible at the call site."
 msgstr ""
+"`init` から `danger` を省略すると、両方のチェックがデフォルトで有効のまま"
+"です。プラグインの Tauri レベル capability 層からは再有効化できず、明示的な "
+"`init.danger` record でのみ無効化できます。これにより secure-by-default "
+"な動作が呼び出し側から見えるようになります。"
 
 #: ../../user/plugin-http.md:265
 msgid "Compatibility"
-msgstr ""
+msgstr "互換性"
 
 #: ../../user/plugin-http.md:9
 msgid "Component"
-msgstr ""
+msgstr "コンポーネント"
 
 #: ../../user/plugin-http.md:9
 msgid "Supported range"
-msgstr ""
+msgstr "サポート範囲"
 
 #: ../../user/plugin-http.md:9
 msgid "Upstream `@tauri-apps/plugin-http`"
-msgstr ""
+msgstr "上流 `@tauri-apps/plugin-http`"
 
 #: ../../user/plugin-http.md:9
 msgid "`^2.0.0` (peer)"
-msgstr ""
+msgstr "`^2.0.0` (peer)"
 
 #: ../../user/plugin-http.md:9
 msgid "Rust `tauri-plugin-http`"
-msgstr ""
+msgstr "Rust `tauri-plugin-http`"
 
 #: ../../user/plugin-http.md:9
 msgid "`2.x`"
-msgstr ""
+msgstr "`2.x`"
 
 #: ../../user/plugin-http.md:9
 msgid "`@rescript-tauri/core`"
-msgstr ""
+msgstr "`@rescript-tauri/core`"
 
 #: ../../user/plugin-http.md:9
 msgid "`^0.1.0` (peer)"
-msgstr ""
+msgstr "`^0.1.0` (peer)"
 
 #: ../../user/plugin-http.md:9
 msgid "ReScript"
-msgstr ""
+msgstr "ReScript"
 
 #: ../../user/plugin-http.md:9
 msgid "`>=12.0.0`"
-msgstr ""
+msgstr "`>=12.0.0`"
 
 #: ../../user/plugin-http.md:9
 msgid "`@rescript/core`"
-msgstr ""
+msgstr "`@rescript/core`"
 
 #: ../../user/plugin-http.md:9
 msgid "`>=1.6.0`"
-msgstr ""
+msgstr "`>=1.6.0`"
 
 #: ../../user/plugin-http.md:9
 msgid "OS"
-msgstr ""
+msgstr "OS"
 
 #: ../../user/plugin-http.md:9
 msgid "Linux / macOS / Windows"
-msgstr ""
+msgstr "Linux / macOS / Windows"
 
 #: ../../user/plugin-http.md:276
 msgid "See also"
-msgstr ""
+msgstr "関連項目"
 
 #: ../../user/plugin-http.md:278
 msgid ""
 "Source: [`packages/plugin-http`](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/packages/plugin-http)"
 msgstr ""
+"ソース: [`packages/plugin-http`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/packages/plugin-http)"
 
 #: ../../user/plugin-http.md:280
 msgid ""
@@ -440,16 +514,22 @@ msgid ""
 "http/README.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/packages/plugin-http/README.md)"
 msgstr ""
+"パッケージ README: [`packages/plugin-"
+"http/README.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/packages/plugin-http/README.md)"
 
 #: ../../user/plugin-http.md:282
 msgid ""
 "Upstream docs: [Tauri 2.x http plugin](https://v2.tauri.app/plugin/http-"
 "client/)"
 msgstr ""
+"上流ドキュメント: [Tauri 2.x http プラグイン](https://v2.tauri.app/plugin/"
+"http-client/)"
 
 #: ../../user/plugin-http.md:284
 msgid ""
 "Upstream JS reference: [http "
 "module](https://v2.tauri.app/reference/javascript/http/)"
 msgstr ""
-
+"上流 JS リファレンス: [http モジュール](https://v2.tauri.app/reference/"
+"javascript/http/)"
