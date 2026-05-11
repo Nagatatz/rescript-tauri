@@ -306,6 +306,8 @@ or `Command.create("/usr/bin/git", ...)` rejects.
 
 ## See also
 
+- Live demo:
+  [`examples/plugin-shell-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-shell-demo)
 - Source:
   [`packages/plugin-shell`](https://github.com/Nagatatz/rescript-tauri/tree/main/packages/plugin-shell)
 - Upstream docs:

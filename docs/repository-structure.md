@@ -33,6 +33,7 @@ rescript-tauri/                          # monorepo root
 │   ├── streaming-ipc/
 │   ├── plugin-fs-demo/                  # Phase 2
 │   ├── plugin-dialog-demo/              # Phase 2
+│   ├── plugin-shell-demo/               # Phase 2
 │   └── ipc-typed-with-schema/           # Phase 2 (Layer 3 demo)
 ├── docs/                                # 開発チーム向け内部ドキュメント
 │   ├── ideas/                           # ドラフト・RFC 集約
@@ -308,6 +309,7 @@ examples/ipc-typed/                       # Command.make の典型例
 examples/streaming-ipc/                   # Channel デモ
 examples/plugin-dialog-demo/              # @rescript-tauri/plugin-dialog 全関数デモ (steering 036)
 examples/plugin-fs-demo/                  # @rescript-tauri/plugin-fs 全関数デモ (steering 037)
+examples/plugin-shell-demo/               # @rescript-tauri/plugin-shell 全関数デモ (steering 20260511-008)
 examples/ipc-typed-with-schema/           # @rescript-tauri/schema (Layer 3) デモ — ipc-typed の対比版 (steering 039)
 ```
 
