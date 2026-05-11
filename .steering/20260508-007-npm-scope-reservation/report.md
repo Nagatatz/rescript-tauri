@@ -175,11 +175,29 @@ npm view @rescript-tauri/core
 - <https://www.npmjs.com/package/@rescript-tauri/core>
 - <https://www.npmjs.com/org/rescript-tauri>
 
-### Step 6 (任意): 他のパッケージ名も予約
+### Step 6: 残りパッケージの予約
 
-Phase 2+ で計画されている `@rescript-tauri/plugin-fs` / `plugin-dialog` / `schema` も同じ手順で予約しておくと、命名衝突リスクをさらに排除できる。dummy 内容は同じパターンで `name` だけ変える。
+scope `@rescript-tauri` 自体が予約されている限り、scope 配下の他のパッケージ名はその scope の Org 所有者しか publish できないため、**命名衝突リスク防止の観点では `@rescript-tauri/core` 1 個の予約で十分**。
 
-ただし scope `@rescript-tauri` 自体が予約されている限り、scope 配下の他のパッケージ名はその scope の Org 所有者しか publish できないため、**最初の 1 個 `@rescript-tauri/core` だけ publish すれば実用上は十分**。残りはオプション。
+ただし、**npm Trusted Publishing は既存パッケージにしか設定できない** という制約 ([npm/cli#8544](https://github.com/npm/cli/issues/8544)) があるため、Trusted Publishing を有効化したい未公開パッケージは事前に `0.0.0-reserved` で予約しておく必要がある。
+
+残り 9 パッケージ（`schema` / `plugin-fs` / `plugin-dialog` / `plugin-shell` / `plugin-notification` / `plugin-log` / `plugin-os` / `plugin-clipboard-manager` / `plugin-http`）は **`tools/reserve-npm-packages.sh`** で一括予約できる:
+
+```bash
+bash tools/reserve-npm-packages.sh
+```
+
+その後 **`tools/setup-trusted-publishers.sh`** で Trusted Publisher を一括設定:
+
+```bash
+# core を含む 10 パッケージすべてに設定
+bash tools/setup-trusted-publishers.sh
+
+# core を Web UI で設定済みの場合
+SKIP_CORE=true bash tools/setup-trusted-publishers.sh
+```
+
+詳細は `.steering/20260512-003-bulk-package-reservation-tooling/` を参照。
 
 ## 5. 後続フォローアップ（Claude が実行可能、予約完了後に実施）
 

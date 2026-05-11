@@ -16,9 +16,9 @@
 
 ## Phase 2: ドキュメント更新
 
-- [ ] T6: `docs/repository-structure.md` §10 の `tools/` 表に 2 行追加
-- [ ] T7: `.steering/20260508-007-npm-scope-reservation/report.md` §6 Step 6 を更新
-- [ ] T8: T6-T7 を 1 commit にまとめてコミット
+- [x] T6: `docs/repository-structure.md` §10 の `tools/` 表に 2 行追加 + 役割説明を更新
+- [x] T7: `.steering/20260508-007-npm-scope-reservation/report.md` §6 Step 6 を更新
+- [x] T8: T6-T7 を 1 commit にまとめてコミット
 
 ## Phase 3: 完了検証
 
