@@ -1,37 +1,17 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
+import { installTauriInternals } from "../../../../tools/tauri-mocks.mjs"
 import * as PluginHttp from "../../src/PluginHttp.res.mjs"
 
 // plugin-http's `fetch` calls the upstream Tauri-bridged fetch which
-// internally uses Tauri's IPC, but the JS shim re-exports a regular
-// async function. For unit tests we spy on the upstream module's
-// fetch via a vi.mock-style stub on the imported module's prototype
-// chain. happy-dom's `globalThis.fetch` doesn't help here because
-// PluginHttp imports the named export directly. The cleanest test
-// is to replace `globalThis.fetch` and have the upstream re-implement
-// fetch on top of it; but the actual upstream impl wires through
-// Tauri internals. Stub `__TAURI_INTERNALS__.invoke` so the upstream
-// fetch can dispatch through it without errors.
-
-const installInternals = () => {
-  globalThis.window = globalThis.window ?? {}
-  globalThis.window.__TAURI_INTERNALS__ = {
-    invoke: vi.fn(async (_cmd, _args) => {
-      // Return a fake `rid` for fetch_send / fetch_read paths.
-      return 0
-    }),
-    transformCallback: () => 0,
-  }
-}
-
-const clearInternals = () => {
-  if (globalThis.window) {
-    delete globalThis.window.__TAURI_INTERNALS__
-  }
-}
+// internally uses Tauri's IPC. Stub __TAURI_INTERNALS__ so the upstream
+// fetch can dispatch through it without throwing.
 
 describe("PluginHttp", () => {
-  beforeEach(installInternals)
-  afterEach(clearInternals)
+  let cleanup
+  beforeEach(() => {
+    cleanup = installTauriInternals({ invoke: vi.fn(async () => 0) })
+  })
+  afterEach(() => cleanup())
 
   it("fetch is a function exported from the package", () => {
     expect(typeof PluginHttp.fetch).toBe("function")

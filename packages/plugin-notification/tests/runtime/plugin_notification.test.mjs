@@ -1,13 +1,16 @@
 import * as Mocks from "@rescript-tauri/core/src/Mocks.res.mjs"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
+import { installNotificationStub } from "../../../../tools/tauri-mocks.mjs"
 import * as PluginNotification from "../../src/PluginNotification.res.mjs"
 
 describe("PluginNotification", () => {
+  let notifCleanup = null
   beforeEach(() => Mocks.clearMocks())
   afterEach(() => {
     Mocks.clearMocks()
-    if (globalThis.window) {
-      delete globalThis.window.Notification
+    if (notifCleanup) {
+      notifCleanup()
+      notifCleanup = null
     }
   })
 
@@ -15,7 +18,7 @@ describe("PluginNotification", () => {
     it("isPermissionGranted dispatches plugin:notification|is_permission_granted when permission is 'default'", async () => {
       // Upstream short-circuits to window.Notification.permission unless
       // it is 'default'; stub that so the call falls through to IPC.
-      globalThis.window.Notification = { permission: "default" }
+      notifCleanup = installNotificationStub({ permission: "default" })
       let captured = null
       Mocks.mockIPC(async (cmd) => {
         captured = cmd
@@ -158,7 +161,7 @@ describe("PluginNotification", () => {
   describe("Web-API-backed functions", () => {
     it("requestPermission delegates to window.Notification.requestPermission", async () => {
       const stub = vi.fn().mockResolvedValue("granted")
-      globalThis.window.Notification = { requestPermission: stub }
+      notifCleanup = installNotificationStub({ requestPermission: stub })
 
       const result = await PluginNotification.requestPermission()
 
@@ -173,7 +176,7 @@ describe("PluginNotification", () => {
           constructed.push({ title, options })
         }
       }
-      globalThis.window.Notification = FakeNotification
+      notifCleanup = installNotificationStub(FakeNotification)
 
       PluginNotification.sendNotificationText("hello")
 
@@ -189,7 +192,7 @@ describe("PluginNotification", () => {
           constructed.push({ title, options })
         }
       }
-      globalThis.window.Notification = FakeNotification
+      notifCleanup = installNotificationStub(FakeNotification)
 
       PluginNotification.sendNotification({ title: "TAURI", body: "Hi" })
 
