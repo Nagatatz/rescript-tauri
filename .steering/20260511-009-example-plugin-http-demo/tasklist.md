@@ -10,9 +10,9 @@
 - [x] requirements.md 作成
 - [x] design.md 作成
 - [x] tasklist.md 作成
-- [ ] ユーザー承認
-- [ ] steering 3 点セットを main 上で commit (`📝 Add steering 20260511-009 plan: example plugin-http-demo`)
-- [ ] EnterWorktree plugin-http-demo（ `head` ベースで作成、最新 main を取り込む）
+- [x] ユーザー承認
+- [x] steering 3 点セットを main 上で commit (`815ad33 📝 Add steering 20260511-009 plan: example plugin-http-demo`)
+- [x] EnterWorktree plugin-http-demo + ローカル main を sync merge
 
 ## Phase 2: 実装
 
@@ -20,14 +20,14 @@
 
 ### Checkpoint 1: Rust 側 + 設定スケルトン
 
-- [ ] `examples/plugin-http-demo/src-tauri/Cargo.toml` 作成（`tauri = "2"` + `tauri-plugin-http = "2"`）
-- [ ] `examples/plugin-http-demo/src-tauri/build.rs` 作成
-- [ ] `examples/plugin-http-demo/src-tauri/src/main.rs` 作成（`tauri_plugin_http::init()` 登録）
-- [ ] `examples/plugin-http-demo/src-tauri/tauri.conf.json` 作成
-- [ ] `examples/plugin-http-demo/src-tauri/capabilities/default.json` 作成（`http:default` + scoped allow）
-- [ ] `examples/plugin-http-demo/src-tauri/icons/` を plugin-fs-demo から流用（PNG / ICO / ICNS）
-- [ ] ルート `Cargo.toml` の `workspace.members` に `examples/plugin-http-demo/src-tauri` 追加
-- [ ] commit: `🔧 Scaffold plugin-http-demo Rust side (Cargo + capabilities + config)`
+- [x] `examples/plugin-http-demo/src-tauri/Cargo.toml` 作成（`tauri = "2"` + `tauri-plugin-http = "2"`）
+- [x] `examples/plugin-http-demo/src-tauri/build.rs` 作成
+- [x] `examples/plugin-http-demo/src-tauri/src/main.rs` 作成（`tauri_plugin_http::init()` 登録）
+- [x] `examples/plugin-http-demo/src-tauri/tauri.conf.json` 作成
+- [x] `examples/plugin-http-demo/src-tauri/capabilities/default.json` 作成（`http:default` + scoped allow）
+- [x] `examples/plugin-http-demo/src-tauri/icons/` を plugin-fs-demo から流用（PNG / ICO / ICNS）
+- [x] ルート `Cargo.toml` の `workspace.members` に `examples/plugin-http-demo/src-tauri` 追加
+- [x] commit: `🔧 Scaffold plugin-http-demo Rust side (Cargo + capabilities + config)`
 
 ### Checkpoint 2: Frontend スケルトン + Step 1 GET
 
