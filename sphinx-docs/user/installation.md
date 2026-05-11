@@ -65,6 +65,9 @@ pnpm add @rescript-tauri/plugin-os @tauri-apps/plugin-os
 # Clipboard read/write (text / image / HTML)
 pnpm add @rescript-tauri/plugin-clipboard-manager @tauri-apps/plugin-clipboard-manager
 
+# HTTP fetch with CORS bypass + proxy / TLS config
+pnpm add @rescript-tauri/plugin-http @tauri-apps/plugin-http
+
 # Layer 3 typed IPC (rescript-schema)
 pnpm add @rescript-tauri/schema rescript-schema
 ```
@@ -74,16 +77,10 @@ See the [plugin-fs](plugin-fs.md), [plugin-dialog](plugin-dialog.md),
 [plugin-shell](plugin-shell.md),
 [plugin-log](plugin-log.md),
 [plugin-os](plugin-os.md),
-[plugin-clipboard-manager](plugin-clipboard-manager.md), and
+[plugin-clipboard-manager](plugin-clipboard-manager.md),
+[plugin-http](plugin-http.md), and
 [schema](schema.md) guides for the matching ReScript / Rust /
 capability setup.
-
-```{note}
-A dedicated user guide for `@rescript-tauri/plugin-http` is
-scheduled for a follow-up sub-steering. Until then, refer to the
-package's own README (`packages/plugin-http/README.md`) for full
-API coverage and copy-pasteable examples.
-```
 
 ## Verify
 
