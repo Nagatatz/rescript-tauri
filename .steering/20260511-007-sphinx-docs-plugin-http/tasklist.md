@@ -30,18 +30,19 @@
   - `## Compatibility` 表
   - `## See also` リスト（source / package README / upstream / upstream JS reference、demo は CHANGELOG の deferred 通り）
 - [x] `pnpm run check` — md 対象外 (pre-existing biome "no-files" no-op)
-- [x] commit: `📝 Add sphinx-docs/user/plugin-http.md (full user guide)`
+- [x] commit `c1a5395`: `📝 Add sphinx-docs/user/plugin-http.md (full user guide)`
 
 ### Checkpoint B: 周辺ドキュメント更新
 
-- [ ] `sphinx-docs/user/index.md` の "Phase 2 packages" ヘッダ: "eight" → "nine"
-- [ ] `sphinx-docs/user/index.md` の Phase 2 packages 表に plugin-http 行を clipboard-manager の後 / schema の前に追加
-- [ ] `sphinx-docs/user/index.md` toctree に `plugin-http` を追加（順序: `plugin-clipboard-manager` の後、`schema` の前）
-- [ ] `sphinx-docs/user/installation.md` の "See the ... guides" cross-ref に plugin-http を schema の直前に追加
-- [ ] `sphinx-docs/user/installation.md` の follow-up note を **全削除**（plugin-http が最後の対象だったため）
-- [ ] `pnpm run check` 警告なし
-- [ ] `grep -n "plugin-http" sphinx-docs/user/installation.md sphinx-docs/user/index.md` で cross-ref 確認、follow-up note の `{note}` ブロックが存在しないことを `grep -n "follow-up" sphinx-docs/user/installation.md` で確認
-- [ ] commit: `📝 Cross-link plugin-http user guide and clear installation follow-up note`
+- [x] `sphinx-docs/user/index.md` の "Phase 2 packages" ヘッダ: "eight" → "nine"
+- [x] `sphinx-docs/user/index.md` の Phase 2 packages 表に plugin-http 行を clipboard-manager の後 / schema の前に追加
+- [x] `sphinx-docs/user/index.md` toctree に `plugin-http` を追加（順序: `plugin-clipboard-manager` の後、`schema` の前）
+- [x] `sphinx-docs/user/installation.md` の "See the ... guides" cross-ref に plugin-http を schema の直前に追加
+- [x] `sphinx-docs/user/installation.md` の follow-up note を **全削除**（plugin-http が最後の対象だったため）
+- [x] `sphinx-docs/user/installation.md` の `pnpm add` リストに plugin-http 行を追加
+- [x] `pnpm run check` — md 対象外
+- [x] 検証: `grep -n "plugin-http"` で cross-ref 確認、`grep -n "follow-up" sphinx-docs/user/installation.md` で出力空を確認
+- [x] commit: `📝 Cross-link plugin-http user guide and clear installation follow-up note`
 
 ## Phase 3: マージ前検証
 
