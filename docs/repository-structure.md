@@ -382,7 +382,8 @@ sphinx-docs/
 │   ├── project-structure.md             # 簡易版（本書の抜粋）
 │   └── contributing.md
 ├── locale/ja/                           # 日本語翻訳 (.po)
-├── tests/                               # ドキュメントの自動テスト（OGP 等）
+├── tests/                               # ドキュメントの自動テスト（OGP / ReScript Pygments lexer 等）
+├── _ext/                                # プロジェクト内 Sphinx 拡張 (rescript_lexer 等, steering 20260511-021)
 ├── _static/
 ├── _templates/
 ├── conf.py

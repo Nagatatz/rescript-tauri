@@ -41,14 +41,14 @@
 
 ## Phase 6: マージ
 
-- [x] tasklist.md の全タスク（マージタスク含む）を `[x]` に更新してコミット
-- [x] AskUserQuestion で main へのマージ可否をユーザーに確認
-- [x] 承認後、`steering-workflow.md` の「worktree マージ・クリーンアップ手順」に従ってマージ
-- [x] `git worktree list` / `git branch --list 'worktree-*'` / `ls .claude/worktrees/` がすべて空であることを検証
+- [ ] tasklist.md の全タスク（マージタスク含む）を `[x]` に更新してコミット
+- [ ] AskUserQuestion で main へのマージ可否をユーザーに確認
+- [ ] 承認後、`steering-workflow.md` の「worktree マージ・クリーンアップ手順」に従ってマージ
+- [ ] `git worktree list` / `git branch --list 'worktree-*'` / `ls .claude/worktrees/` がすべて空であることを検証
 
 ## Phase 7: 振り返り
 
-- [x] 30 日後、`.steering/20260511-021-...` を `archive/` へ移動するかどうかは月次棚卸しで判断
+- [ ] 30 日後、`.steering/20260511-021-...` を `archive/` へ移動するかどうかは月次棚卸しで判断
 
 ## メモ
 
