@@ -2,7 +2,7 @@
 
 | 項目 | 内容 |
 |---|---|
-| Steering 番号 | 20260511-006 |
+| Steering 番号 | 20260511-008 |
 | 関連 | `requirements.md`, `examples/plugin-dialog-demo/**`, `examples/plugin-fs-demo/**`, `packages/plugin-shell/src/PluginShell.resi` |
 
 ---
@@ -403,7 +403,7 @@ members = [
 ### 4.2 `docs/repository-structure.md` §3
 
 ```markdown
-examples/plugin-shell-demo/               # @rescript-tauri/plugin-shell 全関数デモ (steering 20260511-006)
+examples/plugin-shell-demo/               # @rescript-tauri/plugin-shell 全関数デモ (steering 20260511-008)
 ```
 
 を `examples/plugin-fs-demo/` の隣に追加。

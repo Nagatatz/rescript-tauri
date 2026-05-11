@@ -2,7 +2,7 @@
 
 | 項目 | 内容 |
 |---|---|
-| Steering 番号 | 20260511-006 |
+| Steering 番号 | 20260511-008 |
 | 作業タイトル | examples/plugin-shell-demo |
 | 作成日 | 2026-05-11 |
 | 関連 steering | 051 (`@rescript-tauri/plugin-shell` 本体), 20260511-001 (sphinx-docs plugin-shell user guide) |

@@ -2,7 +2,7 @@
 
 | 項目 | 内容 |
 |---|---|
-| Steering 番号 | 20260511-006 |
+| Steering 番号 | 20260511-008 |
 | 関連 | `requirements.md`, `design.md` |
 
 各タスクは単独で `git commit` 可能な粒度に分割。
@@ -29,7 +29,7 @@
 - [x] T1.11 `examples/plugin-shell-demo/src-tauri/tauri.conf.json` 作成（dialog-demo 踏襲: `$schema` は upstream URL、icon は 3 ファイル形式）
 - [x] T1.12 `examples/plugin-shell-demo/src-tauri/icons/` を `plugin-dialog-demo` から copy (icon.png / icon.ico / icon.icns)
 - [x] T1.13 ローカル検証: `pnpm install` 成功、`pnpm --filter plugin-shell-demo build` で 73 modules compiled。`cargo check` は Phase 2 で workspace 登録後に実行
-- [x] T1.14 **コミット**: `✨ Add examples/plugin-shell-demo (steering 20260511-006)` (71c55cd)
+- [x] T1.14 **コミット**: `✨ Add examples/plugin-shell-demo (steering 20260511-008)` (71c55cd)
 
 ## Phase 2: root Cargo workspace 登録
 
@@ -41,21 +41,32 @@
 
 - [x] T3.1 `docs/repository-structure.md` の examples 一覧（§1 ルートレイアウト + §3 一覧）両方に `plugin-shell-demo/` 行を追加
 - [x] T3.2 `sphinx-docs/user/plugin-shell.md` の "See also" 先頭に live demo リンクを追加
-- [ ] T3.3 **コミット**: `📝 Link plugin-shell-demo from docs and user guide`
+- [x] T3.3 **コミット**: `📝 Link plugin-shell-demo from docs and user guide` (799738b)
+
+## Phase 3.5: 採番衝突解消 (006 → 008)
+
+実装中に並列セッションが steering 20260511-006 (sphinx-docs ja translation) と 20260511-007 (sphinx-docs plugin-http) を main にマージしたため、本作業を `.steering/20260511-006-...` から `.steering/20260511-008-...` にリネーム。
+
+- [x] T3.5.1 `git merge main` で 006 ja-translation plan + 007 plugin-http plan を取り込み (auto-merge 成功、conflict なし)
+- [x] T3.5.2 `git mv .steering/20260511-006-example-plugin-shell-demo .steering/20260511-008-example-plugin-shell-demo` で dir リネーム
+- [x] T3.5.3 各 doc 内の `20260511-006` 言及を `20260511-008` に書き換え (requirements / design / tasklist / examples/plugin-shell-demo/README.md / docs/repository-structure.md)
+- [ ] T3.5.4 **コミット**: `♻️ Renumber steering 006 → 008 (parallel collision with ja-translation / plugin-http)`
+
+なお、Phase 1 commit 71c55cd のメッセージ "(steering 20260511-006)" は履歴に残るが、これは並列衝突の証跡として保持する（rebase --interactive による message 書き換えは作業中断リスクが高いため避ける）。
 
 ## Phase 4: 検証
 
-- [ ] T4.1 `git diff main..HEAD --name-only` で差分が `examples/plugin-shell-demo/**`, `Cargo.toml`, `docs/repository-structure.md`, `sphinx-docs/user/plugin-shell.md`, `.steering/20260511-006-.../*.md` に限定されていることを確認
-- [ ] T4.2 `pnpm run check`（Biome — `.json` / `.mjs` 対象）が green
-- [ ] T4.3 `pnpm --filter plugin-shell-demo build` 再実行で green
-- [ ] T4.4 `cargo check --workspace` 再実行で green
+- [ ] T4.1 `git diff main..HEAD --name-only` で差分が `examples/plugin-shell-demo/**`, `Cargo.toml`, `docs/repository-structure.md`, `sphinx-docs/user/plugin-shell.md`, `.steering/20260511-008-.../*.md` に限定されていることを確認
+- [ ] T4.2 `pnpm exec biome check` (`.json` / `.mjs` 対象) が green
+- [ ] T4.3 `pnpm --filter plugin-shell-demo build` 再実行で green（リネーム後の整合性確認）
+- [ ] T4.4 `cargo check --workspace` はローカル `cargo` 不在のためスキップ。CI `examples-build.yml` に委ねる
 
 ## Phase 5: マージ
 
 - [ ] T5.1 tasklist.md Phase 0〜4 を `[x]` に更新
-- [ ] T5.2 **コミット**: `📝 Mark steering 20260511-006 tasklist complete`
+- [ ] T5.2 **コミット**: `📝 Mark steering 20260511-008 tasklist complete`
 - [ ] T5.3 `AskUserQuestion` でユーザーに main へのマージ可否を確認
-- [ ] T5.4 承認後、main 側の未追跡 `.steering/20260511-006-example-plugin-shell-demo/` を削除（worktree 作成前に main 側に作った残骸があれば）
+- [ ] T5.4 承認後、main 側の未追跡 `.steering/20260511-006-example-plugin-shell-demo/`（worktree 作成前の旧番号での残骸）を削除。さらに `.steering/20260511-008-example-plugin-shell-demo/` も未追跡で残っていれば削除
 - [ ] T5.5 `cd <main-repo>` → `git merge worktree-plugin-shell-demo --no-ff` → `git worktree remove .claude/worktrees/plugin-shell-demo` → `git branch -d worktree-plugin-shell-demo`
 - [ ] T5.6 クリーンアップ検証: `git worktree list` で main + 他並列セッションのみ表示 / `worktree-plugin-shell-demo` ブランチ削除 / `.claude/worktrees/plugin-shell-demo` 不在
 
