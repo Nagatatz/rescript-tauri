@@ -8,11 +8,7 @@ stable public surface of `@tauri-apps/plugin-log` v2.8.x is
 covered.
 
 ```{note}
-The Phase 2 implementation is feature-complete in `main`. The
-first npm publish (`plugin-log-v0.1.0`) is scheduled alongside
-the other Phase 2 packages. Until then, consume
-`@rescript-tauri/plugin-log` via the source repository or a
-workspace link.
+{{ phase_2_note }}
 ```
 
 ## Install
