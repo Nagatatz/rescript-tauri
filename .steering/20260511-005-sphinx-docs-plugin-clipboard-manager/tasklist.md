@@ -56,12 +56,12 @@
 
 ## Phase 3: マージ前
 
-- [ ] tasklist.md の全タスクを `[x]` に更新
-- [ ] 最終コミット (tasklist 更新): `✅ Mark steering 20260511-005 tasklist complete`
+- [x] tasklist.md の全タスクを `[x]` に更新
+- [x] 最終コミット (tasklist 更新): `✅ Mark steering 20260511-005 tasklist complete`
 
 ## Phase 4: マージ・クリーンアップ
 
-- [ ] AskUserQuestion で main へのマージ可否を確認
-- [ ] CWD を main repo へ移動
-- [ ] `git merge worktree-plugin-clipboard-manager-userguide --no-ff`
-- [ ] worktree 削除 / ブランチ削除 / 検証
+- [x] AskUserQuestion で main へのマージ可否を確認
+- [x] CWD を main repo へ移動
+- [x] `git merge worktree-plugin-clipboard-manager-userguide --no-ff`
+- [x] worktree 削除 / ブランチ削除 / 検証
