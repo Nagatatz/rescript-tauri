@@ -6,19 +6,19 @@
 - [x] requirements.md 作成
 - [x] design.md 作成
 - [x] tasklist.md 作成
-- [ ] ユーザー承認 → EnterWorktree plugin-clipboard-manager-userguide
+- [x] ユーザー承認 → EnterWorktree plugin-clipboard-manager-userguide
 
 ## Phase 2: 実装（4 独立 checkpoint、各 checkpoint で 1 コミット）
 
 ### Checkpoint 1: スケルトン + Image.t 連携の前書き + Installation
 
-- [ ] `sphinx-docs/user/plugin-clipboard-manager.md` 新規作成
+- [x] `sphinx-docs/user/plugin-clipboard-manager.md` 新規作成
   - frontmatter / H1 / Tauri 上流リンクの冒頭
   - `{note}` Phase 2 公開待ち
   - `{tip}` `Core.Image` 連携の説明（external link to `packages/core/src/Image.resi`）
   - `## Install` 節 (pnpm add + rescript.json + Rust 側 Cargo.toml + builder)
-- [ ] `pnpm run check` pass
-- [ ] コミット: `📝 Add sphinx-docs plugin-clipboard-manager skeleton + install section`
+- [x] `pnpm run check` pass
+- [x] コミット: `📝 Add sphinx-docs plugin-clipboard-manager skeleton + install section`
 
 ### Checkpoint 2: Text APIs (writeText / readText / writeTextOptions)
 
