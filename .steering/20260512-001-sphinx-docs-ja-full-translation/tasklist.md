@@ -17,6 +17,10 @@
 T1–T3 完了後の精密検査で、当初 awk スクリプトが multi-line msgstr を未翻訳と誤判定していたことが判明。実際の残存は `user/index.po` の **1 件 untranslated + 3 件 fuzzy** のみ。Phase 2–5 で予定していた他 17 ファイル (T4–T21) は既に翻訳完了済みのため作業不要。
 
 - [x] T4-precise: `user/index.po` の 1 件 untranslated と 3 件 fuzzy エントリを修正（plugin-http 関連 + Phase 2 件数）+ コミット
+- [x] T5-followup: msgfmt --check で発見した追加問題を修正:
+  - `dev/contributing.po`: fuzzy エントリ（Phase 1 設計フェーズ → Phase 1+2 マージ済み）を更新
+  - `user/installation.po`: fuzzy エントリ（plugin-http リンク追加）を更新
+  - `user/plugin-log.po` / `user/plugin-notification.po` / `user/plugin-os.po`: 誤って付与されていた `#, python-format` フラグを削除（"100%" を含む msgid で msgfmt fatal error の原因）
 
 ## Phase 3: スキップ済み (既に翻訳完了)
 

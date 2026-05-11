@@ -23,7 +23,6 @@ msgid "`@rescript-tauri/plugin-notification`"
 msgstr "`@rescript-tauri/plugin-notification`"
 
 #: ../../user/plugin-notification.md:3
-#, python-format
 msgid ""
 "ReScript bindings for the [Tauri 2.x notification "
 "plugin](https://v2.tauri.app/plugin/notification/) — toast notifications,"

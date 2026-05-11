@@ -23,7 +23,6 @@ msgid "`@rescript-tauri/plugin-log`"
 msgstr "`@rescript-tauri/plugin-log`"
 
 #: ../../user/plugin-log.md:3
-#, python-format
 msgid ""
 "ReScript bindings for the [Tauri 2.x logging "
 "plugin](https://v2.tauri.app/plugin/logging/) — five log levels (`error` "
