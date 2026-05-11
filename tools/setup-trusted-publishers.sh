@@ -100,10 +100,20 @@ for pkg in "${ALL_PACKAGES[@]}"; do
        --yes; then
     echo "  ✓ trusted publisher configured for ${full_name}"
   else
-    echo "  (already configured or update rejected — verify with 'npm trust list')"
+    echo "  (already configured or update rejected — re-run 'npm trust list ${full_name}' to inspect)"
   fi
 done
 
 echo
-echo "Verification — current trusted publisher list:"
-npm trust list
+echo "Verification — per-package trusted publisher configuration:"
+# `npm trust list` (no args) reads the current directory's package.json, which
+# in this repo is the unpublished `rescript-tauri-monorepo` root and would 404.
+# List each target package explicitly instead.
+for pkg in "${ALL_PACKAGES[@]}"; do
+  if [ "$pkg" = "core" ] && [ "$SKIP_CORE" = "true" ]; then
+    continue
+  fi
+  full_name="${SCOPE}/${pkg}"
+  echo "--- ${full_name} ---"
+  npm trust list "$full_name" || echo "  (no trusted publisher configured)"
+done
