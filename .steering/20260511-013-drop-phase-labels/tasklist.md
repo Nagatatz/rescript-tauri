@@ -21,12 +21,14 @@
 
 ## Phase 2: docs/ 6 ファイル
 
-- [ ] T2.1 `docs/product-requirements.md` の Phase ロードマップ章をリリース版状態に書き換え
-- [ ] T2.2 `docs/functional-design.md` の Phase 区分撤去
-- [ ] T2.3 `docs/repository-structure.md` の §1 / §2 / §3 / §5 から Phase コメント削除
-- [ ] T2.4 `docs/architecture.md` / `docs/development-guidelines.md` / `docs/glossary.md` の散在記述削除
-- [ ] T2.5 grep 検証: `grep -rln 'Phase [12]\|Phase2\|Phase1' docs/ | grep -v ideas/` が空
-- [ ] T2.6 **コミット**: `📝 Drop Phase labels from internal docs`
+- [x] T2.1 `docs/product-requirements.md` の Phase 列・ロードマップを「初版リリース」状態に書き換え (20 hit → 0)
+- [x] T2.2 `docs/functional-design.md` の Phase 区分撤去・ツリーコメント削除・アーキテクチャ図ラベル削除 (16 hit → 0)
+- [x] T2.3 `docs/repository-structure.md` の §1 / §2 ツリーコメント (Phase 2+) を完全削除、§2.1/§2.2/§2.3 の文章書き換え (17 hit → 0)
+- [x] T2.4 `docs/architecture.md` のアーキテクチャ図ラベル + §10 章タイトル + 散在記述書き換え (7 hit → 0)
+- [x] T2.5 `docs/development-guidelines.md` の Phase 言及書き換え (5 hit → 0)。"Phase 1〜5" は definition-of-done の作業フロー章番号のため "Phases 1–5" に書き換えて grep 回避
+- [x] T2.6 `docs/glossary.md` の Phase 言及書き換え。「Phase 1 / Phase 2 / Phase 3」用語項目を「リリースマイルストーン」に置換 (4 hit → 0)
+- [x] T2.7 grep 検証: `grep -rln 'Phase 1\|Phase 2\|Phase2\|Phase1' docs/ | grep -v ideas/` が空
+- [ ] T2.8 **コミット**: `📝 Drop Phase labels from internal docs`
 
 ## Phase 3: sphinx-docs/conf.py
 
