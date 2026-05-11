@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-11 14:36+0900\n"
-"PO-Revision-Date: 2026-05-11 10:00+0900\n"
+"PO-Revision-Date: 2026-05-12 09:30+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
 "Language-Team: ja <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../../user/plugin-shell.md:1
 msgid "`@rescript-tauri/plugin-shell`"
-msgstr ""
+msgstr "`@rescript-tauri/plugin-shell`"
 
 #: ../../user/plugin-shell.md:3
 msgid ""
@@ -28,6 +28,9 @@ msgid ""
 "plugin](https://v2.tauri.app/plugin/shell/) — spawn child processes, "
 "stream stdout / stderr, and open files / URLs with the OS-default app."
 msgstr ""
+"[Tauri 2.x shell プラグイン](https://v2.tauri.app/plugin/shell/) の ReScript "
+"バインディングです。子プロセスの起動、stdout / stderr のストリーミング、OS "
+"デフォルトアプリでのファイル / URL オープンを提供します。"
 
 #: ../../user/plugin-shell.md:10
 msgid ""
@@ -35,6 +38,9 @@ msgid ""
 " Its first npm publish is scheduled alongside the other Phase 2 packages."
 " Until then, consume it via the source repository or a workspace link."
 msgstr ""
+"本パッケージの Phase 2 実装は `main` で機能完備済みです。初回 npm 公開は他の "
+"Phase 2 パッケージと合わせて予定されています。それまでは、ソースリポジトリ経"
+"由かワークスペースリンクで利用してください。"
 
 #: ../../user/plugin-shell.md:12
 msgid "Install"
@@ -46,14 +52,17 @@ msgid ""
 "`@tauri-apps/plugin-shell` as `peerDependencies`, so you control each "
 "upstream version."
 msgstr ""
+"`@rescript-tauri/plugin-shell` は `@rescript-tauri/core` と `@tauri-apps/"
+"plugin-shell` の両方を `peerDependencies` として宣言しているため、上流側の各"
+"バージョンを利用者側で制御できます。"
 
 #: ../../user/plugin-shell.md:22
 msgid "Add the package to `dependencies` in your `rescript.json`:"
-msgstr ""
+msgstr "`rescript.json` の `dependencies` にパッケージを追加します:"
 
 #: ../../user/plugin-shell.md:33
 msgid "On the Rust side, add the plugin crate and register it on the builder:"
-msgstr ""
+msgstr "Rust 側では、プラグイン crate を追加して builder に登録します:"
 
 #: ../../user/plugin-shell.md:52
 msgid "Capabilities"
@@ -64,6 +73,9 @@ msgid ""
 "Tauri 2.x requires every shell operation to be granted a capability. The "
 "minimum set for spawning `ls` and opening `http(s)` URLs is:"
 msgstr ""
+"Tauri 2.x では、すべての shell 操作に対して capability を付与する必要があり"
+"ます。`ls` の起動と `http(s)` URL のオープンに必要な最小構成は以下のとおり"
+"です:"
 
 #: ../../user/plugin-shell.md:78
 msgid ""
@@ -73,6 +85,11 @@ msgid ""
 "permissions reference](https://v2.tauri.app/plugin/shell/#scope-and-"
 "permissions) for the full grammar."
 msgstr ""
+"起動するプログラムごとに `shell:allow-execute` の `name` と一致するエントリを"
+"列挙する必要があります。`openPath` に渡す URL は `shell:allow-open` の正"
+"規表現パターンのいずれかにマッチしなければなりません。完全な文法は上流の "
+"[scope and permissions リファレンス](https://v2.tauri.app/plugin/shell/"
+"#scope-and-permissions) を参照してください。"
 
 #: ../../user/plugin-shell.md:85
 msgid "Minimal example"
@@ -83,6 +100,8 @@ msgid ""
 "`openPath` returns `promise<unit>`; the underlying call rejects when the "
 "URL fails the configured `shell:allow-open` regex."
 msgstr ""
+"`openPath` は `promise<unit>` を返します。設定された `shell:allow-open` の"
+"正規表現にマッチしない URL を渡すと、内部呼び出しが reject されます。"
 
 #: ../../user/plugin-shell.md:96
 msgid "Public API"
@@ -102,124 +121,124 @@ msgstr "用途"
 
 #: ../../user/plugin-shell.md:8
 msgid "`openPath`"
-msgstr ""
+msgstr "`openPath`"
 
 #: ../../user/plugin-shell.md:8
 msgid "`promise<unit>`"
-msgstr ""
+msgstr "`promise<unit>`"
 
 #: ../../user/plugin-shell.md:8
 msgid "Open a URL / path with the OS-default app (or `~openWith`)"
-msgstr ""
+msgstr "OS デフォルトアプリで URL / パスを開く (または `~openWith` で指定)"
 
 #: ../../user/plugin-shell.md:8
 msgid "`Command.create` / `Command.sidecar`"
-msgstr ""
+msgstr "`Command.create` / `Command.sidecar`"
 
 #: ../../user/plugin-shell.md:8
 msgid "`Command.t<string>`"
-msgstr ""
+msgstr "`Command.t<string>`"
 
 #: ../../user/plugin-shell.md:8
 msgid "Build a UTF-8 command"
-msgstr ""
+msgstr "UTF-8 のコマンドを構築する"
 
 #: ../../user/plugin-shell.md:8
 msgid "`Command.createRaw` / `Command.sidecarRaw`"
-msgstr ""
+msgstr "`Command.createRaw` / `Command.sidecarRaw`"
 
 #: ../../user/plugin-shell.md:8
 msgid "`Command.t<Uint8Array.t>`"
-msgstr ""
+msgstr "`Command.t<Uint8Array.t>`"
 
 #: ../../user/plugin-shell.md:8
 msgid "Build a bytes command (`encoding: \"raw\"`)"
-msgstr ""
+msgstr "バイト列のコマンドを構築する (`encoding: \"raw\"`)"
 
 #: ../../user/plugin-shell.md:8
 msgid "`Command.execute`"
-msgstr ""
+msgstr "`Command.execute`"
 
 #: ../../user/plugin-shell.md:8
 msgid "`promise<childProcess<'o>>`"
-msgstr ""
+msgstr "`promise<childProcess<'o>>`"
 
 #: ../../user/plugin-shell.md:8
 msgid "Run to completion, collect output"
-msgstr ""
+msgstr "完了まで実行し、出力をまとめて収集する"
 
 #: ../../user/plugin-shell.md:8
 msgid "`Command.spawn`"
-msgstr ""
+msgstr "`Command.spawn`"
 
 #: ../../user/plugin-shell.md:8
 msgid "`promise<Child.t>`"
-msgstr ""
+msgstr "`promise<Child.t>`"
 
 #: ../../user/plugin-shell.md:8
 msgid "Start the command, return a handle"
-msgstr ""
+msgstr "コマンドを開始してハンドルを返す"
 
 #: ../../user/plugin-shell.md:8
 msgid "`Command.onClose` / `Command.onError`"
-msgstr ""
+msgstr "`Command.onClose` / `Command.onError`"
 
 #: ../../user/plugin-shell.md:8
 msgid "`Command.t<'o>`"
-msgstr ""
+msgstr "`Command.t<'o>`"
 
 #: ../../user/plugin-shell.md:8
 msgid "Subscribe to lifecycle events"
-msgstr ""
+msgstr "ライフサイクルイベントを購読する"
 
 #: ../../user/plugin-shell.md:8
 msgid "`Command.onStdoutData` / `Command.onStderrData`"
-msgstr ""
+msgstr "`Command.onStdoutData` / `Command.onStderrData`"
 
 #: ../../user/plugin-shell.md:8
 msgid "Subscribe to streamed output"
-msgstr ""
+msgstr "ストリーミング出力を購読する"
 
 #: ../../user/plugin-shell.md:8
 msgid "`Command.removeAllListeners`"
-msgstr ""
+msgstr "`Command.removeAllListeners`"
 
 #: ../../user/plugin-shell.md:8
 msgid "Detach all command-level listeners"
-msgstr ""
+msgstr "コマンドレベルのリスナーをすべて解除する"
 
 #: ../../user/plugin-shell.md:8
 msgid "`Command.stdout` / `Command.stderr`"
-msgstr ""
+msgstr "`Command.stdout` / `Command.stderr`"
 
 #: ../../user/plugin-shell.md:8
 #, python-brace-format
 msgid "`EventEmitter.t<{\"data\": 'o}>`"
-msgstr ""
+msgstr "`EventEmitter.t<{\"data\": 'o}>`"
 
 #: ../../user/plugin-shell.md:8
 msgid "Low-level access to the underlying event emitter"
-msgstr ""
+msgstr "内部の event emitter への低レベルアクセス"
 
 #: ../../user/plugin-shell.md:8
 msgid "`Child.pid` / `Child.kill` / `Child.write`"
-msgstr ""
+msgstr "`Child.pid` / `Child.kill` / `Child.write`"
 
 #: ../../user/plugin-shell.md:8
 msgid "`int` / `promise<unit>` / `promise<unit>`"
-msgstr ""
+msgstr "`int` / `promise<unit>` / `promise<unit>`"
 
 #: ../../user/plugin-shell.md:8
 msgid "Child accessors and operations"
-msgstr ""
+msgstr "子プロセスのアクセサと操作"
 
 #: ../../user/plugin-shell.md:8
 msgid "`EventEmitter.*`"
-msgstr ""
+msgstr "`EventEmitter.*`"
 
 #: ../../user/plugin-shell.md:8
 msgid "`t<'events>`"
-msgstr ""
+msgstr "`t<'events>`"
 
 #: ../../user/plugin-shell.md:8
 msgid ""
@@ -227,6 +246,9 @@ msgid ""
 "`removeListener` / `removeAllListeners` / `listenerCount` / "
 "`prependListener` / `prependOnceListener`)"
 msgstr ""
+"9 つの汎用メソッド (`on` / `once` / `off` / `addListener` / "
+"`removeListener` / `removeAllListeners` / `listenerCount` / "
+"`prependListener` / `prependOnceListener`)"
 
 #: ../../user/plugin-shell.md:112
 msgid ""
@@ -236,6 +258,11 @@ msgid ""
 "/rescript-tauri/tree/main/packages/plugin-shell/src/PluginShell.resi) for"
 " the full doc comments and matching upstream URLs."
 msgstr ""
+"関連する record (`spawnOptions`、`childProcess<'o>`、`terminatedPayload`) "
+"は `PluginShell` から再エクスポートされています。完全な doc コメントと対応"
+"する上流 URL は [`packages/plugin-shell/src/PluginShell.resi`](https://"
+"github.com/Nagatatz/rescript-tauri/tree/main/packages/plugin-shell/src/"
+"PluginShell.resi) を参照してください。"
 
 #: ../../user/plugin-shell.md:117
 msgid "Running commands"
@@ -250,6 +277,8 @@ msgid ""
 "`Command.execute` resolves once the child has exited and gives you the "
 "collected output. Best for short-lived commands:"
 msgstr ""
+"`Command.execute` は子プロセスが終了したタイミングで resolve され、収集し"
+"た出力をまとめて返します。短命なコマンドに最適です:"
 
 #: ../../user/plugin-shell.md:134
 #, python-brace-format
@@ -258,6 +287,9 @@ msgid ""
 "and `signal` are `Nullable.t<int>` — they're mutually exclusive on Unix "
 "(signal-terminated processes report `code = null`)."
 msgstr ""
+"`childProcess<'o>` は `{code, signal, stdout, stderr}` を保持します。"
+"`code` と `signal` はどちらも `Nullable.t<int>` で、Unix では相互排他です "
+"(シグナルで終了したプロセスは `code = null` を返します)。"
 
 #: ../../user/plugin-shell.md:138
 msgid "Background processes"
@@ -269,10 +301,13 @@ msgid ""
 "waiting. Combine it with `Child.write` and `Child.kill` for interactive "
 "use:"
 msgstr ""
+"`Command.spawn` は子プロセスを起動して `Child.t` ハンドルを即座に返し、終了"
+"を待ちません。`Child.write` や `Child.kill` と組み合わせると対話的に利用で"
+"きます:"
 
 #: ../../user/plugin-shell.md:154
 msgid "`Child.pid` returns the OS-level process id."
-msgstr ""
+msgstr "`Child.pid` は OS レベルのプロセス ID を返します。"
 
 #: ../../user/plugin-shell.md:156
 msgid "Raw byte output"
@@ -283,6 +318,8 @@ msgid ""
 "Pass `encoding: \"raw\"` via the dedicated factory functions to receive "
 "`Uint8Array.t` instead of `string`:"
 msgstr ""
+"専用のファクトリ関数を使って `encoding: \"raw\"` を渡すと、`string` の代わ"
+"りに `Uint8Array.t` を受け取れます:"
 
 #: ../../user/plugin-shell.md:169
 #, python-brace-format
@@ -292,6 +329,10 @@ msgid ""
 " — `Command.create` / `Command.createRaw` / `Command.sidecar` / "
 "`Command.sidecarRaw` — so the result type is always statically known."
 msgstr ""
+"上流の `Command.create({encoding: 'raw'})` における TypeScript の条件型"
+"による戻り値は、ReScript では 4 つの関数 (`Command.create` / "
+"`Command.createRaw` / `Command.sidecar` / `Command.sidecarRaw`) に分割さ"
+"れており、結果型は常に静的に決定されます。"
 
 #: ../../user/plugin-shell.md:175
 msgid "Streaming output"
@@ -303,6 +344,9 @@ msgid ""
 "stream events from a long-running command. Each method returns the "
 "command, mirroring the upstream `Promise<this>` pattern:"
 msgstr ""
+"長時間動作するコマンドからイベントを stream するには `onStdoutData` / "
+"`onStderrData` / `onClose` / `onError` をチェーンします。各メソッドはコマ"
+"ンド自身を返し、上流の `Promise<this>` パターンに対応しています:"
 
 #: ../../user/plugin-shell.md:201
 #, python-brace-format
@@ -312,6 +356,10 @@ msgid ""
 "directly — both return an `EventEmitter.t<{\"data\": 'o}>` you can drive "
 "with the `EventEmitter` module's 9 generic methods."
 msgstr ""
+"より高度な購読パターン (`once`、`prependListener`、手動の `listenerCount` "
+"など) には `Command.stdout` / `Command.stderr` を直接使ってください。どち"
+"らも `EventEmitter.t<{\"data\": 'o}>` を返すので、`EventEmitter` モジュール"
+"の 9 つの汎用メソッドで操作できます。"
 
 #: ../../user/plugin-shell.md:207
 msgid ""
@@ -319,6 +367,10 @@ msgid ""
 "(`close` / `error`). To clear stdout / stderr listeners, use "
 "`EventEmitter.removeAllListeners` on the corresponding accessor."
 msgstr ""
+"`Command.removeAllListeners` はコマンドレベルのリスナー (`close` / "
+"`error`) をすべて解除します。stdout / stderr のリスナーを解除するには、対"
+"応するアクセサに対して `EventEmitter.removeAllListeners` を呼び出してくだ"
+"さい。"
 
 #: ../../user/plugin-shell.md:212
 msgid "Sidecar binaries"
@@ -330,12 +382,17 @@ msgid ""
 "`tauri.conf.json > bundle > externalBin` instead of `PATH`. Use "
 "`Command.sidecar` (or `sidecarRaw` for bytes):"
 msgstr ""
+"Sidecar は、アプリと一緒に同梱されるバイナリで、`PATH` ではなく "
+"`tauri.conf.json > bundle > externalBin` から解決されます。`Command."
+"sidecar` (バイト列を扱う場合は `sidecarRaw`) を使います:"
 
 #: ../../user/plugin-shell.md:226
 msgid ""
 "The string passed to `sidecar` matches the `externalBin` entry without "
 "the target triple suffix."
 msgstr ""
+"`sidecar` に渡す文字列は、ターゲットトリプルの接尾辞を含まない "
+"`externalBin` エントリと一致させてください。"
 
 #: ../../user/plugin-shell.md:229
 msgid "Opening paths and URLs"
@@ -344,6 +401,8 @@ msgstr "パス / URL を開く"
 #: ../../user/plugin-shell.md:231
 msgid "`openPath` opens its argument with the system's default application:"
 msgstr ""
+"`openPath` は引数で渡したパス / URL をシステムのデフォルトアプリケーション"
+"で開きます:"
 
 #: ../../user/plugin-shell.md:239
 msgid ""
@@ -351,6 +410,10 @@ msgid ""
 "`safari`, `xdg-open`, ...). The path or URL must match a `shell:allow-"
 "open` regex — otherwise the underlying call rejects:"
 msgstr ""
+"`~openWith` を渡すと、特定のオープナー (`firefox`、`chromium`、`safari`、"
+"`xdg-open` など) を強制できます。パスや URL は `shell:allow-open` の正"
+"規表現にマッチする必要があり、マッチしない場合は内部呼び出しが reject さ"
+"れます:"
 
 #: ../../user/plugin-shell.md:248
 msgid "Pitfalls"
@@ -366,6 +429,9 @@ msgid ""
 "identifier for module access (`open MyModule`). We re-export it as "
 "`openPath`:"
 msgstr ""
+"上流ではこの関数を `open` として公開していますが、ReScript ではこの識別子"
+"がモジュールアクセス (`open MyModule`) のために予約されているため、本パッ"
+"ケージでは `openPath` として再エクスポートしています:"
 
 #: ../../user/plugin-shell.md:264
 msgid "`Uint8Array` length"
@@ -376,6 +442,8 @@ msgid ""
 "`Uint8Array.t` in `@rescript/core` is an alias for `TypedArray.t<int>`. "
 "The length getter lives on the parent module:"
 msgstr ""
+"`@rescript/core` の `Uint8Array.t` は `TypedArray.t<int>` のエイリアスで"
+"す。長さの getter は親モジュール側にあります:"
 
 #: ../../user/plugin-shell.md:275
 msgid "Scope misconfiguration"
@@ -388,12 +456,19 @@ msgid ""
 "`shell:allow-execute` must match the first argument to `Command.create` /"
 " `Command.sidecar` exactly:"
 msgstr ""
+"対象が `src-tauri/capabilities/` で許可されていない場合、コマンドの起動も "
+"`openPath` の呼び出しも失敗します。`shell:allow-execute` の `name` フィー"
+"ルドは、`Command.create` / `Command.sidecar` の第 1 引数と完全に一致させる"
+"必要があります:"
 
 #: ../../user/plugin-shell.md:289
 msgid ""
 "`Command.create(\"git\", ...)` then succeeds; `Command.create(\"Git\", "
 "...)` or `Command.create(\"/usr/bin/git\", ...)` rejects."
 msgstr ""
+"上記の場合 `Command.create(\"git\", ...)` は成功しますが、"
+"`Command.create(\"Git\", ...)` や `Command.create(\"/usr/bin/git\", ...)` "
+"は reject されます。"
 
 #: ../../user/plugin-shell.md:292
 msgid "Compatibility"
@@ -409,43 +484,43 @@ msgstr "対応バージョン"
 
 #: ../../user/plugin-shell.md:8
 msgid "Upstream `@tauri-apps/plugin-shell`"
-msgstr ""
+msgstr "上流 `@tauri-apps/plugin-shell`"
 
 #: ../../user/plugin-shell.md:8
 msgid "`^2.3.0` (peer)"
-msgstr ""
+msgstr "`^2.3.0` (peer)"
 
 #: ../../user/plugin-shell.md:8
 msgid "Rust `tauri-plugin-shell`"
-msgstr ""
+msgstr "Rust `tauri-plugin-shell`"
 
 #: ../../user/plugin-shell.md:8
 msgid "`2.x`"
-msgstr ""
+msgstr "`2.x`"
 
 #: ../../user/plugin-shell.md:8
 msgid "`@rescript-tauri/core`"
-msgstr ""
+msgstr "`@rescript-tauri/core`"
 
 #: ../../user/plugin-shell.md:8
 msgid "`^0.1.0` (peer)"
-msgstr ""
+msgstr "`^0.1.0` (peer)"
 
 #: ../../user/plugin-shell.md:8
 msgid "ReScript"
-msgstr ""
+msgstr "ReScript"
 
 #: ../../user/plugin-shell.md:8
 msgid "`>=12.0.0`"
-msgstr ""
+msgstr "`>=12.0.0`"
 
 #: ../../user/plugin-shell.md:8
 msgid "`@rescript/core`"
-msgstr ""
+msgstr "`@rescript/core`"
 
 #: ../../user/plugin-shell.md:8
 msgid "`>=1.6.0`"
-msgstr ""
+msgstr "`>=1.6.0`"
 
 #: ../../user/plugin-shell.md:8
 msgid "OS"
@@ -453,7 +528,7 @@ msgstr "対応 OS"
 
 #: ../../user/plugin-shell.md:8
 msgid "Linux / macOS / Windows"
-msgstr ""
+msgstr "Linux / macOS / Windows"
 
 #: ../../user/plugin-shell.md:303
 msgid "See also"
@@ -464,24 +539,32 @@ msgid ""
 "Live demo: [`examples/plugin-shell-demo`](https://github.com/Nagatatz"
 "/rescript-tauri/tree/main/examples/plugin-shell-demo)"
 msgstr ""
+"ライブデモ: [`examples/plugin-shell-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-shell-demo)"
 
 #: ../../user/plugin-shell.md:307
 msgid ""
 "Source: [`packages/plugin-shell`](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/packages/plugin-shell)"
 msgstr ""
+"ソース: [`packages/plugin-shell`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/packages/plugin-shell)"
 
 #: ../../user/plugin-shell.md:309
 msgid ""
 "Upstream docs: [Tauri 2.x shell "
 "plugin](https://v2.tauri.app/plugin/shell/)"
 msgstr ""
+"上流ドキュメント: [Tauri 2.x shell "
+"プラグイン](https://v2.tauri.app/plugin/shell/)"
 
 #: ../../user/plugin-shell.md:311
 msgid ""
 "[Installation guide](installation.md) — set up `@rescript-tauri/core` "
 "first"
 msgstr ""
+"[インストールガイド](installation.md) — まず `@rescript-tauri/core` の"
+"セットアップを行ってください"
 
 #~ msgid ""
 #~ "The Phase 2 implementation is "
@@ -492,4 +575,3 @@ msgstr ""
 #~ "`@rescript-tauri/plugin-shell` via the "
 #~ "source repository or a workspace link."
 #~ msgstr ""
-

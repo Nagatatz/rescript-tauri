@@ -9,7 +9,7 @@
 ## Phase 1: 大規模ファイル（🔴 優先）
 
 - [x] T1: `user/plugin-http.po` 翻訳 (85 entries) + コミット
-- [ ] T2: `user/plugin-shell.po` 翻訳 (73 entries) + コミット
+- [x] T2: `user/plugin-shell.po` 翻訳 (73 entries) + コミット
 - [ ] T3: `user/plugin-clipboard-manager.po` 翻訳 (51 entries) + コミット
 
 ## Phase 2: 中規模ファイル（🟠）
