@@ -42,12 +42,12 @@
 
 ### Checkpoint 3: Step 2-4 (POST / clientOptions / headers)
 
-- [ ] `runPost` 実装（jsonplaceholder/posts へ POST）
-- [ ] `runClientOptions` 実装（connectTimeout + maxRedirections）
-- [ ] `runHeaders` 実装（status + headers.get + text()）
-- [ ] `main()` で 4 button をすべて wire
-- [ ] `pnpm --filter plugin-http-demo build` 成功確認
-- [ ] commit: `✨ Implement plugin-http-demo steps 2-4 (POST / clientOptions / headers)`
+- [x] `runPost` 実装（jsonplaceholder/posts へ POST）
+- [x] `runClientOptions` 実装（connectTimeout + maxRedirections）
+- [x] `runHeaders` 実装（status + headers.get + text()）
+- [x] `main()` で 4 button をすべて wire
+- [x] `pnpm --filter plugin-http-demo build` 成功確認 (`JSON.Encode.*` / `Math.Int` 不在問題を修正)
+- [x] commit: `✨ Implement plugin-http-demo steps 2-4 (POST / clientOptions / headers)`
 
 ### Checkpoint 4: README + CI + ドキュメント整合
 
