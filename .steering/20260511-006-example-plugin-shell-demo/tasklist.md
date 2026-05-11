@@ -29,12 +29,12 @@
 - [x] T1.11 `examples/plugin-shell-demo/src-tauri/tauri.conf.json` 作成（dialog-demo 踏襲: `$schema` は upstream URL、icon は 3 ファイル形式）
 - [x] T1.12 `examples/plugin-shell-demo/src-tauri/icons/` を `plugin-dialog-demo` から copy (icon.png / icon.ico / icon.icns)
 - [x] T1.13 ローカル検証: `pnpm install` 成功、`pnpm --filter plugin-shell-demo build` で 73 modules compiled。`cargo check` は Phase 2 で workspace 登録後に実行
-- [ ] T1.14 **コミット**: `✨ Add examples/plugin-shell-demo (steering 20260511-006)`
+- [x] T1.14 **コミット**: `✨ Add examples/plugin-shell-demo (steering 20260511-006)` (71c55cd)
 
 ## Phase 2: root Cargo workspace 登録
 
-- [ ] T2.1 `Cargo.toml` (root) の `members` に `examples/plugin-shell-demo/src-tauri` を追加（アルファベット順）
-- [ ] T2.2 `cargo check --workspace` で workspace 全体が壊れていないことを確認
+- [x] T2.1 `Cargo.toml` (root) の `members` に `examples/plugin-shell-demo/src-tauri` を追加（plugin-fs-demo の隣、アルファベット順）
+- [x] T2.2 ローカル `cargo` 不在のため `cargo check --workspace` はスキップ。全 member パスが実在することを `ls` で確認 (8 ファイル green)。CI `examples-build.yml` が Linux/macOS/Windows 3 OS で実 build を実行
 - [ ] T2.3 **コミット**: `🔧 Register plugin-shell-demo in root Cargo workspace`
 
 ## Phase 3: ドキュメント更新
