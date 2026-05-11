@@ -35,16 +35,17 @@
   - `### Numeric LogLevel constants` サブセクション + 5 定数のコード例と upstream 値の表
   - `### attachLogger / attachConsole` サブセクション + level 分岐付きコード例
 - [x] `pnpm run check` — md 対象外なので影響なし（既知 Biome exclude 問題）
-- [ ] commit: `📝 Document plugin-log public API in sphinx-docs user guide`
+- [x] commit `b5a911a`: `📝 Document plugin-log public API in sphinx-docs user guide`
 
 ### Checkpoint 3: Pitfalls + Compatibility + See also
 
-- [ ] `## Pitfalls` セクション
-  - `### LogLevel naming convention` (suffix `_` の理由)
-  - `### attachLogger / attachConsole testing` (`__TAURI_INTERNALS__` stub の必要性)
-- [ ] `## Compatibility` 表
-- [ ] `## See also` リスト（source / upstream / README、demo はまだないのでリンクしない）
-- [ ] `pnpm run check` 警告なし
+- [x] `## Pitfalls` セクション
+  - `### LogLevel constants are suffixed` (suffix `_` の理由)
+  - `### Log calls are async — await them` (promise<unit> を _ignore で意図明示する案内)
+  - `### attachLogger / attachConsole are not covered by Mocks.mockIPC` (`__TAURI_INTERNALS__` stub の必要性 + level 系は mockIPC OK の対比)
+- [x] `## Compatibility` 表
+- [x] `## See also` リスト（source / package README / upstream / upstream JS reference、demo は CHANGELOG の deferred 通りリンクしない）
+- [x] `pnpm run check` — md 対象外
 - [ ] commit: `📝 Add plugin-log pitfalls, compatibility and see-also sections`
 
 ### Checkpoint 4: 周辺ドキュメント更新

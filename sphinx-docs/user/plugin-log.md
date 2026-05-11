@@ -237,3 +237,71 @@ Both functions return a `promise<unlisten>`. Always await the
 promise before treating the subscription as live, and call the
 returned `unlisten()` once when you're done — multiple listeners
 can be attached in parallel but they are not de-duplicated.
+
+## Pitfalls
+
+### `LogLevel` constants are suffixed
+
+Four of the five `LogLevel` constants carry a trailing underscore
+— `debug_` / `info_` / `warn_` / `error_` — because the bare
+names are reserved words in the JavaScript output. Without the
+suffix ReScript would emit `$$debug` / `$$info` / `$$warn` /
+`$$error`, which is awkward to read in stack traces and breaks
+interop with hand-written JS. `trace` has no conflict and is
+unchanged.
+
+The top-level log functions (`PluginLog.error`, `PluginLog.info`,
+…) are *not* suffixed; only the `LogLevel` numeric constants are.
+
+### Log calls are async — await them
+
+The five level functions return `promise<unit>`, not `unit`.
+Forgetting to `await` swallows errors silently and can race
+against process shutdown:
+
+```rescript
+// ❌ may be dropped if the program exits immediately
+let _ = PluginLog.info("starting")
+
+// ✅
+await PluginLog.info("starting")
+```
+
+If you do not need to wait for delivery, bind the promise to
+`_ignore` explicitly so the intent is visible at the call site.
+
+### `attachLogger` / `attachConsole` are not covered by `Mocks.mockIPC`
+
+The two attach helpers subscribe via
+`__TAURI_INTERNALS__.transformCallback`, not the regular IPC
+command bridge, so `Mocks.mockIPC` cannot intercept them. Runtime
+tests that exercise log streaming stub
+`globalThis.__TAURI_INTERNALS__` directly — see
+`packages/plugin-log/tests/runtime/plugin_log.test.mjs` for the
+working pattern.
+
+The level functions themselves (`error` / `warn` / `info` /
+`debug` / `trace`) go through the normal Tauri IPC
+(`plugin:log|log`) and *are* mockable with `Mocks.mockIPC`.
+
+## Compatibility
+
+| Component | Supported range |
+|---|---|
+| Upstream `@tauri-apps/plugin-log` | `^2.0.0` (peer) |
+| Rust `tauri-plugin-log` | `2.x` |
+| `@rescript-tauri/core` | `^0.1.0` (peer) |
+| ReScript | `>=12.0.0` |
+| `@rescript/core` | `>=1.6.0` |
+| OS | Linux / macOS / Windows |
+
+## See also
+
+- Source:
+  [`packages/plugin-log`](https://github.com/Nagatatz/rescript-tauri/tree/main/packages/plugin-log)
+- Package README:
+  [`packages/plugin-log/README.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/plugin-log/README.md)
+- Upstream docs:
+  [Tauri 2.x logging plugin](https://v2.tauri.app/plugin/logging/)
+- Upstream JS reference:
+  [log module](https://v2.tauri.app/reference/javascript/log/)
