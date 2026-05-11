@@ -37,7 +37,7 @@ upstream page.
 
 ## Phase 2 packages
 
-Phase 2 introduces eight add-on packages that build on the Phase 1
+Phase 2 introduces nine add-on packages that build on the Phase 1
 core. Each ships independently and pulls the matching upstream
 plugin / schema library through `peerDependencies`.
 
@@ -50,6 +50,7 @@ plugin / schema library through `peerDependencies`.
 | `@rescript-tauri/plugin-log` | Structured logging (5 levels + log-stream listeners) | [plugin-log](plugin-log.md) |
 | `@rescript-tauri/plugin-os` | OS info (platform / arch / family / locale / hostname) | [plugin-os](plugin-os.md) |
 | `@rescript-tauri/plugin-clipboard-manager` | Clipboard read/write (text / image / HTML) | [plugin-clipboard-manager](plugin-clipboard-manager.md) |
+| `@rescript-tauri/plugin-http` | HTTP fetch with CORS bypass + proxy / TLS config | [plugin-http](plugin-http.md) |
 | `@rescript-tauri/schema` | Layer 3 typed IPC via `rescript-schema` | [schema](schema.md) |
 
 ```{toctree}
@@ -66,6 +67,7 @@ plugin-shell
 plugin-log
 plugin-os
 plugin-clipboard-manager
+plugin-http
 schema
 changelog
 ```
