@@ -16,11 +16,11 @@
 
 - [x] T1.1 `.github/workflows/examples-build.yml` の `Cargo check on plugin-fs-demo Rust side` 直後に plugin-shell-demo の 2 step を挿入
 - [x] T1.2 PyYAML 不在のため module parse は不可。代替で `grep` により既存 plugin-fs-demo step と key 構造・インデント完全一致を確認
-- [ ] T1.3 **コミット**: `🔧 Add plugin-shell-demo to examples-build CI matrix`
+- [x] T1.3 **コミット**: `🔧 Add plugin-shell-demo to examples-build CI matrix` (2fb9820)
 
 ## Phase 2: マージ
 
-- [ ] T2.1 tasklist `[x]` 化
+- [x] T2.1 tasklist `[x]` 化
 - [ ] T2.2 **コミット**: `📝 Mark steering 20260511-010 tasklist complete`
 - [ ] T2.3 `AskUserQuestion` で main マージ可否確認
 - [ ] T2.4 承認後、main 側の未追跡 `.steering/20260511-010-ci-add-plugin-shell-demo/` を削除
