@@ -37,6 +37,7 @@ rescript-tauri/                          # monorepo root
 │   ├── plugin-http-demo/
 │   ├── plugin-clipboard-manager-demo/
 │   ├── plugin-log-demo/
+│   ├── plugin-notification-demo/
 │   └── ipc-typed-with-schema/           # Layer 3 demo
 ├── docs/                                # 開発チーム向け内部ドキュメント
 │   ├── ideas/                           # ドラフト・RFC 集約
@@ -204,7 +205,7 @@ packages/plugin-notification/            # 着手済み (steering 054, 2026-05-0
 
 `peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-notification ^2.3.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
 
-upstream の `sendNotification(options: Options | string)` overload を `sendNotification` / `sendNotificationText` の 2 関数に分割して静的化（steering 054 §3.1）。`Importance` / `Visibility` の数値 enum は ReScript 側で `int` の named constants として公開し、`default_` / `private_` / `public_` は JS 出力の `$$default` / `$$private` / `$$public` エスケープを避けるため suffix 付き。`requestPermission` / `sendNotification` / `sendNotificationText` は upstream で IPC ではなく `window.Notification` Web API 経由で動作するため、テストでは `globalThis.window.Notification` を stub する。`examples/plugin-notification-demo/` と sphinx-docs `user/plugin-notification.md` は後続 sub-steering に分離。
+upstream の `sendNotification(options: Options | string)` overload を `sendNotification` / `sendNotificationText` の 2 関数に分割して静的化（steering 054 §3.1）。`Importance` / `Visibility` の数値 enum は ReScript 側で `int` の named constants として公開し、`default_` / `private_` / `public_` は JS 出力の `$$default` / `$$private` / `$$public` エスケープを避けるため suffix 付き。`requestPermission` / `sendNotification` / `sendNotificationText` は upstream で IPC ではなく `window.Notification` Web API 経由で動作するため、テストでは `globalThis.window.Notification` を stub する。sphinx-docs `user/plugin-notification.md` は steering 20260511-002 で、`examples/plugin-notification-demo/` は steering 20260511-016 で追加済み。
 
 ```
 packages/plugin-log/                     # 着手済み (steering 055, 2026-05-09)
@@ -316,6 +317,7 @@ examples/plugin-shell-demo/               # @rescript-tauri/plugin-shell 全関�
 examples/plugin-http-demo/                # @rescript-tauri/plugin-http 4 step デモ (steering 20260511-009)
 examples/plugin-clipboard-manager-demo/   # @rescript-tauri/plugin-clipboard-manager 全関数デモ (steering 20260511-014)
 examples/plugin-log-demo/                 # @rescript-tauri/plugin-log 全関数デモ (steering 20260511-015)
+examples/plugin-notification-demo/        # @rescript-tauri/plugin-notification 全関数デモ (steering 20260511-016)
 examples/ipc-typed-with-schema/           # @rescript-tauri/schema (Layer 3) デモ — ipc-typed の対比版 (steering 039)
 ```
 
