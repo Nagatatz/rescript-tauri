@@ -233,6 +233,8 @@ exercisable from `Mocks.mockIPC`.
 
 ## See also
 
+- Live demo:
+  [`examples/plugin-notification-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-notification-demo)
 - Source:
   [`packages/plugin-notification`](https://github.com/Nagatatz/rescript-tauri/tree/main/packages/plugin-notification)
 - Upstream docs:
