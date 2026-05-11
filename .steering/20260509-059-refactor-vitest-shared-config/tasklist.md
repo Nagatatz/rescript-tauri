@@ -11,7 +11,7 @@
 - [x] `node --check tools/vitest.shared.mjs` で構文確認
 - [x] コミット: `🔧 Add tools/vitest.shared.mjs helper for package vitest config`
 
-### Task 2: 8 パッケージの `vitest.config.mjs` を helper 経由に書き換え
+### Task 2: 9 パッケージの `vitest.config.mjs` を helper 経由に書き換え
 - [x] `packages/core/vitest.config.mjs`
 - [x] `packages/plugin-fs/vitest.config.mjs`
 - [x] `packages/plugin-dialog/vitest.config.mjs`
@@ -19,10 +19,17 @@
 - [x] `packages/plugin-notification/vitest.config.mjs`
 - [x] `packages/plugin-log/vitest.config.mjs`
 - [x] `packages/plugin-os/vitest.config.mjs`
+- [x] `packages/plugin-clipboard-manager/vitest.config.mjs`
 - [x] `packages/schema/vitest.config.mjs`
-- [x] 8 ファイル全件 `node --check` で構文確認
+- [x] 9 ファイル全件 `node --check` で構文確認
 - [x] core で 1 回 `pnpm --filter @rescript-tauri/core test` を実行し変更前と同じ pass を確認
 - [x] コミット: `♻️ Migrate package vitest configs to definePackageConfig helper`
+
+### Task 2b: 後続マージで取り込んだ plugin-http の追従
+- [x] main から plugin-http (steering 058) を取り込み (`Merge local main into worktree-refactor-vitest-shared-config`)
+- [x] `packages/plugin-http/vitest.config.mjs` を helper 経由に書き換え
+- [x] `node --check packages/plugin-http/vitest.config.mjs` で構文確認
+- [x] コミット: `♻️ Migrate plugin-http vitest config to definePackageConfig helper`
 
 ### Task 3: ドキュメント更新
 - [x] `docs/repository-structure.md` の `tools/` セクションを追記
@@ -30,7 +37,7 @@
 
 ## Phase 3: マージ前
 - [x] tasklist.md の全タスクを `[x]` に更新
-- [x] `git diff --stat origin/main..HEAD` で純減 50 行以上を確認
+- [x] `git diff --stat origin/main..HEAD` で純減 50 行以上を確認 (153 insertions / 223 deletions = -70 lines)
 - [x] 最終コミット (tasklist 更新)
 
 ## Phase 4: マージ・クリーンアップ
