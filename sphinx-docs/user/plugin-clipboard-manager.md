@@ -199,3 +199,58 @@ last). Image libraries that hand back BGRA, bottom-to-top scans,
 or pre-multiplied alpha must be converted before being handed to
 the clipboard — otherwise pasted images will exhibit channel
 swaps or vertical mirroring.
+
+### HTML APIs
+
+`writeHtml(html, ~altText=?)` stores rich-text on the clipboard
+using the OS-native HTML format. The typical use case is making
+formatted text (bold, colors, links, tables) pasteable into apps
+that honor HTML clipboard data (word processors, email composers,
+rich text editors). The optional `~altText` argument is the
+plain-text fallback handed to clients that decline HTML payloads
+— always supply it if the rich content has a meaningful textual
+equivalent.
+
+```rescript
+await Cb.writeHtml(
+  "<p>Visit <a href=\"https://tauri.app\">Tauri</a> for docs.</p>",
+  ~altText="Visit https://tauri.app for docs.",
+)
+```
+
+Omitting `~altText` leaves the plain-text slot empty; consumers
+that cannot accept HTML may then paste nothing.
+
+### Clear
+
+`clear()` empties the clipboard. On Android with SDK < 28 the
+underlying platform API is unavailable and the binding falls back
+to writing an empty string — be aware that on those versions the
+clipboard will still contain a (zero-length) text item afterwards
+rather than being truly empty.
+
+```rescript
+await Cb.clear()
+```
+
+## Compatibility
+
+| Component | Supported range |
+|---|---|
+| Upstream `@tauri-apps/plugin-clipboard-manager` | `^2.0.0` (peer) |
+| Rust `tauri-plugin-clipboard-manager` | `2.x` |
+| `@rescript-tauri/core` | `^0.1.0` (peer) |
+| ReScript | `>=12.0.0` |
+| `@rescript/core` | `>=1.6.0` |
+| OS | Linux / macOS / Windows (image and HTML APIs unsupported on Android / iOS) |
+
+## See also
+
+- Source:
+  [`packages/plugin-clipboard-manager`](https://github.com/Nagatatz/rescript-tauri/tree/main/packages/plugin-clipboard-manager)
+- Package README:
+  [`packages/plugin-clipboard-manager/README.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/plugin-clipboard-manager/README.md)
+- Image type (peer-dep reuse):
+  [`packages/core/src/Image.resi`](https://github.com/Nagatatz/rescript-tauri/blob/main/packages/core/src/Image.resi)
+- Upstream docs:
+  [Tauri 2.x clipboard plugin](https://v2.tauri.app/plugin/clipboard/)

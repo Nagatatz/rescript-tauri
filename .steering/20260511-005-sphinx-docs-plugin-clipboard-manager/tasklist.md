@@ -42,17 +42,17 @@
 
 ### Checkpoint 4: HTML + Clear + index/installation 整合 + 旁証
 
-- [ ] `### HTML APIs` サブ節（`writeHtml(html, ~altText?, ())` シグネチャ説明 + リッチテキスト use case）
-- [ ] `### Clear` サブ節（Android < SDK 28 fallback 注意）
-- [ ] `## Compatibility` 表
-- [ ] `## See also` 節（README / 上流 docs / Image.resi）
-- [ ] `sphinx-docs/user/index.md` の Phase 2 表に plugin-clipboard-manager 行追加 + toctree に挿入
-- [ ] `sphinx-docs/user/installation.md` の note 句から plugin-clipboard-manager を除外し、ガイド完成リンク列へ移動
-- [ ] cross-ref 検証:
-  - `installation.md` から `user/plugin-clipboard-manager` への解決
-  - `Core.Image` への external link が GitHub 上で 404 にならない事を URL 形式（`/blob/main/...`）で担保
-- [ ] `pnpm run check` pass
-- [ ] コミット: `📝 Add plugin-clipboard-manager HTML/clear APIs + index/installation cross-refs`
+- [x] `### HTML APIs` サブ節（`writeHtml(html, ~altText?, ())` シグネチャ説明 + リッチテキスト use case）
+- [x] `### Clear` サブ節（Android < SDK 28 fallback 注意）
+- [x] `## Compatibility` 表
+- [x] `## See also` 節（README / 上流 docs / Image.resi）
+- [x] `sphinx-docs/user/index.md` の Phase 2 表に plugin-clipboard-manager 行追加 + toctree に挿入
+- [x] `sphinx-docs/user/installation.md` の note 句から plugin-clipboard-manager を除外し、ガイド完成リンク列へ移動
+- [x] cross-ref 検証:
+  - `installation.md` から `user/plugin-clipboard-manager` への解決 (toctree + 直接リンク両方)
+  - `Core.Image` への external link が URL 形式 `/blob/main/packages/core/src/Image.resi` を使用、対象ファイルがローカルに存在することを確認
+- [x] `pnpm run check` pass (pre-existing biome "no-files" no-op on docs-only changes)
+- [x] コミット: `📝 Add plugin-clipboard-manager HTML/clear APIs + index/installation cross-refs`
 
 ## Phase 3: マージ前
 
