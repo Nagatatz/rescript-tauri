@@ -29,7 +29,21 @@ myst_enable_extensions = [
     "deflist",
     "fieldlist",
     "attrs_inline",
+    "substitution",
 ]
+
+# Shared MyST substitutions reused across plugin user guides. The
+# `phase_2_note` text appears verbatim inside an admonition on every
+# `sphinx-docs/user/plugin-*.md` page; centralising it here means a
+# single edit covers all guides when Phase 2 ships to npm.
+myst_substitutions = {
+    "phase_2_note": (
+        "The Phase 2 implementation of this package is feature-complete in "
+        "`main`. Its first npm publish is scheduled alongside the other "
+        "Phase 2 packages. Until then, consume it via the source repository "
+        "or a workspace link."
+    ),
+}
 
 # Source file suffixes
 source_suffix = {
