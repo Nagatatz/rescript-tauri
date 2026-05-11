@@ -56,14 +56,15 @@
 
 ## Phase 4: 検証
 
-- [ ] T4.1 `git diff main..HEAD --name-only` で差分が `examples/plugin-shell-demo/**`, `Cargo.toml`, `docs/repository-structure.md`, `sphinx-docs/user/plugin-shell.md`, `.steering/20260511-008-.../*.md` に限定されていることを確認
-- [ ] T4.2 `pnpm exec biome check` (`.json` / `.mjs` 対象) が green
-- [ ] T4.3 `pnpm --filter plugin-shell-demo build` 再実行で green（リネーム後の整合性確認）
-- [ ] T4.4 `cargo check --workspace` はローカル `cargo` 不在のためスキップ。CI `examples-build.yml` に委ねる
+- [x] T4.1 `git diff main..HEAD --name-only` で差分が `examples/plugin-shell-demo/**`, `Cargo.toml`, `docs/repository-structure.md`, `sphinx-docs/user/plugin-shell.md`, `.steering/20260511-008-.../*.md`, `pnpm-lock.yaml` の 22 ファイルに限定されていることを確認
+- [x] T4.2 `pnpm exec biome check examples/plugin-shell-demo/{package.json,rescript.json,src-tauri/{capabilities/default.json,tauri.conf.json},src/main.mjs} Cargo.toml` で 3 ファイル green（hand-written JSON / mjs のみ対象）
+- [x] T4.3 `pnpm --filter plugin-shell-demo build` 既存 build artifacts を保持して green（"Compiled 0 modules" = no recompile needed）
+- [x] T4.4 `cargo check --workspace` はローカル `cargo` 不在のためスキップ。CI `examples-build.yml` (Linux / macOS / Windows 3 OS マトリクス) に委ねる
+- [x] T4.5 実装中の 2 度目の `git merge main` (aea0a30) で steering 20260511-007 plugin-http user guide の追加を取り込み（auto-merge、conflict なし）
 
 ## Phase 5: マージ
 
-- [ ] T5.1 tasklist.md Phase 0〜4 を `[x]` に更新
+- [x] T5.1 tasklist.md Phase 0〜4 を `[x]` に更新
 - [ ] T5.2 **コミット**: `📝 Mark steering 20260511-008 tasklist complete`
 - [ ] T5.3 `AskUserQuestion` でユーザーに main へのマージ可否を確認
 - [ ] T5.4 承認後、main 側の未追跡 `.steering/20260511-006-example-plugin-shell-demo/`（worktree 作成前の旧番号での残骸）を削除。さらに `.steering/20260511-008-example-plugin-shell-demo/` も未追跡で残っていれば削除
