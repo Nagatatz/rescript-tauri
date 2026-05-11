@@ -1,0 +1,480 @@
+# Japanese translations for rescript-tauri docs.
+# Copyright (C) 2026, Nagatatz and rescript-tauri contributors
+# This file is distributed under the same license as the rescript-tauri
+# package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: rescript-tauri \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-11 09:21+0900\n"
+"PO-Revision-Date: 2026-05-11 10:00+0900\n"
+"Last-Translator: rescript-tauri contributors\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../user/plugin-shell.md:1
+msgid "`@rescript-tauri/plugin-shell`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:3
+msgid ""
+"ReScript bindings for the [Tauri 2.x shell "
+"plugin](https://v2.tauri.app/plugin/shell/) — spawn child processes, "
+"stream stdout / stderr, and open files / URLs with the OS-default app."
+msgstr ""
+
+#: ../../user/plugin-shell.md:9
+msgid ""
+"The Phase 2 implementation is feature-complete in `main`. The first npm "
+"publish (`plugin-shell-v0.1.0`) is scheduled alongside the other Phase 2 "
+"packages. Until then, consume `@rescript-tauri/plugin-shell` via the "
+"source repository or a workspace link."
+msgstr ""
+
+#: ../../user/plugin-shell.md:16
+msgid "Install"
+msgstr "インストール"
+
+#: ../../user/plugin-shell.md:22
+msgid ""
+"`@rescript-tauri/plugin-shell` declares both `@rescript-tauri/core` and "
+"`@tauri-apps/plugin-shell` as `peerDependencies`, so you control each "
+"upstream version."
+msgstr ""
+
+#: ../../user/plugin-shell.md:26
+msgid "Add the package to `dependencies` in your `rescript.json`:"
+msgstr ""
+
+#: ../../user/plugin-shell.md:37
+msgid "On the Rust side, add the plugin crate and register it on the builder:"
+msgstr ""
+
+#: ../../user/plugin-shell.md:56
+msgid "Capabilities"
+msgstr "Capability 設定"
+
+#: ../../user/plugin-shell.md:58
+msgid ""
+"Tauri 2.x requires every shell operation to be granted a capability. The "
+"minimum set for spawning `ls` and opening `http(s)` URLs is:"
+msgstr ""
+
+#: ../../user/plugin-shell.md:82
+msgid ""
+"Each program you intend to spawn must be listed under `shell:allow-"
+"execute` with a matching `name`. URLs passed to `openPath` must match one"
+" of the `shell:allow-open` regex patterns. See the upstream [scope and "
+"permissions reference](https://v2.tauri.app/plugin/shell/#scope-and-"
+"permissions) for the full grammar."
+msgstr ""
+
+#: ../../user/plugin-shell.md:89
+msgid "Minimal example"
+msgstr "最小サンプル"
+
+#: ../../user/plugin-shell.md:97
+msgid ""
+"`openPath` returns `promise<unit>`; the underlying call rejects when the "
+"URL fails the configured `shell:allow-open` regex."
+msgstr ""
+
+#: ../../user/plugin-shell.md:100
+msgid "Public API"
+msgstr "公開 API"
+
+#: ../../user/plugin-shell.md:8
+msgid "Symbol"
+msgstr "シンボル"
+
+#: ../../user/plugin-shell.md:8
+msgid "Returns"
+msgstr "戻り値"
+
+#: ../../user/plugin-shell.md:8
+msgid "Purpose"
+msgstr "用途"
+
+#: ../../user/plugin-shell.md:8
+msgid "`openPath`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`promise<unit>`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "Open a URL / path with the OS-default app (or `~openWith`)"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`Command.create` / `Command.sidecar`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`Command.t<string>`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "Build a UTF-8 command"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`Command.createRaw` / `Command.sidecarRaw`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`Command.t<Uint8Array.t>`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "Build a bytes command (`encoding: \"raw\"`)"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`Command.execute`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`promise<childProcess<'o>>`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "Run to completion, collect output"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`Command.spawn`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`promise<Child.t>`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "Start the command, return a handle"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`Command.onClose` / `Command.onError`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`Command.t<'o>`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "Subscribe to lifecycle events"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`Command.onStdoutData` / `Command.onStderrData`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "Subscribe to streamed output"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`Command.removeAllListeners`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "Detach all command-level listeners"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`Command.stdout` / `Command.stderr`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+#, python-brace-format
+msgid "`EventEmitter.t<{\"data\": 'o}>`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "Low-level access to the underlying event emitter"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`Child.pid` / `Child.kill` / `Child.write`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`int` / `promise<unit>` / `promise<unit>`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "Child accessors and operations"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`EventEmitter.*`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`t<'events>`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid ""
+"9 generic methods (`on` / `once` / `off` / `addListener` / "
+"`removeListener` / `removeAllListeners` / `listenerCount` / "
+"`prependListener` / `prependOnceListener`)"
+msgstr ""
+
+#: ../../user/plugin-shell.md:116
+msgid ""
+"The associated records (`spawnOptions`, `childProcess<'o>`, "
+"`terminatedPayload`) are re-exported from `PluginShell`. See [`packages"
+"/plugin-shell/src/PluginShell.resi`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/packages/plugin-shell/src/PluginShell.resi) for"
+" the full doc comments and matching upstream URLs."
+msgstr ""
+
+#: ../../user/plugin-shell.md:121
+msgid "Running commands"
+msgstr "コマンド実行"
+
+#: ../../user/plugin-shell.md:123
+msgid "One-shot execution"
+msgstr "ワンショット実行"
+
+#: ../../user/plugin-shell.md:125
+msgid ""
+"`Command.execute` resolves once the child has exited and gives you the "
+"collected output. Best for short-lived commands:"
+msgstr ""
+
+#: ../../user/plugin-shell.md:138
+#, python-brace-format
+msgid ""
+"`childProcess<'o>` carries `{code, signal, stdout, stderr}`. Both `code` "
+"and `signal` are `Nullable.t<int>` — they're mutually exclusive on Unix "
+"(signal-terminated processes report `code = null`)."
+msgstr ""
+
+#: ../../user/plugin-shell.md:142
+msgid "Background processes"
+msgstr "バックグラウンドプロセス"
+
+#: ../../user/plugin-shell.md:144
+msgid ""
+"`Command.spawn` starts the child and returns a `Child.t` handle without "
+"waiting. Combine it with `Child.write` and `Child.kill` for interactive "
+"use:"
+msgstr ""
+
+#: ../../user/plugin-shell.md:158
+msgid "`Child.pid` returns the OS-level process id."
+msgstr ""
+
+#: ../../user/plugin-shell.md:160
+msgid "Raw byte output"
+msgstr "Raw byte 出力"
+
+#: ../../user/plugin-shell.md:162
+msgid ""
+"Pass `encoding: \"raw\"` via the dedicated factory functions to receive "
+"`Uint8Array.t` instead of `string`:"
+msgstr ""
+
+#: ../../user/plugin-shell.md:173
+#, python-brace-format
+msgid ""
+"The TypeScript-level conditional return type of upstream's "
+"`Command.create({encoding: 'raw'})` is split into four ReScript functions"
+" — `Command.create` / `Command.createRaw` / `Command.sidecar` / "
+"`Command.sidecarRaw` — so the result type is always statically known."
+msgstr ""
+
+#: ../../user/plugin-shell.md:179
+msgid "Streaming output"
+msgstr "ストリーミング出力"
+
+#: ../../user/plugin-shell.md:181
+msgid ""
+"Use chained `onStdoutData` / `onStderrData` / `onClose` / `onError` to "
+"stream events from a long-running command. Each method returns the "
+"command, mirroring the upstream `Promise<this>` pattern:"
+msgstr ""
+
+#: ../../user/plugin-shell.md:205
+#, python-brace-format
+msgid ""
+"For advanced subscription patterns (`once`, `prependListener`, manual "
+"`listenerCount`, ...) reach for `Command.stdout` / `Command.stderr` "
+"directly — both return an `EventEmitter.t<{\"data\": 'o}>` you can drive "
+"with the `EventEmitter` module's 9 generic methods."
+msgstr ""
+
+#: ../../user/plugin-shell.md:211
+msgid ""
+"`Command.removeAllListeners` detaches every command-level listener "
+"(`close` / `error`). To clear stdout / stderr listeners, use "
+"`EventEmitter.removeAllListeners` on the corresponding accessor."
+msgstr ""
+
+#: ../../user/plugin-shell.md:216
+msgid "Sidecar binaries"
+msgstr "Sidecar バイナリ"
+
+#: ../../user/plugin-shell.md:218
+msgid ""
+"Sidecars are binaries bundled alongside your app and looked up through "
+"`tauri.conf.json > bundle > externalBin` instead of `PATH`. Use "
+"`Command.sidecar` (or `sidecarRaw` for bytes):"
+msgstr ""
+
+#: ../../user/plugin-shell.md:230
+msgid ""
+"The string passed to `sidecar` matches the `externalBin` entry without "
+"the target triple suffix."
+msgstr ""
+
+#: ../../user/plugin-shell.md:233
+msgid "Opening paths and URLs"
+msgstr "パス / URL を開く"
+
+#: ../../user/plugin-shell.md:235
+msgid "`openPath` opens its argument with the system's default application:"
+msgstr ""
+
+#: ../../user/plugin-shell.md:243
+msgid ""
+"Pass `~openWith` to force a specific opener (`firefox`, `chromium`, "
+"`safari`, `xdg-open`, ...). The path or URL must match a `shell:allow-"
+"open` regex — otherwise the underlying call rejects:"
+msgstr ""
+
+#: ../../user/plugin-shell.md:252
+msgid "Pitfalls"
+msgstr "注意点"
+
+#: ../../user/plugin-shell.md:254
+msgid "`openPath` rename"
+msgstr "`openPath` へのリネーム"
+
+#: ../../user/plugin-shell.md:256
+msgid ""
+"Upstream exposes this function as `open`, but ReScript reserves that "
+"identifier for module access (`open MyModule`). We re-export it as "
+"`openPath`:"
+msgstr ""
+
+#: ../../user/plugin-shell.md:268
+msgid "`Uint8Array` length"
+msgstr "`Uint8Array` の長さ取得"
+
+#: ../../user/plugin-shell.md:270
+msgid ""
+"`Uint8Array.t` in `@rescript/core` is an alias for `TypedArray.t<int>`. "
+"The length getter lives on the parent module:"
+msgstr ""
+
+#: ../../user/plugin-shell.md:279
+msgid "Scope misconfiguration"
+msgstr "Scope 設定ミス"
+
+#: ../../user/plugin-shell.md:281
+msgid ""
+"Commands fail to spawn — and `openPath` fails to launch — when the target"
+" is not allowlisted in `src-tauri/capabilities/`. The `name` field on "
+"`shell:allow-execute` must match the first argument to `Command.create` /"
+" `Command.sidecar` exactly:"
+msgstr ""
+
+#: ../../user/plugin-shell.md:293
+msgid ""
+"`Command.create(\"git\", ...)` then succeeds; `Command.create(\"Git\", "
+"...)` or `Command.create(\"/usr/bin/git\", ...)` rejects."
+msgstr ""
+
+#: ../../user/plugin-shell.md:296
+msgid "Compatibility"
+msgstr "互換性"
+
+#: ../../user/plugin-shell.md:8
+msgid "Component"
+msgstr "項目"
+
+#: ../../user/plugin-shell.md:8
+msgid "Supported range"
+msgstr "対応バージョン"
+
+#: ../../user/plugin-shell.md:8
+msgid "Upstream `@tauri-apps/plugin-shell`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`^2.3.0` (peer)"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "Rust `tauri-plugin-shell`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`2.x`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`@rescript-tauri/core`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`^0.1.0` (peer)"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "ReScript"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`>=12.0.0`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`@rescript/core`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "`>=1.6.0`"
+msgstr ""
+
+#: ../../user/plugin-shell.md:8
+msgid "OS"
+msgstr "対応 OS"
+
+#: ../../user/plugin-shell.md:8
+msgid "Linux / macOS / Windows"
+msgstr ""
+
+#: ../../user/plugin-shell.md:307
+msgid "See also"
+msgstr "関連リンク"
+
+#: ../../user/plugin-shell.md:309
+msgid ""
+"Source: [`packages/plugin-shell`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/packages/plugin-shell)"
+msgstr ""
+
+#: ../../user/plugin-shell.md:311
+msgid ""
+"Upstream docs: [Tauri 2.x shell "
+"plugin](https://v2.tauri.app/plugin/shell/)"
+msgstr ""
+
+#: ../../user/plugin-shell.md:313
+msgid ""
+"[Installation guide](installation.md) — set up `@rescript-tauri/core` "
+"first"
+msgstr ""
+
