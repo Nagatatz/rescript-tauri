@@ -1,12 +1,12 @@
 # Changelog
 
 ```{note}
-The Phase 1 / Phase 2 module sets are feature-complete in `main`.
-First publishes (`v0.1.0`, `schema-v0.1.0`, `plugin-fs-v0.1.0`,
+All packages are feature-complete in `main`. First publishes
+(`v0.1.0`, `schema-v0.1.0`, `plugin-fs-v0.1.0`,
 `plugin-dialog-v0.1.0`) are pending. Each package keeps its own
 canonical changelog under `packages/<name>/CHANGELOG.md`; this
 page collects the highlights of the pre-release state across all
-four packages.
+of them.
 ```
 
 ## `@rescript-tauri/core` (Unreleased)
@@ -122,7 +122,7 @@ single package CHANGELOG.
   `compat-tauri-latest` and `compat-rescript-prerelease` nightlies,
   `release.yml` recognizing `v*` / `schema-v*` / `plugin-fs-v*` /
   `plugin-dialog-v*` tag prefixes.
-- User guide pages for each Phase 2 package
+- User guide pages for each add-on package
   ([plugin-fs](plugin-fs.md), [plugin-dialog](plugin-dialog.md),
   [schema](schema.md)).
 
