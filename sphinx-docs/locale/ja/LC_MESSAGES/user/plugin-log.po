@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-11 14:36+0900\n"
+"POT-Creation-Date: 2026-05-11 20:29+0900\n"
 "PO-Revision-Date: 2026-05-11 10:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../../user/plugin-log.md:1
 msgid "`@rescript-tauri/plugin-log`"
-msgstr ""
+msgstr "`@rescript-tauri/plugin-log`"
 
 #: ../../user/plugin-log.md:3
 #, python-format
@@ -31,13 +31,21 @@ msgid ""
 "`attachLogger` and `attachConsole`. The 100% stable public surface of "
 "`@tauri-apps/plugin-log` v2.8.x is covered."
 msgstr ""
+"[Tauri 2.x ロギングプラグイン](https://v2.tauri.app/plugin/logging/) の "
+"ReScript バインディング。5 つのログレベル (`error` / `warn` / `info` / "
+"`debug` / `trace`) と、`attachLogger` / `attachConsole` 経由のログストリーム "
+"購読を提供します。`@tauri-apps/plugin-log` v2.8.x の安定公開 API を "
+"100% カバーします。"
 
 #: ../../user/plugin-log.md:12
 msgid ""
-"The Phase 2 implementation of this package is feature-complete in `main`."
-" Its first npm publish is scheduled alongside the other Phase 2 packages."
-" Until then, consume it via the source repository or a workspace link."
+"This package is feature-complete in `main`. Its first npm publish is "
+"scheduled alongside the other packages. Until then, consume it via the "
+"source repository or a workspace link."
 msgstr ""
+"本パッケージは `main` ブランチで機能実装が完了しています。初回 npm 公開は "
+"他のパッケージと同タイミングで予定されています。それまでは、ソース"
+"リポジトリ経由または workspace link で利用してください。"
 
 #: ../../user/plugin-log.md:14
 msgid "Install"
@@ -49,10 +57,13 @@ msgid ""
 "`@tauri-apps/plugin-log` as `peerDependencies`, so you control each "
 "upstream version."
 msgstr ""
+"`@rescript-tauri/plugin-log` は `@rescript-tauri/core` と "
+"`@tauri-apps/plugin-log` の両方を `peerDependencies` として宣言しているため、"
+"上流の各バージョンを呼び出し側で管理できます。"
 
 #: ../../user/plugin-log.md:24
 msgid "Add the package to `dependencies` in your `rescript.json`:"
-msgstr ""
+msgstr "`rescript.json` の `dependencies` に本パッケージを追加します:"
 
 #: ../../user/plugin-log.md:35
 msgid ""
@@ -61,6 +72,10 @@ msgid ""
 "webview console, a rotating log file) receive records and the global "
 "level filter:"
 msgstr ""
+"Rust 側ではプラグイン crate を追加し、builder に登録します。"
+"`tauri_plugin_log::Builder` でレコードを受け取る sink (stdout / "
+"webview コンソール / ローテーションログファイル) とグローバルレベルフィルタ"
+"を選択できます:"
 
 #: ../../user/plugin-log.md:68
 msgid ""
@@ -69,6 +84,10 @@ msgid ""
 "`attachConsole` can mirror it in the JS console, and `LogDir` writes to a"
 " platform-appropriate `$APPLOG/<bundle>.log` file."
 msgstr ""
+"上記の 3 つの `TargetKind` バリアントが最もよく使われる組み合わせです。"
+"`Stdout` はホストターミナルへ出力し、`Webview` はレコードを転送して "
+"`attachConsole` が JS コンソールに反映できるようにし、`LogDir` は"
+"プラットフォーム固有の `$APPLOG/<bundle>.log` ファイルへ書き込みます。"
 
 #: ../../user/plugin-log.md:74
 msgid "Capabilities"
@@ -79,6 +98,8 @@ msgid ""
 "Tauri 2.x requires every plugin permission to be granted explicitly. The "
 "minimal set for logging is:"
 msgstr ""
+"Tauri 2.x ではプラグインの権限をすべて明示的に許可する必要があります。"
+"ロギングに必要な最小セットは以下のとおりです:"
 
 #: ../../user/plugin-log.md:91
 msgid ""
@@ -86,6 +107,9 @@ msgid ""
 "functions, attach helpers, and the underlying `plugin:log|log` IPC "
 "command)."
 msgstr ""
+"`log:default` は本バインディングが公開するすべてのログ API "
+"(レベル関数 / attach ヘルパー / 内部の `plugin:log|log` IPC コマンド) "
+"をカバーします。"
 
 #: ../../user/plugin-log.md:95
 msgid "Minimal example"
@@ -98,6 +122,9 @@ msgid ""
 "`unlisten` is a `unit => unit` callback — invoke it to detach the "
 "subscription."
 msgstr ""
+"`attachConsole` は JS コンソール用のライターをログストリームに購読させます "
+"(stdout が見えない webview での開発時に便利です)。戻り値の `unlisten` は "
+"`unit => unit` のコールバックで、呼び出すと購読を解除できます。"
 
 #: ../../user/plugin-log.md:114
 msgid "Public API"
@@ -108,6 +135,8 @@ msgid ""
 "All seven functions are exposed under `PluginLog`, together with the "
 "numeric-enum module `LogLevel`:"
 msgstr ""
+"7 つの関数すべてが `PluginLog` 配下で公開され、併せて `LogLevel` バリアント"
+"モジュールも公開されます:"
 
 #: ../../user/plugin-log.md:10
 msgid "Symbol"
@@ -119,61 +148,61 @@ msgstr "用途"
 
 #: ../../user/plugin-log.md:10
 msgid "`error` / `warn` / `info` / `debug` / `trace`"
-msgstr ""
+msgstr "`error` / `warn` / `info` / `debug` / `trace`"
 
 #: ../../user/plugin-log.md:10
 msgid "Emit a record at the given level"
-msgstr ""
+msgstr "指定したレベルでレコードを出力します"
 
 #: ../../user/plugin-log.md:10
 msgid "`attachLogger`"
-msgstr ""
+msgstr "`attachLogger`"
 
 #: ../../user/plugin-log.md:10
 msgid "Subscribe a callback to every record"
-msgstr ""
+msgstr "すべてのレコードにコールバックを購読させます"
 
 #: ../../user/plugin-log.md:10
 msgid "`attachConsole`"
-msgstr ""
+msgstr "`attachConsole`"
 
 #: ../../user/plugin-log.md:10
 msgid "Forward every record to the JS console"
-msgstr ""
+msgstr "すべてのレコードを JS コンソールへ転送します"
 
 #: ../../user/plugin-log.md:10
 #, python-brace-format
-msgid "`LogLevel.{trace, debug_, info_, warn_, error_}`"
-msgstr ""
+msgid "`LogLevel.{Trace, Debug, Info, Warn, Error}`"
+msgstr "`LogLevel.{Trace, Debug, Info, Warn, Error}`"
 
 #: ../../user/plugin-log.md:10
-msgid "Numeric level constants (1..5)"
-msgstr ""
+msgid "`@unboxed` variant carrying the numeric level (1..5)"
+msgstr "数値レベル (1..5) を保持する `@unboxed` バリアント"
 
 #: ../../user/plugin-log.md:10
 msgid "`logOptions`"
-msgstr ""
+msgstr "`logOptions`"
 
 #: ../../user/plugin-log.md:10
 msgid "Optional metadata record passed to a log call"
-msgstr ""
+msgstr "ログ呼び出しに渡せる、メタデータのオプショナルレコード"
 
 #: ../../user/plugin-log.md:10
 msgid "`recordPayload`"
-msgstr ""
+msgstr "`recordPayload`"
 
 #: ../../user/plugin-log.md:10
 #, python-brace-format
 msgid "`{level, message}` delivered to `attachLogger`'s callback"
-msgstr ""
+msgstr "`attachLogger` のコールバックに渡される `{level, message}`"
 
 #: ../../user/plugin-log.md:10
 msgid "`unlisten`"
-msgstr ""
+msgstr "`unlisten`"
 
 #: ../../user/plugin-log.md:10
 msgid "`unit => unit` returned by `attachLogger` / `attachConsole`"
-msgstr ""
+msgstr "`attachLogger` / `attachConsole` が返す `unit => unit`"
 
 #: ../../user/plugin-log.md:129
 msgid "Level functions"
@@ -181,25 +210,27 @@ msgstr "レベル別関数"
 
 #: ../../user/plugin-log.md:131
 msgid "Each of the five level functions has the same shape:"
-msgstr ""
+msgstr "5 つのレベル関数はいずれも同じシグネチャを持ちます:"
 
 #: ../../user/plugin-log.md:141
 msgid ""
 "The labeled `~options` argument is optional. When provided it attaches "
 "per-call metadata that the Rust side records alongside the message:"
 msgstr ""
+"ラベル引数 `~options` はオプションです。指定するとメッセージと一緒に "
+"Rust 側で記録される、呼び出しごとのメタデータを付与できます:"
 
 #: ../../user/plugin-log.md:159
 msgid "`logOptions` fields:"
-msgstr ""
+msgstr "`logOptions` のフィールド:"
 
 #: ../../user/plugin-log.md:10
 msgid "Field"
-msgstr ""
+msgstr "フィールド"
 
 #: ../../user/plugin-log.md:10
 msgid "Type"
-msgstr ""
+msgstr "型"
 
 #: ../../user/plugin-log.md:10
 msgid "Notes"
@@ -207,184 +238,187 @@ msgstr "備考"
 
 #: ../../user/plugin-log.md:10
 msgid "`file`"
-msgstr ""
+msgstr "`file`"
 
 #: ../../user/plugin-log.md:10
 msgid "`string` (optional)"
-msgstr ""
+msgstr "`string` (オプション)"
 
 #: ../../user/plugin-log.md:10
 msgid "Source file the call originated from"
-msgstr ""
+msgstr "呼び出し元のソースファイル"
 
 #: ../../user/plugin-log.md:10
 msgid "`line`"
-msgstr ""
+msgstr "`line`"
 
 #: ../../user/plugin-log.md:10
 msgid "`int` (optional)"
-msgstr ""
+msgstr "`int` (オプション)"
 
 #: ../../user/plugin-log.md:10
 msgid "Source line number"
-msgstr ""
+msgstr "ソースの行番号"
 
 #: ../../user/plugin-log.md:10
 msgid "`keyValues`"
-msgstr ""
+msgstr "`keyValues`"
 
 #: ../../user/plugin-log.md:10
 msgid "`Dict.t<string>` (optional)"
-msgstr ""
+msgstr "`Dict.t<string>` (オプション)"
 
 #: ../../user/plugin-log.md:10
 msgid "Free-form structured fields appended to the record"
-msgstr ""
+msgstr "レコードに付与する、自由形式の構造化フィールド"
 
 #: ../../user/plugin-log.md:167
 msgid ""
 "`@rescript/core`'s `Dict.t<string>` maps to a plain JS object on output, "
 "which the upstream plugin reads as the structured-fields payload."
 msgstr ""
+"`@rescript/core` の `Dict.t<string>` は出力時に素の JS オブジェクトへ"
+"マッピングされ、上流プラグインがそれを構造化フィールドのペイロードとして"
+"読み取ります。"
 
 #: ../../user/plugin-log.md:171
-msgid "Numeric `LogLevel` constants"
-msgstr "`LogLevel` の数値定数"
+msgid "`LogLevel.t` variant"
+msgstr "`LogLevel.t` バリアント"
 
 #: ../../user/plugin-log.md:173
 msgid ""
-"`LogLevel` exposes the upstream numeric enum as `int` named constants so "
-"you can compare against `recordPayload.level` or pass them to host-level "
-"integrations:"
+"`LogLevel` exposes the upstream numeric enum as an `@unboxed` variant "
+"with `@as(N)` annotations, so the runtime representation is the bare "
+"integer while ReScript code uses constructor names:"
 msgstr ""
+"`LogLevel` は上流の数値 enum を `@as(N)` 付きの `@unboxed` バリアントとして"
+"公開します。ランタイム表現は素の整数ですが、ReScript 側ではコンストラクタ名"
+"で扱えます:"
 
 #: ../../user/plugin-log.md:10
-msgid "Constant"
-msgstr ""
+msgid "Constructor"
+msgstr "コンストラクタ"
 
 #: ../../user/plugin-log.md:10
-msgid "Upstream value"
-msgstr ""
+msgid "Wire value"
+msgstr "ワイヤ値"
 
 #: ../../user/plugin-log.md:10
-msgid "`trace`"
-msgstr ""
+msgid "`Trace`"
+msgstr "`Trace`"
 
 #: ../../user/plugin-log.md:10
 msgid "`1`"
-msgstr ""
+msgstr "`1`"
 
 #: ../../user/plugin-log.md:10
-msgid "`debug_`"
-msgstr ""
+msgid "`Debug`"
+msgstr "`Debug`"
 
 #: ../../user/plugin-log.md:10
 msgid "`2`"
-msgstr ""
+msgstr "`2`"
 
 #: ../../user/plugin-log.md:10
-msgid "`info_`"
-msgstr ""
+msgid "`Info`"
+msgstr "`Info`"
 
 #: ../../user/plugin-log.md:10
 msgid "`3`"
-msgstr ""
+msgstr "`3`"
 
 #: ../../user/plugin-log.md:10
-msgid "`warn_`"
-msgstr ""
+msgid "`Warn`"
+msgstr "`Warn`"
 
 #: ../../user/plugin-log.md:10
 msgid "`4`"
-msgstr ""
+msgstr "`4`"
 
 #: ../../user/plugin-log.md:10
-msgid "`error_`"
-msgstr ""
+msgid "`Error`"
+msgstr "`Error`"
 
 #: ../../user/plugin-log.md:10
 msgid "`5`"
-msgstr ""
+msgstr "`5`"
 
 #: ../../user/plugin-log.md:193
 msgid ""
-"The trailing underscores on `debug_` / `info_` / `warn_` / `error_` avoid"
-" the `$$debug` / `$$info` / `$$warn` / `$$error` escapes ReScript would "
-"otherwise emit for reserved JavaScript keywords. `trace` is unchanged."
+"Use `switch` over `recordPayload.level` for exhaustive matching — the "
+"compiler will warn if a case is missed when a new level is added "
+"upstream."
 msgstr ""
+"`recordPayload.level` には `switch` を使って網羅的にマッチさせてください。"
+"上流で新しいレベルが追加された場合、ケースが漏れているとコンパイラが警告"
+"します。"
 
-#: ../../user/plugin-log.md:198
+#: ../../user/plugin-log.md:197
 msgid "`attachLogger` / `attachConsole`"
 msgstr "`attachLogger` / `attachConsole`"
 
-#: ../../user/plugin-log.md:205
+#: ../../user/plugin-log.md:204
 msgid ""
 "`attachLogger` runs your callback for every record the Rust side emits. "
-"Compare `record.level` against `LogLevel` constants to branch:"
+"Pattern-match on `record.level`:"
 msgstr ""
+"`attachLogger` は Rust 側が出力するすべてのレコードに対してコールバックを"
+"実行します。`record.level` でパターンマッチします:"
 
-#: ../../user/plugin-log.md:227
+#: ../../user/plugin-log.md:223
 msgid ""
 "`attachConsole` is a convenience helper that wires the records to "
 "`console.log` / `console.warn` / `console.error` based on level — useful "
 "for mirroring Rust-side logs in the webview devtools without writing the "
 "dispatcher yourself."
 msgstr ""
+"`attachConsole` はレベルに応じてレコードを `console.log` / `console.warn` / "
+"`console.error` に振り分ける便利ヘルパーです。Rust 側のログを webview の "
+"devtools にミラーしたいけれど振り分けを自分で書きたくない、というときに"
+"使えます。"
 
-#: ../../user/plugin-log.md:232
+#: ../../user/plugin-log.md:228
 msgid ""
 "Both functions return a `promise<unlisten>`. Always await the promise "
 "before treating the subscription as live, and call the returned "
 "`unlisten()` once when you're done — multiple listeners can be attached "
 "in parallel but they are not de-duplicated."
 msgstr ""
+"両関数は `promise<unlisten>` を返します。購読が有効になったとみなす前に "
+"必ず promise を await し、不要になったら戻り値の `unlisten()` を 1 回呼んで"
+"ください。複数のリスナーを並列に attach できますが、重複排除はされません。"
 
-#: ../../user/plugin-log.md:237
+#: ../../user/plugin-log.md:233
 msgid "Pitfalls"
 msgstr "注意点"
 
-#: ../../user/plugin-log.md:239
-msgid "`LogLevel` constants are suffixed"
-msgstr "`LogLevel` 定数の接尾辞"
-
-#: ../../user/plugin-log.md:241
-msgid ""
-"Four of the five `LogLevel` constants carry a trailing underscore — "
-"`debug_` / `info_` / `warn_` / `error_` — because the bare names are "
-"reserved words in the JavaScript output. Without the suffix ReScript "
-"would emit `$$debug` / `$$info` / `$$warn` / `$$error`, which is awkward "
-"to read in stack traces and breaks interop with hand-written JS. `trace` "
-"has no conflict and is unchanged."
-msgstr ""
-
-#: ../../user/plugin-log.md:249
-msgid ""
-"The top-level log functions (`PluginLog.error`, `PluginLog.info`, …) are "
-"*not* suffixed; only the `LogLevel` numeric constants are."
-msgstr ""
-
-#: ../../user/plugin-log.md:252
+#: ../../user/plugin-log.md:235
 msgid "Log calls are async — await them"
 msgstr "ログ呼び出しは async — await が必要"
 
-#: ../../user/plugin-log.md:254
+#: ../../user/plugin-log.md:237
 msgid ""
 "The five level functions return `promise<unit>`, not `unit`. Forgetting "
 "to `await` swallows errors silently and can race against process "
 "shutdown:"
 msgstr ""
+"5 つのレベル関数は `unit` ではなく `promise<unit>` を返します。"
+"`await` を忘れるとエラーが黙って飲み込まれ、プロセス終了とレースする"
+"可能性があります:"
 
-#: ../../user/plugin-log.md:266
+#: ../../user/plugin-log.md:249
 msgid ""
 "If you do not need to wait for delivery, bind the promise to `_ignore` "
 "explicitly so the intent is visible at the call site."
 msgstr ""
+"配送を待つ必要がない場合は、promise を明示的に `_ignore` に束縛し、"
+"呼び出し側に意図が伝わるようにしてください。"
 
-#: ../../user/plugin-log.md:269
+#: ../../user/plugin-log.md:252
 msgid "`attachLogger` / `attachConsole` are not covered by `Mocks.mockIPC`"
 msgstr "`attachLogger` / `attachConsole` は `Mocks.mockIPC` ではテストできない"
 
-#: ../../user/plugin-log.md:271
+#: ../../user/plugin-log.md:254
 msgid ""
 "The two attach helpers subscribe via "
 "`__TAURI_INTERNALS__.transformCallback`, not the regular IPC command "
@@ -393,15 +427,24 @@ msgid ""
 "see `packages/plugin-log/tests/runtime/plugin_log.test.mjs` for the "
 "working pattern."
 msgstr ""
+"この 2 つの attach ヘルパーは通常の IPC コマンドブリッジではなく "
+"`__TAURI_INTERNALS__.transformCallback` 経由で購読するため、"
+"`Mocks.mockIPC` ではインターセプトできません。ログストリーミングを検証する"
+"ランタイムテストでは `globalThis.__TAURI_INTERNALS__` を直接 stub します。"
+"動作する実装例は `packages/plugin-log/tests/runtime/plugin_log.test.mjs` "
+"を参照してください。"
 
-#: ../../user/plugin-log.md:279
+#: ../../user/plugin-log.md:262
 msgid ""
 "The level functions themselves (`error` / `warn` / `info` / `debug` / "
 "`trace`) go through the normal Tauri IPC (`plugin:log|log`) and *are* "
 "mockable with `Mocks.mockIPC`."
 msgstr ""
+"レベル関数 (`error` / `warn` / `info` / `debug` / `trace`) 自体は通常の "
+"Tauri IPC (`plugin:log|log`) を経由するため、`Mocks.mockIPC` で "
+"モック可能 *です*。"
 
-#: ../../user/plugin-log.md:283
+#: ../../user/plugin-log.md:266
 msgid "Compatibility"
 msgstr "互換性"
 
@@ -415,43 +458,43 @@ msgstr "対応バージョン"
 
 #: ../../user/plugin-log.md:10
 msgid "Upstream `@tauri-apps/plugin-log`"
-msgstr ""
+msgstr "上流 `@tauri-apps/plugin-log`"
 
 #: ../../user/plugin-log.md:10
 msgid "`^2.0.0` (peer)"
-msgstr ""
+msgstr "`^2.0.0` (peer)"
 
 #: ../../user/plugin-log.md:10
 msgid "Rust `tauri-plugin-log`"
-msgstr ""
+msgstr "Rust `tauri-plugin-log`"
 
 #: ../../user/plugin-log.md:10
 msgid "`2.x`"
-msgstr ""
+msgstr "`2.x`"
 
 #: ../../user/plugin-log.md:10
 msgid "`@rescript-tauri/core`"
-msgstr ""
+msgstr "`@rescript-tauri/core`"
 
 #: ../../user/plugin-log.md:10
 msgid "`^0.1.0` (peer)"
-msgstr ""
+msgstr "`^0.1.0` (peer)"
 
 #: ../../user/plugin-log.md:10
 msgid "ReScript"
-msgstr ""
+msgstr "ReScript"
 
 #: ../../user/plugin-log.md:10
 msgid "`>=12.0.0`"
-msgstr ""
+msgstr "`>=12.0.0`"
 
 #: ../../user/plugin-log.md:10
 msgid "`@rescript/core`"
-msgstr ""
+msgstr "`@rescript/core`"
 
 #: ../../user/plugin-log.md:10
 msgid "`>=1.6.0`"
-msgstr ""
+msgstr "`>=1.6.0`"
 
 #: ../../user/plugin-log.md:10
 msgid "OS"
@@ -459,36 +502,52 @@ msgstr "対応 OS"
 
 #: ../../user/plugin-log.md:10
 msgid "Linux / macOS / Windows"
-msgstr ""
+msgstr "Linux / macOS / Windows"
 
-#: ../../user/plugin-log.md:294
+#: ../../user/plugin-log.md:277
 msgid "See also"
 msgstr "関連リンク"
 
-#: ../../user/plugin-log.md:296
+#: ../../user/plugin-log.md:279
+msgid ""
+"Live demo: [`examples/plugin-log-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-log-demo)"
+msgstr ""
+"動作デモ: [`examples/plugin-log-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-log-demo)"
+
+#: ../../user/plugin-log.md:281
 msgid ""
 "Source: [`packages/plugin-log`](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/packages/plugin-log)"
 msgstr ""
+"ソース: [`packages/plugin-log`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/packages/plugin-log)"
 
-#: ../../user/plugin-log.md:298
+#: ../../user/plugin-log.md:283
 msgid ""
 "Package README: [`packages/plugin-"
 "log/README.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/packages/plugin-log/README.md)"
 msgstr ""
+"パッケージ README: [`packages/plugin-"
+"log/README.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/packages/plugin-log/README.md)"
 
-#: ../../user/plugin-log.md:300
+#: ../../user/plugin-log.md:285
 msgid ""
 "Upstream docs: [Tauri 2.x logging "
 "plugin](https://v2.tauri.app/plugin/logging/)"
 msgstr ""
+"上流ドキュメント: [Tauri 2.x ロギングプラグイン](https://v2.tauri.app/plugin/logging/)"
 
-#: ../../user/plugin-log.md:302
+#: ../../user/plugin-log.md:287
 msgid ""
 "Upstream JS reference: [log "
 "module](https://v2.tauri.app/reference/javascript/log/)"
 msgstr ""
+"上流 JS リファレンス: [log "
+"module](https://v2.tauri.app/reference/javascript/log/)"
 
 #~ msgid ""
 #~ "The Phase 2 implementation is "
@@ -498,5 +557,94 @@ msgstr ""
 #~ " packages. Until then, consume "
 #~ "`@rescript-tauri/plugin-log` via the source"
 #~ " repository or a workspace link."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The Phase 2 implementation of this "
+#~ "package is feature-complete in `main`."
+#~ " Its first npm publish is scheduled"
+#~ " alongside the other Phase 2 "
+#~ "packages. Until then, consume it via "
+#~ "the source repository or a workspace "
+#~ "link."
+#~ msgstr ""
+
+#~ msgid "`LogLevel.{trace, debug_, info_, warn_, error_}`"
+#~ msgstr ""
+
+#~ msgid "Numeric level constants (1..5)"
+#~ msgstr ""
+
+#~ msgid "Numeric `LogLevel` constants"
+#~ msgstr "`LogLevel` の数値定数"
+
+#~ msgid ""
+#~ "`LogLevel` exposes the upstream numeric "
+#~ "enum as `int` named constants so "
+#~ "you can compare against `recordPayload.level`"
+#~ " or pass them to host-level "
+#~ "integrations:"
+#~ msgstr ""
+
+#~ msgid "Constant"
+#~ msgstr ""
+
+#~ msgid "Upstream value"
+#~ msgstr ""
+
+#~ msgid "`trace`"
+#~ msgstr ""
+
+#~ msgid "`debug_`"
+#~ msgstr ""
+
+#~ msgid "`info_`"
+#~ msgstr ""
+
+#~ msgid "`warn_`"
+#~ msgstr ""
+
+#~ msgid "`error_`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The trailing underscores on `debug_` /"
+#~ " `info_` / `warn_` / `error_` avoid"
+#~ " the `$$debug` / `$$info` / `$$warn`"
+#~ " / `$$error` escapes ReScript would "
+#~ "otherwise emit for reserved JavaScript "
+#~ "keywords. `trace` is unchanged."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "`attachLogger` runs your callback for "
+#~ "every record the Rust side emits. "
+#~ "Compare `record.level` against `LogLevel` "
+#~ "constants to branch:"
+#~ msgstr ""
+
+#~ msgid "`LogLevel` constants are suffixed"
+#~ msgstr "`LogLevel` 定数の接尾辞"
+
+#~ msgid ""
+#~ "Four of the five `LogLevel` constants"
+#~ " carry a trailing underscore — "
+#~ "`debug_` / `info_` / `warn_` / "
+#~ "`error_` — because the bare names "
+#~ "are reserved words in the JavaScript "
+#~ "output. Without the suffix ReScript "
+#~ "would emit `$$debug` / `$$info` / "
+#~ "`$$warn` / `$$error`, which is awkward"
+#~ " to read in stack traces and "
+#~ "breaks interop with hand-written JS. "
+#~ "`trace` has no conflict and is "
+#~ "unchanged."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The top-level log functions "
+#~ "(`PluginLog.error`, `PluginLog.info`, …) are "
+#~ "*not* suffixed; only the `LogLevel` "
+#~ "numeric constants are."
 #~ msgstr ""
 

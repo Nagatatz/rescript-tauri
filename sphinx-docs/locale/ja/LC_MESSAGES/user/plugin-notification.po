@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-11 14:36+0900\n"
+"POT-Creation-Date: 2026-05-11 20:29+0900\n"
 "PO-Revision-Date: 2026-05-11 10:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../../user/plugin-notification.md:1
 msgid "`@rescript-tauri/plugin-notification`"
-msgstr ""
+msgstr "`@rescript-tauri/plugin-notification`"
 
 #: ../../user/plugin-notification.md:3
 #, python-format
@@ -30,13 +30,20 @@ msgid ""
 " scheduling, channels, and tap-action types. The 100% stable public "
 "surface of `@tauri-apps/plugin-notification` v2.3.x is covered."
 msgstr ""
+"[Tauri 2.x 通知プラグイン](https://v2.tauri.app/plugin/notification/) の "
+"ReScript バインディング。トースト通知、スケジュール、チャネル、タップ"
+"アクションタイプを提供します。`@tauri-apps/plugin-notification` v2.3.x "
+"の安定公開 API を 100% カバーします。"
 
 #: ../../user/plugin-notification.md:11
 msgid ""
-"The Phase 2 implementation of this package is feature-complete in `main`."
-" Its first npm publish is scheduled alongside the other Phase 2 packages."
-" Until then, consume it via the source repository or a workspace link."
+"This package is feature-complete in `main`. Its first npm publish is "
+"scheduled alongside the other packages. Until then, consume it via the "
+"source repository or a workspace link."
 msgstr ""
+"本パッケージは `main` ブランチで機能実装が完了しています。初回 npm 公開は "
+"他のパッケージと同タイミングで予定されています。それまでは、ソース"
+"リポジトリ経由または workspace link で利用してください。"
 
 #: ../../user/plugin-notification.md:13
 msgid "Install"
@@ -48,14 +55,17 @@ msgid ""
 "tauri/core` and `@tauri-apps/plugin-notification` as `peerDependencies`, "
 "so you control each upstream version."
 msgstr ""
+"`@rescript-tauri/plugin-notification` は `@rescript-tauri/core` と "
+"`@tauri-apps/plugin-notification` の両方を `peerDependencies` として宣言"
+"しているため、上流の各バージョンを呼び出し側で管理できます。"
 
 #: ../../user/plugin-notification.md:23
 msgid "Add the package to `dependencies` in your `rescript.json`:"
-msgstr ""
+msgstr "`rescript.json` の `dependencies` に本パッケージを追加します:"
 
 #: ../../user/plugin-notification.md:34
 msgid "On the Rust side, add the plugin crate and register it on the builder:"
-msgstr ""
+msgstr "Rust 側ではプラグイン crate を追加し、builder に登録します:"
 
 #: ../../user/plugin-notification.md:53
 msgid "Capabilities"
@@ -66,6 +76,8 @@ msgid ""
 "Tauri 2.x requires every plugin permission to be granted explicitly. The "
 "minimal set for notifications is:"
 msgstr ""
+"Tauri 2.x ではプラグインの権限をすべて明示的に許可する必要があります。"
+"通知に必要な最小セットは以下のとおりです:"
 
 #: ../../user/plugin-notification.md:70
 msgid ""
@@ -74,6 +86,9 @@ msgid ""
 "registration, pending / active management, and Android channel "
 "management)."
 msgstr ""
+"`notification:default` は本バインディングが公開するすべての通知 API "
+"(権限照会 / 送信 / スケジュール / アクションタイプ登録 / pending・active 管理 / "
+"Android チャネル管理) をカバーします。"
 
 #: ../../user/plugin-notification.md:75
 msgid "Permission flow"
@@ -85,6 +100,9 @@ msgid ""
 "delivery succeeds. Always gate `sendNotification` calls behind a "
 "permission check:"
 msgstr ""
+"ほとんどのプラットフォームでは、配信が成功する前にユーザーが通知権限を許可"
+"する必要があります。`sendNotification` の呼び出しは必ず権限チェックの後ろに"
+"置いてください:"
 
 #: ../../user/plugin-notification.md:95
 msgid ""
@@ -92,6 +110,9 @@ msgid ""
 " #denied]` (`notificationPermission`). `#default` represents the \"not "
 "yet decided\" state on platforms that distinguish it from `#denied`."
 msgstr ""
+"`requestPermission` は polymorphic variant `[#default | #granted | "
+"#denied]` (`notificationPermission`) を返します。`#default` は "
+"`#denied` と区別されるプラットフォームにおける「未決定」状態を表します。"
 
 #: ../../user/plugin-notification.md:100
 msgid "Minimal example"
@@ -107,6 +128,9 @@ msgid ""
 "together with the `Schedule` factory module and the numeric-enum modules "
 "`Importance` / `Visibility`:"
 msgstr ""
+"15 個の通知関数すべてが `PluginNotification` 配下で公開され、併せて "
+"`Schedule` ファクトリモジュールと `Importance` / `Visibility` バリアント"
+"モジュールも公開されます:"
 
 #: ../../user/plugin-notification.md:9
 msgid "Symbol"
@@ -118,93 +142,93 @@ msgstr "用途"
 
 #: ../../user/plugin-notification.md:9
 msgid "`isPermissionGranted` / `requestPermission`"
-msgstr ""
+msgstr "`isPermissionGranted` / `requestPermission`"
 
 #: ../../user/plugin-notification.md:9
 msgid "Permission queries"
-msgstr ""
+msgstr "権限の照会"
 
 #: ../../user/plugin-notification.md:9
 msgid "`sendNotification` / `sendNotificationText`"
-msgstr ""
+msgstr "`sendNotification` / `sendNotificationText`"
 
 #: ../../user/plugin-notification.md:9
 msgid "Show a notification (record / string form)"
-msgstr ""
+msgstr "通知を表示します (record 形式 / string 形式)"
 
 #: ../../user/plugin-notification.md:9
 msgid "`registerActionTypes`"
-msgstr ""
+msgstr "`registerActionTypes`"
 
 #: ../../user/plugin-notification.md:9
 msgid "Declare tap-actions referenced by `options.actionTypeId`"
-msgstr ""
+msgstr "`options.actionTypeId` から参照されるタップアクションを宣言します"
 
 #: ../../user/plugin-notification.md:9
 msgid "`pending` / `cancel` / `cancelAll`"
-msgstr ""
+msgstr "`pending` / `cancel` / `cancelAll`"
 
 #: ../../user/plugin-notification.md:9
 msgid "Pending (scheduled) notification management"
-msgstr ""
+msgstr "Pending (スケジュール済み) 通知の管理"
 
 #: ../../user/plugin-notification.md:9
 msgid "`active` / `removeActive` / `removeAllActive`"
-msgstr ""
+msgstr "`active` / `removeActive` / `removeAllActive`"
 
 #: ../../user/plugin-notification.md:9
 msgid "Active (delivered) notification management"
-msgstr ""
+msgstr "Active (配信済み) 通知の管理"
 
 #: ../../user/plugin-notification.md:9
 msgid "`createChannel` / `removeChannel` / `channels`"
-msgstr ""
+msgstr "`createChannel` / `removeChannel` / `channels`"
 
 #: ../../user/plugin-notification.md:9
 msgid "Android channel management"
-msgstr ""
+msgstr "Android チャネルの管理"
 
 #: ../../user/plugin-notification.md:9
 msgid "`onNotificationReceived` / `onAction`"
-msgstr ""
+msgstr "`onNotificationReceived` / `onAction`"
 
 #: ../../user/plugin-notification.md:9
 msgid "Subscribe to delivery / tap events (returns `Core.PluginListener.t`)"
-msgstr ""
+msgstr "配信 / タップイベントを購読します (`Core.PluginListener.t` を返します)"
 
 #: ../../user/plugin-notification.md:9
 msgid "`Schedule.at` / `Schedule.interval` / `Schedule.every`"
-msgstr ""
+msgstr "`Schedule.at` / `Schedule.interval` / `Schedule.every`"
 
 #: ../../user/plugin-notification.md:9
 msgid "Build a `Schedule.t` for `options.schedule`"
-msgstr ""
+msgstr "`options.schedule` 用の `Schedule.t` を生成します"
 
 #: ../../user/plugin-notification.md:9
 #, python-brace-format
-msgid "`Importance.{none, min, low, default_, high}`"
-msgstr ""
+msgid "`Importance.{None, Min, Low, Default, High}`"
+msgstr "`Importance.{None, Min, Low, Default, High}`"
 
 #: ../../user/plugin-notification.md:9
-msgid "Android channel importance (numeric enum)"
-msgstr ""
+msgid "`@unboxed` variant: Android channel importance (`@as(0..4)`)"
+msgstr "`@unboxed` バリアント: Android チャネルの importance (`@as(0..4)`)"
 
 #: ../../user/plugin-notification.md:9
 #, python-brace-format
-msgid "`Visibility.{secret, private_, public_}`"
-msgstr ""
+msgid "`Visibility.{Secret, Private, Public}`"
+msgstr "`Visibility.{Secret, Private, Public}`"
 
 #: ../../user/plugin-notification.md:9
-msgid "Android channel visibility (numeric enum)"
-msgstr ""
+msgid "`@unboxed` variant: Android channel visibility (`@as(-1..1)`)"
+msgstr "`@unboxed` バリアント: Android チャネルの visibility (`@as(-1..1)`)"
 
 #: ../../user/plugin-notification.md:9
 msgid "`notificationPermission`"
-msgstr ""
+msgstr "`notificationPermission`"
 
 #: ../../user/plugin-notification.md:9
 msgid "`[#default | #granted | #denied]`"
-msgstr ""
+msgstr "`[#default | #granted | #denied]`"
 
 #: ../../user/plugin-notification.md:135
 msgid ""
@@ -215,6 +239,12 @@ msgid ""
 "and upstream URLs live in `packages/plugin-"
 "notification/src/PluginNotification.resi`."
 msgstr ""
+"関連する record / variant 型 (`options`, `attachment`, `action`, "
+"`actionType`, `pendingNotification`, `activeNotification`, `channel`, "
+"`scheduleInterval`, `scheduleEvery`, `removeActiveTarget`) はすべて "
+"`PluginNotification` から再エクスポートされています。各フィールドの doc "
+"コメントと上流 URL は `packages/plugin-notification/src/PluginNotification.resi` "
+"を参照してください。"
 
 #: ../../user/plugin-notification.md:142
 msgid "Schedule helpers"
@@ -222,7 +252,7 @@ msgstr "Schedule ヘルパー"
 
 #: ../../user/plugin-notification.md:144
 msgid "`Schedule.t` is an opaque type built through three factories:"
-msgstr ""
+msgstr "`Schedule.t` は 3 つのファクトリ経由で生成する opaque 型です:"
 
 #: ../../user/plugin-notification.md:157
 msgid ""
@@ -231,12 +261,19 @@ msgid ""
 "`#second` is **not** supported on iOS upstream — see [Schedule.every "
 "reference](https://v2.tauri.app/reference/javascript/notification/#scheduleevery)."
 msgstr ""
+"`Schedule.every` が受け付ける繰り返し種別は `#year` / `#month` / `#twoWeeks` / "
+"`#week` / `#day` / `#hour` / `#minute` / `#second` です。`#second` は "
+"上流の iOS では **サポートされていません** — [Schedule.every リファレンス]"
+"(https://v2.tauri.app/reference/javascript/notification/#scheduleevery) "
+"を参照してください。"
 
 #: ../../user/plugin-notification.md:162
 msgid ""
 "`scheduleInterval` follows upstream's `1=Sunday … 7=Saturday` convention "
 "for the `weekday` field."
 msgstr ""
+"`scheduleInterval` の `weekday` フィールドは上流の規約 "
+"`1=Sunday … 7=Saturday` に従います。"
 
 #: ../../user/plugin-notification.md:165
 msgid "Pitfalls"
@@ -248,7 +285,7 @@ msgstr "`sendNotification` overload の分割"
 
 #: ../../user/plugin-notification.md:169
 msgid "Upstream's TypeScript signature is:"
-msgstr ""
+msgstr "上流の TypeScript シグネチャは以下です:"
 
 #: ../../user/plugin-notification.md:175
 msgid ""
@@ -256,96 +293,114 @@ msgid ""
 " or runtime branching. The binding splits the overload into two functions"
 " whose argument types are pinned:"
 msgstr ""
+"ReScript では `Options | string` 共用体を phantom 型やランタイム分岐なしに"
+"表現できません。本バインディングは overload を、引数型を固定した 2 つの関数"
+"に分割しています:"
 
 #: ../../user/plugin-notification.md:184
-msgid "Numeric enum constants"
-msgstr "数値 enum の定数"
+msgid "`Importance` / `Visibility` variants"
+msgstr "`Importance` / `Visibility` バリアント"
 
 #: ../../user/plugin-notification.md:186
 msgid ""
-"`Importance` and `Visibility` are exposed as `int` named constants "
-"because the upstream values are numeric:"
+"`Importance.t` and `Visibility.t` are `@unboxed` variants with `@as(N)` "
+"annotations — wire-compatible with the upstream numeric enum at runtime, "
+"but exhaustively pattern-matchable in ReScript:"
 msgstr ""
+"`Importance.t` と `Visibility.t` は `@as(N)` 付きの `@unboxed` バリアント"
+"です。ランタイム上は上流の数値 enum と wire 互換ですが、ReScript からは"
+"網羅的にパターンマッチできます:"
 
 #: ../../user/plugin-notification.md:9
 msgid "Module"
-msgstr ""
+msgstr "モジュール"
 
 #: ../../user/plugin-notification.md:9
-msgid "Constants"
-msgstr ""
+msgid "Constructors"
+msgstr "コンストラクタ"
 
 #: ../../user/plugin-notification.md:9
-msgid "Upstream values"
-msgstr ""
+msgid "Wire values"
+msgstr "ワイヤ値"
 
 #: ../../user/plugin-notification.md:9
 msgid "`Importance`"
-msgstr ""
+msgstr "`Importance`"
 
 #: ../../user/plugin-notification.md:9
-msgid "`none` / `min` / `low` / `default_` / `high`"
-msgstr ""
+msgid "`None` / `Min` / `Low` / `Default` / `High`"
+msgstr "`None` / `Min` / `Low` / `Default` / `High`"
 
 #: ../../user/plugin-notification.md:9
 msgid "`0 / 1 / 2 / 3 / 4`"
-msgstr ""
+msgstr "`0 / 1 / 2 / 3 / 4`"
 
 #: ../../user/plugin-notification.md:9
 msgid "`Visibility`"
-msgstr ""
+msgstr "`Visibility`"
 
 #: ../../user/plugin-notification.md:9
-msgid "`secret` / `private_` / `public_`"
-msgstr ""
+msgid "`Secret` / `Private` / `Public`"
+msgstr "`Secret` / `Private` / `Public`"
 
 #: ../../user/plugin-notification.md:9
 msgid "`-1 / 0 / 1`"
-msgstr ""
+msgstr "`-1 / 0 / 1`"
 
-#: ../../user/plugin-notification.md:199
-msgid ""
-"The trailing underscores on `default_`, `private_`, and `public_` avoid "
-"the `$$default` / `$$private` / `$$public` escapes ReScript would "
-"otherwise emit for reserved JavaScript keywords."
-msgstr ""
+#: ../../user/plugin-notification.md:200
+msgid "Pattern-match for branching:"
+msgstr "分岐にはパターンマッチを使います:"
 
-#: ../../user/plugin-notification.md:203
+#: ../../user/plugin-notification.md:210
 msgid "Web API path, not IPC"
 msgstr "IPC ではなく Web API 経由"
 
-#: ../../user/plugin-notification.md:205
+#: ../../user/plugin-notification.md:212
 msgid ""
 "`isPermissionGranted`, `requestPermission`, `sendNotification`, and "
 "`sendNotificationText` are dispatched by upstream through the DOM "
 "`window.Notification` Web API rather than Tauri IPC. The practical "
 "consequences:"
 msgstr ""
+"`isPermissionGranted` / `requestPermission` / `sendNotification` / "
+"`sendNotificationText` は上流で Tauri IPC ではなく DOM の "
+"`window.Notification` Web API 経由でディスパッチされます。実用上の影響は"
+"以下のとおりです:"
 
-#: ../../user/plugin-notification.md:210
+#: ../../user/plugin-notification.md:217
 msgid ""
 "`Mocks.mockIPC` cannot intercept these calls. Runtime tests stub "
 "`globalThis.window.Notification` (and `Notification.requestPermission`) "
 "directly — see the package's "
 "`tests/runtime/plugin_notification.test.mjs`."
 msgstr ""
+"`Mocks.mockIPC` はこれらの呼び出しをインターセプトできません。ランタイム"
+"テストでは `globalThis.window.Notification` (および "
+"`Notification.requestPermission`) を直接 stub します。パッケージ内の "
+"`tests/runtime/plugin_notification.test.mjs` を参照してください。"
 
-#: ../../user/plugin-notification.md:214
+#: ../../user/plugin-notification.md:221
 msgid ""
 "`core:default` is not sufficient on its own; the plugin's "
 "`notification:default` permission must also be granted so the Tauri "
 "capability layer allows the Web API call."
 msgstr ""
+"`core:default` だけでは不十分です。Tauri の capability 層が Web API "
+"呼び出しを許可するよう、プラグインの `notification:default` 権限も併せて"
+"許可する必要があります。"
 
-#: ../../user/plugin-notification.md:218
+#: ../../user/plugin-notification.md:225
 msgid ""
 "The remaining functions (`pending`, `cancel`, `active`, "
 "`registerActionTypes`, channel APIs, `onNotificationReceived`, "
 "`onAction`, …) go through the regular Tauri IPC and are exercisable from "
 "`Mocks.mockIPC`."
 msgstr ""
+"残りの関数 (`pending` / `cancel` / `active` / `registerActionTypes` / "
+"チャネル API / `onNotificationReceived` / `onAction` 等) は通常の Tauri "
+"IPC を経由するため、`Mocks.mockIPC` で検証可能です。"
 
-#: ../../user/plugin-notification.md:223
+#: ../../user/plugin-notification.md:230
 msgid "Compatibility"
 msgstr "互換性"
 
@@ -359,43 +414,43 @@ msgstr "対応バージョン"
 
 #: ../../user/plugin-notification.md:9
 msgid "Upstream `@tauri-apps/plugin-notification`"
-msgstr ""
+msgstr "上流 `@tauri-apps/plugin-notification`"
 
 #: ../../user/plugin-notification.md:9
 msgid "`^2.3.0` (peer)"
-msgstr ""
+msgstr "`^2.3.0` (peer)"
 
 #: ../../user/plugin-notification.md:9
 msgid "Rust `tauri-plugin-notification`"
-msgstr ""
+msgstr "Rust `tauri-plugin-notification`"
 
 #: ../../user/plugin-notification.md:9
 msgid "`2.x`"
-msgstr ""
+msgstr "`2.x`"
 
 #: ../../user/plugin-notification.md:9
 msgid "`@rescript-tauri/core`"
-msgstr ""
+msgstr "`@rescript-tauri/core`"
 
 #: ../../user/plugin-notification.md:9
 msgid "`^0.1.0` (peer)"
-msgstr ""
+msgstr "`^0.1.0` (peer)"
 
 #: ../../user/plugin-notification.md:9
 msgid "ReScript"
-msgstr ""
+msgstr "ReScript"
 
 #: ../../user/plugin-notification.md:9
 msgid "`>=12.0.0`"
-msgstr ""
+msgstr "`>=12.0.0`"
 
 #: ../../user/plugin-notification.md:9
 msgid "`@rescript/core`"
-msgstr ""
+msgstr "`@rescript/core`"
 
 #: ../../user/plugin-notification.md:9
 msgid "`>=1.6.0`"
-msgstr ""
+msgstr "`>=1.6.0`"
 
 #: ../../user/plugin-notification.md:9
 msgid "OS"
@@ -403,29 +458,44 @@ msgstr "対応 OS"
 
 #: ../../user/plugin-notification.md:9
 msgid "Linux / macOS / Windows / iOS / Android"
-msgstr ""
+msgstr "Linux / macOS / Windows / iOS / Android"
 
-#: ../../user/plugin-notification.md:234
+#: ../../user/plugin-notification.md:241
 msgid "See also"
 msgstr "関連リンク"
 
-#: ../../user/plugin-notification.md:236
+#: ../../user/plugin-notification.md:243
+msgid ""
+"Live demo: [`examples/plugin-notification-"
+"demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
+"/plugin-notification-demo)"
+msgstr ""
+"動作デモ: [`examples/plugin-notification-"
+"demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
+"/plugin-notification-demo)"
+
+#: ../../user/plugin-notification.md:245
 msgid ""
 "Source: [`packages/plugin-notification`](https://github.com/Nagatatz"
 "/rescript-tauri/tree/main/packages/plugin-notification)"
 msgstr ""
+"ソース: [`packages/plugin-notification`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/packages/plugin-notification)"
 
-#: ../../user/plugin-notification.md:238
+#: ../../user/plugin-notification.md:247
 msgid ""
 "Upstream docs: [Tauri 2.x notification "
 "plugin](https://v2.tauri.app/plugin/notification/)"
 msgstr ""
+"上流ドキュメント: [Tauri 2.x 通知プラグイン](https://v2.tauri.app/plugin/notification/)"
 
-#: ../../user/plugin-notification.md:240
+#: ../../user/plugin-notification.md:249
 msgid ""
 "Upstream JS reference: [notification "
 "module](https://v2.tauri.app/reference/javascript/notification/)"
 msgstr ""
+"上流 JS リファレンス: [notification "
+"module](https://v2.tauri.app/reference/javascript/notification/)"
 
 #~ msgid ""
 #~ "The Phase 2 implementation is "
@@ -435,5 +505,56 @@ msgstr ""
 #~ "2 packages. Until then, consume "
 #~ "`@rescript-tauri/plugin-notification` via the "
 #~ "source repository or a workspace link."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The Phase 2 implementation of this "
+#~ "package is feature-complete in `main`."
+#~ " Its first npm publish is scheduled"
+#~ " alongside the other Phase 2 "
+#~ "packages. Until then, consume it via "
+#~ "the source repository or a workspace "
+#~ "link."
+#~ msgstr ""
+
+#~ msgid "`Importance.{none, min, low, default_, high}`"
+#~ msgstr ""
+
+#~ msgid "Android channel importance (numeric enum)"
+#~ msgstr ""
+
+#~ msgid "`Visibility.{secret, private_, public_}`"
+#~ msgstr ""
+
+#~ msgid "Android channel visibility (numeric enum)"
+#~ msgstr ""
+
+#~ msgid "Numeric enum constants"
+#~ msgstr "数値 enum の定数"
+
+#~ msgid ""
+#~ "`Importance` and `Visibility` are exposed "
+#~ "as `int` named constants because the "
+#~ "upstream values are numeric:"
+#~ msgstr ""
+
+#~ msgid "Constants"
+#~ msgstr ""
+
+#~ msgid "Upstream values"
+#~ msgstr ""
+
+#~ msgid "`none` / `min` / `low` / `default_` / `high`"
+#~ msgstr ""
+
+#~ msgid "`secret` / `private_` / `public_`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The trailing underscores on `default_`, "
+#~ "`private_`, and `public_` avoid the "
+#~ "`$$default` / `$$private` / `$$public` "
+#~ "escapes ReScript would otherwise emit "
+#~ "for reserved JavaScript keywords."
 #~ msgstr ""
 
