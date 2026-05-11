@@ -2,16 +2,16 @@
 
 ## Phase 0: 計画とセットアップ
 
-- [ ] requirements.md / design.md / tasklist.md を作成
-- [ ] `EnterWorktree` で worktree-npm-trusted-publishing を作成
-- [ ] ステアリングファイル 3 点を初回コミット
+- [x] requirements.md / design.md / tasklist.md を作成
+- [x] `EnterWorktree` で worktree-npm-trusted-publishing を作成
+- [x] ステアリングファイル 3 点を初回コミット
 
 ## Phase 1: workflow 変更
 
-- [ ] T1: `.github/workflows/release.yml` の `Determine publish mode` から `NPM_TOKEN` env と空チェック分岐を削除
-- [ ] T2: `.github/workflows/release.yml` の `Publish target package` から `NODE_AUTH_TOKEN` env を削除
-- [ ] T3: workflow の構文検証（`actionlint` インストール済みの場合は実行、未インストールならスキップ）
-- [ ] T4: 上記 T1-T3 を 1 commit にまとめてコミット
+- [x] T1: `.github/workflows/release.yml` の `Determine publish mode` から `NPM_TOKEN` env と空チェック分岐を削除
+- [x] T2: `.github/workflows/release.yml` の `Publish target package` から `NODE_AUTH_TOKEN` env を削除
+- [x] T3: workflow の構文検証（`actionlint` で OK 確認）
+- [x] T4: 上記 T1-T3 を 1 commit にまとめてコミット（dry_run description と permissions コメントも更新）
 
 ## Phase 2: リリースチェックリストの更新
 
