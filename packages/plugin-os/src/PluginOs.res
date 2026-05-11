@@ -34,8 +34,11 @@ type family = [#unix | #windows]
 @module("@tauri-apps/plugin-os") external version: unit => string = "version"
 @module("@tauri-apps/plugin-os") external family: unit => family = "family"
 
-// Renamed from upstream `type` because `type` is reserved in ReScript.
-@module("@tauri-apps/plugin-os") external osType_: unit => osType = "type"
+// `type` is reserved at the top level of a ReScript module, so the
+// upstream `type()` accessor is exposed under a submodule.
+module OsType = {
+  @module("@tauri-apps/plugin-os") external get: unit => osType = "type"
+}
 
 @module("@tauri-apps/plugin-os") external arch: unit => arch = "arch"
 @module("@tauri-apps/plugin-os") external exeExtension: unit => string = "exeExtension"

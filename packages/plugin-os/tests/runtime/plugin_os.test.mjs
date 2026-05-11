@@ -31,8 +31,8 @@ describe("PluginOs", () => {
       expect(PluginOs.family()).toBe("unix")
     })
 
-    it("osType_ returns the upstream os_type value", () => {
-      expect(PluginOs.osType_()).toBe("macos")
+    it("OsType.get returns the upstream os_type value", () => {
+      expect(PluginOs.OsType.get()).toBe("macos")
     })
 
     it("arch returns the upstream arch value", () => {

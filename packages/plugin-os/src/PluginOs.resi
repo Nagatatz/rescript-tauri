@@ -2,7 +2,7 @@
 
     Phase 2+ first iteration: 100% coverage of the stable public
     surface of `@tauri-apps/plugin-os` v2.3.2 — 7 sync getters
-    (`eol` / `platform` / `version` / `family` / `osType_` / `arch` /
+    (`eol` / `platform` / `version` / `family` / `OsType.get` / `arch` /
     `exeExtension`) plus 2 async getters (`locale` / `hostname`),
     backed by 4 polymorphic-variant types matching the upstream
     string-literal types.
@@ -87,12 +87,15 @@ let version: unit => string
 */
 let family: unit => family
 
-/** Returns the OS type. Renamed from upstream `type()` because `type`
-    is a reserved keyword in ReScript. Synchronous (compile-time).
+/** OS type accessor. Exposed under a submodule because `type` is a
+    reserved keyword at the top level of a ReScript module.
 
     See: https://v2.tauri.app/reference/javascript/os/#type
 */
-let osType_: unit => osType
+module OsType: {
+  /** Returns the OS type. Synchronous (compile-time). */
+  let get: unit => osType
+}
 
 /** Returns the CPU architecture. Synchronous (compile-time).
 
