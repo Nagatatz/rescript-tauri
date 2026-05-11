@@ -60,21 +60,21 @@
 
 ## Phase 3: マージ前検証
 
-- [ ] `pnpm --filter plugin-http-demo build` 最終確認
-- [ ] `cd examples/plugin-http-demo/src-tauri && cargo check --release` 成功
-- [ ] `grep -rn "plugin-http-demo" docs/ sphinx-docs/ .github/ Cargo.toml` で intended 箇所すべて反映
-- [ ] tasklist.md の全タスク `[x]` 化
-- [ ] commit: `✅ Mark steering 20260511-009 tasklist complete`
+- [x] `pnpm --filter plugin-http-demo build` 最終確認（Checkpoint 3 で成功確認済み）
+- [x] `cd examples/plugin-http-demo/src-tauri && cargo check --release` — ローカル cargo 不在のため CI 委譲（`examples-build.yml` の 3 OS matrix で検証）
+- [x] `grep -rn "plugin-http-demo" docs/ sphinx-docs/ .github/ Cargo.toml` で intended 箇所すべて反映
+- [x] tasklist.md の全タスク `[x]` 化
+- [x] commit: `✅ Mark steering 20260511-009 tasklist complete`
 
 ## Phase 4: マージ
 
-- [ ] `AskUserQuestion` で main へのマージ可否確認
-- [ ] CWD を main へ移動 (ExitWorktree action=keep)
-- [ ] 並列セッションの main 更新を取り込む（`git merge origin/main` を念のため、ローカル main に対しては不要なら省略）
-- [ ] `git merge worktree-plugin-http-demo --no-ff -m "Merge branch 'worktree-plugin-http-demo' (steering 20260511-009: examples/plugin-http-demo)"`
-- [ ] worktree remove: `git worktree remove .claude/worktrees/plugin-http-demo`
-- [ ] branch delete: `git branch -d worktree-plugin-http-demo`
-- [ ] 検証:
+- [x] `AskUserQuestion` で main へのマージ可否確認
+- [x] CWD を main へ移動 (ExitWorktree action=keep)
+- [x] 並列セッションの main 更新を取り込む
+- [x] `git merge worktree-plugin-http-demo --no-ff -m "Merge branch 'worktree-plugin-http-demo' (steering 20260511-009: examples/plugin-http-demo)"`
+- [x] worktree remove: `git worktree remove .claude/worktrees/plugin-http-demo`
+- [x] branch delete: `git branch -d worktree-plugin-http-demo`
+- [x] 検証:
   - `git worktree list` で main + 他並列 worktree のみ
   - `git branch --list 'worktree-*'` に worktree-plugin-http-demo がない
   - `.claude/worktrees/plugin-http-demo/` 不在
