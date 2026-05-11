@@ -10,47 +10,29 @@
 - [x] requirements.md 作成
 - [x] design.md 作成
 - [x] tasklist.md 作成
-- [ ] ユーザー承認
-- [ ] steering 3 点セットを main 上で `📝 Add steering 20260511-007 plan: sphinx-docs plugin-http user guide` で commit
-- [ ] EnterWorktree（`git worktree add HEAD` 経由で head ref を取り込み、main の最新 44+ ahead を反映）
+- [x] ユーザー承認（「残 user guide (plugin-http) を新 steering で着手」で承認）
+- [x] steering 3 点セットを main 上で `3e1940b 📝 Add steering 20260511-007 plan: sphinx-docs plugin-http user guide` で commit
+- [x] EnterWorktree（`git worktree add HEAD` で 3e1940b ベース、main 44+ ahead を取り込み）
 
 ## Phase 2: 実装
 
-各 checkpoint は単独で commit 可能。順序は固定。
+各 checkpoint は単独で commit 可能。**実装方針変更**: 当初 4 checkpoint に細分化する設計だったが、本文は記述粒度が高く一体性も強いため、本文全体 → 周辺ドキュメント連携の 2 commit に統合する。
 
-### Checkpoint 1: 骨格 + Install + Capabilities + Minimal example
+### Checkpoint A: plugin-http.md 全体（intro + install + capabilities + minimal example + public API + pitfalls + compatibility + see also の 8 セクション一括）
 
-- [ ] `sphinx-docs/user/plugin-http.md` 新規作成
+- [x] `sphinx-docs/user/plugin-http.md` を 8 セクション完全版で新規作成
   - Title + intro 段落 + `{note}` ステータスブロック
   - `## Install` セクション（JS pnpm add / peerDeps / rescript.json deps / Rust Cargo.toml / Rust Builder + capability への前振り）
   - `## Capabilities` セクション（`http:default` + scoped allow JSON）
-  - `## Minimal example` セクション（polymorphic `'response` 型注釈 + Obj.magic で `.json()` アクセスの最小コード）
-- [ ] `pnpm run check` — md 対象外なので影響なし
-- [ ] commit: `📝 Add sphinx-docs/user/plugin-http.md skeleton (install + capabilities + minimal example)`
+  - `## Minimal example` セクション（polymorphic `'response` 型注釈 + Obj.magic で `.json()` / `.status` アクセスの最小コード、POST + proxy + connectTimeout の追加例）
+  - `## Public API` セクション（1 関数 + 5 型の表、fetch シグネチャ解説、clientOptions / proxy / proxyConfig / basicAuth / dangerousSettings 各節）
+  - `## Pitfalls` セクション（DOM types unbound の 3 戦略 / proxy 単一型パラメータの制約 / dangerousSettings ships disabled）
+  - `## Compatibility` 表
+  - `## See also` リスト（source / package README / upstream / upstream JS reference、demo は CHANGELOG の deferred 通り）
+- [x] `pnpm run check` — md 対象外 (pre-existing biome "no-files" no-op)
+- [x] commit: `📝 Add sphinx-docs/user/plugin-http.md (full user guide)`
 
-### Checkpoint 2: Public API リファレンス
-
-- [ ] `## Public API` セクション追加
-  - 1 関数 + 5 型の表
-  - `### fetch signature` サブセクション + polymorphic `'input` / `'init` / `'response` の解説
-  - `### clientOptions fields` サブセクション + 4 フィールド表
-  - `### proxy / proxyConfig / basicAuth` サブセクション + URL only / 完全 config の 2 パターンコード例
-  - `### dangerousSettings` サブセクション + 用途と warning
-- [ ] `pnpm run check` 警告なし（md 対象外）
-- [ ] commit: `📝 Document plugin-http public API in sphinx-docs user guide`
-
-### Checkpoint 3: Pitfalls + Compatibility + See also
-
-- [ ] `## Pitfalls` セクション
-  - `### DOM Web Fetch types are intentionally unbound` (3 種の対応パターン: 型注釈 / Obj.magic / inline object type)
-  - `### proxy<'proxyValue> takes a single type parameter` (HTTPS だけ proxyConfig で HTTP は string の mixed が型エラーになる件)
-  - `### dangerousSettings ships disabled` (default secure を強調)
-- [ ] `## Compatibility` 表
-- [ ] `## See also` リスト（source / package README / upstream / upstream JS reference、demo は CHANGELOG の deferred 通りリンクしない）
-- [ ] `pnpm run check` 警告なし（md 対象外）
-- [ ] commit: `📝 Add plugin-http pitfalls, compatibility and see-also sections`
-
-### Checkpoint 4: 周辺ドキュメント更新
+### Checkpoint B: 周辺ドキュメント更新
 
 - [ ] `sphinx-docs/user/index.md` の "Phase 2 packages" ヘッダ: "eight" → "nine"
 - [ ] `sphinx-docs/user/index.md` の Phase 2 packages 表に plugin-http 行を clipboard-manager の後 / schema の前に追加
