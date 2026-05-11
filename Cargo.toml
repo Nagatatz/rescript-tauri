@@ -5,6 +5,7 @@ members = [
   "examples/ipc-typed-with-schema/src-tauri",
   "examples/plugin-dialog-demo/src-tauri",
   "examples/plugin-fs-demo/src-tauri",
+  "examples/plugin-http-demo/src-tauri",
   "examples/plugin-shell-demo/src-tauri",
   "examples/streaming-ipc/src-tauri",
   "examples/window-management/src-tauri",

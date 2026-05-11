@@ -29,7 +29,20 @@ myst_enable_extensions = [
     "deflist",
     "fieldlist",
     "attrs_inline",
+    "substitution",
 ]
+
+# Shared MyST substitutions reused across plugin user guides. The
+# `phase_2_note` text appears verbatim inside an admonition on every
+# `sphinx-docs/user/plugin-*.md` page; centralising it here means a
+# single edit covers all guides when the package set ships to npm.
+myst_substitutions = {
+    "phase_2_note": (
+        "This package is feature-complete in `main`. Its first npm publish "
+        "is scheduled alongside the other packages. Until then, consume it "
+        "via the source repository or a workspace link."
+    ),
+}
 
 # Source file suffixes
 source_suffix = {
@@ -147,7 +160,7 @@ suppress_warnings = ["toc.excluded"]
 
 # -- Link check --------------------------------------------------------------
 
-# The repository is private until the Phase 1 release (see README "Visibility").
+# The repository is private until the initial release (see README "Visibility").
 # Anonymous GitHub fetches return 404 for blob/tree/issues URLs while the repo
 # is private. Ignore them in `make linkcheck` and remove this entry once the
 # repo is switched to public.
