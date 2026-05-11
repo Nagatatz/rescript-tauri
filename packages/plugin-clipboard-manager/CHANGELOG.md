@@ -23,6 +23,10 @@ this package adheres to
   upstream union (`string | Image | Uint8Array | ArrayBuffer |
   number[]`).
 - `writeTextOptions` record type (`{label?: string}`).
+- Runnable example
+  [`examples/plugin-clipboard-manager-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-clipboard-manager-demo)
+  exercising the full surface (text / image round-trip via
+  `Image.t` / HTML / clear) from button-driven UI.
 - `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
   `@tauri-apps/plugin-clipboard-manager ^2.0.0`, `rescript >=12.0.0`,
   `@rescript/core >=1.6.0`.
@@ -32,8 +36,3 @@ this package adheres to
   recognition of the `plugin-clipboard-manager-v*` tag prefix and a
   `plugin-clipboard-manager` entry in the `tests-coverage.yml`
   matrix.
-
-### Deferred to follow-up sub-steerings
-
-- Runnable example app (`examples/plugin-clipboard-manager-demo/`).
-- sphinx-docs `user/plugin-clipboard-manager.md` page.

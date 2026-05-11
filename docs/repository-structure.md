@@ -35,6 +35,7 @@ rescript-tauri/                          # monorepo root
 │   ├── plugin-dialog-demo/
 │   ├── plugin-shell-demo/
 │   ├── plugin-http-demo/
+│   ├── plugin-clipboard-manager-demo/
 │   └── ipc-typed-with-schema/           # Layer 3 demo
 ├── docs/                                # 開発チーム向け内部ドキュメント
 │   ├── ideas/                           # ドラフト・RFC 集約
@@ -312,6 +313,7 @@ examples/plugin-dialog-demo/              # @rescript-tauri/plugin-dialog 全関
 examples/plugin-fs-demo/                  # @rescript-tauri/plugin-fs 全関数デモ (steering 037)
 examples/plugin-shell-demo/               # @rescript-tauri/plugin-shell 全関数デモ (steering 20260511-008)
 examples/plugin-http-demo/                # @rescript-tauri/plugin-http 4 step デモ (steering 20260511-009)
+examples/plugin-clipboard-manager-demo/   # @rescript-tauri/plugin-clipboard-manager 全関数デモ (steering 20260511-014)
 examples/ipc-typed-with-schema/           # @rescript-tauri/schema (Layer 3) デモ — ipc-typed の対比版 (steering 039)
 ```
 
