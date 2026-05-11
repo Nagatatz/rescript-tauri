@@ -86,35 +86,40 @@ module Schedule: {
   let every: (scheduleEvery, ~count: int, ~allowWhileIdle: bool=?) => t
 }
 
-/** Android channel importance. Numeric values match the upstream
-    enum: `none=0` / `min=1` / `low=2` / `default_=3` / `high=4`.
+/** Android channel importance. Matches the upstream numeric enum
+    `none=0` / `min=1` / `low=2` / `default=3` / `high=4`.
 
-    `default_` is suffixed because `default` is a reserved word in
-    JavaScript output (ReScript would otherwise emit `$$default`).
+    The variant is `@unboxed` with per-constructor `@as(N)` so its
+    runtime representation is the bare integer — wire-compatible with
+    the upstream `channel.importance` field.
 
     See: https://v2.tauri.app/reference/javascript/notification/#importance
 */
 module Importance: {
-  let none: int
-  let min: int
-  let low: int
-  let default_: int
-  let high: int
+  @unboxed
+  type t =
+    | @as(0) None
+    | @as(1) Min
+    | @as(2) Low
+    | @as(3) Default
+    | @as(4) High
 }
 
-/** Android channel visibility. Numeric values match the upstream
-    enum: `secret=-1` / `private_=0` / `public_=1`.
+/** Android channel visibility. Matches the upstream numeric enum
+    `secret=-1` / `private=0` / `public=1`.
 
-    Both `private_` and `public_` are suffixed because the bare names
-    are reserved words in JavaScript output (ReScript would otherwise
-    emit `$$private` / `$$public`).
+    The variant is `@unboxed` with per-constructor `@as(N)` so its
+    runtime representation is the bare integer — wire-compatible with
+    the upstream `channel.visibility` / `options.visibility` fields.
 
     See: https://v2.tauri.app/reference/javascript/notification/#visibility
 */
 module Visibility: {
-  let secret: int
-  let private_: int
-  let public_: int
+  @unboxed
+  type t =
+    | @as(-1) Secret
+    | @as(0) Private
+    | @as(1) Public
 }
 
 /** Options for `sendNotification`. `title` is the only required
@@ -172,8 +177,8 @@ type options = {
   autoCancel?: bool,
   /** iOS: deliver silently (no badge / sound, no list entry). */
   silent?: bool,
-  /** Channel visibility (use `Visibility.{secret, private_, public}`). */
-  visibility?: int,
+  /** Channel visibility (use `Visibility.{Secret, Private, Public}`). */
+  visibility?: Visibility.t,
   /** Android: number of items represented by this notification. */
   number?: int,
 }
@@ -249,8 +254,8 @@ type channel = {
   lights?: bool,
   lightColor?: string,
   vibration?: bool,
-  importance?: int,
-  visibility?: int,
+  importance?: Importance.t,
+  visibility?: Visibility.t,
 }
 
 /** Argument to `removeActive` — identifies one active notification

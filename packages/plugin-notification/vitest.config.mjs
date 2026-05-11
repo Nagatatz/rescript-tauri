@@ -1,4 +1,4 @@
-import {definePackageConfig} from "../../tools/vitest.shared.mjs"
+import { definePackageConfig } from "../../tools/vitest.shared.mjs"
 
 // Thresholds set 5 pt below the value measured after the initial
 // implementation. Branches sit at 50% because half the upstream

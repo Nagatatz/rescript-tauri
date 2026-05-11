@@ -202,21 +202,12 @@ describe("PluginNotification", () => {
     })
   })
 
-  describe("Importance / Visibility constants", () => {
-    it("Importance values match upstream numeric enum", () => {
-      expect(PluginNotification.Importance.none).toBe(0)
-      expect(PluginNotification.Importance.min).toBe(1)
-      expect(PluginNotification.Importance.low).toBe(2)
-      expect(PluginNotification.Importance.default_).toBe(3)
-      expect(PluginNotification.Importance.high).toBe(4)
-    })
-
-    it("Visibility values match upstream numeric enum", () => {
-      expect(PluginNotification.Visibility.secret).toBe(-1)
-      expect(PluginNotification.Visibility.private_).toBe(0)
-      expect(PluginNotification.Visibility.public_).toBe(1)
-    })
-  })
+  // Importance / Visibility are now @unboxed variants that compile to
+  // bare integers — their constructors do not materialize as runtime JS
+  // values, so direct assertion against module fields is not possible.
+  // Wire-format compatibility is exercised end-to-end by `createChannel`
+  // when ReScript callers pass `Importance.High` / `Visibility.Public`
+  // etc.
 
   describe("Schedule factories", () => {
     it("Schedule.at returns a Schedule instance with at populated", () => {

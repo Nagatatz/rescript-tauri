@@ -14,8 +14,8 @@ this package adheres to
 
 - Bindings for `@tauri-apps/plugin-notification` v2.3.3 — 100% of the
   stable public surface (15 functions + 8 records + 1 polymorphic
-  variant + `Schedule` module + numeric enums for `Importance` /
-  `Visibility`).
+  variant + `Schedule` module + `Importance` / `Visibility` `@unboxed`
+  variants).
 - 15 functions: `isPermissionGranted`, `requestPermission`,
   `sendNotification`, `sendNotificationText` (the upstream
   `Options | string` overload is split into two ReScript functions),
@@ -24,11 +24,13 @@ this package adheres to
   `removeChannel`, `channels`, `onNotificationReceived`, `onAction`.
 - `Schedule` module with `at` / `interval` / `every` static
   factories.
-- `Importance` (`none` / `min` / `low` / `default_` / `high`) and
-  `Visibility` (`secret` / `private_` / `public_`) modules exposing
-  the upstream numeric enum values as `int` constants. `default_` /
-  `private_` / `public_` are suffixed because the bare names are
-  reserved words in the emitted JavaScript.
+- `Importance.t` (`@unboxed` variant: `None` / `Min` / `Low` /
+  `Default` / `High` with `@as(0)` … `@as(4)`) and `Visibility.t`
+  (`@unboxed` variant: `Secret` / `Private` / `Public` with `@as(-1)`
+  / `@as(0)` / `@as(1)`). Runtime representation is the bare integer
+  so the variants are wire-compatible with upstream's
+  `channel.importance` / `channel.visibility` / `options.visibility`
+  fields.
 - `notificationPermission` polymorphic variant
   (`#default` / `#granted` / `#denied`).
 - Type-level signature test

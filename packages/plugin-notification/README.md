@@ -85,8 +85,8 @@ let scheduleDaily = () => {
 | `createChannel` / `removeChannel` / `channels` | Notification channel management (Android) |
 | `onNotificationReceived` / `onAction` | Subscribe to notification / action events (returns `Core.PluginListener.t`) |
 | `Schedule.at` / `Schedule.interval` / `Schedule.every` | Build a `Schedule.t` for `options.schedule` |
-| `Importance.{none, min, low, default_, high}` | Android channel importance levels (numeric enum) |
-| `Visibility.{secret, private_, public_}` | Android channel visibility levels (numeric enum) |
+| `Importance.{None, Min, Low, Default, High}` | `@unboxed` variant: Android channel importance (`@as(0..4)`) |
+| `Visibility.{Secret, Private, Public}` | `@unboxed` variant: Android channel visibility (`@as(-1..1)`) |
 | `notificationPermission` | `[#default \| #granted \| #denied]` |
 | `options` / `attachment` / `action` / `actionType` / `pendingNotification` / `activeNotification` / `channel` / `scheduleInterval` / `scheduleEvery` / `removeActiveTarget` | Records and variants matching the upstream interfaces |
 
