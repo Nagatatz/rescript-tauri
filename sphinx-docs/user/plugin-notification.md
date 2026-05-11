@@ -128,8 +128,8 @@ modules `Importance` / `Visibility`:
 | `createChannel` / `removeChannel` / `channels` | Android channel management |
 | `onNotificationReceived` / `onAction` | Subscribe to delivery / tap events (returns `Core.PluginListener.t`) |
 | `Schedule.at` / `Schedule.interval` / `Schedule.every` | Build a `Schedule.t` for `options.schedule` |
-| `Importance.{none, min, low, default_, high}` | Android channel importance (numeric enum) |
-| `Visibility.{secret, private_, public_}` | Android channel visibility (numeric enum) |
+| `Importance.{None, Min, Low, Default, High}` | `@unboxed` variant: Android channel importance (`@as(0..4)`) |
+| `Visibility.{Secret, Private, Public}` | `@unboxed` variant: Android channel visibility (`@as(-1..1)`) |
 | `notificationPermission` | `[#default \| #granted \| #denied]` |
 
 The associated record and variant types — `options`,
@@ -181,24 +181,31 @@ PluginNotification.sendNotificationText("Hello")         // string form
 PluginNotification.sendNotification({title: "Hi"})       // record form
 ```
 
-### Numeric enum constants
+### `Importance` / `Visibility` variants
 
-`Importance` and `Visibility` are exposed as `int` named
-constants because the upstream values are numeric:
+`Importance.t` and `Visibility.t` are `@unboxed` variants with
+`@as(N)` annotations — wire-compatible with the upstream numeric
+enum at runtime, but exhaustively pattern-matchable in ReScript:
 
 ```rescript
-let importance = PluginNotification.Importance.default_  // 3
-let visibility = PluginNotification.Visibility.private_  // 0
+let importance: PluginNotification.Importance.t = Default  // @as(3)
+let visibility: PluginNotification.Visibility.t = Private  // @as(0)
 ```
 
-| Module | Constants | Upstream values |
+| Module | Constructors | Wire values |
 |---|---|---|
-| `Importance` | `none` / `min` / `low` / `default_` / `high` | `0 / 1 / 2 / 3 / 4` |
-| `Visibility` | `secret` / `private_` / `public_` | `-1 / 0 / 1` |
+| `Importance` | `None` / `Min` / `Low` / `Default` / `High` | `0 / 1 / 2 / 3 / 4` |
+| `Visibility` | `Secret` / `Private` / `Public` | `-1 / 0 / 1` |
 
-The trailing underscores on `default_`, `private_`, and `public_`
-avoid the `$$default` / `$$private` / `$$public` escapes ReScript
-would otherwise emit for reserved JavaScript keywords.
+Pattern-match for branching:
+
+```rescript
+switch channel.importance {
+| Some(High) => /* loud */
+| Some(Low) | Some(Min) | Some(None) => /* quiet */
+| _ => /* default */
+}
+```
 
 ### Web API path, not IPC
 
