@@ -36,16 +36,20 @@
 - [x] T3.2 substitution comment 内の "Phase 2 ships to npm" → "the package set ships to npm"。linkcheck_ignore のコメント "Phase 1 release" → "initial release"
 - [ ] T3.3 **コミット**: `📝 Rephrase phase_2_note substitution without Phase 2 label`
 
-## Phase 4: sphinx-docs/user/ 6 ファイル
+## Phase 4: sphinx-docs/ 各種 .md (user/ + dev/ + index.md)
 
-- [ ] T4.1 `sphinx-docs/user/installation.md` の Phase 1/2 言及削除
-- [ ] T4.2 `sphinx-docs/user/configuration.md` の Phase 言及削除
-- [ ] T4.3 `sphinx-docs/user/index.md` の "Phase 2 packages" 節タイトル変更
-- [ ] T4.4 `sphinx-docs/user/changelog.md` の Phase 1/2 release 言及書き換え
-- [ ] T4.5 `sphinx-docs/user/quickstart.md` の散在記述削除
-- [ ] T4.6 `sphinx-docs/user/schema.md` の Phase 2 言及削除
-- [ ] T4.7 grep 検証: `grep -rln 'Phase [12]' sphinx-docs/user/` が空（plugin-*.md は対象外確認）
-- [ ] T4.8 **コミット**: `📝 Drop Phase labels from sphinx-docs user guide`
+- [x] T4.1 `sphinx-docs/user/installation.md` の Phase 1/2 言及削除 (7 hit → 0)
+- [x] T4.2 `sphinx-docs/user/configuration.md` の Phase 言及削除 (6 hit → 0)
+- [x] T4.3 `sphinx-docs/user/index.md` の "Phase 2 packages" 節タイトル "Add-on packages" に変更
+- [x] T4.4 `sphinx-docs/user/changelog.md` の Phase 1/2 release 言及書き換え
+- [x] T4.5 `sphinx-docs/user/quickstart.md` の散在記述削除
+- [x] T4.6 `sphinx-docs/user/schema.md` の Phase 2 言及削除
+- [x] T4.7 `sphinx-docs/index.md` (ルート) の Phase 1+2 言及書き換え（最終 grep で発覚、初期 scope 漏れ）
+- [x] T4.8 `sphinx-docs/dev/` 配下 4 ファイル (architecture / building / project-structure / contributing) の Phase 言及削除（最終 grep で発覚、初期 scope 漏れ）
+- [x] T4.9 grep 検証: `.po` 翻訳ファイルと `docs/ideas/RFC-` を除外して空
+- [ ] T4.10 **コミット**: `📝 Drop Phase labels from sphinx-docs (.md only; .po deferred)`
+
+`.po` 翻訳ファイル群 (16 ファイル) は msgid に元英語テキストを保持する必要があるため本ステアリングでは触らず、並列で稼働中の ja-translation 系列セッション（20260511-006）に委ねる。
 
 ## Phase 5: 検証
 
