@@ -17,11 +17,11 @@
 - [x] T1.1 `packages/plugin-shell/CHANGELOG.md` の `peerDependencies:` 直前に live example 言及を追加（plugin-fs と同スタイル）
 - [x] T1.2 `Deferred to follow-up sub-steerings` セクション (5 行) を削除
 - [x] T1.3 検証: `grep 'Deferred'` が空、`grep 'examples/plugin-shell-demo'` が hit
-- [ ] T1.4 **コミット**: `📝 Mark plugin-shell example app as released in CHANGELOG`
+- [x] T1.4 **コミット**: `📝 Mark plugin-shell example app as released in CHANGELOG` (14aaeae)
 
 ## Phase 2: マージ
 
-- [ ] T2.1 tasklist `[x]` 化
+- [x] T2.1 tasklist `[x]` 化
 - [ ] T2.2 **コミット**: `📝 Mark steering 20260511-012 tasklist complete`
 - [ ] T2.3 `AskUserQuestion` で main マージ可否確認
 - [ ] T2.4 承認後、main 側の未追跡 `.steering/20260511-012-changelog-plugin-shell-cleanup/` を削除
