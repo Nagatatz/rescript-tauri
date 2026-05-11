@@ -8,6 +8,7 @@ members = [
   "examples/plugin-fs-demo/src-tauri",
   "examples/plugin-http-demo/src-tauri",
   "examples/plugin-log-demo/src-tauri",
+  "examples/plugin-notification-demo/src-tauri",
   "examples/plugin-shell-demo/src-tauri",
   "examples/streaming-ipc/src-tauri",
   "examples/window-management/src-tauri",
