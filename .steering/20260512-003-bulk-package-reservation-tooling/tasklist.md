@@ -22,15 +22,15 @@
 
 ## Phase 3: 完了検証
 
-- [ ] V1: `bash -n tools/reserve-npm-packages.sh` が pass
-- [ ] V2: `bash -n tools/setup-trusted-publishers.sh` が pass
-- [ ] V3: スクリプトが実行可能ファイルになっている (`ls -l` で `x` ビット確認)
-- [ ] V4: tasklist.md を全 `[x]` に更新して最終コミット
+- [x] V1: `bash -n tools/reserve-npm-packages.sh` が pass
+- [x] V2: `bash -n tools/setup-trusted-publishers.sh` が pass
+- [x] V3: スクリプトが実行可能ファイルになっている (両方とも `-rwxr-xr-x`)
+- [x] V4: tasklist.md を全 `[x]` に更新して最終コミット
 
 ## Phase 4: マージ・クリーンアップ
 
-- [ ] M1: ユーザーに main へのマージ可否を確認
-- [ ] M2: `ExitWorktree` で main repo に戻る
-- [ ] M3: main にマージ（`git merge worktree-bulk-package-reservation-tooling --no-ff`）
-- [ ] M4: worktree 削除 + ブランチ削除
-- [ ] M5: クリーンアップ完了検証
+- [x] M1: ユーザーに main へのマージ可否を確認
+- [x] M2: `ExitWorktree` で main repo に戻る
+- [x] M3: main にマージ（`git merge worktree-bulk-package-reservation-tooling --no-ff`）
+- [x] M4: worktree 削除 + ブランチ削除
+- [x] M5: クリーンアップ完了検証
