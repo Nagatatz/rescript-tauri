@@ -86,6 +86,11 @@ jobs:
       - name: Cargo check on plugin-clipboard-manager-demo Rust side
         working-directory: examples/plugin-clipboard-manager-demo/src-tauri
         run: cargo check --release
+      - name: Build plugin-log-demo frontend
+        run: pnpm --filter plugin-log-demo build
+      - name: Cargo check on plugin-log-demo Rust side
+        working-directory: examples/plugin-log-demo/src-tauri
+        run: cargo check --release
       - name: Build ipc-typed-with-schema frontend
         run: pnpm --filter ipc-typed-with-schema build
       - name: Cargo check on ipc-typed-with-schema Rust side
