@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>plugin-os demo</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1.5rem; }
+      h1 { font-size: 1.4rem; }
+      .row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; }
+      button { padding: .4rem .8rem; cursor: pointer; }
+      pre { background: #111; color: #eee; padding: .8rem; min-height: 6rem;
+            border-radius: 4px; white-space: pre-wrap; font-family: ui-monospace, monospace; }
+    </style>
+  </head>
+  <body>
+    <h1>@rescript-tauri/plugin-os demo</h1>
+
+    <h2>Synchronous OS info</h2>
+    <div class="row">
+      <button type="button" id="btn-show-all">Show all OS info (eol / platform / version / family / osType / arch / exeExtension)</button>
+    </div>
+
+    <h2>Asynchronous getters</h2>
+    <div class="row">
+      <button type="button" id="btn-get-locale">Get locale</button>
+      <button type="button" id="btn-get-hostname">Get hostname</button>
+    </div>
+
+    <h2>Result</h2>
+    <pre id="result">(no action yet)</pre>
+
+    <script type="module" src="/src/main.mjs"></script>
+  </body>
+</html>
