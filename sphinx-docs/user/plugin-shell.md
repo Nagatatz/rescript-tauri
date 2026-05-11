@@ -6,11 +6,7 @@ processes, stream stdout / stderr, and open files / URLs with the
 OS-default app.
 
 ```{note}
-The Phase 2 implementation is feature-complete in `main`. The
-first npm publish (`plugin-shell-v0.1.0`) is scheduled alongside
-the other Phase 2 packages. Until then, consume
-`@rescript-tauri/plugin-shell` via the source repository or a
-workspace link.
+{{ phase_2_note }}
 ```
 
 ## Install

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-09 16:33+0900\n"
+"POT-Creation-Date: 2026-05-11 14:36+0900\n"
 "PO-Revision-Date: 2026-05-09 17:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -30,80 +30,75 @@ msgid ""
 "`readTextFileLines`, and the iOS-only security-scoped APIs are deferred "
 "to a follow-up package iteration."
 msgstr ""
-"[Tauri 2.x filesystem プラグイン](https://v2.tauri.app/plugin/file-system/) "
-"の ReScript バインディングです。単発のファイル IO（read / write / dir / stat）"
-"を対象としており、`FileHandle`、`watch`、`readTextFileLines`、iOS 専用の "
-"security-scoped API は後続のパッケージ反復に持ち越しています。"
+"[Tauri 2.x filesystem プラグイン](https://v2.tauri.app/plugin/file-system/) の "
+"ReScript バインディングです。単発のファイル IO（read / write / dir / "
+"stat）を対象としており、`FileHandle`、`watch`、`readTextFileLines`、iOS 専用の security-"
+"scoped API は後続のパッケージ反復に持ち越しています。"
 
-#: ../../user/plugin-fs.md:10
+#: ../../user/plugin-fs.md:11
 msgid ""
-"The Phase 2 implementation is feature-complete in `main`. The first npm "
-"publish (`plugin-fs-v0.1.0`) is scheduled alongside the other Phase 2 "
-"packages. Until then, consume `@rescript-tauri/plugin-fs` via the source "
-"repository or a workspace link."
+"The Phase 2 implementation of this package is feature-complete in `main`."
+" Its first npm publish is scheduled alongside the other Phase 2 packages."
+" Until then, consume it via the source repository or a workspace link."
 msgstr ""
-"Phase 2 の実装は `main` で機能完備済みです。初回 npm 公開（`plugin-fs-v0.1.0`）は "
-"他の Phase 2 パッケージと合わせて予定されています。それまでは、ソースリポジトリ経由か "
-"ワークスペースリンクで `@rescript-tauri/plugin-fs` を利用してください。"
+"本パッケージの Phase 2 実装は `main` で機能完備済みです。初回 npm 公開は他の Phase 2 パッケージと合わせて予定されています。それまでは、ソースリポジトリ経由かワークスペースリンクで利用してください。"
 
-#: ../../user/plugin-fs.md:17
+#: ../../user/plugin-fs.md:13
 msgid "Install"
 msgstr "インストール"
 
-#: ../../user/plugin-fs.md:23
+#: ../../user/plugin-fs.md:19
 msgid ""
 "`@rescript-tauri/plugin-fs` declares both `@rescript-tauri/core` and "
 "`@tauri-apps/plugin-fs` as `peerDependencies`, so you control each "
 "upstream version."
 msgstr ""
-"`@rescript-tauri/plugin-fs` は `@rescript-tauri/core` と "
-"`@tauri-apps/plugin-fs` の両方を `peerDependencies` として宣言しているため、"
-"上流のバージョンは利用者側で制御できます。"
+"`@rescript-tauri/plugin-fs` は `@rescript-tauri/core` と `@tauri-apps"
+"/plugin-fs` の両方を `peerDependencies` として宣言しているため、上流のバージョンは利用者側で制御できます。"
 
-#: ../../user/plugin-fs.md:27
+#: ../../user/plugin-fs.md:23
 msgid "Add the package to `dependencies` in your `rescript.json`:"
 msgstr "`rescript.json` の `dependencies` にパッケージを追加します:"
 
-#: ../../user/plugin-fs.md:38
+#: ../../user/plugin-fs.md:34
 msgid "On the Rust side, add the plugin crate and register it on the builder:"
 msgstr "Rust 側ではプラグインクレートを追加し、builder に登録します:"
 
-#: ../../user/plugin-fs.md:57
+#: ../../user/plugin-fs.md:53
 msgid "Capabilities"
 msgstr "Capabilities"
 
-#: ../../user/plugin-fs.md:59
+#: ../../user/plugin-fs.md:55
 msgid ""
 "Tauri 2.x requires every filesystem operation to be granted a capability."
 " The minimal set used by [`examples/plugin-fs-"
 "demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
 "/plugin-fs-demo) is:"
 msgstr ""
-"Tauri 2.x ではファイルシステム操作ごとに capability の付与が必要です。"
-"[`examples/plugin-fs-"
+"Tauri 2.x ではファイルシステム操作ごとに capability の付与が必要です。[`examples/plugin-fs-"
 "demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
 "/plugin-fs-demo) で使用している最小セットは次のとおりです:"
 
-#: ../../user/plugin-fs.md:77
+#: ../../user/plugin-fs.md:73
 msgid ""
 "`fs:allow-app-local-data-recursive` is a permission alias shipped by the "
 "plugin that opens up the entire `$APPLOCALDATA` subtree. Swap it for `fs"
 ":allow-home-recursive`, `fs:allow-document-recursive`, etc. when you need"
 " a different sandbox."
 msgstr ""
-"`fs:allow-app-local-data-recursive` はプラグインが提供する permission エイリアスで、"
-"`$APPLOCALDATA` 配下を全面的に開放します。別のサンドボックスが必要な場合は "
-"`fs:allow-home-recursive`、`fs:allow-document-recursive` などに差し替えてください。"
+"`fs:allow-app-local-data-recursive` はプラグインが提供する permission "
+"エイリアスで、`$APPLOCALDATA` 配下を全面的に開放します。別のサンドボックスが必要な場合は `fs:allow-home-"
+"recursive`、`fs:allow-document-recursive` などに差し替えてください。"
 
-#: ../../user/plugin-fs.md:83
+#: ../../user/plugin-fs.md:79
 msgid "Minimal example"
 msgstr "最小例"
 
-#: ../../user/plugin-fs.md:106
+#: ../../user/plugin-fs.md:102
 msgid "Public API"
 msgstr "公開 API"
 
-#: ../../user/plugin-fs.md:108
+#: ../../user/plugin-fs.md:104
 msgid "All 14 single-shot IO functions are exposed under `PluginFs`:"
 msgstr "14 個の単発 IO 関数はすべて `PluginFs` の下に公開されています:"
 
@@ -227,7 +222,7 @@ msgstr "`size`"
 msgid "Plain byte count"
 msgstr "バイト数（数値）"
 
-#: ../../user/plugin-fs.md:127
+#: ../../user/plugin-fs.md:123
 msgid ""
 "The associated option records (`readFileOptions`, `writeFileOptions`, "
 "`mkdirOptions`, `removeOptions`, `renameOptions`, `copyFileOptions`, "
@@ -237,59 +232,56 @@ msgid ""
 "[DirEntry](https://v2.tauri.app/reference/javascript/fs/#direntry) shapes"
 " are available as `PluginFs.fileInfo` / `PluginFs.dirEntry`."
 msgstr ""
-"関連するオプションレコード（`readFileOptions`、`writeFileOptions`、"
-"`mkdirOptions`、`removeOptions`、`renameOptions`、`copyFileOptions`、"
-"`statOptions`、`existsOptions`、`readDirOptions`、`truncateOptions`）は "
-"すべて `PluginFs` から再エクスポートされており、上流の "
+"関連するオプションレコード（`readFileOptions`、`writeFileOptions`、`mkdirOptions`、`removeOptions`、`renameOptions`、`copyFileOptions`、`statOptions`、`existsOptions`、`readDirOptions`、`truncateOptions`）は"
+" すべて `PluginFs` から再エクスポートされており、上流の "
 "[FileInfo](https://v2.tauri.app/reference/javascript/fs/#fileinfo) / "
-"[DirEntry](https://v2.tauri.app/reference/javascript/fs/#direntry) "
-"形状は `PluginFs.fileInfo` / `PluginFs.dirEntry` として利用できます。"
+"[DirEntry](https://v2.tauri.app/reference/javascript/fs/#direntry) 形状は "
+"`PluginFs.fileInfo` / `PluginFs.dirEntry` として利用できます。"
 
-#: ../../user/plugin-fs.md:137
+#: ../../user/plugin-fs.md:133
 msgid ""
 "`BaseDirectory` is **re-exported from `@rescript-tauri/core`** so you "
 "don't need a separate import:"
 msgstr ""
-"`BaseDirectory` は **`@rescript-tauri/core` から再エクスポート** されているため、"
-"別途インポートする必要はありません:"
+"`BaseDirectory` は **`@rescript-tauri/core` から再エクスポート** "
+"されているため、別途インポートする必要はありません:"
 
-#: ../../user/plugin-fs.md:145
+#: ../../user/plugin-fs.md:141
 msgid "Pitfalls"
 msgstr "落とし穴"
 
-#: ../../user/plugin-fs.md:147
+#: ../../user/plugin-fs.md:143
 msgid "Single-field record punning"
 msgstr "単一フィールドレコードの punning"
 
-#: ../../user/plugin-fs.md:149
+#: ../../user/plugin-fs.md:145
 #, python-brace-format
 msgid ""
 "ReScript treats `{baseDir}` as a *block* with a single statement, not a "
 "record with one punned field. Always spell out single-field options as "
 "`{baseDir: baseDir}`:"
 msgstr ""
-"ReScript では `{baseDir}` は punning された 1 フィールドのレコードではなく、"
-"文 1 つを含む *ブロック* として扱われます。単一フィールドのオプションは必ず "
-"`{baseDir: baseDir}` のように明示してください:"
+"ReScript では `{baseDir}` は punning された 1 フィールドのレコードではなく、文 1 つを含む *ブロック* "
+"として扱われます。単一フィールドのオプションは必ず `{baseDir: baseDir}` のように明示してください:"
 
-#: ../../user/plugin-fs.md:161
+#: ../../user/plugin-fs.md:157
 #, python-brace-format
 msgid "Multi-field records (`{baseDir, recursive: true}`) work as expected."
 msgstr "複数フィールドのレコード（`{baseDir, recursive: true}`）は期待通りに動作します。"
 
-#: ../../user/plugin-fs.md:164
+#: ../../user/plugin-fs.md:160
 msgid "`Uint8Array` length"
 msgstr "`Uint8Array` の長さ"
 
-#: ../../user/plugin-fs.md:166
+#: ../../user/plugin-fs.md:162
 msgid ""
 "`Uint8Array.t` in `@rescript/core` is an alias for `TypedArray.t<int>`. "
 "The length getter lives on the parent module:"
 msgstr ""
-"`@rescript/core` の `Uint8Array.t` は `TypedArray.t<int>` のエイリアスです。"
-"length のゲッタは親モジュールに存在します:"
+"`@rescript/core` の `Uint8Array.t` は `TypedArray.t<int>` のエイリアスです。length "
+"のゲッタは親モジュールに存在します:"
 
-#: ../../user/plugin-fs.md:175
+#: ../../user/plugin-fs.md:171
 msgid "Compatibility"
 msgstr "互換性"
 
@@ -349,19 +341,19 @@ msgstr "OS"
 msgid "Linux / macOS / Windows"
 msgstr "Linux / macOS / Windows"
 
-#: ../../user/plugin-fs.md:186
+#: ../../user/plugin-fs.md:182
 msgid "See also"
 msgstr "関連情報"
 
-#: ../../user/plugin-fs.md:188
+#: ../../user/plugin-fs.md:184
 msgid ""
 "Live demo: [`examples/plugin-fs-demo`](https://github.com/Nagatatz"
 "/rescript-tauri/tree/main/examples/plugin-fs-demo)"
 msgstr ""
-"動作デモ: [`examples/plugin-fs-demo`](https://github.com/Nagatatz"
-"/rescript-tauri/tree/main/examples/plugin-fs-demo)"
+"動作デモ: [`examples/plugin-fs-demo`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/examples/plugin-fs-demo)"
 
-#: ../../user/plugin-fs.md:190
+#: ../../user/plugin-fs.md:186
 msgid ""
 "Source: [`packages/plugin-fs`](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/packages/plugin-fs)"
@@ -369,10 +361,11 @@ msgstr ""
 "ソース: [`packages/plugin-fs`](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/packages/plugin-fs)"
 
-#: ../../user/plugin-fs.md:192
+#: ../../user/plugin-fs.md:188
 msgid ""
 "Upstream docs: [Tauri 2.x file-system plugin](https://v2.tauri.app/plugin"
 "/file-system/)"
 msgstr ""
-"上流ドキュメント: [Tauri 2.x file-system プラグイン](https://v2.tauri.app/plugin"
-"/file-system/)"
+"上流ドキュメント: [Tauri 2.x file-system プラグイン](https://v2.tauri.app/plugin/file-"
+"system/)"
+

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-11 09:21+0900\n"
+"POT-Creation-Date: 2026-05-11 14:36+0900\n"
 "PO-Revision-Date: 2026-05-09 17:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -216,8 +216,9 @@ msgid "Phase 2 packages"
 msgstr "Phase 2 パッケージ"
 
 #: ../../user/index.md:40
+#, fuzzy
 msgid ""
-"Phase 2 introduces eight add-on packages that build on the Phase 1 core. "
+"Phase 2 introduces nine add-on packages that build on the Phase 1 core. "
 "Each ships independently and pulls the matching upstream plugin / schema "
 "library through `peerDependencies`."
 msgstr ""
@@ -316,6 +317,20 @@ msgstr "クリップボードの読み書き（text / image / HTML）"
 #: ../../user/index.md
 msgid "[plugin-clipboard-manager](plugin-clipboard-manager.md)"
 msgstr "[plugin-clipboard-manager](plugin-clipboard-manager.md)"
+
+#: ../../user/index.md
+#, fuzzy
+msgid "`@rescript-tauri/plugin-http`"
+msgstr "`@rescript-tauri/plugin-os`"
+
+#: ../../user/index.md
+msgid "HTTP fetch with CORS bypass + proxy / TLS config"
+msgstr ""
+
+#: ../../user/index.md
+#, fuzzy
+msgid "[plugin-http](plugin-http.md)"
+msgstr "[plugin-os](plugin-os.md)"
 
 #: ../../user/index.md
 msgid "`@rescript-tauri/schema`"
