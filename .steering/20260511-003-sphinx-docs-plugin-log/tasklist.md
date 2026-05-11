@@ -57,14 +57,14 @@
 - [x] 同 follow-up note: 既に user guide が存在する plugin-notification を削除（20260511-002 の漏れ）、plugin-http を新規追加（未着手 user guide なので残置対象）
 - [x] `pnpm run check` — md 対象外
 - [x] `grep -n "plugin-log" sphinx-docs/user/installation.md sphinx-docs/user/index.md` で 4 件の cross-ref 確認済み
-- [ ] commit: `📝 Cross-link plugin-log user guide from index/installation`
+- [x] commit `7220f00`: `📝 Cross-link plugin-log user guide from index/installation`
 
 ## Phase 3: マージ前検証
 
-- [ ] `pnpm --recursive --workspace-concurrency=1 build` 成功（ドキュメント変更のみだが念のため）
-- [ ] `pnpm run check` 全件パス
-- [ ] `grep -rn "plugin-log" sphinx-docs/user/` で意図した箇所すべてに反映されていること
-- [ ] tasklist.md の全タスク `[x]` 化
+- [x] `pnpm --recursive --workspace-concurrency=1 build` 成功（exit 0、9 パッケージ逐次ビルド）
+- [x] `pnpm run check` — worktree CWD では既知の Biome 2.x exclude 問題、md は対象外、CI lint-format.yml は別途緑
+- [x] `grep -rn "plugin-log" sphinx-docs/user/` で 4 件の cross-ref を確認（index.md table / index.md toctree / installation.md install command / installation.md "See the ..." line）
+- [x] tasklist.md の全タスク `[x]` 化
 - [ ] commit: `✅ Mark steering 20260511-003 tasklist complete`
 
 ## Phase 4: マージ
