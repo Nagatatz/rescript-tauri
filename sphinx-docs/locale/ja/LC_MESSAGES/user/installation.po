@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-11 09:21+0900\n"
+"POT-Creation-Date: 2026-05-11 14:36+0900\n"
 "PO-Revision-Date: 2026-05-08 13:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -122,52 +122,42 @@ msgid ""
 "alongside the matching upstream plugin / schema library:"
 msgstr "各 Phase 2 パッケージは個別に公開されます。必要に応じて、対応する上流のプラグイン / スキーマライブラリと一緒にインストールしてください:"
 
-#: ../../user/installation.md:72
+#: ../../user/installation.md:75
+#, fuzzy
 msgid ""
 "See the [plugin-fs](plugin-fs.md), [plugin-dialog](plugin-dialog.md), "
 "[plugin-notification](plugin-notification.md), [plugin-shell](plugin-"
 "shell.md), [plugin-log](plugin-log.md), [plugin-os](plugin-os.md), "
-"[plugin-clipboard-manager](plugin-clipboard-manager.md), and "
-"[schema](schema.md) guides for the matching ReScript / Rust / capability "
-"setup."
+"[plugin-clipboard-manager](plugin-clipboard-manager.md), [plugin-http"
+"](plugin-http.md), and [schema](schema.md) guides for the matching "
+"ReScript / Rust / capability setup."
 msgstr ""
-"対応する ReScript / Rust / capability の設定については [plugin-fs](plugin-fs.md)、"
-"[plugin-dialog](plugin-dialog.md)、[plugin-notification](plugin-notification.md)、"
-"[plugin-shell](plugin-shell.md)、[plugin-log](plugin-log.md)、"
-"[plugin-os](plugin-os.md)、[plugin-clipboard-manager](plugin-clipboard-manager.md)、"
-"[schema](schema.md) の各ガイドを参照してください。"
+"対応する ReScript / Rust / capability の設定については [plugin-fs](plugin-fs.md"
+")、[plugin-dialog](plugin-dialog.md)、[plugin-notification](plugin-"
+"notification.md)、[plugin-shell](plugin-shell.md)、[plugin-log](plugin-"
+"log.md)、[plugin-os](plugin-os.md)、[plugin-clipboard-manager](plugin-"
+"clipboard-manager.md)、[schema](schema.md) の各ガイドを参照してください。"
 
-#: ../../user/installation.md:82
-msgid ""
-"A dedicated user guide for `@rescript-tauri/plugin-http` is scheduled for"
-" a follow-up sub-steering. Until then, refer to the package's own README "
-"(`packages/plugin-http/README.md`) for full API coverage and copy-"
-"pasteable examples."
-msgstr ""
-"`@rescript-tauri/plugin-http` の専用ユーザーガイドは後続 sub-steering で追加予定です。"
-"それまでは、API 一覧と利用例については各パッケージの README "
-"(`packages/plugin-http/README.md`) を参照してください。"
-
-#: ../../user/installation.md:88
+#: ../../user/installation.md:85
 msgid "Verify"
 msgstr "動作確認"
 
-#: ../../user/installation.md:90
+#: ../../user/installation.md:87
 msgid "After Phase 1 ships, a minimal verification looks like:"
 msgstr "Phase 1 リリース後、最小の動作確認は次のようになります:"
 
-#: ../../user/installation.md:96
+#: ../../user/installation.md:93
 #, python-brace-format
 msgid ""
 "Combined with a Rust-side `#[tauri::command] fn ping() {}`, this round-"
 "trip confirms the bridge works."
 msgstr "Rust 側の `#[tauri::command] fn ping() {}` と組み合わせれば、この往復でブリッジが機能することを確認できます。"
 
-#: ../../user/installation.md:98
+#: ../../user/installation.md:95
 msgid "Troubleshooting"
 msgstr "トラブルシューティング"
 
-#: ../../user/installation.md:100
+#: ../../user/installation.md:97
 msgid ""
 "Detailed troubleshooting will be added as Phase 1 implementation reveals "
 "common pitfalls. For early feedback, please open an issue at "
@@ -196,4 +186,17 @@ msgstr ""
 #~ " および [`docs/product-"
 #~ "requirements.md`](https://github.com/Nagatatz/rescript-"
 #~ "tauri/blob/main/docs/product-requirements.md) を参照してください。"
+
+#~ msgid ""
+#~ "A dedicated user guide for "
+#~ "`@rescript-tauri/plugin-http` is scheduled "
+#~ "for a follow-up sub-steering. "
+#~ "Until then, refer to the package's "
+#~ "own README (`packages/plugin-http/README.md`) "
+#~ "for full API coverage and copy-"
+#~ "pasteable examples."
+#~ msgstr ""
+#~ "`@rescript-tauri/plugin-http` の専用ユーザーガイドは後続 "
+#~ "sub-steering で追加予定です。それまでは、API 一覧と利用例については各パッケージの "
+#~ "README (`packages/plugin-http/README.md`) を参照してください。"
 

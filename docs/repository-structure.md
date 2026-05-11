@@ -17,24 +17,29 @@
 rescript-tauri/                          # monorepo root
 ├── packages/                            # 公開パッケージ群
 │   ├── core/                            # @rescript-tauri/core
-│   ├── plugin-fs/                       # @rescript-tauri/plugin-fs (Phase 2+)
-│   ├── plugin-dialog/                   # @rescript-tauri/plugin-dialog (Phase 2+)
-│   ├── plugin-shell/                    # @rescript-tauri/plugin-shell (Phase 2+)
-│   ├── plugin-notification/             # @rescript-tauri/plugin-notification (Phase 2+)
-│   ├── plugin-log/                      # @rescript-tauri/plugin-log (Phase 2+)
-│   ├── plugin-os/                       # @rescript-tauri/plugin-os (Phase 2+)
-│   ├── plugin-clipboard-manager/        # @rescript-tauri/plugin-clipboard-manager (Phase 2+)
-│   ├── plugin-http/                     # @rescript-tauri/plugin-http (Phase 2+)
-│   └── schema/                          # @rescript-tauri/schema (Phase 2)
+│   ├── plugin-fs/                       # @rescript-tauri/plugin-fs
+│   ├── plugin-dialog/                   # @rescript-tauri/plugin-dialog
+│   ├── plugin-shell/                    # @rescript-tauri/plugin-shell
+│   ├── plugin-notification/             # @rescript-tauri/plugin-notification
+│   ├── plugin-log/                      # @rescript-tauri/plugin-log
+│   ├── plugin-os/                       # @rescript-tauri/plugin-os
+│   ├── plugin-clipboard-manager/        # @rescript-tauri/plugin-clipboard-manager
+│   ├── plugin-http/                     # @rescript-tauri/plugin-http
+│   └── schema/                          # @rescript-tauri/schema
 ├── examples/                            # ビルド可能な使用例（CI ゲート対象）
-│   ├── hello-world/                     # Phase 1 必須
+│   ├── hello-world/                     # 最小構成
 │   ├── window-management/
 │   ├── ipc-typed/
 │   ├── streaming-ipc/
-│   ├── plugin-fs-demo/                  # Phase 2
-│   ├── plugin-dialog-demo/              # Phase 2
-│   ├── plugin-shell-demo/               # Phase 2
-│   └── ipc-typed-with-schema/           # Phase 2 (Layer 3 demo)
+│   ├── plugin-fs-demo/
+│   ├── plugin-dialog-demo/
+│   ├── plugin-shell-demo/
+│   ├── plugin-http-demo/
+│   ├── plugin-clipboard-manager-demo/
+│   ├── plugin-log-demo/
+│   ├── plugin-notification-demo/
+│   ├── plugin-os-demo/
+│   └── ipc-typed-with-schema/           # Layer 3 demo
 ├── docs/                                # 開発チーム向け内部ドキュメント
 │   ├── ideas/                           # ドラフト・RFC 集約
 │   ├── product-requirements.md
@@ -86,7 +91,7 @@ rescript-tauri/                          # monorepo root
 
 ### 2.1 `packages/core/`
 
-`@rescript-tauri/core`。Phase 1 の中心パッケージ。`@tauri-apps/api` v2.11.0 の **stable public 表面の 100%** をカバー（`Image.transformImage` のみ upstream の "API not stable" 明記により意図的に除外。steering 049, 2026-05-09）。
+`@rescript-tauri/core`。中心パッケージ。`@tauri-apps/api` v2.11.0 の **stable public 表面の 100%** をカバー（`Image.transformImage` のみ upstream の "API not stable" 明記により意図的に除外。steering 049, 2026-05-09）。
 
 ```
 packages/core/
@@ -120,7 +125,7 @@ packages/core/
 
 ### 2.2 `packages/plugin-*/`
 
-Phase 2 着手済み。各プラグインは独立 publish。
+各プラグインは独立 publish。
 
 ```
 packages/plugin-fs/                      # 着手済み (steering 032, 2026-05-09)
@@ -201,7 +206,7 @@ packages/plugin-notification/            # 着手済み (steering 054, 2026-05-0
 
 `peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-notification ^2.3.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
 
-upstream の `sendNotification(options: Options | string)` overload を `sendNotification` / `sendNotificationText` の 2 関数に分割して静的化（steering 054 §3.1）。`Importance` / `Visibility` の数値 enum は ReScript 側で `int` の named constants として公開し、`default_` / `private_` / `public_` は JS 出力の `$$default` / `$$private` / `$$public` エスケープを避けるため suffix 付き。`requestPermission` / `sendNotification` / `sendNotificationText` は upstream で IPC ではなく `window.Notification` Web API 経由で動作するため、テストでは `globalThis.window.Notification` を stub する。`examples/plugin-notification-demo/` と sphinx-docs `user/plugin-notification.md` は後続 sub-steering に分離。
+upstream の `sendNotification(options: Options | string)` overload を `sendNotification` / `sendNotificationText` の 2 関数に分割して静的化（steering 054 §3.1）。`Importance` / `Visibility` の数値 enum は ReScript 側で `int` の named constants として公開し、`default_` / `private_` / `public_` は JS 出力の `$$default` / `$$private` / `$$public` エスケープを避けるため suffix 付き。`requestPermission` / `sendNotification` / `sendNotificationText` は upstream で IPC ではなく `window.Notification` Web API 経由で動作するため、テストでは `globalThis.window.Notification` を stub する。sphinx-docs `user/plugin-notification.md` は steering 20260511-002 で、`examples/plugin-notification-demo/` は steering 20260511-016 で追加済み。
 
 ```
 packages/plugin-log/                     # 着手済み (steering 055, 2026-05-09)
@@ -237,7 +242,7 @@ packages/plugin-os/                      # 着手済み (steering 056, 2026-05-0
 
 `peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-os ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
 
-upstream の `type()` は ReScript の予約語 `type` と衝突するため `osType_()` にリネームして公開。7 つの sync getter (`eol` / `platform` / `version` / `family` / `osType_` / `arch` / `exeExtension`) は upstream で `window.__TAURI_OS_PLUGIN_INTERNALS__` を直接読み取るため、テストではこの globals を stub する。残り 2 つ (`locale` / `hostname`) は IPC (`plugin:os|locale` / `plugin:os|hostname`) 経由で `Mocks.mockIPC` で検証可能。`examples/plugin-os-demo/` と sphinx-docs `user/plugin-os.md` は後続 sub-steering に分離。
+upstream の `type()` は ReScript の予約語 `type` と衝突するため `osType_()` にリネームして公開。7 つの sync getter (`eol` / `platform` / `version` / `family` / `osType_` / `arch` / `exeExtension`) は upstream で `window.__TAURI_OS_PLUGIN_INTERNALS__` を直接読み取るため、テストではこの globals を stub する。残り 2 つ (`locale` / `hostname`) は IPC (`plugin:os|locale` / `plugin:os|hostname`) 経由で `Mocks.mockIPC` で検証可能。sphinx-docs `user/plugin-os.md` は steering 20260511-004 で、`examples/plugin-os-demo/` は steering 20260511-017 で追加済み。
 
 ```
 packages/plugin-clipboard-manager/       # 着手済み (steering 057, 2026-05-09)
@@ -273,11 +278,11 @@ packages/plugin-http/                    # 着手済み (steering 058, 2026-05-0
 
 `peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-http ^2.0.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
 
-upstream `fetch(input, init)` は Web Fetch API のラッパー。`input` (`string | URL | Request`) / `init` (`RequestInit & ClientOptions`) / 戻り値 `Response` は DOM 型のため、ReScript 側では polymorphic `'input` / `'init` / `'response` で受け流し、呼び出し側で型注釈を付ける運用とする。Tauri 固有の設定 (`proxy` / `clientOptions` / `proxyConfig` / `dangerousSettings` / `basicAuth`) は明示的な record 型として公開。`proxy<'proxyValue>` と `clientOptions<'proxyValue>` は upstream の `string | ProxyConfig` union を polymorphic `'proxyValue` で表現。`examples/plugin-http-demo/` と sphinx-docs `user/plugin-http.md`、および完全な Web Fetch API 型バインディングは後続 sub-steering に分離。
+upstream `fetch(input, init)` は Web Fetch API のラッパー。`input` (`string | URL | Request`) / `init` (`RequestInit & ClientOptions`) / 戻り値 `Response` は DOM 型のため、ReScript 側では polymorphic `'input` / `'init` / `'response` で受け流し、呼び出し側で型注釈を付ける運用とする。Tauri 固有の設定 (`proxy` / `clientOptions` / `proxyConfig` / `dangerousSettings` / `basicAuth`) は明示的な record 型として公開。`proxy<'proxyValue>` と `clientOptions<'proxyValue>` は upstream の `string | ProxyConfig` union を polymorphic `'proxyValue` で表現。sphinx-docs `user/plugin-http.md` は steering 20260511-007 で、`examples/plugin-http-demo/` は steering 20260511-009 で追加済み。完全な Web Fetch API 型バインディングは後続 sub-steering に分離。
 
 ### 2.3 `packages/schema/`
 
-Phase 2 着手済み (steering 031, 2026-05-09)。`rescript-schema` 向けの Layer 3 IPC ヘルパを提供する独立パッケージ:
+着手済み (steering 031, 2026-05-09)。`rescript-schema` 向けの Layer 3 IPC ヘルパを提供する独立パッケージ:
 
 ```
 packages/schema/
@@ -310,6 +315,11 @@ examples/streaming-ipc/                   # Channel デモ
 examples/plugin-dialog-demo/              # @rescript-tauri/plugin-dialog 全関数デモ (steering 036)
 examples/plugin-fs-demo/                  # @rescript-tauri/plugin-fs 全関数デモ (steering 037)
 examples/plugin-shell-demo/               # @rescript-tauri/plugin-shell 全関数デモ (steering 20260511-008)
+examples/plugin-http-demo/                # @rescript-tauri/plugin-http 4 step デモ (steering 20260511-009)
+examples/plugin-clipboard-manager-demo/   # @rescript-tauri/plugin-clipboard-manager 全関数デモ (steering 20260511-014)
+examples/plugin-log-demo/                 # @rescript-tauri/plugin-log 全関数デモ (steering 20260511-015)
+examples/plugin-notification-demo/        # @rescript-tauri/plugin-notification 全関数デモ (steering 20260511-016)
+examples/plugin-os-demo/                  # @rescript-tauri/plugin-os 全関数デモ (steering 20260511-017)
 examples/ipc-typed-with-schema/           # @rescript-tauri/schema (Layer 3) デモ — ipc-typed の対比版 (steering 039)
 ```
 
@@ -494,11 +504,12 @@ CI ジョブ定義の詳細は `docs/functional-design.md` §6 を参照。
 
 ## 10. `tools/` — リポジトリ共通の Node ツール
 
-`packages/*` から共有して読み込む素の Node スクリプト置き場。パッケージ化はせず、各 package の設定ファイルから相対 import (`../../tools/...`) で利用する。
+`packages/*` から共有して読み込む素の Node スクリプト置き場。パッケージ化はせず、各 package の設定ファイル (`../../tools/...`) または `tests/runtime/*.test.mjs` (`../../../../tools/...`) から相対 import で利用する。
 
 | ファイル | 役割 |
 |---|---|
 | `vitest.shared.mjs` | 全 package の `vitest.config.mjs` から呼び出す `definePackageConfig({thresholds?})` helper。`happy-dom` / `tests/runtime/**` / v8 coverage 等のボイラープレートを一元化する (steering 059, 2026-05-09) |
+| `tauri-mocks.mjs` | `tests/runtime/*.test.mjs` 用の Tauri グローバル stub helper (`installTauriInternals` / `installEventPluginInternals` / `installOsPluginInternals` / `installNotificationStub`)。各 helper は cleanup 関数を返す。`__TAURI_INTERNALS__` / `__TAURI_OS_PLUGIN_INTERNALS__` / `window.Notification` の inline 重複を一元化する (steering 20260511-018, 2026-05-11) |
 
 新ヘルパ追加時は: (1) 純粋な default export または factory 関数を提供し、副作用を持たないこと; (2) `node --check` で構文確認できること; (3) 本書のテーブルに 1 行追記すること。
 

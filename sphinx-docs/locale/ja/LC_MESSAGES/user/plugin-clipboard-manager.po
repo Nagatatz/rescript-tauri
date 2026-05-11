@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-11 09:21+0900\n"
+"POT-Creation-Date: 2026-05-11 14:36+0900\n"
 "PO-Revision-Date: 2026-05-11 10:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -29,15 +29,14 @@ msgid ""
 "HTML, and images."
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:8
+#: ../../user/plugin-clipboard-manager.md:9
 msgid ""
-"The Phase 2 implementation is feature-complete in `main`. The first npm "
-"publish (`plugin-clipboard-manager-v0.1.0`) is scheduled alongside the "
-"other Phase 2 packages. Until then, consume `@rescript-tauri/plugin-"
-"clipboard-manager` via the source repository or a workspace link."
+"The Phase 2 implementation of this package is feature-complete in `main`."
+" Its first npm publish is scheduled alongside the other Phase 2 packages."
+" Until then, consume it via the source repository or a workspace link."
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:16
+#: ../../user/plugin-clipboard-manager.md:12
 msgid ""
 "The image APIs (`writeImage` / `readImage`) reuse `@rescript-"
 "tauri/core`'s [`Image`](https://github.com/Nagatatz/rescript-"
@@ -47,36 +46,36 @@ msgid ""
 "`writeImage`, and inspect clipboard image bytes with `Core.Image.rgba`."
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:25
+#: ../../user/plugin-clipboard-manager.md:21
 msgid "Install"
 msgstr "インストール"
 
-#: ../../user/plugin-clipboard-manager.md:31
+#: ../../user/plugin-clipboard-manager.md:27
 msgid ""
 "`@rescript-tauri/plugin-clipboard-manager` declares both `@rescript-"
 "tauri/core` and `@tauri-apps/plugin-clipboard-manager` as "
 "`peerDependencies`, so you control each upstream version."
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:35
+#: ../../user/plugin-clipboard-manager.md:31
 msgid "Add the package to `dependencies` in your `rescript.json`:"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:46
+#: ../../user/plugin-clipboard-manager.md:42
 msgid "On the Rust side, add the plugin crate and register it on the builder:"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:65
+#: ../../user/plugin-clipboard-manager.md:61
 msgid "Capabilities"
 msgstr "Capability 設定"
 
-#: ../../user/plugin-clipboard-manager.md:67
+#: ../../user/plugin-clipboard-manager.md:63
 msgid ""
 "Tauri 2.x requires every clipboard operation to be granted a capability. "
 "The minimal set is:"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:82
+#: ../../user/plugin-clipboard-manager.md:78
 msgid ""
 "`clipboard-manager:default` covers every read and write API exposed by "
 "this binding. To allow only a subset, swap it for the narrower aliases "
@@ -86,92 +85,92 @@ msgid ""
 ":allow-read-text` for a paste-only utility."
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:89
+#: ../../user/plugin-clipboard-manager.md:85
 msgid "Minimal example"
 msgstr "最小サンプル"
 
-#: ../../user/plugin-clipboard-manager.md:101
+#: ../../user/plugin-clipboard-manager.md:97
 msgid "Public API"
 msgstr "公開 API"
 
-#: ../../user/plugin-clipboard-manager.md:103
+#: ../../user/plugin-clipboard-manager.md:99
 msgid ""
 "The six public functions plus the `writeTextOptions` record cover the "
 "entire upstream surface of `@tauri-apps/plugin-clipboard-manager` v2.3.x."
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 msgid "Symbol"
 msgstr "シンボル"
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 msgid "Purpose"
 msgstr "用途"
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 msgid "`writeText(text, ~opts=?)`"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 msgid "Write plain text. `opts.label` adds an Android entity name"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 msgid "`readText()`"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 msgid "Read plain text"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 msgid "`writeImage('image)`"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 msgid ""
 "Write a raw RGBA buffer / `Image.t` / `Uint8Array` / `array<int>` / file "
 "path"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 msgid "`readImage()`"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 msgid "Read as `RescriptTauriCore.Image.t` (inspect with `Image.rgba`)"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 msgid "`writeHtml(html, ~altText=?)`"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 msgid "Write HTML with optional plain-text fallback"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 msgid "`clear()`"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 msgid "Clear the clipboard"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 msgid "`writeTextOptions`"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:15
+#: ../../user/plugin-clipboard-manager.md:11
 #, python-brace-format
 msgid "`{label?: string}`"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:117
+#: ../../user/plugin-clipboard-manager.md:113
 msgid "Text APIs"
 msgstr "テキスト API"
 
-#: ../../user/plugin-clipboard-manager.md:119
+#: ../../user/plugin-clipboard-manager.md:115
 msgid ""
 "`writeText` and `readText` are the most common entry points. `writeText` "
 "accepts an optional `writeTextOptions` record whose only field, `label`, "
@@ -179,7 +178,7 @@ msgid ""
 "pickers (no-op on desktop):"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:134
+#: ../../user/plugin-clipboard-manager.md:130
 #, python-brace-format
 msgid ""
 "`readText()` returns `string`. If the clipboard does not contain text, "
@@ -188,11 +187,11 @@ msgid ""
 "failures."
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:139
+#: ../../user/plugin-clipboard-manager.md:135
 msgid "Image APIs"
 msgstr "画像 API"
 
-#: ../../user/plugin-clipboard-manager.md:141
+#: ../../user/plugin-clipboard-manager.md:137
 msgid ""
 "The image APIs share `Image.t` with `@rescript-tauri/core` — this package"
 " does **not** define a separate image type. Pull `Core.Image` through the"
@@ -200,7 +199,7 @@ msgid ""
 " clipboard images."
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:147
+#: ../../user/plugin-clipboard-manager.md:143
 msgid ""
 "`writeImage` is intentionally typed with a polymorphic `'image` parameter"
 " to mirror the upstream union `string | Image | Uint8Array | ArrayBuffer "
@@ -208,22 +207,22 @@ msgid ""
 "inferred type is ambiguous."
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:152
+#: ../../user/plugin-clipboard-manager.md:148
 msgid "**(a) Write a `Core.Image.t` constructed from a file path:**"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:162
+#: ../../user/plugin-clipboard-manager.md:158
 msgid "**(b) Write raw RGBA bytes directly:**"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:170
+#: ../../user/plugin-clipboard-manager.md:166
 msgid ""
 "`readImage()` returns a `RescriptTauriCore.Image.t` resource handle; "
 "inspect the pixel buffer with `Core.Image.rgba` (and `Core.Image.size` "
 "for the dimensions):"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:187
+#: ../../user/plugin-clipboard-manager.md:183
 msgid ""
 "`writeImage` / `readImage` are unsupported on Android / iOS upstream. On "
 "desktop, ensure your capability set actually grants `clipboard-manager"
@@ -231,11 +230,11 @@ msgid ""
 "bundled in the `clipboard-manager:default` alias used above)."
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:194
+#: ../../user/plugin-clipboard-manager.md:190
 msgid "Pitfalls — Image RGBA layout"
 msgstr "注意点 — 画像の RGBA レイアウト"
 
-#: ../../user/plugin-clipboard-manager.md:196
+#: ../../user/plugin-clipboard-manager.md:192
 msgid ""
 "`Core.Image.rgba` and the bytes accepted by `Core.Image.new_` are **row-"
 "major, top-to-bottom, RGBA8** (one byte per channel, alpha last). Image "
@@ -244,11 +243,11 @@ msgid ""
 "pasted images will exhibit channel swaps or vertical mirroring."
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:203
+#: ../../user/plugin-clipboard-manager.md:199
 msgid "HTML APIs"
 msgstr "HTML API"
 
-#: ../../user/plugin-clipboard-manager.md:205
+#: ../../user/plugin-clipboard-manager.md:201
 msgid ""
 "`writeHtml(html, ~altText=?)` stores rich-text on the clipboard using the"
 " OS-native HTML format. The typical use case is making formatted text "
@@ -259,17 +258,17 @@ msgid ""
 " has a meaningful textual equivalent."
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:221
+#: ../../user/plugin-clipboard-manager.md:217
 msgid ""
 "Omitting `~altText` leaves the plain-text slot empty; consumers that "
 "cannot accept HTML may then paste nothing."
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:224
+#: ../../user/plugin-clipboard-manager.md:220
 msgid "Clear"
 msgstr "クリア"
 
-#: ../../user/plugin-clipboard-manager.md:226
+#: ../../user/plugin-clipboard-manager.md:222
 msgid ""
 "`clear()` empties the clipboard. On Android with SDK < 28 the underlying "
 "platform API is unavailable and the binding falls back to writing an "
@@ -278,93 +277,104 @@ msgid ""
 "empty."
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:236
+#: ../../user/plugin-clipboard-manager.md:232
 msgid "Compatibility"
 msgstr "互換性"
 
-#: ../../user/plugin-clipboard-manager.md:186
+#: ../../user/plugin-clipboard-manager.md:182
 msgid "Component"
 msgstr "項目"
 
-#: ../../user/plugin-clipboard-manager.md:186
+#: ../../user/plugin-clipboard-manager.md:182
 msgid "Supported range"
 msgstr "対応バージョン"
 
-#: ../../user/plugin-clipboard-manager.md:186
+#: ../../user/plugin-clipboard-manager.md:182
 msgid "Upstream `@tauri-apps/plugin-clipboard-manager`"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:186
+#: ../../user/plugin-clipboard-manager.md:182
 msgid "`^2.0.0` (peer)"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:186
+#: ../../user/plugin-clipboard-manager.md:182
 msgid "Rust `tauri-plugin-clipboard-manager`"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:186
+#: ../../user/plugin-clipboard-manager.md:182
 msgid "`2.x`"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:186
+#: ../../user/plugin-clipboard-manager.md:182
 msgid "`@rescript-tauri/core`"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:186
+#: ../../user/plugin-clipboard-manager.md:182
 msgid "`^0.1.0` (peer)"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:186
+#: ../../user/plugin-clipboard-manager.md:182
 msgid "ReScript"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:186
+#: ../../user/plugin-clipboard-manager.md:182
 msgid "`>=12.0.0`"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:186
+#: ../../user/plugin-clipboard-manager.md:182
 msgid "`@rescript/core`"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:186
+#: ../../user/plugin-clipboard-manager.md:182
 msgid "`>=1.6.0`"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:186
+#: ../../user/plugin-clipboard-manager.md:182
 msgid "OS"
 msgstr "対応 OS"
 
-#: ../../user/plugin-clipboard-manager.md:186
+#: ../../user/plugin-clipboard-manager.md:182
 msgid "Linux / macOS / Windows (image and HTML APIs unsupported on Android / iOS)"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:247
+#: ../../user/plugin-clipboard-manager.md:243
 msgid "See also"
 msgstr "関連リンク"
 
-#: ../../user/plugin-clipboard-manager.md:249
+#: ../../user/plugin-clipboard-manager.md:245
 msgid ""
 "Source: [`packages/plugin-clipboard-manager`](https://github.com/Nagatatz"
 "/rescript-tauri/tree/main/packages/plugin-clipboard-manager)"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:251
+#: ../../user/plugin-clipboard-manager.md:247
 msgid ""
 "Package README: [`packages/plugin-clipboard-"
 "manager/README.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/packages/plugin-clipboard-manager/README.md)"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:253
+#: ../../user/plugin-clipboard-manager.md:249
 msgid ""
 "Image type (peer-dep reuse): "
 "[`packages/core/src/Image.resi`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/packages/core/src/Image.resi)"
 msgstr ""
 
-#: ../../user/plugin-clipboard-manager.md:255
+#: ../../user/plugin-clipboard-manager.md:251
 msgid ""
 "Upstream docs: [Tauri 2.x clipboard "
 "plugin](https://v2.tauri.app/plugin/clipboard/)"
 msgstr ""
+
+#~ msgid ""
+#~ "The Phase 2 implementation is "
+#~ "feature-complete in `main`. The first "
+#~ "npm publish (`plugin-clipboard-"
+#~ "manager-v0.1.0`) is scheduled alongside the"
+#~ " other Phase 2 packages. Until then,"
+#~ " consume `@rescript-tauri/plugin-clipboard-"
+#~ "manager` via the source repository or"
+#~ " a workspace link."
+#~ msgstr ""
 

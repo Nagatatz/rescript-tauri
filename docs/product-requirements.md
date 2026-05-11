@@ -6,7 +6,7 @@
 | バージョン | 0.1（初版） |
 | 作成日 | 2026-05-08 |
 | 関連 RFC | [RFC-0001 rescript-tauri Core API Design](./ideas/RFC-0001-core-api-design.md) |
-| ステータス | Confirmed (Phase 1+2 merged, awaiting first publish) |
+| ステータス | Confirmed (all packages merged, awaiting first publish) |
 
 ---
 
@@ -188,10 +188,10 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 #### Story 3-3: Menu / Tray / Image / Path / App / Dpi の各クラス／関数 API
 **As a** 開発者
 **I want** Tauri 公式の他モジュールも初期スコープに含めた状態でリリースされる
-**So that** Phase 1 の段階で raw external を手書きする必要がない
+**So that** リリース時点で raw external を手書きする必要がない
 
 **受け入れ条件:**
-- Phase 1 リリース時点で以下 12 モジュールが提供される: `Core`, `Event`, `Window`, `Webview`, `WebviewWindow`, `Path`, `App`, `Dpi`, `Menu`, `Tray`, `Image`, `Mocks`。
+- 初版リリース時点で以下 12 モジュールが提供される: `Core`, `Event`, `Window`, `Webview`, `WebviewWindow`, `Path`, `App`, `Dpi`, `Menu`, `Tray`, `Image`, `Mocks`。
 - 各モジュールは `.res` + `.resi` のペアで構成される。
 
 ### Epic 4: 文字列リテラル Union と Variant
@@ -268,21 +268,20 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 
 ## 4. 機能要件サマリー
 
-| 区分 | 機能 | 優先度 | フェーズ |
+| 区分 | 機能 | 優先度 | ステータス |
 |---|---|---|---|
-| IPC | `Core.Raw.invoke` / `convertFileSrc` | Must | Phase 1 |
-| IPC | `Core.Command.make` / `invoke` / `invokeExn` | Must | Phase 1 |
-| IPC | `Core.Channel` | Must | Phase 1 |
-| Event | `Event.make` / `listen` / `once` / `emit` / `emitTo` | Must | Phase 1 |
-| Event | `Event.TauriEvent.*`（upstream `TauriEvent` enum 16 種を `tauriEvent` 文字列定数として公開） | Must | Phase 1（実装済み） |
-| Window | `Window` クラスバインディング | Must | Phase 1 |
-| Webview | `Webview` / `WebviewWindow` クラスバインディング | Must | Phase 1 |
-| Util | `Path`, `App`, `Dpi`, `Image` | Must | Phase 1 |
-| UI | `Menu`, `Tray` | Must | Phase 1 |
-| Test | `Mocks` モジュール | Must | Phase 1 |
-| Schema | `@rescript-tauri/schema`（外部パッケージ） | Must | Phase 2 — merged |
-| Plugin | `plugin-fs`, `plugin-dialog` | Must | Phase 2 — merged |
-| Plugin | その他 `@tauri-apps/plugin-*` 系（shell / clipboard / etc.） | Could | Phase 2+ |
+| IPC | `Core.Raw.invoke` / `convertFileSrc` | Must | merged |
+| IPC | `Core.Command.make` / `invoke` / `invokeExn` | Must | merged |
+| IPC | `Core.Channel` | Must | merged |
+| Event | `Event.make` / `listen` / `once` / `emit` / `emitTo` | Must | merged |
+| Event | `Event.TauriEvent.*`（upstream `TauriEvent` enum 16 種を `tauriEvent` 文字列定数として公開） | Must | merged |
+| Window | `Window` クラスバインディング | Must | merged |
+| Webview | `Webview` / `WebviewWindow` クラスバインディング | Must | merged |
+| Util | `Path`, `App`, `Dpi`, `Image` | Must | merged |
+| UI | `Menu`, `Tray` | Must | merged |
+| Test | `Mocks` モジュール | Must | merged |
+| Schema | `@rescript-tauri/schema`（外部パッケージ） | Must | merged |
+| Plugin | `plugin-fs` / `plugin-dialog` / `plugin-shell` / `plugin-notification` / `plugin-log` / `plugin-os` / `plugin-clipboard-manager` / `plugin-http` | Must | merged |
 
 ---
 
@@ -392,12 +391,11 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 
 ## 8. リリース計画（マイルストーン）
 
-| Phase | スコープ | 状態 / リリースゲート |
+| マイルストーン | スコープ | 状態 / リリースゲート |
 |---|---|---|
-| **Phase 0**: RFC 確定 | RFC-0001 の Decision checklist 完了 | **完了** — npm scope 予約 / repo URL / license / API 主要署名確定 |
-| **Phase 1**: コアバインディング | `Core` / `Event` / `Window` / `Webview` / `WebviewWindow` / `Path` / `App` / `Dpi` / `Menu` / `Tray` / `Image` / `Mocks` / `examples/hello-world` ほか | **merged** — 全モジュール `.resi` 完備、互換マトリクス公開、CI 全プラットフォーム緑、初版 npm publish (`v0.1.0`) 待ち |
-| **Phase 2**: スキーマ統合 / プラグイン展開 | `@rescript-tauri/schema`, `plugin-fs`, `plugin-dialog`, 対応 examples / sphinx-docs | **merged** — 各パッケージ独立 publish 準備完了、対応 `@tauri-apps/plugin-*` 互換マトリクス公開、初版 npm publish (`*-v0.1.0`) 待ち |
-| **Phase 3**: 長期運用 / 次期 ReScript メジャー対応（v13 想定） | コントリビュータ拡充、次期メジャー prerelease 追従、`0.1.x → 1.0.0` 昇格 | 次期メジャー prerelease で CI 緑、governance 文書整備 |
+| **RFC 確定** | RFC-0001 の Decision checklist 完了 | **完了** — npm scope 予約 / repo URL / license / API 主要署名確定 |
+| **初版リリース** | コアバインディング (`Core` / `Event` / `Window` / `Webview` / `WebviewWindow` / `Path` / `App` / `Dpi` / `Menu` / `Tray` / `Image` / `Mocks`) + プラグイン展開 (`@rescript-tauri/schema`, `plugin-fs`, `plugin-dialog`, `plugin-shell`, `plugin-notification`, `plugin-log`, `plugin-os`, `plugin-clipboard-manager`, `plugin-http`) + 対応 examples / sphinx-docs | **merged** — 全パッケージ `.resi` 完備、互換マトリクス公開、CI 全プラットフォーム緑、各パッケージ独立 publish 準備完了、初版 npm publish (`*-v0.1.0`) 待ち |
+| **長期運用 / 次期 ReScript メジャー対応**（v13 想定） | コントリビュータ拡充、次期メジャー prerelease 追従、`0.1.x → 1.0.0` 昇格 | 次期メジャー prerelease で CI 緑、governance 文書整備 |
 
 ---
 
@@ -418,11 +416,11 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 | # | 論点 | 暫定方針 | 確定タイミング |
 |---|---|---|---|
 | 1 | `Tauri.res` の re-export 範囲 | **Core / Event / Window / Webview / WebviewWindow（確定）**（経緯: `.steering/20260509-023-tauri-reexport/`） | **確定済み（2026-05-09）** |
-| 2 | `Channel` を `Core` に同梱 vs 独立モジュール化 | **`Core.Channel` サブモジュールとして実装（確定）** | **確定済み（Phase 1 設計レビュー）** |
+| 2 | `Channel` を `Core` に同梱 vs 独立モジュール化 | **`Core.Channel` サブモジュールとして実装（確定）** | **確定済み（コア設計レビュー時点）** |
 | 3 | `invokeExn` 命名（`invokeOrThrow` / `invokeUnsafe` 等） | **`invokeExn` 採用（確定）**（`@rescript/core` 慣習） | **確定済み** |
 | 4 | `Event.TauriEvent` の網羅範囲 | **upstream `TauriEvent` enum 16 種を完全カバー（確定）**。typed handle ではなく `tauriEvent` 文字列定数として公開し、payload 型は `Event.make` 呼び出し側で指定する設計に確定 | **確定済み（2026-05-09、`packages/core/src/Event.resi`）** |
 | 5 | `Mocks` の独立パッケージ化 | **`@rescript-tauri/core` 同梱を継続（確定）**（経緯: `.steering/20260509-045-mocks-packaging-decision/`） | **確定済み（2026-05-09）** |
-| 6 | Belt-only ユーザー向け shim 提供可否 | 当面提供しない（`@rescript/core` を peerDep 必須にする） | Phase 1 リリース直前 |
+| 6 | Belt-only ユーザー向け shim 提供可否 | 当面提供しない（`@rescript/core` を peerDep 必須にする） | 初版リリース直前 |
 | 7 | ReScript v11 サポート | **除外（v12+ のみ）**（経緯: `.steering/20260508-002-rescript-v12-only/`） | **確定済み（2026-05-08）** |
 
 ---

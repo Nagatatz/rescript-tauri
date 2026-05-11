@@ -35,11 +35,11 @@ upstream page.
 | `Dpi` | DPI-aware size and position (`LogicalSize`, `PhysicalSize`, `LogicalPosition`, `PhysicalPosition`, `Size`, `Position`) |
 | `Mocks` | Test helpers (`mockIPC`, `mockWindows`, `clearMocks`) |
 
-## Phase 2 packages
+## Add-on packages
 
-Phase 2 introduces nine add-on packages that build on the Phase 1
-core. Each ships independently and pulls the matching upstream
-plugin / schema library through `peerDependencies`.
+Nine add-on packages build on the core. Each ships independently
+and pulls the matching upstream plugin / schema library through
+`peerDependencies`.
 
 | Package | Purpose | Guide |
 |---|---|---|

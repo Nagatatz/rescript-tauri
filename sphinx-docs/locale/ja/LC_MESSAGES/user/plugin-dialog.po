@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-09 16:33+0900\n"
+"POT-Creation-Date: 2026-05-11 14:36+0900\n"
 "PO-Revision-Date: 2026-05-09 17:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -28,49 +28,46 @@ msgid ""
 "plugin](https://v2.tauri.app/plugin/dialog/) — open / save / message / "
 "ask / confirm."
 msgstr ""
-"[Tauri 2.x ネイティブダイアログプラグイン](https://v2.tauri.app/plugin/dialog/) "
-"の ReScript バインディングです。open / save / message / ask / confirm を提供します。"
+"[Tauri 2.x ネイティブダイアログプラグイン](https://v2.tauri.app/plugin/dialog/) の "
+"ReScript バインディングです。open / save / message / ask / confirm を提供します。"
 
-#: ../../user/plugin-dialog.md:8
+#: ../../user/plugin-dialog.md:9
 msgid ""
-"The Phase 2 implementation is feature-complete in `main`. The first npm "
-"publish (`plugin-dialog-v0.1.0`) is scheduled alongside the other Phase 2"
-" packages. Until then, consume `@rescript-tauri/plugin-dialog` via the "
-"source repository or a workspace link."
+"The Phase 2 implementation of this package is feature-complete in `main`."
+" Its first npm publish is scheduled alongside the other Phase 2 packages."
+" Until then, consume it via the source repository or a workspace link."
 msgstr ""
-"Phase 2 の実装は `main` で機能完備済みです。初回 npm 公開（`plugin-dialog-v0.1.0`）は "
-"他の Phase 2 パッケージと合わせて予定されています。それまでは、ソースリポジトリ経由か "
-"ワークスペースリンクで `@rescript-tauri/plugin-dialog` を利用してください。"
+"本パッケージの Phase 2 実装は `main` で機能完備済みです。初回 npm 公開は他の Phase 2 パッケージと合わせて予定されています。それまでは、ソースリポジトリ経由かワークスペースリンクで利用してください。"
 
-#: ../../user/plugin-dialog.md:15
+#: ../../user/plugin-dialog.md:11
 msgid "Install"
 msgstr "インストール"
 
-#: ../../user/plugin-dialog.md:21
+#: ../../user/plugin-dialog.md:17
 msgid ""
 "`@rescript-tauri/plugin-dialog` declares both `@rescript-tauri/core` and "
 "`@tauri-apps/plugin-dialog` as `peerDependencies`."
 msgstr ""
-"`@rescript-tauri/plugin-dialog` は `@rescript-tauri/core` と "
-"`@tauri-apps/plugin-dialog` の両方を `peerDependencies` として宣言しています。"
+"`@rescript-tauri/plugin-dialog` は `@rescript-tauri/core` と `@tauri-apps"
+"/plugin-dialog` の両方を `peerDependencies` として宣言しています。"
 
-#: ../../user/plugin-dialog.md:34
+#: ../../user/plugin-dialog.md:30
 msgid "Rust side:"
 msgstr "Rust 側:"
 
-#: ../../user/plugin-dialog.md:52
+#: ../../user/plugin-dialog.md:48
 msgid "Capabilities"
 msgstr "Capabilities"
 
-#: ../../user/plugin-dialog.md:66
+#: ../../user/plugin-dialog.md:62
 msgid "`dialog:default` covers all dialog APIs."
 msgstr "`dialog:default` ですべてのダイアログ API をカバーできます。"
 
-#: ../../user/plugin-dialog.md:68
+#: ../../user/plugin-dialog.md:64
 msgid "Minimal example"
 msgstr "最小例"
 
-#: ../../user/plugin-dialog.md:83
+#: ../../user/plugin-dialog.md:79
 msgid ""
 "`openFile` returns `promise<Nullable.t<string>>`; `Nullable.null` is the "
 "cancellation signal."
@@ -78,11 +75,11 @@ msgstr ""
 "`openFile` は `promise<Nullable.t<string>>` を返します。`Nullable.null` は "
 "キャンセルを示すシグナルです。"
 
-#: ../../user/plugin-dialog.md:86
+#: ../../user/plugin-dialog.md:82
 msgid "Public API"
 msgstr "公開 API"
 
-#: ../../user/plugin-dialog.md:88
+#: ../../user/plugin-dialog.md:84
 msgid "The 8 public functions cover the upstream surface:"
 msgstr "8 つの公開関数で上流の API 全体をカバーします:"
 
@@ -178,11 +175,11 @@ msgstr "`confirm`"
 msgid "OK / Cancel question"
 msgstr "OK / キャンセル の問い合わせ"
 
-#: ../../user/plugin-dialog.md:101
+#: ../../user/plugin-dialog.md:97
 msgid "Why four `open*` functions?"
 msgstr "なぜ `open*` 関数が 4 つあるのか"
 
-#: ../../user/plugin-dialog.md:103
+#: ../../user/plugin-dialog.md:99
 msgid ""
 "Upstream's TypeScript `open(options)` returns a different type depending "
 "on `multiple` / `directory` flags:"
@@ -190,7 +187,7 @@ msgstr ""
 "上流の TypeScript の `open(options)` は `multiple` / `directory` フラグに "
 "よって戻り値の型が変化します:"
 
-#: ../../user/plugin-dialog.md:113
+#: ../../user/plugin-dialog.md:109
 msgid ""
 "ReScript bindings can't express that conditional return without phantom "
 "types or runtime branching. We split the surface into four uncurried "
@@ -199,29 +196,27 @@ msgid ""
 "**not** exposed in the `openOptions` record — pick the function that "
 "matches the shape you need."
 msgstr ""
-"ReScript のバインディングでは、phantom type やランタイム分岐なしにこの条件型戻り値を "
-"表現できません。そこで API を 4 つの uncurried 関数に分割し、戻り値の型を "
-"バインディングレベルで固定しています。対応するオプションフラグ（`multiple`、`directory`）は "
-"`openOptions` レコードに **意図的に公開していません**。必要な戻り値の形に合致する関数を "
-"選んでください。"
+"ReScript のバインディングでは、phantom type やランタイム分岐なしにこの条件型戻り値を 表現できません。そこで API を 4"
+" つの uncurried 関数に分割し、戻り値の型を "
+"バインディングレベルで固定しています。対応するオプションフラグ（`multiple`、`directory`）は `openOptions` "
+"レコードに **意図的に公開していません**。必要な戻り値の形に合致する関数を 選んでください。"
 
-#: ../../user/plugin-dialog.md:121
+#: ../../user/plugin-dialog.md:117
 msgid "Mobile-only options"
 msgstr "モバイル限定オプション"
 
-#: ../../user/plugin-dialog.md:123
+#: ../../user/plugin-dialog.md:119
 msgid ""
 "`openOptions.pickerMode` (`#document` / `#media` / `#image` / `#video`) "
 "and `openOptions.fileAccessMode` (`#copy` / `#scoped`) are kept in the "
 "binding so iOS / Android builds can use them later. They're harmless on "
 "desktop where the underlying plugin ignores them."
 msgstr ""
-"`openOptions.pickerMode`（`#document` / `#media` / `#image` / `#video`）"
-"と `openOptions.fileAccessMode`（`#copy` / `#scoped`）は、iOS / Android "
-"ビルドで後から利用できるようバインディングに残してあります。デスクトップでは下層プラグインが "
-"無視するため害はありません。"
+"`openOptions.pickerMode`（`#document` / `#media` / `#image` / `#video`）と "
+"`openOptions.fileAccessMode`（`#copy` / `#scoped`）は、iOS / Android "
+"ビルドで後から利用できるようバインディングに残してあります。デスクトップでは下層プラグインが 無視するため害はありません。"
 
-#: ../../user/plugin-dialog.md:129
+#: ../../user/plugin-dialog.md:125
 msgid "Compatibility"
 msgstr "互換性"
 
@@ -281,11 +276,11 @@ msgstr "OS"
 msgid "Linux / macOS / Windows"
 msgstr "Linux / macOS / Windows"
 
-#: ../../user/plugin-dialog.md:140
+#: ../../user/plugin-dialog.md:136
 msgid "See also"
 msgstr "関連情報"
 
-#: ../../user/plugin-dialog.md:142
+#: ../../user/plugin-dialog.md:138
 msgid ""
 "Live demo: [`examples/plugin-dialog-demo`](https://github.com/Nagatatz"
 "/rescript-tauri/tree/main/examples/plugin-dialog-demo)"
@@ -293,7 +288,7 @@ msgstr ""
 "動作デモ: [`examples/plugin-dialog-demo`](https://github.com/Nagatatz"
 "/rescript-tauri/tree/main/examples/plugin-dialog-demo)"
 
-#: ../../user/plugin-dialog.md:144
+#: ../../user/plugin-dialog.md:140
 msgid ""
 "Source: [`packages/plugin-dialog`](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/packages/plugin-dialog)"
@@ -301,10 +296,9 @@ msgstr ""
 "ソース: [`packages/plugin-dialog`](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/packages/plugin-dialog)"
 
-#: ../../user/plugin-dialog.md:146
+#: ../../user/plugin-dialog.md:142
 msgid ""
 "Upstream docs: [Tauri 2.x dialog "
 "plugin](https://v2.tauri.app/plugin/dialog/)"
-msgstr ""
-"上流ドキュメント: [Tauri 2.x dialog "
-"プラグイン](https://v2.tauri.app/plugin/dialog/)"
+msgstr "上流ドキュメント: [Tauri 2.x dialog プラグイン](https://v2.tauri.app/plugin/dialog/)"
+

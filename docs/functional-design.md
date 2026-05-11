@@ -3,11 +3,11 @@
 | 項目 | 内容 |
 |---|---|
 | プロダクト | `@rescript-tauri/core` および周辺パッケージ群 |
-| 対象 | Phase 1（コアバインディング初期リリース） |
+| 対象 | 初版リリース（コアバインディング + プラグイン展開） |
 | 作成日 | 2026-05-08 |
 | 関連 PRD | [docs/product-requirements.md](./product-requirements.md) |
 | 関連 RFC | [docs/ideas/RFC-0001-core-api-design.md](./ideas/RFC-0001-core-api-design.md) |
-| ステータス | Confirmed (Phase 1+2 merged, awaiting first publish) |
+| ステータス | Confirmed (all packages merged, awaiting first publish) |
 
 > 本書は PRD の機能要件を「何を」「どのモジュールで」「どんな型で」提供するかに落としたもの。実装方針・型シグネチャ・ファイル配置・テスト方針までを定義し、各モジュール実装時の指針とする。アーキテクチャ寄りの判断は `docs/architecture.md`、リポジトリ物理構造は `docs/repository-structure.md` を参照。
 
@@ -38,17 +38,17 @@ rescript-tauri/                       # monorepo root
 │   │   ├── tests/                    # 型レベルテスト + vitest 実行テスト
 │   │   ├── rescript.json
 │   │   └── package.json
-│   ├── plugin-fs/                    # Phase 2+
-│   ├── plugin-dialog/                # Phase 2+
-│   └── schema/                       # Phase 2 (@rescript-tauri/schema)
+│   ├── plugin-fs/
+│   ├── plugin-dialog/
+│   └── schema/                       # @rescript-tauri/schema
 ├── examples/
-│   ├── hello-world/                  # Phase 1 必須
+│   ├── hello-world/
 │   ├── window-management/
 │   ├── ipc-typed/
 │   ├── streaming-ipc/
-│   ├── plugin-fs-demo/               # Phase 2
-│   ├── plugin-dialog-demo/           # Phase 2
-│   └── ipc-typed-with-schema/        # Phase 2 (Layer 3 demo)
+│   ├── plugin-fs-demo/
+│   ├── plugin-dialog-demo/
+│   └── ipc-typed-with-schema/        # Layer 3 demo
 └── docs/
 ```
 
@@ -56,13 +56,13 @@ rescript-tauri/                       # monorepo root
 
 ```
 ┌──────────────────────────────────────────────┐
-│  Layer 3: @rescript-tauri/schema             │  Phase 2
+│  Layer 3: @rescript-tauri/schema             │
 │   └─ Command.fromSchemas(~name, ~args, ~result)
 ├──────────────────────────────────────────────┤
-│  Layer 2: Core.Command                       │  Phase 1
+│  Layer 2: Core.Command                       │
 │   └─ make / invoke / invokeExn
 ├──────────────────────────────────────────────┤
-│  Layer 1: Core.Raw                           │  Phase 1
+│  Layer 1: Core.Raw                           │
 │   └─ invoke / convertFileSrc
 └──────────────────────────────────────────────┘
             ↓ JS bridge
@@ -647,7 +647,7 @@ module WebviewWindow = WebviewWindow
 // Path, App, Dpi 等は heavy なので open Tauri では出さない（残課題 #1）
 ```
 
-`Tauri.res` 全モジュール re-export は heavy になるため、Phase 1 リリース直前に最終決定する（PRD §10 Open Question #1）。
+`Tauri.res` 全モジュール re-export は heavy になるため、初版リリース直前に最終決定する（PRD §10 Open Question #1）。
 
 ---
 
@@ -783,7 +783,7 @@ let setTitle: (t, string) => promise<unit>
 
 ---
 
-## 7. リリース判定基準（Phase 1）
+## 7. リリース判定基準
 
 リリースゲート:
 
@@ -800,11 +800,11 @@ let setTitle: (t, string) => promise<unit>
 | # | 論点 | 暫定 | 確定タイミング |
 |---|---|---|---|
 | 1 | `Tauri.res` re-export 範囲 | **Core / Event / Window / Webview / WebviewWindow 確定**（経緯: `.steering/20260509-023-tauri-reexport/`） | **確定済み（2026-05-09）** |
-| 2 | `Channel` を `Core` 内 vs 独立モジュール | **`Core.Channel` サブモジュール採用（確定）** | **確定済み（Phase 1 設計レビュー）** |
+| 2 | `Channel` を `Core` 内 vs 独立モジュール | **`Core.Channel` サブモジュール採用（確定）** | **確定済み（コア設計レビュー時点）** |
 | 3 | `*Exn` 命名 | **`*Exn` 採用（確定）**（`@rescript/core` 慣習） | **確定済み** |
 | 4 | `Event.TauriEvent` の網羅範囲 | **upstream `TauriEvent` enum 16 種を完全カバー（確定）** — `closeRequested` / `focus` / `blur` / `scaleFactorChanged` / `resized` / `moved` / `themeChanged` / `webviewCreated` / `windowCreated` / `windowSuspended` / `windowResumed` / drag-* (4 種) / `windowDestroyed`。typed handle ではなく `Event.make(~name=TauriEvent.*, ~decode=...)` 形式で利用 | **確定済み（2026-05-09、`packages/core/src/Event.resi`）** |
 | 5 | `Mocks` の独立パッケージ化 | **core 同梱を継続（確定）**（経緯: `.steering/20260509-045-mocks-packaging-decision/`） | **確定済み（2026-05-09）** |
-| 6 | Belt-only ユーザー向け shim 提供可否 | 当面提供しない（`@rescript/core` を peerDep 必須） | Phase 1 リリース直前 |
+| 6 | Belt-only ユーザー向け shim 提供可否 | 当面提供しない（`@rescript/core` を peerDep 必須） | 初版リリース直前 |
 
 ---
 
