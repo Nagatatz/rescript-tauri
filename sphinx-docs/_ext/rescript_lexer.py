@@ -201,7 +201,7 @@ class RescriptLexer(RegexLexer):
         ],
         # Double-quoted string with escapes per flex 288–299.
         "string": [
-            (r'\\\r?\n[ \t]*', String.Escape),
+            (r"\\\r?\n[ \t]*", String.Escape),
             (r'\\[\\\'"nbrt ]', String.Escape),
             (r"\\\d{3}", String.Escape),
             (r"\\o[0-3][0-7]{2}", String.Escape),

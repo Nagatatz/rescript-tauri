@@ -32,11 +32,7 @@ from rescript_lexer import RescriptLexer  # noqa: E402
 def _tokens(source: str):
     """Tokenize ``source`` and drop pure-whitespace runs for terser asserts."""
     lexer = RescriptLexer()
-    return [
-        (token_type, value)
-        for token_type, value in lexer.get_tokens(source)
-        if value.strip()
-    ]
+    return [(token_type, value) for token_type, value in lexer.get_tokens(source) if value.strip()]
 
 
 def _has_token(tokens, token_type, value):
@@ -222,6 +218,6 @@ def test_jsx_open_and_close_emit_tag_names():
 
 
 def test_jsx_self_closing():
-    tokens = _tokens("<Icon name={\"x\"} />")
+    tokens = _tokens('<Icon name={"x"} />')
     assert _has_token(tokens, Name.Tag, "Icon")
     assert _has_token(tokens, Punctuation, "/>")
