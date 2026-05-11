@@ -4,6 +4,10 @@
   "description": "rescript-schema integration for @rescript-tauri/core (Layer 3 typed IPC)",
   "license": "MIT",
   "homepage": "https://github.com/Nagatatz/rescript-tauri",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/Nagatatz"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Nagatatz/rescript-tauri.git",

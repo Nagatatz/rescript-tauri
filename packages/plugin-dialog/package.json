@@ -4,6 +4,10 @@
   "description": "ReScript bindings for @tauri-apps/plugin-dialog (Tauri 2.x native dialog plugin)",
   "license": "MIT",
   "homepage": "https://github.com/Nagatatz/rescript-tauri",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/Nagatatz"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Nagatatz/rescript-tauri.git",
