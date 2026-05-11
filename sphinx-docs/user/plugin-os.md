@@ -250,6 +250,8 @@ upstream `"x86_64"` / `"powerpc64"` / `"riscv64"` / `"s390x"` /
 
 ## See also
 
+- Live demo:
+  [`examples/plugin-os-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-os-demo)
 - Source:
   [`packages/plugin-os`](https://github.com/Nagatatz/rescript-tauri/tree/main/packages/plugin-os)
 - Upstream docs:
