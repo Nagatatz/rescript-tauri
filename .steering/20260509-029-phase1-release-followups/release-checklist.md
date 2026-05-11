@@ -18,13 +18,21 @@
   - [ ] #3 invokeExn 命名 → 確定（`invokeExn` で実装済み、PRD 表記の確認のみ）
   - [ ] #6 Belt-only ユーザー向け shim → 提供しない確定（PRD 表記の確認のみ）
 
-## 2. リポジトリ visibility と secrets
+## 2. リポジトリ visibility と Trusted Publisher
 
 - [ ] リポジトリを public 化（GitHub UI: Settings → General → Danger Zone → Change visibility）
-- [ ] `NPM_TOKEN` を Repository secret として登録
-  - npm の Account → Access Tokens → Generate new token → "Automation" タイプ
-  - `gh secret set NPM_TOKEN` または GitHub UI → Settings → Secrets and variables → Actions → New repository secret
+- [ ] npm 側で `@rescript-tauri/core` の Trusted Publisher を設定
+  - npm の package ページ → Settings → Publishing access → Trusted Publisher → "Add new"
+  - 入力値:
+    - Provider: **GitHub Actions**
+    - Organization or user: `Nagatatz`
+    - Repository: `rescript-tauri`
+    - Workflow filename: `release.yml`
+    - Environment: (空欄)
+  - 公式手順: [Trusted Publishers (npm Docs)](https://docs.npmjs.com/trusted-publishers)
 - [ ] `ANTHROPIC_API_KEY` は Phase 1 では不要（Claude Code Action は opt-in template のまま）
+
+> **`NPM_TOKEN` は不要**: 本リポジトリは npm Trusted Publishing (OIDC) を採用しているため、Automation token を Repository secret として登録する必要はない。`release.yml` の `permissions: id-token: write` により、publish 時に短命トークンが自動発行される (steering 20260512-002)。
 
 ## 3. Branch protection 設定
 

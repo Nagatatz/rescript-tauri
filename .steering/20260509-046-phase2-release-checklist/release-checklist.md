@@ -25,8 +25,13 @@ Phase 1 (`v0.1.0`) 用は
   Phase 2 各パッケージは `peerDependencies: @rescript-tauri/core ^0.1.0`
   を要求するため、Phase 1 が npm に存在しないと利用者の install が
   失敗する。
-- [ ] `NPM_TOKEN` リポジトリシークレットが設定済み
-  (Phase 1 release で対応済 — steering 029 §2)
+- [ ] npm 側で各 Phase 2 パッケージの Trusted Publisher が設定済み
+  - 対象: `@rescript-tauri/schema`, `@rescript-tauri/plugin-fs`, `@rescript-tauri/plugin-dialog`
+  - 各パッケージごとに npm UI で登録（入力値は Phase 1 と同じ:
+    provider=GitHub Actions, repo=Nagatatz/rescript-tauri, workflow=release.yml, environment 空欄）
+  - 公式手順: [Trusted Publishers (npm Docs)](https://docs.npmjs.com/trusted-publishers)
+  - 未公開パッケージの場合は npm UI の "Add new trusted publisher for a new package" を使用
+  - `NPM_TOKEN` は不要（OIDC で短命トークンを自動発行、steering 20260512-002）
 - [ ] リポジトリが public (Phase 1 release で対応済)
 - [ ] Branch protection が `main` に有効 (Phase 1 release で対応済)
 
@@ -186,7 +191,10 @@ git tag -a schema-v0.1.0-rc1 -m "schema-v0.1.0 dry-run"
 git push origin schema-v0.1.0-rc1
 # → release.yml が走り、`schema-v*` パターンに合致して
 #   schema パッケージを publish しようとする
-# → NPM_TOKEN が無いか dry_run なら publish はスキップ
+# → Trusted Publisher が未設定なら publish ステップで失敗、
+#   設定済みなら publish される (タグを実際に切るとリアル
+#   リリースになるため、rc1 タグでも npm 公開を望まない場合は
+#   workflow_dispatch + dry_run=true でリハーサル推奨)
 # → 確認後に削除
 git tag -d schema-v0.1.0-rc1
 git push --delete origin schema-v0.1.0-rc1

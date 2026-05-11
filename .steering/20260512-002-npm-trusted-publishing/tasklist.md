@@ -15,9 +15,9 @@
 
 ## Phase 2: リリースチェックリストの更新
 
-- [ ] T5: `.steering/20260509-029-phase1-release-followups/release-checklist.md` の §2 を Trusted Publisher 設定手順に更新
-- [ ] T6: `.steering/20260509-046-phase2-release-checklist/release-checklist.md` の §0 / §4 を Trusted Publisher 前提に更新
-- [ ] T7: T5-T6 を 1 commit にまとめてコミット
+- [x] T5: `.steering/20260509-029-phase1-release-followups/release-checklist.md` の §2 を Trusted Publisher 設定手順に更新
+- [x] T6: `.steering/20260509-046-phase2-release-checklist/release-checklist.md` の §0 / §4 を Trusted Publisher 前提に更新
+- [x] T7: T5-T6 を 1 commit にまとめてコミット
 
 ## Phase 3: 完了検証
 
