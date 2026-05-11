@@ -70,16 +70,15 @@ pnpm add @rescript-tauri/schema rescript-schema
 ```
 
 See the [plugin-fs](plugin-fs.md), [plugin-dialog](plugin-dialog.md),
-and [schema](schema.md) guides for the matching ReScript / Rust /
-capability setup.
+[plugin-log](plugin-log.md), and [schema](schema.md) guides for the
+matching ReScript / Rust / capability setup.
 
 ```{note}
 Dedicated user guides for `@rescript-tauri/plugin-shell`,
-`@rescript-tauri/plugin-notification`, `@rescript-tauri/plugin-log`,
-`@rescript-tauri/plugin-os`, and
-`@rescript-tauri/plugin-clipboard-manager` are scheduled for follow-up
+`@rescript-tauri/plugin-os`, `@rescript-tauri/plugin-clipboard-manager`,
+and `@rescript-tauri/plugin-http` are scheduled for follow-up
 sub-steerings. Until then, refer to each package's own README
-(`packages/plugin-{shell,notification,log,os,clipboard-manager}/README.md`)
+(`packages/plugin-{shell,os,clipboard-manager,http}/README.md`)
 for full API coverage and copy-pasteable examples.
 ```
 

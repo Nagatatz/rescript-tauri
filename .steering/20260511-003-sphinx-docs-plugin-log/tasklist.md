@@ -50,12 +50,13 @@
 
 ### Checkpoint 4: 周辺ドキュメント更新
 
-- [ ] `sphinx-docs/user/index.md` の Phase 2 packages 表に plugin-log 行追加
-- [ ] `sphinx-docs/user/index.md` toctree に `plugin-log` を追加（順序: `plugin-notification` の後、`schema` の前）
-- [ ] `sphinx-docs/user/installation.md` の follow-up note から plugin-log を削除
-- [ ] `sphinx-docs/user/installation.md` の "See the [plugin-fs] ... guides" cross-ref に plugin-log を追加
-- [ ] `pnpm run check` 警告なし
-- [ ] `grep -n "plugin-log" sphinx-docs/user/installation.md sphinx-docs/user/index.md` で cross-ref を最終確認
+- [x] `sphinx-docs/user/index.md` の Phase 2 packages 表に plugin-log 行追加
+- [x] `sphinx-docs/user/index.md` toctree に `plugin-log` を追加（順序: `plugin-notification` の後、`schema` の前）
+- [x] `sphinx-docs/user/installation.md` の follow-up note から plugin-log を削除
+- [x] `sphinx-docs/user/installation.md` の "See the [plugin-fs] ... guides" cross-ref に plugin-log を追加
+- [x] 同 follow-up note: 既に user guide が存在する plugin-notification を削除（20260511-002 の漏れ）、plugin-http を新規追加（未着手 user guide なので残置対象）
+- [x] `pnpm run check` — md 対象外
+- [x] `grep -n "plugin-log" sphinx-docs/user/installation.md sphinx-docs/user/index.md` で 4 件の cross-ref 確認済み
 - [ ] commit: `📝 Cross-link plugin-log user guide from index/installation`
 
 ## Phase 3: マージ前検証

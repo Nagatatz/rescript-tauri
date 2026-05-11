@@ -46,6 +46,7 @@ plugin / schema library through `peerDependencies`.
 | `@rescript-tauri/plugin-fs` | Filesystem operations (read / write / dir / stat) | [plugin-fs](plugin-fs.md) |
 | `@rescript-tauri/plugin-dialog` | Native dialogs (open / save / message / ask / confirm) | [plugin-dialog](plugin-dialog.md) |
 | `@rescript-tauri/plugin-notification` | Native notifications (toast / schedule / channels) | [plugin-notification](plugin-notification.md) |
+| `@rescript-tauri/plugin-log` | Structured logging (5 levels + log-stream listeners) | [plugin-log](plugin-log.md) |
 | `@rescript-tauri/schema` | Layer 3 typed IPC via `rescript-schema` | [schema](schema.md) |
 
 ```{toctree}
@@ -58,6 +59,7 @@ configuration
 plugin-fs
 plugin-dialog
 plugin-notification
+plugin-log
 schema
 changelog
 ```
