@@ -37,7 +37,7 @@ upstream page.
 
 ## Phase 2 packages
 
-Phase 2 introduces three add-on packages that build on the Phase 1
+Phase 2 introduces eight add-on packages that build on the Phase 1
 core. Each ships independently and pulls the matching upstream
 plugin / schema library through `peerDependencies`.
 
@@ -45,6 +45,11 @@ plugin / schema library through `peerDependencies`.
 |---|---|---|
 | `@rescript-tauri/plugin-fs` | Filesystem operations (read / write / dir / stat) | [plugin-fs](plugin-fs.md) |
 | `@rescript-tauri/plugin-dialog` | Native dialogs (open / save / message / ask / confirm) | [plugin-dialog](plugin-dialog.md) |
+| `@rescript-tauri/plugin-notification` | Native notifications (toast / schedule / channels) | [plugin-notification](plugin-notification.md) |
+| `@rescript-tauri/plugin-shell` | Spawn child processes, open URLs / files with the OS default | [plugin-shell](plugin-shell.md) |
+| `@rescript-tauri/plugin-log` | Structured logging (5 levels + log-stream listeners) | [plugin-log](plugin-log.md) |
+| `@rescript-tauri/plugin-os` | OS info (platform / arch / family / locale / hostname) | [plugin-os](plugin-os.md) |
+| `@rescript-tauri/plugin-clipboard-manager` | Clipboard read/write (text / image / HTML) | [plugin-clipboard-manager](plugin-clipboard-manager.md) |
 | `@rescript-tauri/schema` | Layer 3 typed IPC via `rescript-schema` | [schema](schema.md) |
 
 ```{toctree}
@@ -56,6 +61,11 @@ quickstart
 configuration
 plugin-fs
 plugin-dialog
+plugin-notification
+plugin-shell
+plugin-log
+plugin-os
+plugin-clipboard-manager
 schema
 changelog
 ```

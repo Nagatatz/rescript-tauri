@@ -62,6 +62,8 @@ rescript-tauri/                          # monorepo root
 │   └── worktrees/                       # ビルトイン worktree 作成先
 ├── .github/                             # GitHub Actions / Templates
 │   └── workflows/
+├── tools/                               # リポジトリ共通の Node ツール
+│   └── vitest.shared.mjs                # 全 package 共有の vitest config helper (steering 059)
 ├── CLAUDE.md                            # プロジェクト指示書（本構造を @import）
 ├── AGENTS.md                            # Claude Code 以外のエージェント参照集約
 ├── CONTRIBUTING.md                      # コントリビュータ向けガイド
@@ -376,8 +378,6 @@ sphinx-docs/
 └── Makefile
 ```
 
-**未追加のユーザーガイド:** `user/plugin-shell.md`, `user/plugin-notification.md` は後続 sub-steering で追加予定（現状は各パッケージの `README.md` を参照）。
-
 **`docs/` との役割分担:**
 - `docs/` は開発チーム向け（PRD・設計）
 - `sphinx-docs/` はエンドユーザー・コントリビュータ向け（使い方・チュートリアル）
@@ -490,7 +490,19 @@ CI ジョブ定義の詳細は `docs/functional-design.md` §6 を参照。
 
 ---
 
-## 10. 構造変更時のルール
+## 10. `tools/` — リポジトリ共通の Node ツール
+
+`packages/*` から共有して読み込む素の Node スクリプト置き場。パッケージ化はせず、各 package の設定ファイルから相対 import (`../../tools/...`) で利用する。
+
+| ファイル | 役割 |
+|---|---|
+| `vitest.shared.mjs` | 全 package の `vitest.config.mjs` から呼び出す `definePackageConfig({thresholds?})` helper。`happy-dom` / `tests/runtime/**` / v8 coverage 等のボイラープレートを一元化する (steering 059, 2026-05-09) |
+
+新ヘルパ追加時は: (1) 純粋な default export または factory 関数を提供し、副作用を持たないこと; (2) `node --check` で構文確認できること; (3) 本書のテーブルに 1 行追記すること。
+
+---
+
+## 11. 構造変更時のルール
 
 新規ディレクトリ・パッケージ・モジュールを追加する際は:
 
