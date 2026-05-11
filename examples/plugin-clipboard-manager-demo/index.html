@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>plugin-clipboard-manager demo</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1.5rem; }
+      h1 { font-size: 1.4rem; }
+      .row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; }
+      button { padding: .4rem .8rem; cursor: pointer; }
+      pre { background: #111; color: #eee; padding: .8rem; min-height: 4rem;
+            border-radius: 4px; white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <h1>@rescript-tauri/plugin-clipboard-manager demo</h1>
+
+    <h2>Text</h2>
+    <div class="row">
+      <button type="button" id="btn-write-text">writeText</button>
+      <button type="button" id="btn-read-text">readText</button>
+    </div>
+
+    <h2>Image</h2>
+    <div class="row">
+      <button type="button" id="btn-read-image">readImage</button>
+      <button type="button" id="btn-write-image-roundtrip">writeImage (round-trip last readImage)</button>
+    </div>
+
+    <h2>HTML</h2>
+    <div class="row">
+      <button type="button" id="btn-write-html">writeHtml</button>
+    </div>
+
+    <h2>Clear</h2>
+    <div class="row">
+      <button type="button" id="btn-clear">clear</button>
+    </div>
+
+    <h2>Result</h2>
+    <pre id="result">(no action yet)</pre>
+
+    <script type="module" src="/src/main.mjs"></script>
+  </body>
+</html>

@@ -242,6 +242,8 @@ await Cb.clear()
 
 ## See also
 
+- Live demo:
+  [`examples/plugin-clipboard-manager-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-clipboard-manager-demo)
 - Source:
   [`packages/plugin-clipboard-manager`](https://github.com/Nagatatz/rescript-tauri/tree/main/packages/plugin-clipboard-manager)
 - Package README:
