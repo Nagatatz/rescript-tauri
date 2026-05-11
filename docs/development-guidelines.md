@@ -3,10 +3,10 @@
 | 項目 | 内容 |
 |---|---|
 | プロダクト | `@rescript-tauri/core` および周辺パッケージ群 |
-| 対象 | Phase 1 以降の全実装作業 |
+| 対象 | 全実装作業 |
 | 作成日 | 2026-05-08 |
 | 関連 | [docs/architecture.md](./architecture.md), [docs/functional-design.md](./functional-design.md), [docs/repository-structure.md](./repository-structure.md), [.claude/rules/](../.claude/rules/) |
-| ステータス | Confirmed (Phase 1+2 merged) |
+| ステータス | Confirmed (all packages merged) |
 
 > 本書は「**どう開発するか**」の実務指針。コーディング規約や Git 規約自体は `.claude/rules/*` を SSoT とし、本書はそれらを開発者の動線に沿って組み立て直す。各規約の本文は対応する rule ファイルへのリンクで委譲し、本書では「いつ・どの順序で適用するか」を示す。
 
@@ -44,7 +44,7 @@
 
 ### 1.3 Definition of Done の各フェーズ
 
-実装完了の判定は `.claude/rules/definition-of-done.md` の Phase 1〜5 を順守する。各フェーズのチェック項目は本書では再掲せず、定義そのものに当たること。
+実装完了の判定は `.claude/rules/definition-of-done.md` の Phases 1–5（作業フローの 5 段階）を順守する。各フェーズのチェック項目は本書では再掲せず、定義そのものに当たること。
 
 ---
 
@@ -235,7 +235,7 @@ let _ = Foo.someType: Foo.t => unit
 3. 型レベル + vitest + examples ビルド (3 OS) 全緑
 4. `.github/workflows/release.yml` の tag push トリガで npm publish 可能
 
-加えて `definition-of-done.md` Phase 4 の全項目を順守する。Phase 2 の release runbook は `.steering/20260509-046-phase2-release-checklist/` を参照。
+加えて `definition-of-done.md` Phase 4 の全項目を順守する。リリース runbook は `.steering/20260509-046-phase2-release-checklist/` を参照。
 
 ### 8.3 セキュリティ関連変更
 
@@ -245,7 +245,7 @@ let _ = Foo.someType: Foo.t => unit
 
 ## 9. リリース手順（概要）
 
-Phase 1 / Phase 2 のリリースランブックは `.steering/20260509-046-phase2-release-checklist/` に集約済み。現時点の概要:
+リリースランブックは `.steering/20260509-046-phase2-release-checklist/` に集約済み。現時点の概要:
 
 1. `release-manager` agent でリリース PR 作成・changelog 生成
 2. 各パッケージ独立 semver（初版は `core` / `plugin-fs` / `plugin-dialog` / `schema` を `v0.1.0` 系で揃える方針）

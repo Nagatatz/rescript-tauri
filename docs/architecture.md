@@ -23,10 +23,10 @@
 │  └──────────────────────────────────────────────────────┘    │
 │                          │                                    │
 │  ┌──────────────────────┴───────────────────────────────┐    │
-│  │  @rescript-tauri/schema    (Phase 2, optional)       │    │
+│  │  @rescript-tauri/schema    (optional)                │    │
 │  │  └─ Schema-driven Command 構築                       │    │
 │  ├──────────────────────────────────────────────────────┤    │
-│  │  @rescript-tauri/core      (Phase 1, 必須)          │    │
+│  │  @rescript-tauri/core      (必須)                    │    │
 │  │  ├─ Core (Raw / Command / Channel)                   │    │
 │  │  ├─ Event (listen / emit / Predefined)               │    │
 │  │  ├─ Window / Webview / WebviewWindow                 │    │
@@ -34,7 +34,7 @@
 │  │  ├─ Menu / Tray                                      │    │
 │  │  └─ Mocks (テスト用)                                 │    │
 │  ├──────────────────────────────────────────────────────┤    │
-│  │  @rescript-tauri/plugin-*  (Phase 2+)                │    │
+│  │  @rescript-tauri/plugin-*                            │    │
 │  └──────────────────────────────────────────────────────┘    │
 │                          │                                    │
 │  ┌──────────────────────┴───────────────────────────────┐    │
@@ -147,7 +147,7 @@ packages/
 
 互換マトリクスは README に必須掲載（PRD Story 7-1）。
 
-`0.1.x` から `1.0.0` への昇格条件: Phase 1 + Phase 2 で公開した API 表面が複数の利用側で揉まれ、破壊的変更が発生していない安定期に入ったと判断したタイミング（PRD §8 Phase 3 の責務）。`1.0.0` 昇格時は peerDep 表の `^0.1.0` 系を `^1.0.0` 系へ揃え、本書を更新する。
+`0.1.x` から `1.0.0` への昇格条件: 初版で公開した API 表面が複数の利用側で揉まれ、破壊的変更が発生していない安定期に入ったと判断したタイミング（PRD §8 の長期運用マイルストーンの責務）。`1.0.0` 昇格時は peerDep 表の `^0.1.0` 系を `^1.0.0` 系へ揃え、本書を更新する。
 
 ### 4.3 Tauri メジャーバンプ時の方針
 
@@ -189,7 +189,7 @@ Layer 2: result<'a, invokeError>
 | `Core.Channel.onMessage` | callback に `Error(decoderMessage)` を渡す |
 | `Event.listen` / `Event.once` | callback に `Error(decoderMessage)` を渡す |
 
-共通の decoder 型エイリアスを `Core.decoder<'value> = JSON.t => result<'value, string>` として `.resi` で公開し、Command/Channel/Event すべてが同じ型を target にする。Phase 2 の `@rescript-tauri/schema` パッケージはこの `Core.decoder<_>` 型を返す `Command.fromSchemas` ヘルパを提供する。
+共通の decoder 型エイリアスを `Core.decoder<'value> = JSON.t => result<'value, string>` として `.resi` で公開し、Command/Channel/Event すべてが同じ型を target にする。`@rescript-tauri/schema` パッケージはこの `Core.decoder<_>` 型を返す `Command.fromSchemas` ヘルパを提供する。
 
 呼び出し側で silent-drop を選びたい場合は明示的にパターンマッチで `Error` ブランチを破棄する:
 
@@ -296,7 +296,7 @@ Tag push:
 - production ビルドでも import 可能（明示的にテスト用と doc に記載）。
 - パッケージ構造: **`@rescript-tauri/core` 同梱を継続**。独立パッケージ
   化はしない（PRD §10 #5、確定経緯: `.steering/20260509-045-mocks-packaging-decision/`）。
-  Phase 2 の schema / plugin-fs / plugin-dialog はすでに core 同梱の
+  schema / plugin-fs / plugin-dialog はすでに core 同梱の
   Mocks を runtime テストから利用しており、独立化は既存パッケージへの
   破壊的変更を要する一方、49 行のコードに対する独立 publish 運用の
   オーバーヘッドが過剰。
@@ -327,7 +327,7 @@ Tag push:
 
 ---
 
-## 10. 拡張余地（Phase 2 以降）
+## 10. 拡張余地
 
 | 拡張 | 想定パッケージ | 影響範囲 |
 |---|---|---|

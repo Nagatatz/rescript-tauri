@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>plugin-notification demo</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1.5rem; }
+      h1 { font-size: 1.4rem; }
+      .row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; }
+      button { padding: .4rem .8rem; cursor: pointer; }
+      pre { background: #111; color: #eee; padding: .8rem; min-height: 6rem;
+            border-radius: 4px; white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <h1>@rescript-tauri/plugin-notification demo</h1>
+
+    <h2>Permission</h2>
+    <div class="row">
+      <button type="button" id="btn-check-permission">isPermissionGranted</button>
+      <button type="button" id="btn-request-permission">requestPermission</button>
+    </div>
+
+    <h2>Send</h2>
+    <div class="row">
+      <button type="button" id="btn-send-text">sendNotificationText</button>
+      <button type="button" id="btn-send-options">sendNotification (options, id=1)</button>
+    </div>
+
+    <h2>Pending / Active</h2>
+    <div class="row">
+      <button type="button" id="btn-pending">pending</button>
+      <button type="button" id="btn-cancel-all">cancelAll</button>
+      <button type="button" id="btn-active">active</button>
+      <button type="button" id="btn-remove-all-active">removeAllActive</button>
+    </div>
+
+    <h2>Action types</h2>
+    <div class="row">
+      <button type="button" id="btn-register-actions">registerActionTypes</button>
+    </div>
+
+    <h2>Channels (Android)</h2>
+    <div class="row">
+      <button type="button" id="btn-create-channel">createChannel (test-channel)</button>
+      <button type="button" id="btn-list-channels">channels</button>
+      <button type="button" id="btn-remove-channel">removeChannel</button>
+    </div>
+
+    <h2>Listeners</h2>
+    <div class="row">
+      <button type="button" id="btn-subscribe-action">subscribe onAction</button>
+      <button type="button" id="btn-detach-action">detach onAction</button>
+      <button type="button" id="btn-subscribe-received">subscribe onNotificationReceived</button>
+      <button type="button" id="btn-detach-received">detach onNotificationReceived</button>
+    </div>
+
+    <h2>Result</h2>
+    <pre id="result">(no action yet)</pre>
+
+    <script type="module" src="/src/main.mjs"></script>
+  </body>
+</html>

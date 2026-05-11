@@ -34,6 +34,11 @@ this package adheres to
 - Type-level signature test
   (`tests/plugin_notification_signature.res`) and vitest runtime
   tests (`tests/runtime/plugin_notification.test.mjs`).
+- Runnable example
+  [`examples/plugin-notification-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-notification-demo)
+  exercising the full surface (permission / send / pending /
+  active / action types / channels / live listeners) from
+  button-driven UI.
 - `peerDependencies`: `@rescript-tauri/core ^0.1.0`,
   `@tauri-apps/plugin-notification ^2.3.0`, `rescript >=12.0.0`,
   `@rescript/core >=1.6.0`.
@@ -41,11 +46,6 @@ this package adheres to
   `tests-plugin-notification-runtime.yml`, plus `release.yml`
   recognition of the `plugin-notification-v*` tag prefix and a
   `plugin-notification` entry in the `tests-coverage.yml` matrix.
-
-### Deferred to follow-up sub-steerings
-
-- Runnable example app (`examples/plugin-notification-demo/`).
-- sphinx-docs `user/plugin-notification.md` page.
 
 <!-- Template for new releases (do not remove)
 
