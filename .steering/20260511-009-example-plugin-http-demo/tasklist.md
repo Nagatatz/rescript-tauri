@@ -31,14 +31,14 @@
 
 ### Checkpoint 2: Frontend スケルトン + Step 1 GET
 
-- [ ] `examples/plugin-http-demo/package.json` 作成（workspace `:*` deps）
-- [ ] `examples/plugin-http-demo/rescript.json` 作成
-- [ ] `examples/plugin-http-demo/index.html` 作成（ボタン × 4 + result pre）
-- [ ] `examples/plugin-http-demo/src/main.mjs` 作成
-- [ ] `examples/plugin-http-demo/src/App.res` 作成（`runGet` step 1 のみ実装、`safe`/`setResult` ヘルパ込み）
-- [ ] `pnpm install` で workspace に取り込む
-- [ ] `pnpm --filter plugin-http-demo build` 成功確認
-- [ ] commit: `✨ Add plugin-http-demo frontend with Step 1 (GET)`
+- [x] `examples/plugin-http-demo/package.json` 作成（workspace `:*` deps）
+- [x] `examples/plugin-http-demo/rescript.json` 作成
+- [x] `examples/plugin-http-demo/index.html` 作成（ボタン × 4 + result pre）
+- [x] `examples/plugin-http-demo/src/main.mjs` 作成
+- [x] `examples/plugin-http-demo/src/App.res` 作成（`runGet` step 1 のみ実装、`safe`/`setResult` ヘルパ込み）
+- [x] `pnpm install` で workspace に取り込む
+- [x] `pnpm --filter plugin-http-demo build` 成功確認
+- [x] commit: `✨ Add plugin-http-demo frontend with Step 1 (GET)`
 
 ### Checkpoint 3: Step 2-4 (POST / clientOptions / headers)
 
