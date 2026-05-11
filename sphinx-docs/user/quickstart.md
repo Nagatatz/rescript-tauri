@@ -1,11 +1,11 @@
 # Quick Start
 
 ```{note}
-The Phase 1 module set is feature-complete in `main`. The samples
-below reflect the actual `.resi` signatures shipped on `main`. The
-package is awaiting its first npm publish (`v0.1.0`); until then,
-consume `@rescript-tauri/core` via the source repository or a
-workspace link.
+All `@rescript-tauri/core` modules are feature-complete in `main`.
+The samples below reflect the actual `.resi` signatures shipped on
+`main`. The package is awaiting its first npm publish (`v0.1.0`);
+until then, consume `@rescript-tauri/core` via the source repository
+or a workspace link.
 ```
 
 ## Prerequisites
@@ -167,4 +167,4 @@ into scope alongside Window / Event.
 - [Configuration](configuration.md) — `rescript.json`, peerDeps, compatibility
 - [Changelog](changelog.md) — Release notes
 - [`docs/functional-design.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/docs/functional-design.md) — Per-module API specifications (Japanese)
-- [Layer 3 (Schema integration)](https://github.com/Nagatatz/rescript-tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) — `Command.fromSchemas` helper, planned for `@rescript-tauri/schema` (Phase 2)
+- [Layer 3 (Schema integration)](https://github.com/Nagatatz/rescript-tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) — `Command.fromSchemas` helper, provided by `@rescript-tauri/schema`

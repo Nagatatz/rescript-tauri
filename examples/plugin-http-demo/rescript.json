@@ -1,0 +1,8 @@
+{
+  "name": "plugin-http-demo",
+  "package-specs": [{ "module": "esmodule", "in-source": true }],
+  "suffix": ".res.mjs",
+  "sources": [{ "dir": "src", "subdirs": true }],
+  "dependencies": ["@rescript/core", "@rescript-tauri/core", "@rescript-tauri/plugin-http"],
+  "jsx": { "version": 4 }
+}

@@ -1,5 +1,9 @@
 import * as Mocks from "@rescript-tauri/core/src/Mocks.res.mjs"
 import { afterEach, beforeEach, describe, expect, it } from "vitest"
+import {
+  installEventPluginInternals,
+  installTauriInternals,
+} from "../../../../tools/tauri-mocks.mjs"
 import * as PluginLog from "../../src/PluginLog.res.mjs"
 
 describe("PluginLog", () => {
@@ -46,22 +50,15 @@ describe("PluginLog", () => {
     // Both wrap Tauri's `listen` for the `log://log` event. Stub the
     // upstream IPC bridge so the listener registration completes without
     // actually wiring anything up.
+    let cleanups = []
     const stubInternals = () => {
-      globalThis.window = globalThis.window ?? {}
-      let nextId = 1000
-      const callbacks = new Map()
-      globalThis.window.__TAURI_INTERNALS__ = {
-        transformCallback: (cb) => {
-          const id = nextId++
-          callbacks.set(id, cb)
-          return id
-        },
-        invoke: async () => undefined,
-      }
-      globalThis.window.__TAURI_EVENT_PLUGIN_INTERNALS__ = {
-        unregisterListener: () => {},
-      }
+      cleanups.push(installTauriInternals())
+      cleanups.push(installEventPluginInternals())
     }
+    afterEach(() => {
+      for (const cleanup of cleanups) cleanup()
+      cleanups = []
+    })
 
     it("attachLogger returns an unlisten function", async () => {
       stubInternals()

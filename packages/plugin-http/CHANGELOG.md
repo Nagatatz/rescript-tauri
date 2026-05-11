@@ -28,9 +28,13 @@ this package adheres to
   `tests-plugin-http-runtime.yml`, plus `release.yml` recognition
   of the `plugin-http-v*` tag prefix and a `plugin-http` entry in
   the `tests-coverage.yml` matrix.
+- Runnable example app
+  [`examples/plugin-http-demo/`](../../examples/plugin-http-demo)
+  — 4 step buttons (GET, POST, clientOptions, headers/status)
+  driving JSONPlaceholder; included in the `examples-build` CI
+  matrix on Linux / macOS / Windows (steering 20260511-009).
+- sphinx-docs `user/plugin-http.md` page (steering 20260511-007).
 
 ### Deferred to follow-up sub-steerings
 
-- Runnable example app (`examples/plugin-http-demo/`).
-- sphinx-docs `user/plugin-http.md` page.
 - Typed Web Fetch API surface (`Request` / `Response` / etc.).

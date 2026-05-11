@@ -1,10 +1,10 @@
 # Installation
 
 ```{note}
-The Phase 1 module set is feature-complete in `main`. The first npm
-publish (`v0.1.0`) is scheduled at the Phase 1 release. Until then,
-consume `@rescript-tauri/core` via the source repository or a
-workspace link — the commands below show the future
+All packages are feature-complete in `main`. The first npm publish
+(`v0.1.0`) is scheduled for the initial release. Until then, consume
+`@rescript-tauri/core` via the source repository or a workspace
+link — the commands below show the future
 `pnpm add @rescript-tauri/core` workflow that will work
 post-publish.
 ```
@@ -20,7 +20,7 @@ post-publish.
 | pnpm | >= 9 |
 | OS | Linux / macOS / Windows (Tauri 2.x desktop targets) |
 
-## Install (planned, post Phase 1 release)
+## Install (planned, post initial release)
 
 ```bash
 pnpm add @rescript-tauri/core @tauri-apps/api
@@ -38,9 +38,9 @@ Then add `@rescript-tauri/core` to `dependencies` in your `rescript.json`:
 }
 ```
 
-### Phase 2 add-on packages
+### Add-on packages
 
-Each Phase 2 package is published independently. Install them as
+Each add-on package is published independently. Install them as
 needed alongside the matching upstream plugin / schema library:
 
 ```bash
@@ -84,7 +84,7 @@ capability setup.
 
 ## Verify
 
-After Phase 1 ships, a minimal verification looks like:
+After the initial release ships, a minimal verification looks like:
 
 ```rescript
 let _ = await Tauri.Core.Raw.invoke("ping", ~args=())
@@ -94,4 +94,4 @@ Combined with a Rust-side `#[tauri::command] fn ping() {}`, this round-trip conf
 
 ## Troubleshooting
 
-Detailed troubleshooting will be added as Phase 1 implementation reveals common pitfalls. For early feedback, please open an issue at [github.com/Nagatatz/rescript-tauri/issues](https://github.com/Nagatatz/rescript-tauri/issues).
+Detailed troubleshooting will be added as adoption surfaces common pitfalls. For early feedback, please open an issue at [github.com/Nagatatz/rescript-tauri/issues](https://github.com/Nagatatz/rescript-tauri/issues).

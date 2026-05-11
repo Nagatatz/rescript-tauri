@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>plugin-http demo</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 1.5rem; }
+      h1 { font-size: 1.4rem; }
+      h2 { font-size: 1.05rem; margin-top: 1.2rem; }
+      .row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; }
+      button { padding: .4rem .8rem; cursor: pointer; }
+      pre { background: #111; color: #eee; padding: .8rem; min-height: 6rem;
+            border-radius: 4px; white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <h1>@rescript-tauri/plugin-http demo</h1>
+    <p>All operations target <code>https://jsonplaceholder.typicode.com/*</code>
+       (a public mock REST API). The scoped <code>http:default</code> capability
+       allows requests to that origin only.</p>
+
+    <h2>Step 1 — Simple GET</h2>
+    <div class="row">
+      <button type="button" id="btn-get">GET users/1 (status + name)</button>
+    </div>
+
+    <h2>Step 2 — POST with JSON body</h2>
+    <div class="row">
+      <button type="button" id="btn-post">POST posts (echo id)</button>
+    </div>
+
+    <h2>Step 3 — clientOptions</h2>
+    <div class="row">
+      <button type="button" id="btn-client-options">connectTimeout + maxRedirections</button>
+    </div>
+
+    <h2>Step 4 — Headers &amp; status</h2>
+    <div class="row">
+      <button type="button" id="btn-headers">read status + headers + text()</button>
+    </div>
+
+    <h2>Result</h2>
+    <pre id="result">(no action yet)</pre>
+
+    <script type="module" src="/src/main.mjs"></script>
+  </body>
+</html>

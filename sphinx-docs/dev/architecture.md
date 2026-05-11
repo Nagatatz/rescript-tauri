@@ -8,13 +8,13 @@ This page is a high-level summary aimed at first-time readers of the docs site. 
 
 ```
 ┌──────────────────────────────────────────────┐
-│  Layer 3: @rescript-tauri/schema (Phase 2)   │
+│  Layer 3: @rescript-tauri/schema             │
 │   └─ Command.fromSchemas (rescript-schema)   │
 ├──────────────────────────────────────────────┤
-│  Layer 2: Core.Command (Phase 1)             │
+│  Layer 2: Core.Command                       │
 │   └─ make / invoke / invokeExn               │
 ├──────────────────────────────────────────────┤
-│  Layer 1: Core.Raw (Phase 1)                 │
+│  Layer 1: Core.Raw                           │
 │   └─ invoke / convertFileSrc                 │
 └──────────────────────────────────────────────┘
             ↓ JS bridge
@@ -23,13 +23,13 @@ This page is a high-level summary aimed at first-time readers of the docs site. 
 
 ## Key components
 
-| Package | Role | Phase |
-|---|---|---|
-| `@rescript-tauri/core` | Core bindings for the entire `@tauri-apps/api` public surface | Phase 1 |
-| `@rescript-tauri/plugin-fs` | Bindings for `@tauri-apps/plugin-fs` | Phase 2+ |
-| `@rescript-tauri/plugin-dialog` | Bindings for `@tauri-apps/plugin-dialog` | Phase 2+ |
-| `@rescript-tauri/schema` | `Command.fromSchemas` helper (`rescript-schema` / `rescript-struct` integration) | Phase 2 |
-| `examples/*` | Buildable usage examples (CI gate on 3 OS) | Phase 1 onward |
+| Package | Role |
+|---|---|
+| `@rescript-tauri/core` | Core bindings for the entire `@tauri-apps/api` public surface |
+| `@rescript-tauri/plugin-fs` | Bindings for `@tauri-apps/plugin-fs` |
+| `@rescript-tauri/plugin-dialog` | Bindings for `@tauri-apps/plugin-dialog` |
+| `@rescript-tauri/schema` | `Command.fromSchemas` helper (`rescript-schema` integration) |
+| `examples/*` | Buildable usage examples (CI gate on 3 OS) |
 
 ## Design principles
 
