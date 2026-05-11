@@ -32,8 +32,8 @@
 
 ## Phase 3: sphinx-docs/conf.py
 
-- [ ] T3.1 `phase_2_note` substitution の文言から "Phase 2" を削除（design §2.6 の通り）
-- [ ] T3.2 comment 内の "Phase 2 ships to npm" も中立的表現に書き換え
+- [x] T3.1 `phase_2_note` substitution の文言から "Phase 2" を削除（"This package is feature-complete..."）
+- [x] T3.2 substitution comment 内の "Phase 2 ships to npm" → "the package set ships to npm"。linkcheck_ignore のコメント "Phase 1 release" → "initial release"
 - [ ] T3.3 **コミット**: `📝 Rephrase phase_2_note substitution without Phase 2 label`
 
 ## Phase 4: sphinx-docs/user/ 6 ファイル
