@@ -293,6 +293,8 @@ The level functions themselves (`error` / `warn` / `info` /
 
 ## See also
 
+- Live demo:
+  [`examples/plugin-log-demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples/plugin-log-demo)
 - Source:
   [`packages/plugin-log`](https://github.com/Nagatatz/rescript-tauri/tree/main/packages/plugin-log)
 - Package README:
