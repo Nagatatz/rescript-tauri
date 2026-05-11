@@ -216,13 +216,12 @@ msgid "Phase 2 packages"
 msgstr "Phase 2 パッケージ"
 
 #: ../../user/index.md:40
-#, fuzzy
 msgid ""
 "Phase 2 introduces nine add-on packages that build on the Phase 1 core. "
 "Each ships independently and pulls the matching upstream plugin / schema "
 "library through `peerDependencies`."
 msgstr ""
-"Phase 2 では Phase 1 core の上に乗る 8 "
+"Phase 2 では Phase 1 core の上に乗る 9 "
 "個のアドオンパッケージを追加します。いずれも独立して公開され、対応する上流のプラグイン / スキーマライブラリを "
 "`peerDependencies` 経由で取り込みます。"
 
@@ -319,18 +318,16 @@ msgid "[plugin-clipboard-manager](plugin-clipboard-manager.md)"
 msgstr "[plugin-clipboard-manager](plugin-clipboard-manager.md)"
 
 #: ../../user/index.md
-#, fuzzy
 msgid "`@rescript-tauri/plugin-http`"
-msgstr "`@rescript-tauri/plugin-os`"
+msgstr "`@rescript-tauri/plugin-http`"
 
 #: ../../user/index.md
 msgid "HTTP fetch with CORS bypass + proxy / TLS config"
-msgstr ""
+msgstr "CORS をバイパスする HTTP fetch と proxy / TLS の設定"
 
 #: ../../user/index.md
-#, fuzzy
 msgid "[plugin-http](plugin-http.md)"
-msgstr "[plugin-os](plugin-os.md)"
+msgstr "[plugin-http](plugin-http.md)"
 
 #: ../../user/index.md
 msgid "`@rescript-tauri/schema`"

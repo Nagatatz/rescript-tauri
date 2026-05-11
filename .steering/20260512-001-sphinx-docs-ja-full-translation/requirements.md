@@ -58,6 +58,18 @@
 - `pnpm --filter sphinx-docs build` または `cd sphinx-docs && make html` で日本語ビルドがエラーなく完走する（CI が green になる）
 - 翻訳テキストはコードブロック / リンク URL / 変数プレースホルダ（`{0}` 等）を破壊していない
 
+## 4.1 実態判明後の補足 (2026-05-12 追記)
+
+T1–T3 完了後に `msgattrib --untranslated --no-obsolete` で精密検査したところ、当初 awk スクリプトが multi-line msgstr (`msgstr ""\n"..."` の連続行形式) を空文字列として誤検出していたことが判明。当初 419 件と見積もった未翻訳の大半は誤検出で、**実態は以下のとおり**:
+
+- T1 (`plugin-http.po`): 真に 85/86 未翻訳 → 完了
+- T2 (`plugin-shell.po`): 真に 73/97 未翻訳 → 完了
+- T3 (`plugin-clipboard-manager.po`): 真に 51/68 未翻訳 → 完了
+- 他 17 ファイル: すべて完全翻訳済み（awk 誤検出。msgattrib では 0 件）
+- 残存問題: `user/index.po` の 1 件 untranslated + 3 件 fuzzy のみ → 別途修正
+
+最終的な翻訳作業件数: 3 大規模ファイル + `user/index.po` の 4 修正 = 約 213 entries / 4 ファイル。
+
 ## 5. 制約
 
 - 419 entries は長時間タスク。`steering-workflow.md` の Checkpoint 計画に従い、**ファイル単位でコミット** する（21 commit）
