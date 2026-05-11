@@ -39,8 +39,8 @@
 
 ## Phase 3: ドキュメント更新
 
-- [ ] T3.1 `docs/repository-structure.md` §3 の examples 一覧に `plugin-shell-demo/` 行を追加（design §4.2）
-- [ ] T3.2 `sphinx-docs/user/plugin-shell.md` の "See also" 先頭に live demo リンクを追加（design §4.3）
+- [x] T3.1 `docs/repository-structure.md` の examples 一覧（§1 ルートレイアウト + §3 一覧）両方に `plugin-shell-demo/` 行を追加
+- [x] T3.2 `sphinx-docs/user/plugin-shell.md` の "See also" 先頭に live demo リンクを追加
 - [ ] T3.3 **コミット**: `📝 Link plugin-shell-demo from docs and user guide`
 
 ## Phase 4: 検証
