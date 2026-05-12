@@ -38,21 +38,24 @@
 
 ## ブランチ運用ルール
 
-コードの変更を伴う作業は **`main` から新しいブランチを作成して行うこと**。
+すべての変更は **`main` から新しいブランチを作成し、PR 経由でマージすること**。`main` への直 push は GitHub branch protection で**物理的にブロック**されており、例外なく PR フローを通る必要がある（steering 20260512-006 で適用）。
 
 **手順:**
-1. `main` ブランチから作業用ブランチを作成する（ブランチ命名規則に従う）
+1. `main` ブランチから作業用ブランチを作成する（`EnterWorktree` 推奨、ブランチ命名規則に従う）
 2. 作業用ブランチで実装・コミットを行う
 3. 完了後、`tasklist.md` のマージタスクを含む全タスクを `[x]` に更新してコミットする
-4. ユーザーに `main` へのマージ可否を確認する
-5. 承認後、`main` にマージしてブランチを削除する
+4. ユーザーに PR 作成・`main` へのマージ可否を確認する
+5. 承認後、`git push origin <ブランチ名>` → `gh pr create` → `gh pr merge --merge --delete-branch` で self-merge し、worktree とローカルブランチを削除する（詳細は `steering-workflow.md` 「worktree から main への反映手順」参照）
 
 **重要:** マージ前に `tasklist.md` の全タスク（マージタスク自体を含む）が `[x]` になっていることを確認すること。tasklist の更新はマージ前の最終コミットに含めること。
 
-**例外:** 以下のケースでは `main` への直接コミットを許可する:
-- タイポ修正、1行の設定変更など明らかに軽微な修正
-- ステアリングドキュメント（`.steering/`）のみの変更
-- `CLAUDE.md` や `docs/` のみのドキュメント更新
+**branch protection の効果:**
+- `git push origin main` は **403** で拒否される（admin を含む）
+- `git push --force` は禁止
+- `main` ブランチの削除は禁止
+- すべての変更は PR レビュー必須（self-approve 可・required review count = 0）
+
+軽微な変更（タイポ修正、設定 1 行、`.steering/` のみ、`CLAUDE.md` / `docs/` のみ）も PR を通ること。solo dev の場合は self-merge で即時反映できるため、PR 経由のオーバーヘッドは小さい。
 
 ## ブランチ命名規則
 

@@ -4,14 +4,15 @@
 
 ## Phase 1: 計画（コード着手前）
 
-- [ ] `.steering/[YYYYMMDD]-[NNN]-[開発タイトル]/` ディレクトリを作成した（→ `steering-workflow.md`）
+- [ ] ステアリング番号を採番した（→ `steering-workflow.md` ステアリング番号の採番）
+- [ ] `EnterWorktree` で worktree を作成し、隔離された作業環境を用意した（→ `steering-workflow.md` git worktree 運用）
+- [ ] worktree 内に `.steering/[YYYYMMDD]-[NNN]-[開発タイトル]/` ディレクトリを作成した
 - [ ] `requirements.md` を作成し、ユーザーの承認を得た
 - [ ] `design.md` を作成し、ユーザーの承認を得た
 - [ ] `tasklist.md` を作成し、ユーザーの承認を得た
   - tasklist.md には実装タスクとセットでテスト作成タスクを含めること
-- [ ] `EnterWorktree` で worktree を作成し、隔離された作業環境を用意した（→ `steering-workflow.md` git worktree 運用）
 
-**例外:** タイポ修正、1行の設定変更など明らかに軽微な修正はステアリングワークフローを省略してよい。
+**例外:** タイポ修正、1行の設定変更など明らかに軽微な修正はステアリングワークフローを省略してよい（ただし PR フロー自体は branch protection により省略不可）。
 
 ## Phase 2: 実装（コーディング中）
 
@@ -68,18 +69,23 @@
 - [ ] `.steering/` ディレクトリ内ファイルを実装コードと同じコミットに含めた
 - [ ] コミットタスクの場合は `tasklist.md` を `[x]` に更新してからコミットした
 
-## Phase 4: マージ前（main マージ前）
+## Phase 4: PR 作成・マージ前（main マージ前）
 
 - [ ] `tasklist.md` の全タスク（マージタスク自体を含む）が `[x]` になっている
 - [ ] マージタスクの `[x]` 更新がマージ前の最終コミットに含まれている
-- [ ] `AskUserQuestion` でユーザーに main へのマージ可否を確認した（→ `steering-workflow.md`）
+- [ ] `AskUserQuestion` でユーザーに PR 作成・main へのマージ可否を確認した（→ `steering-workflow.md`）
 - [ ] セキュリティ関連モジュールの変更がある場合、セキュリティレビューを実施した
+- [ ] `git push origin <ブランチ名>` で worktree ブランチを push した
+- [ ] `gh pr create --base main --head <ブランチ名>` で PR を作成した
 
-## Phase 5: マージ後（マージ完了後）
+## Phase 5: マージ後（PR self-merge 完了後）
 
+- [ ] `gh pr merge <PR番号> --merge --delete-branch` で self-merge し remote branch を削除した
+- [ ] CWD をメインリポジトリに移動した（worktree 削除の前に必須）
+- [ ] `git pull origin main` でローカル main を最新化した
 - [ ] worktree を削除した（`git worktree prune` または `git worktree remove`）
-- [ ] マージ済みブランチを削除した（`git branch -d`）
-- [ ] マージ・クリーンアップ手順を順守した（→ `steering-workflow.md` worktree マージ・クリーンアップ手順）
+- [ ] ローカル worktree ブランチを削除した（`git branch -d`、remote は `--delete-branch` 済み）
+- [ ] 反映手順を順守した（→ `steering-workflow.md` worktree から main への反映手順）
 - [ ] クリーンアップ完了の検証を実施した:
   - `git worktree list` で main のみ表示される
   - `git branch --list 'worktree-*'` の出力が空である
