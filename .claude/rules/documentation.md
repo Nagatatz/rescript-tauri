@@ -29,6 +29,7 @@
 | `CLAUDE.md` | アーキテクチャセクション | 必須 |
 | `README.md` | Features セクション（該当カテゴリ） | 必須 |
 | `sphinx-docs/` | 該当する機能ページ | 必須（sphinx-docs が存在する場合） |
+| `sphinx-docs/locale/ja/` | 該当 `.po` カタログ（`make update-po` で再生成し、fuzzy / 新規 entry を翻訳） | 必須（sphinx-docs を更新した場合） |
 | `docs/product-requirements.md` | 実装済み機能セクション（ロードマップから移動） | 必須（ロードマップ記載機能の場合） |
 
 ### 更新タイミング
@@ -36,6 +37,7 @@
 - ドキュメント更新は **該当機能のコミットに含める**（機能コード + テスト + ドキュメント更新 = 1コミット）
 - または、全機能実装後に **1つのドキュメント更新コミット** としてまとめてもよい
 - tasklist.md にドキュメント更新タスクを必ず含めること
+- `sphinx-docs/` を更新した場合は **同一 PR 内で** `cd sphinx-docs && make update-po` を実行し、生成された `.po` の fuzzy マーカー解消と新規 entry 翻訳まで完了させること（事後 PR で翻訳を後追いする運用は禁止）
 
 ## docs/ ファイルの役割
 
