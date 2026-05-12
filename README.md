@@ -226,8 +226,8 @@ When introducing a new convention or workflow, choose its location in this prior
 |---|---|
 | [`rules/testing.md`](./.claude/rules/testing.md) | Mandatory tests; self-verification flow |
 | [`rules/code-comments.md`](./.claude/rules/code-comments.md) | Doc and inline comment conventions |
-| [`rules/git-conventions.md`](./.claude/rules/git-conventions.md) | Emoji-prefixed commits, commit granularity, branch naming |
-| [`rules/steering-workflow.md`](./.claude/rules/steering-workflow.md) | Steering documents and worktree workflow |
+| [`rules/git-conventions.md`](./.claude/rules/git-conventions.md) | Emoji-prefixed commits, commit granularity, branch naming, **PR-only main workflow** (branch protection) |
+| [`rules/steering-workflow.md`](./.claude/rules/steering-workflow.md) | Steering documents, worktree workflow, worktree → main reflection via PR self-merge |
 | [`rules/documentation.md`](./.claude/rules/documentation.md) | Roles of `docs/` vs `sphinx-docs/` |
 | [`rules/definition-of-done.md`](./.claude/rules/definition-of-done.md) | Single Source of Truth for the Definition of Done (Phases 1–5) |
 | [`rules/permission-modes.md`](./.claude/rules/permission-modes.md) | Plan Mode / steering / auto / sandbox split |
@@ -237,6 +237,8 @@ When introducing a new convention or workflow, choose its location in this prior
 ## 🤝 Contributing
 
 External pull requests and design feedback are welcome. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the branch / commit / steering / CI conventions, and [`SECURITY.md`](./SECURITY.md) for vulnerability disclosure.
+
+`main` is protected by GitHub branch protection (steering [20260512-006](./.steering/20260512-006-protect-main-branch/)): **every change lands through a pull request** — direct push, force-push, and branch deletion are all blocked, even for admins. The required-approval count is `0`, so maintainers can self-merge for solo-dev iteration, but every change still flows through a PR record.
 
 ---
 
