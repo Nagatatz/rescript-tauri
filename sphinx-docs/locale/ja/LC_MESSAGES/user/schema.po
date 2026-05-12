@@ -33,16 +33,14 @@ msgstr ""
 " Tauri コマンドを宣言できます。"
 
 #: ../../user/schema.md:9
-#, fuzzy
 msgid ""
 "This package is feature-complete in `main`. The first npm publish "
 "(`schema-v0.1.0`) is scheduled alongside the other packages. Until then, "
 "consume `@rescript-tauri/schema` via the source repository or a workspace"
 " link."
 msgstr ""
-"Phase 2 の実装は `main` で機能完備済みです。初回 npm 公開（`schema-v0.1.0`）は 他の Phase 2 "
-"パッケージと合わせて予定されています。それまでは、ソースリポジトリ経由か ワークスペースリンクで `@rescript-tauri/schema`"
-" を利用してください。"
+"本パッケージは `main` で機能完備済みです。初回 npm 公開（`schema-v0.1.0`）は他のパッケージと合わせて予定されています。"
+"それまでは、ソースリポジトリ経由かワークスペースリンクで `@rescript-tauri/schema` を利用してください。"
 
 #: ../../user/schema.md:15
 msgid "Install"

@@ -176,9 +176,8 @@ msgstr ""
 "するだけで主要なエントリポイントに長いパスなしでアクセスできます。"
 
 #: ../../user/configuration.md:51
-#, fuzzy
 msgid "The re-export set (confirmed 2026-05-09 — PRD §10 row 1):"
-msgstr "Phase 1 の re-export セット（2026-05-09 確定 — PRD §10 行 1）:"
+msgstr "re-export セット（2026-05-09 確定 — PRD §10 行 1）:"
 
 #: ../../user/configuration.md
 msgid "In `Tauri`"
@@ -291,18 +290,16 @@ msgid "Test-only"
 msgstr "テスト専用"
 
 #: ../../user/configuration.md:70
-#, fuzzy
 msgid "Add-on packages"
-msgstr "Phase 2 アドオンパッケージ"
+msgstr "アドオンパッケージ"
 
 #: ../../user/configuration.md:72
-#, fuzzy
 msgid ""
 "Add-on packages are each independently versioned and published. They "
 "declare both `@rescript-tauri/core` and the matching upstream library as "
 "`peerDependencies`."
 msgstr ""
-"Phase 2 では 3 つのアドオンパッケージを提供し、それぞれ独立してバージョン管理・公開されます。いずれも `@rescript-"
+"アドオンパッケージはそれぞれ独立してバージョン管理・公開されます。いずれも `@rescript-"
 "tauri/core` と対応する上流ライブラリの両方を `peerDependencies` として宣言します。"
 
 #: ../../user/configuration.md
@@ -330,9 +327,8 @@ msgid "`@tauri-apps/plugin-fs ^2.5.0`"
 msgstr "`@tauri-apps/plugin-fs ^2.5.0`"
 
 #: ../../user/configuration.md
-#, fuzzy
 msgid "merged; `plugin-fs-v0.1.0` npm publish pending"
-msgstr "Phase 2 実装はマージ済み。`plugin-fs-v0.1.0` の npm 公開待ち"
+msgstr "マージ済み。`plugin-fs-v0.1.0` の npm 公開待ち"
 
 #: ../../user/configuration.md
 msgid "[plugin-fs](plugin-fs.md)"
@@ -347,9 +343,8 @@ msgid "`@tauri-apps/plugin-dialog ^2.7.0`"
 msgstr "`@tauri-apps/plugin-dialog ^2.7.0`"
 
 #: ../../user/configuration.md
-#, fuzzy
 msgid "merged; `plugin-dialog-v0.1.0` npm publish pending"
-msgstr "Phase 2 実装はマージ済み。`plugin-dialog-v0.1.0` の npm 公開待ち"
+msgstr "マージ済み。`plugin-dialog-v0.1.0` の npm 公開待ち"
 
 #: ../../user/configuration.md
 msgid "[plugin-dialog](plugin-dialog.md)"
@@ -364,9 +359,8 @@ msgid "`rescript-schema ^9.0.0`"
 msgstr "`rescript-schema ^9.0.0`"
 
 #: ../../user/configuration.md
-#, fuzzy
 msgid "merged; `schema-v0.1.0` npm publish pending"
-msgstr "Phase 2 実装はマージ済み。`schema-v0.1.0` の npm 公開待ち"
+msgstr "マージ済み。`schema-v0.1.0` の npm 公開待ち"
 
 #: ../../user/configuration.md
 msgid "[schema](schema.md)"

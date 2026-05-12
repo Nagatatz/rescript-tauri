@@ -212,19 +212,17 @@ msgid "Test helpers (`mockIPC`, `mockWindows`, `clearMocks`)"
 msgstr "テスト用ヘルパー（`mockIPC` / `mockWindows` / `clearMocks`）"
 
 #: ../../user/index.md:38
-#, fuzzy
 msgid "Add-on packages"
-msgstr "Phase 2 パッケージ"
+msgstr "アドオンパッケージ"
 
 #: ../../user/index.md:40
-#, fuzzy
 msgid ""
 "Nine add-on packages build on the core. Each ships independently and "
 "pulls the matching upstream plugin / schema library through "
 "`peerDependencies`."
 msgstr ""
-"Phase 2 では Phase 1 core の上に乗る 9 "
-"個のアドオンパッケージを追加します。いずれも独立して公開され、対応する上流のプラグイン / スキーマライブラリを "
+"core の上に乗る 9 個のアドオンパッケージがあります。"
+"いずれも独立して公開され、対応する上流のプラグイン / スキーマライブラリを "
 "`peerDependencies` 経由で取り込みます。"
 
 #: ../../user/index.md

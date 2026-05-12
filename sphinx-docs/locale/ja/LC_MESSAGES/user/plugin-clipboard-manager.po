@@ -32,14 +32,13 @@ msgstr ""
 "ReScript バインディングです。テキスト、HTML、画像の読み書きを提供します。"
 
 #: ../../user/plugin-clipboard-manager.md:9
-#, fuzzy
 msgid ""
 "This package is feature-complete in `main`. Its first npm publish is "
 "scheduled alongside the other packages. Until then, consume it via the "
 "source repository or a workspace link."
 msgstr ""
-"本パッケージの Phase 2 実装は `main` で機能完備済みです。初回 npm 公開は他の Phase 2 "
-"パッケージと合わせて予定されています。それまでは、ソースリポジトリ経由かワークスペースリンクで利用してください。"
+"本パッケージは `main` で機能完備済みです。初回 npm 公開は他のパッケージと合わせて予定されています。"
+"それまでは、ソースリポジトリ経由かワークスペースリンクで利用してください。"
 
 #: ../../user/plugin-clipboard-manager.md:12
 msgid ""
@@ -392,14 +391,14 @@ msgid "See also"
 msgstr "関連リンク"
 
 #: ../../user/plugin-clipboard-manager.md:245
-#, fuzzy
 msgid ""
 "Live demo: [`examples/plugin-clipboard-manager-"
 "demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
 "/plugin-clipboard-manager-demo)"
 msgstr ""
-"ソース: [`packages/plugin-clipboard-manager`](https://github.com/Nagatatz"
-"/rescript-tauri/tree/main/packages/plugin-clipboard-manager)"
+"ライブデモ: [`examples/plugin-clipboard-manager-"
+"demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
+"/plugin-clipboard-manager-demo)"
 
 #: ../../user/plugin-clipboard-manager.md:247
 msgid ""
