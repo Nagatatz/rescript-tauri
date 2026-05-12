@@ -4,6 +4,8 @@ This page is a docs-site-specific extension of the canonical [`CONTRIBUTING.md`]
 
 ```{important}
 All packages are merged on `main` and external pull requests are accepted. Issues remain welcome for design feedback and RFC discussion. The workflow described below is the live contributor workflow.
+
+`main` is protected by GitHub branch protection: every change — internal or external — lands through a pull request. Direct push, force-push, and branch deletion are blocked, and admins cannot bypass. The required-approval count is `0`, so maintainers can self-merge for solo-dev iteration, but every change still flows through a PR record. See the root [`CONTRIBUTING.md`](https://github.com/Nagatatz/rescript-tauri/blob/main/CONTRIBUTING.md) §3 for the full description.
 ```
 
 ## Where to start
