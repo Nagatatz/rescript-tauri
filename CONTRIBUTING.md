@@ -27,6 +27,8 @@ Please link the specific PRD / functional-design / RFC section in your issue or 
 
 Each item links to the canonical convention (the Source of Truth lives in `.claude/rules/`, not here).
 
+**All changes — from external contributors and maintainers alike — land on `main` through a pull request.** The `main` branch is protected by GitHub branch protection (steering [20260512-006](./.steering/20260512-006-protect-main-branch/)): direct push is rejected with `GH006: Protected branch update failed`, force-push and branch deletion are blocked, and admins are not allowed to bypass. The PR review count requirement is `0`, so maintainers can self-merge their own PRs (used for solo-dev iteration), but every change still flows through a PR record.
+
 ### 3.1 Branch naming
 
 Branches are created from `main` with a typed prefix. See [`.claude/rules/git-conventions.md` §ブランチ命名規則](./.claude/rules/git-conventions.md).
@@ -94,6 +96,10 @@ Nightly: `compat-tauri-latest` and `compat-rescript-prerelease` exercise upstrea
 ### 3.8 Definition of Done
 
 Every PR is expected to satisfy the project's [Definition of Done](./.claude/rules/definition-of-done.md), which is the single source of truth for completion criteria across Phases 1–5.
+
+### 3.9 Merging into `main` (maintainers)
+
+Branch protection means even maintainers cannot push directly to `main`. The canonical merge path is `gh pr merge <PR> --merge --delete-branch` (the `--merge` strategy is enforced to preserve the existing `--no-ff` history; `--squash` and `--rebase` are not used). The full worktree → push → PR → self-merge → cleanup recipe lives in [`.claude/rules/steering-workflow.md` §worktree から main への反映手順](./.claude/rules/steering-workflow.md). External contributors do not need to run this — the maintainer handles the merge after review.
 
 ---
 
