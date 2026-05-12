@@ -345,6 +345,10 @@ msgid ""
 "sidecar,sidecarRaw,spawn,execute,onClose,onError,onStdoutData, "
 "onStderrData}` / `Child.{pid,kill,write}` / `EventEmitter`)."
 msgstr ""
+"`@tauri-apps/plugin-shell` v2.3.5 のバインディング — stable な公開 API を 100% カバー"
+"（`openPath` / `Command.{create,createRaw,"
+"sidecar,sidecarRaw,spawn,execute,onClose,onError,onStdoutData,"
+"onStderrData}` / `Child.{pid,kill,write}` / `EventEmitter`）。"
 
 #: ../../user/changelog.md:121
 msgid ""
@@ -383,6 +387,9 @@ msgid ""
 "stable public surface (15 functions + 8 records + `Schedule` module + "
 "`Importance` / `Visibility` `@unboxed` variants)."
 msgstr ""
+"`@tauri-apps/plugin-notification` v2.3.3 のバインディング — stable な公開 API を"
+" 100% カバー（15 関数 + 8 record + `Schedule` モジュール + `Importance` /"
+" `Visibility` の `@unboxed` variant）。"
 
 #: ../../user/changelog.md:136
 msgid ""
@@ -390,6 +397,8 @@ msgid ""
 "`sendNotification` / `sendNotificationText` so the argument type stays "
 "static."
 msgstr ""
+"上流の `sendNotification(Options | string)` オーバーロードを"
+" `sendNotification` / `sendNotificationText` の 2 関数に分割し、引数型を静的に保つ。"
 
 #: ../../user/changelog.md:139
 msgid ""
@@ -428,6 +437,9 @@ msgid ""
 "surface (5 log functions + `attachLogger` + `attachConsole` + `LogLevel` "
 "`@unboxed` variant)."
 msgstr ""
+"`@tauri-apps/plugin-log` v2.8.0 のバインディング — stable な公開 API を 100% カバー"
+"（5 つのログ関数 + `attachLogger` + `attachConsole` + `LogLevel` の `@unboxed`"
+" variant）。"
 
 #: ../../user/changelog.md:153
 msgid ""
@@ -435,6 +447,8 @@ msgid ""
 "upstream numeric enum (`Trace`=1 … `Error`=5) so the runtime "
 "representation stays wire-compatible."
 msgstr ""
+"`LogLevel.t` は上流の数値 enum（`Trace`=1 … `Error`=5）を包む `@unboxed`"
+" polymorphic variant ラッパーで、runtime 表現が wire-compatible に保たれる。"
 
 #: ../../user/changelog.md:156
 msgid ""
@@ -472,12 +486,17 @@ msgid ""
 "surface (6 sync getters + `OsType.get` (sync) + `locale` / `hostname` "
 "(async) + 4 polymorphic variants)."
 msgstr ""
+"`@tauri-apps/plugin-os` v2.3.2 のバインディング — stable な公開 API を 100% カバー"
+"（6 つの sync getter + `OsType.get`（sync）+ `locale` / `hostname`（async）+"
+" 4 つの polymorphic variant）。"
 
 #: ../../user/changelog.md:170
 msgid ""
 "`OsType.get` lives in an `OsType` submodule because `type` is reserved at"
 " the top level of a ReScript module."
 msgstr ""
+"`type` は ReScript モジュールのトップレベルで予約語のため、`OsType.get` は"
+" `OsType` サブモジュールに配置する。"
 
 #: ../../user/changelog.md:172
 msgid ""
@@ -497,7 +516,7 @@ msgstr ""
 
 #: ../../user/changelog.md:177
 msgid "`@rescript-tauri/plugin-clipboard-manager` 0.1.0 (2026-05-12)"
-msgstr ""
+msgstr "`@rescript-tauri/plugin-clipboard-manager` 0.1.0（2026-05-12）"
 
 #: ../../user/changelog.md:179
 msgid ""
@@ -515,12 +534,17 @@ msgid ""
 "stable public surface (6 functions: `writeText` / `readText` / "
 "`writeImage` / `readImage` / `writeHtml` / `clear`)."
 msgstr ""
+"`@tauri-apps/plugin-clipboard-manager` v2.3.2 のバインディング — stable な公開 API を"
+" 100% カバー（6 関数: `writeText` / `readText` / `writeImage` / `readImage` /"
+" `writeHtml` / `clear`）。"
 
 #: ../../user/changelog.md:187
 msgid ""
 "`readImage` returns `RescriptTauriCore.Image.t` (the existing core image "
 "handle, reused via `peerDependencies`)."
 msgstr ""
+"`readImage` は `RescriptTauriCore.Image.t`（既存の core image ハンドル）を返し、"
+"`peerDependencies` 経由で再利用する。"
 
 #: ../../user/changelog.md:189
 msgid ""
@@ -560,6 +584,10 @@ msgid ""
 "`proxyConfig` / `basicAuth` / `clientOptions<'proxyValue>` / "
 "`dangerousSettings`)."
 msgstr ""
+"`@tauri-apps/plugin-http` v2.5.9 のバインディング — stable な公開 API を 100% カバー"
+"（`fetch` + 5 つの record / variant 型: `proxy<'proxyValue>` /"
+" `proxyConfig` / `basicAuth` / `clientOptions<'proxyValue>` /"
+" `dangerousSettings`）。"
 
 #: ../../user/changelog.md:204
 msgid ""
@@ -567,6 +595,8 @@ msgid ""
 "polymorphic; the call site picks a strategy (annotation / `Obj.magic` / "
 "external binding)."
 msgstr ""
+"DOM の `Request` / `Response` / `RequestInit` 型は意図的に polymorphic にしており、"
+"呼び出し側が戦略（型注釈 / `Obj.magic` / 外部バインディング）を選択する。"
 
 #: ../../user/changelog.md:207
 msgid ""
