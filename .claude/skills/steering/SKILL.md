@@ -181,43 +181,46 @@ tasklist.md の末尾にある「振り返り」セクションに、以下の�
 
 ステアリングを伴うコード実装は **Claude Code のビルトイン worktree 機能**で隔離して行う。
 
+> **重要**: `main` は GitHub branch protection で直 push がブロックされている（steering 20260512-006）。下記いずれの手順も最後は **`gh pr create` → `gh pr merge --merge --delete-branch`** で main に反映する。詳細は `.claude/rules/steering-workflow.md` 「worktree から main への反映手順」を参照。
+
 ### 単一機能実装の手順
 
-1. メインリポジトリでステアリングドキュメントを作成・承認（main ブランチ上）
+1. ステアリング番号を採番する
 2. `EnterWorktree` ツール（または `claude --worktree <機能名>`）で worktree を作成
    - worktree は `.claude/worktrees/<機能名>/` に作成される
    - ブランチ `worktree-<機能名>` が HEAD から自動生成される
-3. worktree 内で実装・ビルド確認・コミット
-4. セッション終了時に Claude Code が自動クリーンアップを提案する
-   - 変更なし: 自動削除
-   - 変更あり: keep/remove の確認プロンプト
-5. メインリポジトリで main にマージ:
+3. worktree 内でステアリングドキュメント (`requirements.md` / `design.md` / `tasklist.md`) を作成・承認
+4. worktree 内で実装・ビルド確認・コミット
+5. push → PR 作成 → self-merge:
    ```bash
-   git merge worktree-<機能名>
-   git branch -d worktree-<機能名>
+   git push -u origin worktree-<機能名>
+   gh pr create --base main --head worktree-<機能名> --title "..." --body "..."
+   gh pr merge <PR番号> -R Nagatatz/rescript-tauri --merge --delete-branch
    ```
+   `-R Nagatatz/rescript-tauri` は worktree 内実行時のローカル main checkout 競合を回避するため必須。
+6. CWD をメインリポジトリへ移動し、`git pull origin main` で最新化、worktree とローカルブランチを削除
 
 ### 並列実装（複数機能の同時実装）
 
-バッチブランチを中間ブランチとして使い、全機能のマージ完了後に main へマージする。
+バッチブランチを中間ブランチとして使い、すべて完成したらバッチブランチを PR 経由で main にマージする。
 
 ```
 main
- └── feature/<バッチ名>               ← バッチブランチ（計画・マージ用）
-      ├── worktree-<機能名1>          ← Claude Code worktree ブランチ
-      ├── worktree-<機能名2>          ← Claude Code worktree ブランチ
-      └── worktree-<機能名3>          ← Claude Code worktree ブランチ
+ └── batch/<バッチ名>                  ← バッチブランチ（計画・統合用、PR の base）
+      ├── worktree-<機能名1>           ← Claude Code worktree ブランチ
+      ├── worktree-<機能名2>           ← Claude Code worktree ブランチ
+      └── worktree-<機能名3>           ← Claude Code worktree ブランチ
 ```
 
 **手順:**
 
-1. `main` からバッチブランチ `feature/<バッチ名>` を作成
+1. `main` からバッチブランチ `batch/<バッチ名>` を作成し push
 2. バッチブランチ上でステアリングディレクトリを作成・承認
-3. 各ウィンドウで `claude --worktree <機能名>` を実行して worktree を作成
-4. 各ウィンドウで実装（共有ドキュメント更新は不要 — マージフェーズで一括更新）
-5. 全機能ブランチをバッチブランチに順次マージ、ビルド確認
+3. 各ウィンドウで `claude --worktree <機能名>` を実行して worktree を作成（base は batch ブランチ）
+4. 各ウィンドウで実装（共有ドキュメント更新は不要 — 統合フェーズで一括更新）
+5. 各機能ブランチを PR 経由でバッチブランチにマージ（または local merge し push）、ビルド確認
 6. 共有ドキュメントを一括更新
-7. バッチブランチを `main` にマージ、削除
+7. バッチブランチを `main` への PR として作成し、self-merge で main に反映、削除
 
 ### worktree の配置場所
 

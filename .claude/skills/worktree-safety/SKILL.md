@@ -5,7 +5,7 @@ allowed-tools: Read, Bash, Agent
 
 # Git Worktree クリーンアップ安全ルール
 
-詳細な worktree マージ・クリーンアップ手順は `.claude/rules/steering-workflow.md` の「worktree マージ・クリーンアップ手順」節を参照。本スキルは**破壊的操作の禁止事項**に特化する。
+詳細な worktree から main への反映手順（PR 経由）は `.claude/rules/steering-workflow.md` の「worktree から main への反映手順」節を参照。本スキルは**破壊的操作の禁止事項**に特化する。
 
 ## 問題
 

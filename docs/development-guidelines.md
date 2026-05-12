@@ -207,11 +207,7 @@ let _ = Foo.someType: Foo.t => unit
 - **粒度**: 1 コミット = 1 論理的変更。実装コード + 対応テスト + 設定ファイル登録は同一コミット可。`tasklist.md` の更新は各コミットに含める。
 - **メッセージ**: 絵文字プレフィックス + 動詞で始まる英語。判定優先順位: ✨ > 🐛 > ♻️ > 📝 > 🎨 > ⚡ > 🔧 > ✅ > 🗑️
 - **ブランチ**: `feature/`, `fix/`, `refactor/`, `docs/`, `test/`, `chore/` のいずれかをプレフィックスとし、`main` から派生
-
-例外（`main` 直接コミット可）:
-- タイポ修正、1 行の設定変更
-- ステアリング (`.steering/`) のみの変更
-- `CLAUDE.md` や `docs/` のみのドキュメント更新
+- **マージ**: `main` は GitHub branch protection で直 push 不可（steering 20260512-006）。全変更は PR 経由で反映する。詳細は `.claude/rules/steering-workflow.md` 「worktree から main への反映手順」を参照
 
 ---
 

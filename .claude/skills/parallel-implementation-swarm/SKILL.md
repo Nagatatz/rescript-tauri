@@ -81,20 +81,25 @@ Agent[3] (worktree-N-055) → plugin-store 実装
    - `pnpm-workspace.yaml` への追加（必要なら）
    - これらを **coordinator が直列で 1 commit にまとめて実施**（衝突を避ける）
 
-3. **Batch merge 順序の決定**
+3. **Batch merge 順序の決定** (`main` は branch protection で直 push 不可、各機能 PR 経由)
    ```bash
-   # 番号順（依存関係に従う）か、テスト pass 順（早く完了した順）
-   # 1 件ずつ main に merge
+   # 番号順（依存関係に従う）か、テスト pass 順（早く完了した順）に
+   # 1 件ずつ push → PR 作成 → self-merge する
    for n in 053 054 055; do
-     git merge worktree-N-$n --no-ff -m "Merge branch 'worktree-N-$n'"
+     git -C .claude/worktrees/N-$n push -u origin worktree-N-$n
+     gh pr create --base main --head worktree-N-$n --title "..." --body "..."
+     # PR 番号は gh pr list で取得し、順次:
+     # gh pr merge <PR番号> -R Nagatatz/rescript-tauri --merge --delete-branch
    done
    ```
 
-4. **クリーンアップ** (`.claude/rules/steering-workflow.md` の「worktree マージ・クリーンアップ手順」に従う)
+4. **クリーンアップ** (`.claude/rules/steering-workflow.md` の「worktree から main への反映手順」に従う)
    ```bash
+   cd /path/to/main-repo  # 必ず worktree 削除の前に CWD を移動
+   git pull origin main
    for n in 053 054 055; do
      git worktree remove .claude/worktrees/N-$n
-     git branch -d worktree-N-$n
+     git branch -d worktree-N-$n  # remote は gh pr merge --delete-branch で削除済み
    done
    rm -f .claude/steering-lock.json
    ```
