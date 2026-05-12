@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-11 14:36+0900\n"
+"POT-Creation-Date: 2026-05-12 11:31+0900\n"
 "PO-Revision-Date: 2026-05-09 17:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -32,12 +32,14 @@ msgstr ""
 "ReScript バインディングです。open / save / message / ask / confirm を提供します。"
 
 #: ../../user/plugin-dialog.md:9
+#, fuzzy
 msgid ""
-"The Phase 2 implementation of this package is feature-complete in `main`."
-" Its first npm publish is scheduled alongside the other Phase 2 packages."
-" Until then, consume it via the source repository or a workspace link."
+"This package is feature-complete in `main`. Its first npm publish is "
+"scheduled alongside the other packages. Until then, consume it via the "
+"source repository or a workspace link."
 msgstr ""
-"本パッケージの Phase 2 実装は `main` で機能完備済みです。初回 npm 公開は他の Phase 2 パッケージと合わせて予定されています。それまでは、ソースリポジトリ経由かワークスペースリンクで利用してください。"
+"本パッケージの Phase 2 実装は `main` で機能完備済みです。初回 npm 公開は他の Phase 2 "
+"パッケージと合わせて予定されています。それまでは、ソースリポジトリ経由かワークスペースリンクで利用してください。"
 
 #: ../../user/plugin-dialog.md:11
 msgid "Install"

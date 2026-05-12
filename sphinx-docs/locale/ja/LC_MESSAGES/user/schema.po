@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-09 16:33+0900\n"
+"POT-Creation-Date: 2026-05-12 11:31+0900\n"
 "PO-Revision-Date: 2026-05-09 17:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -28,26 +28,27 @@ msgid ""
 "from a single [rescript-schema](https://github.com/DZakh/rescript-schema)"
 " schema pair instead of writing the encoder and decoder by hand."
 msgstr ""
-"`@rescript-tauri/core` 向けの Layer 3 型付き IPC です。エンコーダ・デコーダを "
-"手書きする代わりに、[rescript-schema](https://github.com/DZakh/rescript-schema) "
-"のスキーマ 1 ペアから Tauri コマンドを宣言できます。"
+"`@rescript-tauri/core` 向けの Layer 3 型付き IPC です。エンコーダ・デコーダを 手書きする代わりに"
+"、[rescript-schema](https://github.com/DZakh/rescript-schema) のスキーマ 1 ペアから"
+" Tauri コマンドを宣言できます。"
 
 #: ../../user/schema.md:9
+#, fuzzy
 msgid ""
-"The Phase 2 implementation is feature-complete in `main`. The first npm "
-"publish (`schema-v0.1.0`) is scheduled alongside the other Phase 2 "
-"packages. Until then, consume `@rescript-tauri/schema` via the source "
-"repository or a workspace link."
+"This package is feature-complete in `main`. The first npm publish "
+"(`schema-v0.1.0`) is scheduled alongside the other packages. Until then, "
+"consume `@rescript-tauri/schema` via the source repository or a workspace"
+" link."
 msgstr ""
-"Phase 2 の実装は `main` で機能完備済みです。初回 npm 公開（`schema-v0.1.0`）は "
-"他の Phase 2 パッケージと合わせて予定されています。それまでは、ソースリポジトリ経由か "
-"ワークスペースリンクで `@rescript-tauri/schema` を利用してください。"
+"Phase 2 の実装は `main` で機能完備済みです。初回 npm 公開（`schema-v0.1.0`）は 他の Phase 2 "
+"パッケージと合わせて予定されています。それまでは、ソースリポジトリ経由か ワークスペースリンクで `@rescript-tauri/schema`"
+" を利用してください。"
 
-#: ../../user/schema.md:16
+#: ../../user/schema.md:15
 msgid "Install"
 msgstr "インストール"
 
-#: ../../user/schema.md:22
+#: ../../user/schema.md:21
 msgid ""
 "`@rescript-tauri/schema` declares both `@rescript-tauri/core` and "
 "`rescript-schema` as `peerDependencies`. Add it to your `rescript.json`:"
@@ -55,51 +56,47 @@ msgstr ""
 "`@rescript-tauri/schema` は `@rescript-tauri/core` と `rescript-schema` "
 "の両方を `peerDependencies` として宣言します。`rescript.json` に追加してください:"
 
-#: ../../user/schema.md:36
+#: ../../user/schema.md:35
 msgid "No Rust side change is required — schema is purely a frontend-side helper."
 msgstr "Rust 側の変更は不要です。schema は純粋にフロントエンド側のヘルパーです。"
 
-#: ../../user/schema.md:39
+#: ../../user/schema.md:38
 msgid "Why Layer 3?"
 msgstr "なぜ Layer 3 が必要か"
 
-#: ../../user/schema.md:41
+#: ../../user/schema.md:40
 msgid ""
 "Layer 2 (`Core.Command.make`) wraps a single command name with an "
 "explicit encoder and decoder:"
-msgstr ""
-"Layer 2（`Core.Command.make`）はコマンド名を明示的なエンコーダ・デコーダとともに "
-"ラップします:"
+msgstr "Layer 2（`Core.Command.make`）はコマンド名を明示的なエンコーダ・デコーダとともに ラップします:"
 
-#: ../../user/schema.md:58
+#: ../../user/schema.md:57
 msgid "Layer 3 collapses the same command into a single declaration:"
 msgstr "Layer 3 では同じコマンドを 1 つの宣言にまとめられます:"
 
-#: ../../user/schema.md:70
+#: ../../user/schema.md:69
 msgid ""
 "Both layers return `Core.Command.t<'args, 'result>`, so callers of "
 "`Core.Command.invoke` don't have to care which layer was used to declare "
 "the command."
 msgstr ""
-"両方の Layer とも `Core.Command.t<'args, 'result>` を返すため、"
-"`Core.Command.invoke` の呼び出し側はコマンドがどちらの Layer で宣言されたかを "
-"意識する必要はありません。"
+"両方の Layer とも `Core.Command.t<'args, 'result>` を返すため、`Core.Command.invoke`"
+" の呼び出し側はコマンドがどちらの Layer で宣言されたかを 意識する必要はありません。"
 
-#: ../../user/schema.md:74
+#: ../../user/schema.md:73
 msgid "Minimal example"
 msgstr "最小例"
 
-#: ../../user/schema.md:95
+#: ../../user/schema.md:94
 msgid ""
 "`S.parseJsonOrThrow` failures are caught inside `toDecoder` and surfaced "
 "as `Error(DecodeError(message))`, matching the existing "
 "`Core.Command.invoke` error variant."
 msgstr ""
-"`S.parseJsonOrThrow` の失敗は `toDecoder` 内で捕捉され、既存の "
-"`Core.Command.invoke` のエラー variant に揃えて "
-"`Error(DecodeError(message))` として表面化されます。"
+"`S.parseJsonOrThrow` の失敗は `toDecoder` 内で捕捉され、既存の `Core.Command.invoke` "
+"のエラー variant に揃えて `Error(DecodeError(message))` として表面化されます。"
 
-#: ../../user/schema.md:99
+#: ../../user/schema.md:98
 msgid "Public API"
 msgstr "公開 API"
 
@@ -145,27 +142,26 @@ msgid ""
 "useful when you want to plug a schema decoder into a hand-rolled "
 "`Core.Command.make`"
 msgstr ""
-"内部で利用される `Core.decoder<_>` を返す低レベルヘルパー。"
-"手書きの `Core.Command.make` にスキーマデコーダを差し込みたいときに役立つ"
+"内部で利用される `Core.decoder<_>` を返す低レベルヘルパー。手書きの `Core.Command.make` "
+"にスキーマデコーダを差し込みたいときに役立つ"
 
-#: ../../user/schema.md:108
+#: ../../user/schema.md:107
 msgid ""
 "`Schema.S` re-exports `RescriptSchema.S`, so a caller only imports "
 "`@rescript-tauri/schema` and reaches the schema DSL through one path."
 msgstr ""
-"`Schema.S` は `RescriptSchema.S` を再エクスポートするため、利用者は "
-"`@rescript-tauri/schema` だけをインポートすればスキーマ DSL に 1 経路で "
-"アクセスできます。"
+"`Schema.S` は `RescriptSchema.S` を再エクスポートするため、利用者は `@rescript-"
+"tauri/schema` だけをインポートすればスキーマ DSL に 1 経路で アクセスできます。"
 
-#: ../../user/schema.md:112
+#: ../../user/schema.md:111
 msgid "Channel example"
 msgstr "Channel の例"
 
-#: ../../user/schema.md:114
+#: ../../user/schema.md:113
 msgid "The receive side of a Tauri `Channel<u32>` becomes a one-liner:"
 msgstr "Tauri の `Channel<u32>` の受信側は 1 行で書けるようになります:"
 
-#: ../../user/schema.md:127
+#: ../../user/schema.md:126
 msgid ""
 "The command that opens the channel still needs a hand-written encoder "
 "because `Core.Channel.t` is opaque to schemas — see [`examples/ipc-typed-"
@@ -173,31 +169,31 @@ msgid ""
 "tauri/tree/main/examples/ipc-typed-with-schema) for the full pattern."
 msgstr ""
 "Channel を開くコマンドは依然として手書きのエンコーダが必要です。`Core.Channel.t` は "
-"スキーマから見て不透明なためです。完全な手順は [`examples/ipc-typed-"
-"with-schema`](https://github.com/Nagatatz/rescript-"
-"tauri/tree/main/examples/ipc-typed-with-schema) を参照してください。"
+"スキーマから見て不透明なためです。完全な手順は [`examples/ipc-typed-with-"
+"schema`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
+"/ipc-typed-with-schema) を参照してください。"
 
-#: ../../user/schema.md:132
+#: ../../user/schema.md:131
 msgid "rescript-schema DSL pitfalls"
 msgstr "rescript-schema DSL の落とし穴"
 
-#: ../../user/schema.md:134
+#: ../../user/schema.md:133
 msgid "`field` is a method, not a top-level function"
 msgstr "`field` はトップレベル関数ではなくメソッド"
 
-#: ../../user/schema.md:136
+#: ../../user/schema.md:135
 msgid ""
 "rescript-schema 9.x exposes the field builder as a method on the "
 "`Object.s` argument. Use the dot syntax:"
 msgstr ""
-"rescript-schema 9.x ではフィールドビルダを `Object.s` 引数のメソッドとして公開しています。"
-"ドット記法で呼び出してください:"
+"rescript-schema 9.x ではフィールドビルダを `Object.s` "
+"引数のメソッドとして公開しています。ドット記法で呼び出してください:"
 
-#: ../../user/schema.md:151
+#: ../../user/schema.md:150
 msgid "Tauri command argument flattening"
 msgstr "Tauri コマンド引数のフラット化"
 
-#: ../../user/schema.md:153
+#: ../../user/schema.md:152
 msgid ""
 "Tauri 2.x's `tauri::command` flattens single-record arguments into the "
 "args object's top-level keys. A Rust signature like"
@@ -205,18 +201,17 @@ msgstr ""
 "Tauri 2.x の `tauri::command` は、単一レコード引数を args オブジェクトの "
 "トップレベルキーにフラット化します。次のような Rust シグネチャでは:"
 
-#: ../../user/schema.md:161
+#: ../../user/schema.md:160
 #, python-brace-format
 msgid ""
 "expects an args JSON of `{\"title\": ..., \"items\": ...}`, not a nested "
 "`{\"args\": {\"title\": ...}}`. Author your `S.object` schema against the"
 " flat shape."
 msgstr ""
-"args の JSON は `{\"title\": ..., \"items\": ...}` を期待し、"
-"`{\"args\": {\"title\": ...}}` のようなネストではありません。`S.object` スキーマは "
-"このフラット形状に合わせて記述してください。"
+"args の JSON は `{\"title\": ..., \"items\": ...}` を期待し、`{\"args\": "
+"{\"title\": ...}}` のようなネストではありません。`S.object` スキーマは このフラット形状に合わせて記述してください。"
 
-#: ../../user/schema.md:165
+#: ../../user/schema.md:164
 msgid "Compatibility"
 msgstr "互換性"
 
@@ -260,23 +255,23 @@ msgstr "`@rescript/core`"
 msgid "`>=1.6.0`"
 msgstr "`>=1.6.0`"
 
-#: ../../user/schema.md:174
+#: ../../user/schema.md:173
 msgid ""
 "`rescript-struct` is **not** supported. The upstream package was "
 "deprecated in favor of `rescript-schema` (confirmed 2026-05-09 — recorded"
 " in [RFC-0002 §2.1](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md))."
 msgstr ""
-"`rescript-struct` は **非対応** です。上流のパッケージは `rescript-schema` への "
-"置き換え方針で deprecated 済みです（2026-05-09 確認、[RFC-0002 §2.1](https://github.com/Nagatatz"
+"`rescript-struct` は **非対応** です。上流のパッケージは `rescript-schema` への 置き換え方針で "
+"deprecated 済みです（2026-05-09 確認、[RFC-0002 §2.1](https://github.com/Nagatatz"
 "/rescript-tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md) "
 "に記録）。"
 
-#: ../../user/schema.md:178
+#: ../../user/schema.md:177
 msgid "See also"
 msgstr "関連情報"
 
-#: ../../user/schema.md:180
+#: ../../user/schema.md:179
 msgid ""
 "Live demo: [`examples/ipc-typed-with-schema`](https://github.com/Nagatatz"
 "/rescript-tauri/tree/main/examples/ipc-typed-with-schema) — pairs against"
@@ -284,11 +279,10 @@ msgid ""
 "Layer 3 form."
 msgstr ""
 "動作デモ: [`examples/ipc-typed-with-schema`](https://github.com/Nagatatz"
-"/rescript-tauri/tree/main/examples/ipc-typed-with-schema)。"
-"`examples/ipc-typed/` と対にして、同じコマンドを Layer 2 と Layer 3 の両方で "
-"表現する例を示しています。"
+"/rescript-tauri/tree/main/examples/ipc-typed-with-schema)。`examples/ipc-"
+"typed/` と対にして、同じコマンドを Layer 2 と Layer 3 の両方で 表現する例を示しています。"
 
-#: ../../user/schema.md:184
+#: ../../user/schema.md:183
 msgid ""
 "Source: [`packages/schema`](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/packages/schema)"
@@ -296,10 +290,11 @@ msgstr ""
 "ソース: [`packages/schema`](https://github.com/Nagatatz/rescript-"
 "tauri/tree/main/packages/schema)"
 
-#: ../../user/schema.md:186
+#: ../../user/schema.md:185
 msgid ""
 "RFC-0002: [Schema integration design](https://github.com/Nagatatz"
 "/rescript-tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md)"
 msgstr ""
-"RFC-0002: [Schema 統合設計](https://github.com/Nagatatz"
-"/rescript-tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md)"
+"RFC-0002: [Schema 統合設計](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/docs/ideas/RFC-0002-schema-integration.md)"
+
