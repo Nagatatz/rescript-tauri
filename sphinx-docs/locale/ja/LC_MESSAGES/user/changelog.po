@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-09 16:33+0900\n"
+"POT-Creation-Date: 2026-05-12 11:31+0900\n"
 "PO-Revision-Date: 2026-05-09 17:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -23,20 +23,22 @@ msgid "Changelog"
 msgstr "変更履歴"
 
 #: ../../user/changelog.md:4
+#, fuzzy
 msgid ""
-"The Phase 1 / Phase 2 module sets are feature-complete in `main`. First "
-"publishes (`v0.1.0`, `schema-v0.1.0`, `plugin-fs-v0.1.0`, `plugin-"
-"dialog-v0.1.0`) are pending. Each package keeps its own canonical "
-"changelog under `packages/<name>/CHANGELOG.md`; this page collects the "
-"highlights of the pre-release state across all four packages."
+"All packages are feature-complete in `main`. First publishes (`v0.1.0`, "
+"`schema-v0.1.0`, `plugin-fs-v0.1.0`, `plugin-dialog-v0.1.0`) are pending."
+" Each package keeps its own canonical changelog under "
+"`packages/<name>/CHANGELOG.md`; this page collects the highlights of the "
+"pre-release state across all of them."
 msgstr ""
-"Phase 1 / Phase 2 のモジュール一式は `main` で機能完備済みです。初回公開（`v0.1.0`、"
-"`schema-v0.1.0`、`plugin-fs-v0.1.0`、`plugin-dialog-v0.1.0`）は予定中です。"
-"各パッケージは正本となる変更履歴を `packages/<name>/CHANGELOG.md` に保持しており、"
-"本ページは 4 つのパッケージのプレリリース状態のハイライトを集約したものです。"
+"Phase 1 / Phase 2 のモジュール一式は `main` で機能完備済みです。初回公開（`v0.1.0`、`schema-v0.1.0"
+"`、`plugin-fs-v0.1.0`、`plugin-dialog-v0.1.0`）は予定中です。各パッケージは正本となる変更履歴を "
+"`packages/<name>/CHANGELOG.md` に保持しており、本ページは 4 "
+"つのパッケージのプレリリース状態のハイライトを集約したものです。"
 
 #: ../../user/changelog.md:12
-msgid "`@rescript-tauri/core` (Unreleased)"
+#, fuzzy
+msgid "`@rescript-tauri/core` 0.1.0 (2026-05-12)"
 msgstr "`@rescript-tauri/core`（未リリース）"
 
 #: ../../user/changelog.md:14
@@ -44,12 +46,15 @@ msgid ""
 "Canonical: [`packages/core/CHANGELOG.md`](https://github.com/Nagatatz"
 "/rescript-tauri/blob/main/packages/core/CHANGELOG.md)"
 msgstr ""
-"正本: [`packages/core/CHANGELOG.md`](https://github.com/Nagatatz"
-"/rescript-tauri/blob/main/packages/core/CHANGELOG.md)"
+"正本: [`packages/core/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/packages/core/CHANGELOG.md)"
 
 #: ../../user/changelog.md:16 ../../user/changelog.md:58
 #: ../../user/changelog.md:79 ../../user/changelog.md:97
-#: ../../user/changelog.md:116
+#: ../../user/changelog.md:115 ../../user/changelog.md:130
+#: ../../user/changelog.md:148 ../../user/changelog.md:165
+#: ../../user/changelog.md:181 ../../user/changelog.md:198
+#: ../../user/changelog.md:217
 msgid "Added"
 msgstr "Added"
 
@@ -57,9 +62,7 @@ msgstr "Added"
 msgid ""
 "12 Phase-1 modules across `packages/core`, every one paired with a hand-"
 "written `.resi`:"
-msgstr ""
-"`packages/core` に Phase 1 の 12 モジュールを追加。すべて手書きの `.resi` "
-"とペアで提供:"
+msgstr "`packages/core` に Phase 1 の 12 モジュールを追加。すべて手書きの `.resi` とペアで提供:"
 
 #: ../../user/changelog.md:20
 msgid ""
@@ -68,8 +71,8 @@ msgid ""
 "`decoder<'value>` type alias for downstream packages."
 msgstr ""
 "`Core` — IPC ブリッジ。`Raw.invoke`、型付き `Command`（`make` / `invoke` / "
-"`invokeExn`）、ストリーミング `Channel`、`convertFileSrc`。下流パッケージ向けに "
-"public な `decoder<'value>` 型エイリアスを公開。"
+"`invokeExn`）、ストリーミング `Channel`、`convertFileSrc`。下流パッケージ向けに public な "
+"`decoder<'value>` 型エイリアスを公開。"
 
 #: ../../user/changelog.md:24
 msgid ""
@@ -86,24 +89,22 @@ msgid ""
 "`Window` — opaque handle plus ~80 instance / static methods (theme, "
 "cursorIcon, monitor helpers, drag/resize, six `on*` handlers, ...)."
 msgstr ""
-"`Window` — 不透明ハンドルと約 80 個のインスタンス / 静的メソッド（theme、"
-"cursorIcon、モニターヘルパー、drag/resize、6 つの `on*` ハンドラほか）。"
+"`Window` — 不透明ハンドルと約 80 個のインスタンス / "
+"静的メソッド（theme、cursorIcon、モニターヘルパー、drag/resize、6 つの `on*` ハンドラほか）。"
 
 #: ../../user/changelog.md:31
 msgid ""
 "`Webview` — opaque handle, 14 instance methods, and a `dragDropEvent` "
 "variant."
-msgstr ""
-"`Webview` — 不透明ハンドルと 14 個のインスタンスメソッド、`dragDropEvent` "
-"variant。"
+msgstr "`Webview` — 不透明ハンドルと 14 個のインスタンスメソッド、`dragDropEvent` variant。"
 
 #: ../../user/changelog.md:33
 msgid ""
 "`WebviewWindow` — combined Window + Webview surface with zero-cost "
 "`asWindow` / `asWebview` casts."
 msgstr ""
-"`WebviewWindow` — Window と Webview を統合した API。ゼロコストの "
-"`asWindow` / `asWebview` キャストを提供。"
+"`WebviewWindow` — Window と Webview を統合した API。ゼロコストの `asWindow` / "
+"`asWebview` キャストを提供。"
 
 #: ../../user/changelog.md:35
 msgid ""
@@ -111,9 +112,9 @@ msgid ""
 "`IconMenuItem`, `PredefinedMenuItem`, `Submenu`, `Menu`) with an "
 "`itemKind` variant and a `predefinedItem` variant."
 msgstr ""
-"`Menu` — 完全なメニュー階層（`MenuItem`、`CheckMenuItem`、"
-"`IconMenuItem`、`PredefinedMenuItem`、`Submenu`、`Menu`）と `itemKind` "
-"variant、`predefinedItem` variant。"
+"`Menu` — "
+"完全なメニュー階層（`MenuItem`、`CheckMenuItem`、`IconMenuItem`、`PredefinedMenuItem`、`Submenu`、`Menu`）と"
+" `itemKind` variant、`predefinedItem` variant。"
 
 #: ../../user/changelog.md:38
 msgid ""
@@ -132,24 +133,24 @@ msgid ""
 "`App` — `getName`, `getVersion`, `getTauriVersion`, `defaultWindowIcon`, "
 "`setTheme`, ... (stable subset)."
 msgstr ""
-"`App` — `getName`、`getVersion`、`getTauriVersion`、`defaultWindowIcon`、"
-"`setTheme` など（安定版サブセット）。"
+"`App` — "
+"`getName`、`getVersion`、`getTauriVersion`、`defaultWindowIcon`、`setTheme` "
+"など（安定版サブセット）。"
 
 #: ../../user/changelog.md:43
 msgid ""
 "`Image` — RGBA-image opaque handle with `fromPath`, `fromBytes`, `new_`, "
 "`rgba`, `size`."
-msgstr ""
-"`Image` — RGBA 画像の不透明ハンドル。`fromPath`、`fromBytes`、`new_`、"
-"`rgba`、`size` を提供。"
+msgstr "`Image` — RGBA 画像の不透明ハンドル。`fromPath`、`fromBytes`、`new_`、`rgba`、`size` を提供。"
 
 #: ../../user/changelog.md:45
 msgid ""
 "`Dpi` — `LogicalSize`, `PhysicalSize`, `LogicalPosition`, "
 "`PhysicalPosition`, `Size`, `Position` as opaque JS-class bindings."
 msgstr ""
-"`Dpi` — `LogicalSize`、`PhysicalSize`、`LogicalPosition`、"
-"`PhysicalPosition`、`Size`、`Position` を不透明な JS クラスバインディングとして提供。"
+"`Dpi` — "
+"`LogicalSize`、`PhysicalSize`、`LogicalPosition`、`PhysicalPosition`、`Size`、`Position`"
+" を不透明な JS クラスバインディングとして提供。"
 
 #: ../../user/changelog.md:48
 msgid "`Mocks` — `mockIPC`, `mockWindows`, `clearMocks`."
@@ -160,19 +161,20 @@ msgid ""
 "`Tauri.res` umbrella module re-exporting `Core`, `Event`, `Window`, "
 "`Webview`, `WebviewWindow` (PRD §10 row 1, confirmed 2026-05-09)."
 msgstr ""
-"`Core`、`Event`、`Window`、`Webview`、`WebviewWindow` を再エクスポートする "
-"`Tauri.res` アンブレラモジュール（PRD §10 行 1、2026-05-09 確定）。"
+"`Core`、`Event`、`Window`、`Webview`、`WebviewWindow` を再エクスポートする `Tauri.res` "
+"アンブレラモジュール（PRD §10 行 1、2026-05-09 確定）。"
 
 #: ../../user/changelog.md:51
 msgid ""
 "Four buildable examples gated by 3-OS CI: `hello-world`, `window-"
 "management`, `ipc-typed`, `streaming-ipc`."
 msgstr ""
-"3 OS CI でビルド検証する 4 つの例: `hello-world`、`window-"
-"management`、`ipc-typed`、`streaming-ipc`。"
+"3 OS CI でビルド検証する 4 つの例: `hello-world`、`window-management`、`ipc-typed"
+"`、`streaming-ipc`。"
 
 #: ../../user/changelog.md:54
-msgid "`@rescript-tauri/schema` (Unreleased)"
+#, fuzzy
+msgid "`@rescript-tauri/schema` 0.1.0 (2026-05-12)"
 msgstr "`@rescript-tauri/schema`（未リリース）"
 
 #: ../../user/changelog.md:56
@@ -188,8 +190,8 @@ msgid ""
 "`Schema.fromSchemas` — typed `Core.Command.t<'args, 'result>` from a "
 "single `S.t<'args>` + `S.t<'result>` pair."
 msgstr ""
-"`Schema.fromSchemas` — `S.t<'args>` と `S.t<'result>` のペアから "
-"型付き `Core.Command.t<'args, 'result>` を生成。"
+"`Schema.fromSchemas` — `S.t<'args>` と `S.t<'result>` のペアから 型付き "
+"`Core.Command.t<'args, 'result>` を生成。"
 
 #: ../../user/changelog.md:62
 msgid ""
@@ -218,21 +220,21 @@ msgid ""
 "/ipc-typed-with-schema) pairing against `examples/ipc-typed/` to compare "
 "Layer 2 vs Layer 3."
 msgstr ""
-"実行可能な例 [`examples/ipc-typed-with-"
-"schema`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
-"/ipc-typed-with-schema) を `examples/ipc-typed/` と対にして Layer 2 と "
-"Layer 3 を比較できるようにした。"
+"実行可能な例 [`examples/ipc-typed-with-schema`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/ipc-typed-with-schema) を `examples"
+"/ipc-typed/` と対にして Layer 2 と Layer 3 を比較できるようにした。"
 
 #: ../../user/changelog.md:71
 msgid ""
 "`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `rescript-schema "
 "^9.0.0`. `rescript-struct` is intentionally unsupported (RFC-0002 §2.1)."
 msgstr ""
-"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`rescript-schema "
-"^9.0.0`。`rescript-struct` は意図的に非対応（RFC-0002 §2.1）。"
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`rescript-schema ^9.0.0"
+"`。`rescript-struct` は意図的に非対応（RFC-0002 §2.1）。"
 
 #: ../../user/changelog.md:75
-msgid "`@rescript-tauri/plugin-fs` (Unreleased)"
+#, fuzzy
+msgid "`@rescript-tauri/plugin-fs` 0.1.0 (2026-05-12)"
 msgstr "`@rescript-tauri/plugin-fs`（未リリース）"
 
 #: ../../user/changelog.md:77
@@ -241,9 +243,8 @@ msgid ""
 "fs/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/packages/plugin-fs/CHANGELOG.md)"
 msgstr ""
-"正本: [`packages/plugin-"
-"fs/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
-"tauri/blob/main/packages/plugin-fs/CHANGELOG.md)"
+"正本: [`packages/plugin-fs/CHANGELOG.md`](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/packages/plugin-fs/CHANGELOG.md)"
 
 #: ../../user/changelog.md:81
 msgid ""
@@ -251,9 +252,9 @@ msgid ""
 "`readFile` / `writeFile` / `exists` / `remove` / `rename` / `mkdir` / "
 "`readDir` / `stat` / `lstat` / `truncate` / `copyFile` / `size`)."
 msgstr ""
-"14 個の単発ファイルシステム関数（`readTextFile` / `writeTextFile` / "
-"`readFile` / `writeFile` / `exists` / `remove` / `rename` / `mkdir` / "
-"`readDir` / `stat` / `lstat` / `truncate` / `copyFile` / `size`）。"
+"14 個の単発ファイルシステム関数（`readTextFile` / `writeTextFile` / `readFile` / "
+"`writeFile` / `exists` / `remove` / `rename` / `mkdir` / `readDir` / "
+"`stat` / `lstat` / `truncate` / `copyFile` / `size`）。"
 
 #: ../../user/changelog.md:85
 msgid ""
@@ -269,20 +270,21 @@ msgid ""
 "/rescript-tauri/tree/main/examples/plugin-fs-demo) exercising the full "
 "surface inside the `$APPLOCALDATA` sandbox."
 msgstr ""
-"実行可能な例 [`examples/plugin-fs-demo`](https://github.com/Nagatatz"
-"/rescript-tauri/tree/main/examples/plugin-fs-demo) で `$APPLOCALDATA` "
-"サンドボックス内で全 API を実行できる。"
+"実行可能な例 [`examples/plugin-fs-demo`](https://github.com/Nagatatz/rescript-"
+"tauri/tree/main/examples/plugin-fs-demo) で `$APPLOCALDATA` サンドボックス内で全 API"
+" を実行できる。"
 
 #: ../../user/changelog.md:90
 msgid ""
 "`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-fs"
 " ^2.5.0`."
 msgstr ""
-"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-fs"
-" ^2.5.0`。"
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-fs "
+"^2.5.0`。"
 
 #: ../../user/changelog.md:93
-msgid "`@rescript-tauri/plugin-dialog` (Unreleased)"
+#, fuzzy
+msgid "`@rescript-tauri/plugin-dialog` 0.1.0 (2026-05-12)"
 msgstr "`@rescript-tauri/plugin-dialog`（未リリース）"
 
 #: ../../user/changelog.md:95
@@ -291,9 +293,8 @@ msgid ""
 "dialog/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/packages/plugin-dialog/CHANGELOG.md)"
 msgstr ""
-"正本: [`packages/plugin-"
-"dialog/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
-"tauri/blob/main/packages/plugin-dialog/CHANGELOG.md)"
+"正本: [`packages/plugin-dialog/CHANGELOG.md`](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/packages/plugin-dialog/CHANGELOG.md)"
 
 #: ../../user/changelog.md:99
 msgid ""
@@ -308,9 +309,7 @@ msgid ""
 "The TypeScript-level conditional return type of upstream's "
 "`open(options)` is unrolled into four ReScript functions so the result "
 "type stays static."
-msgstr ""
-"上流の `open(options)` の TypeScript 条件型戻り値を 4 つの ReScript 関数に "
-"展開し、結果型を静的に保つ。"
+msgstr "上流の `open(options)` の TypeScript 条件型戻り値を 4 つの ReScript 関数に 展開し、結果型を静的に保つ。"
 
 #: ../../user/changelog.md:105
 msgid ""
@@ -318,9 +317,9 @@ msgid ""
 "demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
 "/plugin-dialog-demo) driving every public function from one button each."
 msgstr ""
-"実行可能な例 [`examples/plugin-dialog-"
-"demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
-"/plugin-dialog-demo) で、各公開関数をボタン 1 つずつから実行できる。"
+"実行可能な例 [`examples/plugin-dialog-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-dialog-demo) で、各公開関数をボタン 1 "
+"つずつから実行できる。"
 
 #: ../../user/changelog.md:108
 msgid ""
@@ -331,17 +330,306 @@ msgstr ""
 "dialog ^2.7.0`。"
 
 #: ../../user/changelog.md:111
+#, fuzzy
+msgid "`@rescript-tauri/plugin-shell` 0.1.0 (2026-05-12)"
+msgstr "`@rescript-tauri/plugin-fs`（未リリース）"
+
+#: ../../user/changelog.md:113
+#, fuzzy
+msgid ""
+"Canonical: [`packages/plugin-"
+"shell/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/packages/plugin-shell/CHANGELOG.md)"
+msgstr ""
+"正本: [`packages/plugin-fs/CHANGELOG.md`](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/packages/plugin-fs/CHANGELOG.md)"
+
+#: ../../user/changelog.md:117
+#, python-brace-format, python-format
+msgid ""
+"Bindings for `@tauri-apps/plugin-shell` v2.3.5 — 100% of the stable "
+"public surface (`openPath` / `Command.{create,createRaw, "
+"sidecar,sidecarRaw,spawn,execute,onClose,onError,onStdoutData, "
+"onStderrData}` / `Child.{pid,kill,write}` / `EventEmitter`)."
+msgstr ""
+
+#: ../../user/changelog.md:121
+#, fuzzy
+msgid ""
+"Runnable example [`examples/plugin-shell-"
+"demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
+"/plugin-shell-demo)."
+msgstr ""
+"実行可能な例 [`examples/plugin-dialog-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-dialog-demo) で、各公開関数をボタン 1 "
+"つずつから実行できる。"
+
+#: ../../user/changelog.md:123
+#, fuzzy
+msgid ""
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-"
+"shell ^2.3.0`."
+msgstr ""
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-fs "
+"^2.5.0`。"
+
+#: ../../user/changelog.md:126
+#, fuzzy
+msgid "`@rescript-tauri/plugin-notification` 0.1.0 (2026-05-12)"
+msgstr "`@rescript-tauri/plugin-dialog`（未リリース）"
+
+#: ../../user/changelog.md:128
+#, fuzzy
+msgid ""
+"Canonical: [`packages/plugin-"
+"notification/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/packages/plugin-notification/CHANGELOG.md)"
+msgstr ""
+"正本: [`packages/plugin-dialog/CHANGELOG.md`](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/packages/plugin-dialog/CHANGELOG.md)"
+
+#: ../../user/changelog.md:132
+#, python-format
+msgid ""
+"Bindings for `@tauri-apps/plugin-notification` v2.3.3 — 100% of the "
+"stable public surface (15 functions + 8 records + `Schedule` module + "
+"`Importance` / `Visibility` `@unboxed` variants)."
+msgstr ""
+
+#: ../../user/changelog.md:136
+msgid ""
+"The upstream `sendNotification(Options | string)` overload is split into "
+"`sendNotification` / `sendNotificationText` so the argument type stays "
+"static."
+msgstr ""
+
+#: ../../user/changelog.md:139
+#, fuzzy
+msgid ""
+"Runnable example [`examples/plugin-notification-"
+"demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
+"/plugin-notification-demo)."
+msgstr ""
+"実行可能な例 [`examples/plugin-dialog-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-dialog-demo) で、各公開関数をボタン 1 "
+"つずつから実行できる。"
+
+#: ../../user/changelog.md:141
+#, fuzzy
+msgid ""
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-"
+"notification ^2.3.0`."
+msgstr ""
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-"
+"dialog ^2.7.0`。"
+
+#: ../../user/changelog.md:144
+#, fuzzy
+msgid "`@rescript-tauri/plugin-log` 0.1.0 (2026-05-12)"
+msgstr "`@rescript-tauri/plugin-dialog`（未リリース）"
+
+#: ../../user/changelog.md:146
+#, fuzzy
+msgid ""
+"Canonical: [`packages/plugin-"
+"log/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/packages/plugin-log/CHANGELOG.md)"
+msgstr ""
+"正本: [`packages/plugin-dialog/CHANGELOG.md`](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/packages/plugin-dialog/CHANGELOG.md)"
+
+#: ../../user/changelog.md:150
+#, python-format
+msgid ""
+"Bindings for `@tauri-apps/plugin-log` v2.8.0 — 100% of the stable public "
+"surface (5 log functions + `attachLogger` + `attachConsole` + `LogLevel` "
+"`@unboxed` variant)."
+msgstr ""
+
+#: ../../user/changelog.md:153
+msgid ""
+"`LogLevel.t` is an `@unboxed` polymorphic-variant wrapper over the "
+"upstream numeric enum (`Trace`=1 … `Error`=5) so the runtime "
+"representation stays wire-compatible."
+msgstr ""
+
+#: ../../user/changelog.md:156
+#, fuzzy
+msgid ""
+"Runnable example [`examples/plugin-log-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-log-demo)."
+msgstr ""
+"実行可能な例 [`examples/plugin-dialog-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-dialog-demo) で、各公開関数をボタン 1 "
+"つずつから実行できる。"
+
+#: ../../user/changelog.md:158
+#, fuzzy
+msgid ""
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-"
+"log ^2.0.0`."
+msgstr ""
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-"
+"dialog ^2.7.0`。"
+
+#: ../../user/changelog.md:161
+#, fuzzy
+msgid "`@rescript-tauri/plugin-os` 0.1.0 (2026-05-12)"
+msgstr "`@rescript-tauri/plugin-fs`（未リリース）"
+
+#: ../../user/changelog.md:163
+#, fuzzy
+msgid ""
+"Canonical: [`packages/plugin-"
+"os/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/packages/plugin-os/CHANGELOG.md)"
+msgstr ""
+"正本: [`packages/plugin-fs/CHANGELOG.md`](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/packages/plugin-fs/CHANGELOG.md)"
+
+#: ../../user/changelog.md:167
+#, python-format
+msgid ""
+"Bindings for `@tauri-apps/plugin-os` v2.3.2 — 100% of the stable public "
+"surface (6 sync getters + `OsType.get` (sync) + `locale` / `hostname` "
+"(async) + 4 polymorphic variants)."
+msgstr ""
+
+#: ../../user/changelog.md:170
+msgid ""
+"`OsType.get` lives in an `OsType` submodule because `type` is reserved at"
+" the top level of a ReScript module."
+msgstr ""
+
+#: ../../user/changelog.md:172
+#, fuzzy
+msgid ""
+"Runnable example [`examples/plugin-os-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-os-demo)."
+msgstr ""
+"実行可能な例 [`examples/plugin-dialog-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-dialog-demo) で、各公開関数をボタン 1 "
+"つずつから実行できる。"
+
+#: ../../user/changelog.md:174
+#, fuzzy
+msgid ""
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-os"
+" ^2.0.0`."
+msgstr ""
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-fs "
+"^2.5.0`。"
+
+#: ../../user/changelog.md:177
+msgid "`@rescript-tauri/plugin-clipboard-manager` 0.1.0 (2026-05-12)"
+msgstr ""
+
+#: ../../user/changelog.md:179
+#, fuzzy
+msgid ""
+"Canonical: [`packages/plugin-clipboard-"
+"manager/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/packages/plugin-clipboard-manager/CHANGELOG.md)"
+msgstr ""
+"正本: [`packages/plugin-dialog/CHANGELOG.md`](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/packages/plugin-dialog/CHANGELOG.md)"
+
+#: ../../user/changelog.md:183
+#, python-format
+msgid ""
+"Bindings for `@tauri-apps/plugin-clipboard-manager` v2.3.2 — 100% of the "
+"stable public surface (6 functions: `writeText` / `readText` / "
+"`writeImage` / `readImage` / `writeHtml` / `clear`)."
+msgstr ""
+
+#: ../../user/changelog.md:187
+msgid ""
+"`readImage` returns `RescriptTauriCore.Image.t` (the existing core image "
+"handle, reused via `peerDependencies`)."
+msgstr ""
+
+#: ../../user/changelog.md:189
+#, fuzzy
+msgid ""
+"Runnable example [`examples/plugin-clipboard-manager-"
+"demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
+"/plugin-clipboard-manager-demo)."
+msgstr ""
+"実行可能な例 [`examples/plugin-dialog-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-dialog-demo) で、各公開関数をボタン 1 "
+"つずつから実行できる。"
+
+#: ../../user/changelog.md:191
+#, fuzzy
+msgid ""
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-"
+"clipboard-manager ^2.0.0`."
+msgstr ""
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-"
+"dialog ^2.7.0`。"
+
+#: ../../user/changelog.md:194
+#, fuzzy
+msgid "`@rescript-tauri/plugin-http` 0.1.0 (2026-05-12)"
+msgstr "`@rescript-tauri/plugin-fs`（未リリース）"
+
+#: ../../user/changelog.md:196
+#, fuzzy
+msgid ""
+"Canonical: [`packages/plugin-"
+"http/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
+"tauri/blob/main/packages/plugin-http/CHANGELOG.md)"
+msgstr ""
+"正本: [`packages/plugin-fs/CHANGELOG.md`](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/packages/plugin-fs/CHANGELOG.md)"
+
+#: ../../user/changelog.md:200
+#, python-format
+msgid ""
+"Bindings for `@tauri-apps/plugin-http` v2.5.9 — 100% of the stable public"
+" surface (`fetch` + 5 record / variant types: `proxy<'proxyValue>` / "
+"`proxyConfig` / `basicAuth` / `clientOptions<'proxyValue>` / "
+"`dangerousSettings`)."
+msgstr ""
+
+#: ../../user/changelog.md:204
+msgid ""
+"The DOM `Request` / `Response` / `RequestInit` types are intentionally "
+"polymorphic; the call site picks a strategy (annotation / `Obj.magic` / "
+"external binding)."
+msgstr ""
+
+#: ../../user/changelog.md:207
+#, fuzzy
+msgid ""
+"Runnable example [`examples/plugin-http-"
+"demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
+"/plugin-http-demo)."
+msgstr ""
+"実行可能な例 [`examples/plugin-dialog-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-dialog-demo) で、各公開関数をボタン 1 "
+"つずつから実行できる。"
+
+#: ../../user/changelog.md:209
+#, fuzzy
+msgid ""
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-"
+"http ^2.0.0`."
+msgstr ""
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-fs "
+"^2.5.0`。"
+
+#: ../../user/changelog.md:212
 msgid "Repository-level updates"
 msgstr "リポジトリレベルの更新"
 
-#: ../../user/changelog.md:113
+#: ../../user/changelog.md:214
 msgid ""
 "These changes affect the monorepo as a whole and don't belong to a single"
 " package CHANGELOG."
-msgstr ""
-"これらの変更はモノレポ全体に影響し、単一パッケージの CHANGELOG には属しません。"
+msgstr "これらの変更はモノレポ全体に影響し、単一パッケージの CHANGELOG には属しません。"
 
-#: ../../user/changelog.md:118
+#: ../../user/changelog.md:219
 #, python-brace-format
 msgid ""
 "GitHub Actions workflows: per-package `tests-{core,schema,plugin-fs"
@@ -351,17 +639,19 @@ msgid ""
 "prerelease` nightlies, `release.yml` recognizing `v*` / `schema-v*` / "
 "`plugin-fs-v*` / `plugin-dialog-v*` tag prefixes."
 msgstr ""
-"GitHub Actions ワークフロー: パッケージ別の `tests-{core,schema,plugin-fs"
-",plugin-dialog}-{types,runtime}.yml`、Linux / macOS / Windows で 7 例を "
-"検証する `examples-build` マトリクス、`lint-format`（Biome）、`tests-"
-"coverage`（vitest v8）、`compat-tauri-latest` と `compat-rescript-"
-"prerelease` の nightly、`v*` / `schema-v*` / "
-"`plugin-fs-v*` / `plugin-dialog-v*` タグプレフィックスを認識する `release.yml`。"
+"GitHub Actions ワークフロー: パッケージ別の `tests-{core,schema,plugin-fs,plugin-"
+"dialog}-{types,runtime}.yml`、Linux / macOS / Windows で 7 例を 検証する "
+"`examples-build` マトリクス、`lint-format`（Biome）、`tests-coverage`（vitest v8"
+"）、`compat-tauri-latest` と `compat-rescript-prerelease` の nightly、`v*` / "
+"`schema-v*` / `plugin-fs-v*` / `plugin-dialog-v*` タグプレフィックスを認識する "
+"`release.yml`。"
 
-#: ../../user/changelog.md:125
+#: ../../user/changelog.md:226
+#, fuzzy
 msgid ""
-"User guide pages for each Phase 2 package ([plugin-fs](plugin-fs.md), "
+"User guide pages for each add-on package ([plugin-fs](plugin-fs.md), "
 "[plugin-dialog](plugin-dialog.md), [schema](schema.md))."
 msgstr ""
-"各 Phase 2 パッケージのユーザーガイドページ（[plugin-fs](plugin-fs.md)、"
-"[plugin-dialog](plugin-dialog.md)、[schema](schema.md)）。"
+"各 Phase 2 パッケージのユーザーガイドページ（[plugin-fs](plugin-fs.md)、[plugin-dialog"
+"](plugin-dialog.md)、[schema](schema.md)）。"
+

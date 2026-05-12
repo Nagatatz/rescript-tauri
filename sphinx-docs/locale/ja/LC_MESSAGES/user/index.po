@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-11 14:36+0900\n"
+"POT-Creation-Date: 2026-05-12 11:31+0900\n"
 "PO-Revision-Date: 2026-05-09 17:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -212,14 +212,16 @@ msgid "Test helpers (`mockIPC`, `mockWindows`, `clearMocks`)"
 msgstr "テスト用ヘルパー（`mockIPC` / `mockWindows` / `clearMocks`）"
 
 #: ../../user/index.md:38
-msgid "Phase 2 packages"
+#, fuzzy
+msgid "Add-on packages"
 msgstr "Phase 2 パッケージ"
 
 #: ../../user/index.md:40
+#, fuzzy
 msgid ""
-"Phase 2 introduces nine add-on packages that build on the Phase 1 core. "
-"Each ships independently and pulls the matching upstream plugin / schema "
-"library through `peerDependencies`."
+"Nine add-on packages build on the core. Each ships independently and "
+"pulls the matching upstream plugin / schema library through "
+"`peerDependencies`."
 msgstr ""
 "Phase 2 では Phase 1 core の上に乗る 9 "
 "個のアドオンパッケージを追加します。いずれも独立して公開され、対応する上流のプラグイン / スキーマライブラリを "
