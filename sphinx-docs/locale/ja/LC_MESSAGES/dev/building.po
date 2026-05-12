@@ -324,24 +324,22 @@ msgid "Only on `main` branch"
 msgstr "`main` ブランチのみ"
 
 #: ../../dev/building.md:59
-#, fuzzy
 msgid ""
 "The status of every workflow file (active / opt-in template / planned for"
 " the initial release) is documented in "
 "[`.github/workflows/README.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/.github/workflows/README.md)."
 msgstr ""
-"全ワークフローファイルの状態（active / opt-in template / Phase 1 で予定）は "
+"全ワークフローファイルの状態（active / opt-in template / 初回リリース時に予定）は "
 "[`.github/workflows/README.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/.github/workflows/README.md) に記載されています。"
 
 #: ../../dev/building.md:62
-#, fuzzy
 msgid ""
 "GitHub Pages deployment is currently inactive because the repository is "
 "private (see the README \"Visibility\" block). Pages will be enabled at "
 "the initial release together with the visibility switch."
 msgstr ""
 "リポジトリが private のため GitHub Pages デプロイは現在停止中です（README の \"Visibility\" "
-"ブロック参照）。Pages は Phase 1 リリース時の visibility 切替と同時に有効化されます。"
+"ブロック参照）。Pages は初回リリース時の visibility 切替と同時に有効化されます。"
 

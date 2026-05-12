@@ -23,7 +23,6 @@ msgid "Changelog"
 msgstr "変更履歴"
 
 #: ../../user/changelog.md:4
-#, fuzzy
 msgid ""
 "All packages are feature-complete in `main`. First publishes (`v0.1.0`, "
 "`schema-v0.1.0`, `plugin-fs-v0.1.0`, `plugin-dialog-v0.1.0`) are pending."
@@ -31,15 +30,14 @@ msgid ""
 "`packages/<name>/CHANGELOG.md`; this page collects the highlights of the "
 "pre-release state across all of them."
 msgstr ""
-"Phase 1 / Phase 2 のモジュール一式は `main` で機能完備済みです。初回公開（`v0.1.0`、`schema-v0.1.0"
+"すべてのパッケージは `main` で機能完備済みです。初回公開（`v0.1.0`、`schema-v0.1.0"
 "`、`plugin-fs-v0.1.0`、`plugin-dialog-v0.1.0`）は予定中です。各パッケージは正本となる変更履歴を "
-"`packages/<name>/CHANGELOG.md` に保持しており、本ページは 4 "
-"つのパッケージのプレリリース状態のハイライトを集約したものです。"
+"`packages/<name>/CHANGELOG.md` に保持しており、本ページは全パッケージの"
+"プレリリース状態のハイライトを集約したものです。"
 
 #: ../../user/changelog.md:12
-#, fuzzy
 msgid "`@rescript-tauri/core` 0.1.0 (2026-05-12)"
-msgstr "`@rescript-tauri/core`（未リリース）"
+msgstr "`@rescript-tauri/core` 0.1.0（2026-05-12）"
 
 #: ../../user/changelog.md:14
 msgid ""
@@ -173,9 +171,8 @@ msgstr ""
 "`、`streaming-ipc`。"
 
 #: ../../user/changelog.md:54
-#, fuzzy
 msgid "`@rescript-tauri/schema` 0.1.0 (2026-05-12)"
-msgstr "`@rescript-tauri/schema`（未リリース）"
+msgstr "`@rescript-tauri/schema` 0.1.0（2026-05-12）"
 
 #: ../../user/changelog.md:56
 msgid ""
@@ -233,9 +230,8 @@ msgstr ""
 "`。`rescript-struct` は意図的に非対応（RFC-0002 §2.1）。"
 
 #: ../../user/changelog.md:75
-#, fuzzy
 msgid "`@rescript-tauri/plugin-fs` 0.1.0 (2026-05-12)"
-msgstr "`@rescript-tauri/plugin-fs`（未リリース）"
+msgstr "`@rescript-tauri/plugin-fs` 0.1.0（2026-05-12）"
 
 #: ../../user/changelog.md:77
 msgid ""
@@ -283,9 +279,8 @@ msgstr ""
 "^2.5.0`。"
 
 #: ../../user/changelog.md:93
-#, fuzzy
 msgid "`@rescript-tauri/plugin-dialog` 0.1.0 (2026-05-12)"
-msgstr "`@rescript-tauri/plugin-dialog`（未リリース）"
+msgstr "`@rescript-tauri/plugin-dialog` 0.1.0（2026-05-12）"
 
 #: ../../user/changelog.md:95
 msgid ""
@@ -330,19 +325,17 @@ msgstr ""
 "dialog ^2.7.0`。"
 
 #: ../../user/changelog.md:111
-#, fuzzy
 msgid "`@rescript-tauri/plugin-shell` 0.1.0 (2026-05-12)"
-msgstr "`@rescript-tauri/plugin-fs`（未リリース）"
+msgstr "`@rescript-tauri/plugin-shell` 0.1.0（2026-05-12）"
 
 #: ../../user/changelog.md:113
-#, fuzzy
 msgid ""
 "Canonical: [`packages/plugin-"
 "shell/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/packages/plugin-shell/CHANGELOG.md)"
 msgstr ""
-"正本: [`packages/plugin-fs/CHANGELOG.md`](https://github.com/Nagatatz"
-"/rescript-tauri/blob/main/packages/plugin-fs/CHANGELOG.md)"
+"正本: [`packages/plugin-shell/CHANGELOG.md`](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/packages/plugin-shell/CHANGELOG.md)"
 
 #: ../../user/changelog.md:117
 #, python-brace-format, python-format
@@ -354,39 +347,34 @@ msgid ""
 msgstr ""
 
 #: ../../user/changelog.md:121
-#, fuzzy
 msgid ""
 "Runnable example [`examples/plugin-shell-"
 "demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
 "/plugin-shell-demo)."
 msgstr ""
-"実行可能な例 [`examples/plugin-dialog-demo`](https://github.com/Nagatatz"
-"/rescript-tauri/tree/main/examples/plugin-dialog-demo) で、各公開関数をボタン 1 "
-"つずつから実行できる。"
+"実行可能な例 [`examples/plugin-shell-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-shell-demo)。"
 
 #: ../../user/changelog.md:123
-#, fuzzy
 msgid ""
 "`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-"
 "shell ^2.3.0`."
 msgstr ""
-"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-fs "
-"^2.5.0`。"
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-"
+"shell ^2.3.0`。"
 
 #: ../../user/changelog.md:126
-#, fuzzy
 msgid "`@rescript-tauri/plugin-notification` 0.1.0 (2026-05-12)"
-msgstr "`@rescript-tauri/plugin-dialog`（未リリース）"
+msgstr "`@rescript-tauri/plugin-notification` 0.1.0（2026-05-12）"
 
 #: ../../user/changelog.md:128
-#, fuzzy
 msgid ""
 "Canonical: [`packages/plugin-"
 "notification/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/packages/plugin-notification/CHANGELOG.md)"
 msgstr ""
-"正本: [`packages/plugin-dialog/CHANGELOG.md`](https://github.com/Nagatatz"
-"/rescript-tauri/blob/main/packages/plugin-dialog/CHANGELOG.md)"
+"正本: [`packages/plugin-notification/CHANGELOG.md`](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/packages/plugin-notification/CHANGELOG.md)"
 
 #: ../../user/changelog.md:132
 #, python-format
@@ -404,39 +392,34 @@ msgid ""
 msgstr ""
 
 #: ../../user/changelog.md:139
-#, fuzzy
 msgid ""
 "Runnable example [`examples/plugin-notification-"
 "demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
 "/plugin-notification-demo)."
 msgstr ""
-"実行可能な例 [`examples/plugin-dialog-demo`](https://github.com/Nagatatz"
-"/rescript-tauri/tree/main/examples/plugin-dialog-demo) で、各公開関数をボタン 1 "
-"つずつから実行できる。"
+"実行可能な例 [`examples/plugin-notification-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-notification-demo)。"
 
 #: ../../user/changelog.md:141
-#, fuzzy
 msgid ""
 "`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-"
 "notification ^2.3.0`."
 msgstr ""
 "`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-"
-"dialog ^2.7.0`。"
+"notification ^2.3.0`。"
 
 #: ../../user/changelog.md:144
-#, fuzzy
 msgid "`@rescript-tauri/plugin-log` 0.1.0 (2026-05-12)"
-msgstr "`@rescript-tauri/plugin-dialog`（未リリース）"
+msgstr "`@rescript-tauri/plugin-log` 0.1.0（2026-05-12）"
 
 #: ../../user/changelog.md:146
-#, fuzzy
 msgid ""
 "Canonical: [`packages/plugin-"
 "log/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/packages/plugin-log/CHANGELOG.md)"
 msgstr ""
-"正本: [`packages/plugin-dialog/CHANGELOG.md`](https://github.com/Nagatatz"
-"/rescript-tauri/blob/main/packages/plugin-dialog/CHANGELOG.md)"
+"正本: [`packages/plugin-log/CHANGELOG.md`](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/packages/plugin-log/CHANGELOG.md)"
 
 #: ../../user/changelog.md:150
 #, python-format
@@ -454,38 +437,33 @@ msgid ""
 msgstr ""
 
 #: ../../user/changelog.md:156
-#, fuzzy
 msgid ""
 "Runnable example [`examples/plugin-log-demo`](https://github.com/Nagatatz"
 "/rescript-tauri/tree/main/examples/plugin-log-demo)."
 msgstr ""
-"実行可能な例 [`examples/plugin-dialog-demo`](https://github.com/Nagatatz"
-"/rescript-tauri/tree/main/examples/plugin-dialog-demo) で、各公開関数をボタン 1 "
-"つずつから実行できる。"
+"実行可能な例 [`examples/plugin-log-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-log-demo)。"
 
 #: ../../user/changelog.md:158
-#, fuzzy
 msgid ""
 "`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-"
 "log ^2.0.0`."
 msgstr ""
 "`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-"
-"dialog ^2.7.0`。"
+"log ^2.0.0`。"
 
 #: ../../user/changelog.md:161
-#, fuzzy
 msgid "`@rescript-tauri/plugin-os` 0.1.0 (2026-05-12)"
-msgstr "`@rescript-tauri/plugin-fs`（未リリース）"
+msgstr "`@rescript-tauri/plugin-os` 0.1.0（2026-05-12）"
 
 #: ../../user/changelog.md:163
-#, fuzzy
 msgid ""
 "Canonical: [`packages/plugin-"
 "os/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/packages/plugin-os/CHANGELOG.md)"
 msgstr ""
-"正本: [`packages/plugin-fs/CHANGELOG.md`](https://github.com/Nagatatz"
-"/rescript-tauri/blob/main/packages/plugin-fs/CHANGELOG.md)"
+"正本: [`packages/plugin-os/CHANGELOG.md`](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/packages/plugin-os/CHANGELOG.md)"
 
 #: ../../user/changelog.md:167
 #, python-format
@@ -502,37 +480,33 @@ msgid ""
 msgstr ""
 
 #: ../../user/changelog.md:172
-#, fuzzy
 msgid ""
 "Runnable example [`examples/plugin-os-demo`](https://github.com/Nagatatz"
 "/rescript-tauri/tree/main/examples/plugin-os-demo)."
 msgstr ""
-"実行可能な例 [`examples/plugin-dialog-demo`](https://github.com/Nagatatz"
-"/rescript-tauri/tree/main/examples/plugin-dialog-demo) で、各公開関数をボタン 1 "
-"つずつから実行できる。"
+"実行可能な例 [`examples/plugin-os-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-os-demo)。"
 
 #: ../../user/changelog.md:174
-#, fuzzy
 msgid ""
 "`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-os"
 " ^2.0.0`."
 msgstr ""
-"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-fs "
-"^2.5.0`。"
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-os"
+" ^2.0.0`。"
 
 #: ../../user/changelog.md:177
 msgid "`@rescript-tauri/plugin-clipboard-manager` 0.1.0 (2026-05-12)"
 msgstr ""
 
 #: ../../user/changelog.md:179
-#, fuzzy
 msgid ""
 "Canonical: [`packages/plugin-clipboard-"
 "manager/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/packages/plugin-clipboard-manager/CHANGELOG.md)"
 msgstr ""
-"正本: [`packages/plugin-dialog/CHANGELOG.md`](https://github.com/Nagatatz"
-"/rescript-tauri/blob/main/packages/plugin-dialog/CHANGELOG.md)"
+"正本: [`packages/plugin-clipboard-manager/CHANGELOG.md`](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/packages/plugin-clipboard-manager/CHANGELOG.md)"
 
 #: ../../user/changelog.md:183
 #, python-format
@@ -549,39 +523,34 @@ msgid ""
 msgstr ""
 
 #: ../../user/changelog.md:189
-#, fuzzy
 msgid ""
 "Runnable example [`examples/plugin-clipboard-manager-"
 "demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
 "/plugin-clipboard-manager-demo)."
 msgstr ""
-"実行可能な例 [`examples/plugin-dialog-demo`](https://github.com/Nagatatz"
-"/rescript-tauri/tree/main/examples/plugin-dialog-demo) で、各公開関数をボタン 1 "
-"つずつから実行できる。"
+"実行可能な例 [`examples/plugin-clipboard-manager-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-clipboard-manager-demo)。"
 
 #: ../../user/changelog.md:191
-#, fuzzy
 msgid ""
 "`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-"
 "clipboard-manager ^2.0.0`."
 msgstr ""
 "`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-"
-"dialog ^2.7.0`。"
+"clipboard-manager ^2.0.0`。"
 
 #: ../../user/changelog.md:194
-#, fuzzy
 msgid "`@rescript-tauri/plugin-http` 0.1.0 (2026-05-12)"
-msgstr "`@rescript-tauri/plugin-fs`（未リリース）"
+msgstr "`@rescript-tauri/plugin-http` 0.1.0（2026-05-12）"
 
 #: ../../user/changelog.md:196
-#, fuzzy
 msgid ""
 "Canonical: [`packages/plugin-"
 "http/CHANGELOG.md`](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/packages/plugin-http/CHANGELOG.md)"
 msgstr ""
-"正本: [`packages/plugin-fs/CHANGELOG.md`](https://github.com/Nagatatz"
-"/rescript-tauri/blob/main/packages/plugin-fs/CHANGELOG.md)"
+"正本: [`packages/plugin-http/CHANGELOG.md`](https://github.com/Nagatatz"
+"/rescript-tauri/blob/main/packages/plugin-http/CHANGELOG.md)"
 
 #: ../../user/changelog.md:200
 #, python-format
@@ -600,24 +569,21 @@ msgid ""
 msgstr ""
 
 #: ../../user/changelog.md:207
-#, fuzzy
 msgid ""
 "Runnable example [`examples/plugin-http-"
 "demo`](https://github.com/Nagatatz/rescript-tauri/tree/main/examples"
 "/plugin-http-demo)."
 msgstr ""
-"実行可能な例 [`examples/plugin-dialog-demo`](https://github.com/Nagatatz"
-"/rescript-tauri/tree/main/examples/plugin-dialog-demo) で、各公開関数をボタン 1 "
-"つずつから実行できる。"
+"実行可能な例 [`examples/plugin-http-demo`](https://github.com/Nagatatz"
+"/rescript-tauri/tree/main/examples/plugin-http-demo)。"
 
 #: ../../user/changelog.md:209
-#, fuzzy
 msgid ""
 "`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-"
 "http ^2.0.0`."
 msgstr ""
-"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-fs "
-"^2.5.0`。"
+"`peerDependencies`: `@rescript-tauri/core ^0.1.0`、`@tauri-apps/plugin-"
+"http ^2.0.0`。"
 
 #: ../../user/changelog.md:212
 msgid "Repository-level updates"
@@ -647,11 +613,10 @@ msgstr ""
 "`release.yml`。"
 
 #: ../../user/changelog.md:226
-#, fuzzy
 msgid ""
 "User guide pages for each add-on package ([plugin-fs](plugin-fs.md), "
 "[plugin-dialog](plugin-dialog.md), [schema](schema.md))."
 msgstr ""
-"各 Phase 2 パッケージのユーザーガイドページ（[plugin-fs](plugin-fs.md)、[plugin-dialog"
+"各アドオンパッケージのユーザーガイドページ（[plugin-fs](plugin-fs.md)、[plugin-dialog"
 "](plugin-dialog.md)、[schema](schema.md)）。"
 

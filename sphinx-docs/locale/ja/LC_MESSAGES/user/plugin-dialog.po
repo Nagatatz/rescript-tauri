@@ -32,14 +32,13 @@ msgstr ""
 "ReScript バインディングです。open / save / message / ask / confirm を提供します。"
 
 #: ../../user/plugin-dialog.md:9
-#, fuzzy
 msgid ""
 "This package is feature-complete in `main`. Its first npm publish is "
 "scheduled alongside the other packages. Until then, consume it via the "
 "source repository or a workspace link."
 msgstr ""
-"本パッケージの Phase 2 実装は `main` で機能完備済みです。初回 npm 公開は他の Phase 2 "
-"パッケージと合わせて予定されています。それまでは、ソースリポジトリ経由かワークスペースリンクで利用してください。"
+"本パッケージは `main` で機能完備済みです。初回 npm 公開は他のパッケージと合わせて予定されています。"
+"それまでは、ソースリポジトリ経由かワークスペースリンクで利用してください。"
 
 #: ../../user/plugin-dialog.md:11
 msgid "Install"

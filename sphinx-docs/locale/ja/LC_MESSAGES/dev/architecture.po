@@ -91,9 +91,8 @@ msgid "`@rescript-tauri/schema`"
 msgstr "`@rescript-tauri/schema`"
 
 #: ../../dev/architecture.md
-#, fuzzy
 msgid "`Command.fromSchemas` helper (`rescript-schema` integration)"
-msgstr "`Command.fromSchemas` ヘルパ（`rescript-schema` / `rescript-struct` 統合）"
+msgstr "`Command.fromSchemas` ヘルパ（`rescript-schema` 統合）"
 
 #: ../../dev/architecture.md
 msgid "`examples/*`"

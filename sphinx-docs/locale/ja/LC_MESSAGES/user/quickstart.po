@@ -23,7 +23,6 @@ msgid "Quick Start"
 msgstr "クイックスタート"
 
 #: ../../user/quickstart.md:4
-#, fuzzy
 msgid ""
 "All `@rescript-tauri/core` modules are feature-complete in `main`. The "
 "samples below reflect the actual `.resi` signatures shipped on `main`. "
@@ -31,7 +30,7 @@ msgid ""
 "consume `@rescript-tauri/core` via the source repository or a workspace "
 "link."
 msgstr ""
-"Phase 1 のモジュール一式は `main` で機能完備済みです。以下のサンプルは `main` 上で出荷されている実際の `.resi` "
+"`@rescript-tauri/core` のモジュール一式は `main` で機能完備済みです。以下のサンプルは `main` 上で出荷されている実際の `.resi` "
 "シグネチャを反映しています。本パッケージは初回 npm 公開（`v0.1.0`）を待っている状態です。それまでは、ソースリポジトリ経由か "
 "ワークスペースリンクで `@rescript-tauri/core` を利用してください。"
 
@@ -174,7 +173,6 @@ msgstr ""
 "tauri/blob/main/docs/functional-design.md) — モジュール別の API 仕様（日本語）"
 
 #: ../../user/quickstart.md:170
-#, fuzzy
 msgid ""
 "[Layer 3 (Schema integration)](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) — "
@@ -182,7 +180,7 @@ msgid ""
 msgstr ""
 "[Layer 3 (Schema 統合)](https://github.com/Nagatatz/rescript-"
 "tauri/blob/main/docs/ideas/RFC-0001-core-api-design.md) — "
-"`Command.fromSchemas` ヘルパ、`@rescript-tauri/schema` で提供予定（Phase 2）"
+"`Command.fromSchemas` ヘルパ、`@rescript-tauri/schema` で提供"
 
 #~ msgid ""
 #~ "Target API. The samples below reflect"
