@@ -4,21 +4,25 @@
 
 コードの変更を伴う指示を受けた場合、**コードを1行も書く前に**以下を実行すること:
 
-1. `.steering/[YYYYMMDD]-[NNN]-[開発タイトル]/` ディレクトリを作成する（→ 「ステアリング番号の採番」参照）
-2. `requirements.md` を作成し、ユーザーの承認を得る
-3. `design.md` を作成し、ユーザーの承認を得る
-4. `tasklist.md` を作成し、ユーザーの承認を得る
-5. 承認された `tasklist.md` に従って実装を進める
-6. 実装完了後、ビルドが通ることを確認し、適切な粒度でコミットする
-7. 実装完了後、**完了定義** (`definition-of-done.md`) の全項目を満たしていることを確認する
-8. コミット完了後、ユーザーに main へのマージ可否を確認し、承認後はマージからクリーンアップまで一括で実行する
+1. ステアリング番号を採番する（→ 「ステアリング番号の採番」参照）
+2. `EnterWorktree` で worktree を作成する（ブランチ名: `worktree-<タイトル>`）
+3. worktree 内に `.steering/[YYYYMMDD]-[NNN]-[開発タイトル]/` ディレクトリを作成する
+4. `requirements.md` を作成し、ユーザーの承認を得る
+5. `design.md` を作成し、ユーザーの承認を得る
+6. `tasklist.md` を作成し、ユーザーの承認を得る
+7. 承認された `tasklist.md` に従って実装を進める
+8. 実装完了後、ビルドが通ることを確認し、適切な粒度でコミットする
+9. 実装完了後、**完了定義** (`definition-of-done.md`) の全項目を満たしていることを確認する
+10. コミット完了後、ユーザーに PR 作成・マージ可否を確認し、承認後は push → PR 作成 → self-merge → クリーンアップまで一括で実行する
+
+> **重要**: `main` ブランチは GitHub branch protection で **直 push が物理的にブロック** されている（steering 20260512-006 で適用）。あらゆる変更（ステアリングドキュメント、調査レポート、設定ファイル単体の変更を含む）は worktree → PR → self-merge のフローで反映すること。
 
 ## 実装完了後のマージ確認
 
 worktree での実装が完了しコミットした後、以下のフローを実行すること:
 
-1. **マージ確認**: `AskUserQuestion` でユーザーに main へのマージ可否を確認する。選択肢の 1 つ目に「main にマージ (Recommended)」を配置する
-2. **マージ承認時**: ユーザーが承認したら、後述の「worktree マージ・クリーンアップ手順」に従い、マージからブランチ削除まで一括で実行する。途中で停止せず、すべてのクリーンアップステップを完了させること
+1. **マージ確認**: `AskUserQuestion` でユーザーに PR 作成・main へのマージ可否を確認する。選択肢の 1 つ目に「PR を作成して self-merge (Recommended)」を配置する
+2. **マージ承認時**: ユーザーが承認したら、後述の「worktree から main への反映手順」に従い、push → PR 作成 → self-merge → クリーンアップまで一括で実行する。途中で停止せず、すべてのステップを完了させること
 3. **マージ拒否時**: ユーザーの指示に従う（追加修正、レビュー待ち等）
 
 ## tasklist.md 更新ルール
@@ -94,7 +98,7 @@ CC Insights レポートで「sphinx-docs ja 翻訳が中断」「@tauri-apps/ap
 
 ## 調査・リサーチタスク
 
-コード変更を伴わない調査でもステアリングドキュメントを作成しコミットすること。`main` に直接コミット可。コミットメッセージは `📝 Add <調査内容>` とする。
+コード変更を伴わない調査でもステアリングドキュメントを作成しコミットすること。`main` への直 push は GitHub branch protection でブロックされているため、調査タスクであっても worktree を作成し PR 経由で反映すること。コミットメッセージは `📝 Add <調査内容>` とする。
 
 ## git worktree 運用
 
@@ -165,37 +169,58 @@ git log --oneline origin/main..HEAD
 
 CC Insights レポートで「Worktree based on stale origin/main required a merge to pull in steering commits」が観測されたため、本手順を明文化する。
 
-### worktree マージ・クリーンアップ手順
+### worktree から main への反映手順
 
-worktree での実装完了後、マージとクリーンアップは**必ず以下の順序**で行うこと。順序を守らないとシェルの CWD が存在しないディレクトリを指し、以降のすべての Bash コマンドが実行不能になる。
+`main` ブランチは GitHub branch protection で直 push がブロックされているため、worktree の変更は **必ず PR 経由** で main に反映すること。順序を守らないとシェルの CWD が存在しないディレクトリを指し、以降のすべての Bash コマンドが実行不能になる。
 
 #### 手順
 
-**最重要: CWD の移動が最優先。`git -C` での代用は禁止。**
+**最重要: CWD の移動は worktree 削除の前に必須。`git -C` での代用は禁止。**
 
 worktree ディレクトリを削除すると、そのディレクトリを CWD としているシェルは**復旧不能**になる（`cd` を含む全コマンドが `posix_spawn` レベルで失敗する）。そのため、**worktree を削除・prune する前に必ず CWD をメインリポジトリに移動すること**。
 
-1. **CWD をメインリポジトリに変更する**（単独の Bash 呼び出しで `cd` を実行）
-2. **ステアリングファイルの競合を事前に解消する**: メインリポジトリに未追跡の `.steering/` ファイルが残っている場合、マージ前に削除する
-3. **マージする**（CWD 変更後の別の Bash 呼び出しとして実行）
-4. **worktree を削除する**: `git worktree remove <パス>` または `git worktree prune`
-5. **ブランチを削除する**: `git branch -d <ブランチ名>`（リモート未 push の場合は `-D`）
+1. **push する**: worktree 内（または別 CWD）から `git push origin <ブランチ名>`
+2. **PR を作成する**: `gh pr create --base main --head <ブランチ名> --title "..." --body "..."`
+3. **PR を self-merge する**: `gh pr merge <PR番号> --merge --delete-branch`（remote branch は自動削除される）
+4. **CWD をメインリポジトリに変更する**（単独の Bash 呼び出しで `cd` を実行）
+5. **ローカル main を最新化する**: `git pull origin main`
+6. **worktree を削除する**: `git worktree remove <パス>` または `git worktree prune`
+7. **残ったローカルブランチを削除する**: `git branch -d <ブランチ名>`（`gh pr merge --delete-branch` は remote のみ削除）
 
 ```bash
-# Step 1: CWD をメインリポジトリに変更（必ず最初に実行）
+# Step 1: worktree 内から push
+git push origin worktree-<タイトル>
+
+# Step 2: PR 作成（HEREDOC で本文を渡してフォーマット崩れを防ぐ）
+gh pr create --base main --head worktree-<タイトル> --title "<絵文字> <要約>" --body "$(cat <<'EOF'
+## Summary
+- ...
+
+## Test plan
+- [ ] ...
+EOF
+)"
+
+# Step 3: PR を self-merge（merge commit を作成し、remote branch を削除）
+gh pr merge <PR番号> --merge --delete-branch
+
+# Step 4: CWD をメインリポジトリに変更（必ず worktree 削除の前に実行）
 # ⚠️ git -C で代用してはならない。CWD 自体を移動すること。
 cd /path/to/main-repo
 
-# Step 2: 未追跡ステアリングファイルの削除（存在する場合）
-rm -rf .steering/<作業ディレクトリ>/
+# Step 5: ローカル main を最新化
+git pull origin main
 
-# Step 3: マージ（CWD 変更後の別コマンドとして実行）
-git merge <ブランチ名> --no-ff -m "Merge branch '<ブランチ名>'"
-
-# Step 4: worktree クリーンアップ（CWD がメインリポジトリであることを確認済み）
+# Step 6: worktree 削除（CWD がメインリポジトリであることを確認済み）
 git worktree remove .claude/worktrees/<名前>  # または git worktree prune
-git branch -d <ブランチ名>
+
+# Step 7: ローカルブランチ削除（remote は --delete-branch 済み）
+git branch -d worktree-<タイトル>
 ```
+
+#### マージ戦略
+
+`gh pr merge` のオプションは `--merge` を採用する（既存 history が `--no-ff` merge commit 主体のため整合を取る）。`--squash` / `--rebase` は採用しない。
 
 #### クリーンアップ完了の検証
 
@@ -292,9 +317,11 @@ done | sort
 ### 移動手順
 
 ```bash
+# worktree でアーカイブ作業を行う（main 直 push は branch protection でブロック）
 mkdir -p .steering/archive
 git mv ".steering/<対象ディレクトリ>" ".steering/archive/"
-git commit -m "📝 完了ステアリングを archive に移動: <対象>"
+git commit -m "📝 Archive completed steering: <対象>"
+# push → PR → self-merge は「worktree から main への反映手順」に従う
 ```
 
 ### 運用タイミング
