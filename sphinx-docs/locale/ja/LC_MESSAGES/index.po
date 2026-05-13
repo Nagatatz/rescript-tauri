@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-12 11:31+0900\n"
+"POT-Creation-Date: 2026-05-13 16:32+0900\n"
 "PO-Revision-Date: 2026-05-08 13:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -44,9 +44,9 @@ msgid ""
 " — install paths and the `pnpm add @rescript-tauri/*` snippets activate "
 "once the first `0.1.0` releases ship."
 msgstr ""
-"すべてのパッケージは `main` にマージ済みです。`@rescript-tauri/core`、`@rescript-"
-"tauri/plugin-fs`、`@rescript-tauri/plugin-dialog`、`@rescript-tauri/schema`"
-" の各パッケージは `v0.1.0` 系列の初回 npm 公開を待っている段階です。本サイトのサンプルコードは "
+"すべてのパッケージは `main` にマージ済みです。`@rescript-tauri/core`、`@rescript-tauri"
+"/plugin-fs`、`@rescript-tauri/plugin-dialog`、`@rescript-tauri/schema` "
+"の各パッケージは `v0.1.0` 系列の初回 npm 公開を待っている段階です。本サイトのサンプルコードは "
 "マージ済みのソースを反映しており、インストール手順や `pnpm add @rescript-tauri/*` スニペットは初回 `0.1.0` "
 "リリース時点で有効になります。"
 
@@ -79,22 +79,108 @@ msgid "[Read more →](dev/index.md)"
 msgstr "[詳細を読む →](dev/index.md)"
 
 #: ../../index.md:33
+msgid "Plugins & add-ons"
+msgstr "プラグインとアドオン"
+
+#: ../../index.md:35
+msgid ""
+"Nine add-on packages build on `@rescript-tauri/core`. Each ships "
+"independently and pulls the matching upstream `@tauri-apps/plugin-*` (or "
+"`rescript-schema`) through `peerDependencies`."
+msgstr ""
+"`@rescript-tauri/core` の上に乗る 9 個のアドオンパッケージがあります。いずれも独立して公開され、"
+"対応する上流の `@tauri-apps/plugin-*`（または `rescript-schema`）を `peerDependencies` "
+"経由で取り込みます。"
+
+#: ../../index.md:40
+msgid "plugin-fs"
+msgstr "plugin-fs"
+
+#: ../../index.md:44
+msgid "Filesystem operations (read / write / dir / stat)."
+msgstr "ファイルシステム操作（read / write / dir / stat）。"
+
+#: ../../index.md:47
+msgid "plugin-dialog"
+msgstr "plugin-dialog"
+
+#: ../../index.md:51
+msgid "Native dialogs (open / save / message / ask / confirm)."
+msgstr "ネイティブダイアログ（open / save / message / ask / confirm）。"
+
+#: ../../index.md:54
+msgid "plugin-notification"
+msgstr "plugin-notification"
+
+#: ../../index.md:58
+msgid "Native notifications (toast / schedule / channels)."
+msgstr "ネイティブ通知（toast / schedule / channels）。"
+
+#: ../../index.md:61
+msgid "plugin-shell"
+msgstr "plugin-shell"
+
+#: ../../index.md:65
+msgid "Spawn child processes, open URLs / files with the OS default."
+msgstr "子プロセスの起動、OS デフォルトアプリで URL / ファイルを開く。"
+
+#: ../../index.md:68
+msgid "plugin-log"
+msgstr "plugin-log"
+
+#: ../../index.md:72
+msgid "Structured logging (5 levels + log-stream listeners)."
+msgstr "構造化ロギング（5 段階 + ログストリームリスナー）。"
+
+#: ../../index.md:75
+msgid "plugin-os"
+msgstr "plugin-os"
+
+#: ../../index.md:79
+msgid "OS info (platform / arch / family / locale / hostname)."
+msgstr "OS 情報（platform / arch / family / locale / hostname）。"
+
+#: ../../index.md:82
+msgid "plugin-clipboard-manager"
+msgstr "plugin-clipboard-manager"
+
+#: ../../index.md:86
+msgid "Clipboard read/write (text / image / HTML)."
+msgstr "クリップボードの読み書き（text / image / HTML）。"
+
+#: ../../index.md:89
+msgid "plugin-http"
+msgstr "plugin-http"
+
+#: ../../index.md:93
+msgid "HTTP fetch with CORS bypass + proxy / TLS config."
+msgstr "CORS をバイパスする HTTP fetch と proxy / TLS の設定。"
+
+#: ../../index.md:96
+msgid "schema"
+msgstr "schema"
+
+#: ../../index.md:100
+msgid "Layer 3 typed IPC via `rescript-schema`."
+msgstr "`rescript-schema` を用いた Layer 3 型付き IPC。"
+
+#: ../../index.md:104
 msgid "Quick Links"
 msgstr "クイックリンク"
 
-#: ../../index.md:35
+#: ../../index.md:106
 msgid "[Installation](user/installation.md)"
 msgstr "[インストール](user/installation.md)"
 
-#: ../../index.md:36
+#: ../../index.md:107
 msgid "[Quick Start](user/quickstart.md)"
 msgstr "[クイックスタート](user/quickstart.md)"
 
-#: ../../index.md:37
+#: ../../index.md:108
 msgid "[Configuration](user/configuration.md)"
 msgstr "[設定](user/configuration.md)"
 
-#: ../../index.md:38
+#: ../../index.md:109
 msgid "[Changelog](user/changelog.md)"
 msgstr "[変更履歴](user/changelog.md)"
 
