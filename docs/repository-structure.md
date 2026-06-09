@@ -372,6 +372,12 @@ sphinx-docs/
 │   ├── configuration.md
 │   ├── plugin-fs.md                     # @rescript-tauri/plugin-fs ガイド
 │   ├── plugin-dialog.md                 # @rescript-tauri/plugin-dialog ガイド
+│   ├── plugin-shell.md                  # @rescript-tauri/plugin-shell ガイド
+│   ├── plugin-notification.md           # @rescript-tauri/plugin-notification ガイド
+│   ├── plugin-log.md                    # @rescript-tauri/plugin-log ガイド
+│   ├── plugin-os.md                     # @rescript-tauri/plugin-os ガイド
+│   ├── plugin-clipboard-manager.md      # @rescript-tauri/plugin-clipboard-manager ガイド
+│   ├── plugin-http.md                   # @rescript-tauri/plugin-http ガイド
 │   ├── schema.md                        # @rescript-tauri/schema (Layer 3) ガイド
 │   └── changelog.md
 ├── dev/                                 # コントリビュータ向け
