@@ -12,12 +12,12 @@
     "@rescript-tauri/core": "workspace:*",
     "@rescript-tauri/plugin-fs": "workspace:*",
     "@tauri-apps/api": "^2.11.0",
-    "@tauri-apps/plugin-fs": "^2.5.0"
+    "@tauri-apps/plugin-fs": "^2.5.1"
   },
   "devDependencies": {
-    "@rescript/core": "^1.6.0",
-    "@rescript/runtime": "^12.2.0",
-    "@tauri-apps/cli": "^2.0.0",
-    "rescript": "^12.2.0"
+    "@rescript/core": "^1.6.1",
+    "@rescript/runtime": "^12.3.0",
+    "@tauri-apps/cli": "^2.11.2",
+    "rescript": "^12.3.0"
   }
 }
