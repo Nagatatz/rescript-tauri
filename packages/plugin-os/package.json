@@ -1,6 +1,6 @@
 {
   "name": "@rescript-tauri/plugin-os",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ReScript bindings for @tauri-apps/plugin-os (Tauri 2.x OS info plugin)",
   "license": "MIT",
   "homepage": "https://github.com/Nagatatz/rescript-tauri",

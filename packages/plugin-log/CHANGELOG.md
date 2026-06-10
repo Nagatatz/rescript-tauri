@@ -8,6 +8,17 @@ The format is based on
 this package adheres to
 [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
 
+## 0.1.1 (2026-06-10)
+
+Maintenance release — no runtime or API changes.
+
+### Changed
+
+- Updated development dependencies to their latest patch / minor
+  releases (ReScript 12.3, @rescript/core 1.6.1, vitest 4.1.8,
+  @vitest/coverage-v8 4.1.8, happy-dom 20.10.2). The published
+  artifacts are unaffected.
+
 ## 0.1.0 (2026-05-12)
 
 ### Added
