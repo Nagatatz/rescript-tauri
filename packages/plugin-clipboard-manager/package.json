@@ -1,6 +1,6 @@
 {
   "name": "@rescript-tauri/plugin-clipboard-manager",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ReScript bindings for @tauri-apps/plugin-clipboard-manager (Tauri 2.x clipboard plugin)",
   "license": "MIT",
   "homepage": "https://github.com/Nagatatz/rescript-tauri",
