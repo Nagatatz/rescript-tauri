@@ -37,11 +37,11 @@
     "@rescript/core": "^1.6.1",
     "@rescript/runtime": "^12.3.0",
     "@tauri-apps/api": "^2.11.0",
-    "@types/node": "^25.9.2",
-    "@vitest/coverage-v8": "^4.1.8",
-    "happy-dom": "^20.10.2",
+    "@types/node": "^26.0.0",
+    "@vitest/coverage-v8": "^4.1.9",
+    "happy-dom": "^20.10.6",
     "rescript": "^12.3.0",
-    "vitest": "^4.1.8"
+    "vitest": "^4.1.9"
   },
   "publishConfig": {
     "access": "public"
