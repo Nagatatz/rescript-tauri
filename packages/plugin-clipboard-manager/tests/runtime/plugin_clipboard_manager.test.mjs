@@ -21,7 +21,7 @@ describe("PluginClipboardManager", () => {
 
   it("writeText passes ~opts.label through to the IPC payload", async () => {
     let captured = null
-    Mocks.mockIPC(async (cmd, args) => {
+    Mocks.mockIPC(async (_cmd, args) => {
       captured = args
       return null
     })

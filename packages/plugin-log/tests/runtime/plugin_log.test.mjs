@@ -28,6 +28,7 @@ describe("PluginLog", () => {
           captured = { cmd, args }
           return null
         })
+        // biome-ignore lint/performance/noDynamicNamespaceImportAccess: table-driven test resolves the exported log fn by name
         await PluginLog[fnName]("hello")
         expect(captured.cmd).toBe("plugin:log|log")
         expect(captured.args.level).toBe(expectedLevel)
@@ -37,7 +38,7 @@ describe("PluginLog", () => {
 
     it("forwards ~options.file / line / keyValues to the IPC payload", async () => {
       let captured = null
-      Mocks.mockIPC(async (cmd, args) => {
+      Mocks.mockIPC(async (_cmd, args) => {
         captured = args
         return null
       })
