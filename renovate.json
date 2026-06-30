@@ -1,0 +1,37 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard"
+  ],
+  "dependencyDashboard": true,
+  "dependencyDashboardApproval": true,
+  "dependencyDashboardTitle": "Dependency Dashboard (notify-only)",
+  "labels": ["dependencies"],
+  "rangeStrategy": "replace",
+  "schedule": ["before 9am on monday"],
+  "lockFileMaintenance": { "enabled": false },
+  "cargo": { "enabled": true },
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "rescript",
+        "@rescript/core",
+        "@rescript/runtime",
+        "@rescript/language-server"
+      ],
+      "groupName": "ReScript toolchain"
+    },
+    {
+      "description": "Tauri JS API + Rust crates. compat-tauri-latest.yml already tests against @latest daily; this just surfaces the version bump for the pins.",
+      "matchPackageNames": ["@tauri-apps/api", "/^tauri/", "/^@tauri-apps\\//"],
+      "groupName": "Tauri"
+    },
+    {
+      "description": "Surface peer-dependency majors in the dashboard too.",
+      "matchDepTypes": ["peerDependencies"],
+      "enabled": true,
+      "rangeStrategy": "widen"
+    }
+  ]
+}
