@@ -81,6 +81,7 @@ rescript-tauri/                          # monorepo root
 ├── package.json
 ├── pnpm-lock.yaml                       # pnpm lockfile（commit 対象）
 ├── Cargo.toml                           # ルート Cargo workspace（examples の Rust 側を束ねる）
+├── Cargo.lock                           # Cargo lockfile（commit 対象。examples は binary のため float 破壊防止に追跡）
 ├── biome.json                           # Biome (手書き JS / JSON の format + lint)
 └── .gitignore
 ```
@@ -504,6 +505,7 @@ CI ジョブ定義の詳細は `docs/functional-design.md` §6 を参照。
 | `package.json` | ルート package（`devDependencies`、共通スクリプト） |
 | `pnpm-lock.yaml` | pnpm lockfile（commit 対象） |
 | `Cargo.toml` | ルート Cargo workspace（examples の `src-tauri/` 群を束ねる） |
+| `Cargo.lock` | Cargo lockfile（commit 対象）。examples は binary crate のため、transitive 依存の upstream float 破壊（例: `cookie 0.18.1` × `time 0.3.42`〜`0.3.52` の E0061）を防ぐため追跡する。CI は `examples-build.yml` で `cargo check --locked` を用い lock 逸脱を検知する（steering 20260710-001） |
 | `biome.json` | 手書き JS / JSON の format + lint 設定（ReScript 生成物 `*.res.mjs` / `lib/` は除外） |
 | `.gitignore` | `node_modules/`, `.mcp.json`, `CLAUDE.local.md`, `.steering/archive/.*` 等 |
 
