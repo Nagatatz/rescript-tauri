@@ -44,4 +44,7 @@ coverage/
 # Rust build artifacts
 target/
 **/target/
-Cargo.lock
+# NOTE: examples/*/src-tauri are binaries; the root Cargo.lock is tracked
+# for reproducible CI builds, pinning transitive deps against upstream float
+# breakage (e.g. the cookie 0.18.1 / time 0.3.42-0.3.52 incompatibility).
+# See steering 20260710-001.

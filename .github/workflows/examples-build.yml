@@ -8,6 +8,7 @@ on:
       - "packages/core/**"
       - "pnpm-lock.yaml"
       - "Cargo.toml"
+      - "Cargo.lock"
       - ".github/workflows/examples-build.yml"
   pull_request:
     branches: [main]
@@ -16,6 +17,8 @@ on:
       - "packages/core/**"
       - "pnpm-lock.yaml"
       - "Cargo.toml"
+      - "Cargo.lock"
+      - ".github/workflows/examples-build.yml"
 
 permissions:
   contents: read
@@ -45,64 +48,64 @@ jobs:
         run: pnpm --filter hello-world build
       - name: Cargo check on hello-world Rust side
         working-directory: examples/hello-world/src-tauri
-        run: cargo check --release
+        run: cargo check --release --locked
       - name: Build window-management frontend
         run: pnpm --filter window-management build
       - name: Cargo check on window-management Rust side
         working-directory: examples/window-management/src-tauri
-        run: cargo check --release
+        run: cargo check --release --locked
       - name: Build ipc-typed frontend
         run: pnpm --filter ipc-typed build
       - name: Cargo check on ipc-typed Rust side
         working-directory: examples/ipc-typed/src-tauri
-        run: cargo check --release
+        run: cargo check --release --locked
       - name: Build streaming-ipc frontend
         run: pnpm --filter streaming-ipc build
       - name: Cargo check on streaming-ipc Rust side
         working-directory: examples/streaming-ipc/src-tauri
-        run: cargo check --release
+        run: cargo check --release --locked
       - name: Build plugin-dialog-demo frontend
         run: pnpm --filter plugin-dialog-demo build
       - name: Cargo check on plugin-dialog-demo Rust side
         working-directory: examples/plugin-dialog-demo/src-tauri
-        run: cargo check --release
+        run: cargo check --release --locked
       - name: Build plugin-fs-demo frontend
         run: pnpm --filter plugin-fs-demo build
       - name: Cargo check on plugin-fs-demo Rust side
         working-directory: examples/plugin-fs-demo/src-tauri
-        run: cargo check --release
+        run: cargo check --release --locked
       - name: Build plugin-shell-demo frontend
         run: pnpm --filter plugin-shell-demo build
       - name: Cargo check on plugin-shell-demo Rust side
         working-directory: examples/plugin-shell-demo/src-tauri
-        run: cargo check --release
+        run: cargo check --release --locked
       - name: Build plugin-http-demo frontend
         run: pnpm --filter plugin-http-demo build
       - name: Cargo check on plugin-http-demo Rust side
         working-directory: examples/plugin-http-demo/src-tauri
-        run: cargo check --release
+        run: cargo check --release --locked
       - name: Build plugin-clipboard-manager-demo frontend
         run: pnpm --filter plugin-clipboard-manager-demo build
       - name: Cargo check on plugin-clipboard-manager-demo Rust side
         working-directory: examples/plugin-clipboard-manager-demo/src-tauri
-        run: cargo check --release
+        run: cargo check --release --locked
       - name: Build plugin-log-demo frontend
         run: pnpm --filter plugin-log-demo build
       - name: Cargo check on plugin-log-demo Rust side
         working-directory: examples/plugin-log-demo/src-tauri
-        run: cargo check --release
+        run: cargo check --release --locked
       - name: Build plugin-notification-demo frontend
         run: pnpm --filter plugin-notification-demo build
       - name: Cargo check on plugin-notification-demo Rust side
         working-directory: examples/plugin-notification-demo/src-tauri
-        run: cargo check --release
+        run: cargo check --release --locked
       - name: Build plugin-os-demo frontend
         run: pnpm --filter plugin-os-demo build
       - name: Cargo check on plugin-os-demo Rust side
         working-directory: examples/plugin-os-demo/src-tauri
-        run: cargo check --release
+        run: cargo check --release --locked
       - name: Build ipc-typed-with-schema frontend
         run: pnpm --filter ipc-typed-with-schema build
       - name: Cargo check on ipc-typed-with-schema Rust side
         working-directory: examples/ipc-typed-with-schema/src-tauri
-        run: cargo check --release
+        run: cargo check --release --locked
