@@ -17,7 +17,7 @@ root Cargo workspace の `Cargo.lock` を追跡対象にし、現時点で解決
 |---|---|
 | `.gitignore` | `Cargo.lock` 行を削除（ルート workspace lock を追跡対象化）+ 理由コメント追記 |
 | `Cargo.lock`（新規 commit） | `cargo generate-lockfile` で生成（time 0.3.53 / cookie 0.18.1 に解決）。明示的な `cargo update --precise` は行わない |
-| `.github/workflows/examples-build.yml` | 各 `cargo check --release` を `cargo check --release --locked` に変更（lock 逸脱を CI で検知。float 防止の実効化） |
+| `.github/workflows/examples-build.yml` | 各 `cargo check --release` を `cargo check --release --locked` に変更（lock 逸脱を CI で検知。float 防止の実効化）。加えて push/pull_request の `paths` に `Cargo.lock` を追加（lock が依存を決める以上、lock 変更で examples-build を回すべき）。pull_request 側には欠けていた `.github/workflows/examples-build.yml` も追加し、workflow 編集を PR で検証可能にする |
 | `docs/repository-structure.md` | §9 の `.gitignore` 行と §1 のルート `Cargo.lock` 記述を「commit 対象」に更新 |
 
 ## 3. float 破壊の背景（記録）
