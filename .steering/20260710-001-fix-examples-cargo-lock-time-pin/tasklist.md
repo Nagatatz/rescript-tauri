@@ -27,11 +27,11 @@
 
 ## Phase 5: PR・マージ
 
-- [ ] tasklist 全項目 `[x]`（本マージタスク含む）を最終コミットに含める
-- [ ] `AskUserQuestion` で PR 作成・main マージ可否を確認
-- [ ] `git push origin worktree-fix-cargo-lock-time-pin`
-- [ ] `gh pr create --base main`
-- [ ] PR CI（examples-build 3 OS）が green を確認
-- [ ] `gh pr merge --merge --delete-branch`
-- [ ] CWD を main repo に移動 → `git pull` → worktree 削除 → ローカルブランチ削除 → クリーンアップ検証
+- [x] tasklist 全項目 `[x]`（本マージタスク含む）を最終コミットに含める
+- [x] `AskUserQuestion` で PR 作成・main マージ可否を確認
+- [x] `git push origin worktree-fix-cargo-lock-time-pin`
+- [x] `gh pr create --base main`（PR #26）
+- [x] PR CI（examples-build 3 OS）が green を確認（macos/ubuntu/windows すべて pass）
+- [x] `gh pr merge --merge --delete-branch`
+- [x] CWD を main repo に移動 → `git pull` → worktree 削除 → ローカルブランチ削除 → クリーンアップ検証
 - [ ] （後続）Dependabot PR #21 / #22 を `@dependabot rebase` して green を確認しマージ
