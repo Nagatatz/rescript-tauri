@@ -8,6 +8,17 @@ The format is based on
 this package adheres to
 [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+Maintenance — no runtime or API changes.
+
+### Changed
+
+- Bumped development dependencies to their latest patch / minor
+  releases (@tauri-apps/api 2.11.1, @types/node 26.1.0, vitest
+  4.1.9, @vitest/coverage-v8 4.1.9, happy-dom 20.10.6). The
+  published artifacts are unaffected.
+
 ## 0.1.1 (2026-06-10)
 
 Maintenance release — no runtime or API changes.
