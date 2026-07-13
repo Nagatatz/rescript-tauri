@@ -15,8 +15,8 @@ Maintenance — no runtime or API changes.
 ### Changed
 
 - Bumped development dependencies to their latest patch / minor
-  releases (@tauri-apps/api 2.11.1, @types/node 26.1.0, vitest
-  4.1.9, @vitest/coverage-v8 4.1.9, happy-dom 20.10.6). The
+  releases (@tauri-apps/api 2.11.1, @types/node 26.1.1, vitest
+  4.1.10, @vitest/coverage-v8 4.1.10, happy-dom 20.10.6). The
   published artifacts are unaffected.
 
 ## 0.1.1 (2026-06-10)
