@@ -88,7 +88,7 @@ Every PR must clear the workflows catalogued in [`.github/workflows/README.md`](
 - `tests-coverage` (matrix coverage observation; non-gating in the current phase)
 - `examples-build` (3 OS matrix across all 7 examples)
 - `doc-link-lint` (Tauri URL presence)
-- `lint-format` (Biome on hand-written `.mjs` / JSON)
+- `lint-format` (oxlint + oxfmt on hand-written `.mjs` / JSON)
 - `docs` (Sphinx EN+JA build)
 
 Nightly: `compat-tauri-latest` and `compat-rescript-prerelease` exercise upstream drift detection.

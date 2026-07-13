@@ -769,7 +769,7 @@ let setTitle: (t, string) => promise<unit>
 
 | ジョブ | トリガ | 内容 |
 |---|---|---|
-| `lint-format` | PR | Biome で手書き `.mjs` / JSON の format + lint（ReScript 生成物 `*.res.mjs` / `lib/` は除外） |
+| `lint-format` | PR | oxlint + oxfmt で手書き `.mjs` / JSON の lint + format（ReScript 生成物 `*.res.mjs` / `lib/` は除外） |
 | `build-core` | PR / push | `packages/core` ビルド + 計測値（`time pnpm --filter @rescript-tauri/core build`）をジョブログに出力。クリーンビルド 30 秒・インクリメンタル 1 秒の閾値を超えたら fail（PRD §5.2） |
 | `tests-core-types` / `tests-{schema,plugin-fs,plugin-dialog}-types` | PR | 各パッケージの型レベルコンパイル + `.resi` 公開シンボル 100% 参照カバレッジ（PRD §5.4） |
 | `tests-core-runtime` / `tests-{schema,plugin-fs,plugin-dialog}-runtime` | PR | 各パッケージの vitest 実行（`Mocks.mockIPC` 経由の round-trip 検証を含む） |

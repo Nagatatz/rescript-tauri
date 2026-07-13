@@ -27,7 +27,7 @@ pnpm --recursive test
 # core パッケージのみのインクリメンタルビルド
 pnpm --filter @rescript-tauri/core build
 
-# 品質チェック（Biome: 手書き .mjs / JSON の format + lint）
+# 品質チェック（oxlint + oxfmt: 手書き .mjs / JSON の lint + format）
 pnpm run check          # 検証のみ
 pnpm run check:fix      # 自動修正
 ```

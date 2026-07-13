@@ -20,9 +20,10 @@ updates:
         patterns:
           - "@tauri-apps/*"
           - tauri
-      biome:
+      oxc:
         patterns:
-          - "@biomejs/*"
+          - oxlint
+          - oxfmt
 
   # Cargo workspace at the repository root (examples/*/src-tauri members).
   - package-ecosystem: cargo
