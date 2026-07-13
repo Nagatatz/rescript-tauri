@@ -61,7 +61,7 @@ rescript-tauri/                          # monorepo root
 │   ├── skills/                          # 状況発火型スキル
 │   ├── agents/                          # サブエージェント定義
 │   ├── rules/                           # 常時適用ルール
-│   ├── hooks/                           # 自動実行 hook (check-secrets / check-disk-space / biome-format)
+│   ├── hooks/                           # 自動実行 hook (check-secrets / check-disk-space / oxfmt-format)
 │   ├── settings.json                    # PreToolUse / PostToolUse hook 登録
 │   ├── output-styles/
 │   ├── statusline.sh
@@ -82,7 +82,8 @@ rescript-tauri/                          # monorepo root
 ├── pnpm-lock.yaml                       # pnpm lockfile（commit 対象）
 ├── Cargo.toml                           # ルート Cargo workspace（examples の Rust 側を束ねる）
 ├── Cargo.lock                           # Cargo lockfile（commit 対象。examples は binary のため float 破壊防止に追跡）
-├── biome.json                           # Biome (手書き JS / JSON の format + lint)
+├── .oxlintrc.json                       # oxlint (手書き JS の lint)
+├── .oxfmtrc.json                        # oxfmt (手書き JS / JSON の format)
 └── .gitignore
 ```
 
@@ -432,7 +433,7 @@ sphinx-docs/
 | `skills/` | 状況発火型スキル本体（`SKILL.md` + 補助ファイル） |
 | `agents/` | code-reviewer / debugger 等のサブエージェント定義 |
 | `rules/` | CLAUDE.md から @import される常時適用ルール |
-| `hooks/` | 自動実行される shell hook（`check-secrets.sh` / `check-disk-space.sh` / `biome-format.sh`） |
+| `hooks/` | 自動実行される shell hook（`check-secrets.sh` / `check-disk-space.sh` / `oxfmt-format.sh`） |
 | `settings.json` | Claude Code lifecycle hook 登録（PreToolUse / PostToolUse） |
 | `output-styles/` | 出力スタイル設定 |
 | `statusline.sh` | ステータスライン表示スクリプト |
@@ -472,7 +473,7 @@ sphinx-docs/
 │   ├── tests-schema-runtime.yml
 │   ├── tests-coverage.yml                        # 10 パッケージ matrix で vitest v8 カバレッジ計測（観測フェーズ）
 │   ├── examples-build.yml                        # 3 OS マトリクス
-│   ├── lint-format.yml                           # Biome (手書き JS / JSON の format + lint)
+│   ├── lint-format.yml                           # oxlint + oxfmt (手書き JS / JSON の lint + format)
 │   ├── doc-link-lint.yml                         # docs / README 内リンク検証
 │   ├── docs.yml                                  # sphinx-docs ビルド + GitHub Pages デプロイ
 │   ├── compat-tauri-latest.yml                   # nightly — 上流 Tauri 最新リリース追従
@@ -506,7 +507,8 @@ CI ジョブ定義の詳細は `docs/functional-design.md` §6 を参照。
 | `pnpm-lock.yaml` | pnpm lockfile（commit 対象） |
 | `Cargo.toml` | ルート Cargo workspace（examples の `src-tauri/` 群を束ねる） |
 | `Cargo.lock` | Cargo lockfile（commit 対象）。examples は binary crate のため、transitive 依存の upstream float 破壊（例: `cookie 0.18.1` × `time 0.3.42`〜`0.3.52` の E0061）を防ぐため追跡する。CI は `examples-build.yml` で `cargo check --locked` を用い lock 逸脱を検知する（steering 20260710-001） |
-| `biome.json` | 手書き JS / JSON の format + lint 設定（ReScript 生成物 `*.res.mjs` / `lib/` は除外） |
+| `.oxlintrc.json` | 手書き JS の lint 設定（oxlint。`correctness` カテゴリを gate、ReScript 生成物 `*.res.mjs` / `lib/` は除外） |
+| `.oxfmtrc.json` | 手書き JS / JSON の format 設定（oxfmt。現行スタイル維持、`ignorePatterns` で `*.res.mjs` / `lib/` 等を除外） |
 | `.gitignore` | `node_modules/`, `.mcp.json`, `CLAUDE.local.md`, `.steering/archive/.*` 等 |
 
 ---

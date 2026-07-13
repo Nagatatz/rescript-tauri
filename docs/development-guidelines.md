@@ -96,14 +96,14 @@ pnpm --recursive test
 # core パッケージのみのインクリメンタルビルド
 pnpm --filter @rescript-tauri/core build
 
-# 手書き JS / JSON の format + lint（Biome）
+# 手書き JS / JSON の lint + format（oxlint + oxfmt）
 pnpm run check          # 検証のみ（CI ゲート）
 pnpm run check:fix      # 自動修正（ローカル）
 pnpm run format         # format のみ書き換え
 pnpm run lint           # lint のみ
 ```
 
-`.res` / `.resi` は ReScript コンパイラ標準のフォーマッタが管理する（`rescript build` 経由）。手書きの `.mjs` および JSON は [Biome](https://biomejs.dev/) で format + lint する。ReScript 生成物（`*.res.mjs` / `lib/`）は `biome.json` の `files.includes` で除外しているため、Biome はビルド成果物には影響を与えない。
+`.res` / `.resi` は ReScript コンパイラ標準のフォーマッタが管理する（`rescript build` 経由）。手書きの `.mjs` および JSON は [oxlint](https://oxc.rs/docs/guide/usage/linter)（lint）と [oxfmt](https://oxc.rs/docs/guide/usage/formatter)（format）で処理する。ReScript 生成物（`*.res.mjs` / `lib/`）は `.oxlintrc.json` / `.oxfmtrc.json` の `ignorePatterns` で除外しているため、oxc はビルド成果物には影響を与えない。
 
 `examples/` の個別ビルドは各 `examples/<name>/README.md` を参照。
 
