@@ -41,7 +41,7 @@
     "@vitest/coverage-v8": "^4.1.9",
     "happy-dom": "^20.10.6",
     "rescript": "^12.3.0",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.10"
   },
   "publishConfig": {
     "access": "public"
