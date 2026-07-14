@@ -12,7 +12,7 @@ importers:
         specifier: ^26.1.1
         version: 26.1.1
       oxfmt:
-        specifier: ^0.58.0
+        specifier: 0.58.0
         version: 0.58.0
       oxlint:
         specifier: ^1.73.0
