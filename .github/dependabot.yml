@@ -47,3 +47,10 @@ updates:
     open-pull-requests-limit: 5
     labels:
       - dependencies
+    ignore:
+      # dtolnay/rust-toolchain ships only rolling tags (stable / nightly) and no
+      # GitHub releases, so Dependabot cannot resolve an update for the SHA-pinned
+      # ref and fails the entire github-actions run with `unknown_error`. Skip it
+      # here; the pin is bumped manually (see the dated comment in
+      # examples-build.yml).
+      - dependency-name: dtolnay/rust-toolchain
