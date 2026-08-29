@@ -8,15 +8,16 @@ The format is based on
 this package adheres to
 [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 0.1.2 (2026-08-30)
 
-Maintenance — no runtime or API changes.
+Maintenance release — no runtime or API changes.
 
 ### Changed
 
-- Bumped development dependencies to their latest patch / minor
-  releases (@types/node 26.1.1, vitest 4.1.10, @vitest/coverage-v8
-  4.1.10, happy-dom 20.10.6). The published artifacts are unaffected.
+- Bumped development dependencies to their latest patch / minor releases
+  (@tauri-apps/plugin-log 2.9.0, @types/node 26.4.0, vitest 4.1.11,
+  @vitest/coverage-v8 4.1.11, happy-dom 20.11.13, rescript 12.3.1). The
+  published artifacts are unaffected.
 
 ## 0.1.1 (2026-06-10)
 

@@ -6,7 +6,7 @@ Thank you for your interest in `rescript-tauri`! This document covers the branch
 
 ## 1. Project status
 
-Phase 1 + Phase 2 implementations are merged on `main` (core, plugin-fs, plugin-dialog, schema, seven examples, CI matrices, release runbook, Sphinx docs). The packages are awaiting their first npm publish on the `v0.1.0` track.
+Phase 1 + Phase 2 implementations are merged on `main` (core, plugin-fs, plugin-dialog, schema, seven examples, CI matrices, release runbook, Sphinx docs). All ten packages are published on npm (current release `0.1.2`).
 
 The repository is **public** and external pull requests are accepted. GitHub Issues remain the right channel for design feedback, RFC discussion, and clarifying questions.
 

@@ -21,7 +21,7 @@
 
 Production-ready ReScript bindings for Tauri 2.x's official JS SDK (`@tauri-apps/api`). A monorepo centered on `@rescript-tauri/core`, exposing the entire Tauri public API surface—IPC, Event, Window, Webview, Menu, Tray—from ReScript.
 
-> **Status:** All ten packages are merged on `main`. `@rescript-tauri/core` provides 100% coverage of the stable public surface of `@tauri-apps/api` v2.11.0 (only `Image.transformImage` is intentionally omitted as upstream marks it unstable). The full set (`@rescript-tauri/core`, `@rescript-tauri/plugin-fs`, `@rescript-tauri/plugin-dialog`, `@rescript-tauri/plugin-shell`, `@rescript-tauri/plugin-notification`, `@rescript-tauri/plugin-log`, `@rescript-tauri/plugin-os`, `@rescript-tauri/plugin-clipboard-manager`, `@rescript-tauri/plugin-http`, `@rescript-tauri/schema`) is awaiting its first npm publish (`v0.1.0` track); CI matrices, the release runbook, and the Sphinx documentation site are all in place. See [`docs/product-requirements.md`](./docs/product-requirements.md) and [`docs/functional-design.md`](./docs/functional-design.md) for the full scope.
+> **Status:** All ten packages are merged on `main`. `@rescript-tauri/core` provides 100% coverage of the stable public surface of `@tauri-apps/api` v2.11.0 (only `Image.transformImage` is intentionally omitted as upstream marks it unstable). The full set (`@rescript-tauri/core`, `@rescript-tauri/plugin-fs`, `@rescript-tauri/plugin-dialog`, `@rescript-tauri/plugin-shell`, `@rescript-tauri/plugin-notification`, `@rescript-tauri/plugin-log`, `@rescript-tauri/plugin-os`, `@rescript-tauri/plugin-clipboard-manager`, `@rescript-tauri/plugin-http`, `@rescript-tauri/schema`) is published on npm (current release `0.1.2`); CI matrices, the release runbook, and the Sphinx documentation site are all in place. See [`docs/product-requirements.md`](./docs/product-requirements.md) and [`docs/functional-design.md`](./docs/functional-design.md) for the full scope.
 >
 > **Visibility:** the repository is **public**. The npm version badges above will populate once the first `0.1.0` releases ship. The CI workflow status is summarized in [`.github/workflows/README.md`](./.github/workflows/README.md). [`LICENSE`](./LICENSE) (MIT) and [`CONTRIBUTING.md`](./CONTRIBUTING.md) are in place.
 
@@ -71,7 +71,7 @@ Nightly CI against the latest Tauri release and the next ReScript 12.x minor / n
 
 ---
 
-## 🚀 Installation (pending first npm publish)
+## 🚀 Installation
 
 The packages are not yet on npm. Once `v0.1.0` ships, installation will look like:
 
