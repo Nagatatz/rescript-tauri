@@ -7,3 +7,20 @@ packages:
 allowBuilds:
   esbuild: true
 
+# `pnpm --recursive build` を直列化する（steering 20260830-001）。
+# 複数 workspace の `rescript build` が同時に依存パッケージ (@rescript/core, @rescript-tauri/core)
+# の lib/ 配下 compiler-info を書き換えると
+# "Failed to atomically replace compiler-info ... No such file or directory" で散発的に失敗するため。
+# CI は `pnpm --filter <pkg> build` の単体実行なので影響しない。
+# (.npmrc / package.json の pnpm フィールドは pnpm 11 では読まれないため、ここに置く)
+workspaceConcurrency: 1
+
+
+# transitive 依存のセキュリティアラート対応 (steering 20260830-001)。
+# vite / esbuild は vitest 経由の transitive で、直接依存では range を上げられないため override で固定する。
+# - vite:    GHSA server.fs.deny bypass (>= 7.3.5 で修正)
+# - esbuild: dev server 経由の任意ファイル読み取り (>= 0.28.1 で修正)。vite 7.3.x の宣言 range は ^0.27.0 だが
+#            vitest の transform 用途では 0.28 系で問題なく動作することをテスト全件 pass で確認済み。
+overrides:
+  vite: ^7.3.6
+  esbuild: ^0.28.1

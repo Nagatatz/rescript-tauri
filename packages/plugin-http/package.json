@@ -37,13 +37,13 @@
   "devDependencies": {
     "@rescript-tauri/core": "workspace:*",
     "@rescript/core": "^1.6.1",
-    "@rescript/runtime": "^12.3.0",
+    "@rescript/runtime": "^12.3.1",
     "@tauri-apps/plugin-http": "^2.5.9",
-    "@types/node": "^26.1.1",
-    "@vitest/coverage-v8": "^4.1.10",
-    "happy-dom": "^20.10.6",
-    "rescript": "^12.3.0",
-    "vitest": "^4.1.10"
+    "@types/node": "^26.4.0",
+    "@vitest/coverage-v8": "^4.1.11",
+    "happy-dom": "^20.11.13",
+    "rescript": "^12.3.1",
+    "vitest": "^4.1.11"
   },
   "publishConfig": {
     "access": "public"

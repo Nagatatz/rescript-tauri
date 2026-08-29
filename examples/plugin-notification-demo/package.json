@@ -16,8 +16,8 @@
   },
   "devDependencies": {
     "@rescript/core": "^1.6.1",
-    "@rescript/runtime": "^12.3.0",
+    "@rescript/runtime": "^12.3.1",
     "@tauri-apps/cli": "^2.11.4",
-    "rescript": "^12.3.0"
+    "rescript": "^12.3.1"
   }
 }
