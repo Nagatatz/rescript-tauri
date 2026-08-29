@@ -39,7 +39,7 @@
     "@rescript/core": "^1.6.1",
     "@rescript/runtime": "^12.3.0",
     "@tauri-apps/plugin-notification": "^2.3.3",
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.3.0",
     "@vitest/coverage-v8": "^4.1.10",
     "happy-dom": "^20.10.6",
     "rescript": "^12.3.0",
