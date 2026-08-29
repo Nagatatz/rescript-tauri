@@ -37,7 +37,7 @@ If you enable `"namespace": true` in your own package, `@rescript-tauri/core` mo
 | Node.js | Active LTS |
 | OS | Linux / macOS / Windows (Tauri 2.x desktop targets) |
 
-ReScript 11 is **not supported**. The decision and rationale are recorded in [PRD §10 row 7](https://github.com/Nagatatz/rescript-tauri/blob/main/docs/product-requirements.md) and the corresponding [steering document](https://github.com/Nagatatz/rescript-tauri/tree/main/.steering/20260508-002-rescript-v12-only).
+ReScript 11 is **not supported**. The decision and rationale are recorded in [PRD §10 row 7](https://github.com/Nagatatz/rescript-tauri/blob/main/docs/product-requirements.md) and the corresponding [steering document](https://github.com/Nagatatz/rescript-tauri/tree/main/.steering/archive/20260508-002-rescript-v12-only).
 
 ## Top-level `Tauri` re-export
 

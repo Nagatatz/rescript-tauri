@@ -27,7 +27,7 @@ Please link the specific PRD / functional-design / RFC section in your issue or 
 
 Each item links to the canonical convention (the Source of Truth lives in `.claude/rules/`, not here).
 
-**All changes — from external contributors and maintainers alike — land on `main` through a pull request.** The `main` branch is protected by GitHub branch protection (steering [20260512-006](./.steering/20260512-006-protect-main-branch/)): direct push is rejected with `GH006: Protected branch update failed`, force-push and branch deletion are blocked, and admins are not allowed to bypass. The PR review count requirement is `0`, so maintainers can self-merge their own PRs (used for solo-dev iteration), but every change still flows through a PR record.
+**All changes — from external contributors and maintainers alike — land on `main` through a pull request.** The `main` branch is protected by GitHub branch protection (steering [20260512-006](./.steering/archive/20260512-006-protect-main-branch/)): direct push is rejected with `GH006: Protected branch update failed`, force-push and branch deletion are blocked, and admins are not allowed to bypass. The PR review count requirement is `0`, so maintainers can self-merge their own PRs (used for solo-dev iteration), but every change still flows through a PR record.
 
 ### 3.1 Branch naming
 

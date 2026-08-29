@@ -238,7 +238,7 @@ When introducing a new convention or workflow, choose its location in this prior
 
 External pull requests and design feedback are welcome. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the branch / commit / steering / CI conventions, and [`SECURITY.md`](./SECURITY.md) for vulnerability disclosure.
 
-`main` is protected by GitHub branch protection (steering [20260512-006](./.steering/20260512-006-protect-main-branch/)): **every change lands through a pull request** — direct push, force-push, and branch deletion are all blocked, even for admins. The required-approval count is `0`, so maintainers can self-merge for solo-dev iteration, but every change still flows through a PR record.
+`main` is protected by GitHub branch protection (steering [20260512-006](./.steering/archive/20260512-006-protect-main-branch/)): **every change lands through a pull request** — direct push, force-push, and branch deletion are all blocked, even for admins. The required-approval count is `0`, so maintainers can self-merge for solo-dev iteration, but every change still flows through a PR record.
 
 ---
 
