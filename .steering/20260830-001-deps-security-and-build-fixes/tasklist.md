@@ -11,7 +11,7 @@
 - [x] T3. `pnpm install` + `pnpm update` で transitive (vite / postcss / nanoid / esbuild) を patched version 以上へ
 - [x] T4. `cargo update -p serde_json -p tauri-plugin-dialog -p tauri-plugin-log`
 - [x] T5. `uv lock --upgrade-package starlette/soupsieve/idna`
-- [x] T6. `.steering/` 30 日超ディレクトリを `archive/` へ `git mv`（99 件）+ 参照 5 箇所を `archive/` パスへ更新（CONTRIBUTING.md / README.md / examples/plugin-shell-demo/README.md / sphinx-docs/user/configuration.md / sphinx-docs/tests/test_ogp.py）
+- [x] T6. `.steering/` 30 日超ディレクトリを `archive/` へ `git mv`（99 件）+ 参照 18 箇所を `archive/` パスへ更新（CONTRIBUTING.md / README.md / examples/plugin-shell-demo/README.md / sphinx-docs/user/configuration.md / sphinx-docs/tests/test_ogp.py / docs/{development-guidelines,functional-design,product-requirements,architecture}.md / docs/ideas/RFC-0002 / tools/*.sh）
 - [x] T6b. `sphinx-docs/user/configuration.md` 変更に伴う `make update-po`（ja .po の msgid 同期・fuzzy 解消・msgstr の URL 更新）
 - [x] T7. `docs/repository-structure.md` の `pnpm-workspace.yaml` 行に設定集約方針を追記
 - [x] テスト: 設定 / lock / ディレクトリ移動のみのためユニットテスト新規作成は省略（design.md「テスト方針」参照）

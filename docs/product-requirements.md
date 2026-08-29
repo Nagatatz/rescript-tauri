@@ -415,13 +415,13 @@ ReScript で Tauri デスクトップアプリを書く際、JavaScript / TypeSc
 
 | # | 論点 | 暫定方針 | 確定タイミング |
 |---|---|---|---|
-| 1 | `Tauri.res` の re-export 範囲 | **Core / Event / Window / Webview / WebviewWindow（確定）**（経緯: `.steering/20260509-023-tauri-reexport/`） | **確定済み（2026-05-09）** |
+| 1 | `Tauri.res` の re-export 範囲 | **Core / Event / Window / Webview / WebviewWindow（確定）**（経緯: `.steering/archive/20260509-023-tauri-reexport/`） | **確定済み（2026-05-09）** |
 | 2 | `Channel` を `Core` に同梱 vs 独立モジュール化 | **`Core.Channel` サブモジュールとして実装（確定）** | **確定済み（コア設計レビュー時点）** |
 | 3 | `invokeExn` 命名（`invokeOrThrow` / `invokeUnsafe` 等） | **`invokeExn` 採用（確定）**（`@rescript/core` 慣習） | **確定済み** |
 | 4 | `Event.TauriEvent` の網羅範囲 | **upstream `TauriEvent` enum 16 種を完全カバー（確定）**。typed handle ではなく `tauriEvent` 文字列定数として公開し、payload 型は `Event.make` 呼び出し側で指定する設計に確定 | **確定済み（2026-05-09、`packages/core/src/Event.resi`）** |
-| 5 | `Mocks` の独立パッケージ化 | **`@rescript-tauri/core` 同梱を継続（確定）**（経緯: `.steering/20260509-045-mocks-packaging-decision/`） | **確定済み（2026-05-09）** |
+| 5 | `Mocks` の独立パッケージ化 | **`@rescript-tauri/core` 同梱を継続（確定）**（経緯: `.steering/archive/20260509-045-mocks-packaging-decision/`） | **確定済み（2026-05-09）** |
 | 6 | Belt-only ユーザー向け shim 提供可否 | 当面提供しない（`@rescript/core` を peerDep 必須にする） | 初版リリース直前 |
-| 7 | ReScript v11 サポート | **除外（v12+ のみ）**（経緯: `.steering/20260508-002-rescript-v12-only/`） | **確定済み（2026-05-08）** |
+| 7 | ReScript v11 サポート | **除外（v12+ のみ）**（経緯: `.steering/archive/20260508-002-rescript-v12-only/`） | **確定済み（2026-05-08）** |
 
 ---
 

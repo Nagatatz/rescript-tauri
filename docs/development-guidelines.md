@@ -170,7 +170,7 @@ let _ = Foo.someType: Foo.t => unit
 
 ### 5.4 `Tauri.res` re-export の更新
 
-トップレベル re-export ポリシーは `docs/functional-design.md` §2.8 を参照（PRD §10 残課題 #1 で curated subset 方針確定済み — 経緯: `.steering/20260509-023-tauri-reexport/`）。新モジュールが re-export 対象なら `Tauri.res` を更新する。
+トップレベル re-export ポリシーは `docs/functional-design.md` §2.8 を参照（PRD §10 残課題 #1 で curated subset 方針確定済み — 経緯: `.steering/archive/20260509-023-tauri-reexport/`）。新モジュールが re-export 対象なら `Tauri.res` を更新する。
 
 ### 5.5 examples の追加（必要時）
 
@@ -231,7 +231,7 @@ let _ = Foo.someType: Foo.t => unit
 3. 型レベル + vitest + examples ビルド (3 OS) 全緑
 4. `.github/workflows/release.yml` の tag push トリガで npm publish 可能
 
-加えて `definition-of-done.md` Phase 4 の全項目を順守する。リリース runbook は `.steering/20260509-046-phase2-release-checklist/` を参照。
+加えて `definition-of-done.md` Phase 4 の全項目を順守する。リリース runbook は `.steering/archive/20260509-046-phase2-release-checklist/` を参照。
 
 ### 8.3 セキュリティ関連変更
 
@@ -241,7 +241,7 @@ let _ = Foo.someType: Foo.t => unit
 
 ## 9. リリース手順（概要）
 
-リリースランブックは `.steering/20260509-046-phase2-release-checklist/` に集約済み。現時点の概要:
+リリースランブックは `.steering/archive/20260509-046-phase2-release-checklist/` に集約済み。現時点の概要:
 
 1. `release-manager` agent でリリース PR 作成・changelog 生成
 2. 各パッケージ独立 semver（初版は `core` / `plugin-fs` / `plugin-dialog` / `schema` を `v0.1.0` 系で揃える方針）
