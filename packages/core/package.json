@@ -1,6 +1,6 @@
 {
   "name": "@rescript-tauri/core",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Production-ready ReScript bindings for @tauri-apps/api (Tauri 2.x)",
   "license": "MIT",
   "homepage": "https://github.com/Nagatatz/rescript-tauri",

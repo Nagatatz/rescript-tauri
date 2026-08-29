@@ -1,6 +1,6 @@
 {
   "name": "@rescript-tauri/plugin-log",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "ReScript bindings for @tauri-apps/plugin-log (Tauri 2.x logging plugin)",
   "license": "MIT",
   "homepage": "https://github.com/Nagatatz/rescript-tauri",

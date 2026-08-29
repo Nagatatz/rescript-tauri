@@ -3,7 +3,7 @@
 Production-ready ReScript bindings for Tauri 2.x's official JS SDK (`@tauri-apps/api`). A monorepo centered on `@rescript-tauri/core`, exposing the entire Tauri public API surface—IPC, Event, Window, Webview, Menu, Tray—from ReScript with a 3-layer IPC design (Raw / typed Command / Schema-integrated).
 
 ```{note}
-All packages are merged on `main`. The `@rescript-tauri/core`, `@rescript-tauri/plugin-fs`, `@rescript-tauri/plugin-dialog`, and `@rescript-tauri/schema` packages are awaiting their first npm publish on the `v0.1.0` track. Sample code on these pages mirrors the merged source — install paths and the `pnpm add @rescript-tauri/*` snippets activate once the first `0.1.0` releases ship.
+All ten `@rescript-tauri/*` packages are published on npm (current release `0.1.2`). Sample code on these pages mirrors the released source, and the `pnpm add @rescript-tauri/*` snippets work as written.
 ```
 
 ::::{grid} 1 1 2 2

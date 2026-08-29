@@ -1,13 +1,31 @@
 # Changelog
 
 ```{note}
-All packages are feature-complete in `main`. First publishes
-(`v0.1.0`, `schema-v0.1.0`, `plugin-fs-v0.1.0`,
-`plugin-dialog-v0.1.0`) are pending. Each package keeps its own
-canonical changelog under `packages/<name>/CHANGELOG.md`; this
-page collects the highlights of the pre-release state across all
-of them.
+All ten `@rescript-tauri/*` packages are published on npm; the
+current release is `0.1.2`. Each package keeps its own canonical
+changelog under `packages/<name>/CHANGELOG.md`; this page collects
+the highlights across all of them.
 ```
+
+## Maintenance releases
+
+Patch releases that only refresh development dependencies. The
+published artifacts (compiled `.mjs`, `.res` / `.resi` sources) are
+unaffected, and no API changes are involved.
+
+### 0.1.2 (2026-08-30)
+
+All ten packages. Development dependencies bumped to vitest 4.1.11,
+@vitest/coverage-v8 4.1.11, happy-dom 20.11.13, @types/node 26.4.0,
+rescript 12.3.1; `core` also tracks @tauri-apps/api 2.11.1,
+`plugin-dialog` @tauri-apps/plugin-dialog 2.7.2, and `plugin-log`
+@tauri-apps/plugin-log 2.9.0.
+
+### 0.1.1 (2026-06-10)
+
+All ten packages. Development dependencies bumped to ReScript 12.3,
+@rescript/core 1.6.1, vitest 4.1.8, @vitest/coverage-v8 4.1.8,
+happy-dom 20.10.2.
 
 ## `@rescript-tauri/core` 0.1.0 (2026-05-12)
 
