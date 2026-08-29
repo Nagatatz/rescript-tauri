@@ -25,7 +25,7 @@ pnpm --filter plugin-shell-demo tauri dev
 `Command.sidecar` / `Command.sidecarRaw` are type-level-referenced
 from `src/App.res` only; bundling an actual sidecar binary is out
 of scope for this demo (see
-[`.steering/20260511-008-example-plugin-shell-demo`](../../.steering/20260511-008-example-plugin-shell-demo)).
+[`.steering/archive/20260511-008-example-plugin-shell-demo`](../../.steering/archive/20260511-008-example-plugin-shell-demo)).
 
 ## Capabilities
 

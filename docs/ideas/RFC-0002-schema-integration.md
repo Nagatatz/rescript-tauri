@@ -5,7 +5,7 @@
 | ステータス | Accepted (2026-05-09) |
 | 関連 | [RFC-0001](./RFC-0001-core-api-design.md), [PRD §10 #5](../product-requirements.md), [architecture §10](../architecture.md) |
 | 想定実装パッケージ | `@rescript-tauri/schema` |
-| 着手 steering | `.steering/20260509-031-schema-package/` |
+| 着手 steering | `.steering/archive/20260509-031-schema-package/` |
 
 ## 1. Motivation
 
@@ -174,5 +174,5 @@ switch await greet->Core.Command.invoke({name: "ReScript"}) {
 
 - [rescript-schema npm](https://www.npmjs.com/package/rescript-schema)
 - [rescript-schema GitHub](https://github.com/DZakh/rescript-schema)
-- [Phase 2 Planning Steering](../../.steering/20260509-030-phase2-planning/)
-- [Schema Package Bootstrap Steering](../../.steering/20260509-031-schema-package/)
+- [Phase 2 Planning Steering](../../.steering/archive/20260509-030-phase2-planning/)
+- [Schema Package Bootstrap Steering](../../.steering/archive/20260509-031-schema-package/)

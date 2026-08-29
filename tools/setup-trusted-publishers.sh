@@ -30,8 +30,8 @@
 #
 # Reference:
 #   - https://docs.npmjs.com/cli/v11/commands/npm-trust
-#   - .steering/20260512-002-npm-trusted-publishing/
-#   - .steering/20260512-003-bulk-package-reservation-tooling/
+#   - .steering/archive/20260512-002-npm-trusted-publishing/
+#   - .steering/archive/20260512-003-bulk-package-reservation-tooling/
 
 set -euo pipefail
 

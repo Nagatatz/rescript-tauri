@@ -23,8 +23,8 @@
 #     2026-05-08, see steering 20260508-007).
 #
 # Reference:
-#   - .steering/20260508-007-npm-scope-reservation/report.md
-#   - .steering/20260512-003-bulk-package-reservation-tooling/
+#   - .steering/archive/20260508-007-npm-scope-reservation/report.md
+#   - .steering/archive/20260512-003-bulk-package-reservation-tooling/
 
 set -euo pipefail
 

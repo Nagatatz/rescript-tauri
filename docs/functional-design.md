@@ -799,11 +799,11 @@ let setTitle: (t, string) => promise<unit>
 
 | # | 論点 | 暫定 | 確定タイミング |
 |---|---|---|---|
-| 1 | `Tauri.res` re-export 範囲 | **Core / Event / Window / Webview / WebviewWindow 確定**（経緯: `.steering/20260509-023-tauri-reexport/`） | **確定済み（2026-05-09）** |
+| 1 | `Tauri.res` re-export 範囲 | **Core / Event / Window / Webview / WebviewWindow 確定**（経緯: `.steering/archive/20260509-023-tauri-reexport/`） | **確定済み（2026-05-09）** |
 | 2 | `Channel` を `Core` 内 vs 独立モジュール | **`Core.Channel` サブモジュール採用（確定）** | **確定済み（コア設計レビュー時点）** |
 | 3 | `*Exn` 命名 | **`*Exn` 採用（確定）**（`@rescript/core` 慣習） | **確定済み** |
 | 4 | `Event.TauriEvent` の網羅範囲 | **upstream `TauriEvent` enum 16 種を完全カバー（確定）** — `closeRequested` / `focus` / `blur` / `scaleFactorChanged` / `resized` / `moved` / `themeChanged` / `webviewCreated` / `windowCreated` / `windowSuspended` / `windowResumed` / drag-* (4 種) / `windowDestroyed`。typed handle ではなく `Event.make(~name=TauriEvent.*, ~decode=...)` 形式で利用 | **確定済み（2026-05-09、`packages/core/src/Event.resi`）** |
-| 5 | `Mocks` の独立パッケージ化 | **core 同梱を継続（確定）**（経緯: `.steering/20260509-045-mocks-packaging-decision/`） | **確定済み（2026-05-09）** |
+| 5 | `Mocks` の独立パッケージ化 | **core 同梱を継続（確定）**（経緯: `.steering/archive/20260509-045-mocks-packaging-decision/`） | **確定済み（2026-05-09）** |
 | 6 | Belt-only ユーザー向け shim 提供可否 | 当面提供しない（`@rescript/core` を peerDep 必須） | 初版リリース直前 |
 
 ---

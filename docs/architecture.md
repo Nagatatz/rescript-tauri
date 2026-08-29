@@ -295,7 +295,7 @@ Tag push:
 - handler は `(string, JSON.t) => promise<JSON.t>` に統一（ReScript 流の関数型）。
 - production ビルドでも import 可能（明示的にテスト用と doc に記載）。
 - パッケージ構造: **`@rescript-tauri/core` 同梱を継続**。独立パッケージ
-  化はしない（PRD §10 #5、確定経緯: `.steering/20260509-045-mocks-packaging-decision/`）。
+  化はしない（PRD §10 #5、確定経緯: `.steering/archive/20260509-045-mocks-packaging-decision/`）。
   schema / plugin-fs / plugin-dialog はすでに core 同梱の
   Mocks を runtime テストから利用しており、独立化は既存パッケージへの
   破壊的変更を要する一方、49 行のコードに対する独立 publish 運用の

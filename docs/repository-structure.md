@@ -77,7 +77,7 @@ rescript-tauri/                          # monorepo root
 ├── SECURITY.md                          # セキュリティポリシー / 脆弱性報告先
 ├── LICENSE                              # MIT
 ├── README.md
-├── pnpm-workspace.yaml
+├── pnpm-workspace.yaml                  # workspace 宣言 + allowBuilds + workspaceConcurrency + overrides（pnpm 11 の設定集約先）
 ├── package.json
 ├── pnpm-lock.yaml                       # pnpm lockfile（commit 対象）
 ├── Cargo.toml                           # ルート Cargo workspace（examples の Rust 側を束ねる）
@@ -502,7 +502,7 @@ CI ジョブ定義の詳細は `docs/functional-design.md` §6 を参照。
 | `SECURITY.md` | セキュリティポリシー / 脆弱性報告先 |
 | `LICENSE` | MIT ライセンス全文 |
 | `README.md` | プロジェクト全体の overview / インストール / 互換マトリクス |
-| `pnpm-workspace.yaml` | `packages/*`, `examples/*` を workspace として宣言 |
+| `pnpm-workspace.yaml` | `packages/*`, `examples/*` を workspace として宣言。pnpm 11 は `.npmrc` / `package.json` の `pnpm` フィールドを読まないため、pnpm 設定はすべてここに置く: `allowBuilds`（esbuild の postinstall 許可）、`workspaceConcurrency: 1`（`pnpm --recursive build` を直列化し、複数 workspace の `rescript build` が `@rescript/core` / `@rescript-tauri/core` の `lib/` 配下 `compiler-info` を同時書き換えて `Failed to atomically replace compiler-info` で散発失敗するのを防ぐ。CI は `--filter` 単体実行のため影響なし）、`overrides`（vitest 経由の transitive `vite` / `esbuild` をセキュリティ修正版に固定）。steering 20260830-001 |
 | `package.json` | ルート package（`devDependencies`、共通スクリプト） |
 | `pnpm-lock.yaml` | pnpm lockfile（commit 対象） |
 | `Cargo.toml` | ルート Cargo workspace（examples の `src-tauri/` 群を束ねる） |

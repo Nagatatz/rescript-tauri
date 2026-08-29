@@ -1,6 +1,6 @@
 """Verify Open Graph meta tag emission for both en and ja builds.
 
-Covers `.steering/20260509-052-sphinx-ogp-enhancements/`:
+Covers `.steering/archive/20260509-052-sphinx-ogp-enhancements/`:
 - og:locale and og:locale:alternate switch correctly between en/ja
 - twitter:card is emitted for every page
 - ogp_description_length / ogp_enable_meta_description take effect
