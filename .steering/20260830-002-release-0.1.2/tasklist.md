@@ -15,7 +15,10 @@
 - [x] C1. コミット `🔧 Bump all packages to 0.1.2`
 
 ## Phase 4: PR / マージ / 公開
-- [ ] push → `gh pr create` → CI green → self-merge
-- [ ] CWD を main に戻し pull → worktree / ブランチ削除 → クリーンアップ検証
-- [ ] merge commit に 10 tag を作成・push → release.yml 10 run success
-- [ ] `npm view` で 10 パッケージ 0.1.2 確認
+- [x] push → `gh pr create` (PR #57) → CI green (41 pass / 2 skip) → self-merge (`c8e9ee9`)
+- [x] CWD を main に戻し pull → worktree / ブランチ削除 → クリーンアップ検証
+- [x] merge commit に 10 tag を作成・push → release.yml 10 run success（run 33266385043〜33266445645）。**注意**: 10 tag を 1 回の `git push` でまとめて push したところ push イベントが生成されず release.yml が起動しなかった（GitHub 仕様: 4 個以上の tag を同時 push するとイベントが作られない）。remote tag を削除し 8 秒間隔で 1 本ずつ push し直して解決
+- [x] `npm view` で 10 パッケージ 0.1.2 確認（plugin-notification のみ数分の伝播遅延あり、registry API で `latest: 0.1.2` を確認）
+
+## Phase 5: 完了記録
+- [x] 本 tasklist の Phase 4 完了記録 + `docs/development-guidelines.md` §9 にタグ push の注意を追記（PR 経由）

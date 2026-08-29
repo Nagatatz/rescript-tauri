@@ -34,6 +34,12 @@ git push origin --tags   # または個別 push
 
 `release.yml` は tag ごとに 1 run（build → test → `npm publish --provenance` → `gh release create`）。
 
+### D4.1 実装時に判明した事項
+
+- `git push origin --tags` / 複数 tag の一括 push では **push イベントが生成されず release.yml が起動しない**（GitHub Actions の仕様: 1 回の push で 4 個以上の tag を含むとイベントを作らない）。0.1.1 のときは 8 秒間隔で 1 本ずつ push していた。
+- 対処: `git push origin :refs/tags/<tag>` で remote tag を削除 → `git push origin refs/tags/<tag>` を 1 本ずつ（`sleep 8` 挟み）実行。ローカル tag はそのまま流用可。
+- `npm view <pkg> version` は publish 直後数分は旧版を返すことがある。`https://registry.npmjs.org/<pkg>` の `dist-tags` で確認する。
+
 ## テスト方針
 
 コード変更なし。既存テスト全件 pass + release.yml の build/test ステップで回帰確認。

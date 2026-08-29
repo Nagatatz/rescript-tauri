@@ -246,6 +246,7 @@ let _ = Foo.someType: Foo.t => unit
 1. `release-manager` agent でリリース PR 作成・changelog 生成
 2. 各パッケージ独立 semver（初版は `core` / `plugin-fs` / `plugin-dialog` / `schema` を `v0.1.0` 系で揃える方針）
 3. `.github/workflows/release.yml` の tag push トリガで npm publish + GitHub Release
+   - **tag は 1 本ずつ push する**（`git push origin refs/tags/<tag>` を順に実行）。GitHub は 1 回の push に 4 個以上の tag が含まれると push イベントを生成しないため、`git push --tags` で 10 tag をまとめて push すると release.yml が一切起動しない（steering 20260830-002 で実測）。
 4. `README.md` 互換マトリクス・各 `packages/*/CHANGELOG.md` を更新（必要時）
 5. リポジトリ visibility は既に public
 
