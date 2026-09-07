@@ -380,14 +380,14 @@ importers:
         specifier: ^4.1.11
         version: 4.1.11(vitest@4.1.11)
       happy-dom:
-        specifier: ^20.11.13
-        version: 20.11.13
+        specifier: ^20.14.0
+        version: 20.14.0
       rescript:
         specifier: ^12.3.1
         version: 12.3.1
       vitest:
         specifier: ^4.1.11
-        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.11.13)(vite@7.3.6(@types/node@26.4.0))
+        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@7.3.6(@types/node@26.4.0))
 
   packages/plugin-clipboard-manager:
     devDependencies:
@@ -410,14 +410,14 @@ importers:
         specifier: ^4.1.11
         version: 4.1.11(vitest@4.1.11)
       happy-dom:
-        specifier: ^20.11.13
-        version: 20.11.13
+        specifier: ^20.14.0
+        version: 20.14.0
       rescript:
         specifier: ^12.3.1
         version: 12.3.1
       vitest:
         specifier: ^4.1.11
-        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.11.13)(vite@7.3.6(@types/node@26.4.0))
+        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@7.3.6(@types/node@26.4.0))
 
   packages/plugin-dialog:
     devDependencies:
@@ -440,14 +440,14 @@ importers:
         specifier: ^4.1.11
         version: 4.1.11(vitest@4.1.11)
       happy-dom:
-        specifier: ^20.11.13
-        version: 20.11.13
+        specifier: ^20.14.0
+        version: 20.14.0
       rescript:
         specifier: ^12.3.1
         version: 12.3.1
       vitest:
         specifier: ^4.1.11
-        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.11.13)(vite@7.3.6(@types/node@26.4.0))
+        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@7.3.6(@types/node@26.4.0))
 
   packages/plugin-fs:
     devDependencies:
@@ -470,14 +470,14 @@ importers:
         specifier: ^4.1.11
         version: 4.1.11(vitest@4.1.11)
       happy-dom:
-        specifier: ^20.11.13
-        version: 20.11.13
+        specifier: ^20.14.0
+        version: 20.14.0
       rescript:
         specifier: ^12.3.1
         version: 12.3.1
       vitest:
         specifier: ^4.1.11
-        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.11.13)(vite@7.3.6(@types/node@26.4.0))
+        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@7.3.6(@types/node@26.4.0))
 
   packages/plugin-http:
     devDependencies:
@@ -500,14 +500,14 @@ importers:
         specifier: ^4.1.11
         version: 4.1.11(vitest@4.1.11)
       happy-dom:
-        specifier: ^20.11.13
-        version: 20.11.13
+        specifier: ^20.14.0
+        version: 20.14.0
       rescript:
         specifier: ^12.3.1
         version: 12.3.1
       vitest:
         specifier: ^4.1.11
-        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.11.13)(vite@7.3.6(@types/node@26.4.0))
+        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@7.3.6(@types/node@26.4.0))
 
   packages/plugin-log:
     devDependencies:
@@ -530,14 +530,14 @@ importers:
         specifier: ^4.1.11
         version: 4.1.11(vitest@4.1.11)
       happy-dom:
-        specifier: ^20.11.13
-        version: 20.11.13
+        specifier: ^20.14.0
+        version: 20.14.0
       rescript:
         specifier: ^12.3.1
         version: 12.3.1
       vitest:
         specifier: ^4.1.11
-        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.11.13)(vite@7.3.6(@types/node@26.4.0))
+        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@7.3.6(@types/node@26.4.0))
 
   packages/plugin-notification:
     devDependencies:
@@ -560,14 +560,14 @@ importers:
         specifier: ^4.1.11
         version: 4.1.11(vitest@4.1.11)
       happy-dom:
-        specifier: ^20.11.13
-        version: 20.11.13
+        specifier: ^20.14.0
+        version: 20.14.0
       rescript:
         specifier: ^12.3.1
         version: 12.3.1
       vitest:
         specifier: ^4.1.11
-        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.11.13)(vite@7.3.6(@types/node@26.4.0))
+        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@7.3.6(@types/node@26.4.0))
 
   packages/plugin-os:
     devDependencies:
@@ -590,14 +590,14 @@ importers:
         specifier: ^4.1.11
         version: 4.1.11(vitest@4.1.11)
       happy-dom:
-        specifier: ^20.11.13
-        version: 20.11.13
+        specifier: ^20.14.0
+        version: 20.14.0
       rescript:
         specifier: ^12.3.1
         version: 12.3.1
       vitest:
         specifier: ^4.1.11
-        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.11.13)(vite@7.3.6(@types/node@26.4.0))
+        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@7.3.6(@types/node@26.4.0))
 
   packages/plugin-shell:
     devDependencies:
@@ -620,14 +620,14 @@ importers:
         specifier: ^4.1.11
         version: 4.1.11(vitest@4.1.11)
       happy-dom:
-        specifier: ^20.11.13
-        version: 20.11.13
+        specifier: ^20.14.0
+        version: 20.14.0
       rescript:
         specifier: ^12.3.1
         version: 12.3.1
       vitest:
         specifier: ^4.1.11
-        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.11.13)(vite@7.3.6(@types/node@26.4.0))
+        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@7.3.6(@types/node@26.4.0))
 
   packages/schema:
     devDependencies:
@@ -647,8 +647,8 @@ importers:
         specifier: ^4.1.11
         version: 4.1.11(vitest@4.1.11)
       happy-dom:
-        specifier: ^20.11.13
-        version: 20.11.13
+        specifier: ^20.14.0
+        version: 20.14.0
       rescript:
         specifier: ^12.3.1
         version: 12.3.1
@@ -657,7 +657,7 @@ importers:
         version: 9.5.1(rescript@12.3.1)
       vitest:
         specifier: ^4.1.11
-        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.11.13)(vite@7.3.6(@types/node@26.4.0))
+        version: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@7.3.6(@types/node@26.4.0))
 
 packages:
 
@@ -1488,8 +1488,8 @@ packages:
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
 
-  happy-dom@20.11.13:
-    resolution: {integrity: sha512-UUGd67JqTs0BaH4UbTaq8jCxdtNoYjvbmZM5iwgQKK60tLad0p2uPc48WcVTj1MxlIP43z48WahJcViKbxnprQ==}
+  happy-dom@20.14.0:
+    resolution: {integrity: sha512-4bRh1KzRvKDnFNTlLhzT1RZTpkKhQbQDl9j+7GXszWsvuspYdo29k6OHRf4PwiM6oLb8r/pMWeYiJjkfod5AvQ==}
     engines: {node: '>=20.0.0'}
 
   has-flag@4.0.0:
@@ -1569,8 +1569,8 @@ packages:
     resolution: {integrity: sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==}
     engines: {node: '>=12'}
 
-  postcss@8.5.26:
-    resolution: {integrity: sha512-u82N74LFzG8ca+dD8puPnplTXoGH4fTPpVGuIbt36G3qvNlkvfD0lEAZSxaly3KX8TS/L1A1gsCEmvKmBcVbkQ==}
+  postcss@8.5.28:
+    resolution: {integrity: sha512-RRuzqDtt5Y9h3quz5hWhK+TPnsmVs6WwSU6LkJMeY4HstUEDuYTG8UJSdawMRzmzAtV+KEoG8N3Qg2qLy5vM/A==}
     engines: {node: ^10 || ^12 || >=14}
 
   rescript-schema@9.5.1:
@@ -2168,7 +2168,7 @@ snapshots:
       obug: 2.1.4
       std-env: 4.2.0
       tinyrainbow: 3.1.1
-      vitest: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.11.13)(vite@7.3.6(@types/node@26.4.0))
+      vitest: 4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@7.3.6(@types/node@26.4.0))
 
   '@vitest/expect@4.1.11':
     dependencies:
@@ -2273,7 +2273,7 @@ snapshots:
   fsevents@2.3.3:
     optional: true
 
-  happy-dom@20.11.13:
+  happy-dom@20.14.0:
     dependencies:
       '@types/node': 26.4.0
       '@types/whatwg-mimetype': 3.0.2
@@ -2375,7 +2375,7 @@ snapshots:
 
   picomatch@4.0.7: {}
 
-  postcss@8.5.26:
+  postcss@8.5.28:
     dependencies:
       nanoid: 3.3.18
       picocolors: 1.1.1
@@ -2461,14 +2461,14 @@ snapshots:
       esbuild: 0.28.2
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
-      postcss: 8.5.26
+      postcss: 8.5.28
       rollup: 4.63.1
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 26.4.0
       fsevents: 2.3.3
 
-  vitest@4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.11.13)(vite@7.3.6(@types/node@26.4.0)):
+  vitest@4.1.11(@types/node@26.4.0)(@vitest/coverage-v8@4.1.11)(happy-dom@20.14.0)(vite@7.3.6(@types/node@26.4.0)):
     dependencies:
       '@vitest/expect': 4.1.11
       '@vitest/mocker': 4.1.11(vite@7.3.6(@types/node@26.4.0))
@@ -2493,7 +2493,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 26.4.0
       '@vitest/coverage-v8': 4.1.11(vitest@4.1.11)
-      happy-dom: 20.11.13
+      happy-dom: 20.14.0
     transitivePeerDependencies:
       - msw
 
