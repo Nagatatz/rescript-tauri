@@ -12,7 +12,7 @@
     "@rescript-tauri/core": "workspace:*",
     "@rescript-tauri/plugin-http": "workspace:*",
     "@tauri-apps/api": "^2.11.1",
-    "@tauri-apps/plugin-http": "^2.5.9"
+    "@tauri-apps/plugin-http": "^2.6.0"
   },
   "devDependencies": {
     "@rescript/core": "^1.6.1",

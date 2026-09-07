@@ -38,7 +38,7 @@
     "@rescript-tauri/core": "workspace:*",
     "@rescript/core": "^1.6.1",
     "@rescript/runtime": "^12.3.1",
-    "@tauri-apps/plugin-dialog": "^2.7.2",
+    "@tauri-apps/plugin-dialog": "^2.7.3",
     "@types/node": "^26.4.0",
     "@vitest/coverage-v8": "^4.1.11",
     "happy-dom": "^20.11.13",
