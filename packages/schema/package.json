@@ -43,7 +43,7 @@
     "happy-dom": "^20.11.13",
     "rescript": "^12.3.1",
     "rescript-schema": "^9.5.1",
-    "vitest": "^4.1.11"
+    "vitest": "^5.0.1"
   },
   "publishConfig": {
     "access": "public"
