@@ -21,7 +21,7 @@
     "check:fix": "oxlint --fix && oxfmt \"**/*.mjs\" \"**/*.json\""
   },
   "devDependencies": {
-    "@types/node": "^26.4.0",
+    "@types/node": "^26.6.4",
     "oxfmt": "0.59.0",
     "oxlint": "^1.80.0"
   },
