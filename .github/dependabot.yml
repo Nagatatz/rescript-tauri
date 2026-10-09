@@ -24,6 +24,12 @@ updates:
         patterns:
           - oxlint
           - oxfmt
+      # @vitest/coverage-v8 peer-requires the exact same vitest version; split
+      # PRs leave the pair mixed and break v8 coverage collection (#80).
+      vitest:
+        patterns:
+          - vitest
+          - "@vitest/*"
 
   # Cargo workspace at the repository root (examples/*/src-tauri members).
   - package-ecosystem: cargo
