@@ -39,11 +39,11 @@
     "@rescript/core": "^1.6.1",
     "@rescript/runtime": "^12.3.1",
     "@types/node": "^26.6.4",
-    "@vitest/coverage-v8": "^4.1.11",
+    "@vitest/coverage-v8": "^5.0.3",
     "happy-dom": "^20.11.13",
     "rescript": "^12.3.1",
     "rescript-schema": "^9.5.1",
-    "vitest": "^4.1.11"
+    "vitest": "^5.0.3"
   },
   "publishConfig": {
     "access": "public"
