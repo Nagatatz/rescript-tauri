@@ -15,7 +15,7 @@
 - [x] C1. コミット `🔧 Release 0.1.3 (plugin-notification 0.2.0)`
 
 ## Phase 4: PR / マージ / 公開
-- [ ] push → `gh pr create` → CI green → self-merge
-- [ ] CWD を main に戻し pull → worktree / ブランチ削除 → クリーンアップ検証
+- [x] push → `gh pr create` → CI green → self-merge
+- [x] CWD を main に戻し pull → worktree / ブランチ削除 → クリーンアップ検証
 - [ ] merge commit に 10 tag を作成し 1 本ずつ push → release.yml 10 run success
 - [ ] npm で plugin-notification 0.2.0 / 他 9 件 0.1.3 を確認
