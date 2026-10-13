@@ -8,7 +8,7 @@ The format is based on
 this package adheres to
 [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 0.2.0 (2026-10-14)
 
 Tracks `@tauri-apps/plugin-notification` 2.6.0.
 

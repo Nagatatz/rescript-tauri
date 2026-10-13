@@ -8,6 +8,16 @@ The format is based on
 this package adheres to
 [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
 
+## 0.1.3 (2026-10-14)
+
+Maintenance release — no runtime or API changes.
+
+### Changed
+
+- Bumped development dependencies to their latest releases
+  (@tauri-apps/plugin-dialog 2.8.2, @types/node 26.6.4, vitest 5.0.3,
+  @vitest/coverage-v8 5.0.3). The published artifacts are unaffected.
+
 ## 0.1.2 (2026-08-30)
 
 Maintenance release — no runtime or API changes.
