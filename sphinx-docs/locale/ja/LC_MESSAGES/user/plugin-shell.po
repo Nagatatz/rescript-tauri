@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-12 11:31+0900\n"
+"POT-Creation-Date: 2026-10-13 21:19+0900\n"
 "PO-Revision-Date: 2026-05-12 09:30+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -38,8 +38,8 @@ msgid ""
 "scheduled alongside the other packages. Until then, consume it via the "
 "source repository or a workspace link."
 msgstr ""
-"本パッケージは `main` で機能完備済みです。初回 npm 公開は他のパッケージと合わせて予定されています。"
-"それまでは、ソースリポジトリ経由かワークスペースリンクで利用してください。"
+"本パッケージは `main` で機能完備済みです。初回 npm "
+"公開は他のパッケージと合わせて予定されています。それまでは、ソースリポジトリ経由かワークスペースリンクで利用してください。"
 
 #: ../../user/plugin-shell.md:12
 msgid "Install"
@@ -473,8 +473,8 @@ msgid "Upstream `@tauri-apps/plugin-shell`"
 msgstr "上流 `@tauri-apps/plugin-shell`"
 
 #: ../../user/plugin-shell.md:8
-msgid "`^2.3.0` (peer)"
-msgstr "`^2.3.0` (peer)"
+msgid "`^2.5.0` (peer)"
+msgstr "`^2.5.0` (peer)"
 
 #: ../../user/plugin-shell.md:8
 msgid "Rust `tauri-plugin-shell`"

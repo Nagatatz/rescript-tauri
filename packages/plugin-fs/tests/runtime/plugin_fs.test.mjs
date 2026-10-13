@@ -210,4 +210,16 @@ describe("PluginFs", () => {
     })
     expect(await PluginFs.size("/tmp/x")).toBe(42)
   })
+
+  it("size forwards ~options.baseDir to the IPC payload", async () => {
+    let captured = null
+    Mocks.mockIPC(async (cmd, args) => {
+      captured = { cmd, args }
+      return 7
+    })
+    expect(await PluginFs.size("notes.txt", { baseDir: 14 })).toBe(7)
+    expect(captured.cmd).toBe("plugin:fs|size")
+    expect(captured.args.path).toBe("notes.txt")
+    expect(captured.args.options).toEqual({ baseDir: 14 })
+  })
 })

@@ -149,3 +149,13 @@ let onBackButtonPress: (
     See: https://v2.tauri.app/reference/javascript/api/namespaceapp/#supportsmultiplewindows
 */
 let supportsMultipleWindows: unit => promise<bool>
+
+/** Exits the app with the given exit code (defaults to `0`). Same as
+    `exit` from `@tauri-apps/plugin-process`, but needs no plugin.
+    Requires the `core:app:allow-exit` permission, which is not part
+    of `core:app:default`. On Android the activity is finished and
+    `code` is ignored. Requires `@tauri-apps/api` >= 2.12.0.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespaceapp/#exit
+*/
+let exit: (~code: int=?) => promise<unit>

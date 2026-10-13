@@ -61,7 +61,7 @@ let main = async () => {
 |---|---|
 | `@rescript-tauri/plugin-fs` | this package |
 | `@rescript-tauri/core` | `^0.1.0` (peer) |
-| `@tauri-apps/plugin-fs` | `^2.5.0` (peer) |
+| `@tauri-apps/plugin-fs` | `^2.6.0` (peer) |
 | `@tauri-apps/api` | `^2.0.0` (transitive via core) |
 | Rust `tauri-plugin-fs` | `2.x` |
 | `rescript` | `>=12.0.0` |
@@ -82,7 +82,7 @@ let main = async () => {
 | `stat` / `lstat` | File metadata (`fileInfo`); `lstat` does not follow symlinks |
 | `truncate` | Truncate to `~len` bytes |
 | `copyFile` | Copy a file |
-| `size` | Return file size in bytes |
+| `size` | Return file / directory size in bytes (`~options` takes `baseDir`) |
 
 `PluginFs.BaseDirectory` is re-exported from `@rescript-tauri/core`'s `Path.BaseDirectory`, so the same numeric-private-int enum is shared across both packages.
 

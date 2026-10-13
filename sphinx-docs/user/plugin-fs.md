@@ -118,7 +118,7 @@ All 14 single-shot IO functions are exposed under `PluginFs`:
 | `lstat` | Metadata, does **not** follow symlinks |
 | `truncate` | Resize a file to N bytes |
 | `copyFile` | Copy with optional cross-base-dir paths |
-| `size` | Plain byte count |
+| `size` | Plain byte count (`~options` takes `baseDir`) |
 
 The associated option records (`readFileOptions`,
 `writeFileOptions`, `mkdirOptions`, `removeOptions`,
@@ -172,7 +172,7 @@ Console.log("byte count: " ++ Int.toString(TypedArray.length(bytes)))
 
 | Component | Supported range |
 |---|---|
-| Upstream `@tauri-apps/plugin-fs` | `^2.5.0` (peer) |
+| Upstream `@tauri-apps/plugin-fs` | `^2.6.0` (peer) |
 | Rust `tauri-plugin-fs` | `2.x` |
 | `@rescript-tauri/core` | `^0.1.0` (peer) |
 | ReScript | `>=12.0.0` |

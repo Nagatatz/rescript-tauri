@@ -126,7 +126,7 @@ modules `Importance` / `Visibility`:
 | `pending` / `cancel` / `cancelAll` | Pending (scheduled) notification management |
 | `active` / `removeActive` / `removeAllActive` | Active (delivered) notification management |
 | `createChannel` / `removeChannel` / `channels` | Android channel management |
-| `onNotificationReceived` / `onAction` | Subscribe to delivery / tap events (returns `Core.PluginListener.t`) |
+| `onNotificationReceived` / `onAction` | Subscribe to delivery / tap events (returns `Core.PluginListener.t`); `onAction` receives an `actionPerformed` record |
 | `Schedule.at` / `Schedule.interval` / `Schedule.every` | Build a `Schedule.t` for `options.schedule` |
 | `Importance.{None, Min, Low, Default, High}` | `@unboxed` variant: Android channel importance (`@as(0..4)`) |
 | `Visibility.{Secret, Private, Public}` | `@unboxed` variant: Android channel visibility (`@as(-1..1)`) |
@@ -231,7 +231,7 @@ exercisable from `Mocks.mockIPC`.
 
 | Component | Supported range |
 |---|---|
-| Upstream `@tauri-apps/plugin-notification` | `^2.3.0` (peer) |
+| Upstream `@tauri-apps/plugin-notification` | `^2.6.0` (peer) |
 | Rust `tauri-plugin-notification` | `2.x` |
 | `@rescript-tauri/core` | `^0.1.0` (peer) |
 | ReScript | `>=12.0.0` |

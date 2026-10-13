@@ -31,3 +31,4 @@ let _check_on_back_button_press: (
   App.onBackButtonPressPayload => unit,
 ) => promise<Core.PluginListener.t> = App.onBackButtonPress
 let _check_supports_multiple_windows: unit => promise<bool> = App.supportsMultipleWindows
+let _check_exit: (~code: int=?) => promise<unit> = App.exit

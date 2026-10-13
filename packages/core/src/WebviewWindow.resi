@@ -52,6 +52,7 @@ type options = {
   alwaysOnBottom?: bool,
   contentProtected?: bool,
   skipTaskbar?: bool,
+  noRedirectionBitmap?: bool,
   shadow?: bool,
   theme?: Window.theme,
   titleBarStyle?: Window.titleBarStyle,

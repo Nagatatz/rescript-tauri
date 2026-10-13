@@ -123,6 +123,12 @@ type statOptions = {baseDir?: BaseDirectory.t}
 */
 type existsOptions = {baseDir?: BaseDirectory.t}
 
+/** Options for `size`. Requires `@tauri-apps/plugin-fs` >= 2.6.0.
+
+    See: https://v2.tauri.app/reference/javascript/fs/#sizeoptions
+*/
+type sizeOptions = {baseDir?: BaseDirectory.t}
+
 /** Options for `readDir`.
 
     See: https://v2.tauri.app/reference/javascript/fs/#readdiroptions
@@ -215,8 +221,9 @@ let truncate: (string, ~len: int=?, ~options: truncateOptions=?) => promise<unit
 */
 let copyFile: (string, string, ~options: copyFileOptions=?) => promise<unit>
 
-/** Returns the file size in bytes.
+/** Returns the size of a file or directory in bytes. `options.baseDir`
+    resolves a relative `path` against a base directory.
 
     See: https://v2.tauri.app/reference/javascript/fs/#size
 */
-let size: string => promise<float>
+let size: (string, ~options: sizeOptions=?) => promise<float>

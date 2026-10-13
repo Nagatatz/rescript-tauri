@@ -30,7 +30,7 @@ upstream page.
 | `Menu` | Application menu hierarchy (`MenuItem`, `CheckMenuItem`, `IconMenuItem`, `PredefinedMenuItem`, `Submenu`, `Menu`) |
 | `Tray` | System tray icon (`TrayIcon`) with click-event variant |
 | `Path` | Path utilities — 31 helpers + `BaseDirectory` enum |
-| `App` | Application metadata + lifecycle (`getName`, `getVersion`, `setTheme`, `defaultWindowIcon`, ...) |
+| `App` | Application metadata + lifecycle (`getName`, `getVersion`, `setTheme`, `defaultWindowIcon`, `exit`, ...) |
 | `Image` | RGBA-image opaque handle (`fromPath`, `fromBytes`, `new_`, `rgba`, `size`) |
 | `Dpi` | DPI-aware size and position (`LogicalSize`, `PhysicalSize`, `LogicalPosition`, `PhysicalPosition`, `Size`, `Position`) |
 | `Mocks` | Test helpers (`mockIPC`, `mockWindows`, `clearMocks`) |

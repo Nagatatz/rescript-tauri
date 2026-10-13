@@ -293,7 +293,7 @@ or `Command.create("/usr/bin/git", ...)` rejects.
 
 | Component | Supported range |
 |---|---|
-| Upstream `@tauri-apps/plugin-shell` | `^2.3.0` (peer) |
+| Upstream `@tauri-apps/plugin-shell` | `^2.5.0` (peer) |
 | Rust `tauri-plugin-shell` | `2.x` |
 | `@rescript-tauri/core` | `^0.1.0` (peer) |
 | ReScript | `>=12.0.0` |

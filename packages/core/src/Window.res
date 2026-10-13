@@ -102,6 +102,8 @@ type effectStyle = [
   | #contentBackground
   | #underWindowBackground
   | #underPageBackground
+  | #liquidGlassRegular
+  | #liquidGlassClear
 ]
 
 type effectState = [
@@ -115,6 +117,7 @@ type effects = {
   state?: effectState,
   radius?: float,
   color?: Common.color,
+  interactive?: bool,
 }
 
 type monitor = {
@@ -140,6 +143,7 @@ type options = {
   alwaysOnBottom?: bool,
   contentProtected?: bool,
   skipTaskbar?: bool,
+  noRedirectionBitmap?: bool,
   shadow?: bool,
   theme?: theme,
   titleBarStyle?: titleBarStyle,
@@ -219,6 +223,9 @@ external setSizeConstraints: (t, Nullable.t<windowSizeConstraints>) => promise<u
 @send external setPosition: (t, Dpi.Position.t) => promise<unit> = "setPosition"
 @send external center: t => promise<unit> = "center"
 @send external setFullscreen: (t, bool) => promise<unit> = "setFullscreen"
+@send
+external setFullscreenOnMonitor: (t, Dpi.PhysicalPosition.t) => promise<unit> =
+  "setFullscreenOnMonitor"
 @send external setResizable: (t, bool) => promise<unit> = "setResizable"
 @send external setEnabled: (t, bool) => promise<unit> = "setEnabled"
 @send external setMaximizable: (t, bool) => promise<unit> = "setMaximizable"

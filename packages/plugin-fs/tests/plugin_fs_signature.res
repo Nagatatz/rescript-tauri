@@ -33,7 +33,7 @@ let _check_truncate: (string, ~len: int=?, ~options: PluginFs.truncateOptions=?)
 let _check_copy_file: (string, string, ~options: PluginFs.copyFileOptions=?) => promise<
   unit,
 > = PluginFs.copyFile
-let _check_size: string => promise<float> = PluginFs.size
+let _check_size: (string, ~options: PluginFs.sizeOptions=?) => promise<float> = PluginFs.size
 
 // Re-exported BaseDirectory module
 let _check_base_dir_value: PluginFs.BaseDirectory.t = PluginFs.BaseDirectory.appConfig

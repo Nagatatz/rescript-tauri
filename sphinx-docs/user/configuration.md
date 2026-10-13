@@ -75,7 +75,7 @@ library as `peerDependencies`.
 
 | Package | Upstream peer | Status | Guide |
 |---|---|---|---|
-| `@rescript-tauri/plugin-fs` | `@tauri-apps/plugin-fs ^2.5.0` | merged; `plugin-fs-v0.1.0` npm publish pending | [plugin-fs](plugin-fs.md) |
+| `@rescript-tauri/plugin-fs` | `@tauri-apps/plugin-fs ^2.6.0` | merged; `plugin-fs-v0.1.0` npm publish pending | [plugin-fs](plugin-fs.md) |
 | `@rescript-tauri/plugin-dialog` | `@tauri-apps/plugin-dialog ^2.7.0` | merged; `plugin-dialog-v0.1.0` npm publish pending | [plugin-dialog](plugin-dialog.md) |
 | `@rescript-tauri/schema` | `rescript-schema ^9.0.0` | merged; `schema-v0.1.0` npm publish pending | [schema](schema.md) |
 

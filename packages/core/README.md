@@ -64,19 +64,19 @@ and the runnable
 | `Common` | Cross-cutting shared types (`unlisten`, `color`, `dragDropEvent`) used by Window / Webview / WebviewWindow / Event |
 | `Core` | IPC bridge — `Raw.invoke`, typed `Command`, streaming `Channel`, `convertFileSrc`, `isTauri`, `Resource`, `PluginListener`, `addPluginListener`, `checkPermissions` / `requestPermissions`, `LowLevel` (transformCallback / SERIALIZE_TO_IPC_FN) |
 | `Event` | Pub/sub event bus (`make`, `listen`, `once`, `emit`, `emitTo`); `tauriEvent` polymorphic variant + `TauriEvent` named values; `~target` option on `listen` / `once` |
-| `Window` | Window class — opaque handle + ~90 instance / static methods (incl. `activityName`, `sceneIdentifier`, `setFocusable`, `setSimpleFullscreen`, `toggleMaximize`, `unminimize`, `onDragDropEvent`), full type set |
+| `Window` | Window class — opaque handle + ~90 instance / static methods (incl. `activityName`, `sceneIdentifier`, `setFocusable`, `setSimpleFullscreen`, `setFullscreenOnMonitor`, `toggleMaximize`, `unminimize`, `onDragDropEvent`), full type set |
 | `Webview` | Webview class — handle + 16 instance methods (incl. `getByLabel`, `clearAllBrowsingData`) + drag-and-drop variant |
 | `WebviewWindow` | Combined Window + Webview surface; zero-cost `asWindow` / `asWebview` casts |
 | `Menu` | Application menu hierarchy (`MenuItem`, `CheckMenuItem`, `IconMenuItem`, `PredefinedMenuItem`, `Submenu`, `Menu`); `nativeIcon` polymorphic variant for macOS system icons |
 | `Tray` | System tray icon (`TrayIcon`) with click-event variant |
 | `Path` | Path utilities — 31 helpers + `BaseDirectory` enum |
-| `App` | Application metadata + lifecycle — full coverage incl. `bundleType` / `getBundleType`, `dataStoreIdentifier` / `fetchDataStoreIdentifiers` / `removeDataStore`, `onBackButtonPress`, `supportsMultipleWindows` |
+| `App` | Application metadata + lifecycle — full coverage incl. `bundleType` / `getBundleType`, `dataStoreIdentifier` / `fetchDataStoreIdentifiers` / `removeDataStore`, `onBackButtonPress`, `supportsMultipleWindows`, `exit` |
 | `Image` | RGBA-image opaque handle (`fromPath`, `fromBytes`, `new_`, `rgba`, `size`) |
 | `Dpi` | DPI-aware size and position (`LogicalSize`, `PhysicalSize`, `LogicalPosition`, `PhysicalPosition`, `Size`, `Position`) |
 | `Mocks` | Test helpers (`mockIPC` with `~options=?`, `mockWindows`, `mockConvertFileSrc`, `clearMocks`); `mockIPCOptions` type |
 
 **Coverage**: 100% of the stable public surface of `@tauri-apps/api`
-v2.11.0. The only intentionally-omitted symbol is
+v2.12.3. The only intentionally-omitted symbol is
 `Image.transformImage`, which upstream documents as "API signature is
 not stable and might change."
 

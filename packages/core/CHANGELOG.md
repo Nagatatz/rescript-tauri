@@ -8,6 +8,23 @@ The format is based on
 this package adheres to
 [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+Tracks `@tauri-apps/api` 2.12.3.
+
+### Added
+
+- `App.exit` — exits the app with an optional exit code
+  (`@tauri-apps/api` >= 2.12.0, needs the `core:app:allow-exit`
+  permission).
+- `Window.setFullscreenOnMonitor` — fullscreen on the monitor
+  containing a physical position (`@tauri-apps/api` >= 2.12.0).
+- `Window.effectStyle` gains `#liquidGlassRegular` /
+  `#liquidGlassClear` (macOS 26.0+) and `Window.effects` gains
+  `interactive`.
+- `Window.options` / `WebviewWindow.options` gain
+  `noRedirectionBitmap` (Windows only).
+
 ## 0.1.2 (2026-08-30)
 
 Maintenance release — no runtime or API changes.

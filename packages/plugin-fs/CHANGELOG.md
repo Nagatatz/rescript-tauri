@@ -8,6 +8,17 @@ The format is based on
 this package adheres to
 [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+Tracks `@tauri-apps/plugin-fs` 2.7.0.
+
+### Changed
+
+- `size` takes an optional `~options: sizeOptions` (`baseDir`). New
+  `sizeOptions` type.
+- Peer dependency raised to `@tauri-apps/plugin-fs ^2.6.0`, the first
+  release that honours `size`'s `baseDir`.
+
 ## 0.1.2 (2026-08-30)
 
 Maintenance release — no runtime or API changes.

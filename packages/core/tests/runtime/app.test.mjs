@@ -150,4 +150,18 @@ describe("App extras", () => {
     // PluginListener handles are returned; smoke-test the accessors.
     expect(typeof listener).toBe("object")
   })
+
+  it("exit dispatches plugin:app|exit with the given code and defaults to 0", async () => {
+    const seen = []
+    MocksExtras.mockIPC(async (cmd, args) => {
+      seen.push([cmd, args.code])
+      return null
+    })
+    await AppExtras.exit(3)
+    await AppExtras.exit()
+    expect(seen).toEqual([
+      ["plugin:app|exit", 3],
+      ["plugin:app|exit", 0],
+    ])
+  })
 })

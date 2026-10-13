@@ -63,6 +63,12 @@ let _check_active: PluginNotification.activeNotification = {
   attachments: [],
 }
 
+let _check_action_performed: PluginNotification.actionPerformed = {
+  actionId: "tap",
+  inputValue: Nullable.null,
+  notification: Nullable.make(_check_active),
+}
+
 let _check_channel: PluginNotification.channel = {id: "c", name: "n"}
 
 let _check_remove_active_target: PluginNotification.removeActiveTarget = {id: 1}
@@ -95,5 +101,5 @@ let _check_on_notification_received: (
   PluginNotification.options => unit,
 ) => promise<RescriptTauriCore.Core.PluginListener.t> = PluginNotification.onNotificationReceived
 let _check_on_action: (
-  PluginNotification.options => unit,
+  PluginNotification.actionPerformed => unit,
 ) => promise<RescriptTauriCore.Core.PluginListener.t> = PluginNotification.onAction

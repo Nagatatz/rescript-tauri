@@ -132,9 +132,13 @@ let runRemoveChannel = async () => {
 // ----- Listeners -----
 
 let runSubscribeAction = async () => {
-  let listener = await PluginNotification.onAction(opts => {
-    let id = opts.id->Option.getOr(-1)
-    appendResult("onAction received id=" ++ Int.toString(id) ++ ": " ++ opts.title)
+  let listener = await PluginNotification.onAction(event => {
+    // `notification` is only set when the platform reports which one was acted on.
+    let id = switch event.notification->Nullable.toOption {
+    | Some(n) => n.id
+    | None => -1
+    }
+    appendResult("onAction received action=" ++ event.actionId ++ " id=" ++ Int.toString(id))
   })
   actionListener := Some(listener)
   appendResult("subscribed onAction")

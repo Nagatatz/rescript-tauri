@@ -8,6 +8,18 @@ The format is based on
 this package adheres to
 [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+Tracks `@tauri-apps/plugin-notification` 2.6.0.
+
+### Changed
+
+- **Breaking:** the `onAction` callback now receives an
+  `actionPerformed` record (`actionId` / `inputValue` /
+  `notification`) instead of `options`, following the upstream 2.6.0
+  payload change. New `actionPerformed` type.
+- Peer dependency raised to `@tauri-apps/plugin-notification ^2.6.0`.
+
 ## 0.1.2 (2026-08-30)
 
 Maintenance release — no runtime or API changes.
