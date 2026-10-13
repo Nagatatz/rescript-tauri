@@ -81,6 +81,19 @@ describe("PluginShell", () => {
 
       expect(captured.args.options.encoding).toBe("raw")
     })
+
+    it("keeps processGroup alongside the forced raw encoding", async () => {
+      let captured = null
+      Mocks.mockIPC(async (cmd, args) => {
+        captured = { cmd, args }
+        return { code: 0, signal: null, stdout: new Uint8Array(), stderr: new Uint8Array() }
+      })
+
+      const cmd = PluginShell.Command.createRaw("printf", ["hi"], { processGroup: true })
+      await PluginShell.Command.execute(cmd)
+
+      expect(captured.args.options).toEqual({ processGroup: true, encoding: "raw" })
+    })
   })
 
   describe("Command.spawn + Child", () => {

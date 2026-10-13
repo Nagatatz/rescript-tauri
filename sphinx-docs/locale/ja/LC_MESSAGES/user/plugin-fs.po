@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-12 11:31+0900\n"
+"POT-Creation-Date: 2026-10-13 21:19+0900\n"
 "PO-Revision-Date: 2026-05-09 17:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -41,8 +41,8 @@ msgid ""
 "scheduled alongside the other packages. Until then, consume it via the "
 "source repository or a workspace link."
 msgstr ""
-"本パッケージは `main` で機能完備済みです。初回 npm 公開は他のパッケージと合わせて予定されています。"
-"それまでは、ソースリポジトリ経由かワークスペースリンクで利用してください。"
+"本パッケージは `main` で機能完備済みです。初回 npm "
+"公開は他のパッケージと合わせて予定されています。それまでは、ソースリポジトリ経由かワークスペースリンクで利用してください。"
 
 #: ../../user/plugin-fs.md:13
 msgid "Install"
@@ -220,8 +220,8 @@ msgid "`size`"
 msgstr "`size`"
 
 #: ../../user/plugin-fs.md:9
-msgid "Plain byte count"
-msgstr "バイト数（数値）"
+msgid "Plain byte count (`~options` takes `baseDir`)"
+msgstr "単純なバイト数（`~options` で `baseDir` を指定可能）"
 
 #: ../../user/plugin-fs.md:123
 msgid ""
@@ -299,8 +299,8 @@ msgid "Upstream `@tauri-apps/plugin-fs`"
 msgstr "上流の `@tauri-apps/plugin-fs`"
 
 #: ../../user/plugin-fs.md:9
-msgid "`^2.5.0` (peer)"
-msgstr "`^2.5.0`（peer）"
+msgid "`^2.6.0` (peer)"
+msgstr "`^2.6.0`（peer）"
 
 #: ../../user/plugin-fs.md:9
 msgid "Rust `tauri-plugin-fs`"
@@ -369,4 +369,7 @@ msgid ""
 msgstr ""
 "上流ドキュメント: [Tauri 2.x file-system プラグイン](https://v2.tauri.app/plugin/file-"
 "system/)"
+
+#~ msgid "Plain byte count"
+#~ msgstr "バイト数（数値）"
 

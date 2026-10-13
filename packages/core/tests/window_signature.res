@@ -119,6 +119,15 @@ let _check_activity_name: Window.t => promise<string> = Window.activityName
 let _check_scene_identifier: Window.t => promise<string> = Window.sceneIdentifier
 let _check_set_focusable: (Window.t, bool) => promise<unit> = Window.setFocusable
 let _check_set_simple_fullscreen: (Window.t, bool) => promise<unit> = Window.setSimpleFullscreen
+let _check_set_fullscreen_on_monitor: (Window.t, Dpi.PhysicalPosition.t) => promise<unit> =
+  Window.setFullscreenOnMonitor
+
+// Tauri 2.12 additions to effects / options records.
+let _check_liquid_glass_effects: Window.effects = {
+  effects: [#liquidGlassRegular, #liquidGlassClear],
+  interactive: true,
+}
+let _check_no_redirection_bitmap: Window.options = {transparent: true, noRedirectionBitmap: true}
 let _check_toggle_maximize: Window.t => promise<unit> = Window.toggleMaximize
 let _check_unminimize: Window.t => promise<unit> = Window.unminimize
 let _check_on_drag_drop_event: (Window.t, Common.dragDropEvent => unit) => promise<

@@ -2,6 +2,7 @@ type spawnOptions = {
   cwd?: string,
   env?: Dict.t<string>,
   encoding?: string,
+  processGroup?: bool,
 }
 
 type childProcess<'o> = {

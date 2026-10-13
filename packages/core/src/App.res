@@ -50,3 +50,6 @@ external onBackButtonPress: (
 
 @module("@tauri-apps/api/app")
 external supportsMultipleWindows: unit => promise<bool> = "supportsMultipleWindows"
+
+@module("@tauri-apps/api/app")
+external exit: (~code: int=?) => promise<unit> = "exit"

@@ -125,6 +125,12 @@ type activeNotification = {
   sound?: string,
 }
 
+type actionPerformed = {
+  actionId: string,
+  inputValue: Nullable.t<string>,
+  notification: Nullable.t<activeNotification>,
+}
+
 type channel = {
   id: string,
   name: string,
@@ -187,4 +193,4 @@ external onNotificationReceived: (
 ) => promise<RescriptTauriCore.Core.PluginListener.t> = "onNotificationReceived"
 
 @module("@tauri-apps/plugin-notification")
-external onAction: (options => unit) => promise<RescriptTauriCore.Core.PluginListener.t> = "onAction"
+external onAction: (actionPerformed => unit) => promise<RescriptTauriCore.Core.PluginListener.t> = "onAction"

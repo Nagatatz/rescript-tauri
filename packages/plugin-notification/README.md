@@ -66,7 +66,7 @@ let scheduleDaily = () => {
 |---|---|
 | `@rescript-tauri/plugin-notification` | this package |
 | `@rescript-tauri/core` | `^0.1.0` (peer) |
-| `@tauri-apps/plugin-notification` | `^2.3.0` (peer) |
+| `@tauri-apps/plugin-notification` | `^2.6.0` (peer) |
 | `@tauri-apps/api` | `^2.0.0` (transitive via core) |
 | Rust `tauri-plugin-notification` | `2.x` |
 | `rescript` | `>=12.0.0` |
@@ -83,7 +83,7 @@ let scheduleDaily = () => {
 | `pending` / `cancel` / `cancelAll` | Pending (scheduled) notification management |
 | `active` / `removeActive` / `removeAllActive` | Active (delivered) notification management |
 | `createChannel` / `removeChannel` / `channels` | Notification channel management (Android) |
-| `onNotificationReceived` / `onAction` | Subscribe to notification / action events (returns `Core.PluginListener.t`) |
+| `onNotificationReceived` / `onAction` | Subscribe to notification / action events (returns `Core.PluginListener.t`); `onAction` receives an `actionPerformed` record |
 | `Schedule.at` / `Schedule.interval` / `Schedule.every` | Build a `Schedule.t` for `options.schedule` |
 | `Importance.{None, Min, Low, Default, High}` | `@unboxed` variant: Android channel importance (`@as(0..4)`) |
 | `Visibility.{Secret, Private, Public}` | `@unboxed` variant: Android channel visibility (`@as(-1..1)`) |

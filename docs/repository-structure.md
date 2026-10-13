@@ -93,7 +93,7 @@ rescript-tauri/                          # monorepo root
 
 ### 2.1 `packages/core/`
 
-`@rescript-tauri/core`。中心パッケージ。`@tauri-apps/api` v2.11.0 の **stable public 表面の 100%** をカバー（`Image.transformImage` のみ upstream の "API not stable" 明記により意図的に除外。steering 049, 2026-05-09）。
+`@rescript-tauri/core`。中心パッケージ。`@tauri-apps/api` v2.12.3 の **stable public 表面の 100%** をカバー（2.12 追従は steering 20261013-001。`Image.transformImage` のみ upstream の "API not stable" 明記により意図的に除外。steering 049, 2026-05-09）。
 
 ```
 packages/core/
@@ -147,7 +147,7 @@ packages/plugin-fs/                      # 着手済み (steering 032, 2026-05-0
 ```json
 "peerDependencies": {
   "@rescript-tauri/core": "^0.1.0",
-  "@tauri-apps/plugin-fs": "^2.5.0",
+  "@tauri-apps/plugin-fs": "^2.6.0",
   "rescript": ">=12.0.0",
   "@rescript/core": ">=1.6.0"
 }
@@ -188,7 +188,7 @@ packages/plugin-shell/                   # 着手済み (steering 051, 2026-05-0
 └── README.md
 ```
 
-`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-shell ^2.3.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-shell ^2.5.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
 
 upstream `Command.create({encoding: 'raw'})` の TypeScript 条件型戻り値を `Command.create` / `Command.createRaw` / `Command.sidecar` / `Command.sidecarRaw` に分割して静的化（steering 051 §3.1）。トップレベル `open` は ReScript 予約語との衝突回避のため `openPath` にリネーム。`examples/plugin-shell-demo/` と sphinx-docs `user/plugin-shell.md` は後続 sub-steering に分離。
 
@@ -206,7 +206,7 @@ packages/plugin-notification/            # 着手済み (steering 054, 2026-05-0
 └── README.md
 ```
 
-`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-notification ^2.3.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
+`peerDependencies`: `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-notification ^2.6.0`, `rescript >=12.0.0`, `@rescript/core >=1.6.0`.
 
 upstream の `sendNotification(options: Options | string)` overload を `sendNotification` / `sendNotificationText` の 2 関数に分割して静的化（steering 054 §3.1）。`Importance` / `Visibility` は `@unboxed` variant (`@as(N)`) として公開し、runtime 表現は bare integer で upstream 数値 enum と wire-compatible (steering 20260511-020)。`requestPermission` / `sendNotification` / `sendNotificationText` は upstream で IPC ではなく `window.Notification` Web API 経由で動作するため、テストでは `globalThis.window.Notification` を stub する。sphinx-docs `user/plugin-notification.md` は steering 20260511-002 で、`examples/plugin-notification-demo/` は steering 20260511-016 で追加済み。
 
@@ -476,7 +476,7 @@ sphinx-docs/
 │   ├── lint-format.yml                           # oxlint + oxfmt (手書き JS / JSON の lint + format)
 │   ├── doc-link-lint.yml                         # docs / README 内リンク検証
 │   ├── docs.yml                                  # sphinx-docs ビルド + GitHub Pages デプロイ
-│   ├── compat-tauri-latest.yml                   # nightly — 上流 Tauri 最新リリース追従
+│   ├── compat-tauri-latest.yml                   # nightly — 上流 @tauri-apps/* (api + 全 plugin) 最新リリース追従
 │   ├── compat-rescript-prerelease.yml            # nightly — ReScript 12.x 次期マイナー / 次期メジャー prerelease 検証
 │   └── release.yml                               # tag push — npm publish + changelog
 ├── ISSUE_TEMPLATE/

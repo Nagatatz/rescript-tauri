@@ -34,6 +34,10 @@ type spawnOptions = {
   /** Output encoding. Defaults to `"utf8"`. Pass `"raw"` (or use the
       `Raw` factory variants) to receive `Uint8Array.t` output. */
   encoding?: string,
+  /** Spawns the child in its own process group (POSIX) or job object
+      (Windows) so `Child.kill` terminates the whole process tree.
+      Defaults to `false`. Requires `@tauri-apps/plugin-shell` >= 2.5.0. */
+  processGroup?: bool,
 }
 
 /** Output collected from a finished command. `'o` is `string` for

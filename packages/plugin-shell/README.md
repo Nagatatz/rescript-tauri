@@ -72,7 +72,7 @@ let tail = async () => {
 |---|---|
 | `@rescript-tauri/plugin-shell` | this package |
 | `@rescript-tauri/core` | `^0.1.0` (peer) |
-| `@tauri-apps/plugin-shell` | `^2.3.0` (peer) |
+| `@tauri-apps/plugin-shell` | `^2.5.0` (peer) |
 | `@tauri-apps/api` | `^2.0.0` (transitive via core) |
 | Rust `tauri-plugin-shell` | `2.x` |
 | `rescript` | `>=12.0.0` |
@@ -94,7 +94,7 @@ let tail = async () => {
 | `Command.stdout` / `Command.stderr` | Low-level access to the underlying `EventEmitter` |
 | `Child.pid` / `Child.write` / `Child.kill` | Child process accessors and operations |
 | `EventEmitter` module | 9 generic methods (`on` / `once` / `off` / `addListener` / `removeListener` / `removeAllListeners` / `listenerCount` / `prependListener` / `prependOnceListener`) |
-| `spawnOptions` | `{cwd?: string, env?: Dict.t<string>, encoding?: string}` |
+| `spawnOptions` | `{cwd?: string, env?: Dict.t<string>, encoding?: string, processGroup?: bool}` |
 | `childProcess<'o>` | `{code, signal, stdout, stderr}` returned by `execute` |
 | `terminatedPayload` | Payload of the `close` event |
 

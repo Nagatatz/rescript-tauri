@@ -160,6 +160,8 @@ type effectStyle = [
   | #contentBackground
   | #underWindowBackground
   | #underPageBackground
+  | #liquidGlassRegular
+  | #liquidGlassClear
 ]
 
 /** Effect activity state.
@@ -172,7 +174,9 @@ type effectState = [
   | #inactive
 ]
 
-/** Visual effects applied via `setEffects`.
+/** Visual effects applied via `setEffects`. `state` is ignored for the
+    Liquid Glass styles (`#liquidGlassRegular` / `#liquidGlassClear`,
+    macOS 26.0+); `interactive` (macOS 27.0+) only affects them.
 
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#effects
 */
@@ -181,6 +185,7 @@ type effects = {
   state?: effectState,
   radius?: float,
   color?: Common.color,
+  interactive?: bool,
 }
 
 /** Monitor descriptor returned by `currentMonitor` / `primaryMonitor`
@@ -196,7 +201,10 @@ type monitor = {
   scaleFactor: float,
 }
 
-/** Construction options for `make`. All fields are optional. */
+/** Construction options for `make`. All fields are optional.
+    `noRedirectionBitmap` (Windows only) sets `WS_EX_NOREDIRECTIONBITMAP`
+    to avoid the white flash of a transparent window.
+*/
 type options = {
   url?: string,
   title?: string,
@@ -213,6 +221,7 @@ type options = {
   alwaysOnBottom?: bool,
   contentProtected?: bool,
   skipTaskbar?: bool,
+  noRedirectionBitmap?: bool,
   shadow?: bool,
   theme?: theme,
   titleBarStyle?: titleBarStyle,
@@ -479,6 +488,16 @@ let center: t => promise<unit>
     See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#setfullscreen
 */
 let setFullscreen: (t, bool) => promise<unit>
+
+/** Makes the window fullscreen on the monitor containing the given
+    physical position (e.g. a `monitor.position`). Does nothing if no
+    monitor contains it. Requires the
+    `core:window:allow-set-fullscreen-on-monitor` permission and
+    `@tauri-apps/api` >= 2.12.0.
+
+    See: https://v2.tauri.app/reference/javascript/api/namespacewindow/#setfullscreenonmonitor
+*/
+let setFullscreenOnMonitor: (t, Dpi.PhysicalPosition.t) => promise<unit>
 
 /** Toggles whether the window can be resized by the user.
 

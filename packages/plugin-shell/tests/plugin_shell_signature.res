@@ -7,6 +7,7 @@ let _check_spawn_options: PluginShell.spawnOptions = {
   cwd: ?None,
   env: ?None,
   encoding: ?None,
+  processGroup: ?None,
 }
 
 let _check_terminated_payload: PluginShell.terminatedPayload = {

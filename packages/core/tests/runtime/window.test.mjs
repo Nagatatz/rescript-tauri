@@ -416,4 +416,39 @@ describe("Window drag-drop variant interpretation", () => {
     expect(t.state.received).toBeNull()
     expect(warnSpy).toHaveBeenCalledOnce()
   })
+
+  it("setFullscreenOnMonitor dispatches plugin:window|set_fullscreen_on_monitor with the position", async () => {
+    const invoke = vi.fn(async () => undefined)
+    installInternals(invoke)
+    const Window = await import("../../src/Window.res.mjs")
+    const Dpi = await import("../../src/Dpi.res.mjs")
+    const w = Window.make("fs-monitor")
+    const position = Dpi.PhysicalPosition.make(1920, 0)
+
+    await Window.setFullscreenOnMonitor(w, position)
+
+    const call = invoke.mock.calls.find(
+      ([cmd]) => cmd === "plugin:window|set_fullscreen_on_monitor",
+    )
+    expect(call[1].label).toBe("fs-monitor")
+    expect(call[1].value).toBe(position)
+  })
+
+  it("setEffects forwards the Liquid Glass styles and the interactive flag", async () => {
+    const invoke = vi.fn(async () => undefined)
+    installInternals(invoke)
+    const Window = await import("../../src/Window.res.mjs")
+    const w = Window.make("glass")
+
+    await Window.setEffects(w, {
+      effects: ["liquidGlassRegular", "liquidGlassClear"],
+      interactive: true,
+    })
+
+    const call = invoke.mock.calls.find(([cmd]) => cmd === "plugin:window|set_effects")
+    expect(call[1].value).toEqual({
+      effects: ["liquidGlassRegular", "liquidGlassClear"],
+      interactive: true,
+    })
+  })
 })

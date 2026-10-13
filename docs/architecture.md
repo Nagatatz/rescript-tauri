@@ -141,7 +141,7 @@ packages/
 | パッケージ | semver 起点 | peerDep |
 |---|---|---|
 | `@rescript-tauri/core` | `0.1.0` 系で初版を切り、API 安定後 `1.0.0` へ昇格 | `@tauri-apps/api ^2.0.0` |
-| `@rescript-tauri/plugin-fs` | 上流 `@tauri-apps/plugin-fs` の minor に追従 | `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-fs ^2.5.0` |
+| `@rescript-tauri/plugin-fs` | 上流 `@tauri-apps/plugin-fs` の minor に追従 | `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-fs ^2.6.0` |
 | `@rescript-tauri/plugin-dialog` | 上流 `@tauri-apps/plugin-dialog` の minor に追従 | `@rescript-tauri/core ^0.1.0`, `@tauri-apps/plugin-dialog ^2.7.0` |
 | `@rescript-tauri/schema` | 独立 | `@rescript-tauri/core ^0.1.0`, `rescript-schema ^9.0.0` |
 

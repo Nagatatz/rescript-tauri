@@ -64,6 +64,7 @@ type copyFileOptions = {
 
 type statOptions = {baseDir?: BaseDirectory.t}
 type existsOptions = {baseDir?: BaseDirectory.t}
+type sizeOptions = {baseDir?: BaseDirectory.t}
 type readDirOptions = {baseDir?: BaseDirectory.t}
 type truncateOptions = {baseDir?: BaseDirectory.t}
 
@@ -109,4 +110,4 @@ external truncate: (string, ~len: int=?, ~options: truncateOptions=?) => promise
 external copyFile: (string, string, ~options: copyFileOptions=?) => promise<unit> = "copyFile"
 
 @module("@tauri-apps/plugin-fs")
-external size: string => promise<float> = "size"
+external size: (string, ~options: sizeOptions=?) => promise<float> = "size"

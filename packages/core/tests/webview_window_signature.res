@@ -17,3 +17,9 @@ let _check_set_background_color: (
 // compile.
 let _check_as_window: WebviewWindow.t => Window.t = WebviewWindow.asWindow
 let _check_as_webview: WebviewWindow.t => Webview.t = WebviewWindow.asWebview
+
+// Tauri 2.12: Windows-only WS_EX_NOREDIRECTIONBITMAP flag.
+let _check_no_redirection_bitmap: WebviewWindow.options = {
+  transparent: true,
+  noRedirectionBitmap: true,
+}

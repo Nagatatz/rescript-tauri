@@ -8,6 +8,19 @@ The format is based on
 this package adheres to
 [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+Tracks `@tauri-apps/plugin-shell` 2.5.0.
+
+### Added
+
+- `spawnOptions.processGroup` — spawn the child in its own process
+  group / job object so `Child.kill` terminates the whole tree.
+
+### Changed
+
+- Peer dependency raised to `@tauri-apps/plugin-shell ^2.5.0`.
+
 ## 0.1.2 (2026-08-30)
 
 Maintenance release — no runtime or API changes.

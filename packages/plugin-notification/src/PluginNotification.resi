@@ -242,6 +242,20 @@ type activeNotification = {
   sound?: string,
 }
 
+/** An action the user performed on a notification, delivered to
+    `onAction`. `actionId` is the performed action's identifier, or
+    `"tap"` for the notification itself. `inputValue` carries the text
+    of an input action (mobile). `notification` is set when the
+    platform reports which notification was acted on.
+
+    See: https://v2.tauri.app/reference/javascript/notification/#actionperformed
+*/
+type actionPerformed = {
+  actionId: string,
+  inputValue: Nullable.t<string>,
+  notification: Nullable.t<activeNotification>,
+}
+
 /** Android notification channel.
 
     See: https://v2.tauri.app/reference/javascript/notification/#channel
@@ -358,8 +372,10 @@ let channels: unit => promise<array<channel>>
 */
 let onNotificationReceived: (options => unit) => promise<RescriptTauriCore.Core.PluginListener.t>
 
-/** Subscribes to action-tap events.
+/** Subscribes to action-tap events. The callback receives an
+    `actionPerformed` (upstream changed the payload from `Options` in
+    `@tauri-apps/plugin-notification` 2.6.0).
 
     See: https://v2.tauri.app/reference/javascript/notification/#onaction
 */
-let onAction: (options => unit) => promise<RescriptTauriCore.Core.PluginListener.t>
+let onAction: (actionPerformed => unit) => promise<RescriptTauriCore.Core.PluginListener.t>

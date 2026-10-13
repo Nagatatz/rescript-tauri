@@ -204,7 +204,7 @@ module Internal: {
 }
 ```
 
-これらは upstream `@tauri-apps/api/core` の stable surface (v2.11.0) に対応する。詳細 doc comment は `packages/core/src/Core.resi` を正本とする。
+これらは upstream `@tauri-apps/api/core` の stable surface (v2.12.3) に対応する。詳細 doc comment は `packages/core/src/Core.resi` を正本とする。
 
 #### 2.1.4 実装方針
 - `Raw.invoke`: `@module("@tauri-apps/api/core") external invoke` で薄くバインド。
@@ -777,7 +777,7 @@ let setTitle: (t, string) => promise<unit>
 | `examples-build` | PR | 7 例題（hello-world / window-management / ipc-typed / streaming-ipc / plugin-fs-demo / plugin-dialog-demo / ipc-typed-with-schema）を 3 OS でビルド |
 | `doc-link-lint` | PR | 全 `.resi` 公開シンボルの doc comment に `v2.tauri.app` リンクが含まれているかを grep で検証（PRD §7 KPI） |
 | `docs` | PR / push | Sphinx EN+JA の HTML ビルド + Pagefind アセンブリ |
-| `compat-tauri-latest` | nightly | `@tauri-apps/api` を latest にして build |
+| `compat-tauri-latest` | nightly | `@tauri-apps/*`（`api` / `cli` / 全 `plugin-*`）を latest にして全 workspace を build + test |
 | `compat-rescript-prerelease` | nightly | ReScript 12.x 次期マイナー / 次期メジャー prerelease で build。v12 系 API drift を先行検知 |
 | `release` | tag push | npm publish（各パッケージ独立 semver）|
 

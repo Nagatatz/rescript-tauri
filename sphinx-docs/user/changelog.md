@@ -7,6 +7,23 @@ changelog under `packages/<name>/CHANGELOG.md`; this page collects
 the highlights across all of them.
 ```
 
+## Unreleased
+
+Catch-up with Tauri 2.12 (`@tauri-apps/api` 2.12.3 and the matching
+plugin releases).
+
+- `core`: `App.exit`, `Window.setFullscreenOnMonitor`, the
+  `#liquidGlassRegular` / `#liquidGlassClear` effect styles with
+  `effects.interactive`, and `noRedirectionBitmap` on `Window.options`
+  / `WebviewWindow.options`.
+- `plugin-fs`: `size` accepts `~options` with `baseDir`; the upstream
+  peer is now `@tauri-apps/plugin-fs ^2.6.0`.
+- `plugin-shell`: `spawnOptions.processGroup`; the upstream peer is
+  now `@tauri-apps/plugin-shell ^2.5.0`.
+- `plugin-notification`: **breaking** — the `onAction` callback
+  receives an `actionPerformed` record instead of `options`; the
+  upstream peer is now `@tauri-apps/plugin-notification ^2.6.0`.
+
 ## Maintenance releases
 
 Patch releases that only refresh development dependencies. The

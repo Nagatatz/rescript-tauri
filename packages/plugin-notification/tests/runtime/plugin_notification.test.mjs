@@ -126,9 +126,9 @@ describe("PluginNotification", () => {
       expect(captured.args.id).toBe("c")
     })
 
-    it("channels dispatches plugin:notification|listChannels", async () => {
+    it("channels dispatches plugin:notification|list_channels", async () => {
       Mocks.mockIPC(async (cmd) => {
-        expect(cmd).toBe("plugin:notification|listChannels")
+        expect(cmd).toBe("plugin:notification|list_channels")
         return []
       })
       const result = await PluginNotification.channels()

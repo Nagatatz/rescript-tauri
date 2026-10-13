@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rescript-tauri \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-30 01:53+0900\n"
+"POT-Creation-Date: 2026-10-13 21:19+0900\n"
 "PO-Revision-Date: 2026-05-09 17:00+0900\n"
 "Last-Translator: rescript-tauri contributors\n"
 "Language: ja\n"
@@ -160,7 +160,8 @@ msgstr ""
 "ReScript 11 は **サポート対象外** です。決定経緯と根拠は [PRD §10 行 "
 "7](https://github.com/Nagatatz/rescript-tauri/blob/main/docs/product-"
 "requirements.md) と対応する [ステアリングドキュメント](https://github.com/Nagatatz"
-"/rescript-tauri/tree/main/.steering/archive/20260508-002-rescript-v12-only) "
+"/rescript-"
+"tauri/tree/main/.steering/archive/20260508-002-rescript-v12-only) "
 "に記録されています。"
 
 #: ../../user/configuration.md:42
@@ -323,8 +324,8 @@ msgid "`@rescript-tauri/plugin-fs`"
 msgstr "`@rescript-tauri/plugin-fs`"
 
 #: ../../user/configuration.md
-msgid "`@tauri-apps/plugin-fs ^2.5.0`"
-msgstr "`@tauri-apps/plugin-fs ^2.5.0`"
+msgid "`@tauri-apps/plugin-fs ^2.6.0`"
+msgstr "`@tauri-apps/plugin-fs ^2.6.0`"
 
 #: ../../user/configuration.md
 msgid "merged; `plugin-fs-v0.1.0` npm publish pending"
