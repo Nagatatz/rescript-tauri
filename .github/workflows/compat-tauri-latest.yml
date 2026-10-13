@@ -2,8 +2,8 @@ name: compat-tauri-latest
 
 on:
   schedule:
-    # Daily at 06:00 UTC. Catches @tauri-apps/api minor releases early
-    # so we can ship a compatible @rescript-tauri/core minor in turn.
+    # Daily at 06:00 UTC. Catches @tauri-apps/api and @tauri-apps/plugin-*
+    # releases early so we can ship compatible @rescript-tauri/* releases in turn.
     - cron: "0 6 * * *"
   workflow_dispatch:
 
@@ -21,21 +21,18 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Override @tauri-apps/api with latest
+      - name: Override every @tauri-apps/* package with latest
         run: |
           set -euo pipefail
-          # Force the latest stable release across every workspace that
-          # peer-depends or dev-depends on @tauri-apps/api. --filter "..."
-          # walks every package once so monorepo-wide overrides apply.
-          pnpm add -w --save-dev @tauri-apps/api@latest
-          for pkg in packages/core examples/hello-world examples/window-management examples/ipc-typed examples/streaming-ipc; do
-            (cd "$pkg" && pnpm add @tauri-apps/api@latest)
-          done
-      - name: Show installed @tauri-apps/api versions
-        run: pnpm ls --recursive @tauri-apps/api
-      - name: Build core against latest @tauri-apps/api
-        run: pnpm --filter @rescript-tauri/core build
-      - name: Test core against latest @tauri-apps/api
-        run: pnpm --filter @rescript-tauri/core test
-      - name: Build hello-world example against latest @tauri-apps/api
-        run: pnpm --filter hello-world build
+          # Bump @tauri-apps/api, @tauri-apps/cli and every @tauri-apps/plugin-*
+          # to the latest stable release in all workspaces (packages/* and
+          # examples/*). Plugins release independently of @tauri-apps/api, so
+          # overriding the API alone misses plugin-side breakage (e.g. the
+          # plugin-notification 2.5.0 IPC rename listChannels -> list_channels).
+          pnpm update --recursive --latest "@tauri-apps/*"
+      - name: Show installed @tauri-apps versions
+        run: pnpm ls --recursive --depth 0 "@tauri-apps/*"
+      - name: Build all packages and examples against latest @tauri-apps/*
+        run: pnpm --recursive build
+      - name: Test all packages against latest @tauri-apps/*
+        run: pnpm --recursive test
