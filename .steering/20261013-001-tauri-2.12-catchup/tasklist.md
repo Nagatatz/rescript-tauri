@@ -36,5 +36,5 @@
 
 ## 反映
 - [x] コミット・push
-- [ ] PR 作成・CI 確認（`examples-build` 3 OS を含む）
-- [ ] マージ（ユーザー承認後）・worktree クリーンアップ
+- [x] PR 作成 (#94)・CI 確認（`examples-build` 3 OS を含む全チェック pass）
+- [x] マージ（ユーザー承認済み）・worktree クリーンアップ
