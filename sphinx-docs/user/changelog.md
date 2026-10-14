@@ -2,15 +2,18 @@
 
 ```{note}
 All ten `@rescript-tauri/*` packages are published on npm; the
-current release is `0.1.2`. Each package keeps its own canonical
-changelog under `packages/<name>/CHANGELOG.md`; this page collects
-the highlights across all of them.
+current release is `0.1.3` (`plugin-notification` is at `0.2.0`).
+Each package keeps its own canonical changelog under
+`packages/<name>/CHANGELOG.md`; this page collects the highlights
+across all of them.
 ```
 
-## Unreleased
+## 0.1.3 / `plugin-notification` 0.2.0 (2026-10-14)
 
 Catch-up with Tauri 2.12 (`@tauri-apps/api` 2.12.3 and the matching
-plugin releases).
+plugin releases). `core`, `plugin-fs` and `plugin-shell` ship as
+`0.1.3`; `plugin-notification` ships as `0.2.0` because of its
+breaking change.
 
 - `core`: `App.exit`, `Window.setFullscreenOnMonitor`, the
   `#liquidGlassRegular` / `#liquidGlassClear` effect styles with
@@ -29,6 +32,14 @@ plugin releases).
 Patch releases that only refresh development dependencies. The
 published artifacts (compiled `.mjs`, `.res` / `.resi` sources) are
 unaffected, and no API changes are involved.
+
+### 0.1.3 (2026-10-14)
+
+`plugin-dialog`, `plugin-log`, `plugin-os`,
+`plugin-clipboard-manager`, `plugin-http` and `schema`. Development
+dependencies bumped to vitest 5.0.3, @vitest/coverage-v8 5.0.3,
+@types/node 26.6.4, and the latest upstream `@tauri-apps/plugin-*`
+releases.
 
 ### 0.1.2 (2026-08-30)
 
