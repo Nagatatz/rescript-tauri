@@ -17,5 +17,5 @@
 ## Phase 4: PR / マージ / 公開
 - [x] push → `gh pr create` → CI green → self-merge
 - [x] CWD を main に戻し pull → worktree / ブランチ削除 → クリーンアップ検証
-- [ ] merge commit に 10 tag を作成し 1 本ずつ push → release.yml 10 run success
-- [ ] npm で plugin-notification 0.2.0 / 他 9 件 0.1.3 を確認
+- [x] merge commit に 10 tag を作成し 1 本ずつ push → release.yml 10 run success（PR #95, merge commit `9869aa9`。run 38493971421〜38494583857。core の `v0.1.3` を先に push して publish 成功を確認してから残り 9 本を 10 秒間隔で push）
+- [x] npm で plugin-notification 0.2.0 / 他 9 件 0.1.3 を確認（registry の `dist-tags.latest`。publish 成功から反映まで最大 5 分程度の遅延あり。`npm view <pkg>@<version>` も反映前は失敗するため、publish の成否は release run のログ `+ @rescript-tauri/<pkg>@<version>` で判断する）
