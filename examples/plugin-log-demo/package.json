@@ -11,13 +11,13 @@
   "dependencies": {
     "@rescript-tauri/core": "workspace:*",
     "@rescript-tauri/plugin-log": "workspace:*",
-    "@tauri-apps/api": "^2.12.3",
+    "@tauri-apps/api": "^2.12.4",
     "@tauri-apps/plugin-log": "^2.10.1"
   },
   "devDependencies": {
     "@rescript/core": "^1.6.1",
     "@rescript/runtime": "^12.3.1",
-    "@tauri-apps/cli": "^2.12.2",
+    "@tauri-apps/cli": "^2.12.3",
     "rescript": "^12.3.1"
   }
 }
