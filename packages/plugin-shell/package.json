@@ -41,7 +41,7 @@
     "@tauri-apps/plugin-shell": "^2.5.0",
     "@types/node": "^26.6.5",
     "@vitest/coverage-v8": "^5.0.5",
-    "happy-dom": "^20.11.13",
+    "happy-dom": "^21.0.4",
     "rescript": "^12.3.1",
     "vitest": "^5.0.5"
   },
