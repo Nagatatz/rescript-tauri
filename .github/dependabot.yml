@@ -1,62 +1,32 @@
 version: 2
-
 updates:
-  # pnpm workspace: Dependabot reads the root pnpm-lock.yaml and updates every
-  # workspace package (packages/*, examples/*) from this single entry.
-  - package-ecosystem: npm
-    directory: /
+  - package-ecosystem: "cargo"
+    directory: "/"
     schedule:
-      interval: weekly
-      day: monday
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
     open-pull-requests-limit: 10
-    labels:
-      - dependencies
-    groups:
-      rescript:
-        patterns:
-          - rescript
-          - "@rescript/*"
-      tauri:
-        patterns:
-          - "@tauri-apps/*"
-          - tauri
-      oxc:
-        patterns:
-          - oxlint
-          - oxfmt
-      # @vitest/coverage-v8 peer-requires the exact same vitest version; split
-      # PRs leave the pair mixed and break v8 coverage collection (#80).
-      vitest:
-        patterns:
-          - vitest
-          - "@vitest/*"
-
-  # Cargo workspace at the repository root (examples/*/src-tauri members).
-  - package-ecosystem: cargo
-    directory: /
+    commit-message:
+      prefix: "deps"
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: weekly
-      day: monday
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
     open-pull-requests-limit: 10
-    labels:
-      - dependencies
-    groups:
-      tauri-crates:
-        patterns:
-          - "tauri*"
-
-  - package-ecosystem: github-actions
-    directory: /
+    commit-message:
+      prefix: "deps"
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
-      interval: weekly
-      day: monday
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
     open-pull-requests-limit: 5
-    labels:
-      - dependencies
-    ignore:
-      # dtolnay/rust-toolchain ships only rolling tags (stable / nightly) and no
-      # GitHub releases, so Dependabot cannot resolve an update for the SHA-pinned
-      # ref and fails the entire github-actions run with `unknown_error`. Skip it
-      # here; the pin is bumped manually (see the dated comment in
-      # examples-build.yml).
-      - dependency-name: dtolnay/rust-toolchain
+    commit-message:
+      prefix: "ci"
