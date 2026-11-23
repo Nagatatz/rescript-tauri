@@ -11,7 +11,7 @@
   "dependencies": {
     "@rescript-tauri/core": "workspace:*",
     "@rescript-tauri/plugin-fs": "workspace:*",
-    "@tauri-apps/api": "^2.12.4",
+    "@tauri-apps/api": "^2.12.5",
     "@tauri-apps/plugin-fs": "^2.7.1"
   },
   "devDependencies": {

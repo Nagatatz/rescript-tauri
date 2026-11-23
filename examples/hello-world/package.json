@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@rescript-tauri/core": "workspace:*",
-    "@tauri-apps/api": "^2.12.4"
+    "@tauri-apps/api": "^2.12.5"
   },
   "devDependencies": {
     "@rescript/core": "^1.6.1",
