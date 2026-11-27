@@ -19,8 +19,6 @@
       "subdirs": true
     }
   ],
-  "dev-dependencies": ["@rescript/core"],
-  "dependencies": ["@rescript/core"],
   "jsx": {
     "version": 4
   }

@@ -1,12 +1,14 @@
-name: compat-rescript-prerelease
+name: compat-rescript
 
 on:
   schedule:
-    # Daily at 06:00 UTC. Surfaces ReScript 12.x next-minor / next-major
-    # prerelease drift before users hit it (PRD §9 risk: "ReScript 12.x
-    # 後続マイナー / 次期メジャーの破壊的変更").
+    # Daily check of the published stable release and optional prerelease tags.
     - cron: "0 6 * * *"
   workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/compat-rescript-prerelease.yml"
+      - "tools/resolve-rescript-tag*.mjs"
 
 permissions:
   contents: read
@@ -17,10 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Both dist-tags are checked. If a tag is undefined upstream
-        # (e.g. between releases) the pre-flight step skips the job
-        # cleanly with exit 0.
-        rescript-tag: [next, beta]
+        rescript-tag: [latest, next, beta, next-12, next-13]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
@@ -28,47 +27,51 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
-      - name: Resolve dist-tag for rescript@${{ matrix.rescript-tag }}
+      - name: Test the registry-result contract
+        run: node --test tools/resolve-rescript-tag.test.mjs
+      - name: Resolve ReScript version
         id: resolve
         shell: bash
+        env:
+          RESCRIPT_TAG: ${{ matrix.rescript-tag }}
         run: |
           set -euo pipefail
-          version=$(npm view rescript@${{ matrix.rescript-tag }} version 2>/dev/null || echo "")
-          if [ -z "$version" ]; then
-            echo "::warning::dist-tag '${{ matrix.rescript-tag }}' not published; skipping"
-            echo "skip=true" >> "$GITHUB_OUTPUT"
+          resolved="$(npm view rescript dist-tags --json | node tools/resolve-rescript-tag.mjs "$RESCRIPT_TAG")"
+          printf '%s\n' "$resolved" >> "$GITHUB_OUTPUT"
+          if [[ "$resolved" == "skip=true" ]]; then
+            echo "::notice::dist-tag '$RESCRIPT_TAG' not published; compatibility untested"
             exit 0
           fi
-          echo "::notice::resolved rescript@${{ matrix.rescript-tag }} -> $version"
-          echo "skip=false" >> "$GITHUB_OUTPUT"
-          echo "version=$version" >> "$GITHUB_OUTPUT"
-          # Since ReScript 13.0.0-alpha, the runtime ships as the
-          # separately-versioned @rescript/runtime package and the compiler
-          # generates `import ... from "@rescript/runtime/lib/es6/..."`.
-          # Override the runtime in lockstep so that vitest can resolve the
-          # 13.x-only modules (e.g. Stdlib_JsExn). For older rescript versions
-          # the dependency is absent and we leave the project's pin in place.
-          runtime=$(npm view "rescript@$version" 'dependencies.@rescript/runtime' 2>/dev/null || echo "")
-          if [ -n "$runtime" ]; then
-            echo "::notice::resolved @rescript/runtime -> $runtime"
-            echo "runtime=$runtime" >> "$GITHUB_OUTPUT"
-          fi
+          version="${resolved##*version=}"
+          # Read dependency metadata without masking registry errors. On versions
+          # without a runtime dependency this returns an empty string.
+          runtime="$(npm view "rescript@$version" dependencies --json | node -e '
+            const text = require("node:fs").readFileSync(0, "utf8").trim();
+            const dep = text ? JSON.parse(text)["@rescript/runtime"] : undefined;
+            if (dep != null && (typeof dep !== "string" || !/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(dep))) process.exit(1);
+            process.stdout.write(dep ?? "");
+          ')"
+          printf 'runtime=%s\n' "$runtime" >> "$GITHUB_OUTPUT"
       - run: pnpm install --frozen-lockfile
         if: steps.resolve.outputs.skip != 'true'
-      - name: Override rescript with prerelease
+      - name: Override rescript with the resolved version
         if: steps.resolve.outputs.skip != 'true'
+        env:
+          RESCRIPT_VERSION: ${{ steps.resolve.outputs.version }}
         run: |
           set -euo pipefail
-          pnpm add -w --save-dev rescript@${{ steps.resolve.outputs.version }}
+          pnpm add -w --save-dev --save-exact "rescript@$RESCRIPT_VERSION"
           for pkg in packages/core examples/hello-world examples/window-management examples/ipc-typed examples/streaming-ipc; do
-            (cd "$pkg" && pnpm add --save-dev rescript@${{ steps.resolve.outputs.version }})
+            (cd "$pkg" && pnpm add --save-dev --save-exact "rescript@$RESCRIPT_VERSION")
           done
       - name: Override @rescript/runtime in lockstep
         if: steps.resolve.outputs.skip != 'true' && steps.resolve.outputs.runtime != ''
+        env:
+          RESCRIPT_RUNTIME: ${{ steps.resolve.outputs.runtime }}
         run: |
           set -euo pipefail
           # Only packages/core declares @rescript/runtime as a devDependency.
-          (cd packages/core && pnpm add --save-dev @rescript/runtime@${{ steps.resolve.outputs.runtime }})
+          (cd packages/core && pnpm add --save-dev --save-exact "@rescript/runtime@$RESCRIPT_RUNTIME")
       - name: Show installed rescript versions
         if: steps.resolve.outputs.skip != 'true'
         run: pnpm ls --recursive rescript
