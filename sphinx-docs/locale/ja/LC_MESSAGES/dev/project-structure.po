@@ -73,12 +73,12 @@ msgid "`docs/architecture.md`"
 msgstr "`docs/architecture.md`"
 
 #: ../../dev/project-structure.md
-msgid "Read what conventions Claude Code enforces"
-msgstr "Claude Code が強制する規約を読む"
+msgid "Read project conventions"
+msgstr "プロジェクト規約を読む"
 
 #: ../../dev/project-structure.md
-msgid "`CLAUDE.md`, `.claude/rules/`"
-msgstr "`CLAUDE.md`、`.claude/rules/`"
+msgid "`AGENTS.md`, `.claude/rules/`"
+msgstr "`AGENTS.md`、`.claude/rules/`"
 
 #: ../../dev/project-structure.md
 msgid "Read how to contribute (external)"
@@ -97,13 +97,12 @@ msgid "`docs/development-guidelines.md`"
 msgstr "`docs/development-guidelines.md`"
 
 #: ../../dev/project-structure.md
-msgid "Read how a steering document is shaped"
-msgstr "ステアリングドキュメントの形を見る"
+msgid "Find a work item and its DoD"
+msgstr "作業項目と DoD を探す"
 
 #: ../../dev/project-structure.md
-#, python-brace-format
-msgid "`.steering/<existing>/{requirements,design,tasklist}.md`"
-msgstr "`.steering/<existing>/{requirements,design,tasklist}.md`"
+msgid "[GitHub Issues](https://github.com/Nagatatz/rescript-tauri/issues)"
+msgstr "[GitHub Issues](https://github.com/Nagatatz/rescript-tauri/issues)"
 
 #: ../../dev/project-structure.md
 msgid "Modify the docs you are reading right now"
@@ -145,4 +144,3 @@ msgstr ""
 #~ "`packages/core/` is the only Phase 1 "
 #~ "source package. Its layout (planned) is:"
 #~ msgstr "`packages/core/` は Phase 1 における唯一のソースパッケージです。予定されている構造は次のとおりです:"
-

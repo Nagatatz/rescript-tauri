@@ -63,6 +63,6 @@ CC Insights レポート（`~/.claude/usage-data/report.html`、2026-04 〜 2026
 
 ## 関連
 
-- `.claude/rules/steering-workflow.md` — worktree 作成前の鮮度確認
+- `.claude/rules/issue-workflow.md` — worktree 作成前の鮮度確認
 - `.claude/rules/git-conventions.md` — main へのコミット例外条項
 - `.claude/skills/bash-safety/` — 破壊的操作前の安全確認

@@ -89,7 +89,7 @@
 |---|---|
 | **PRD (Product Requirements Document)** | プロダクト要求定義書。`docs/product-requirements.md`。 |
 | **RFC (Request For Comments)** | 大型設計提案ドキュメント。`docs/ideas/RFC-NNNN-*.md` に置く。確定後は PRD / functional-design / architecture に反映され、RFC 自体は historical input として保存される。 |
-| **steering ワークフロー** | 中規模以上のコード変更時に `.steering/[YYYYMMDD]-[NNN]-[title]/` で `requirements.md` / `design.md` / `tasklist.md` を作成する本プロジェクトの規約。詳細は `.claude/rules/steering-workflow.md`。 |
+| **Issue ワークフロー** | GitHub Issue の DoD を作業の正本にする運用。詳細は `.claude/rules/issue-workflow.md`。旧 steering 記録は過去資料。 |
 | **Definition of Done (DoD)** | 作業の完了条件を一元管理する正本。詳細は `.claude/rules/definition-of-done.md`。 |
 | **worktree** | git worktree。本プロジェクトでは Claude Code のビルトイン worktree 機能で隔離された実装環境を作る。 |
 | **リリースマイルストーン** | リリース計画上のマイルストーン区分（初版リリース / 長期運用 等）。詳細は PRD §8。 |

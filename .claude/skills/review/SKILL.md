@@ -41,7 +41,7 @@ Task(subagent_type="code-reviewer", prompt="Review the following files for proje
 code-reviewer エージェントの結果に加え、以下の追加チェックを自分で実行する:
 
 - **変更の意図**: `git log --oneline` で直近のコミットメッセージを確認し、変更が意図通りか検証
-- **ビルド確認**: CLAUDE.md に記載のビルドコマンドでコンパイルが通ることを確認
+- **ビルド確認**: AGENTS.md に記載のビルドコマンドでコンパイルが通ることを確認
 - **テスト確認**: 変更ファイルに対応するテストファイルが存在するか Glob で確認
 
 ### 4. レビュー結果の報告

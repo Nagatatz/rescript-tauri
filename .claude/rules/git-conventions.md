@@ -33,7 +33,6 @@
 - 1つのコミットには1つの論理的な変更のみを含める
 - 機能の実装コード + 対応するテスト + 設定ファイル登録は同一コミットに含めてよい
 - ドキュメント更新は、該当機能のコミットに含めるか、全機能実装後に1つのドキュメント更新コミットとしてまとめる
-- tasklist.md の更新は各コミットに含めること
 - 独立した機能はそれぞれ個別のコミットにすること
 
 ## ブランチ運用ルール
@@ -43,11 +42,9 @@
 **手順:**
 1. `main` ブランチから作業用ブランチを作成する（`EnterWorktree` 推奨、ブランチ命名規則に従う）
 2. 作業用ブランチで実装・コミットを行う
-3. 完了後、`tasklist.md` のマージタスクを含む全タスクを `[x]` に更新してコミットする
-4. ユーザーに PR 作成・`main` へのマージ可否を確認する
-5. 承認後、`git push origin <ブランチ名>` → `gh pr create` → `gh pr merge --merge --delete-branch` で self-merge し、worktree とローカルブランチを削除する（詳細は `steering-workflow.md` 「worktree から main への反映手順」参照）
+3. ユーザーに PR 作成・`main` へのマージ可否を確認する
+4. 承認後、`git push origin <ブランチ名>` → `gh pr create` → `gh pr merge --merge --delete-branch` で self-merge し、worktree とローカルブランチを削除する（詳細は `issue-workflow.md`参照）
 
-**重要:** マージ前に `tasklist.md` の全タスク（マージタスク自体を含む）が `[x]` になっていることを確認すること。tasklist の更新はマージ前の最終コミットに含めること。
 
 **branch protection の効果:**
 - `git push origin main` は **403** で拒否される（admin を含む）
@@ -55,7 +52,7 @@
 - `main` ブランチの削除は禁止
 - すべての変更は PR レビュー必須（self-approve 可・required review count = 0）
 
-軽微な変更（タイポ修正、設定 1 行、`.steering/` のみ、`CLAUDE.md` / `docs/` のみ）も PR を通ること。solo dev の場合は self-merge で即時反映できるため、PR 経由のオーバーヘッドは小さい。
+軽微な変更（タイポ修正、設定 1 行、`AGENTS.md` / `docs/` のみ）も PR を通ること。solo dev の場合は self-merge で即時反映できるため、PR 経由のオーバーヘッドは小さい。
 
 ## ブランチ命名規則
 

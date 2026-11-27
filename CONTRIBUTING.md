@@ -1,6 +1,6 @@
 # Contributing to rescript-tauri
 
-Thank you for your interest in `rescript-tauri`! This document covers the branch / commit / steering / CI conventions every external PR is expected to follow.
+Thank you for your interest in `rescript-tauri`! This document covers the branch / commit / Issue / CI conventions every external PR is expected to follow.
 
 ---
 
@@ -56,11 +56,9 @@ Priority order when multiple emoji apply: ✨ > 🐛 > ♻️ > 📝 > 🎨 > �
 
 One logical change per PR. See [`.claude/rules/git-conventions.md` §コミット粒度](./.claude/rules/git-conventions.md). Implementation code, tests, and config registration for the same feature may live in one commit; documentation updates may be batched into one trailing doc commit if preferred.
 
-### 3.4 Steering workflow for medium+ changes
+### 3.4 Issue-driven workflow
 
-Anything beyond a typo or a single-line config tweak goes through the steering workflow: a `.steering/[YYYYMMDD]-[NNN]-[title]/` directory with `requirements.md` / `design.md` / `tasklist.md`, each user-approved before the next, and implementation done inside an isolated worktree. See [`.claude/rules/steering-workflow.md`](./.claude/rules/steering-workflow.md).
-
-The judgment between "Plan Mode" (lightweight) and "steering workflow" (heavyweight) is documented in [`.claude/rules/permission-modes.md`](./.claude/rules/permission-modes.md).
+Find or open a GitHub Issue before implementation. Record the scope, exclusions and testable Definition of Done (DoD) there, then work in an isolated worktree and link the PR. See [the Issue workflow](./.claude/rules/issue-workflow.md). Existing `.steering/` files are retained as historical records only.
 
 ### 3.5 Required tests
 
@@ -99,7 +97,7 @@ Every PR is expected to satisfy the project's [Definition of Done](./.claude/rul
 
 ### 3.9 Merging into `main` (maintainers)
 
-Branch protection means even maintainers cannot push directly to `main`. The canonical merge path is `gh pr merge <PR> --merge --delete-branch` (the `--merge` strategy is enforced to preserve the existing `--no-ff` history; `--squash` and `--rebase` are not used). The full worktree → push → PR → self-merge → cleanup recipe lives in [`.claude/rules/steering-workflow.md` §worktree から main への反映手順](./.claude/rules/steering-workflow.md). External contributors do not need to run this — the maintainer handles the merge after review.
+Branch protection means even maintainers cannot push directly to `main`. The canonical merge path is `gh pr merge <PR> --merge --delete-branch` (the `--merge` strategy is enforced to preserve the existing `--no-ff` history; `--squash` and `--rebase` are not used). The full worktree → push → PR → self-merge → cleanup recipe lives in [`.claude/rules/issue-workflow.md`](./.claude/rules/issue-workflow.md). External contributors do not need to run this — the maintainer handles the merge after review.
 
 ---
 

@@ -43,7 +43,7 @@ allowed-tools: Read, Write, Edit
 
 ### ステップ2: プロジェクトコンテキストの把握
 
-CLAUDE.md を読み、以下を確認する:
+AGENTS.md を読み、以下を確認する:
 
 - プロジェクトの概要と技術スタック
 - 既存のコーディング規約
@@ -58,8 +58,8 @@ CLAUDE.md を読み、以下を確認する:
 #### `create` の場合
 
 1. guides/implementation.md と guides/process.md を読み込む
-2. CLAUDE.md の既存規約と整合するように `docs/development-guidelines.md` を生成する
-3. CLAUDE.md との重複は避け、CLAUDE.md への参照リンクで繋ぐ
+2. AGENTS.md の既存規約と整合するように `docs/development-guidelines.md` を生成する
+3. AGENTS.md との重複は避け、AGENTS.md への参照リンクで繋ぐ
 
 #### `check` の場合
 
@@ -89,7 +89,7 @@ CLAUDE.md を読み、以下を確認する:
 ### 開発プロセス
 - [x] ドキュメント管理
 - [x] テスト実行
-- [ ] .steering/ ディレクトリの作成
+- [ ] GitHub Issue の DoD を確認
 
 ### 推奨アクション
 1. ...

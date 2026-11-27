@@ -7,7 +7,7 @@
 | 作成日 | 2026-05-08 |
 | 関連 | [docs/functional-design.md](./functional-design.md) §1.1, [docs/product-requirements.md](./product-requirements.md) §1.4 |
 
-> 本書は CLAUDE.md から `@import` され、Claude Code が常に参照する。リポジトリ内のディレクトリ・ファイルの位置と責務の **正本**。新規ディレクトリ追加時は本書を必ず更新する。
+> `AGENTS.md` から必要時に参照する。リポジトリ内の位置と責務の正本。新規ディレクトリ追加時は更新する。
 
 ---
 
@@ -53,7 +53,7 @@ rescript-tauri/                          # monorepo root
 │   ├── user/                            # ユーザーガイド
 │   ├── dev/                             # 開発者ガイド
 │   └── locale/ja/                       # 日本語翻訳
-├── .steering/                           # ステアリングドキュメント (作業ごと)
+├── .steering/                           # 旧作業記録（読み取り専用）
 │   ├── archive/                         # 30 日以上経過した完了作業
 │   └── [YYYYMMDD]-[NNN]-[title]/
 ├── .claude/                             # Claude Code 設定
@@ -70,7 +70,7 @@ rescript-tauri/                          # monorepo root
 │   └── workflows/
 ├── tools/                               # リポジトリ共通の Node ツール
 │   └── vitest.shared.mjs                # 全 package 共有の vitest config helper (steering 059)
-├── CLAUDE.md                            # プロジェクト指示書（本構造を @import）
+├── AGENTS.md                            # プロジェクト共通指示書
 ├── AGENTS.md                            # Claude Code 以外のエージェント参照集約
 ├── CONTRIBUTING.md                      # コントリビュータ向けガイド
 ├── CODE_OF_CONDUCT.md                   # 行動規範
@@ -343,7 +343,7 @@ examples/ipc-typed-with-schema/           # @rescript-tauri/schema (Layer 3) デ
 | `product-requirements.md` | プロダクト要求定義書 (PRD) | 大型機能追加時 |
 | `functional-design.md` | 機能設計書（モジュール別） | PRD 変更時に同期 |
 | `architecture.md` | アーキテクチャ・技術仕様書 | 大型構造変更時 |
-| `repository-structure.md` | 本書。CLAUDE.md から @import される | 構造変更ごと |
+| `repository-structure.md` | 本書。AGENTS.md から参照する | 構造変更ごと |
 | `glossary.md` | ユビキタス言語定義 | 新概念導入時 |
 | `development-guidelines.md` | 開発ガイドライン | プロセス変更時 |
 | `mcp-servers.md` | MCP サーバー設定ガイド | MCP 導入時 |
@@ -409,7 +409,7 @@ sphinx-docs/
 
 ## 6. `.steering/` — ステアリングドキュメント
 
-中規模以上のコード変更時に `[YYYYMMDD]-[NNN]-[開発タイトル]/` ディレクトリを作成し、`requirements.md` / `design.md` / `tasklist.md` を配置する。実装は **必ず Claude Code のビルトイン worktree 機能** で隔離して行う（`.claude/rules/steering-workflow.md`）。
+作業の計画・進捗は GitHub Issue の DoD に記録する。`.steering/` の既存ファイルは旧作業記録として参照のみとする。
 
 ```
 .steering/
@@ -432,7 +432,7 @@ sphinx-docs/
 | `commands/` | `/setup-project` 等のスラッシュコマンド定義 |
 | `skills/` | 状況発火型スキル本体（`SKILL.md` + 補助ファイル） |
 | `agents/` | code-reviewer / debugger 等のサブエージェント定義 |
-| `rules/` | CLAUDE.md から @import される常時適用ルール |
+| `rules/` | AGENTS.md から参照する規約 |
 | `hooks/` | 自動実行される shell hook（`check-secrets.sh` / `check-disk-space.sh` / `oxfmt-format.sh`） |
 | `settings.json` | Claude Code lifecycle hook 登録（PreToolUse / PostToolUse） |
 | `output-styles/` | 出力スタイル設定 |
@@ -495,7 +495,7 @@ CI ジョブ定義の詳細は `docs/functional-design.md` §6 を参照。
 
 | ファイル | 役割 |
 |---|---|
-| `CLAUDE.md` | Claude Code への強制指示。`@docs/repository-structure.md` を含む @import チェーンの起点 |
+| `AGENTS.md` | エージェント共通の指示と参照先 |
 | `AGENTS.md` | Claude Code 以外のエージェント（Cursor / Copilot 等）が参照する集約ファイル |
 | `CONTRIBUTING.md` | コントリビュータ向けガイド（PR 出し方 / テスト / レビュー観点） |
 | `CODE_OF_CONDUCT.md` | 行動規範（Contributor Covenant ベース） |
@@ -533,7 +533,7 @@ CI ジョブ定義の詳細は `docs/functional-design.md` §6 を参照。
 新規ディレクトリ・パッケージ・モジュールを追加する際は:
 
 1. 本書（`docs/repository-structure.md`）を更新する。
-2. CLAUDE.md からの @import チェーンが壊れていないことを確認する。
+2. AGENTS.md の参照先が壊れていないことを確認する。
 3. `docs/functional-design.md` §1.1 と整合させる。
 4. CI ジョブ（`.github/workflows/`）の対象パスに新規 directory を含めるか判断する。
 5. 影響範囲が大きい場合（パッケージ新設等）は `.steering/` で正式に提案する。
