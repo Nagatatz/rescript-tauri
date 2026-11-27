@@ -168,4 +168,4 @@ CC Insights レポート（2026-04 〜 2026-05）で:
 
 - `.github/workflows/tests-coverage.yml` — 4 パッケージ matrix coverage CI
 - `.claude/rules/testing.md` — テスト規約（一般）
-- `.claude/rules/steering-workflow.md` — 長時間タスクの Checkpoint 計画
+- `.claude/rules/issue-workflow.md` — 長時間タスクの Checkpoint 計画

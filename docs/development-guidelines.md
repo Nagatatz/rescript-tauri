@@ -16,31 +16,12 @@
 
 ### 1.1 標準フロー
 
-```
-ステアリング起動 → worktree 隔離 → 実装 → 自己検証 → コミット → マージ確認 → クリーンアップ
-```
+GitHub Issue（目的・対象外・DoD）→ worktree → 実装 → 自己検証 → PR → 承認・マージ → クリーンアップ。
+詳細は [Issue ワークフロー](../.claude/rules/issue-workflow.md) を参照。
 
-各ステップの定義は `.claude/rules/steering-workflow.md` を参照。
+### 1.2 作業規模の判断
 
-| ステップ | 主な成果物 | 失敗時の挙動 |
-|---|---|---|
-| ステアリング起動 | `.steering/[YYYYMMDD]-[NNN]-[title]/{requirements,design,tasklist}.md` | ユーザー承認なしに次工程へ進めない |
-| worktree 隔離 | `.claude/worktrees/<name>/` + `worktree-<name>` ブランチ | コード実装は隔離環境で行う |
-| 実装 | コード + テスト + ドキュメント更新 | tasklist を `[x]` リアルタイム更新 |
-| 自己検証 | ビルド成功、テスト pass、型チェック OK | コミット禁止 |
-| コミット | 1 コミット = 1 論理的変更 | 規約違反は再分割 |
-| マージ確認 | `AskUserQuestion` でユーザー承認 | 承認なしのマージ禁止 |
-| クリーンアップ | worktree 削除 + ブランチ削除 + push | クリーンアップ未完了でセッション終了不可 |
-
-### 1.2 軽微な変更 vs 中規模以上の判断
-
-| 作業区分 | 推奨フロー | 根拠 |
-|---|---|---|
-| タイポ修正、1 行の設定変更 | 通常モード（直接実行）| `permission-modes.md` |
-| 軽微な変更（差分を 1 文で説明できる）| Plan Mode | `permission-modes.md` |
-| 中規模以上（複数ファイル、不慣れなコード）| ステアリングワークフロー | `steering-workflow.md` |
-
-判断に迷う場合は **steering 寄りに倒す**。requirements.md だけでも作成しておけば、後の参照になる。
+軽微な変更は短い DoD と確認結果で足りる。複数モジュールを含む変更は、対象・依存先・非対象と検証順を Issue に記録する。長期参照が必要な設計は `docs/` に置いて Issue とリンクする。
 
 ### 1.3 Definition of Done の各フェーズ
 
@@ -81,7 +62,7 @@ pnpm install
 
 ## 3. ビルド・テスト・lint コマンド
 
-`CLAUDE.md` 「ビルド・実行コマンド」と同期している。差分が出た場合は CLAUDE.md を SSoT とする。
+`AGENTS.md` 「ビルド・実行コマンド」と同期している。差分が出た場合は AGENTS.md を SSoT とする。
 
 ```bash
 # 全 workspace ビルド
@@ -204,10 +185,10 @@ let _ = Foo.someType: Foo.t => unit
 
 `.claude/rules/git-conventions.md` を SSoT とする。要点のみ再掲:
 
-- **粒度**: 1 コミット = 1 論理的変更。実装コード + 対応テスト + 設定ファイル登録は同一コミット可。`tasklist.md` の更新は各コミットに含める。
+- **粒度**: 1 コミット = 1 論理的変更。実装コード + 対応テスト + 設定ファイル登録は同一コミット可。進捗は Issue の DoD に記録する。
 - **メッセージ**: 絵文字プレフィックス + 動詞で始まる英語。判定優先順位: ✨ > 🐛 > ♻️ > 📝 > 🎨 > ⚡ > 🔧 > ✅ > 🗑️
 - **ブランチ**: `feature/`, `fix/`, `refactor/`, `docs/`, `test/`, `chore/` のいずれかをプレフィックスとし、`main` から派生
-- **マージ**: `main` は GitHub branch protection で直 push 不可（steering 20260512-006）。全変更は PR 経由で反映する。詳細は `.claude/rules/steering-workflow.md` 「worktree から main への反映手順」を参照
+- **マージ**: `main` は GitHub branch protection で直 push 不可（steering 20260512-006）。全変更は PR 経由で反映する。詳細は `.claude/rules/issue-workflow.md`を参照
 
 ---
 
@@ -258,10 +239,10 @@ let _ = Foo.someType: Foo.t => unit
   - [`testing.md`](../.claude/rules/testing.md) — テスト規約 + 自己検証フロー
   - [`code-comments.md`](../.claude/rules/code-comments.md) — doc / インラインコメント規約
   - [`git-conventions.md`](../.claude/rules/git-conventions.md) — コミット / ブランチ規約
-  - [`steering-workflow.md`](../.claude/rules/steering-workflow.md) — ステアリング + worktree 運用
+  - [`issue-workflow.md`](../.claude/rules/issue-workflow.md) — Issue + worktree 運用
   - [`documentation.md`](../.claude/rules/documentation.md) — `docs/` / `sphinx-docs/` 役割分担
   - [`definition-of-done.md`](../.claude/rules/definition-of-done.md) — 完了定義 SSoT
-  - [`permission-modes.md`](../.claude/rules/permission-modes.md) — Plan Mode / steering / auto / sandbox 住み分け
+  - [`permission-modes.md`](../.claude/rules/permission-modes.md) — Plan Mode と権限の境界
 - `docs/`
   - [`product-requirements.md`](./product-requirements.md) — PRD（ペルソナ / ユーザーストーリー / KPI）
   - [`functional-design.md`](./functional-design.md) — モジュール別 API 仕様

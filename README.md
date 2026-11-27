@@ -171,10 +171,10 @@ rescript-tauri/
 ├── docs/             # Internal design docs (PRD, functional design, architecture, ...)
 │   └── ideas/        # Drafts / RFCs (input only; not edited after acceptance)
 ├── sphinx-docs/      # External-facing docs (English base + Japanese via Sphinx i18n)
-├── .steering/        # Per-task steering documents (requirements / design / tasklist)
+├── .steering/        # Historical work records (read-only)
 ├── .claude/          # Claude Code configuration (rules / skills / agents / commands)
 ├── .github/          # GitHub Actions / templates
-├── CLAUDE.md         # Mandatory project instructions for Claude Code (Japanese)
+├── AGENTS.md         # Shared project instructions (Japanese)
 └── README.md         # This file
 ```
 
@@ -190,7 +190,7 @@ rescript-tauri/
 | [`docs/repository-structure.md`](./docs/repository-structure.md) | Repository structure (canonical source) | Japanese |
 | [`docs/glossary.md`](./docs/glossary.md) | Ubiquitous-language glossary | Japanese |
 | [`docs/ideas/RFC-0001-core-api-design.md`](./docs/ideas/RFC-0001-core-api-design.md) | Core API design RFC (historical input to the PRD; not edited) | English |
-| [`CLAUDE.md`](./CLAUDE.md) | Mandatory instructions for Claude Code | Japanese |
+| [`AGENTS.md`](./AGENTS.md) | Shared project instructions | Japanese |
 
 External-facing user and contributor documentation lives in [`sphinx-docs/`](./sphinx-docs/) with English as the base language and Japanese translations provided through Sphinx i18n (`.po` files under `sphinx-docs/locale/ja/`). The site is built by [`.github/workflows/docs.yml`](./.github/workflows/docs.yml) and deployed to **GitHub Pages** at <https://nagatatz.github.io/rescript-tauri/> (English under `/en/`, Japanese under `/ja/`).
 
@@ -202,7 +202,7 @@ This repository is configured for development with Claude Code. The `.claude/` d
 
 | Kind | Location | Role | Activation |
 |---|---|---|---|
-| **rules** | `.claude/rules/` | Always-applied conventions. `@import`-ed from `CLAUDE.md`, enforced in every session. | Always (no manual trigger) |
+| **rules** | `.claude/rules/` | Project conventions indexed in `AGENTS.md`. | Read the applicable rule before work |
 | **skills** | `.claude/skills/` | Situational knowledge / workflows loaded automatically when conditions match. Can also be triggered explicitly with `/skill-name`. | Auto / explicit `/<name>` |
 | **agents** | `.claude/agents/` | Specialized sub-agents (code-reviewer / debugger / build-resolver / security-reviewer / ...). Invoked through the Agent tool. | Agent tool |
 | **commands** | `.claude/commands/` | Slash command definitions (`/setup-project`, `/add-feature`, ...). | `/<command>` |
@@ -213,7 +213,7 @@ The rule / skill / agent / command files themselves are intentionally kept in Ja
 
 When introducing a new convention or workflow, choose its location in this priority order:
 
-1. **Must be enforced in every session, without exception** → `rules/` (and `@import` it from `CLAUDE.md`).
+1. **Repository-wide convention** → `rules/` (link from `AGENTS.md` when needed).
 2. **Should fire automatically in specific situations / on specific keywords** → `skills/`.
 3. **Has a distinct role best handled by a dedicated sub-agent** → `agents/`.
 4. **Needs an explicit entry point of the form `/xxx`** → `commands/`.
@@ -227,16 +227,16 @@ When introducing a new convention or workflow, choose its location in this prior
 | [`rules/testing.md`](./.claude/rules/testing.md) | Mandatory tests; self-verification flow |
 | [`rules/code-comments.md`](./.claude/rules/code-comments.md) | Doc and inline comment conventions |
 | [`rules/git-conventions.md`](./.claude/rules/git-conventions.md) | Emoji-prefixed commits, commit granularity, branch naming, **PR-only main workflow** (branch protection) |
-| [`rules/steering-workflow.md`](./.claude/rules/steering-workflow.md) | Steering documents, worktree workflow, worktree → main reflection via PR self-merge |
+| [`rules/issue-workflow.md`](./.claude/rules/issue-workflow.md) | GitHub Issue DoD and worktree / PR workflow |
 | [`rules/documentation.md`](./.claude/rules/documentation.md) | Roles of `docs/` vs `sphinx-docs/` |
 | [`rules/definition-of-done.md`](./.claude/rules/definition-of-done.md) | Single Source of Truth for the Definition of Done (Phases 1–5) |
-| [`rules/permission-modes.md`](./.claude/rules/permission-modes.md) | Plan Mode / steering / auto / sandbox split |
+| [`rules/permission-modes.md`](./.claude/rules/permission-modes.md) | Plan Mode and permission boundaries |
 
 ---
 
 ## 🤝 Contributing
 
-External pull requests and design feedback are welcome. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the branch / commit / steering / CI conventions, and [`SECURITY.md`](./SECURITY.md) for vulnerability disclosure.
+External pull requests and design feedback are welcome. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the branch / commit / Issue / CI conventions, and [`SECURITY.md`](./SECURITY.md) for vulnerability disclosure.
 
 `main` is protected by GitHub branch protection (steering [20260512-006](./.steering/archive/20260512-006-protect-main-branch/)): **every change lands through a pull request** — direct push, force-push, and branch deletion are all blocked, even for admins. The required-approval count is `0`, so maintainers can self-merge for solo-dev iteration, but every change still flows through a PR record.
 

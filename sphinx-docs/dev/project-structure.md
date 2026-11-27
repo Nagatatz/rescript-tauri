@@ -11,10 +11,10 @@ rescript-tauri/
 ├── docs/             # Internal design docs (PRD, functional design, architecture, ...)
 │   └── ideas/        # Drafts / RFCs (input only; not edited after acceptance)
 ├── sphinx-docs/      # External-facing docs (this site; English base + Japanese via Sphinx i18n)
-├── .steering/        # Per-task steering documents (requirements / design / tasklist)
+├── .steering/        # Historical work records (read-only)
 ├── .claude/          # Claude Code configuration (rules / skills / agents / commands)
 ├── .github/          # GitHub Actions / templates
-├── CLAUDE.md         # Mandatory project instructions for Claude Code (Japanese)
+├── AGENTS.md         # Shared project instructions (Japanese)
 ├── CONTRIBUTING.md   # External contributor guide (English)
 ├── README.md         # Project README (English)
 └── LICENSE           # MIT
@@ -27,10 +27,10 @@ rescript-tauri/
 | Read what the project promises to do | `README.md`, `docs/product-requirements.md` |
 | Read per-module API specs | `docs/functional-design.md` |
 | Read cross-cutting design (error / lifetime / JSON / variants) | `docs/architecture.md` |
-| Read what conventions Claude Code enforces | `CLAUDE.md`, `.claude/rules/` |
+| Read project conventions | `AGENTS.md`, `.claude/rules/` |
 | Read how to contribute (external) | `CONTRIBUTING.md` |
 | Read how to develop locally (internal) | `docs/development-guidelines.md` |
-| Read how a steering document is shaped | `.steering/<existing>/{requirements,design,tasklist}.md` |
+| Find a work item and its DoD | [GitHub Issues](https://github.com/Nagatatz/rescript-tauri/issues) |
 | Modify the docs you are reading right now | `sphinx-docs/` |
 
 ## Subsystem map

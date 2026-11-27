@@ -1,5 +1,5 @@
 ---
-description: 会話の文脈からルールを抽出し `.claude/rules/` に永続化するスキル。「ルール化してください」「ルールに追加して」「これをルールにして」等のユーザー発言に proactively 反応。プロジェクトルールを規約ファイルとして保存し、CLAUDE.md から参照可能な形にする。
+description: 会話の文脈からルールを抽出し `.claude/rules/` に永続化するスキル。「ルール化してください」「ルールに追加して」「これをルールにして」等のユーザー発言に proactively 反応。プロジェクトルールを規約ファイルとして保存し、AGENTS.md から参照可能な形にする。
 allowed-tools: Read, Write, Edit, Glob, Bash
 disable-model-invocation: true
 ---
@@ -15,7 +15,7 @@ disable-model-invocation: true
 - 「ルールに追加して」
 - 「これをルールにして」
 - 「rules に書いて」
-- 「CLAUDE.md に追記して」（ルール関連の場合）
+- 「AGENTS.md に追記して」（ルール関連の場合）
 
 ## 手順
 
@@ -53,11 +53,11 @@ disable-model-invocation: true
 - 既存ファイルに追記する場合: ファイル末尾に適切なセクションとして追加
 - 新規ファイルを作成する場合: `# <タイトル>` ヘッダーから始める
 
-### ステップ 4: CLAUDE.md への反映
+### ステップ 4: AGENTS.md への反映
 
-ルールが CLAUDE.md の内容にも影響する場合:
-- CLAUDE.md の該当セクションにも反映する
-- 新規ルールファイルを作成した場合、CLAUDE.md に `@.claude/rules/` 参照があればリストに追加する
+ルールが AGENTS.md の内容にも影響する場合:
+- AGENTS.md の該当セクションにも反映する
+- 新規ルールファイルを作成した場合、AGENTS.md に `@.claude/rules/` 参照があればリストに追加する
 
 ### ステップ 5: 確認
 
